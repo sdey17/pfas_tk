@@ -180,6 +180,37 @@ check("ln2*Vz/CL == terminal half-life", np.log(2) * Vz / CL, half_life(beta),
       1e-9, "d")
 
 # ----------------------------------------------------------------------
+print("\nlesson 08 -- mass balance in the 2-compartment ODE")
+def _rhs2(t, state, k10, k12, k21):
+    A1, A2 = state
+    return [-(k10 + k12) * A1 + k21 * A2,  k12 * A1 - k21 * A2]
+
+_k10, _k12, _k21 = 0.10, 0.50, 0.30
+# every INTERNAL transfer term must appear twice with opposite signs, so
+# summing the right-hand side leaves only elimination. One call proves it
+# for all t; no integration needed.
+_d1, _d2 = _rhs2(0.0, [7.0, 3.0], _k10, _k12, _k21)
+check("transfer terms cancel: sum(rhs) == -k10*A1",
+      _d1 + _d2, -_k10 * 7.0, 1e-12, "mg/kg/d")
+_s = solve_ivp(_rhs2, (0, 60), [10.0, 0.0], t_eval=np.linspace(0, 60, 20001),
+               args=(_k10, _k12, _k21), rtol=1e-10, atol=1e-13)
+_tot = _s.y[0] + _s.y[1]
+check("total at t=0 equals the dose", _tot[0], 10.0, 1e-12, "mg/kg")
+check("body burden is monotone (bolus, no input)",
+      float(np.all(np.diff(_tot) <= 1e-12)), 1.0, 1e-9)
+# the general ledger: with an INPUT the total rises, so carry a state that
+# accumulates what left, and assert body + eliminated == delivered.
+def _rhs_inf(t, state, k, dose, dur):
+    A, A_elim = state
+    return [(dose / dur if t < dur else 0.0) - k * A, k * A]
+_g = np.linspace(0, 60, 2401)
+_si = solve_ivp(_rhs_inf, (0, 60), [0.0, 0.0], t_eval=_g, args=(0.06, 10.0, 2.0),
+                rtol=1e-11, atol=1e-14, max_step=0.25)
+_delivered = np.minimum(_g, 2.0) * (10.0 / 2.0)
+check("ledger closes: body + eliminated == delivered",
+      float(np.max(np.abs(_si.y[0] + _si.y[1] - _delivered))), 0.0, 1e-6, "mg/kg")
+
+# ----------------------------------------------------------------------
 print("\nlesson 10 -- sex and species")
 def cl_nca(df, ds):
     g = (df[(df.dataset == ds) & (df.conc_mgL > 0)]

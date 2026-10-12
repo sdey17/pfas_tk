@@ -109,12 +109,43 @@ print(f"   max relative error: {np.max(np.abs(num / ana - 1)):.2e}")
 total = sol.y[0] + sol.y[1]
 print(f"   mass check: dose {DOSE:g} mg/kg in, "
       f"{total[0]:.6f} at t=0, {total[-1]:.6f} left at t=60")
+
+# Two endpoints do not establish a monotone decline -- a total that rose
+# to 50 and came back would print the same two numbers. Assert the shape
+# on a dense grid, and assert the EXACT reason it holds: summing the
+# right-hand side must leave only the elimination term, so
+# d(total)/dt = -k10*A1, which is <= 0 whenever A1 >= 0.
+dense = solve_ivp(rhs_2comp, (0, 60), [DOSE, 0.0],
+                  t_eval=np.linspace(0, 60, 20001), args=(k10, k12, k21),
+                  rtol=1e-10, atol=1e-13)
+tot_dense = dense.y[0] + dense.y[1]
+d1, d2 = rhs_2comp(0.0, [7.0, 3.0], k10, k12, k21)      # any state will do
+print(f"   monotone over 20001 points: {bool(np.all(np.diff(tot_dense) <= 1e-12))}")
+print(f"   transfer terms cancel: sum(rhs) = {d1 + d2:+.6f}, "
+      f"-k10*A1 = {-k10 * 7.0:+.6f}")
 print("""
    Notice the second check. In an ODE model you can always account for
    where the mass went, and you should: a conservation error is the
-   fastest way to catch a sign slip or a missing term. Here the only
-   loss is k10*A1, so the total falls monotonically. In a PBPK model
-   with ten organs, this check is not optional.
+   fastest way to catch a sign slip or a missing term.
+
+   Note how the monotone claim is actually established. Printing the
+   first and last total proves nothing -- a curve that rose to 50 and
+   came back down prints the same two numbers. The dense-grid line
+   checks the shape; the line after it checks the REASON, by summing
+   the right-hand side at an arbitrary state. Every transfer term
+   appears twice with opposite signs, so the sum collapses to -k10*A1,
+   and the total can only fall while A1 >= 0. That is one call to rhs,
+   no integration, and it holds for all t -- strictly stronger than
+   any grid.
+
+   The monotone form is the SPECIAL CASE of a bolus. With an input term
+   (infusion, drinking water, oral absorption) the body burden rises,
+   and the invariant becomes a ledger: carry a state that accumulates
+   what has been eliminated, and assert
+
+       A_body(t) + A_eliminated(t) == A_delivered(t)   for all t
+
+   In a PBPK model with ten organs, this check is not optional.
 """)
 
 
