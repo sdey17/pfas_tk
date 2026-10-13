@@ -211,6 +211,37 @@ check("ledger closes: body + eliminated == delivered",
       float(np.max(np.abs(_si.y[0] + _si.y[1] - _delivered))), 0.0, 1e-6, "mg/kg")
 
 # ----------------------------------------------------------------------
+print("\nlesson 08 D2 -- stiffness")
+# A stiff system must give the SAME answer on an explicit and an implicit
+# solver; only the cost differs. If they disagree, one of them is wrong.
+def _rhs_two_speed(t, A, Vb, Vf, Vs, Qf, Qs, CL):
+    A_bl, A_f, A_s = A
+    C_bl = A_bl / Vb
+    out_f, out_s = A_f / Vf, A_s / Vs
+    return [Qf * out_f + Qs * out_s - (Qf + Qs) * C_bl - CL * C_bl,
+            Qf * (C_bl - out_f), Qs * (C_bl - out_s)]
+_p = (0.08, 0.05, 0.60, 8.0, 0.5, 0.02)
+_te = np.linspace(0, 120, 50)
+_sol = {m: solve_ivp(_rhs_two_speed, (0, 120), [10.0, 0.0, 0.0], t_eval=_te,
+                     args=_p, rtol=1e-10, atol=1e-13, method=m)
+        for m in ("LSODA", "RK45")}
+_tot = {m: v.y.sum(0) for m, v in _sol.items()}
+check("stiff system: LSODA and RK45 agree",
+      float(np.max(np.abs(_tot["LSODA"] / _tot["RK45"] - 1))), 0.0, 1e-6)
+check("implicit solver needs far fewer rhs calls",
+      float(_sol["RK45"].nfev > 10 * _sol["LSODA"].nfev), 1.0, 1e-9)
+_Vb, _Vf, _Vs, _Qf, _Qs, _CL = _p
+_J = np.array([[-(_Qf + _Qs + _CL) / _Vb, _Qf / _Vf, _Qs / _Vs],
+               [_Qf / _Vb, -_Qf / _Vf, 0.0],
+               [_Qs / _Vb, 0.0, -_Qs / _Vs]])
+_ev = np.sort(np.abs(np.linalg.eigvals(_J)))
+check("stiffness ratio is large", float(_ev[-1] / _ev[0] > 1e3), 1.0, 1e-9)
+# and the lesson 08 section D fit is NOT stiff -- the prose says ratio 3.7
+_s = 0.1398 + 0.0156 + 0.0506
+_d = np.sqrt(_s ** 2 - 4 * 0.1398 * 0.0506)
+check("section D alpha/beta ratio", (_s + _d) / (_s - _d), 3.73, 0.01)
+
+# ----------------------------------------------------------------------
 print("\nlesson 10 -- sex and species")
 def cl_nca(df, ds):
     g = (df[(df.dataset == ds) & (df.conc_mgL > 0)]

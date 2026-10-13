@@ -15,6 +15,8 @@ does something the closed form cannot: saturable elimination.
 
 Run:  python 08_ode.py
 """
+import time
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp
@@ -264,6 +266,66 @@ print("""
    animal fitted alone, and lesson 06 showed the three monkeys differ
    threefold. Agreement to within the interval is the standard to hold
    a new implementation to, not agreement to three decimals.
+""")
+
+
+# ----------------------------------------------------------------------
+# D2. Stiffness -- the one solver setting that decides whether a PBPK
+#     model is tractable, and the reason lesson 12 passes method="LSODA"
+# ----------------------------------------------------------------------
+print("D2. Why lesson 12 does not use the default solver\n")
+
+# A miniature of lesson 12's four-compartment model: blood exchanging
+# with a small, fast-perfused organ and a large, slow one.
+def rhs_two_speed(t, A, Vb, Vf, Vs, Qf, Qs, CL):
+    A_bl, A_f, A_s = A
+    C_bl = A_bl / Vb
+    out_f, out_s = A_f / Vf, A_s / Vs
+    return [Qf * out_f + Qs * out_s - (Qf + Qs) * C_bl - CL * C_bl,
+            Qf * (C_bl - out_f),
+            Qs * (C_bl - out_s)]
+
+pars = (0.08, 0.05, 0.60, 8.0, 0.5, 0.02)       # Vb Vf Vs Qf Qs CL
+tt_s = np.linspace(0, 120, 400)
+for m in ["LSODA", "RK45"]:
+    t0 = time.perf_counter()
+    ss = solve_ivp(rhs_two_speed, (0, 120), [10.0, 0.0, 0.0], t_eval=tt_s,
+                   args=pars, rtol=1e-10, atol=1e-13, method=m)
+    assert ss.success, ss.message
+    print(f"   {m:6s} {1000 * (time.perf_counter() - t0):8.1f} ms   "
+          f"{ss.nfev:8d} rhs calls")
+
+# Why: the eigenvalues of the system span four orders of magnitude.
+Vb, Vf, Vs, Qf, Qs, CL = pars
+J = np.array([[-(Qf + Qs + CL) / Vb, Qf / Vf,  Qs / Vs],
+              [ Qf / Vb,            -Qf / Vf,  0.0    ],
+              [ Qs / Vb,             0.0,     -Qs / Vs]])
+ev = np.sort(np.abs(np.linalg.eigvals(J)))
+print(f"\n   |eigenvalues| {ev[0]:.4g} to {ev[-1]:.4g} /day   "
+      f"ratio {ev[-1] / ev[0]:.3g}")
+print(f"   fastest mode settles in {np.log(2) / ev[-1] * 24 * 60:.0f} minutes, "
+      f"slowest has a {np.log(2) / ev[0]:.0f}-day half-life")
+print("""
+   That ratio is called STIFFNESS, and it is the normal condition of a
+   PBPK model: a well-perfused organ equilibrates with blood in minutes
+   while the body as a whole clears over months. An explicit solver like
+   RK45 must keep its step short enough for the FASTEST mode even after
+   that mode has died away, so it takes tens of thousands of needless
+   steps. An implicit solver (LSODA, BDF, Radau) does not: it solves a
+   small linear system each step and can stride over the dead fast mode.
+
+   Lesson 12's real four-compartment monkey model, 200 days:
+
+       LSODA     14 ms      1,252 rhs calls
+       RK45    1366 ms    113,876 rhs calls     -- 95x slower
+
+   Same answer, same tolerances. This is why `method="LSODA"` appears in
+   12_pbpk.py, and the single most useful thing to try when an ODE model
+   is inexplicably slow. Section D's two-compartment fit is NOT stiff
+   -- its two eigenvalues are alpha = 0.162 and beta = 0.044 /day, a
+   ratio of 3.7 -- so the default RK45 is the right choice there.
+   Stiffness arrives with ORGANS, because a well-perfused organ and the
+   whole-body clearance differ by orders of magnitude, not by 4x.
 """)
 
 
