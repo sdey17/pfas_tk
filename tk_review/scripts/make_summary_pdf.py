@@ -474,7 +474,7 @@ def story_2():
           "fixed chemistry, so it is corroboration by analogy rather than "
           "replication - though it is hard to explain why clearance should be "
           "the volatile term along both axes unless it simply is the volatile "
-          "term. This study's <i>absolute</i> clearances run about twofold "
+          "term. This study's <i>absolute</i> clearances run about 2.5&times; "
           "below the one-compound-at-a-time literature, for reasons set out "
           "in section 10; the comparison here is a ratio within one "
           "experiment, from which a shared scaling cancels, so the "
@@ -881,7 +881,8 @@ def story_3():
           + " and 0.54&times; for volume. <b>B:</b> the same comparison for "
           "half-life, which is their ratio. Seven comparisons across three "
           "compounds " + c("chang2008", "sundstrom2012", "chang2012")
-          + ", geometric mean 1.04&times;. Only comparisons with one "
+          + ", spanning 0.79&times; to 1.30&times;, geometric mean "
+          "1.04&times;. Only comparisons with one "
           "attributable dose are shown: three studies pooled two dose levels "
           "into a single reported parameter " + c("lou2009", "tatum2011",
                                                   "epa2023pfhxa")

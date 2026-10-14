@@ -88,6 +88,11 @@ This is the same conclusion the review reached across studies (Vd r = +0.00 with
 the half-life gap, clearance r = +0.87), now with every cross-study confound
 removed.
 
+Argoul's *absolute* clearances run about 2.5× below the one-compound-at-a-time
+literature and its volumes about 1.9× below, while the half-life — their ratio —
+agrees to 1.04×. That is a shared scaling, which cancels from the contrast
+above. See `report/REPORT.md` §11.3a and `db/argoul_vs_single_compound.csv`.
+
 ---
 
 ## 3. One mechanistic axis: fractional renal reabsorption

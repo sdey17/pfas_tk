@@ -329,7 +329,7 @@ Even counting PFHxA at face value, clearance varies over a range 81× wider than
 Vss. §3.1 reached this conclusion across studies; it holds with every
 cross-study confound removed.
 
-This study's *absolute* clearances run about twofold below the
+This study's *absolute* clearances run about 2.5× below the
 one-compound-at-a-time literature (§11.3a), but the comparison above is a ratio
 within one experiment, and a shared scaling cancels from a ratio. The 5,254×
 against 7.7× stands whatever the common factor turns out to be.
