@@ -290,24 +290,29 @@ def main():
                               ratio=at / t, vd_independent_of_cl="",
                               **cite(key), **dose(r, dstr, dlow, route)))
         if c in POOLED:
-            t = POOLED[c]
-            pooled_r.append(at / t)
-            print(f"  {c:<7s} {at:>14.3f} {t:>16.3f} {at/t:>6.2f}x   "
-                  f"EPA pooled fit (same literature)")
-            PAIRS.append(dict(parameter="half_life_pooled", chemical=c,
-                              units="d", comparator="EPA pooled fit", argoul=at,
-                              single=t, ratio=at / t, vd_independent_of_cl="",
-                              **cite("zurlinden2025"),
-                              **dose(r, "pooled across doses", None, "various")))
+            # Kept for the note below, NOT written to the CSV: the pooled fit
+            # re-analyses the very studies above, so a row of it next to them
+            # would count the same animals twice.
+            pooled_r.append(at / POOLED[c])
     both = ratios + pooled_r
-    print(f"\n  Over the {len(ratios)} independent single-compound comparisons the "
-          f"half-life ratios\n  span {min(ratios):.2f}x to {max(ratios):.2f}x, "
-          f"geometric mean {gm(ratios):.2f}x. The {len(pooled_r)} EPA pooled rows are "
-          f"printed\n  above but kept out of that mean, since the pooled fit is built "
-          f"from the\n  same studies; including them moves it to {gm(both):.2f}x "
-          f"(span {min(both):.2f}x to {max(both):.2f}x)."
-          f"\n\n  PFBS and PFDS have no comparator; Argoul reports no clearance for "
-          f"PFBS at all.")
+    print(f"\n  {len(ratios)} comparisons, every one against a study that dosed that "
+          f"compound\n  alone. Ratios span {min(ratios):.2f}x to {max(ratios):.2f}x, "
+          f"geometric mean {gm(ratios):.2f}x.")
+    print(f"""
+  The EPA pooled fit [zurlinden2025] is NOT in the table above, and not in the
+  output CSV. It is a Bayesian hierarchical re-analysis of the same single-
+  compound studies, so putting it beside them counts the same animals twice,
+  and it is a model output rather than a measurement -- for PFBA it returns
+  {POOLED['PFBA']:.3f} d where every Chang arm sits at 0.116-0.128. For the record,
+  its {len(pooled_r)} ratios would move the geometric mean to {gm(both):.2f}x
+  (span {min(both):.2f}x to {max(both):.2f}x), which does not change the conclusion.
+
+  One thing that costs: PFHxA has no single-compound female-mouse comparator,
+  so dropping the pooled rows drops PFHxA from the half-life comparison
+  entirely. It survives in the volume comparison only.
+
+  PFBS and PFDS have no comparator either; Argoul reports no clearance for
+  PFBS at all.""")
     print("""
   So the half-lives broadly agree while the clearances and volumes do not.
   That is the signature of a shared scaling on both terms rather than a

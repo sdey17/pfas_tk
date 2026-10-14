@@ -1989,9 +1989,19 @@ lower bound, so read the ratios as indicative.
 | PFNA | Tatum-Gibbs 2011 × 2 | 0.54–1.42× |
 | **all ten** | | **geometric mean 0.99×** |
 
-The six EPA pooled-fit rows the script also prints are kept out of that mean,
-since the pooled fit is built from the same studies; including them moves it to
-0.95×.
+Every comparison above is against a study that dosed that compound **alone**.
+The EPA pooled fit (Zurlinden 2025) is deliberately not among them and is not
+in `db/argoul_vs_single_compound.csv`: it is a Bayesian hierarchical
+re-analysis of these same studies, so placing it beside them counts the same
+animals twice, and it is a model output rather than a measurement — for PFBA it
+returns 0.186 d where every Chang arm sits at 0.116–0.128. For the record its
+six ratios would move the geometric mean to 0.95× (span 0.54–1.74×), which does
+not change the conclusion.
+
+That exclusion has one cost: **PFHxA has no single-compound female-mouse
+comparator**, so it drops out of the half-life comparison entirely and survives
+only in the volume comparison. PFBS and PFDS have no comparator either, and
+Argoul reports no clearance for PFBS at all.
 
 **What the shape of that result means.** A factor that multiplies Vd and CL
 together cancels from ln2·Vd/CL, so "both terms twofold low, half-life
