@@ -35,7 +35,10 @@ The volume of distribution sex ratio is male-higher every single time and never
 leaves a narrow band. The clearance ratio ranges over nearly two orders of
 magnitude **and changes sign between species**. Argoul 2026 reaches the same
 conclusion inside one experiment: across 11 PFAS dosed as a single cocktail,
-clearance spans **5,254×** while Vss spans **7.7×**.
+clearance spans **5,254×** while Vss spans **7.7×**. (That study's *absolute*
+clearances run ~2.5× below the one-compound-at-a-time literature, but a shared
+scaling cancels from a ratio, so this contrast is unaffected — see REPORT.md
+§11.3a.)
 
 Taking both limbs from primary sources, the gap is concentrated in females —
 female rat ÷ female mouse PFOA clearance is **373–496×**, against **7.0×** in
