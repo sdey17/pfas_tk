@@ -1518,6 +1518,60 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ---
 
+### 6.4 How much of the species difference is binding? The arithmetic
+
+§6.2 settles what the unbound fraction is and §11.4 shows what the choice does
+to the transport endpoint. The arithmetic joining them is worth stating plainly,
+because it is what "does binding affect elimination?" actually resolves to.
+
+Only unbound PFAS is filtered, so the clearance free filtration alone would
+produce is fu·GFR, and the measured renal gap factorises:
+
+```
+CL_renal(mouse)     fu(mouse)     GFR(mouse)      R(mouse)
+---------------  =  ---------  ×  ----------  ×  ---------
+CL_renal(human)     fu(human)     GFR(human)      R(human)
+   120×              BINDING       BODY SIZE      TRANSPORT
+```
+
+PFOA, female mouse (CL_renal 3.59 mL/d/kg, fu 0.87%) against human (CL_renal
+0.03 mL/d/kg, Han 2012 Table 4). The 120× gap is fixed; what the fu assumption
+changes is how it is **apportioned**:
+
+| human fu | binding | body size | transport | dominant term |
+|---|---|---|---|---|
+| 0.00061 (measured) | **14.3×** | 3.9× | 2.2× | **binding** |
+| 0.02 (assumed) | 0.4× | 3.9× | 70.7× | transport |
+| 0.10 (inherited) | 0.1× | 3.9× | 353.5× | transport |
+
+Under the measured value **binding is the largest single term**: humans hold
+PFOA ~14× more tightly than mice, which alone keeps 14× less of it in front of
+the glomerulus. Under the assumed values the apportionment inverts — binding
+runs the *wrong way* (humans would bind less tightly than mice) and transport
+must carry 71–354× to balance. That decides whether the species difference is a
+binding problem or a transporter problem.
+
+Two cautions. The mouse and human fu come from different methods (equilibrium
+dialysis vs solid-phase microextraction) at different ligand:protein ratios —
+precisely the artefact §6.1 diagnoses — so the 14× is the least secure number
+here. And the mouse limb inherits the cocktail study's ~2.5× low clearance bias
+(§11.3a), which lands on the transport term: correcting it raises 2.2× to ~5×,
+still far below 71×.
+
+**Binding alone does not explain long human half-lives.** At fu = 0.00061, free
+filtration would clear 1.57 mL/d/kg, which with Vd = 170 mL/kg is a half-life of
+**75 days** — weeks, not years. Measured human renal clearance is 0.03 mL/d/kg,
+**52× lower still**, because tubular reabsorption recovers **98.1%** of what is
+filtered. Binding sets how much is presented to the glomerulus; reabsorption
+disposes of almost all of that. Binding is the species-variable factor,
+reabsorption the near-complete one in every species measured — a model that gets
+binding right and reabsorption wrong still misses the half-life by two orders of
+magnitude.
+
+Reproduce with `python3 scripts/binding_elimination_decomposition.py`.
+
+---
+
 ## 7. Transporters: direction first, then kinetics
 
 `db/transporter_kinetics.csv` — 217 rows, 27 studies, 48 transporter entities.

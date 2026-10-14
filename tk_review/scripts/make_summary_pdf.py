@@ -709,6 +709,52 @@ def story_3():
           "'about 90% bound' and adopted a free fraction roughly "
           "<b>164&times; too high</b>. Section 10 shows how far that single "
           "substitution propagates.", "body"),
+        p("What binding does to elimination, quantified", "h2"),
+        p("Only unbound PFAS is filtered, so the clearance free filtration "
+          "alone would produce is f<sub>u</sub>&middot;GFR, and the measured "
+          "renal gap between species factorises into binding, body size and "
+          "transport. For PFOA the female-mouse-to-human renal clearance gap "
+          "is 120&times; whatever is assumed; what the assumption changes is "
+          "how that gap is apportioned.", "body"),
+        KeepTogether([
+        tbl([
+            ["human f<sub>u</sub>", "binding", "body size", "transport",
+             "dominant term"],
+            ["0.00061 measured " + c("fischer2024"), "<b>14.3&times;</b>",
+             "3.9&times;", "2.2&times;", "<b>binding</b>"],
+            ["0.02 assumed " + c("han2012"), "0.4&times;", "3.9&times;",
+             "70.7&times;", "transport"],
+            ["0.10 inherited", "0.1&times;", "3.9&times;", "353.5&times;",
+             "transport"],
+        ], [W - 108 * mm, 24 * mm, 24 * mm, 24 * mm, 36 * mm]),
+        p("Mouse limb from " + c("argoul2026") + " (CL<sub>renal</sub> 3.59 "
+          "mL/d/kg, f<sub>u</sub> 0.87%), human from " + c("han2012")
+          + " Table 4 (0.03 mL/d/kg). Built by "
+          "scripts/binding_elimination_decomposition.py.", "caption")]),
+        p("Under the measured value <b>binding is the largest single term</b>: "
+          "humans hold PFOA about fourteenfold more tightly than mice, which "
+          "by itself keeps fourteenfold less of it in front of the glomerulus. "
+          "Under the assumed values the apportionment inverts - binding runs "
+          "the wrong way, implying humans bind less tightly than mice, and "
+          "transport has to carry 71 to 354-fold to balance. The mouse and "
+          "human free fractions come from different methods at different "
+          "ligand:protein ratios, which is the artefact this section "
+          "diagnoses, so the fourteenfold is the least secure number in the "
+          "table; and the mouse limb carries the cocktail study's low "
+          "clearance bias, which lands on the transport term and would raise "
+          "2.2&times; to about 5&times;, still far below 71&times;.", "body"),
+        p("Binding alone does not explain long human half-lives, and the "
+          "numbers say why. At f<sub>u</sub> = 0.00061 free filtration would "
+          "clear 1.57 mL/d/kg, which with V<sub>d</sub> = 170 mL/kg is a "
+          "half-life of <b>75 days</b> - weeks, not years. Measured human "
+          "renal clearance is 0.03 mL/d/kg, <b>52&times; lower still</b>, "
+          "because tubular reabsorption recovers <b>98.1%</b> of what is "
+          "filtered. Binding sets how much reaches the glomerulus; "
+          "reabsorption disposes of almost all of it. Binding is the "
+          "species-variable factor and reabsorption the near-complete one in "
+          "every species measured, so a model with binding right and "
+          "reabsorption wrong still misses the half-life by two orders of "
+          "magnitude.", "body"),
     ]
 
     # ===================== 8. dose =====================
@@ -832,14 +878,14 @@ def story_3():
           "section 4 re-expressed, since R = 1 - FR, on a scale that neither "
           "crowds against a ceiling at 1 nor runs unboundedly negative under "
           "secretion.", "body"),
-        p("Only one dataset supports the comparison: nine compounds with both "
+        KeepTogether([
+                p("Only one dataset supports the comparison: nine compounds with both "
           "renal clearance and unbound fraction measured in one experiment, "
           "one species, one sex and one laboratory - female mice "
           + c("argoul2026") + ". Note that this is a different animal from the "
           "male mouse of section 4's table, whose reabsorption figures come "
           "from a different source " + c("han2012") + ". R spans "
           "875&times; across them.", "body"),
-        KeepTogether([
             tbl(qr, [21 * mm, 16 * mm, 22 * mm, 14 * mm, 14 * mm, 18 * mm,
                      W - 105 * mm]),
             p("Built by scripts/qsar_endpoint_table.py into "
