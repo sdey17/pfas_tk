@@ -114,7 +114,11 @@ def main():
     print(f"    slope of log Vd on log dose: {slope(ld, lv):+.3f}")
     print("""
     Both rise with dose, monotonically, across three points from two
-    laboratories. Argoul sits at the bottom of that trend rather than off it.
+    laboratories. SUPERSEDED, read with care: that fit includes Argoul's own
+    point, which carries 79% leverage on the slope, so "Argoul sits at the
+    bottom of the trend" is largely true by construction. See
+    scripts/argoul_dose_matching.py for the out-of-sample test, which leaves
+    about 1.6x unexplained after the dose correction.
     A positive clearance slope is what saturable REABSORPTION predicts
     (section 8): more escapes when the transporter is swamped. Dose therefore
     explains the direction of the PFOA and PFHxS disagreements, and with only
