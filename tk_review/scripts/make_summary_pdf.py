@@ -350,7 +350,7 @@ def story():
           "dimensionless renal handling ratio is proposed in its place and "
           "evaluated on the only dataset that supports the comparison - a "
           "cocktail study whose absolute clearances and volumes both run "
-          "about twofold below the one-compound-at-a-time literature while "
+          "two- to threefold below the one-compound-at-a-time literature while "
           "their ratio does not, a shared offset that leaves every "
           "between-compound contrast the endpoint is built on intact.", "abs"),
     ]
@@ -872,20 +872,22 @@ def story_3():
           + c("argoul2026") + ".", "body"),
         KeepTogether([
         p("Figure 4", "h2"),
-        Image(FIG4, width=W, height=W / 2.578),
+        Image(FIG4, width=W, height=W / 3.170),
         p("<b>A:</b> every single-compound female-mouse study that reports "
           "both clearance and volume, each on its own row, against the "
           "cocktail. The grey connector joins the two parameters within a "
-          "study. Geometric means 0.47&times; for clearance "
-          + c("lou2009", "fujii2015", "sundstrom2012")
-          + " and 0.57&times; for volume. PFHxA's volume is 5.1&times; the "
-          "other way " + c("epa2023pfhxa") + " and is held out: it is the one "
-          "compound the cocktail study places in net secretion, so its "
-          "kinetics differ in kind. <b>B:</b> the same comparison for "
-          "half-life, which is their ratio. Ten comparisons across five "
-          "compounds " + c("chang2008", "lou2009", "sundstrom2012", "chang2012",
-                           "tatum2011")
-          + ", geometric mean 0.99&times;. Built by "
+          "study. Geometric means 0.40&times; for clearance "
+          + c("fujii2015", "sundstrom2012")
+          + " and 0.54&times; for volume. <b>B:</b> the same comparison for "
+          "half-life, which is their ratio. Seven comparisons across three "
+          "compounds " + c("chang2008", "sundstrom2012", "chang2012")
+          + ", geometric mean 1.04&times;. Only comparisons with one "
+          "attributable dose are shown: three studies pooled two dose levels "
+          "into a single reported parameter " + c("lou2009", "tatum2011",
+                                                  "epa2023pfhxa")
+          + " and are excluded, which costs PFOA, PFNA and PFHxA. Including "
+          "them gives ten half-life comparisons at 0.99&times; rather than "
+          "seven at 1.04&times;, so nothing turns on the exclusion. Built by "
           "scripts/argoul_vs_single_compound.py into "
           "db/argoul_vs_single_compound.csv; drawn by "
           "scripts/make_review_figures.py.", "caption")]),
@@ -893,14 +895,14 @@ def story_3():
           "are. In most of these studies the volume is not measured apart "
           "from the clearance: non-compartmental analysis gives "
           "V<sub>z</sub> = CL/&lambda;<sub>z</sub> and V<sub>ss</sub> = "
-          "CL&middot;MRT, and Lou's clearance is k<sub>e</sub>&middot;"
-          "V<sub>d</sub> derived in this review. For those rows 'clearance "
+          "CL&middot;MRT. For the two Sundstr&ouml;m rows 'clearance "
           "low and volume low' is largely one observation seen twice. "
           "Fujii is the exception - volume from dose/C(0) by "
           "back-extrapolation, clearance from dose/AUC - and there the two "
           "are low independently, 0.38&times; and 0.59&times;. One row is "
           "thin evidence, so the claim defended here is the narrower one: "
-          "the rate constant agrees across ten comparisons and the scale "
+          "the rate constant agrees across the half-life comparisons and "
+          "the scale "
           "does not.", "body"),
         p("The shape of that result is more informative than either half of "
           "it. Clearance and volume are both low by about twofold, and the "
@@ -929,8 +931,8 @@ def story_3():
           "<b>Mixed-effects shrinkage</b> compresses spread rather than "
           "shifting the centre, so it is the weakest of the three.", "body"),
         p("What this does and does not cost the endpoint above. R is built "
-          "from an absolute renal clearance, so a twofold low bias in that "
-          "clearance is a twofold low bias in R - a flat -0.33 log unit offset "
+          "from an absolute renal clearance, so a 2.5-fold low bias in that "
+          "clearance is a 2.5-fold low bias in R - a flat -0.40 log unit offset "
           "on every compound. Because it is flat, it changes nothing that this "
           "section actually claims: the ranking, the 2.9-log-unit span, the "
           "non-monotonicity in chain length and the head-group and ether "
@@ -939,10 +941,10 @@ def story_3():
           "relative to the fixed divide at R = 1, but not far enough to matter "
           "- the nearest reabsorbed compound sits 0.98 log units below the "
           "divide, so the bias would have to be 9.6&times; rather than "
-          "2.1&times; to reclassify anything. What it does cost is the "
+          "2.5&times; to reclassify anything. What it does cost is the "
           "cross-species comparison in the next subsection, where an absolute "
           "mouse value is set against an absolute human one; read those gaps "
-          "as carrying a factor of about two on top of the f<sub>u</sub> "
+          "as carrying a factor of about 2.5 on top of the f<sub>u</sub> "
           "uncertainty, in the direction of understating the mouse.", "body"),
         p("A sensitivity that bears on the species question", "h2"),
         KeepTogether([

@@ -245,20 +245,18 @@ def figure4():
                 for r in q if r["parameter"] == param]
 
     cl = pick("clearance")
-    vd_all = pick("volume_of_distribution")
-    vd = [x for x in vd_all if x[0] != "PFHxA"]
-    hxa = [x for x in vd_all if x[0] == "PFHxA"][0]
+    vd = pick("volume_of_distribution")
     hl = pick("half_life")
 
     def decade_axis(ax):
         """Log axis labelled only where we put a tick. Matplotlib's default
         minor labels (3x10^0, 4x10^0, ...) overprint each other here."""
         ax.set_xscale("log")
-        ax.set_xlim(0.25, 7.0)
+        ax.set_xlim(0.25, 2.6)
         ax.xaxis.set_minor_locator(mticker.NullLocator())
-        ax.xaxis.set_major_locator(mticker.FixedLocator([0.3, 0.5, 1, 2, 5]))
+        ax.xaxis.set_major_locator(mticker.FixedLocator([0.3, 0.5, 1, 2]))
         ax.xaxis.set_major_formatter(
-            mticker.FixedFormatter(["0.3", "0.5", "1.0", "2.0", "5.0"]))
+            mticker.FixedFormatter(["0.3", "0.5", "1.0", "2.0"]))
         ax.axvline(1.0, color=MUTED, lw=1.0, ls=(0, (4, 3)), zorder=1)
         ax.grid(axis="x", color=GRID, lw=0.8, zorder=0)
         ax.set_axisbelow(True)
@@ -279,19 +277,17 @@ def figure4():
                         fontsize=7.2, color=MUTED)
         return g
 
-    fig, (axA, axB) = plt.subplots(1, 2, figsize=(11.4, 4.4),
+    fig, (axA, axB) = plt.subplots(1, 2, figsize=(11.4, 4.0),
                                    gridspec_kw=dict(width_ratios=[1, 1]))
 
     # ---- A: one row per comparator study, clearance and volume side by
     #         side. Shape and colour both carry the parameter, and a joining
     #         line shows the two moving together rather than apart.
     cl_by = {(c, src): v for c, src, v in cl}
-    vd_by = {(c, src): v for c, src, v in vd_all}
+    vd_by = {(c, src): v for c, src, v in vd}
     order = [("PFHxS", "Sundstrom 2012, 20 mg/kg", "PFHxS \u00b7 Sundstr\u00f6m, 20 mg/kg"),
              ("PFHxS", "Sundstrom 2012, 1 mg/kg", "PFHxS \u00b7 Sundstr\u00f6m, 1 mg/kg"),
-             ("PFOA", "Fujii (via EPA)", "PFOA \u00b7 Fujii"),
-             ("PFOA", "Lou 2009", "PFOA \u00b7 Lou 2009"),
-             ("PFHxA", "US EPA PFHxA IRIS", "PFHxA \u00b7 US EPA IRIS")]
+             ("PFOA", "Fujii 2015", "PFOA \u00b7 Fujii 2015")]
     for i, (c, src, _) in enumerate(order):
         a, b = cl_by.get((c, src)), vd_by.get((c, src))
         if a and b:
@@ -305,43 +301,40 @@ def figure4():
                         edgecolor=SURFACE, linewidth=1.5)
     gmark(axA, [x[2] for x in cl], -0.72, -0.52, -0.76, BLUE)
     gmark(axA, [x[2] for x in vd], -1.42, -1.22, -1.46, AQUA)
-    axA.text(0.255, -0.95, "geometric\nmeans", fontsize=7.2, color=MUTED,
+    axA.text(0.262, -1.30, "geometric\nmeans", fontsize=7.2, color=MUTED,
              ha="left", va="center", linespacing=1.35)
-    axA.text(hxa[2], 3.72, "held out of the mean:\nthe one compound Argoul\n"
-             "puts in net secretion", fontsize=7.2, color=MUTED, ha="center",
-             va="top", linespacing=1.35)
-    axA.text(1.07, 4.42, "1.0 = agrees with the\nsingle-compound study",
+    axA.text(1.07, 2.55, "1.0 = agrees with the\nsingle-compound study",
              fontsize=7.4, color=MUTED, ha="left", va="top", linespacing=1.35)
     for lab, col, mk in [("clearance", BLUE, "o"),
                          ("volume of distribution", AQUA, "s")]:
         axA.scatter([], [], s=90, c=col, marker=mk, label=lab,
                     edgecolor=SURFACE, linewidth=1.4)
-    axA.legend(loc="center right", bbox_to_anchor=(1.0, 0.40), fontsize=8,
+    axA.legend(loc="center right", bbox_to_anchor=(1.0, 0.52), fontsize=8,
                handletextpad=0.35, labelspacing=0.6)
     axA.set_yticks(range(len(order)))
     axA.set_yticklabels([x[2] for x in order], fontsize=8.5)
-    axA.set_ylim(-1.90, 4.55)
+    axA.set_ylim(-1.90, 2.75)
     decade_axis(axA)
     axA.set_xlabel("Argoul cocktail / single-compound study   (log scale)")
-    axA.set_title("A \u00b7 Both terms sit about twofold low",
+    axA.set_title("A \u00b7 Both terms sit two- to threefold low",
                   loc="left", fontsize=10.5, color=INK, fontweight="bold",
                   pad=20)
 
     # ---- B: half-life, the ratio of the two. Compound on the y-axis, as in
     #         figure 3 -- no label to collide, no colour to decode.
-    order = ["PFBA", "PFOA", "PFHxS", "PFOS", "PFNA"]
+    order = ["PFBA", "PFHxS", "PFOS"]
     for i, c in enumerate(order):
         v = [x[2] for x in hl if x[0] == c]
         axB.scatter(v, [i] * len(v), s=85, c=COMPOUND[c], zorder=4,
                     edgecolor=SURFACE, linewidth=1.5)
     vals = [x[2] for x in hl]
     g = gmark(axB, vals, -0.86, -0.68, -0.90, note=True)
-    axB.text(1.06, 4.75, f"{len(vals)} comparisons, {min(vals):.2f}\u00d7 to "
+    axB.text(1.06, 2.70, f"{len(vals)} comparisons, {min(vals):.2f}\u00d7 to "
              f"{max(vals):.2f}\u00d7,\nscattered either side of 1.0",
              fontsize=7.4, color=MUTED, ha="left", va="top", linespacing=1.35)
     axB.set_yticks(range(len(order)))
     axB.set_yticklabels(order, fontsize=9.5)
-    axB.set_ylim(-1.45, 4.8)
+    axB.set_ylim(-1.30, 2.85)
     decade_axis(axB)
     axB.set_xlabel("Argoul ln2\u00b7MRT / single-compound half-life")
     axB.set_title("B \u00b7 Their ratio does not",
@@ -350,14 +343,15 @@ def figure4():
 
     fig.suptitle("A shared scaling, not a disagreement about elimination: "
                  "the cocktail study against the single-compound literature",
-                 x=0.012, y=0.985, ha="left", fontsize=11.2, color=INK,
+                 x=0.012, y=0.96, ha="left", fontsize=11.2, color=INK,
                  fontweight="bold")
-    fig.tight_layout(rect=[0, 0, 1, 0.92])
+    fig.subplots_adjust(left=0.175, right=0.985, bottom=0.21, top=0.74,
+                        wspace=0.30)
     out = os.path.join(FIGS, "fig04_argoul_vs_single_compound.png")
     fig.savefig(out, bbox_inches="tight")
     plt.close(fig)
     print(f"  fig04: CL {gmean([x[2] for x in cl]):.2f}x, "
-          f"Vd {gmean([x[2] for x in vd]):.2f}x (PFHxA held out), "
+          f"Vd {gmean([x[2] for x in vd]):.2f}x, "
           f"half-life {g:.2f}x over {len(vals)} comparisons")
 
 

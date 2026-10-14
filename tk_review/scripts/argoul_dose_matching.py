@@ -119,8 +119,9 @@ def main():
     r = sxy / math.sqrt(sxx * syy)
     gaps = [float(z["dose_gap_min"]) for z in q]
     print(f"""
-  The CSV now carries doses, so the ten half-life comparisons can be regressed
-  on their dose gap, which spans {min(gaps):.0f}x to {max(gaps):.0f}x:
+  The CSV carries doses, so the {n} half-life comparisons it keeps -- every one
+  with a single attributable dose -- can be regressed on their dose gap, which
+  spans {min(gaps):.0f}x to {max(gaps):.0f}x:
 
     Pearson r of log(ratio) on log(dose gap) = {r:+.3f}   r^2 = {r*r:.3f}
 
@@ -133,8 +134,8 @@ def main():
     half-life 24.8 -> 26.8   (1.08x)
 
   -- so a half-life ratio has almost no power to detect a dose effect whatever
-  r comes out at. The clearance ordering in part 2, on four points, remains the
-  better test, and part 3 the better still. Reported here because the
+  r comes out at. The clearance ordering in part 2 remains the better test, and
+  part 3 the better still. Reported here because the
   regression is the obvious thing to run on the new dose columns, and running
   it without this caveat would overstate the case.""")
 

@@ -26,6 +26,7 @@ LN2 = math.log(2)
 OUT = os.path.join(HERE, "db", "argoul_vs_single_compound.csv")
 SOURCES = os.path.join(HERE, "db", "argoul_vs_single_compound_sources.csv")
 PAIRS = []
+EXCLUDED = []   # comparators whose dose cannot be pinned to their result
 
 # ---------------------------------------------------------------------------
 # Provenance. Every comparator is named by a key here, so a value in the output
@@ -110,20 +111,20 @@ REFS = {
 # mismatch against the cocktail is the first thing anyone asks about -- see
 # scripts/argoul_dose_matching.py, which tests it and finds it insufficient.
 SINGLE = {
-    "PFBA":  [("Chang 2008, 10 mg/kg",  2.87 / 24, "chang2008", "10", 10.0, "oral"),
-              ("Chang 2008, 30 mg/kg",  3.08 / 24, "chang2008", "30", 30.0, "oral"),
-              ("Chang 2008, 100 mg/kg", 2.79 / 24, "chang2008", "100", 100.0, "oral")],
-    "PFOA":  [("Lou 2009, 1-10 mg/kg", 15.6, "lou2009", "1, 10", 1.0, "oral")],
+    "PFBA":  [("Chang 2008, 10 mg/kg",  2.87 / 24, "chang2008", "10", 10.0, "oral", True),
+              ("Chang 2008, 30 mg/kg",  3.08 / 24, "chang2008", "30", 30.0, "oral", True),
+              ("Chang 2008, 100 mg/kg", 2.79 / 24, "chang2008", "100", 100.0, "oral", True)],
+    "PFOA":  [("Lou 2009, 1-10 mg/kg", 15.6, "lou2009", "1, 10", 1.0, "oral", False)],
     "PFNA":  [("Tatum-Gibbs 2011, range low end", 25.8, "tatum2011",
-               "1, 10", 1.0, "oral gavage"),
+               "1, 10", 1.0, "oral gavage", False),
               ("Tatum-Gibbs 2011, range high end", 68.4, "tatum2011",
-               "1, 10", 1.0, "oral gavage")],
-    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 24.8, "sundstrom2012", "1", 1.0, "oral"),
-              ("Sundstrom 2012, 20 mg/kg", 26.8, "sundstrom2012", "20", 20.0, "oral")],
-    "PFOS":  [("Chang 2012, 1 mg/kg", 907 / 24, "chang2012", "1", 1.0, "oral"),
-              ("Chang 2012, 20 mg/kg", 731 / 24, "chang2012", "20", 20.0, "oral")],
-    "PFBS":  [("Lau 2020, 30 mg/kg", 3.0 / 24, "", "30", 30.0, "oral"),
-              ("Lau 2020, 300 mg/kg", 3.9 / 24, "", "300", 300.0, "oral")],
+               "1, 10", 1.0, "oral gavage", False)],
+    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 24.8, "sundstrom2012", "1", 1.0, "oral", True),
+              ("Sundstrom 2012, 20 mg/kg", 26.8, "sundstrom2012", "20", 20.0, "oral", True)],
+    "PFOS":  [("Chang 2012, 1 mg/kg", 907 / 24, "chang2012", "1", 1.0, "oral", True),
+              ("Chang 2012, 20 mg/kg", 731 / 24, "chang2012", "20", 20.0, "oral", True)],
+    "PFBS":  [("Lau 2020, 30 mg/kg", 3.0 / 24, "", "30", 30.0, "oral", True),
+              ("Lau 2020, 300 mg/kg", 3.9 / 24, "", "300", 300.0, "oral", True)],
 }
 # The EPA Bayesian hierarchical fit pools the single-compound studies, so it is
 # a second summary of the same literature rather than an independent study.
@@ -139,17 +140,17 @@ POOLED = {"PFBA": 0.186, "PFBS": 0.125, "PFHxA": 0.251, "PFHxS": 26.665,
 # the exception -- Vd from Dose/C(0) by back-extrapolation, CL from Dose/AUC --
 # and is therefore the only row where the two agree independently.
 CLVD = {
-    "PFOA":  [("Lou 2009", 5.99, 135, "lou2009", False, "1, 10", 1.0, "oral"),
+    "PFOA":  [("Lou 2009", 5.99, 135, "lou2009", False, "1, 10", 1.0, "oral", False),
               # 0.31 umol/kg x 414.07 g/mol = 0.1284 mg/kg -- near dose-matched
               # to the cocktail's 0.080, and the WORST-agreeing comparison.
-              ("Fujii 2015", 11.8, 150, "fujii2015", True, "0.128", 0.1284, "IV")],
+              ("Fujii 2015", 11.8, 150, "fujii2015", True, "0.128", 0.1284, "IV", True)],
     "PFHxS": [("Sundstrom 2012, 1 mg/kg", 2.68, 96, "sundstrom2012", False,
-               "1", 1.0, "oral"),
+               "1", 1.0, "oral", True),
               ("Sundstrom 2012, 20 mg/kg", 3.79, 147, "sundstrom2012", False,
-               "20", 20.0, "oral")],
+               "20", 20.0, "oral", True)],
     # EPA computed this Vd,beta from Gannon 2011, whose mouse arm ran 100 mg/kg.
     "PFHxA": [("US EPA PFHxA IRIS", None, 780, "epa2023pfhxa", False,
-               "100 (Gannon 2011)", 100.0, "oral gavage")],
+               "2, 100 (Gannon 2011)", 2.0, "oral gavage", False)],
 }
 
 
@@ -235,11 +236,16 @@ def main():
         r = a[c]
         acl = float(r["cl_mL_kg_day"]) if r["cl_mL_kg_day"] else None
         avd = float(r["vss_L_kg"]) * 1000
+        if not any(x[8] for x in comps):      # no dose-resolved comparator left
+            EXCLUDED.extend((c, x[0], x[5]) for x in comps)
+            continue
         print(f"  {c:<7s} {'Argoul 2026 (cocktail)':<26s} "
               f"{(f'{acl:g}' if acl else '-'):>8s} {avd:>7g} "
               f"{'-':>9s} {'-':>9s}")
-        for name, ccl, cvd, key, indep, dstr, dlow, route in comps:
+        for name, ccl, cvd, key, indep, dstr, dlow, route, clean in comps:
             dz = dose(r, dstr, dlow, route)
+            if not clean:
+                EXCLUDED.append((c, name, dstr)); continue
             rc = f"{acl/ccl:.2f}x" if (acl and ccl) else "-"
             rv = f"{avd/cvd:.2f}x" if cvd else "-"
             if acl and ccl: cl_r.append(acl / ccl)
@@ -258,27 +264,30 @@ def main():
             print(f"  {'':<7s} {name:<26s} {(f'{ccl:g}' if ccl else '-'):>8s} "
                   f"{cvd:>7g} {rc:>9s} {rv:>9s}")
     gm = lambda v: math.exp(sum(math.log(x) for x in v) / len(v))
-    vd_no_hxa = [v for v in vd_r if v < 3]
     print(f"""
-  PFHxA's volume is the one outlier (5.1x HIGH) and is held out of the mean
-  below; it is also the only compound Argoul puts in net tubular secretion,
-  so its kinetics differ in kind.
-
   Geometric mean ratio, Argoul / single-compound:
       clearance                {gm(cl_r):.2f}x   ({1/gm(cl_r):.1f}x low)
-      volume, excluding PFHxA  {gm(vd_no_hxa):.2f}x   ({1/gm(vd_no_hxa):.1f}x low)
+      volume of distribution   {gm(vd_r):.2f}x   ({1/gm(vd_r):.1f}x low)
 
   Both low, by similar factors. Hold on to that -- it is the whole result.
 
-  One caveat on how much of a check that is. In most of these studies Vd is
-  not measured apart from clearance: non-compartmental analysis gives
-  Vz = CL/lambda_z and Vss = CL*MRT, and Lou's clearance is ke*Vd derived in
-  this review. So for Lou, Sundstrom and the EPA PFHxA value, "clearance low
-  AND volume low" is largely one observation seen twice. Fujii 2015 is the
+  Two compounds are absent from this table and should be, for reasons that are
+  about dose, not about the result. PFOA's other comparator, Lou, pooled 1 and
+  10 mg/kg into one fit. PFHxA's only comparator is an EPA Vd,beta computed
+  from Gannon, whose mouse arm ran 2 AND 100 mg/kg -- so PFHxA drops out
+  entirely here. (For the record, it was the one outlier in the other
+  direction, 5.1x HIGH, and the only compound Argoul puts in net tubular
+  secretion, so its kinetics differ in kind regardless.)
+
+  One caveat on how much of a check the two columns are. Vd is usually not
+  measured apart from clearance: non-compartmental analysis gives
+  Vz = CL/lambda_z and Vss = CL*MRT, so for the two Sundstrom rows "clearance
+  low AND volume low" is largely one observation seen twice. Fujii 2015 is the
   exception: Vd from Dose/C(0) by back-extrapolation, CL from Dose/AUC, which
   are independent. There CL is 0.38x and Vd 0.59x -- both low, independently.
   One row is thin evidence, so the defensible statement is the narrower one:
-  the RATE CONSTANT agrees across ten comparisons and the SCALE does not.
+  the RATE CONSTANT agrees across the half-life comparisons and the SCALE does
+  not.
 """)
 
     print("=" * 78)
@@ -293,13 +302,17 @@ def main():
 """)
     print(f"  {'cmpd':<7s} {'Argoul ln2*MRT':>14s} {'single-compound':>16s} "
           f"{'ratio':>7s}   source")
-    ratios, pooled_r = [], []
+    ratios, pooled_r, dropped = [], [], []
     for c in ["PFBA", "PFBS", "PFHxA", "PFOA", "PFHxS", "PFOS", "PFNA"]:
         r = a.get(c)
         if not r or not r["mrt_d"]:
             continue
         at = LN2 * float(r["mrt_d"])
-        for name, t, key, dstr, dlow, route in SINGLE.get(c, []):
+        for name, t, key, dstr, dlow, route, clean in SINGLE.get(c, []):
+            if not clean:
+                EXCLUDED.append((c, name, dstr))
+                dropped.append(at / t)
+                continue
             ratios.append(at / t)
             print(f"  {c:<7s} {at:>14.3f} {t:>16.3f} {at/t:>6.2f}x   {name}")
             PAIRS.append(dict(parameter="half_life", chemical=c, units="d",
@@ -315,18 +328,23 @@ def main():
     print(f"\n  {len(ratios)} comparisons, every one against a study that dosed that "
           f"compound\n  alone. Ratios span {min(ratios):.2f}x to {max(ratios):.2f}x, "
           f"geometric mean {gm(ratios):.2f}x.")
-    # PFNA is one experiment reported as a RANGE (25.8-68.4 d across 1 and
-    # 10 mg/kg), split into two rows here. Counting it once instead:
-    pfna_once = [r for r in ratios if r not in (36.598113 / 25.8,)]
-    mid = LN2 * float(a["PFNA"]["mrt_d"]) / math.sqrt(25.8 * 68.4)
-    alt = [r for i, r in enumerate(ratios) if i < 8] + [mid]
     print(f"""
-  One count to be careful about. PFNA's two rows are the two ends of a single
-  reported range (25.8-68.4 d over 1 and 10 mg/kg, from the abstract), not two
-  dose arms, so they are one experiment split in two. Counting PFNA once, at
-  the geometric midpoint of its range, gives {len(alt)} comparisons and a
-  geometric mean of {gm(alt):.2f}x against {gm(ratios):.2f}x. The conclusion does not
-  move, but "{len(ratios)} comparisons" is the generous count.""")
+  Every row above has ONE dose behind it. {len(EXCLUDED)} comparisons were left out
+  because no single dose can be attributed to their result:
+""")
+    for c, name, dstr in EXCLUDED:
+        print(f"    {c:7s} {name:34s} dosed {dstr} mg/kg")
+    print(f"""
+  Lou fitted one 2-compartment model across 1 and 10 mg/kg; Tatum-Gibbs
+  reported a half-life RANGE (25.8-68.4 d) spanning both doses rather than a
+  value per arm; and the EPA PFHxA volume is computed from Gannon, whose mouse
+  arm ran 2 AND 100 mg/kg. Keeping them would mean a dose column that cannot be
+  read as a dose.
+
+  Including the {len(dropped)} dropped half-life rows would give {len(ratios)+len(dropped)} comparisons
+  and a geometric mean of {gm(ratios + dropped):.2f}x against {gm(ratios):.2f}x, so nothing here turns
+  on the exclusion -- it buys a dose column that means what it says.
+""")
     print(f"""
   The EPA pooled fit [zurlinden2025] is NOT in the table above, and not in the
   output CSV. It is a Bayesian hierarchical re-analysis of the same single-
