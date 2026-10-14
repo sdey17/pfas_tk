@@ -114,9 +114,9 @@ SINGLE = {
               ("Chang 2008, 30 mg/kg",  3.08 / 24, "chang2008", "30", 30.0, "oral"),
               ("Chang 2008, 100 mg/kg", 2.79 / 24, "chang2008", "100", 100.0, "oral")],
     "PFOA":  [("Lou 2009, 1-10 mg/kg", 15.6, "lou2009", "1, 10", 1.0, "oral")],
-    "PFNA":  [("Tatum-Gibbs 2011, 1-10 mg/kg low", 25.8, "tatum2011",
+    "PFNA":  [("Tatum-Gibbs 2011, range low end", 25.8, "tatum2011",
                "1, 10", 1.0, "oral gavage"),
-              ("Tatum-Gibbs 2011, 1-10 mg/kg high", 68.4, "tatum2011",
+              ("Tatum-Gibbs 2011, range high end", 68.4, "tatum2011",
                "1, 10", 1.0, "oral gavage")],
     "PFHxS": [("Sundstrom 2012, 1 mg/kg", 24.8, "sundstrom2012", "1", 1.0, "oral"),
               ("Sundstrom 2012, 20 mg/kg", 26.8, "sundstrom2012", "20", 20.0, "oral")],
@@ -199,11 +199,14 @@ def dose(a_row, dose_str="", dose_low=None, route=""):
     because every clearance here is an IV or IV-anchored estimate."""
     iv = float(a_row["iv_dose_mgkg"]) if a_row["iv_dose_mgkg"] else None
     orl = float(a_row["oral_dose_mgkg"]) if a_row["oral_dose_mgkg"] else None
+    # Computed at the comparator's LOWEST dose, so it is a lower bound: where a
+    # study pooled two doses into one parameter (Lou, Tatum-Gibbs: "1, 10") the
+    # true gap is anywhere from this up to ten times it.
     gap = (dose_low / iv) if (iv and dose_low) else ""
     return dict(argoul_dose_iv_mgkg=iv if iv else "",
                 argoul_dose_oral_mgkg=orl if orl else "",
                 single_dose_mgkg=dose_str, single_dose_route=route,
-                dose_gap_single_over_argoul=round(gap, 1) if gap else "")
+                dose_gap_min=round(gap, 1) if gap else "")
 
 
 def cite(key):
@@ -312,6 +315,18 @@ def main():
     print(f"\n  {len(ratios)} comparisons, every one against a study that dosed that "
           f"compound\n  alone. Ratios span {min(ratios):.2f}x to {max(ratios):.2f}x, "
           f"geometric mean {gm(ratios):.2f}x.")
+    # PFNA is one experiment reported as a RANGE (25.8-68.4 d across 1 and
+    # 10 mg/kg), split into two rows here. Counting it once instead:
+    pfna_once = [r for r in ratios if r not in (36.598113 / 25.8,)]
+    mid = LN2 * float(a["PFNA"]["mrt_d"]) / math.sqrt(25.8 * 68.4)
+    alt = [r for i, r in enumerate(ratios) if i < 8] + [mid]
+    print(f"""
+  One count to be careful about. PFNA's two rows are the two ends of a single
+  reported range (25.8-68.4 d over 1 and 10 mg/kg, from the abstract), not two
+  dose arms, so they are one experiment split in two. Counting PFNA once, at
+  the geometric midpoint of its range, gives {len(alt)} comparisons and a
+  geometric mean of {gm(alt):.2f}x against {gm(ratios):.2f}x. The conclusion does not
+  move, but "{len(ratios)} comparisons" is the generous count.""")
     print(f"""
   The EPA pooled fit [zurlinden2025] is NOT in the table above, and not in the
   output CSV. It is a Bayesian hierarchical re-analysis of the same single-
@@ -370,7 +385,7 @@ def main():
     fields = ["parameter", "chemical", "units", "argoul", "single", "ratio",
               "argoul_dose_iv_mgkg", "argoul_dose_oral_mgkg",
               "single_dose_mgkg", "single_dose_route",
-              "dose_gap_single_over_argoul",
+              "dose_gap_min",
               "comparator", "source", "vd_independent_of_cl"]
     with open(OUT, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
