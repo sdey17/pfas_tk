@@ -104,19 +104,25 @@ REFS = {
 
 # Female-mouse comparators from single-compound studies, half-life in DAYS.
 # Chang and Sundstrom report hours for serum; converted here.
+# Each entry: (label, half-life days, reference key, dose string, lowest dose
+# in mg/kg for the gap arithmetic, route). Dose is recorded because the dose
+# mismatch against the cocktail is the first thing anyone asks about -- see
+# scripts/argoul_dose_matching.py, which tests it and finds it insufficient.
 SINGLE = {
-    "PFBA":  [("Chang 2008, 10 mg/kg",  2.87 / 24, "chang2008"),
-              ("Chang 2008, 30 mg/kg",  3.08 / 24, "chang2008"),
-              ("Chang 2008, 100 mg/kg", 2.79 / 24, "chang2008")],
-    "PFOA":  [("Lou 2009, 1-10 mg/kg", 15.6, "lou2009")],
-    "PFNA":  [("Tatum-Gibbs 2011, 1-10 mg/kg low", 25.8, "tatum2011"),
-              ("Tatum-Gibbs 2011, 1-10 mg/kg high", 68.4, "tatum2011")],
-    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 24.8, "sundstrom2012"),
-              ("Sundstrom 2012, 20 mg/kg", 26.8, "sundstrom2012")],
-    "PFOS":  [("Chang 2012, 1 mg/kg", 907 / 24, "chang2012"),
-              ("Chang 2012, 20 mg/kg", 731 / 24, "chang2012")],
-    "PFBS":  [("Lau 2020, 30 mg/kg", 3.0 / 24, ""),
-              ("Lau 2020, 300 mg/kg", 3.9 / 24, "")],
+    "PFBA":  [("Chang 2008, 10 mg/kg",  2.87 / 24, "chang2008", "10", 10.0, "oral"),
+              ("Chang 2008, 30 mg/kg",  3.08 / 24, "chang2008", "30", 30.0, "oral"),
+              ("Chang 2008, 100 mg/kg", 2.79 / 24, "chang2008", "100", 100.0, "oral")],
+    "PFOA":  [("Lou 2009, 1-10 mg/kg", 15.6, "lou2009", "1, 10", 1.0, "oral")],
+    "PFNA":  [("Tatum-Gibbs 2011, 1-10 mg/kg low", 25.8, "tatum2011",
+               "1, 10", 1.0, "oral gavage"),
+              ("Tatum-Gibbs 2011, 1-10 mg/kg high", 68.4, "tatum2011",
+               "1, 10", 1.0, "oral gavage")],
+    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 24.8, "sundstrom2012", "1", 1.0, "oral"),
+              ("Sundstrom 2012, 20 mg/kg", 26.8, "sundstrom2012", "20", 20.0, "oral")],
+    "PFOS":  [("Chang 2012, 1 mg/kg", 907 / 24, "chang2012", "1", 1.0, "oral"),
+              ("Chang 2012, 20 mg/kg", 731 / 24, "chang2012", "20", 20.0, "oral")],
+    "PFBS":  [("Lau 2020, 30 mg/kg", 3.0 / 24, "", "30", 30.0, "oral"),
+              ("Lau 2020, 300 mg/kg", 3.9 / 24, "", "300", 300.0, "oral")],
 }
 # The EPA Bayesian hierarchical fit pools the single-compound studies, so it is
 # a second summary of the same literature rather than an independent study.
@@ -132,11 +138,17 @@ POOLED = {"PFBA": 0.186, "PFBS": 0.125, "PFHxA": 0.251, "PFHxS": 26.665,
 # the exception -- Vd from Dose/C(0) by back-extrapolation, CL from Dose/AUC --
 # and is therefore the only row where the two agree independently.
 CLVD = {
-    "PFOA":  [("Lou 2009", 5.99, 135, "lou2009", False),
-              ("Fujii 2015", 11.8, 150, "fujii2015", True)],
-    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 2.68, 96, "sundstrom2012", False),
-              ("Sundstrom 2012, 20 mg/kg", 3.79, 147, "sundstrom2012", False)],
-    "PFHxA": [("US EPA PFHxA IRIS", None, 780, "epa2023pfhxa", False)],
+    "PFOA":  [("Lou 2009", 5.99, 135, "lou2009", False, "1, 10", 1.0, "oral"),
+              # 0.31 umol/kg x 414.07 g/mol = 0.1284 mg/kg -- near dose-matched
+              # to the cocktail's 0.080, and the WORST-agreeing comparison.
+              ("Fujii 2015", 11.8, 150, "fujii2015", True, "0.128", 0.1284, "IV")],
+    "PFHxS": [("Sundstrom 2012, 1 mg/kg", 2.68, 96, "sundstrom2012", False,
+               "1", 1.0, "oral"),
+              ("Sundstrom 2012, 20 mg/kg", 3.79, 147, "sundstrom2012", False,
+               "20", 20.0, "oral")],
+    # EPA computed this Vd,beta from Gannon 2011, whose mouse arm ran 100 mg/kg.
+    "PFHxA": [("US EPA PFHxA IRIS", None, 780, "epa2023pfhxa", False,
+               "100 (Gannon 2011)", 100.0, "oral gavage")],
 }
 
 
@@ -162,6 +174,19 @@ def check_refs_against_pdf():
             print(f"    {b}")
     else:
         print(f"  references: {len(REFS)} keys agree with the review's list")
+
+
+def dose(a_row, dose_str="", dose_low=None, route=""):
+    """Dose fields for one comparison. Argoul's IV and oral doses differ and the
+    fit uses both, so both are carried; the gap is computed against the IV dose
+    because every clearance here is an IV or IV-anchored estimate."""
+    iv = float(a_row["iv_dose_mgkg"]) if a_row["iv_dose_mgkg"] else None
+    orl = float(a_row["oral_dose_mgkg"]) if a_row["oral_dose_mgkg"] else None
+    gap = (dose_low / iv) if (iv and dose_low) else ""
+    return dict(argoul_dose_iv_mgkg=iv if iv else "",
+                argoul_dose_oral_mgkg=orl if orl else "",
+                single_dose_mgkg=dose_str, single_dose_route=route,
+                dose_gap_single_over_argoul=round(gap, 1) if gap else "")
 
 
 def cite(key):
@@ -196,7 +221,8 @@ def main():
         print(f"  {c:<7s} {'Argoul 2026 (cocktail)':<26s} "
               f"{(f'{acl:g}' if acl else '-'):>8s} {avd:>7g} "
               f"{'-':>9s} {'-':>9s}")
-        for name, ccl, cvd, key, indep in comps:
+        for name, ccl, cvd, key, indep, dstr, dlow, route in comps:
+            dz = dose(r, dstr, dlow, route)
             rc = f"{acl/ccl:.2f}x" if (acl and ccl) else "-"
             rv = f"{avd/cvd:.2f}x" if cvd else "-"
             if acl and ccl: cl_r.append(acl / ccl)
@@ -205,12 +231,13 @@ def main():
                 parameter="clearance" if (acl and ccl) else "", chemical=c,
                 units="mL/kg/d", comparator=name, argoul=acl, single=ccl,
                 ratio=(acl / ccl) if (acl and ccl) else "",
-                vd_independent_of_cl="", **cite(key)))
+                vd_independent_of_cl="", **cite(key), **dz))
             PAIRS.append(dict(
                 parameter="volume_of_distribution" if cvd else "", chemical=c,
                 units="mL/kg", comparator=name, argoul=avd, single=cvd,
                 ratio=(avd / cvd) if cvd else "",
-                vd_independent_of_cl="yes" if indep else "no", **cite(key)))
+                vd_independent_of_cl="yes" if indep else "no",
+                **cite(key), **dz))
             print(f"  {'':<7s} {name:<26s} {(f'{ccl:g}' if ccl else '-'):>8s} "
                   f"{cvd:>7g} {rc:>9s} {rv:>9s}")
     gm = lambda v: math.exp(sum(math.log(x) for x in v) / len(v))
@@ -255,13 +282,13 @@ def main():
         if not r or not r["mrt_d"]:
             continue
         at = LN2 * float(r["mrt_d"])
-        for name, t, key in SINGLE.get(c, []):
+        for name, t, key, dstr, dlow, route in SINGLE.get(c, []):
             ratios.append(at / t)
             print(f"  {c:<7s} {at:>14.3f} {t:>16.3f} {at/t:>6.2f}x   {name}")
             PAIRS.append(dict(parameter="half_life", chemical=c, units="d",
                               comparator=name, argoul=at, single=t,
                               ratio=at / t, vd_independent_of_cl="",
-                              **cite(key)))
+                              **cite(key), **dose(r, dstr, dlow, route)))
         if c in POOLED:
             t = POOLED[c]
             pooled_r.append(at / t)
@@ -270,7 +297,8 @@ def main():
             PAIRS.append(dict(parameter="half_life_pooled", chemical=c,
                               units="d", comparator="EPA pooled fit", argoul=at,
                               single=t, ratio=at / t, vd_independent_of_cl="",
-                              **cite("zurlinden2025")))
+                              **cite("zurlinden2025"),
+                              **dose(r, "pooled across doses", None, "various")))
     both = ratios + pooled_r
     print(f"\n  Over the {len(ratios)} independent single-compound comparisons the "
           f"half-life ratios\n  span {min(ratios):.2f}x to {max(ratios):.2f}x, "
@@ -321,6 +349,9 @@ def main():
   low bias relative to the single-compound literature.""")
 
     fields = ["parameter", "chemical", "units", "argoul", "single", "ratio",
+              "argoul_dose_iv_mgkg", "argoul_dose_oral_mgkg",
+              "single_dose_mgkg", "single_dose_route",
+              "dose_gap_single_over_argoul",
               "comparator", "comparator_ref", "comparator_doi",
               "comparator_pmid", "comparator_via", "vd_independent_of_cl",
               "argoul_ref", "argoul_doi"]

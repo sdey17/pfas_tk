@@ -104,6 +104,42 @@ def main():
 
     print()
     print("=" * 78)
+    print("PART 2b.  A test that looks stronger than it is")
+    print("=" * 78)
+    q = [r for r in csv.DictReader(
+             open(os.path.join(HERE, "db", "argoul_vs_single_compound.csv")))
+         if r["parameter"] == "half_life" and r["dose_gap_single_over_argoul"]]
+    xs = [math.log10(float(r["dose_gap_single_over_argoul"])) for r in q]
+    ys = [math.log10(float(r["ratio"])) for r in q]
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    sxy = sum((a - mx) * (b - my) for a, b in zip(xs, ys))
+    sxx = sum((a - mx) ** 2 for a in xs)
+    syy = sum((b - my) ** 2 for b in ys)
+    r = sxy / math.sqrt(sxx * syy)
+    gaps = [float(z["dose_gap_single_over_argoul"]) for z in q]
+    print(f"""
+  The CSV now carries doses, so the ten half-life comparisons can be regressed
+  on their dose gap, which spans {min(gaps):.0f}x to {max(gaps):.0f}x:
+
+    Pearson r of log(ratio) on log(dose gap) = {r:+.3f}   r^2 = {r*r:.3f}
+
+  That looks like a clean null. It is not worth much, and the reason matters:
+  dose raises clearance and volume TOGETHER, so it barely moves a half-life.
+  Sundstrom's own 1 -> 20 mg/kg arms show it --
+
+    CL        2.68 -> 3.79   (1.41x)
+    Vd          96 -> 147    (1.53x)
+    half-life 24.8 -> 26.8   (1.08x)
+
+  -- so a half-life ratio has almost no power to detect a dose effect whatever
+  r comes out at. The clearance ordering in part 2, on four points, remains the
+  better test, and part 3 the better still. Reported here because the
+  regression is the obvious thing to run on the new dose columns, and running
+  it without this caveat would overstate the case.""")
+
+    print()
+    print("=" * 78)
     print("PART 3.  Out-of-sample test on the one real dose series")
     print("=" * 78)
     print("""
