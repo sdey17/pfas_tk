@@ -108,8 +108,8 @@ def main():
     print("=" * 78)
     q = [r for r in csv.DictReader(
              open(os.path.join(HERE, "db", "argoul_vs_single_compound.csv")))
-         if r["parameter"] == "half_life" and r["dose_gap_single_over_argoul"]]
-    xs = [math.log10(float(r["dose_gap_single_over_argoul"])) for r in q]
+         if r["parameter"] == "half_life" and r["dose_gap_min"]]
+    xs = [math.log10(float(r["dose_gap_min"])) for r in q]
     ys = [math.log10(float(r["ratio"])) for r in q]
     n = len(xs)
     mx, my = sum(xs) / n, sum(ys) / n
@@ -117,7 +117,7 @@ def main():
     sxx = sum((a - mx) ** 2 for a in xs)
     syy = sum((b - my) ** 2 for b in ys)
     r = sxy / math.sqrt(sxx * syy)
-    gaps = [float(z["dose_gap_single_over_argoul"]) for z in q]
+    gaps = [float(z["dose_gap_min"]) for z in q]
     print(f"""
   The CSV now carries doses, so the ten half-life comparisons can be regressed
   on their dose gap, which spans {min(gaps):.0f}x to {max(gaps):.0f}x:

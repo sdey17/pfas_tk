@@ -1986,8 +1986,19 @@ lower bound, so read the ratios as indicative.
 | PFOA | Lou 2009 | 0.87× |
 | PFHxS | Sundström 2012 × 2 | 1.20–1.30× |
 | PFOS | Chang 2012 × 2 | 0.79–0.98× |
-| PFNA | Tatum-Gibbs 2011 × 2 | 0.54–1.42× |
+| PFNA | Tatum-Gibbs 2011, range ends | 0.54–1.42× |
 | **all ten** | | **geometric mean 0.99×** |
+
+Two caveats on how that table counts and how its doses line up. PFNA's two
+entries are the two ends of a single reported range (25.8–68.4 d across 1 and
+10 mg/kg, taken from the abstract), not two dose arms — counting it once at the
+geometric midpoint of its range gives nine comparisons and a geometric mean of
+1.00× instead of 0.99×, so the conclusion is unaffected but ten is the generous
+count. And where a study pooled two doses into one parameter — Lou and
+Tatum-Gibbs, both "1, 10" — no single dose can be attributed to its result, so
+the CSV's `dose_gap_min` is computed at the lower dose and is a lower bound:
+Lou's true gap is somewhere between 12.5× and 125×, Tatum-Gibbs's between 9.1×
+and 91×.
 
 Every comparison above is against a study that dosed that compound **alone**.
 The EPA pooled fit (Zurlinden 2025) is deliberately not among them and is not
