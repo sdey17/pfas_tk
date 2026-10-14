@@ -293,12 +293,15 @@ def main():
     print("""
   Three candidate causes, none separable with the data in hand:
 
-   DOSE      Argoul dosed 0.019-1.55 mg/kg, 10-100x below the comparators.
-             Section 8's saturable-reabsorption account predicts clearance
-             rising with dose, and the one three-point series available
-             (PFHxS female, 0.094 / 1 / 20 mg/kg across two laboratories)
-             does rise monotonically: CL 1.3 / 2.68 / 3.79, slope +0.20 on
-             log-log. Argoul sits at the bottom of that trend, not off it.
+   DOSE      The obvious candidate, and it does not survive testing. See
+             scripts/argoul_dose_matching.py. The dose is tuned per compound
+             rather than swept, and matched that way it fails to order the
+             discrepancies: Fujii is nearly dose-matched (0.128 vs 0.080
+             mg/kg) and disagrees MOST, Lou has a >=12x dose gap and agrees
+             BEST. The +0.20 slope once quoted here was fitted through
+             Argoul's own point, which carries 79% leverage on it; dropping
+             it and extrapolating Sundstrom's two doses leaves ~1.6x
+             unexplained. A contributor, not the explanation.
 
    COCKTAIL  Eleven PFAS dosed together could compete for the same
              reabsorptive transporters. That would RAISE clearance, not lower

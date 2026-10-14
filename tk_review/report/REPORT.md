@@ -1996,13 +1996,30 @@ unchanged" is the signature of a shared scaling rather than a disagreement
 about elimination. Three candidates fit, and the data in hand cannot separate
 them:
 
-- **Dose.** The cocktail was dosed 10–100× below its comparators. §4.4's
+- **Dose — the obvious candidate, and it does not survive testing.** §4.4's
   saturable-reabsorption account predicts clearance rising with dose, and the
-  one three-point series available — PFHxS in female mice at 0.094, 1 and
-  20 mg/kg across two laboratories — does rise monotonically: CL 1.3, 2.68,
-  3.79 mL/kg/d, slope +0.20 on log-log. The cocktail sits at the bottom of that
-  trend rather than off it. This is the candidate most consistent with the rest
-  of the review.
+  cocktail was dosed below its comparators, so this looked like the answer.
+  Three things undercut it, all in `scripts/argoul_dose_matching.py`:
+
+  1. *The dose is tuned per compound, not swept.* Argoul ran 0.019–1.55 mg/kg,
+     but that range tracks persistence (short-chain near 1.3–1.55, long-chain
+     at 0.019–0.080) rather than being a dose-response design. So "10–100×
+     below its comparators" is only true compound by compound, with a
+     different factor each time.
+  2. *Matched that way, dose does not order the discrepancies.* Fujii dosed
+     PFOA at 0.128 mg/kg against the cocktail's 0.080 — a gap of 1.6×,
+     essentially dose-matched — and has the **worst** agreement of the four
+     (0.38×). Lou at 1 mg/kg and above, a gap of ≥12×, has the **best**
+     (0.75×). If dose drove the gap, the ordering would run the other way.
+  3. *The slope quoted earlier was circular.* It was fitted through all three
+     PFHxS points including Argoul's, which carries **79% leverage** on that
+     fit — so "the cocktail sits at the bottom of the trend rather than off it"
+     was close to guaranteed by construction. Fitting Sundström's two doses
+     alone and extrapolating down to 0.094 mg/kg predicts 2.04 mL/kg/d against
+     1.30 observed: dose closes part of the gap (0.49× → 0.64×) and about 1.6×
+     survives it.
+
+  Dose is a contributor, not the explanation.
 - **Cocktail competition.** Eleven PFAS competing for the same reabsorptive
   transporters would *raise* clearance, not lower it, so it argues against the
   observed direction — unless the competition is for plasma binding sites
