@@ -24,6 +24,7 @@ import os
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LN2 = math.log(2)
 OUT = os.path.join(HERE, "db", "argoul_vs_single_compound.csv")
+SOURCES = os.path.join(HERE, "db", "argoul_vs_single_compound_sources.csv")
 PAIRS = []
 
 # ---------------------------------------------------------------------------
@@ -152,6 +153,22 @@ CLVD = {
 }
 
 
+def write_sources(used):
+    """One row per source cited by the comparison table. Kept beside it rather
+    than inside it so the comparison stays readable; join on the 'source'
+    column."""
+    used = sorted(used | {"argoul2026"})
+    with open(SOURCES, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=["source", "reference", "doi",
+                                           "pmid", "how_this_review_got_it"])
+        w.writeheader()
+        for k in used:
+            r = REFS[k]
+            w.writerow(dict(source=k, reference=r["ref"], doi=r["doi"],
+                            pmid=r["pmid"], how_this_review_got_it=r["via"]))
+    print(f"  wrote {os.path.relpath(SOURCES, HERE)} ({len(used)} sources)")
+
+
 def check_refs_against_pdf():
     """Warn if a comparator's DOI here disagrees with the review's reference
     list, or is missing from it. A wrong citation in one file and not the other
@@ -190,13 +207,10 @@ def dose(a_row, dose_str="", dose_low=None, route=""):
 
 
 def cite(key):
-    """Reference fields for one comparator, plus the Argoul side, so a row of
-    the output CSV is traceable without the rest of the repository."""
-    r = REFS.get(key, {})
-    a = REFS["argoul2026"]
-    return dict(comparator_ref=r.get("ref", ""), comparator_doi=r.get("doi", ""),
-                comparator_pmid=r.get("pmid", ""), comparator_via=r.get("via", ""),
-                argoul_ref=a["ref"], argoul_doi=a["doi"])
+    """Just the source key. The full reference, DOI, PMID and route into this
+    review go in the sidecar written by write_sources(), so the comparison
+    table stays readable."""
+    return dict(source=key)
 
 
 def argoul():
@@ -357,9 +371,7 @@ def main():
               "argoul_dose_iv_mgkg", "argoul_dose_oral_mgkg",
               "single_dose_mgkg", "single_dose_route",
               "dose_gap_single_over_argoul",
-              "comparator", "comparator_ref", "comparator_doi",
-              "comparator_pmid", "comparator_via", "vd_independent_of_cl",
-              "argoul_ref", "argoul_doi"]
+              "comparator", "source", "vd_independent_of_cl"]
     with open(OUT, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
@@ -368,6 +380,7 @@ def main():
                 w.writerow(row)
     print(f"\n  wrote {os.path.relpath(OUT, HERE)} "
           f"({sum(1 for r in PAIRS if r['parameter'])} comparison rows)")
+    write_sources({r["source"] for r in PAIRS if r["parameter"]})
     check_refs_against_pdf()
 
 
