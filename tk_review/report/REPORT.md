@@ -1943,17 +1943,23 @@ matching Argoul. Built by `scripts/argoul_vs_single_compound.py` into
 
 **Clearance and volume are both low, by similar factors.**
 
-| compound | comparator | CL ratio | Vd ratio |
-|---|---|---|---|
-| PFOA | Lou 2009 | 0.75× | 0.66× |
-| PFOA | Fujii, via the EPA database | 0.38× | 0.59× |
-| PFHxS | Sundström 2012, 1 mg/kg | 0.49× | 0.65× |
-| PFHxS | Sundström 2012, 20 mg/kg | 0.34× | 0.42× |
-| PFHxA | US EPA PFHxA IRIS | — | 5.13× |
-| **geometric mean** | | **0.47×** | **0.57×** (PFHxA held out) |
+| compound | comparator | dose mg/kg | CL ratio | Vd ratio |
+|---|---|---|---|---|
+| PFOA | Fujii 2015 | 0.128 | 0.38× | 0.59× |
+| PFHxS | Sundström 2012 | 1 | 0.49× | 0.65× |
+| PFHxS | Sundström 2012 | 20 | 0.34× | 0.42× |
+| **geometric mean** | | | **0.40×** | **0.54×** |
 
-PFHxA's volume is the one outlier and is held out: it is the only compound
-Argoul places in net secretion, so its kinetics differ in kind.
+Only comparisons with **one attributable dose** are included. Three otherwise
+usable comparators pooled two dose levels into a single reported parameter and
+are left out: Lou fitted one model across 1 and 10 mg/kg; Tatum-Gibbs reported
+a half-life *range* across both doses rather than a value per arm; and the EPA
+PFHxA volume is a Vd,β computed from Gannon, whose mouse arm ran 2 *and*
+100 mg/kg. Keeping them would mean a dose column that cannot be read as a dose.
+The cost is PFOA's second comparator, PFNA entirely, and PFHxA entirely — the
+last of which was the one outlier in the other direction (5.13× **high**, and
+the only compound Argoul places in net secretion, so its kinetics differ in
+kind regardless).
 
 **How much of a check is that, really?** In most of these studies Vd is not
 measured apart from clearance — non-compartmental analysis gives
@@ -1963,7 +1969,7 @@ volume low" is largely one observation seen twice. Fujii 2015 is the
 exception: Vd from Dose/C(0) by back-extrapolation, CL from Dose/AUC, which
 are independent, and there CL is 0.38× and Vd 0.59× — both low, independently.
 One row is thin evidence, so the claim defended here is the narrower one: the
-**rate constant** agrees across ten comparisons and the **scale** does not.
+**rate constant** agrees across the half-life comparisons and the **scale** does not.
 
 `db/argoul_vs_single_compound.csv` holds the comparison itself — values,
 ratios, and the doses: Argoul's IV and oral dose for each compound, the
@@ -1980,25 +1986,17 @@ system with that Vss and CL would show. Against a measured *terminal* half-life
 that is an approximation, and for a compound with a deep second compartment a
 lower bound, so read the ratios as indicative.
 
-| compound | comparators | ratio range |
-|---|---|---|
-| PFBA | Chang 2008 × 3 | 0.97–1.07× |
-| PFOA | Lou 2009 | 0.87× |
-| PFHxS | Sundström 2012 × 2 | 1.20–1.30× |
-| PFOS | Chang 2012 × 2 | 0.79–0.98× |
-| PFNA | Tatum-Gibbs 2011, range ends | 0.54–1.42× |
-| **all ten** | | **geometric mean 0.99×** |
+| compound | comparators | dose mg/kg | ratio range |
+|---|---|---|---|
+| PFBA | Chang 2008 × 3 | 10 / 30 / 100 | 0.97–1.07× |
+| PFHxS | Sundström 2012 × 2 | 1 / 20 | 1.20–1.30× |
+| PFOS | Chang 2012 × 2 | 1 / 20 | 0.79–0.98× |
+| **all seven** | | | **geometric mean 1.04×** |
 
-Two caveats on how that table counts and how its doses line up. PFNA's two
-entries are the two ends of a single reported range (25.8–68.4 d across 1 and
-10 mg/kg, taken from the abstract), not two dose arms — counting it once at the
-geometric midpoint of its range gives nine comparisons and a geometric mean of
-1.00× instead of 0.99×, so the conclusion is unaffected but ten is the generous
-count. And where a study pooled two doses into one parameter — Lou and
-Tatum-Gibbs, both "1, 10" — no single dose can be attributed to its result, so
-the CSV's `dose_gap_min` is computed at the lower dose and is a lower bound:
-Lou's true gap is somewhere between 12.5× and 125×, Tatum-Gibbs's between 9.1×
-and 91×.
+Same dose rule as above: Lou (PFOA) and Tatum-Gibbs (PFNA) are excluded because
+neither can be tied to one dose. Including their three rows would give ten
+comparisons at 0.99× instead of seven at 1.04×, so nothing here turns on the
+exclusion — it buys a dose column that means what it says.
 
 Every comparison above is against a study that dosed that compound **alone**.
 The EPA pooled fit (Zurlinden 2025) is deliberately not among them and is not
@@ -2052,17 +2050,17 @@ them:
   spread rather than shifting the centre, so it is the weakest of the three.
 
 **What this costs §11.3, and what it does not.** R is built from an absolute
-renal clearance, so a twofold low bias in that clearance is a twofold low bias
-in R — a flat −0.33 log unit offset on every compound. Because it is flat it
+renal clearance, so a 2.5-fold low bias in that clearance is a 2.5-fold low bias
+in R — a flat −0.40 log unit offset on every compound. Because it is flat it
 changes nothing §11.3 actually claims: the ranking, the 2.9-log-unit span, the
 non-monotonicity in chain length, and the head-group and ether contrasts are
 all *differences between compounds*, and a shared factor cancels from every one
 of them. It does move the compounds relative to the fixed divide at R = 1, but
 not far enough to matter: the nearest reabsorbed compound (GenX, −0.98) sits
 0.98 log units below the divide, so the bias would have to be 9.6× rather than
-2.1× to reclassify anything. What it does cost is §11.4, where an absolute
+2.5× to reclassify anything. What it does cost is §11.4, where an absolute
 mouse value is set against an absolute human one — read those gaps as carrying
-a factor of about two on top of the fu uncertainty, in the direction of
+a factor of about 2.5 on top of the fu uncertainty, in the direction of
 understating the mouse.
 
 ### 11.4 The sensitivity that decides the species question
