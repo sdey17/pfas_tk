@@ -1968,7 +1968,10 @@ One row is thin evidence, so the claim defended here is the narrower one: the
 Provenance for every comparator, with DOI, PMID and the table each value was
 actually read from, is in `db/argoul_vs_single_compound.csv` — including which
 values reach this review through an agency compilation (ATSDR Table 3-5, OEHHA
-PHG Table 4.8.1, EPA IRIS) rather than the primary paper.
+PHG Table 4.8.1, EPA IRIS) rather than the primary paper. That file also
+carries the doses: Argoul's IV and oral dose for each compound, the
+comparator's dose and route, and the resulting gap, which runs from 1.6× (Fujii
+on PFOA, essentially dose-matched) to 526× (Chang 2012 PFOS at 20 mg/kg).
 
 **The half-life, which is their ratio, is not low at all.** Argoul reports MRT
 rather than a terminal half-life; MRT = Vss/CL holds in its own table to within
