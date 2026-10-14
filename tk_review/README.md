@@ -111,7 +111,7 @@ python3 scripts/make_figures_primary.py               # -> figures/fig10..fig15
 
 # the QSAR endpoint, and how far its one dataset can be trusted
 python3 scripts/qsar_endpoint_table.py                # -> db/qsar/qsar_endpoint_table.csv
-python3 scripts/argoul_vs_single_compound.py          # -> db/argoul_vs_single_compound.csv
+python3 scripts/argoul_vs_single_compound.py          # -> db/argoul_vs_single_compound{,_sources}.csv
 python3 scripts/argoul_dose_matching.py               # is the dose gap the cause? (no)
 python3 scripts/make_review_figures.py                # -> figures/fig02..fig04
 python3 scripts/make_summary_pdf.py                   # -> report/PFAS_TK_review.pdf

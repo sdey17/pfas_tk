@@ -1965,13 +1965,13 @@ are independent, and there CL is 0.38× and Vd 0.59× — both low, independentl
 One row is thin evidence, so the claim defended here is the narrower one: the
 **rate constant** agrees across ten comparisons and the **scale** does not.
 
-Provenance for every comparator, with DOI, PMID and the table each value was
-actually read from, is in `db/argoul_vs_single_compound.csv` — including which
-values reach this review through an agency compilation (ATSDR Table 3-5, OEHHA
-PHG Table 4.8.1, EPA IRIS) rather than the primary paper. That file also
-carries the doses: Argoul's IV and oral dose for each compound, the
-comparator's dose and route, and the resulting gap, which runs from 1.6× (Fujii
-on PFOA, essentially dose-matched) to 526× (Chang 2012 PFOS at 20 mg/kg).
+`db/argoul_vs_single_compound.csv` holds the comparison itself — values,
+ratios, and the doses: Argoul's IV and oral dose for each compound, the
+comparator's dose and route, and the gap, which runs 1.6× (Fujii on PFOA,
+essentially dose-matched) to 526× (Chang 2012 PFOS at 20 mg/kg). Full
+references, DOIs, PMIDs and the route each value took into this review — some
+arrive through an agency compilation rather than the primary paper — are in
+`db/argoul_vs_single_compound_sources.csv`, joined on the `source` column.
 
 **The half-life, which is their ratio, is not low at all.** Argoul reports MRT
 rather than a terminal half-life; MRT = Vss/CL holds in its own table to within
