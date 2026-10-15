@@ -13,7 +13,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | Path | What it holds |
 |---|---|
 | `report/REPORT.md` | the written review — start here |
-| `report/PFAS_TK_review.pdf` | the printable review — 14 pages, 14 sections, 4 figures, 52 numbered references; rebuild with `scripts/make_summary_pdf.py` (needs `reportlab`) |
+| `report/PFAS_TK_review.pdf` | the printable review — 16 pages, 14 sections, 4 figures, 57 numbered references; rebuild with `scripts/make_summary_pdf.py` (needs `reportlab`) |
 | `EXECUTIVE_SUMMARY.md` | the same argument in two pages |
 | `db/` | the structured extractions — one CSV per evidence type |
 | `db/primary_2026/` | 24 per-paper extractions, read from the papers directly |

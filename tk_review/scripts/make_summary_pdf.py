@@ -86,6 +86,10 @@ REFS = {
 "chiu2022": "Chiu WA, et al. (2022). Bayesian estimation of human population toxicokinetics of PFOA, PFOS, PFHxS and PFNA from studies of contaminated drinking water. <i>Environmental Health Perspectives</i> 130(12):127001. doi:10.1289/EHP10103",
 "butenhoff2004": "Butenhoff JL, Kennedy GL, Hinderliter PM, Lieder PH, Jung R, Hansen KJ, Gorman GS, Noker PE, Thomford PJ (2004). Pharmacokinetics of perfluorooctanoate in cynomolgus monkeys. <i>Toxicological Sciences</i> 82(2):394-406. doi:10.1093/toxsci/kfh302",
 "fujii2015": "Fujii Y, Niisoe T, Harada KH, Uemoto S, Ogura Y, Takenaka K, Koizumi A (2015). Toxicokinetics of perfluoroalkyl carboxylic acids with different carbon chain lengths in mice and humans. <i>Journal of Occupational Health</i> 57(1):1-12. doi:10.1539/joh.14-0136-OA. (Values reached via OEHHA 2024 PHG Table 4.8.1 and ATSDR 2021 Table 3-6.)",
+"starnes2024": "Starnes HM, Jackson TW, Rock KD, Belcher SM (2024). Quantitative cross-species comparison of serum albumin binding of per- and polyfluoroalkyl substances from five structural classes. <i>Toxicological Sciences</i> 199(1):132-149. doi:10.1093/toxsci/kfae028",
+"gallagher2023": "Gallagher A, Kar S, Sep&uacute;lveda MS (2023). Computational modeling of human serum albumin binding of per- and polyfluoroalkyl substances employing QSAR, read-across, and docking. <i>Molecules</i> 28(14):5375. doi:10.3390/molecules28145375. (Computational; its affinity data are the [starnes2024] set.)",
+"gao2025": "Gao Y, Kibbey TCG, Lee MJ, O'Carroll DM (2025). Predicting salt effects on the binding of PFAS to protein. <i>Environmental Science &amp; Technology</i> 59(49):26716-26728. doi:10.1021/acs.est.5c08779. (Abstract only; per-compound affinities not obtained.)",
+"zhao2023": "Zhao L, Teng M, Zhao X, Li Y, Sun J, Zhao W, Ruan Y, Leung KMY, Wu F (2023). Insight into the binding model of per- and polyfluoroalkyl substances to proteins and membranes. <i>Environment International</i> 175:107951. doi:10.1016/j.envint.2023.107951. (Review.)",
 "chang2008": "Chang S-C, Das K, Ehresman DJ, Ellefson ME, Gorman GS, Hart JA, Noker PE, Tan Y-M, Lieder PH, Lau C, Olsen GW, Butenhoff JL (2008). Comparative pharmacokinetics of perfluorobutyrate in rats, mice, monkeys, and humans and relevance to human exposure via drinking water. <i>Toxicological Sciences</i> 104(1):40-53. doi:10.1093/toxsci/kfn057",
 "chang2012": "Chang S-C, Noker PE, Gorman GS, Gibson SJ, Hart JA, Ehresman DJ, Butenhoff JL (2012). Comparative pharmacokinetics of perfluorooctanesulfonate (PFOS) in rats, mice, and monkeys. <i>Reproductive Toxicology</i> 33(4):428-440. doi:10.1016/j.reprotox.2011.07.002",
 "dzierlenga2020": "Dzierlenga AL, Robinson VG, Waidyanatha S, DeVito MJ, Eifrid MA, Gibbs ST, Granville CA, Blystone CR (2020). Toxicokinetics of PFHxA, PFOA and PFDA in male and female Hsd:Sprague Dawley SD rats following intravenous or gavage administration. <i>Xenobiotica</i> 50(6):722-732. doi:10.1080/00498254.2019.1683776",
@@ -709,6 +713,84 @@ def story_3():
           "'about 90% bound' and adopted a free fraction roughly "
           "<b>164&times; too high</b>. Section 10 shows how far that single "
           "substitution propagates.", "body"),
+        p("Species and structure, from the studies that hold method fixed",
+          "h2"),
+        p("Most of the 285-row binding file cannot answer a comparative "
+          "question, for the reason above: a single affinity number per pair "
+          "does not exist. What can are the few studies that fix the method "
+          "and vary one thing.", "body"),
+        KeepTogether([
+        p("On <b>species</b>, " + c("starnes2024") + " measured four albumins "
+          "by one assay. Dissociation constant in mM, lower is tighter:",
+          "body"),
+        tbl([
+            ["compound", "F-carbons", "human", "rat", "bovine", "porcine",
+             "rat / human"],
+            ["PFBA", "3", "2.64", "1.90", "3.06", "1.28", "0.72&times;"],
+            ["PFBS", "4", "1.68", "1.41", "0.80", "1.25", "0.84&times;"],
+            ["GenX", "4", "1.57", "1.64", "2.55", "2.12", "1.04&times;"],
+            ["PFHxA", "5", "1.71", "1.33", "2.17", "0.95", "0.78&times;"],
+            ["6:2 FTSA", "6", "0.41", "0.33", "1.39", "0.52", "0.80&times;"],
+            ["PFOA", "7", "0.79", "0.40", "0.99", "0.37", "<b>0.51&times;</b>"],
+            ["PFOS", "8", "0.69", "0.42", "0.86", "0.38", "0.61&times;"],
+        ], [26 * mm, 20 * mm, 18 * mm, 18 * mm, 19 * mm, 20 * mm,
+            W - 121 * mm]),
+        p("Built by scripts/binding_species_and_structure.py from "
+          "db/protein_binding.csv.", "caption")]),
+        p("The study reports the interspecies differences as statistically "
+          "significant for every bound compound, and they are - but the "
+          "magnitudes are small. Across all four species the highest-to-lowest "
+          "ratio never exceeds about fourfold and is usually under twofold. "
+          "Rat and porcine albumin bind the carboxylates and sulfonates more "
+          "tightly than human, the ether acid less tightly, in the study's own "
+          "words and in the table. Albumin is a conserved protein and behaves "
+          "like one. The direction is again unhelpful for explaining kinetics: "
+          "rat albumin holds PFOA twice as tightly as human while the rat "
+          "clears it about a thousandfold faster. A second method agrees - "
+          + c("fischer2024") + " measured human and bovine albumin for 27 "
+          "compounds at a physiological ligand:protein ratio and the "
+          "bovine-minus-human difference in log D is under 0.3 log units for "
+          "most of them, median -0.14. Bovine albumin is a fair stand-in for "
+          "human, which matters because much of the literature uses it.",
+          "body"),
+        p("On <b>structure</b>, " + c("fischer2024") + "'s ten chain lengths "
+          "give three results, and only the first is the textbook one. "
+          "<b>Chain length is not monotonic.</b> The carboxylates rise from "
+          "2.16 at four fluorinated carbons to a maximum of 5.18 around ten to "
+          "eleven, then fall to 3.87 at thirteen - a slope of +0.45 log units "
+          "per CF<sub>2</sub> on the way up and -0.44 on the way down. A "
+          "structure-activity model linear in carbon number is wrong at both "
+          "ends. An independent dataset reaches the same shape: the QSAR of "
+          + c("gallagher2023") + " over the " + c("starnes2024") + " affinities "
+          "finds perfluoroalkyl acids of seven to nine carbons bind human "
+          "albumin most tightly and those above ten bind less, and its docking "
+          "gives a mechanism - the tightest binders form a hydrogen bond with "
+          "Arg348 and salt bridges to Arg348 and Arg485, while the weakest "
+          "form neither. <b>The head group is worth about a log unit</b> at "
+          "matched chain length, with similar slopes rather than a different "
+          "trend: PFHxS 4.77 against PFHpA 4.10 at six carbons, PFHpS 5.49 "
+          "against PFOA 4.48 at seven. <b>And albumin stops being the main "
+          "carrier.</b> &gamma;-globulin binds two to three log units weaker "
+          "at short chain lengths, closes the gap steadily, and at thirteen "
+          "carbons binds more tightly than albumin does. Treating protein "
+          "binding as albumin binding degrades exactly where it matters, since "
+          "the long chains are the persistent ones. " + c("zhao2023")
+          + " reviews the same picture mechanistically: the fluorinated chain "
+          "occupies the binding cavity while the acid head group hydrogen-"
+          "bonds to residues, so chlorine substitution, ether insertion and "
+          "branching all act through chain length and hydrophobicity rather "
+          "than independently.", "body"),
+        p("<b>The gap is in the field, not in this file.</b> There is no in "
+          "vitro measurement of PFAS binding to <i>mouse</i> serum albumin. A "
+          "PubMed search returns one record, and it measures mouse albumin "
+          "concentration rather than binding. So the species question is "
+          "answerable for human, rat, bovine and porcine and not for the "
+          "mouse - the animal whose clearance and unbound fraction section 10's "
+          "endpoint is built from, and whose f<sub>u</sub> therefore has no in "
+          "vitro albumin measurement to decompose it against. The one new "
+          "experimental series found, " + c("gao2025") + " on bovine albumin "
+          "across chain length and head group, is logged in the database "
+          "without values because its full text was not obtainable.", "body"),
         p("What binding does to elimination, quantified", "h2"),
         p("Only unbound PFAS is filtered, so the clearance free filtration "
           "alone would produce is f<sub>u</sub>&middot;GFR, and the measured "
