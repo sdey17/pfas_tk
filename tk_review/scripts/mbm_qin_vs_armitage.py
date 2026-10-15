@@ -183,8 +183,19 @@ ARM = dict(
     # medium / serum
     conc_ser_alb=24.0, conc_ser_lip=1.9,   # g/L in serum
     csalt=0.15, cell_pH=7.4, pH=7.4,
-    cellmass=3.0, celldensity=1.0,         # ng/cell, kg/L -> 3 pL/cell
+    cellmass=3.04, celldensity=1.0,        # ng/cell, kg/L -> 3.04 pL/cell
 )
+
+# Qin's Table 2 header reads "log Dcell/w [Lw/Lcell,prot+lip]": the ratio is per
+# litre of cell PROTEIN+LIPID, not per litre of cell.  Armitage's DR_kcw is per
+# litre of whole cell (its composition sums to 1.0 and includes 0.90 water), so
+# Qin's cell term must be scaled by this fraction before the two share an axis.
+# 0.1265 is the value in the project spreadsheet (675 pg protein + lipid per
+# 3.04 pL cell).  httk's cell is 0.10 non-water; a protein density of
+# 1.35 g/mL on 675 pg/cell gives 0.166.  It is a <=1.6x lever on Qin alone and
+# does not touch the chain-length slope.
+F_PROTLIP = 0.1265
+F_PROTLIP_RANGE = (0.100, 0.166)
 
 def armitage_pcs(logKow_n, kbsa2=False, kpl2=False):
     """spLFERs, httk armitage.R lines 663-694."""
@@ -247,9 +258,13 @@ ASSAYS = {
     # Rosenmai 2017: HepG2, 12-well, 18e4 cells/well, DMEM + 10% FBS, 24 h.
     # Working volume is not stated in the paper; 1.0 mL is the standard 12-well
     # volume and is flagged as an assumption.
-    "Rosenmai2017": dict(cells="HepG2", plate="12-well", diam_mm=22.1,
-                         v_working_uL=1000.0, cell_yield=1.8e5, FBSf=0.10,
-                         doses=[10.0, 30.0, 100.0], vol_assumed=True,
+    # "lysates from three wells per treatment were pooled" -- so the unit of
+    # measurement is 3 wells: 543,400 cells at end of exposure and 3x the
+    # medium.  Uptake % is invariant to the pooling, but the protein mass and
+    # the absolute nmol are not.
+    "Rosenmai2017": dict(cells="HepG2", plate="12-well x3 pooled", diam_mm=22.1,
+                         v_working_uL=3000.0, cell_yield=5.434e5, FBSf=0.10,
+                         doses=[10.0, 30.0, 100.0], vol_assumed=True, wells=3,
                          basis="nominal"),
     # Amstutz 2022: HepG2, 96-well, 4e4 cells/well, 250 uL exposure medium,
     # DMEM + 10% FBS, 100 uM, 24 h.  IF is normalised to RECOVERED mass
@@ -272,8 +287,8 @@ ASSAYS = {
 # httk's 3 ng cell.  This is a COMMON-MODE factor: it shifts Rosenmai and
 # Fragki together and does not touch Amstutz, so it cannot create scatter
 # between studies -- only a uniform offset.
-MG_PROTEIN_PER_ML_CELL = 180.0
-MG_PROTEIN_PER_ML_CELL_RANGE = (90.0, 300.0)
+MG_PROTEIN_PER_ML_CELL = 222.0      # 675 pg protein / 3.04 pL cell
+MG_PROTEIN_PER_ML_CELL_RANGE = (150.0, 300.0)
 
 def volumes(a):
     """Compartment volumes in L.  httk armitage.R lines 820-830."""
@@ -282,7 +297,8 @@ def volumes(a):
     Valb = Vbm * a["FBSf"] * BSA_PARTIAL_SPEC_VOL * ARM["conc_ser_alb"] * 1e-3
     Vslip = Vbm * a["FBSf"] * ARM["conc_ser_lip"] * 1e-3
     Vm = Vbm - Valb - Vslip
-    sarea = well_sarea(a["diam_mm"], a["v_working_uL"])
+    n = a.get("wells", 1)
+    sarea = n * well_sarea(a["diam_mm"], a["v_working_uL"] / n)
     return dict(Vbm=Vbm, Vcells=Vcells, Valb=Valb, Vslip=Vslip, Vm=Vm, sarea=sarea)
 
 # --------------------------------------------------------------------------
@@ -291,12 +307,17 @@ def volumes(a):
 #     n_tot = C_w * ( Vm + D_bsa*Valb + D_ow*Vslip + D_cw*Vcells + D_pl*sarea*1000 )
 # Headspace is dropped: PFAS anions are non-volatile (K_aw ~ 0).
 # --------------------------------------------------------------------------
-def balance(nomconc_uM, V, D_cell, D_bsa, D_ow=0.0, D_pl=0.0):
+def balance(nomconc_uM, V, D_cell, D_bsa, D_ow=0.0, D_pl=0.0, cell_frac=1.0):
+    """cell_frac = fraction of cell volume D_cell is expressed against.
+    Armitage: 1.0 (whole cell).  Qin: F_PROTLIP (cell protein+lipid only).
+    C_cell is always returned on the WHOLE-CELL basis so the two are
+    comparable with each other and with a measured per-cell concentration."""
+    Vc_eff = V["Vcells"] * cell_frac
     ntot = nomconc_uM * V["Vbm"]                       # umol
     denom = (V["Vm"] + D_bsa * V["Valb"] + D_ow * V["Vslip"]
-             + D_cell * V["Vcells"] + D_pl * V["sarea"] * 1000.0)
+             + D_cell * Vc_eff + D_pl * V["sarea"] * 1000.0)
     Cw = ntot / denom
-    C_cell = D_cell * Cw
+    C_cell = D_cell * Cw * cell_frac                   # whole-cell basis
     n_cell = C_cell * V["Vcells"]
     n_med = Cw * V["Vm"] + D_bsa * Cw * V["Valb"] + D_ow * Cw * V["Vslip"]
     n_pl = D_pl * Cw * V["sarea"] * 1000.0
@@ -309,17 +330,18 @@ def balance(nomconc_uM, V, D_cell, D_bsa, D_ow=0.0, D_pl=0.0):
 def qin_predict(name, nCF, nomconc_uM, V, mode="mechanistic"):
     """Qin's model.  Non-linear albumin binding needs a self-consistent C_w."""
     p = qin_params(name, nCF)
-    D_cell = 10 ** p["logDcellw"]
+    D_cell = 10 ** p["logDcellw"]                      # [Lw / L_cell,prot+lip]
     Cw = nomconc_uM * 1e-3                             # seed
     for _ in range(400):
         D_bsa = qin_dbsaw(p, Cw, mode)
-        new = balance(nomconc_uM, V, D_cell, D_bsa)["Cw"]
+        new = balance(nomconc_uM, V, D_cell, D_bsa, cell_frac=F_PROTLIP)["Cw"]
         if abs(math.log10(max(new, 1e-30)) - math.log10(max(Cw, 1e-30))) < 1e-10:
             Cw = new
             break
         Cw = math.sqrt(Cw * new)                       # damped, in log space
-    out = balance(nomconc_uM, V, D_cell, qin_dbsaw(p, Cw, mode))
-    out.update(D_cell=D_cell, D_bsa=qin_dbsaw(p, Cw, mode), params=p)
+    out = balance(nomconc_uM, V, D_cell, qin_dbsaw(p, Cw, mode), cell_frac=F_PROTLIP)
+    out.update(D_cell=D_cell * F_PROTLIP, D_cell_protlip=D_cell,
+               D_bsa=qin_dbsaw(p, Cw, mode), params=p)
     return out
 
 def armitage_predict(logKow_n, nomconc_uM, V, kbsa2=False, kpl2=False):

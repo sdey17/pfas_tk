@@ -121,7 +121,7 @@ def main():
         qp = M.qin_params(c, NCF[c])
         lk = dict((x[0], x[4]) for x in M.COMPOUNDS)[c]
         lk = lk if lk is not None else M.KOW_OPERA(NCF[c])
-        rat.append(10 ** qp["logDcellw"] / M.armitage_drs(lk)["DR_kcw"])
+        rat.append(10 ** qp["logDcellw"] * M.F_PROTLIP / M.armitage_drs(lk)["DR_kcw"])
     axB.plot(nn, rat, "-", color=PURPLE, lw=1.6, zorder=2)
     axB.set_yscale("log"); axB.set_ylim(2e-2, 4e2)
     axB.set_xticks(nn); axB.set_xticklabels(ORDER, rotation=35, ha="right", fontsize=7.5)
@@ -130,7 +130,7 @@ def main():
     axB.text(0.03, 0.95, "B", transform=axB.transAxes, fontsize=11, fontweight="bold")
     axB.text(0.96, 0.93, "Qin higher", transform=axB.transAxes, ha="right",
              color=ORANGE, fontsize=7.5, fontweight="bold")
-    axB.text(0.96, 0.05, "Armitage higher", transform=axB.transAxes, ha="right",
+    axB.text(0.04, 0.05, "Armitage higher", transform=axB.transAxes, ha="left",
              color=BLUE, fontsize=7.5, fontweight="bold")
     axB.text(0.5, 0.52, "cross over", transform=axB.transAxes, ha="center",
              color=INK2, fontsize=7)
@@ -139,13 +139,15 @@ def main():
     grid = np.linspace(2.5, 8.5, 60)
     arm_line = [math.log10(M.armitage_drs(M.KOW_OPERA(n))["DR_kcw"]) for n in grid]
     axC.plot(grid, arm_line, "-", color=BLUE, lw=1.8, label="Armitage")
+    shift = math.log10(M.F_PROTLIP)   # Qin is per L cell prot+lip -> whole cell
     a, b = (M.QIN_T2["PFBA"][1], M.QIN_T2["PFOA"][1])
     qs = (b - a) / 4.0
-    axC.plot(grid, [a + qs * (n - 3) for n in grid], "-", color=ORANGE, lw=1.8)
+    axC.plot(grid, [a + qs * (n - 3) + shift for n in grid], "-", color=ORANGE, lw=1.8)
     for c in ("PFBA", "PFOA"):
-        axC.plot(NCF[c], M.QIN_T2[c][1], "o", ms=7, mfc=ORANGE, mec=ORANGE, zorder=4)
+        axC.plot(NCF[c], M.QIN_T2[c][1] + shift, "o", ms=7, mfc=ORANGE,
+                 mec=ORANGE, zorder=4)
     for c in ("PFHxA", "PFHpA", "PFNA"):
-        axC.plot(NCF[c], M.qin_params(c, NCF[c])["logDcellw"], "o", ms=6.5,
+        axC.plot(NCF[c], M.qin_params(c, NCF[c])["logDcellw"] + shift, "o", ms=6.5,
                  mfc="none", mec=ORANGE, mew=1.3, zorder=4)
     for c in ORDER:
         lk = dict((x[0], x[4]) for x in M.COMPOUNDS)[c]
@@ -155,11 +157,14 @@ def main():
     axC.set_xticks(nn); axC.set_xticklabels(ORDER, rotation=35, ha="right", fontsize=7.5)
     axC.set_ylabel("log D$_{cell/w}$")
     axC.set_ylim(-0.3, 5.2)
+    axC.axvline(5.24, color=MUTED, lw=0.9, ls=":")
     axC.text(0.03, 0.95, "C", transform=axC.transAxes, fontsize=11, fontweight="bold")
-    axC.text(0.40, 0.90, "Armitage\n+0.94 / CF$_2$", transform=axC.transAxes,
+    axC.text(0.42, 0.93, "Armitage\n+0.75 / CF$_2$", transform=axC.transAxes,
              ha="center", va="top", color=BLUE, fontsize=7.5, fontweight="bold")
-    axC.text(0.05, 0.42, "Qin, measured\n+0.18 / CF$_2$", transform=axC.transAxes,
-             color=ORANGE, fontsize=7.5, fontweight="bold")
+    axC.text(0.62, 0.30, "Qin, measured\n+0.18 / CF$_2$", transform=axC.transAxes,
+             ha="center", color=ORANGE, fontsize=7.5, fontweight="bold")
+    axC.text(0.97, 0.06, "whole-cell basis", transform=axC.transAxes, ha="right",
+             fontsize=6.5, color=MUTED)
 
     # ---- D: Rosenmai's axis read two ways ------------------------------
     V = M.volumes(M.ASSAYS["Rosenmai2017"])
@@ -187,6 +192,7 @@ def main():
     axD.text(0.11, 0.905, "\u25a0 read as nmol/mg  (Results 3.3, Fig 2A)",
              transform=axD.transAxes, color=ORANGE, fontsize=7.5,
              fontweight="bold", va="top")
+
 
     for ax in axes:
         ax.grid(True, which="major", color=GRID, lw=0.6, zorder=0)

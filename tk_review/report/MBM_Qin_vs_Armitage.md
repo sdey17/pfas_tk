@@ -25,6 +25,18 @@ so it is the same parameterisation, not a reconstruction.
 | dose dependence | yes | none — linear everywhere |
 | plastic | not in the SPME balance | Kramer or Fischer spLFER |
 
+**Volume basis.** Qin's Table 2 header reads `log Dcell/w [Lw/Lcell,prot+lip]`
+and `log Dplasma/w [Lw/Lprot+lip]` — his distribution ratios are per litre of
+*sorptive phase*, not per litre of cell or plasma. Armitage's `DR_kcw` is per
+litre of whole cell (its composition sums to 1.0 and includes 0.90 water). Qin's
+cell term is therefore scaled by the cell's protein+lipid volume fraction,
+`F_PROTLIP = 0.1265` (675 pg protein+lipid in a 3.04 pL cell), before the two
+share an axis — a −0.90 decade shift on Qin's cell only. The same reading is
+what reproduces Qin's own Table 2: Eq. 17 with D_BSA/w = 10^4.60, D_lip/w =
+10^3.52 and plasma at 93.3% / 6.7% protein:lipid by volume gives log D_plasma/w
+= 4.573 against his published MBM value of 4.56, with 99.4% of the binding on
+protein against his 99.1%.
+
 Both sets of albumin constants sit on the same volume basis. Qin reports Cmax
 both per litre of BSA and per mole; the ratio is 2.049e4 µmol/L for all four
 compounds, i.e. 1364 g/L, which is 1/0.733 mL g⁻¹ — the partial specific volume
@@ -54,16 +66,21 @@ across all five compounds. The cell does not:
 
 | | nCF | Qin log D_cell/w | Armitage log D_cell/w | ratio |
 |---|---|---|---|---|
-| PFBA | 3 | 2.56 | 0.46 | **125×** |
-| PFHxA | 5 | 2.92 | 1.88 | 11× |
-| PFHpA | 6 | 3.09 | 2.65 | 2.8× |
-| PFOA | 7 | 3.27 | 3.43 | 0.7× |
-| PFNA | 8 | 3.45 | 4.22 | **0.2×** |
+| PFBA | 3 | 1.66 | 0.46 | **15.8×** |
+| PFHxA | 5 | 2.02 | 1.88 | 1.4× |
+| PFHpA | 6 | 2.19 | 2.65 | 0.35× |
+| PFOA | 7 | 2.37 | 3.43 | 0.09× |
+| PFNA | 8 | 2.55 | 4.22 | **0.02×** |
+
+(Qin's column is his measured value plus the −0.90 decade prot+lip conversion,
+so both are per litre of whole cell.)
 
 Qin's *measured* cell/water ratio rises **+0.18 per CF2**. Armitage's
-*constructed* one rises **+0.94 per CF2** — five times steeper. They cross
-between PFHpA and PFOA and diverge in opposite directions on either side: a
-600-fold swing across five compounds.
+*constructed* one rises **+0.75 per CF2** — four times steeper. They cross at
+nCF 5.2, just above PFHxA, and diverge in opposite directions on either side:
+a **700-fold swing** across five compounds. The prot+lip conversion moves the
+crossover (it was at nCF 6.9 when Qin's ratio was wrongly applied to whole-cell
+volume) but cannot touch the slope, which is what the disagreement is about.
 
 The reason Armitage is that steep is that for an anionic PFAS its cell is
 effectively a single compartment. The storage-lipid and structural-protein
@@ -83,7 +100,7 @@ regardless of anything else.
 
 Qin's albumin sink saturates, so his predicted cell fraction climbs with dose;
 Armitage's is a constant. Over 10 → 100 µM Qin's lift grows with chain length
-(PFBA 1.3×, PFHxA 3.4×, PFHpA 5.3×, PFOA 6.6×, PFNA 6.7×) while Armitage's is
+(PFBA 1.4×, PFOA 7.1×, PFNA 6.9×) while Armitage's is
 1.00× for every compound.
 
 The measured Rosenmai dose series flips sign at the same place: PFBA
@@ -99,14 +116,16 @@ worst — Armitage at the short end, Qin at the long end:
 
 | | Armitage / measured | Qin / measured |
 |---|---|---|
-| PFBA | **0.8–1.2×** | 71–135× |
-| PFHxA | 3.9–17× | 23–343× |
-| PFHpA | 6.5–29× | 12–212× |
-| PFOA | 7.6–17× | 3.4–20× |
-| PFNA | 2.6–28× | **0.9–7×** |
+| PFBA | **0.8–1.2×** | 10–20× |
+| PFHxA | 4.0–17× | 3.1–52× |
+| PFHpA | 6.6–29× | 1.6–31× |
+| PFOA | 7.2–14× | **0.4–2.7×** |
+| PFNA | 2.1–29× | **0.1–1.0×** |
 
-Uncomfortably, Qin's single best compound (PFNA) is the one whose parameters are
-extrapolated, and his worst (PFBA) is measured.
+Armitage still holds the short end and Qin the long end, but the prot+lip
+correction flips the *sign* of Qin's error above PFHpA: he now under-predicts
+PFOA and PFNA rather than over-predicting them. Qin's best compounds remain the
+extrapolated ones, and his worst (PFBA) is measured.
 
 A candidate artefact runs the same way: Rosenmai and Amstutz both washed cells
 five times with ice-cold PBS/DPBS before lysis, and the shortest, least-bound,
@@ -119,21 +138,33 @@ dependent way.
 
 Rosenmai's own units are inconsistent. The Abstract says **"4–2500 ng mg⁻¹
 protein"**; Results §3.3 and the Fig. 2A axis say **"18–2490 nmol mg⁻¹
-protein"**. Two independent routes say ng/mg is the correct one.
+protein"**. Three independent routes say ng/mg is the correct one.
 
-1. Rosenmai's Table 1 uptake percentages are unit-free. Back-calculating from
-   them, with the paper's 18×10⁴ cells/well and a 12-well working volume, gives
-   **0.54 mg protein per 10⁶ cells** — a standard HepG2 value, confirming the
-   geometry — and cell concentrations of **31–1480 ng/mg**, inside the
-   Abstract's range and nowhere near 18–2490 nmol/mg.
-2. Fragki's HepaRG PFOA at 100 µM is 2.79 nmol/mg. Rosenmai's uptake-derived
-   PFOA at 100 µM is 3.40 nmol/mg — agreement to 1.2×.
+**(a) Rosenmai's own uptake table.** Its Table 1 percentages are unit-free, so
+they fix the absolute amount in the cells independently of any axis label.
+Rosenmai pooled *three* wells per treatment, giving 543,400 cells and 0.3668 mg
+protein per measured sample. Taking the plotted PFBA values of 18 / 45 / 126 at
+10 / 30 / 100 µM and asking what medium volume reconciles them with the uptake
+table:
+
+| reading | 10 µM | 30 µM | 100 µM | per well |
+|---|---|---|---|---|
+| as **ng/mg** | 2.20 mL | 1.98 mL | 2.16 mL | 0.66–0.73 mL |
+| as nmol/mg | 472 mL | 423 mL | 462 mL | 141–157 mL |
+
+The ng/mg reading lands on a single working volume consistent across three
+doses to **±6%**, and 0.7 mL/well is an ordinary 12-well volume. The nmol/mg
+reading needs 423–472 mL in a 12-well plate.
+
+**(b) Cross-study.** Fragki's HepaRG PFOA at 100 µM is 2.79 nmol/mg. Rosenmai's
+uptake-derived PFOA at 100 µM is 3.40 nmol/mg — agreement to 1.2×.
+
+**(c) Physical ceiling.** Read as nmol/mg, Fig. 2A puts PFOA at 253 mM and PFNA
+at 266 mM inside the cell — a quarter of the cell by mass.
 
 Reading the axis as nmol/mg multiplies C_cell by exactly the molecular weight:
 **214× for PFBA rising to 464× for PFNA**, i.e. 2.33–2.67 decades, and because
 the factor scales with MW it also tilts the chain-length trend by 0.34 decades.
-At 100 µM it puts PFOA at 253 mM and PFNA at 266 mM inside the cell — a quarter
-of the cell by mass, which is not physical.
 
 On a fraction-of-dose basis Rosenmai does not stand out at all. At 100 µM it
 agrees with Amstutz to **1.35× for PFOA and 1.03× for PFNA** (the two agree less
@@ -143,17 +174,26 @@ outlier is created.
 
 ## 7. Caveats carried in the code
 
-- Rosenmai's working volume is not stated; 1.0 mL (standard 12-well) is assumed
-  and flagged. The derived 0.54 mg protein/10⁶ cells is the check on it.
+- Rosenmai's working volume is not stated. 1.0 mL/well × 3 pooled wells is used
+  in the model runs; the ng/mg reconciliation in §6 independently implies
+  ~0.70 mL/well. The difference is 1.4× on the fractions and does not affect
+  any conclusion here.
+- Rosenmai pooled three wells per treatment, so the measured unit is 543,400
+  cells and 0.3668 mg protein, not one well. Uptake % is invariant to the
+  pooling; the absolute nmol and the protein mass are not.
 - Fragki's plate format and working volume are not in the supplementary file on
   hand; 24-well / 500 µL is assumed. This affects Fragki's *fraction* but not
   its C_cell, which comes straight from nmol/mg.
 - Fragki's µg/L column is a whole-liver scaling (126 mg protein/g liver), not a
   cell concentration. The nmol/mg column is the one used here.
-- The protein → cell-volume factor (180 mg protein per mL of cell) is
-  common-mode: it moves Rosenmai and Fragki together and does not touch
+- The protein → cell-volume factor (222 mg protein per mL of cell, from
+  675 pg protein in a 3.04 pL cell) is common-mode: it moves Rosenmai and Fragki together and does not touch
   Amstutz, so it cannot generate between-study scatter, only a uniform offset.
 - Amstutz's intracellular fraction is normalised to **recovered** mass
   (cells + medium at 24 h), not nominal; its mass balance was 93–106%, so the
   two bases are within a few percent here. The model is scored on the matching
   basis for each study.
+- `F_PROTLIP = 0.1265` is a ≤1.6× lever on Qin's cell term alone (httk's cell is
+  0.10 non-water; a 1.35 g/mL protein density on 675 pg/cell gives 0.166). It
+  shifts Qin's curve vertically and does not change the chain-length slope that
+  the Qin/Armitage disagreement consists of.
