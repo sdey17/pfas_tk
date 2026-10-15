@@ -145,54 +145,64 @@ SURFACE = "#fcfcfb"
 
 
 def plot(rows):
+    """Measured vs estimated C_cell, matching the project's own plot:
+    no grid, no title, full panel box, black 1:1 / 10x / 100x guides,
+    legend grouped under Model / Compound / Study."""
     plt.rcParams.update({
-        "figure.facecolor": SURFACE, "axes.facecolor": SURFACE,
-        "savefig.facecolor": SURFACE, "font.family": "DejaVu Sans",
-        "font.size": 9, "axes.edgecolor": RULE, "axes.linewidth": 0.8,
-        "axes.labelcolor": INK2, "text.color": INK,
-        "xtick.color": INK2, "ytick.color": INK2,
-        "axes.spines.top": False, "axes.spines.right": False})
-    fig, ax = plt.subplots(figsize=(8.4, 5.4))
-    # axis limits match the project's original plot, for direct comparison
+        "figure.facecolor": "white", "axes.facecolor": "white",
+        "savefig.facecolor": "white", "font.family": "DejaVu Sans",
+        "font.size": 11, "axes.edgecolor": "#333333", "axes.linewidth": 0.9,
+        "axes.labelcolor": "black", "text.color": "black",
+        "xtick.color": "#333333", "ytick.color": "#333333",
+        "axes.grid": False,
+        "axes.spines.top": True, "axes.spines.right": True,
+        "axes.spines.left": True, "axes.spines.bottom": True})
+    fig, ax = plt.subplots(figsize=(9.0, 5.8))
+
+    # axis limits as in the project's original plot
     XLO, XHI, YLO, YHI = 2e-2, 2e3, 1e-3, 4e2
-    lo, hi = 1e-4, 1e4
-    ax.plot([lo, hi], [lo, hi], "-", color=INK, lw=1.1, zorder=2)
-    for f, ls in ((10, "--"), (0.1, "--"), (100, ":"), (0.01, ":")):
-        ax.plot([lo, hi], [lo * f, hi * f], ls, color=MUTED, lw=0.8, zorder=1)
+    span = (1e-6, 1e6)
+    ax.plot(span, span, "-", color="black", lw=1.0, zorder=2)
+    for f in (10, 0.1):
+        ax.plot(span, [v * f for v in span], "--", color="black", lw=0.7, zorder=1)
+    for f in (100, 0.01):
+        ax.plot(span, [v * f for v in span], ":", color="black", lw=0.7, zorder=1)
+
     for r in rows:
         x = r["Ccell_measured_MWcorrected"]
         col = PAL[r["compound"]]; mk = SHAPE[r["study"]]
-        ax.plot(x, r["Armitage_published_eqns"], mk, ms=7, mfc=col, mec=INK,
-                mew=0.8, zorder=4)                       # filled  = Armitage
-        ax.plot(x, r["Qin_FIXED"], mk, ms=7, mfc="none", mec=col,
-                mew=1.6, zorder=3)                       # open    = Qin
+        ax.plot(x, r["Armitage_published_eqns"], mk, ms=8, mfc=col,
+                mec="black", mew=0.9, zorder=4)          # filled = Armitage
+        ax.plot(x, r["Qin_FIXED"], mk, ms=8, mfc="none", mec=col,
+                mew=1.5, zorder=3)                       # open   = Qin
+
     ax.set_xscale("log"); ax.set_yscale("log")
     ax.set_xlim(XLO, XHI); ax.set_ylim(YLO, YHI)
-    ax.set_xlabel("Measured C$_{cell}$  (nmol/mg protein)")
-    ax.set_ylabel("Estimated C$_{cell}$  (nmol/mg protein)")
-    ax.set_title("Measured vs estimated C$_{cell}$\n"
-                 "Qin with composed cell term and C$_{free}$; "
-                 "Armitage from SI S1.  Rosenmai ÷ MW.",
-                 fontsize=10, loc="left", color=INK)
-    ax.grid(True, which="major", color=GRID, lw=0.6, zorder=0)
-    ax.set_axisbelow(True)
-    h = []
-    h.append(plt.Line2D([], [], ls="", marker="o", ms=7, mfc=MUTED, mec=INK,
-                        mew=0.8, label="Armitage (filled)"))
-    h.append(plt.Line2D([], [], ls="", marker="o", ms=7, mfc="none", mec=MUTED,
-                        mew=1.6, label="Qin (open)"))
-    h.append(plt.Line2D([], [], ls="", label=""))
+    ax.set_xlabel("Measured Ccell (nmol/mg protein)")
+    ax.set_ylabel("Estimated Ccell (nmol/mg protein)")
+    ax.tick_params(direction="out", length=3.5)
+
+    blank = plt.Line2D([], [], ls="", marker="", label=" ")
+    def head(t):
+        return plt.Line2D([], [], ls="", marker="", label="$\\bf{%s}$" % t)
+    h = [head("Model"),
+         plt.Line2D([], [], ls="", marker="o", ms=8, mfc="#999999",
+                    mec="black", mew=0.9, label="Armitage"),
+         plt.Line2D([], [], ls="", marker="o", ms=8, mfc="none",
+                    mec="#999999", mew=1.5, label="Qin"),
+         blank, head("Compound")]
     for c, col in PAL.items():
-        h.append(plt.Line2D([], [], ls="", marker="s", ms=7, color=col, label=c))
-    h.append(plt.Line2D([], [], ls="", label=""))
-    for s, mk in SHAPE.items():
-        h.append(plt.Line2D([], [], ls="", marker=mk, ms=7, mfc="none",
-                            mec=INK2, label=s))
-    ax.legend(handles=h, loc="center left", bbox_to_anchor=(1.01, 0.5),
-              frameon=False, fontsize=8, handletextpad=0.6, labelspacing=0.55)
-    ax.text(0.98, 0.04, "solid 1:1   dashed 10×   dotted 100×",
-            transform=ax.transAxes, ha="right", fontsize=7, color=MUTED)
-    fig.subplots_adjust(left=0.095, right=0.775, bottom=0.115, top=0.845)
+        h.append(plt.Line2D([], [], ls="", marker="o", ms=8, mfc=col,
+                            mec=col, label=c))
+    h += [blank, head("Study")]
+    for st, mk in SHAPE.items():
+        h.append(plt.Line2D([], [], ls="", marker=mk, ms=8, mfc="none",
+                            mec="black", mew=0.9, label=st))
+    ax.legend(handles=h, loc="center left", bbox_to_anchor=(1.015, 0.5),
+              frameon=False, fontsize=10, handletextpad=0.7,
+              labelspacing=0.5, borderpad=0)
+
+    fig.subplots_adjust(left=0.095, right=0.80, bottom=0.11, top=0.97)
     out = os.path.join(FIGS, "fig11_measured_vs_estimated_ccell.png")
     fig.savefig(out, dpi=200)
     print("wrote", out)
