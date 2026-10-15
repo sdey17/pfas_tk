@@ -1518,6 +1518,59 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ---
 
+### 6.3a What the in vitro literature says about species and structure
+
+`db/protein_binding.csv` holds 273 rows from 54 studies, but most of it cannot
+answer either question, because §6.1 showed a single affinity number per pair
+does not exist. What can answer them is the handful of studies that hold method
+constant and vary one thing. Run
+`python3 scripts/binding_species_and_structure.py`.
+
+**Species: albumin affinity is close to species-invariant.** Starnes 2024
+measured four albumins by one method (differential scanning fluorimetry), Kd in
+mM, lower = tighter:
+
+| compound | nC | human | rat | bovine | porcine | rat/human | max/min |
+|---|---|---|---|---|---|---|---|
+| PFBA | 3 | 2.64 | 1.90 | 3.06 | 1.28 | 0.72× | 2.4× |
+| PFBS | 4 | 1.68 | 1.41 | 0.80 | 1.25 | 0.84× | 2.1× |
+| GenX | 4 | 1.57 | 1.64 | 2.55 | 2.12 | 1.04× | 1.6× |
+| PFHxA | 5 | 1.71 | 1.33 | 2.17 | 0.95 | 0.78× | 2.3× |
+| 6:2 FTSA | 6 | 0.41 | 0.33 | 1.39 | 0.52 | 0.80× | 4.2× |
+| PFOA | 7 | 0.79 | 0.40 | 0.99 | 0.37 | **0.51×** | 2.7× |
+| PFOS | 8 | 0.69 | 0.42 | 0.86 | 0.38 | 0.61× | 2.3× |
+
+The spread across four species never exceeds ~4× and is usually under 2×.
+Albumin is a conserved protein and behaves like one. Rat binds *tighter* than
+human throughout (geometric mean 0.74×, PFOA 0.51×) while eliminating PFOA
+~1000× faster — the wrong direction, as §6.3 says. Fischer 2024 agrees
+independently at a physiological ligand:protein ratio: bovine-minus-human log D
+is within 0.3 log units for most of 27 compounds, median −0.14. **BSA is a fair
+stand-in for HSA**, which matters because much of the literature uses BSA.
+
+**Structure: three findings, and only the first is the textbook one.** Fischer
+2024, log D_protein/water, one method, 10 chain lengths:
+
+1. *Chain length is not monotonic.* Carboxylates rise from 2.16 (nC4) to a
+   maximum 5.18 around nC10–11, then **fall** to 3.87 at nC13. Slope +0.45 per
+   CF₂ up to nC10, −0.44 after. A model linear in carbon number is wrong at both
+   ends.
+2. *The head group is worth about a log unit.* At matched chain length the
+   sulfonate binds harder — PFHxS 4.77 vs PFHpA 4.10 at nC6; PFHpS 5.49 vs PFOA
+   4.48 at nC7. Slopes are similar (+0.75 vs +0.79 per CF₂); the series are
+   offset.
+3. *Albumin stops being the main carrier.* γ-globulin binds 2–3 log units weaker
+   at short chains and catches up steadily; for PFTeDA (nC13) globulin binds
+   **more** tightly than albumin. Treating "protein binding" as "albumin binding"
+   gets worse as the chain lengthens — and the long chains are the persistent
+   ones.
+
+**The gap.** There is **no in vitro PFAS–mouse serum albumin binding study**, in
+this database or in PubMed: a search returns one record, which measures mouse
+albumin *concentration*, not binding. So the species question can be answered
+for human, rat, bovine and porcine, and not for the mouse — the animal §10's
+endpoint is built from. See `WANTED.md`.
+
 ### 6.4 How much of the species difference is binding? The arithmetic
 
 §6.2 settles what the unbound fraction is and §11.4 shows what the choice does
