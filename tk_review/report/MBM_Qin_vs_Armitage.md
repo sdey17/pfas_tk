@@ -156,9 +156,27 @@ ng/mg.
 **(b) Rosenmai against itself.** Its uptake-% table and its Fig. 2A values are
 the same measurement normalised differently, so the medium volume reconciling
 them must be one number for all 15 rows. Read as ng/mg it is 1.03–2.20 mL for
-the three pooled wells, and *within each compound* constant to 4–25% (PFOA
-1.39 / 1.41 / 1.44 mL across a 10× dose range). Read as nmol/mg it is
-423–645 mL in a 12-well plate.
+the three pooled wells; read as nmol/mg it is 423–645 mL. A Corning 12-well is
+22.1 mm across and ~17.5 mm deep, so one well brim-full is 6.7 mL and the whole
+plate is 81 mL: the ng/mg reading needs 5–11% of three wells, the nmol/mg
+reading needs **5–8× the entire plate**. It is the absolute magnitude that
+discriminates, and it does so without anyone knowing the true working volume.
+
+*A check that does NOT work, recorded so it is not repeated.* The implied
+volume is constant within each compound across doses (PFOA 1.39 / 1.41 /
+1.44 mL over a 10× range). An earlier version of this section called that
+tightness decisive. It is not evidence at all: the two readings differ by a
+constant molecular weight per compound, so they scale identically with dose and
+the dose consistency is the same under either. Nor can reading one value off
+the figure settle it — PFOA at 100 µM reads 525, which under ng/mg implies
+0.47 mL/well and under nmol/mg implies 195 mL/well; without an independently
+known working volume that observation only re-derives the volume, it does not
+test the unit.
+
+*A residual that survives the fix.* Between compounds the implied volume runs
+2.14× (PFBA 2.11 mL down to PFNA 1.15 mL), decreasing monotonically with chain
+length. Rosenmai's Table S2 internal-standard recoveries of 78–98% span only
+1.26×, so something else is also going on in that paper.
 
 **(c) Physical ceiling.** As nmol/mg, Fig. 2A puts PFOA at 253 mM and PFNA at
 266 mM inside the cell — a quarter of the cell by mass.
