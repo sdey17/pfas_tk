@@ -157,15 +157,21 @@ def plot(rows):
         "axes.grid": False,
         "axes.spines.top": True, "axes.spines.right": True,
         "axes.spines.left": True, "axes.spines.bottom": True})
-    fig, ax = plt.subplots(figsize=(9.0, 5.8))
+    fig, ax = plt.subplots(figsize=(9.4, 5.9))   # panel aspect ~1.19, as measured
 
-    # axis limits as in the project's original plot
-    XLO, XHI, YLO, YHI = 2e-2, 2e3, 1e-3, 4e2
-    span = (1e-6, 1e6)
+    # Limits, tick spacing and guide-line multipliers measured off the
+    # project's own PNG: tick marks give 113 px/decade on x and 79 on y, and a
+    # Hough scan over multiplicative offsets finds the solid line at 1:1
+    # (100% pixel coverage), dashed at 10^+-0.5 and dotted at 10^+-1.0.
+    # Scale limits 1e-2..1e3 and 1e-3..1e3 with ggplot's 5% expansion.
+    EXP = 0.05
+    XLO, XHI = 10 ** (-2 - 5 * EXP), 10 ** (3 + 5 * EXP)
+    YLO, YHI = 10 ** (-3 - 6 * EXP), 10 ** (3 + 6 * EXP)
+    span = (1e-8, 1e8)
     ax.plot(span, span, "-", color="black", lw=1.0, zorder=2)
-    for f in (10, 0.1):
+    for f in (10 ** 0.5, 10 ** -0.5):          # dashed = 3.16x
         ax.plot(span, [v * f for v in span], "--", color="black", lw=0.7, zorder=1)
-    for f in (100, 0.01):
+    for f in (10.0, 0.1):                      # dotted = 10x
         ax.plot(span, [v * f for v in span], ":", color="black", lw=0.7, zorder=1)
 
     for r in rows:
@@ -180,6 +186,20 @@ def plot(rows):
     ax.set_xlim(XLO, XHI); ax.set_ylim(YLO, YHI)
     ax.set_xlabel("Measured Ccell (nmol/mg protein)")
     ax.set_ylabel("Estimated Ccell (nmol/mg protein)")
+    # ticks every TWO decades, as in the original, in R's 1e+NN format
+    import matplotlib.ticker as mticker
+    def decades(lo, hi, anchor):
+        import math
+        e = [n for n in range(-12, 13)
+             if (n - anchor) % 2 == 0 and lo <= 10.0 ** n <= hi]
+        return [10.0 ** n for n in e]
+    fmt = mticker.FuncFormatter(
+        lambda v, _: "1e%s%02d" % ("+" if v >= 1 else "-", abs(round(math.log10(v)))))
+    ax.xaxis.set_major_locator(mticker.FixedLocator(decades(XLO, XHI, 1)))
+    ax.yaxis.set_major_locator(mticker.FixedLocator(decades(YLO, YHI, 0)))
+    ax.xaxis.set_major_formatter(fmt); ax.yaxis.set_major_formatter(fmt)
+    ax.xaxis.set_minor_locator(mticker.NullLocator())
+    ax.yaxis.set_minor_locator(mticker.NullLocator())
     ax.tick_params(direction="out", length=3.5)
 
     blank = plt.Line2D([], [], ls="", marker="", label=" ")
