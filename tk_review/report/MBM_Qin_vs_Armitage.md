@@ -197,3 +197,66 @@ outlier is created.
   0.10 non-water; a 1.35 g/mL protein density on 675 pg/cell gives 0.166). It
   shifts Qin's curve vertically and does not change the chain-length slope that
   the Qin/Armitage disagreement consists of.
+
+## 8. Reconciliation with the project spreadsheet
+
+`python3 tk_review/scripts/mbm_vs_project_sheet.py`; the sheet's rows are in
+`db/mbm_project_sheet.csv`, the diff in `db/mbm_sheet_reconciliation.csv`.
+
+**The sheet's Qin column is linear.** C_cell / C_test is exactly constant
+across every dose series in both the Qin and the Armitage column. Armitage
+should be — it is a linear model. Qin should not: the saturable albumin term
+(Eqs. 12–16) is what that paper is about, and without it the Qin column is
+Armitage's structure carrying Qin's constants. The measured data are not linear
+either; C_cell / C_test rises 3.1–3.5× over Fragki's dose range.
+
+**Rosenmai vs Amstutz settles the unit question with no modelling at all.**
+Same cell line, same dose, same stated unit:
+
+| at 100 µM | Rosenmai | Amstutz | ratio | Rosenmai ÷ MW | ratio |
+|---|---|---|---|---|---|
+| PFHxA | 164 | 0.289 | 568× | 0.522 | 1.81× |
+| PFHpA | 297 | 0.326 | 911× | 0.816 | 2.50× |
+| PFOA | 525 | 1.815 | 289× | 1.268 | 0.70× |
+| PFNA | 458 | 2.237 | 205× | 0.987 | 0.44× |
+
+**And Rosenmai is internally inconsistent unless the axis is ng/mg.** Its
+uptake-% table and its Fig. 2A values are the *same* measurement differently
+normalised, so the medium volume implied by reconciling them must be one number
+for all 15 rows. Read as ng/mg it is 1.03–2.20 mL for the three pooled wells —
+and within each compound it is constant to 4–25% (PFOA 1.39 / 1.41 / 1.44 mL
+across a 10× dose range; PFBA 1.98 / 2.16 / 2.20). Read as nmol/mg it is
+423–645 mL in a 12-well plate.
+
+**The dose exponent is the sharpest test of the two models.** Fitting
+C_cell ∝ C_nom^b:
+
+| series | n | b |
+|---|---|---|
+| Fragki PFNA | 5 | 1.42 |
+| Fragki PFOA | 5 | 1.42 |
+| Rosenmai PFNA | 3 | 1.28 |
+| Rosenmai PFOA | 3 | 1.13 |
+| Rosenmai PFHpA | 3 | 1.02 |
+| Rosenmai PFBA | 3 | 0.85 |
+| Rosenmai PFHxA | 3 | 0.80 |
+
+Armitage requires b = 1.00 exactly and cannot represent any of this. Qin's
+measured Freundlich slopes imply b = 1/n_Fr ≈ 1.62. The data sit between, and
+b rises monotonically with chain length — a trend neither model reproduces,
+since Qin's Freundlich slopes are nearly chain-length independent (−0.38 to
+−0.39) and so predict ~1.62 for every compound. (Fitting Fragki PFOA on the
+three supplementary-table values alone gives b = 1.23, so the direction is
+robust to the low-dose discrepancy below.)
+
+**One data discrepancy.** Fragki's supplementary Table 2 lists only 6.25 / 25 /
+100 µM. The sheet's 25 and 100 µM values match it to 1–3%; its 6.25 µM values
+do not (PFOA 0.0562 against 0.09226; PFNA 0.281 against 0.22203), and 12.5 /
+50 µM are not in the supplementary at all. Worth checking against the main
+paper, which is not on hand here.
+
+**Caveat on the sheet's D_cell/w column.** It divides by C_nominal, not by the
+freely dissolved C_w that Qin's ratios are defined against. For PFBA albumin
+sequesters only ~30% of the dose so the error is ~1.4×, but by PFOA the free
+fraction in 10% FBS is a few percent, so the same formula understates D_cell/w
+by 20–50× at the long-chain end.
