@@ -189,13 +189,29 @@ ARM = dict(
 # Qin's Table 2 header reads "log Dcell/w [Lw/Lcell,prot+lip]": the ratio is per
 # litre of cell PROTEIN+LIPID, not per litre of cell.  Armitage's DR_kcw is per
 # litre of whole cell (its composition sums to 1.0 and includes 0.90 water), so
-# Qin's cell term must be scaled by this fraction before the two share an axis.
-# 0.1265 is the value in the project spreadsheet (675 pg protein + lipid per
-# 3.04 pL cell).  httk's cell is 0.10 non-water; a protein density of
-# 1.35 g/mL on 675 pg/cell gives 0.166.  It is a <=1.6x lever on Qin alone and
-# does not touch the chain-length slope.
-F_PROTLIP = 0.1265
-F_PROTLIP_RANGE = (0.100, 0.166)
+# Qin's cell term must be scaled by that fraction before the two share an axis.
+#
+# Qin measured it in the same HEK293H cells D_cell/w came from: "The volume
+# fractions of water, protein and lipid of cells were 91.6%, 8.14% and 0.432%
+# (Table A5)".  Those two numbers also fix the protein-per-cell-volume factor
+# that converts a measured nmol/mg protein into a concentration, so they are
+# kept as ONE pair -- setting them independently would assume two different
+# cells in the same calculation.  The ratio predicted/measured is nearly
+# invariant to the pair, because both sides scale with the protein fraction;
+# see composition_invariance().
+# The measured datasets are HepG2 and HepaRG, so the default is the project
+# spreadsheet's HepG2 basis: 675 pg protein in a 3.04 pL cell = 222 mg/mL =
+# a 0.164 protein volume fraction at 1.35 g/mL.  Qin's own HEK293H value is
+# 0.0814 -- 2x lower -- and is carried as the alternative.  Transferring Qin's
+# D_cell/w to HepG2 means applying it to HepG2's prot+lip volume, which is the
+# point of normalising to prot+lip in the first place.
+PROTEIN_DENSITY_G_ML = 1.35
+CELL_VF_PROTEIN = 0.164        # HepG2, project spreadsheet
+CELL_VF_LIPID = 0.00870        # scaled from Qin's protein:lipid volume ratio
+CELL_VF_PROTEIN_QIN = 0.0814   # Qin Table A5, HEK293H
+CELL_VF_LIPID_QIN = 0.00432    # Qin Table A5
+
+F_PROTLIP = CELL_VF_PROTEIN + CELL_VF_LIPID
 
 def armitage_pcs(logKow_n, kbsa2=False, kpl2=False):
     """spLFERs, httk armitage.R lines 663-694."""
@@ -287,8 +303,7 @@ ASSAYS = {
 # httk's 3 ng cell.  This is a COMMON-MODE factor: it shifts Rosenmai and
 # Fragki together and does not touch Amstutz, so it cannot create scatter
 # between studies -- only a uniform offset.
-MG_PROTEIN_PER_ML_CELL = 222.0      # 675 pg protein / 3.04 pL cell
-MG_PROTEIN_PER_ML_CELL_RANGE = (150.0, 300.0)
+MG_PROTEIN_PER_ML_CELL = CELL_VF_PROTEIN * PROTEIN_DENSITY_G_ML * 1000.0
 
 def volumes(a):
     """Compartment volumes in L.  httk armitage.R lines 820-830."""
@@ -384,13 +399,45 @@ def ccell_from_fraction(x_cell, nomconc_uM, V):
     """Fraction of nominal dose in cells -> C_cell (uM)."""
     return x_cell * nomconc_uM * V["Vbm"] / V["Vcells"]
 
-def ccell_from_nmol_per_mg(v, mg_per_mL=MG_PROTEIN_PER_ML_CELL):
-    """nmol/mg protein -> uM.  nmol/mg * mg/mL = nmol/mL = umol/L."""
+def ccell_from_nmol_per_mg(v, mg_per_mL=None):
+    """nmol/mg protein -> uM.  nmol/mg * mg/mL = nmol/mL = umol/L.
+
+    mg_per_mL is resolved at CALL time, not bound as a default, so the
+    sensitivity runs below actually move the measured side.
+    """
+    if mg_per_mL is None:
+        mg_per_mL = MG_PROTEIN_PER_ML_CELL
     return v * mg_per_mL
 
 # --------------------------------------------------------------------------
 # Validation against the papers' own published numbers
 # --------------------------------------------------------------------------
+def composition_invariance():
+    """The cell-composition pair cancels out of predicted/measured for Qin.
+
+    Measured C_cell scales with mg protein per mL of cell, i.e. with the
+    protein volume fraction.  Qin's predicted C_cell scales with prot+lip.
+    Both move together, so the ratio that the comparison turns on barely
+    shifts.  Armitage's cell is on a whole-cell basis and does not scale, so
+    its ratio moves with the full factor -- stated here rather than hidden.
+    """
+    global CELL_VF_PROTEIN, F_PROTLIP, MG_PROTEIN_PER_ML_CELL
+    keep = (CELL_VF_PROTEIN, F_PROTLIP, MG_PROTEIN_PER_ML_CELL)
+    out = []
+    for vf, vl in ((CELL_VF_PROTEIN, CELL_VF_LIPID),
+                   (CELL_VF_PROTEIN_QIN, CELL_VF_LIPID_QIN)):
+        CELL_VF_PROTEIN = vf
+        F_PROTLIP = vf + vl
+        MG_PROTEIN_PER_ML_CELL = vf * PROTEIN_DENSITY_G_ML * 1000.0
+        V = volumes(ASSAYS["Rosenmai2017"])
+        meas = ccell_from_nmol_per_mg(126.0 / 214.04)      # Rosenmai PFBA 100 uM
+        q = qin_predict("PFBA", 3, 100.0, V, "mechanistic")["C_cell"]
+        a = armitage_predict(2.60, 100.0, V)["C_cell"]
+        out.append((vf, F_PROTLIP, MG_PROTEIN_PER_ML_CELL, q / meas, a / meas))
+    CELL_VF_PROTEIN, F_PROTLIP, MG_PROTEIN_PER_ML_CELL = keep
+    return out
+
+
 def validate():
     checks = []
     def ck(label, got, want, tol):
@@ -440,6 +487,13 @@ def validate():
 def main():
     validate()
     print()
+    print("Cell composition (HepG2 basis): protein %.3f, lipid %.5f by volume"
+          " -> F_protlip %.4f, %.0f mg protein/mL cell"
+          % (CELL_VF_PROTEIN, CELL_VF_LIPID, F_PROTLIP, MG_PROTEIN_PER_ML_CELL))
+    print("   sensitivity to that pair (Qin Table A5 gives 0.0814 for HEK293H):")
+    for vf, fp, mg, qr, ar in composition_invariance():
+        print("   vf_protein %.4f -> Qin/measured %6.2fx   Armitage/measured %6.2fx"
+              % (vf, qr, ar))
     print("Armitage parameterisation:", ARMITAGE_PROVENANCE)
     print("log Kow infill: OPERA %+.3f per CF2, COSMOtherm %+.3f per CF2 "
           "(2 anchors: PFBA, PFOA)" % (SLOPE_OPERA, SLOPE_COSMO))

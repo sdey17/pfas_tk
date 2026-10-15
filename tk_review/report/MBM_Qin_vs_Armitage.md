@@ -25,6 +25,24 @@ so it is the same parameterisation, not a reconstruction.
 | dose dependence | yes | none — linear everywhere |
 | plastic | not in the SPME balance | Kramer or Fischer spLFER |
 
+**Cell composition.** Qin measured it in the same HEK293H cells his D_cell/w
+comes from: "the volume fractions of water, protein and lipid of cells were
+91.6%, 8.14% and 0.432% (Table A5)". That pair fixes *both* the prot+lip
+fraction Qin's cell term is scaled by *and* the mg-protein-per-mL-of-cell factor
+that turns a measured nmol/mg into a concentration, so the code keeps them as
+one parameter — setting them independently would put two different cells in the
+same calculation. The default is the HepG2 basis (0.164 protein by volume, from
+675 pg protein in a 3.04 pL cell), since the measured datasets are HepG2 and
+HepaRG; Qin's HEK293H value is 2× lower and is carried as the alternative.
+
+Switching between them is a useful diagnostic. **Qin/measured barely moves
+(37.7× → 38.3×, 1.6%)** because both sides scale with the protein fraction and
+it cancels. **Armitage/measured moves by the full 2× (1.66× → 3.34×)** because
+its cell is on a whole-cell basis and only the measured side shifts. So the
+Qin comparison is robust to the cell-composition assumption and the Armitage
+comparison is not — the protein-per-cell-volume factor is the single largest
+remaining uncertainty in the Armitage limb, and no study here reports it.
+
 **Volume basis.** Qin's Table 2 header reads `log Dcell/w [Lw/Lcell,prot+lip]`
 and `log Dplasma/w [Lw/Lprot+lip]` — his distribution ratios are per litre of
 *sorptive phase*, not per litre of cell or plasma. Armitage's `DR_kcw` is per
@@ -193,10 +211,10 @@ outlier is created.
   (cells + medium at 24 h), not nominal; its mass balance was 93–106%, so the
   two bases are within a few percent here. The model is scored on the matching
   basis for each study.
-- `F_PROTLIP = 0.1265` is a ≤1.6× lever on Qin's cell term alone (httk's cell is
-  0.10 non-water; a 1.35 g/mL protein density on 675 pg/cell gives 0.166). It
-  shifts Qin's curve vertically and does not change the chain-length slope that
-  the Qin/Armitage disagreement consists of.
+- `F_PROTLIP` and the protein-per-mL factor are one coupled pair (see §1). The
+  pair cancels out of Qin/measured to 1.6% but carries the full 2× into
+  Armitage/measured. Neither changes the chain-length slope the Qin/Armitage
+  disagreement consists of.
 
 ## 8. Reconciliation with the project spreadsheet
 
