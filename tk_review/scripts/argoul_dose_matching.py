@@ -3,8 +3,8 @@ What is a comparable dose to Argoul 2026, and does the dose gap explain the
 twofold low clearance?
 
 scripts/argoul_vs_single_compound.py established that Argoul's clearances run
-about 2.1x below the single-compound literature, and offered three candidate
-causes. DOSE was called the most plausible: the cocktail was dosed far below
+about 2.5x below the single-compound literature, and offered four candidate
+causes (dose, strain, cocktail competition, mixed-effects shrinkage). DOSE was called the most plausible: the cocktail was dosed far below
 its comparators, and section 8's saturable-reabsorption account predicts
 clearance rising with dose.
 

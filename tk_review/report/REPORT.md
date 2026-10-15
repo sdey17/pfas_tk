@@ -183,7 +183,9 @@ specific ways:
   mouse PFNA male value of 227 d sits 3.3× above the measured ceiling of
   34.3–68.9 d, with a tenfold-wide credible interval. **For PFOA this caveat is
   now retired:** Argoul 2026 independently re-measured the female mouse and
-  lands within 1.33× of Lou 2009 (§3.2a).
+  lands within 1.33× of Lou 2009 (§3.2a) — though note that this is a
+  *cross-strain* agreement, C57BL/6 against CD-1 (§11.3a), which makes it a
+  weaker replication than it first looks but a stronger one if it holds.
 - A **route confound attacks the female rat specifically**: IV clearance
   significantly exceeded gavage clearance in female rats for six compounds
   (apparent bioavailability > 100%). EPA's PFHxS assessment responded by
@@ -2140,10 +2142,9 @@ only in the volume comparison. PFBS and PFDS have no comparator either, and
 Argoul reports no clearance for PFBS at all.
 
 **What the shape of that result means.** A factor that multiplies Vd and CL
-together cancels from ln2·Vd/CL, so "both terms twofold low, half-life
-unchanged" is the signature of a shared scaling rather than a disagreement
-about elimination. Three candidates fit, and the data in hand cannot separate
-them:
+together cancels from ln2·Vd/CL, so "both terms low, half-life unchanged" is
+the signature of a shared scaling rather than a disagreement about elimination.
+Four candidates fit, and the data in hand cannot separate them:
 
 - **Dose — the obvious candidate, and it does not survive testing.** §4.4's
   saturable-reabsorption account predicts clearance rising with dose, and the
@@ -2169,12 +2170,20 @@ them:
      survives it.
 
   Dose is a contributor, not the explanation.
+- **Strain.** Argoul dosed **C57BL/6** mice. Every comparator is **CD-1**
+  except Fujii, which is **FVB/NJcl** — so all thirteen comparisons cross
+  strains, and the offset could be a strain difference rather than anything to
+  do with the cocktail. Nothing in hand separates them: no study dosed the same
+  compounds in both strains under matched conditions. This is recorded per row
+  in `db/argoul_vs_single_compound.csv` (`argoul_strain`, `single_strain`) so
+  the confound is visible rather than implicit. It is listed without a
+  direction because none can be inferred from the data here.
 - **Cocktail competition.** Eleven PFAS competing for the same reabsorptive
   transporters would *raise* clearance, not lower it, so it argues against the
   observed direction — unless the competition is for plasma binding sites
   instead, which would raise fu and lower the apparent volume.
 - **Mixed-effects shrinkage.** Shrinkage toward a population mean compresses
-  spread rather than shifting the centre, so it is the weakest of the three.
+  spread rather than shifting the centre, so it is the weakest of the four.
 
 **What this costs §11.3, and what it does not.** R is built from an absolute
 renal clearance, so a 2.5-fold low bias in that clearance is a 2.5-fold low bias
