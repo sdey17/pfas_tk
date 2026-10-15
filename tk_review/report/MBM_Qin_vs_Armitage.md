@@ -211,3 +211,55 @@ number, the ratio is insensitive to it.
 - AREc2's water content of 0.944 is high for a cell and its protein of 0.0514
   low; it is used because it is the composition Armitage's own model was run
   with for a HepG2-derived line, not because it is independently plausible.
+
+## 10. The fraction-of-dose axis, and the project spreadsheet on it
+
+Figure 10 is now built on fraction of dose in cells (§7). Converting the
+spreadsheet's nmol/mg columns with the agreed 675 pg protein per cell:
+
+| over 29 points | bias | \|error\| |
+|---|---|---|
+| project sheet Armitage | **0.90×** | 2.86× |
+| published-equation Armitage | 2.33× | **2.42×** |
+| published-equation Qin | 3.43× | 3.95× |
+| project sheet Qin | **57×** | 57× |
+
+The sheet's Armitage is essentially unbiased and runs 0.39× of the
+published-equation version on average — the two bracket the data.
+
+The sheet's Qin is a different matter. Its bias and its absolute error are
+equal to four figures, so every point is high by nearly the same factor: a
+scale error, not scatter. On the fraction axis the failure is obvious —
+it places **6–82% of the dose inside cells that occupy 0.18% of the well
+volume**, where Rosenmai and Amstutz both measure 0.04–0.33%. Two candidates,
+in order of size:
+
+1. **D_cell/w used as a lumped ratio** rather than composed as
+   `D_SP/w × V_protein,cell + D_lip/w × V_lipid,cell`. For PFBA the lumped
+   route gives 31 per litre of whole cell against the composed route's 2.4 —
+   13×.
+2. **Dividing by C_nominal rather than C_free.** Qin's ratios are defined
+   against the freely dissolved concentration. Small for PFBA (~1.25×) but
+   large by PFOA, where albumin holds 89% of the dose.
+
+Neither is visible in the sheet's output columns, so these are checks to run
+rather than a decomposition.
+
+### Rosenmai on the fraction axis
+
+This is the cleanest form of the unit problem, because the axis is unit-free
+and the comparison is internal to one paper. At 100 µM:
+
+| | Table 1 uptake | Fig 2A as ng/mg | Fig 2A as nmol/mg |
+|---|---|---|---|
+| PFBA | 0.100% | 0.072% | 15.4% |
+| PFHxA | 0.140% | 0.064% | 20.1% |
+| PFHpA | 0.210% | 0.100% | 36.3% |
+| PFOA | 0.330% | 0.155% | 64.2% |
+| PFNA | 0.310% | 0.121% | 56.0% |
+
+Across all 15 rows the nmol/mg reading contradicts Rosenmai's own uptake table
+by **141–215×**, and would put 15–64% of the dose inside 0.18% of the well
+volume. The ng/mg reading sits within 1.4–2.1× of the uptake table, the
+residual being the unstated working volume (§6b implies ~0.7 mL/well against
+the 1 mL assumed).
