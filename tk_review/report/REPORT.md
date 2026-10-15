@@ -1540,10 +1540,15 @@ mM, lower = tighter:
 | PFOA | 7 | 0.79 | 0.40 | 0.99 | 0.37 | **0.51×** | 2.7× |
 | PFOS | 8 | 0.69 | 0.42 | 0.86 | 0.38 | 0.61× | 2.3× |
 
-The spread across four species never exceeds ~4× and is usually under 2×.
-Albumin is a conserved protein and behaves like one. Rat binds *tighter* than
-human throughout (geometric mean 0.74×, PFOA 0.51×) while eliminating PFOA
-~1000× faster — the wrong direction, as §6.3 says. Fischer 2024 agrees
+Starnes reports these interspecies differences as **statistically significant
+for every bound compound**, and they are — but the magnitudes are small. Across
+all four species the highest-to-lowest ratio never exceeds ~4× and is usually
+under 2×. The study's own summary matches the table: carboxylates and sulfonates
+are bound more tightly by rat and porcine albumin than human, the ether acid
+(GenX) less tightly by porcine and bovine. Albumin is a conserved protein and
+behaves like one. Rat binds *tighter* than human throughout (geometric mean
+0.74×, PFOA 0.51×) while eliminating PFOA ~1000× faster — the wrong direction,
+as §6.3 says. Fischer 2024 agrees
 independently at a physiological ligand:protein ratio: bovine-minus-human log D
 is within 0.3 log units for most of 27 compounds, median −0.14. **BSA is a fair
 stand-in for HSA**, which matters because much of the literature uses BSA.
@@ -1554,7 +1559,11 @@ stand-in for HSA**, which matters because much of the literature uses BSA.
 1. *Chain length is not monotonic.* Carboxylates rise from 2.16 (nC4) to a
    maximum 5.18 around nC10–11, then **fall** to 3.87 at nC13. Slope +0.45 per
    CF₂ up to nC10, −0.44 after. A model linear in carbon number is wrong at both
-   ends.
+   ends. **An independent dataset finds the same shape**: Gallagher 2023's QSAR
+   over the Starnes affinities puts the optimum at C7–C9 with >C10 binding less,
+   and its docking supplies a mechanism — the tightest binders form a hydrogen
+   bond with Arg348 *and* salt bridges to Arg348/Arg485, the weakest form
+   neither.
 2. *The head group is worth about a log unit.* At matched chain length the
    sulfonate binds harder — PFHxS 4.77 vs PFHpA 4.10 at nC6; PFHpS 5.49 vs PFOA
    4.48 at nC7. Slopes are similar (+0.75 vs +0.79 per CF₂); the series are
@@ -1565,11 +1574,20 @@ stand-in for HSA**, which matters because much of the literature uses BSA.
    gets worse as the chain lengthens — and the long chains are the persistent
    ones.
 
+Zhao 2023 reviews the same picture mechanistically: the fluorinated chain
+occupies the binding cavity while the acid head group hydrogen-bonds to
+residues, so chlorine substitution, ether insertion and branching all act
+*through* chain length and hydrophobicity rather than as independent axes.
+
 **The gap.** There is **no in vitro PFAS–mouse serum albumin binding study**, in
 this database or in PubMed: a search returns one record, which measures mouse
 albumin *concentration*, not binding. So the species question can be answered
 for human, rat, bovine and porcine, and not for the mouse — the animal §10's
-endpoint is built from. See `WANTED.md`.
+endpoint is built from, and whose fu therefore has no in vitro albumin
+measurement to decompose it against. The one new experimental series found,
+Gao 2025 on bovine albumin across chain length and head group, is in
+`db/protein_binding.csv` without values because its full text was not
+obtainable. See `WANTED.md`.
 
 ### 6.4 How much of the species difference is binding? The arithmetic
 
