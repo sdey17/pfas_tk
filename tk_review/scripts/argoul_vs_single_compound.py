@@ -194,6 +194,12 @@ def check_refs_against_pdf():
         print(f"  references: {len(REFS)} keys agree with the review's list")
 
 
+STRAIN = {"lou2009": "CD-1", "fujii2015": "FVB/NJcl", "sundstrom2012": "CD-1",
+          "chang2008": "CD-1", "chang2012": "CD-1", "tatum2011": "CD-1",
+          "epa2023pfhxa": "CD-1 (Gannon 2011)", "zurlinden2025": "pooled"}
+ARGOUL_STRAIN = "C57BL/6"   # 108 female C57BL/6, 12 weeks, 20.0 +/- 0.8 g
+
+
 def dose(a_row, dose_str="", dose_low=None, route=""):
     """Dose fields for one comparison. Argoul's IV and oral doses differ and the
     fit uses both, so both are carried; the gap is computed against the IV dose
@@ -214,7 +220,8 @@ def cite(key):
     """Just the source key. The full reference, DOI, PMID and route into this
     review go in the sidecar written by write_sources(), so the comparison
     table stays readable."""
-    return dict(source=key)
+    return dict(source=key, argoul_strain=ARGOUL_STRAIN,
+                single_strain=STRAIN.get(key, ""))
 
 
 def argoul():
@@ -404,7 +411,8 @@ def main():
               "argoul_dose_iv_mgkg", "argoul_dose_oral_mgkg",
               "single_dose_mgkg", "single_dose_route",
               "dose_gap_min",
-              "comparator", "source", "vd_independent_of_cl"]
+              "comparator", "source", "argoul_strain", "single_strain",
+              "vd_independent_of_cl"]
     with open(OUT, "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
