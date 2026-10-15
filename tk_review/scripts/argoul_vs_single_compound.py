@@ -378,7 +378,7 @@ def main():
     print("PART 3.  What that leaves")
     print("=" * 78)
     print("""
-  Three candidate causes, none separable with the data in hand:
+  Four candidate causes, none separable with the data in hand:
 
    DOSE      The obvious candidate, and it does not survive testing. See
              scripts/argoul_dose_matching.py. The dose is tuned per compound
@@ -390,6 +390,12 @@ def main():
              it and extrapolating Sundstrom's two doses leaves ~1.6x
              unexplained. A contributor, not the explanation.
 
+   STRAIN    Argoul dosed C57BL/6; every comparator is CD-1 except Fujii,
+             which is FVB/NJcl. All 13 comparisons cross strains and nothing
+             in hand separates strain from cocktail, dose or method. Carried
+             per row as argoul_strain / single_strain. No direction is given
+             because none can be inferred from these data.
+
    COCKTAIL  Eleven PFAS dosed together could compete for the same
              reabsorptive transporters. That would RAISE clearance, not lower
              it, so it argues against the observed direction -- unless the
@@ -399,7 +405,7 @@ def main():
    METHOD    Nonlinear mixed-effects fitting shrinks estimates toward the
              population mean; non-compartmental analysis does not. Shrinkage
              would compress the spread rather than shift the centre, so it is
-             the weakest of the three.
+             the weakest of the four.
 
   The useful conclusion for this review: Argoul's WITHIN-experiment contrasts
   (section 3's 5,254x clearance span against 7.7x in Vss) are unaffected,
