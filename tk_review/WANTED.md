@@ -15,6 +15,30 @@ Also removed: **Weaver 2010** (listed in error; on disk all along) and
 **Cheng 2006** (needed no full text — its own abstract contradicts itself, and
 Cheng 2005 and 2009 settle the direction).
 
+## Binding: the one gap that is in the literature, not in this file
+
+A PubMed search for PFAS binding to **mouse serum albumin** returns exactly one
+record, and it measures mouse albumin *concentration* under microplastic
+co-exposure, not PFAS binding to it (Zhou 2025, doi:10.1016/j.scitotenv.2025.179381).
+There is no in vitro PFAS–mouse-albumin binding study to obtain. This is not a
+retrieval failure and should not be chased; it is a hole in the field, directly
+under this review's own mouse limb. See `scripts/binding_species_and_structure.py`
+part 3.
+
+Worth obtaining if cheap, found 2026-10-15 and not yet in `db/protein_binding.csv`:
+
+| study | why | id |
+|---|---|---|
+| Gao 2025 | BSA binding for 10 PFAS resolved by chain length AND head group, plus ionic-strength and pH dependence; experimental, not docking | PMID 41344664, doi:10.1021/acs.est.5c08779 |
+| Gallagher 2023 | QSAR over 24 PFAS HSA affinities; useful as a structure-activity comparator, not as data | PMID 37513249, doi:10.3390/molecules28145375 |
+| Zhao 2023 | review of PFAS binding models across albumin, FABP, OATs and membranes | PMID 37126916, doi:10.1016/j.envint.2023.107951 |
+
+The rest of that search returned molecular-docking papers, which
+`db/protein_binding.csv` already flags and excludes from the experimental
+analysis.
+
+---
+
 Identifiers below are copied from the retrieval logs in `papers/SOURCES_*.md`,
 not written from memory. Every item here was attempted and failed.
 
