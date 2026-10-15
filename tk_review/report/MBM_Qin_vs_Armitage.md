@@ -263,3 +263,48 @@ by **141–215×**, and would put 15–64% of the dose inside 0.18% of the well
 volume. The ng/mg reading sits within 1.4–2.1× of the uptake table, the
 residual being the unstated working volume (§6b implies ~0.7 mL/well against
 the 1 mL assumed).
+
+## 11. The wash artefact hypothesis: refuted on three counts
+
+Earlier sections floated five ice-cold PBS/DPBS washes as a chain-length-
+dependent loss that would bias measured C_cell low. It does not survive.
+
+**(a) It is not a between-study variable.** All three studies wash five times:
+Rosenmai "washed 5 times with ice-cold phosphate-buffered saline", Amstutz
+"washed... with DPBS" following Rosenmai's protocol, and Fragki "Cells were
+washed 5 times with Dulbecco's Phosphate Buffered Saline". A shared protocol
+cannot explain differences between them.
+
+**(b) The direction is backwards.** Washing should strip the shortest, least
+bound, fastest-desorbing chains hardest, so the models should over-predict
+*short* chains most. They do the opposite — Armitage's over-prediction rises
+monotonically with chain length:
+
+| | nCF | Armitage/measured | Qin/measured |
+|---|---|---|---|
+| PFBA | 3 | 1.42× | 2.36× |
+| PFHxA | 5 | 1.20× | 8.78× |
+| PFHpA | 6 | 1.55× | 9.03× |
+| PFOA | 7 | 2.68× | 3.80× |
+| PFNA | 8 | 3.86× | 1.51× |
+
+Armitage: **+0.091 decades per CF2, r = +0.83**. Qin shows no trend
+(−0.035, r = −0.20).
+
+**(c) The magnitude is two orders out.** Fragki's time course puts steady state
+at ~1 h, so the cell↔medium exchange half-time is ~10–30 min. Five quick rinses
+give 1–2 min of contact:
+
+| exchange t½ | 1 min contact | 2 min | 5 min |
+|---|---|---|---|
+| 10 min | 6.7% lost | 12.9% | 29.3% |
+| 20 min | 3.4% | 6.7% | 15.9% |
+| 30 min | 2.3% | 4.5% | 10.9% |
+
+A 3–5× loss needs 1.5–2.3 exchange half-lives of contact — 15–45 minutes of
+washing. The hypothesis is dead at the order-of-magnitude level.
+
+The one thing it was invoked to explain, Amstutz reading 3.6–4.8× below
+Rosenmai for PFHxA and PFHpA while agreeing to 1.0–1.4× for PFOA and PFNA, is
+better explained by short-chain analytical recovery: Rosenmai's own Table S2
+reports internal-standard recoveries of 78–98% that vary by compound.

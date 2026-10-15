@@ -153,7 +153,9 @@ def plot(rows):
         "xtick.color": INK2, "ytick.color": INK2,
         "axes.spines.top": False, "axes.spines.right": False})
     fig, ax = plt.subplots(figsize=(8.4, 5.4))
-    lo, hi = 2e-2, 1e2
+    # axis limits match the project's original plot, for direct comparison
+    XLO, XHI, YLO, YHI = 2e-2, 2e3, 1e-3, 4e2
+    lo, hi = 1e-4, 1e4
     ax.plot([lo, hi], [lo, hi], "-", color=INK, lw=1.1, zorder=2)
     for f, ls in ((10, "--"), (0.1, "--"), (100, ":"), (0.01, ":")):
         ax.plot([lo, hi], [lo * f, hi * f], ls, color=MUTED, lw=0.8, zorder=1)
@@ -165,7 +167,7 @@ def plot(rows):
         ax.plot(x, r["Qin_FIXED"], mk, ms=7, mfc="none", mec=col,
                 mew=1.6, zorder=3)                       # open    = Qin
     ax.set_xscale("log"); ax.set_yscale("log")
-    ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
+    ax.set_xlim(XLO, XHI); ax.set_ylim(YLO, YHI)
     ax.set_xlabel("Measured C$_{cell}$  (nmol/mg protein)")
     ax.set_ylabel("Estimated C$_{cell}$  (nmol/mg protein)")
     ax.set_title("Measured vs estimated C$_{cell}$\n"
