@@ -13,6 +13,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | Path | What it holds |
 |---|---|
 | `report/REPORT.md` | the written review — start here |
+| `report/Argoul_comparison_memo.pdf` | 2-page standalone memo: how the Argoul cocktail experiment was run, which comparisons it supports, why six were dropped; rebuild with `scripts/make_argoul_memo.py` |
 | `report/PFAS_TK_review.pdf` | the printable review — 16 pages, 14 sections, 4 figures, 57 numbered references; rebuild with `scripts/make_summary_pdf.py` (needs `reportlab`) |
 | `EXECUTIVE_SUMMARY.md` | the same argument in two pages |
 | `db/` | the structured extractions — one CSV per evidence type |

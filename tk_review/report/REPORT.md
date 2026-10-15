@@ -201,7 +201,7 @@ Three full texts now on disk measure both terms of the identity in both sexes,
 inside single experiments, so strain, dose, route, assay and model are held
 fixed: **Kudo 2002** Table 2 (Wistar rat, one IV dose, both sexes), **Lou 2009**
 Table 2 (CD-1 mouse, both sexes, one model) and **Argoul 2026** Table 1 (female
-CD-1 mouse, 11 PFAS in one cocktail).
+C57BL/6 mouse, 11 PFAS in one cocktail).
 
 | PFOA | rat (Kudo 2002) | mouse (Lou 2009) |
 |---|---|---|
@@ -1475,9 +1475,11 @@ microdesalting columns were used, and is a standing warning about method choice
 in PFAS binding work.
 
 **A species-matched set now exists for the mouse.** Argoul 2026 Table 4 reports
-equilibrium-dialysis unbound fractions in CD-1 mouse plasma for ten PFAS — the
-first set in this review measured in the same animals whose clearance is
-reported alongside:
+equilibrium-dialysis unbound fractions in female C57BL/6 mouse plasma for ten
+PFAS. Note the provenance precisely: the paper states these were measured
+*previously*, "in this mouse strain", in a companion study (Argoul et al.
+2025) — so they are **strain-matched and experiment-matched in method, but not
+measured in the same animals** whose clearance is reported alongside:
 
 | chemical | mouse fu | chemical | mouse fu |
 |---|---|---|---|
