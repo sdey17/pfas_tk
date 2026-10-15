@@ -141,8 +141,24 @@ PFHpA, are interpolated ones.
 ## 6. Why Rosenmai stands out: the axis label, not the measurement
 
 Rosenmai's Abstract says **"4–2500 ng mg⁻¹ protein"**; Results §3.3 and the
-Fig. 2A axis say **"18–2490 nmol mg⁻¹ protein"**. Four independent checks say
-ng/mg.
+Fig. 2A axis say **nmol mg⁻¹ protein**. The full Results sentence settles that
+these are the same numbers:
+
+> "The cellular PFAS concentrations, expressed as nmol mg⁻¹ protein, for the 14
+> PFASs at treatment concentrations of 10, 30 and 100 μM are shown in Figure
+> 2(A). The concentrations ranged 18–2490 nmol mg⁻¹ protein for the PFCAs,
+> 4–494 nmol mg⁻¹ protein for the PFSAs, and were 81 and 435 nmol mg⁻¹ protein
+> for FOSA."
+
+The union of those three sub-ranges is **4 to 2490** — minimum 4 from the
+PFSAs, maximum 2490 from the PFCAs. The Abstract's range is **4 to 2500**.
+Same minimum, same maximum to rounding. One set of numbers is being reported
+under two different units, so **exactly one label is a typo and no reading
+makes both correct**. (The Abstract is therefore not an independent vote for
+ng/mg — it is the same data. Which label is wrong has to be settled on
+physical grounds.)
+
+Four checks say the numbers are ng/mg.
 
 **(a) Rosenmai against Amstutz.** Same cell line, same dose, same stated unit:
 
@@ -178,10 +194,22 @@ test the unit.
 length. Rosenmai's Table S2 internal-standard recoveries of 78–98% span only
 1.26×, so something else is also going on in that paper.
 
-**(c) Physical ceiling.** As nmol/mg, Fig. 2A puts PFOA at 253 mM and PFNA at
+**(c) Scale, by sub-class.** Back-calculating every compound in Rosenmai's
+Table 1 at the PFOA-implied volume gives PFCAs 12–1510 ng/mg and PFSAs
+8–96 ng/mg, against the stated 18–2490 and 4–494. The same scale. Read as
+nmol/mg the stated minima are 330× (PFCA) and 520× (PFSA) above what the
+uptake table supports. The PFSA minimum of 4 is the sharpest of these, because
+PFOS has the lowest uptake of any compound in Table 1 (0.04–0.05%) and so pins
+the bottom of the range.
+
+The FOSA entry corroborates that these are the Fig. 2A numbers: it has only
+*two* values, 81 and 435, because 100 µM was dropped for FOSA on cytotoxicity
+grounds — so Fig. 2A carries two FOSA bars, not three.
+
+**(d) Physical ceiling.** As nmol/mg, Fig. 2A puts PFOA at 253 mM and PFNA at
 266 mM inside the cell — a quarter of the cell by mass.
 
-**(d) A second label error in the same paper.** The supporting information's
+**(e) A second label error in the same paper.** The supporting information's
 Figure S2 gives total protein per well in **ng/cm²**, with bars at a few
 hundred. A 12-well is 3.5 cm², so that reads as a few micrograms of protein per
 well, about 40× too little for 1.8 × 10⁵ HepG2 cells; as µg/cm² it is ~20× too
