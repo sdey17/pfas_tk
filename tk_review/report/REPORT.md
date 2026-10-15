@@ -1382,8 +1382,8 @@ Two further observations worth recording:
 
 ## 6. In vitro binding to albumin and related proteins
 
-`db/protein_binding.csv` — 273 rows, 54 studies, 30 protein targets, 272 with a
-DOI, computational values flagged.
+`db/protein_binding.csv` — 285 rows, 57 study-years, 31 protein targets, 284
+with a DOI, computational values flagged.
 
 ```bash
 python3 scripts/build_binding_table.py
@@ -1520,8 +1520,8 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ### 6.3a What the in vitro literature says about species and structure
 
-`db/protein_binding.csv` holds 273 rows from 54 studies, but most of it cannot
-answer either question, because §6.1 showed a single affinity number per pair
+`db/protein_binding.csv` holds 285 rows from 57 study-years, but most of it
+cannot answer either question, because §6.1 showed a single affinity number per pair
 does not exist. What can answer them is the handful of studies that hold method
 constant and vary one thing. Run
 `python3 scripts/binding_species_and_structure.py`.

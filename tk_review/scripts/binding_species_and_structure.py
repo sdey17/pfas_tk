@@ -1,7 +1,7 @@
 """
 In vitro PFAS-protein binding: what it says about SPECIES and about STRUCTURE.
 
-db/protein_binding.csv holds 273 rows from 54 studies across 30 protein
+db/protein_binding.csv holds 285 rows from 57 study-years across 31 protein
 targets. Most of it cannot answer either question, because a single affinity
 number for a PFAS-protein pair does not exist (section 6.1: Ka for PFOA-HSA
 spans 19,200x across six studies). What CAN answer them is the handful of

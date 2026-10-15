@@ -25,13 +25,18 @@ retrieval failure and should not be chased; it is a hole in the field, directly
 under this review's own mouse limb. See `scripts/binding_species_and_structure.py`
 part 3.
 
-Worth obtaining if cheap, found 2026-10-15 and not yet in `db/protein_binding.csv`:
+Three studies found in that search on 2026-10-15 have since been **added** to
+`db/protein_binding.csv` by `scripts/add_binding_studies_2026_10.py`, none of
+them carrying a number into the file:
 
-| study | why | id |
+| study | what went in | why no value |
 |---|---|---|
-| Gao 2025 | BSA binding for 10 PFAS resolved by chain length AND head group, plus ionic-strength and pH dependence; experimental, not docking | PMID 41344664, doi:10.1021/acs.est.5c08779 |
-| Gallagher 2023 | QSAR over 24 PFAS HSA affinities; useful as a structure-activity comparator, not as data | PMID 37513249, doi:10.3390/molecules28145375 |
-| Zhao 2023 | review of PFAS binding models across albumin, FABP, OATs and membranes | PMID 37126916, doi:10.1016/j.envint.2023.107951 |
+| Gao 2025 (PMID 41344664) | 10 experimental BSA rows, chain length and head group | not in PMC, full text not obtained; per-compound affinities not in the abstract |
+| Gallagher 2023 (PMID 37513249) | 1 computational row | QSAR over affinities "collected from the literature" that match the **Starnes** dataset already held — adding its values would double-count |
+| Zhao 2023 (PMID 37126916) | 1 review row | review, no primary data |
+
+Gao 2025's full text is still worth getting if it becomes reachable: it is the
+only genuinely new *experimental* chain-length-and-head-group series found.
 
 The rest of that search returned molecular-docking papers, which
 `db/protein_binding.csv` already flags and excludes from the experimental
