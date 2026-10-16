@@ -1575,6 +1575,172 @@ regime in which nearly all of them were fitted, and the ionic strength of the
 buffer. Reproduce with
 `python3 tk_review/scripts/binding_kd_physiological_bound.py`.
 
+### 6.1b From a binding constant to a partition coefficient, in absolute terms
+
+§6.1a asks which constants are physiologically possible. A mass-balance model
+asks a different question: not how tightly albumin binds, but how much it can
+hold. Those are the same measurement in different units, and the conversion
+matters because a model fed a binding constant that is proportionally right
+but absolutely low will quietly reassign the missing PFAS to the cell.
+
+Reproduce everything here with
+`python3 tk_review/scripts/kd_to_partition.py`.
+
+**The derivation.** Albumin at total molar concentration P (per litre of
+*solution*), n equivalent sites of dissociation constant K_d. Langmuir
+occupancy gives bound ligand per litre of solution:
+
+    C_bound = n·P·C_w / (K_d + C_w)
+
+A partition coefficient is bound ligand per unit *sorbent* over free ligand per
+unit water. On a mass basis the sorbent is P·M_alb/1000 kg protein per litre:
+
+    D_p/w = [C_bound / (P·M_alb/1000)] / C_w = 1000·n / [M_alb·(K_d + C_w)]
+
+**P cancels.** The partition coefficient does not depend on how much albumin is
+in the tube — only on how many sites each albumin carries and how tightly they
+hold. In the trace limit C_w ≪ K_d, where a partition coefficient is a constant
+at all:
+
+    **D⁰_p/w [L_water/kg_protein] = 1000·n·K_a / M_alb = 0.01505·n·K_a**
+    **log D⁰_p/w = log K_a + log n − 1.823**
+
+Qin works on a volume basis, L_water per L_albumin. Multiply by the density of
+the pure albumin phase, 1.364 kg/L from the 0.733 mL/g partial specific volume:
+
+    **log D⁰_v/w = log K_a + log n − 1.688 = log D⁰_p/w + 0.135**
+
+So K_a and D are strictly proportional, log-log slope exactly 1. **The
+intercept is what the mass balance needs, and it is set by two things an
+affinity measurement usually does not report: the molar-mass basis, and n.**
+Moving n from 1 to 6 shifts log D by 0.78 without changing any measurement.
+
+Three assumptions, each of which fails somewhere in this literature:
+
+| assumption | exact correction | where it fails |
+|---|---|---|
+| trace ligand, C_w ≪ K_d | D = D⁰/(1 + C_w/K_d) | a constant fitted at C_w = 10·K_d reads 11× low — §6.1a's L/P table |
+| one class of equivalent sites | none; n is a lumped effective capacity | albumin has several sites of different affinity (§6.1a, Chen & Guo) |
+| all sorbed ligand is site-bound | add a non-saturating term | which is exactly why Qin carries a separate D_non-specific |
+
+**The conversion is not a guess — Qin's own equation is it.** Qin writes
+D_BSA/w = C_max/(K_d + C_w) + D_non-specific (their Eq. 16). Setting that beside
+the derivation identifies C_max = n × (molar concentration of albumin inside
+the pure albumin phase) = n × 20,527 µM. Qin reports C_max both per litre of
+albumin and per mole of albumin, so their ratio must recover that number:
+
+| compound | C_max (µmol/L_alb) | C_max (mol/mol) | ratio | vs 20,527 µM |
+|---|---|---|---|---|
+| PFBA | 9.22 × 10³ | 0.450 | 20,489 | 0.998× |
+| PFOA | 2.54 × 10⁴ | 1.240 | 20,484 | 0.998× |
+| PFHxS | 1.88 × 10⁴ | 0.919 | 20,457 | 0.997× |
+| PFOS | 8.01 × 10³ | 0.391 | 20,486 | 0.998× |
+
+All four agree to 0.3%. So **Qin's "mol per mol" column is n, read straight off
+their fit** — and it is sub-stoichiometric for PFBA (0.45) and PFOS (0.39).
+These are lumped effective parameters, not site counts.
+
+**Everything on one axis.** log D_albumin/water, mass basis, which is what
+Fischer reports and what a tissue-composition model wants:
+
+| compound | Fischer (measured, HSA) | Qin | Armitage | literature K_a → log D at n=1 |
+|---|---|---|---|---|
+| PFBA | – | 2.60 | 2.08 | −0.51 to 4.22 |
+| PFHxA | 3.20 | – | 3.73 | 0.96 to 1.52 |
+| PFHpA | 4.10 | – | 4.33 | 1.53 to 4.05 |
+| PFOA | 4.48 | 4.80 | 4.61 | 0.19 to 4.47 |
+| PFNA | 4.49 | – | 4.89 | 1.41 to 5.07 |
+| PFHxS | 4.77 | 5.27 | – | 0.38 to 3.46 |
+| PFOS | 4.62 | **6.00** | – | 0.77 to 5.06 |
+
+For PFOA the three independent routes land within 2× of each other — 4.48,
+4.80, 4.61. For PFOS, Qin's albumin holds **24× more** than Fischer measured.
+That single number is worth more attention than the whole §6.1 spread, because
+it is a disagreement between the values two *models* actually use and the one
+measurement made at a physiological ratio.
+
+**Running the conversion backwards is the more useful move.** For each compound,
+what stoichiometry would reconcile the tightest reported binding constant with
+Fischer's directly measured log D?
+
+    n_implied = D_Fischer × M_alb / (1000 × K_a)
+
+| compound | Fischer log D | tightest K_a (M⁻¹) | n implied | source |
+|---|---|---|---|---|
+| PFOA | 4.48 | 1.98 × 10⁶ | **1.01** | Peng 2024 |
+| PFHpA | 4.10 | 7.47 × 10⁵ | **1.12** | Peng 2024 |
+| PFDA | 4.73 | 1.05 × 10⁶ | 3.39 | Gao 2025 |
+| PFOS | 4.62 | 7.60 × 10⁶ | 0.36 | Chen & Guo 2009 |
+| PFNA | 4.49 | 7.81 × 10⁶ | 0.26 | Peng 2024 |
+| PFBS | 3.26 | 6.50 × 10⁶ | 0.02 | Chen & Guo 2009 |
+| PFHxS | 4.77 | 1.91 × 10⁵ | 20.5 | Gao 2025 |
+| PFPeA | 2.16 | 4.80 × 10² | 20.0 | Starnes 2025 |
+| PFHxA | 3.20 | 2.20 × 10³ | 47.9 | Gao 2025 |
+
+PFOA at 1.01 and PFHpA at 1.12 are the result worth keeping: **the tightest
+measured binding constant and the physiological-ratio partition coefficient
+agree at one binding site, with nothing fitted.** That is the strongest
+internal evidence that the bridge above is the right one. Where n_implied runs
+to 20–48 the tightest available constant is far too weak to reproduce the
+measured partitioning; where it falls to 0.02–0.36 the constant is too tight.
+Those are disagreements about the chemistry, not about stoichiometry, and no
+conversion will reconcile them. Read the column as a comparison against
+Fischer, not a verdict — but Fischer is the only dataset measured at a ratio
+the body ever sees (§6.2).
+
+**Why absolute values, not proportionality.** Qin's balance is
+C_free = C_nom·V_tot / S with S = V_w + D_alb·V_alb + R, R collecting every
+non-albumin sorptive term. Write **a = D_alb·V_alb / S** for albumin's share of
+total sorptive capacity. If D_alb is wrong by a factor f:
+
+    **C_free,wrong / C_free,true = 1 / [(1 − a) + f·a]**
+
+and C_cell, proportional to C_free, is wrong by the same factor. Two things
+follow. The error is **bounded by 1/(1 − a)** however badly D_alb is
+underestimated — a model cannot put more than the whole dose in the cell. And
+it scales with a, which is not a constant of the chemical:
+
+| | a | 10× low | 3× low | 3× high | ceiling |
+|---|---|---|---|---|---|
+| PFBA, 100 µM | 0.19 | 1.21× | 1.15× | 0.72× | 1.2× |
+| PFOA, 100 µM | 0.89 | 5.06× | 2.46× | 0.36× | 9.2× |
+| PFNA, 100 µM | 0.94 | 6.51× | 2.68× | 0.35× | 16.8× |
+
+Across the three assays at fixed compound, a moves by under 3% — they are all
+10% FBS with the same cell line. **The axis a runs along is chain length, not
+assay.** So one multiplicative error in D_alb produces a 1.2× error for PFBA
+and a 6.5× error for PFNA *in the same experiment*. A single fitted correction
+cannot absorb a discrepancy that varies with chain length — and that is the
+shape the Qin residual actually has in `report/MBM_Qin_vs_Armitage.md`, where
+Qin's error against measured C_cell runs 1.58× at doses ≤ 25 µM and 8.95× at
+100 µM, swapping sign with dose while Armitage stays near 2.3× throughout.
+
+Where the assay axis does bite is serum content, which the wider in vitro
+literature varies from 0 to 10%. For PFOA:
+
+| FBS | a | 10× low gives | ceiling |
+|---|---|---|---|
+| 0% | 0.00 | 1.00× | 1.0× |
+| 1% | 0.40 | 1.56× | 1.7× |
+| 2% | 0.57 | 2.06× | 2.3× |
+| 5% | 0.78 | 3.34× | 4.5× |
+| 10% | 0.89 | 5.06× | 9.2× |
+
+At 0% serum the albumin parameter is irrelevant and C_cell is set by the cell
+and the plastic. At 10% it carries nearly nine tenths of the capacity. **A
+model validated against serum-free data says nothing about its behaviour at
+10% FBS**, and Armitage's own cell-line table mixes 2% and 10% FBS assays.
+
+**What this means for fixing the models.** The ceiling column is the number to
+check before touching the albumin parameter at all: near 1, the balance is
+insensitive to D_alb and the error is elsewhere; large, and the balance is an
+albumin calculation with a cell attached. For the long chains in these three
+assays it is 7–17×, so albumin is where the leverage is — and it has to be
+fixed as an absolute value, per compound, on the basis the model actually uses.
+The conversion above is what makes the binding literature usable for that:
+without it, a K_a in M⁻¹ and a D in L/kg cannot even be compared, let alone
+substituted.
+
 ### 6.2 The one dataset measured at a realistic ratio
 
 Fischer et al. 2024 (solid-phase microextraction, PFAS:protein ≤ 0.004), log

@@ -717,6 +717,73 @@ def story_3():
           "'about 90% bound' and adopted a free fraction roughly "
           "<b>164&times; too high</b>. Section 10 shows how far that single "
           "substitution propagates.", "body"),
+        p("Turning a binding constant into something a mass balance can use",
+          "h2"),
+        p("A mass-balance model does not want an affinity, it wants a "
+          "capacity: how many litres of water's worth of PFAS one kilogram of "
+          "albumin holds. For albumin at concentration P with n equivalent "
+          "sites of dissociation constant K<sub>d</sub>, Langmuir occupancy "
+          "gives bound ligand n&middot;P&middot;C<sub>w</sub>/(K<sub>d</sub> + "
+          "C<sub>w</sub>) per litre of solution, and dividing by the sorbent "
+          "mass P&middot;M<sub>alb</sub>/1000 makes P cancel. In the trace "
+          "limit that leaves log D = log K<sub>a</sub> + log n &minus; 1.823 "
+          "on a mass basis, or &minus;1.688 on the volume basis Qin uses. "
+          "Association constant and partition coefficient are therefore "
+          "strictly proportional, with a log-log slope of exactly one. What "
+          "the mass balance needs is the intercept, and the intercept is set "
+          "by the molar-mass basis and by n - neither of which an affinity "
+          "measurement usually reports. Moving n from one site to six shifts "
+          "log D by 0.78 without changing any measurement.", "body"),
+        p("The conversion is not a guess. Qin's own albumin term, "
+          "C<sub>max</sub>/(K<sub>d</sub> + C<sub>w</sub>) plus a "
+          "non-specific constant, is this expression, which identifies "
+          "C<sub>max</sub> as n times the molar concentration of albumin "
+          "inside the pure albumin phase. Qin reports C<sub>max</sub> both "
+          "per litre and per mole of albumin, and the ratio recovers that "
+          "concentration to within 0.3% for all four measured compounds. It "
+          "also reveals that their fitted n is below one site per albumin for "
+          "PFBA and PFOS: lumped effective parameters, not site counts.", "body"),
+        p("Run backwards the conversion becomes a diagnostic. Asking what "
+          "stoichiometry reconciles the tightest reported binding constant "
+          "with " + c("fischer2024") + "'s directly measured partition "
+          "coefficient gives n = 1.01 for PFOA and 1.12 for PFHpA: the two "
+          "kinds of measurement agree at one binding site with nothing "
+          "fitted. For the short chains the implied n runs to 20-48, meaning "
+          "the available constants are far too weak to reproduce the measured "
+          "partitioning, and for PFOS and PFBS it falls to 0.36 and 0.02, "
+          "meaning they are too tight. Those are disagreements about the "
+          "chemistry rather than about stoichiometry, and no conversion will "
+          "reconcile them.", "body"),
+        KeepTogether([
+        p("This is why proportionality is not enough to tune a model. Writing "
+          "<i>a</i> for albumin's share of total sorptive capacity, an error "
+          "of factor <i>f</i> in the albumin partition coefficient moves "
+          "every predicted concentration by 1/[(1&minus;<i>a</i>) + "
+          "<i>f</i>&middot;<i>a</i>]. The error is bounded by "
+          "1/(1&minus;<i>a</i>) - a model cannot put more than the whole dose "
+          "in the cell - but it scales with <i>a</i>, which is not a constant:",
+          "body"),
+        tbl([
+            ["at 100 &micro;M", "a", "if D_alb is 10&times; low", "ceiling"],
+            ["PFBA", "0.19", "1.21&times;", "1.2&times;"],
+            ["PFOA", "0.89", "5.06&times;", "9.2&times;"],
+            ["PFNA", "0.94", "6.51&times;", "16.8&times;"],
+        ], [34 * mm, 22 * mm, 44 * mm, W - 100 * mm]),
+        p("Built by scripts/kd_to_partition.py.", "caption")]),
+        p("Across the three assays at a fixed compound <i>a</i> moves by "
+          "under 3%, because all three run 10% serum with the same cell line. "
+          "The axis it runs along is chain length. So one multiplicative "
+          "error in the albumin parameter produces a 1.2&times; error for "
+          "PFBA and a 6.5&times; error for PFNA in the same experiment, and a "
+          "single fitted correction factor cannot absorb a discrepancy that "
+          "varies that way. Serum content is where the assay axis bites "
+          "instead: at 0% serum the albumin parameter is irrelevant, at 10% "
+          "it carries nearly nine tenths of the capacity, so a model "
+          "validated serum-free says nothing about its behaviour at 10%. The "
+          "practical reading is that for long chains in these assays the "
+          "ceiling is 7-17&times;, so albumin is where the leverage is, and "
+          "it has to be fixed as an absolute value per compound on the basis "
+          "the model actually uses.", "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
         p("Most of the 741-row binding file cannot answer a comparative "

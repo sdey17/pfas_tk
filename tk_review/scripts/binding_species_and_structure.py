@@ -1,11 +1,17 @@
 """
 In vitro PFAS-protein binding: what it says about SPECIES and about STRUCTURE.
 
-db/protein_binding.csv holds 285 rows from 57 study-years across 31 protein
+db/protein_binding.csv holds 741 rows from 64 study-years across 62 protein
 targets. Most of it cannot answer either question, because a single affinity
 number for a PFAS-protein pair does not exist (section 6.1: Ka for PFOA-HSA
-spans 19,200x across six studies). What CAN answer them is the handful of
+spans 19,200x across nine studies). What CAN answer them is the handful of
 studies that hold method constant and vary one thing:
+
+EVERY selection below is keyed on (study, year), never on a substring of the
+study name and never on the whole table. Two reasons. Starnes 2024 and Starnes
+2025 are different papers with different compound sets and different Kd units,
+so "Starnes" alone mixes them. And Ryu 2024 alone supplies 320 of the 741
+rows, so any statistic taken over the whole file is a statistic about Ryu.
 
   SPECIES    Starnes 2024 -- 4 albumins (human, rat, bovine, porcine) x the
              same compounds, one method (differential scanning fluorimetry).
@@ -52,8 +58,10 @@ def main():
     print("PART 1.  SPECIES: does albumin from different animals bind differently?")
     print("=" * 78)
     s = [r for r in all_rows
-         if "Starnes" in r["study"] and "albumin" in r["protein"].lower()
+         if (r["study"], r["year"]) == ("Starnes et al.", "2024")
+         and "albumin" in r["protein"].lower()
          and r.get("kd") and r["kd"] != "nonbinding"]
+    assert s and all(r["kd_units"] == "mM" for r in s), "Starnes 2024 Kd must be in mM"
     d = collections.defaultdict(dict)
     for r in s:
         d[(nc(r["n_perfluorinated_carbons"]), r["chemical"])][r["protein_species"]] = float(r["kd"])
@@ -95,7 +103,7 @@ def main():
 """)
 
     # Fischer's independent human-vs-bovine check at a physiological ratio
-    f = [r for r in all_rows if "Fischer" in r["study"]]
+    f = [r for r in all_rows if (r["study"], r["year"]) == ("Fischer et al.", "2024")]
     fd = collections.defaultdict(dict)
     for r in f:
         n = nc(r["n_perfluorinated_carbons"])
@@ -181,22 +189,43 @@ def main():
     print("=" * 78)
     print("PART 3.  What is missing")
     print("=" * 78)
-    exp = [r for r in all_rows if r.get("is_computational", "no") != "yes"]
-    sp = collections.Counter(r["protein_species"] for r in exp)
-    mouse = [r for r in exp if "mouse" in (r["protein_species"] + r["protein"]).lower()]
+    exp = [r for r in all_rows if not r.get("is_computational", "no").startswith("yes")]
+    # Count coverage on ISOLATED PROTEIN rows only. Whole-tissue homogenate is a
+    # different measurement and one study (Ryu 2024) supplies all of it, so
+    # pooling the two makes the species tally a tally of that one study.
+    tissue = [r for r in exp if "homogenate" in r["protein"].lower()]
+    iso = [r for r in exp if "homogenate" not in r["protein"].lower()]
+    sp = collections.Counter(r["protein_species"] for r in iso)
+    alb = [r for r in iso if "albumin" in r["protein"].lower()]
+    albsp = collections.Counter(r["protein_species"] for r in alb)
+    mouse_alb = [r for r in alb if "mouse" in r["protein_species"].lower()]
+    bystudy = collections.Counter(f"{r['study']} {r['year']}" for r in exp)
     print(f"""
-  {len(exp)} experimental rows cover {len(sp)} species labels, dominated by human
+  {len(exp)} experimental rows split into {len(iso)} on isolated proteins and
+  {len(tissue)} on whole-tissue homogenate. They are not interchangeable and the
+  tally below counts the isolated-protein rows only.
+
+  Largest contributors to the file, which is why nothing here is computed over
+  the whole table:""")
+    for k, v in bystudy.most_common(5):
+        print(f"    {v:4d}  {k}")
+    print(f"""
+  Isolated-protein rows cover {len(sp)} species labels, dominated by human
   ({sp['human']}) and bovine ({sp['bovine']}), with rat ({sp['rat']}) and porcine ({sp['porcine']}) thin.
+  Narrowing to albumin specifically: human {albsp['human']}, bovine {albsp['bovine']}, rat {albsp['rat']},
+  porcine {albsp['porcine']}, mouse {len(mouse_alb)}.
 
-  THERE IS NO MOUSE SERUM ALBUMIN BINDING DATA AT ALL. The {len(mouse)} rows mentioning
-  mouse are tissue homogenate and cell membranes, not plasma albumin. That is a
-  hole directly under this review's own argument: the mouse is the species
-  whose clearance and unbound fraction section 10's endpoint is built from, and
-  the only mouse fu available (Argoul 2026, equilibrium dialysis in whole
-  plasma) has no in vitro albumin measurement to decompose it against.
+  THERE IS STILL NO MOUSE SERUM ALBUMIN BINDING DATA AT ALL. Ryu 2024 added
+  mouse rows in 2024, but they are whole-tissue homogenate from two strains,
+  not plasma albumin. That is a hole directly under this review's own argument:
+  the mouse is the species whose clearance and unbound fraction section 10's
+  endpoint is built from, and the only mouse fu available (Argoul 2026,
+  equilibrium dialysis in whole plasma) has no in vitro albumin measurement to
+  decompose it against.
 
-  So the species question can be answered for human / rat / bovine / porcine
-  and NOT for the mouse, which is the animal the rest of this review runs on.
+  So the albumin species question can be answered for human / rat / bovine /
+  porcine and NOT for the mouse, which is the animal the rest of this review
+  runs on.
 """)
 
 

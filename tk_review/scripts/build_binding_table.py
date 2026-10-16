@@ -20,7 +20,7 @@ protein.
 import csv
 import math
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -101,7 +101,7 @@ def main() -> None:
     rows = list(csv.DictReader((DB / "protein_binding.csv").open()))
 
     ka_groups, logd_groups = defaultdict(list), defaultdict(list)
-    skipped = 0
+    skipped, funbound = 0, 0
     for r in rows:
         key = (r["chemical"], r["protein"])
         ka = ka_of(r)
@@ -112,6 +112,11 @@ def main() -> None:
         v = parse(r.get("ka", ""))
         if v is not None and units.startswith(LOGD_UNITS_PREFIX):
             logd_groups[key].append((v, r["method"], r["study"], r["year"]))
+        elif parse(r.get("unbound_fraction", "")) is not None:
+            # An unbound fraction in whole tissue or plasma is a real
+            # measurement, not a failed affinity. Counting it as "skipped"
+            # made 320 Ryu 2024 rows look like junk.
+            funbound += 1
         else:
             skipped += 1
 
@@ -125,8 +130,14 @@ def main() -> None:
     print(f"protein/water log D   : {sum(len(v) for v in logd_groups.values())} "
           f"values over {len(logd_out)} pairs "
           f"-> {DB/'binding_summary_logD.csv'}")
+    print(f"unbound fraction      : {funbound} rows (whole tissue or plasma; "
+          f"an f_u, not an affinity constant)")
     print(f"not a usable affinity : {skipped} rows (computational, relative "
-          f"potency, IC50, rank order, or no units)\n")
+          f"potency, IC50, rank order, or no units)")
+    big = Counter(f"{r['study']} {r['year']}" for r in rows).most_common(3)
+    print("  file is not uniform - largest contributors: "
+          + ", ".join(f"{k} ({v})" for k, v in big))
+    print("  group by study before taking any average over it.\n")
 
     multi = [r for r in ka_out if r["n_measurements"] > 1]
     print("ASSOCIATION CONSTANTS, pairs measured more than once "
