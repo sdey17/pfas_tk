@@ -1,0 +1,9 @@
+comparison,stratum,geometric_mean_ratio,min,max,n_over_2fold,n
+rat (Wistar Han) / human,all tissues and chemicals,0.932,0.331,3.093,,80
+mouse (CD-1) / human,all tissues and chemicals,0.919,0.352,3.074,,80
+mouse (C57BL/6J) / human,all tissues and chemicals,0.795,0.238,2.071,,80
+mouse (CD-1) / mouse (C57BL/6J),liver,1.196,0.631,1.756,0,15
+mouse (CD-1) / mouse (C57BL/6J),brain,1.050,0.534,1.981,0,16
+mouse (CD-1) / mouse (C57BL/6J),heart,1.012,0.486,2.614,3,16
+mouse (CD-1) / mouse (C57BL/6J),kidney,1.578,0.611,3.280,2,16
+mouse (CD-1) / mouse (C57BL/6J),lung,1.009,0.521,1.645,0,16

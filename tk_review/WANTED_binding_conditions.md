@@ -1,17 +1,24 @@
 # Papers needed to finish the binding assay-condition columns
 
-`db/protein_binding.csv` now has protein concentration on 340 of 422 rows
-(81%), ligand range on 83%, temperature on 81%, buffer on 81%. The 82
+`db/protein_binding.csv` now has protein concentration on 659 of 741 rows
+(89%), ligand range on 90%, temperature on 89%, buffer on 89%. The 82
 remaining rows need the papers below.
 
 Reproduce the fill: `python3 tk_review/scripts/add_binding_assay_conditions.py`,
 then `python3 tk_review/scripts/fill_binding_conditions_primaries.py`, then
 `python3 tk_review/scripts/add_binding_studies_2026_10b.py` (which reads
-`db/starnes2025_tableS4.csv`, the extracted SI table, now vendored in the repo).
+`db/starnes2025_tableS4.csv`, the extracted SI table, now vendored in the repo),
+then `python3 tk_review/scripts/add_ryu2024_si_funbound.py`.
 
-**Cleared 2026-10-16** (five primaries supplied): Gao 2025, Chen & Guo 2009,
-Han 2021, Ryu 2024 and the Starnes 2025 SI are all extracted and in the
-database. See the "Already complete" list at the bottom.
+**Cleared 2026-10-16** (five primaries plus the Ryu SI supplied): Gao 2025,
+Chen & Guo 2009, Han 2021, Ryu 2024 with its Supporting Information, and the
+Starnes 2025 SI are all extracted and in the database. See the "Already
+complete" list at the bottom.
+
+Validate the file at any time with
+`python3 tk_review/scripts/check_protein_binding.py`, which reproduces
+published statistics from three of the source papers out of the transcribed
+rows.
 
 ## Tier 1 — most rows gained per paper
 
@@ -55,11 +62,6 @@ The ones most likely to be wanted:
 
 ## Still outstanding after the 2026-10-16 batch
 
-- **Ryu et al. 2024 Supporting Information**, 10.1021/acs.est.4c04050 — the
-  main text gives only the rat-liver-to-tissue scaling equations. The
-  per-congener f_unbound values for 16 PFAS × 5 tissues × 4 organisms, which
-  include **CD-1 versus C57BL/6J** resolution, are in the SI. This is the one
-  remaining item that bears directly on the Argoul strain question in §3.2a
 - **Zhang et al.** (Han 2021 ref 34) — the fluorescence-displacement source of
   every L-FABP K_d that Han 2021 plots. Han measures ΔT_m, not K_d, so the
   affinities currently in the database for L-FABP are second-hand
@@ -84,5 +86,8 @@ The ones most likely to be wanted:
 - Gao et al. 2025 — 42 rows, the whole of Table 1 including the NaCl series
 - Han et al. 2021 — 13 rows, ΔT_m panel + four species + two recombinant +
   palmitic acid. K_d values flagged as quoted from Zhang et al., not measured
-- Ryu et al. 2024 — 1 study-level row; per-congener values need the SI (above)
+- Ryu et al. 2024 — 320 rows, SI Tables S4-S7 complete: 16 PFAS x 5 tissues x
+  4 organisms including CD-1 vs C57BL/6J. Two cells flagged as probable SI
+  typos and excluded from derived ratios; see
+  `scripts/add_ryu2024_si_funbound.py`. Tidy form in `db/ryu2024_funbound.csv`
 - Starnes et al. 2025 — 68 rows from SI Table S4, 49 binders and 19 non-binders

@@ -719,7 +719,7 @@ def story_3():
           "substitution propagates.", "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
-        p("Most of the 422-row binding file cannot answer a comparative "
+        p("Most of the 741-row binding file cannot answer a comparative "
           "question, for the reason above: a single affinity number per pair "
           "does not exist. What can are the few studies that fix the method "
           "and vary one thing.", "body"),
@@ -809,19 +809,52 @@ def story_3():
         p("<b>And whole-tissue binding is no more a species difference than "
           "albumin binding is.</b> " + c("ryu2024") + " dialysed sixteen PFAS "
           "against brain, heart, kidney, liver and lung homogenate from human, "
-          "Wistar Han rat, CD-1 mouse and C57BL/6J mouse. Log unbound fraction "
-          "correlates across every species and tissue pair at an "
-          "R<super>2</super> of 0.97 or better, and rat liver predicts human "
-          "tissues at 0.98 or better. Liver binding was within twofold of "
-          "other tissues for fourteen of the sixteen compounds despite its "
-          "enrichment in liver fatty-acid binding protein, which argues "
-          "against that protein as a driver of retention - the opposite "
-          "reading to " + c("han2021") + ", whose thermal-shift assay finds a "
-          "7.7&times; human-over-mouse spread for that protein in isolation. "
-          "The two measure different things, affinity for one purified protein "
-          "against the net sorptive capacity of whole homogenate, but they "
-          "cannot both carry the species difference, and the whole-tissue "
-          "design is the one closer to the in vivo question.", "body"),
+          "Wistar Han rat, CD-1 mouse and C57BL/6J mouse - 320 unbound "
+          "fractions, all of them now in the database. Taking the ratio of "
+          "rodent to human within each compound and tissue, the three rodents "
+          "land at geometric means of 0.93, 0.92 and 0.80 of the human value, "
+          "with the worst single cell between a quarter and three times "
+          "human. Rat liver predicts human tissues at an R<super>2</super> of "
+          "0.98 or better. Liver binding sits within twofold of the other "
+          "tissues for fourteen to sixteen of the sixteen compounds in every "
+          "organism, despite the liver's enrichment in liver fatty-acid "
+          "binding protein, which argues against that protein as a driver of "
+          "retention - the opposite reading to " + c("han2021") + ", whose "
+          "thermal-shift assay finds a 7.7&times; human-over-mouse spread for "
+          "that protein in isolation. The two measure different things, "
+          "affinity for one purified protein against the net sorptive "
+          "capacity of whole homogenate, but they cannot both carry the "
+          "species difference, and the whole-tissue design is the one closer "
+          "to the in vivo question.", "body"),
+        KeepTogether([
+        p("That dataset also carries the only side-by-side measurement of the "
+          "two mouse strains, which matters because the mouse limb of section "
+          "3 rests on a C57BL/6 study while the older literature is CD-1. "
+          "Ratio of CD-1 to C57BL/6J unbound fraction, geometric mean over "
+          "the sixteen compounds:", "body"),
+        tbl([
+            ["tissue", "CD-1 / C57BL/6J", "range", "over 2-fold"],
+            ["liver", "1.20", "0.63-1.76", "0 / 15"],
+            ["brain", "1.05", "0.53-1.98", "0 / 16"],
+            ["heart", "1.01", "0.49-2.61", "3 / 16"],
+            ["<b>kidney</b>", "<b>1.58</b>", "0.61-3.28", "2 / 16"],
+            ["lung", "1.01", "0.52-1.64", "0 / 16"],
+        ], [30 * mm, 34 * mm, 30 * mm, W - 94 * mm]),
+        p("Built by scripts/ryu_funbound_species_tissue.py from "
+          "db/ryu2024_funbound.csv.", "caption")]),
+        p("Kidney is the only tissue with both a shifted centre and a failing "
+          "equivalence test in the paper's own statistics: its two one-sided "
+          "tests find human against C57BL/6, CD-1 against C57BL/6 and rat "
+          "against C57BL/6 kidney not equivalent within twofold, while every "
+          "other tissue passes for every pair. Two cautions against "
+          "over-reading it. This is tissue binding, and renal clearance is "
+          "driven by plasma unbound fraction times glomerular filtration, "
+          "which this study did not measure, so the finding bears on renal "
+          "retention rather than on filtration. And a 1.6&times; strain "
+          "difference is small beside the roughly thousandfold rat-to-human "
+          "clearance gap. It is a real, kidney-specific strain effect in the "
+          "right organ and nowhere near large enough to be the confounder on "
+          "its own.", "body"),
         p("The same batch of papers also doubled the differential scanning "
           "fluorimetry coverage: " + c("starnes2025") + " reports affinities "
           "for 65 PFAS across 20 structural classes plus three fatty acids, of "
@@ -833,6 +866,10 @@ def story_3():
           "constant off a melting transition, not a disagreement about "
           "chemistry, which is why they rank congeners well and should not be "
           "carried into a kinetic model as affinities.", "body"),
+        p("One caution about that file now that it holds 741 rows: a single "
+          "study supplies 320 of them. Any aggregate taken across the whole "
+          "table is an aggregate of " + c("ryu2024") + " with a margin of "
+          "everything else, so group by study before summarising.", "body"),
         p("<b>The gap is in the field, not in this file.</b> There is still no "
           "in vitro measurement of PFAS binding to <i>mouse</i> serum albumin. "
           "A PubMed search returns one record, and it measures mouse albumin "

@@ -15,7 +15,9 @@ n sites per albumin scales [P] to n x [albumin]. The cancellation assumes
 trace ligand, [L] << [P], which holds in plasma and fails in most of the
 assays that produced the constants being scored.
 
-Kd values are from OEHHA 2024 PFOA/PFOS PHG Table A6.2 (albumin rows), plus
+Each (study, compound) pair is scored on its TIGHTEST reported site or binding
+step; papers that resolve more than one are listed with the weaker values for
+comparison.  Kd values are from OEHHA 2024 PFOA/PFOS PHG Table A6.2 plus
 Starnes et al. 2024 Table 2 for the DSF comparison.
 
 Run:  python3 tk_review/scripts/binding_kd_physiological_bound.py
@@ -24,25 +26,47 @@ MW_ALB = 66500.0        # g/mol
 MW_PFOA = 414.07        # g/mol
 ALB_UM = 600.0          # uM, from 40 g/L
 
-# (label, species, PFAS, Kd in M) -- OEHHA Table A6.2, serum-albumin rows
+# OEHHA Table A6.2 serum-albumin rows, regrouped so that each (study, PFAS)
+# pair is scored on its TIGHTEST reported site or binding step, with the weaker
+# ones kept alongside as context.  A paper that resolves several sites reports
+# several constants for one compound; scoring the weakest of them asks the
+# protein to do its job with one hand tied.  Chen & Guo 2009 is the clearest
+# case: OEHHA carries its tryptophan column, which the authors identify as the
+# weakest of the three sites they measured.
+#
+# (study, species, PFAS, [(site or step, Kd in M), ...])
 A62 = [
-    ("Beesoon & Martin 2015", "human", "n-PFOS", 8e-8),
-    ("Bischel et al. 2010 (low)", "human", "PFOA", 0.7e-6),
-    ("Chen & Guo 2009", "human", "PFOA", 3.7e-6),
-    ("Bischel et al. 2010 (high)", "human", "PFOA", 5e-6),
-    ("Messina et al. 2005 (step 1)", "human", "PFOA", 6.9e-6),
-    ("MacManus-Spencer 2010 (low)", "bovine", "PFOA", 0.7e-5),
-    ("Qin et al. 2010", "bovine", "PFOA", 2.1e-5),
-    ("Wu et al. 2009 (step 1)", "human", "PFOA", 2.6e-5),
-    ("MacManus-Spencer 2010 (high)", "bovine", "PFOA", 3e-5),
-    ("Messina et al. 2005 (step 2)", "human", "PFOA", 3.2e-5),
-    ("Chen & Guo 2009", "human", "PFOS", 4.5e-5),
-    ("Beesoon & Martin 2015", "human", "n-PFOA", 1e-4),
-    ("Li et al. 2009", "human", "PFOS", 2e-4),
-    ("Han et al. 2003", "rat/human", "PFOA", 4e-4),
-    ("Starnes et al. 2024 (DSF)", "human", "PFOA", 0.79e-3),
-    ("Wu et al. 2009 (step 2)", "human", "PFOA", 1.3e-3),
-    ("Klevens & Ellenbogen 1954", "bovine", "PFOA", 3.1e-3),
+    ("Beesoon & Martin 2015", "human", "n-PFOS",
+     [("not site-resolved", 8e-8)]),
+    ("Chen & Guo 2009", "human", "PFOS",
+     [("Sudlow site II", 1.0 / 7.6e6),
+      ("Trp214 (the value OEHHA lists)", 4.5e-5)]),
+    ("Bischel et al. 2010", "human", "PFOA",
+     [("not site-resolved, low end", 0.7e-6),
+      ("not site-resolved, high end", 5e-6)]),
+    ("Chen & Guo 2009", "human", "PFOA",
+     [("Trp214 (the value OEHHA lists; sites I and II bind "
+       "but could not be quantified, so this is the weakest of three)", 3.7e-6)]),
+    ("Messina et al. 2005", "human", "PFOA",
+     [("step 1", 6.9e-6), ("step 2", 3.2e-5)]),
+    ("MacManus-Spencer 2010", "bovine", "PFOA",
+     [("low end", 0.7e-5), ("high end", 3e-5)]),
+    ("Qin et al. 2010", "bovine", "PFOA",
+     [("not site-resolved", 2.1e-5)]),
+    ("Wu et al. 2009", "human", "PFOA",
+     [("step 1", 2.6e-5), ("step 2", 1.3e-3)]),
+    ("Beesoon & Martin 2015", "human", "n-PFOA",
+     [("not site-resolved", 1e-4)]),
+    ("Li et al. 2009", "human", "PFOS",
+     [("not site-resolved", 2e-4)]),
+    ("Han et al. 2003", "rat/human", "PFOA",
+     [("not site-resolved", 4e-4)]),
+    ("Starnes et al. 2024 (DSF)", "human", "PFOA",
+     [("thermal transition", 0.79e-3)]),
+    ("Starnes et al. 2025 (DSF)", "human", "PFOA",
+     [("thermal transition", 1.0 / 1.20e3)]),
+    ("Klevens & Ellenbogen 1954", "bovine", "PFOA",
+     [("not site-resolved", 3.1e-3)]),
 ]
 
 
@@ -63,14 +87,30 @@ def main():
         print("%-10s %9.1f uM %9.1f uM %9.1f uM"
               % ("%.1f%%" % (100 * f), kd_needed(f, 1), kd_needed(f, 3), kd_needed(f, 6)))
     print()
-    print("OEHHA Table A6.2 albumin rows scored against >99%% bound")
-    print("%-30s %-9s %-7s %10s %9s %9s" %
+    print("OEHHA Table A6.2 albumin rows scored against >99% bound,")
+    print("each study x compound taken at its TIGHTEST reported site or step")
+    print("%-28s %-9s %-7s %10s %9s %9s" %
           ("source", "species", "PFAS", "Kd (uM)", "n=1", "n=6"))
-    for lab, sp, ch, kd in sorted(A62, key=lambda x: x[3]):
+    scored = sorted(((min(k for _s, k in sites), lab, sp, ch, sites)
+                     for lab, sp, ch, sites in A62), key=lambda x: x[0])
+    for kd, lab, sp, ch, sites in scored:
         f1, f6 = f_bound(kd, 1), f_bound(kd, 6)
         mark = "" if f6 >= 0.99 else ("   <-- too weak" if f6 < 0.95 else "   ~")
-        print("%-30s %-9s %-7s %10.2f %8.1f%% %8.1f%%%s"
+        print("%-28s %-9s %-7s %10.2f %8.1f%% %8.1f%%%s"
               % (lab, sp, ch, kd * 1e6, 100 * f1, 100 * f6, mark))
+        for site, k in sorted(sites, key=lambda x: x[1]):
+            tag = "  tightest, used" if k == kd else "  weaker, not used"
+            print("      %-56s %8.2f uM%s" % (site, k * 1e6, tag))
+    weak = [x for x in scored if f_bound(x[0], 6) < 0.95]
+    print()
+    print("  %d of %d study x compound pairs cannot reproduce >99%% bound at n=6:"
+          % (len(weak), len(scored)))
+    for kd, lab, sp, ch, _s in weak:
+        print("      %-28s %-7s %8.1f uM -> %.1f%% bound" % (lab, ch, kd * 1e6,
+                                                             100 * f_bound(kd, 6)))
+    print("  Scoring instead on the WEAKEST site of each pair would fail %d."
+          % sum(1 for lab, sp, ch, sites in A62
+                if f_bound(max(k for _s, k in sites), 6) < 0.95))
     print()
     print("Trace-ligand assumption, [L] << [P]")
     print("%-36s %12s %12s" % ("", "[PFOA] uM", "L / P"))

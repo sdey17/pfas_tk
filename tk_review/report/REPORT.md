@@ -1384,7 +1384,7 @@ Two further observations worth recording:
 
 ## 6. In vitro binding to albumin and related proteins
 
-`db/protein_binding.csv` — 422 rows, 64 study-years, 43 protein targets, 407
+`db/protein_binding.csv` — 741 rows, 64 study-years, 62 protein targets, 726
 with a DOI, computational values flagged.
 
 ```bash
@@ -1454,28 +1454,37 @@ albumin "with particularly high affinity, often with the dissociation constant
 at ~10⁻⁶ M" (OEHHA 2024, p. 40).
 
 **Applying it to the measurements.** Scoring every albumin K_d in OEHHA Table
-A6.2 against the >99% requirement, at a generous n = 6:
+A6.2 against the >99% requirement, at a generous n = 6. A study that resolves
+several sites or binding steps reports several constants for one compound;
+**each study × compound pair is scored on its tightest**, because asking the
+protein to reproduce plasma binding using only its weakest site is not a fair
+test. Weaker values from the same pair are shown in the right-hand column.
 
-| source | K_d (µM) | predicted bound (n=6) | |
-|---|---|---|---|
-| Beesoon & Martin 2015 (n-PFOS) | 0.08 | 100% | ✓ |
-| Bischel et al. 2010 | 0.7–5 | ~100% | ✓ |
-| Chen & Guo 2009 (PFOA, Trp site) | 3.7 | 99.9% | ✓ |
-| Messina et al. 2005 (step 1) | 6.9 | 99.8% | ✓ |
-| MacManus-Spencer et al. 2010 | 7–30 | 99.8–99.2% | ✓ |
-| Qin et al. 2010 | 21 | 99.4% | ✓ |
-| Wu et al. 2009 (step 1) | 26 | 99.3% | ✓ |
-| Messina et al. 2005 (step 2) | 32 | 99.1% | ✓ |
-| Chen & Guo 2009 (PFOS, Trp site) | 45 | 98.8% | borderline* |
-| Beesoon & Martin 2015 (n-PFOA) | 100 | 97.3% | borderline |
-| Li et al. 2009 (PFOS) | 200 | 94.7% | ✗ |
-| Han et al. 2003 | 400 | 90.0% | ✗ |
-| Starnes et al. 2024 (DSF) | 790 | 82.0% | ✗ |
-| Starnes et al. 2025 (DSF, PFOA) | 833 | 81.3% | ✗ |
-| Wu et al. 2009 (step 2) | 1300 | 73.5% | ✗ |
-| Klevens & Ellenbogen 1954 | 3100 | 53.7% | ✗ |
+| source | compound | K_d (µM), tightest | bound (n=6) | | weaker values from the same study |
+|---|---|---|---|---|---|
+| Beesoon & Martin 2015 | n-PFOS | 0.08 | 100% | ✓ | |
+| Chen & Guo 2009 | PFOS | **0.13** (Sudlow II) | 100% | ✓ | 45 (Trp214 — the value OEHHA lists) |
+| Bischel et al. 2010 | PFOA | 0.7 | 100% | ✓ | 5 |
+| Chen & Guo 2009 | PFOA | 3.7 (Trp214) | 99.9% | ✓ | sites I and II bind, not quantifiable |
+| Messina et al. 2005 | PFOA | 6.9 | 99.8% | ✓ | 32 (step 2) |
+| MacManus-Spencer et al. 2010 | PFOA | 7 | 99.8% | ✓ | 30 |
+| Qin et al. 2010 | PFOA | 21 | 99.4% | ✓ | |
+| Wu et al. 2009 | PFOA | 26 | 99.3% | ✓ | 1300 (step 2) |
+| Beesoon & Martin 2015 | n-PFOA | 100 | 97.3% | borderline | |
+| Li et al. 2009 | PFOS | 200 | 94.7% | ✗ | |
+| Han et al. 2003 | PFOA | 400 | 90.0% | ✗ | |
+| Starnes et al. 2024 (DSF) | PFOA | 790 | 82.0% | ✗ | |
+| Starnes et al. 2025 (DSF) | PFOA | 833 | 81.2% | ✗ | |
+| Klevens & Ellenbogen 1954 | PFOA | 3100 | 53.7% | ✗ | |
 
-**\*The PFOS row is an artefact of which site OEHHA quoted.** Chen & Guo 2009
+**Be clear about how much the rule changes.** Five of fourteen pairs fail at
+n = 6; scoring on the weakest site instead fails six. The rule moves exactly
+one study, Chen & Guo's PFOS, and it is worth stating plainly that the
+conclusion did not depend on it: the studies that cannot reproduce plasma
+binding are the same five either way — one 1954 surfactant measurement, one
+¹⁹F NMR, one 2009 value, and the two DSF datasets.
+
+**But the PFOS move is itself the instructive case.** Chen & Guo 2009
 measured all five of their PFAAs at *three* sites on HSA, with three different
 probes, and the paper's Table 1 is a 5 × 3 grid. OEHHA Table A6.2 carries the
 tryptophan-site column, which the authors themselves identify as **the weakest
@@ -1491,12 +1500,19 @@ Site II has the highest (close to 10⁷)"). The full grid, now in
 | PFOS | **2.2 × 10⁴** | binds, not quantified | 7.6 × 10⁶ |
 | PFDoA | binds, not quantified | no binding | 1.2 × 10⁶ |
 
-The two bold cells are the ones OEHHA lists. For PFOS, site II is **345×
-tighter** than the quoted Trp value — K_d 0.13 µM, not 45 µM, which moves PFOS
-from "borderline" to the top of the ✓ group. The lesson generalises: a K_d
-quoted without its site is as incomplete as one quoted without its n. Chen &
-Guo also report that PFOS and PFOA bind at all three sites while PFBA binds at
-only one, so the number of sites is itself congener-dependent.
+The bold cells are the ones OEHHA lists. For PFOS, site II is **345× tighter**
+than the quoted Trp value — K_d 0.13 µM, not 45 µM. The lesson generalises: a
+K_d quoted without its site is as incomplete as one quoted without its n. Chen
+& Guo also report that PFOS and PFOA bind at all three sites while PFBA binds
+at only one, so the number of sites is itself congener-dependent.
+
+Note what the rule cannot rescue. PFOA's entry stays at 3.7 µM because the
+paper could not quantify its two tighter sites — the fluorescence transitions
+were multiphasic — so PFOA is scored on a value its own authors call the
+weakest of three. Its true affinity is somewhere below 3.7 µM, and the table
+understates it by an unknown factor. The same caution applies wherever a study
+reports one number without saying which site produced it, which is most of
+them.
 
 The same paper supplies the displacement control that §6.1 could not. For the
 same three probes the authors measured non-fluorinated fatty acids: octanoic
@@ -1640,6 +1656,15 @@ for a mouse compartment, or the reverse, is off by about an order of magnitude
 before anything else goes wrong; the ordering across compounds is nonetheless
 the same in both species, with the long-chain sulfonates most tightly bound.
 
+**Does the C57BL/6 strain itself move f_unbound?** Ryu 2024 is the only study
+that measures both mouse strains side by side, and the answer is: not in
+plasma, because it did not measure plasma — but in kidney tissue, yes, by a
+geometric mean of 1.6× with individual compounds to 3.3×, and kidney is the
+only tissue where that paper's own equivalence test fails (§6.3a). Every other
+tissue is strain-equivalent within 2-fold. So the strain caveat on Argoul's
+numbers is real and it is organ-specific, while being far too small to carry
+the species difference by itself.
+
 ### 6.3 Binding does not explain the species difference
 
 Two results settle this, and both are negative:
@@ -1665,7 +1690,7 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ### 6.3a What the in vitro literature says about species and structure
 
-`db/protein_binding.csv` holds 422 rows from 64 study-years, but most of it
+`db/protein_binding.csv` holds 741 rows from 64 study-years, but most of it
 cannot answer either question, because §6.1 showed a single affinity number per pair
 does not exist. What can answer them is the handful of studies that hold method
 constant and vary one thing. Run
@@ -1750,30 +1775,100 @@ fatty-acid comparison again shows the endogenous ligand winning: PFAS do not
 displace it.
 
 *Ryu et al. 2024* reaches the opposite conclusion about L-FABP from the other
-direction — whole-tissue equilibrium dialysis of 16 PFAS (nC 3–13) in brain,
-heart, kidney, liver and lung from human, Wistar Han rat, CD-1 mouse and
-C57BL/6J mouse, 37 °C, 5 µM, n = 4. Two results matter here:
+direction — whole-tissue rapid equilibrium dialysis of 16 PFAS (nC 3–13) in
+brain, heart, kidney, liver and lung from human, Wistar Han rat, CD-1 mouse and
+C57BL/6J mouse, 37 °C, 5 µM, 18 h, n = 4. **All 320 values are now in the
+database** from SI Tables S4–S7, with `db/ryu2024_funbound.csv` as the tidy
+form and
+`python3 scripts/ryu_funbound_species_tissue.py` for the analysis below. This
+is the largest single species-comparison in the file and, at 320 of 741 rows,
+it now dominates the row count — read `study` before aggregating anything.
 
-1. **Tissue binding is not a species difference.** log f_unbound correlates
-   across every species × tissue pair at R² ≥ 0.97 (Spearman 0.96–1), and rat
-   liver predicts human tissues at R² ≥ 0.98. Table 1 of that paper gives the
-   rat-liver-to-tissue scaling equations, which are recorded in the database
-   row. This is the same verdict albumin gives, from a completely different
-   matrix.
-2. **Liver binding is unremarkable despite L-FABP.** Liver f_unbound was within
-   2-fold of other tissues for 14 of 16 PFAS, which the authors read as evidence
-   that L-FABP matters less for retention than Han 2021 proposes.
+**Species: three rodents, all within 20% of human on average.** Ratio of
+rodent to human f_unbound, same compound and same tissue, geometric mean:
 
-The two are not strictly contradictory — Han measures affinity for one purified
-protein, Ryu measures the net sorptive capacity of whole homogenate, where
-structural protein and phospholipid dominate the mass — but they cannot both be
-load-bearing for the species difference. Ryu's design is the one closer to the
-in vivo question, and it says no. One of Ryu's own claims is weaker than it
-reads: PFOS f_unbound is 5.8–11.3× below PFOA, offered as corresponding to the
-human half-lives, which differ by only 1.4× (3.8 vs 5.4 y). Per-congener
-f_unbound values are in that paper's Supporting Information, which was not
-obtained; the database row carries the study design and the scaling equations
-only. See `WANTED_binding_conditions.md`.
+| | liver | brain | heart | kidney | lung | all |
+|---|---|---|---|---|---|---|
+| Wistar Han rat | 0.80 | 1.06 | 0.85 | 0.85 | 1.12 | **0.93** |
+| CD-1 mouse | 1.01 | 1.07 | 0.83 | 0.86 | 0.86 | **0.92** |
+| C57BL/6J mouse | 0.83 | 1.02 | 0.82 | **0.54** | 0.85 | **0.80** |
+
+Across 318 usable cells the worst single departure from human is 0.24–3.1×.
+Whole-tissue binding is no more a species difference than albumin binding is —
+the same verdict §6.3 reaches, from a completely different matrix, and the
+reason rat liver predicts human tissues at R² ≥ 0.98.
+
+**Strain: the one place it shows is the C57BL/6 kidney.** This matters because
+the mouse limb of §3.2a rests on Argoul 2026, which used C57BL/6. CD-1 over
+C57BL/6J f_unbound:
+
+| tissue | geometric mean | range | over 2-fold |
+|---|---|---|---|
+| liver | 1.20 | 0.63–1.76 | 0/15 |
+| brain | 1.05 | 0.53–1.98 | 0/16 |
+| heart | 1.01 | 0.49–2.61 | 3/16 |
+| **kidney** | **1.58** | 0.61–3.28 | 2/16 |
+| lung | 1.01 | 0.52–1.64 | 0/16 |
+| all | 1.15 | 0.49–3.28 | 5/79 |
+
+Kidney is the only tissue with both a shifted centre and the paper's own
+equivalence test failing: its Figure S4 TOST finds human/C57BL/6, CD-1/C57BL/6
+and rat/C57BL/6 kidney **not** equivalent within 2-fold, while every other
+tissue passes for every pair. The largest individual gaps are PFDoDA kidney
+(3.3×) and PFOS kidney (3.2×).
+
+Two reasons not to over-read it. This is **tissue** binding, and renal
+clearance is driven by **plasma** f_u × GFR, which this study did not measure —
+so the finding bears on renal retention and tissue distribution, not directly
+on filtration. And a 1.6× geometric-mean strain difference is small beside the
+≈1000× rat-to-human clearance gap §6.3 is trying to explain. It is a real,
+measured, kidney-specific strain effect in the right organ, and it is nowhere
+near large enough to be the strain confounder on its own.
+
+**Tissue: the liver is unremarkable, which is the point.** Ratio to liver,
+same compound and organism, geometric mean: brain 0.48–0.62 (binds hardest),
+heart 0.95–1.21, kidney 0.83–1.35, lung 1.28–2.08 (binds least). Liver
+f_unbound sits within 2-fold of the geometric mean of the other four tissues
+for **14/15, 16/16, 16/16 and 15/15** compounds in human, rat, CD-1 and
+C57BL/6 respectively. A liver enriched in L-FABP binds PFAS no more tightly
+than a heart that is not, which is the direct observation behind the clash
+with Han 2021.
+
+**Chain length: monotonic here, where albumin turns over.** Fitting human
+PFCA f_unbound against perfluorinated carbon number gives −0.46 to −0.53
+decades per CF₂ with R² 0.94–0.99, straight across the whole C3–C13 range.
+Fischer's albumin log D (finding 1 below) *reverses* above nC10. Whole-tissue
+sorption does not, which says that what holds the long chains is not albumin
+but the structural protein and phospholipid that dominate tissue mass — the
+same conclusion finding 3 reaches from γ-globulin overtaking albumin at nC13.
+
+The two papers are not strictly contradictory — Han measures affinity for one
+purified protein, Ryu the net sorptive capacity of whole homogenate — but they
+cannot both be load-bearing for the species difference, and Ryu's design is
+the one closer to the in vivo question.
+
+**Three things in Ryu's own reporting do not reconcile, and are flagged in the
+data.** Its headline claim that PFOS f_unbound being 5.8–11.3× below PFOA
+"corresponds to" the human half-lives overstates the agreement: those
+half-lives, as the paper cites them, differ by 1.42× (3.8 vs 5.4 y). The
+5.8–11.3× range reproduces exactly from the SI, so the discrepancy is in the
+inference, not the data. Separately, the main text gives the study range as
+"6.8 × 10⁻⁶ to 0.3" but the SI spans 6.8 × 10⁻⁷ to 0.832 — neither endpoint
+matches. Two individual SI cells are recorded as printed and flagged: human
+PFTeDA liver (6.8 × 10⁻⁷, which the main text's stated minimum and the
+liver > brain ordering of all 15 other compounds both put at 6.8 × 10⁻⁶) and
+C57BL/6 PFUnDA liver (4.87 × 10⁻³, 9–15× above the same cell in the other
+three organisms and above the shorter-chain PFDA beside it). Both are excluded
+from the ratios above as outliers.
+
+The PFTeDA cell deserves one more line, because the obvious reading is wrong.
+The paper's published statistic — "liver within 2-fold of other tissues for 14
+of 16 PFAS" — reproduces from this transcription **only** with 6.8 × 10⁻⁷;
+6.8 × 10⁻⁶ would give 15 of 16. So the SI value, not the main text's, is what
+the analysis ran on. Either the main text's stated minimum is the typo, or a
+bad datum propagated into a published number. That the figure reproduces at
+all, like the 5.8–11.3× PFOA/PFOS ratio reproducing exactly, is the check that
+the 320 values here were transcribed correctly.
 
 **The gap that remains.** There is still **no in vitro PFAS–mouse serum albumin
 binding study**, in this database or in PubMed: a search returns one record,
@@ -2450,7 +2545,7 @@ set — is what turns this from an argument into a model.
 | `human_halflife_extended.csv` | 142 | human estimates with design and modelling assumptions |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | clearance factors normalised to mL/kg-day |
-| `protein_binding.csv` | 422 | in vitro binding, with method and ratio regime |
+| `protein_binding.csv` | 741 | in vitro binding, with method and ratio regime |
 | `binding_summary_ka.csv` | 71 | association constants, as ranges |
 | `binding_summary_logD.csv` | 111 | protein/water distribution at realistic ratio |
 | `transporter_kinetics.csv` | 217 | Km/Vmax/IC50 with reabsorption-or-secretion direction |
