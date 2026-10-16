@@ -1,18 +1,22 @@
 # Papers needed to finish the binding assay-condition columns
 
-`db/protein_binding.csv` now has protein concentration on 196 of 285 rows
-(69%), ligand range on 73%, temperature on 69%, buffer on 69%. The 89
+`db/protein_binding.csv` now has protein concentration on 340 of 422 rows
+(81%), ligand range on 83%, temperature on 81%, buffer on 81%. The 82
 remaining rows need the papers below.
 
-Reproduce the fill: `python3 tk_review/scripts/add_binding_assay_conditions.py`
-then `python3 tk_review/scripts/fill_binding_conditions_primaries.py`.
+Reproduce the fill: `python3 tk_review/scripts/add_binding_assay_conditions.py`,
+then `python3 tk_review/scripts/fill_binding_conditions_primaries.py`, then
+`python3 tk_review/scripts/add_binding_studies_2026_10b.py` (which reads
+`db/starnes2025_tableS4.csv`, the extracted SI table, now vendored in the repo).
+
+**Cleared 2026-10-16** (five primaries supplied): Gao 2025, Chen & Guo 2009,
+Han 2021, Ryu 2024 and the Starnes 2025 SI are all extracted and in the
+database. See the "Already complete" list at the bottom.
 
 ## Tier 1 — most rows gained per paper
 
 | rows | study | DOI | PMID | why it matters |
 |---|---|---|---|---|
-| 10 | Gao et al. 2025, Environ Sci Technol | 10.1021/acs.est.5c08779 | 41344664 | paywalled, not in PMC. Only study we hold on how ionic strength, cation valency and pH change PFAS–albumin affinity. Abstract-only at present, with no numeric affinities at all |
-| 8 | Chen & Guo 2009, Arch Toxicol | 10.1007/s00204-008-0359-x | 18854981 | dansyl-L-proline displacement, site-resolved. One of the few papers assigning PFAS to Sudlow I vs II |
 | 6 | Bischel et al. 2010, Environ Sci Technol | 10.1021/es101334s | 20540534 | equilibrium dialysis + nanoESI-MS on BSA; a methods-comparison anchor |
 | 5 | Beesoon & Martin 2015, Environ Sci Technol | 10.1021/es505399w | 25826685 | branched vs linear isomers — the only isomer-resolved binding data we have |
 | 4 | Han et al. 2003, Chem Res Toxicol | 10.1021/tx034005w | 12807361 | 19F NMR, human and rat side by side. Already used elsewhere in the review for the free-fraction adjudication |
@@ -44,19 +48,26 @@ retrieval, not a new paper.
 Not worth chasing individually unless a specific one matters to an argument.
 The ones most likely to be wanted:
 
-- **Han et al. 2021**, 10.1021/acs.est.1c00509, PMID 34133149 — quantitative
-  interspecies thermal shift; the direct competitor to Starnes 2024 on
-  cross-species comparison
-- **Ryu et al. 2024**, 10.1021/acs.est.4c04050, PMID 39161261 — rapid
-  equilibrium dialysis across human, C57BL/6 and CD-1 mouse, Wistar Han rat.
-  The only row we hold with mouse strain resolution, which bears on the
-  Argoul strain question in §3.2a of the main report
 - **Jackson et al. 2021**, 10.1021/acs.est.1c01200, PMID 34495656 — the DSF
   method paper Starnes 2024 and 2025 both build on
-- **Starnes et al. 2025**, 10.1093/toxsci/kfae124, PMID 39298512 — per-congener
-  Kd for 65 PFAS are in the SI, which we did not retrieve
 - **Klevens & Ellenbogen 1954**, 10.1039/df9541800277 — not indexed in PubMed
   or Europe PMC; would need a library copy of Discuss Faraday Soc 18:277
+
+## Still outstanding after the 2026-10-16 batch
+
+- **Ryu et al. 2024 Supporting Information**, 10.1021/acs.est.4c04050 — the
+  main text gives only the rat-liver-to-tissue scaling equations. The
+  per-congener f_unbound values for 16 PFAS × 5 tissues × 4 organisms, which
+  include **CD-1 versus C57BL/6J** resolution, are in the SI. This is the one
+  remaining item that bears directly on the Argoul strain question in §3.2a
+- **Zhang et al.** (Han 2021 ref 34) — the fluorescence-displacement source of
+  every L-FABP K_d that Han 2021 plots. Han measures ΔT_m, not K_d, so the
+  affinities currently in the database for L-FABP are second-hand
+- **Gao et al. 2025 Supporting Information** — Tables S3 (van't Hoff ΔH, ΔS,
+  ΔG at four temperatures) and S12 (fitted n_Hill per compound per salt level).
+  Only the Table 1 affinities were extracted
+- **Starnes et al. 2025 Table S3** — per-chemical top concentrations, needed to
+  compute ligand:protein for those 68 rows
 
 ## Already complete, for reference
 
@@ -68,3 +79,10 @@ The ones most likely to be wanted:
 - Moro et al. 2022 — 8 rows (NOTE: defatted hSA, so an upper bound on affinity)
 - Chen et al. 2020 — 1 row, conditions filled; its Table 2 Ka values are not in
   the saved flattened text, so the Ka stays a Starnes 2026 secondary range
+- Chen & Guo 2009 — 20 rows, the full 5 × 3 compound-by-site grid from Table 1
+  plus five non-fluorinated fatty-acid reference constants from the discussion
+- Gao et al. 2025 — 42 rows, the whole of Table 1 including the NaCl series
+- Han et al. 2021 — 13 rows, ΔT_m panel + four species + two recombinant +
+  palmitic acid. K_d values flagged as quoted from Zhang et al., not measured
+- Ryu et al. 2024 — 1 study-level row; per-congener values need the SI (above)
+- Starnes et al. 2025 — 68 rows from SI Table S4, 49 binders and 19 non-binders

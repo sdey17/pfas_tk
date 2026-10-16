@@ -1384,7 +1384,7 @@ Two further observations worth recording:
 
 ## 6. In vitro binding to albumin and related proteins
 
-`db/protein_binding.csv` — 285 rows, 57 study-years, 31 protein targets, 284
+`db/protein_binding.csv` — 422 rows, 64 study-years, 43 protein targets, 407
 with a DOI, computational values flagged.
 
 ```bash
@@ -1397,11 +1397,12 @@ python3 scripts/build_binding_table.py
 
 | chemical | protein | n | Ka range (M⁻¹) | spread |
 |---|---|---|---|---|
-| PFBS | HSA | 4 | 116 – 6.5 × 10⁶ | 55,800× |
-| PFBA | HSA | 3 | 20.4 – 1 × 10⁶ | 49,100× |
-| PFOA | HSA | 6 | 103 – 1.98 × 10⁶ | 19,200× |
-| PFOA | BSA | 6 | 322 – 1 × 10⁶ | 3,110× |
-| PFOS | BSA | 4 | 1.16 × 10³ – 2.44 × 10⁵ | 210× |
+| PFBS | HSA | 5 | 116 – 6.5 × 10⁶ | 55,800× |
+| PFBA | HSA | 4 | 20.4 – 1.1 × 10⁶ | 54,000× |
+| PFOS | HSA | 6 | 395 – 7.6 × 10⁶ | 19,300× |
+| PFOA | HSA | 9 | 103 – 1.98 × 10⁶ | 19,200× |
+| PFOA | BSA | 10 | 322 – 1 × 10⁶ | 3,110× |
+| PFOS | BSA | 11 | 1.16 × 10³ – 1.44 × 10⁶ | 1,240× |
 
 **The spread is not fluorescence-versus-dialysis.** Equilibrium dialysis alone
 spans 3.2 × 10² to ~10⁶, and fluorescence quenching spans 10² to 2 × 10⁶ by
@@ -1459,19 +1460,52 @@ A6.2 against the >99% requirement, at a generous n = 6:
 |---|---|---|---|
 | Beesoon & Martin 2015 (n-PFOS) | 0.08 | 100% | ✓ |
 | Bischel et al. 2010 | 0.7–5 | ~100% | ✓ |
-| Chen & Guo 2009 (PFOA) | 3.7 | 99.9% | ✓ |
+| Chen & Guo 2009 (PFOA, Trp site) | 3.7 | 99.9% | ✓ |
 | Messina et al. 2005 (step 1) | 6.9 | 99.8% | ✓ |
 | MacManus-Spencer et al. 2010 | 7–30 | 99.8–99.2% | ✓ |
 | Qin et al. 2010 | 21 | 99.4% | ✓ |
 | Wu et al. 2009 (step 1) | 26 | 99.3% | ✓ |
 | Messina et al. 2005 (step 2) | 32 | 99.1% | ✓ |
-| Chen & Guo 2009 (PFOS) | 45 | 98.8% | borderline |
+| Chen & Guo 2009 (PFOS, Trp site) | 45 | 98.8% | borderline* |
 | Beesoon & Martin 2015 (n-PFOA) | 100 | 97.3% | borderline |
 | Li et al. 2009 (PFOS) | 200 | 94.7% | ✗ |
 | Han et al. 2003 | 400 | 90.0% | ✗ |
 | Starnes et al. 2024 (DSF) | 790 | 82.0% | ✗ |
+| Starnes et al. 2025 (DSF, PFOA) | 833 | 81.3% | ✗ |
 | Wu et al. 2009 (step 2) | 1300 | 73.5% | ✗ |
 | Klevens & Ellenbogen 1954 | 3100 | 53.7% | ✗ |
+
+**\*The PFOS row is an artefact of which site OEHHA quoted.** Chen & Guo 2009
+measured all five of their PFAAs at *three* sites on HSA, with three different
+probes, and the paper's Table 1 is a 5 × 3 grid. OEHHA Table A6.2 carries the
+tryptophan-site column, which the authors themselves identify as **the weakest
+of the three** ("the tryptophan site has the lowest affinity (10⁴–10⁵ M⁻¹), and
+Site II has the highest (close to 10⁷)"). The full grid, now in
+`db/protein_binding.csv` as 15 compound × site rows:
+
+| compound | Trp214 | Sudlow I | Sudlow II |
+|---|---|---|---|
+| PFBA | no binding | 1.1 × 10⁶ | no binding |
+| PFBS | no binding | 2.2 × 10⁶ | 6.5 × 10⁶ |
+| PFOA | **2.7 × 10⁵** | binds, not quantified | binds, not quantified |
+| PFOS | **2.2 × 10⁴** | binds, not quantified | 7.6 × 10⁶ |
+| PFDoA | binds, not quantified | no binding | 1.2 × 10⁶ |
+
+The two bold cells are the ones OEHHA lists. For PFOS, site II is **345×
+tighter** than the quoted Trp value — K_d 0.13 µM, not 45 µM, which moves PFOS
+from "borderline" to the top of the ✓ group. The lesson generalises: a K_d
+quoted without its site is as incomplete as one quoted without its n. Chen &
+Guo also report that PFOS and PFOA bind at all three sites while PFBA binds at
+only one, so the number of sites is itself congener-dependent.
+
+The same paper supplies the displacement control that §6.1 could not. For the
+same three probes the authors measured non-fluorinated fatty acids: octanoic
+acid binds site II at 1.1 × 10⁷ M⁻¹, **tighter than every PFAS in the grid**,
+and site I at 3.1 × 10⁶ M⁻¹. So PFAS do not outcompete the endogenous ligands
+whose carrier albumin is; they occupy the same sites with comparable or weaker
+affinity. (Those fatty-acid values are from the paper's discussion, attributed
+to unpublished work by the same authors, and are flagged as such in the
+database.)
 
 Everything from Qin 2010 upward is consistent with observed plasma binding.
 Everything below the line cannot reproduce it, and the differential scanning
@@ -1499,9 +1533,30 @@ plasma and fails in most of the assays that produced these constants:
 | Starnes 2024 DSF assay | 1000 µM | 1.7 |
 | Chen 2020 assay | 80 µM vs 2 µM HSA | 40 |
 
-So there are two independent reasons not to transfer in vitro constants
-unchanged: the temperature at which several were measured, and the saturation
-regime in which nearly all of them were fitted. Reproduce with
+*Ionic strength is a third axis, and it is one-directional.* Gao et al. 2025 is
+the only chain-length series measured across added salt — ten PFAS on BSA by
+Trp quenching in 20 mM phosphate at pH 7, with NaCl stepped from 0 to 500 mM
+(42 rows in `db/protein_binding.csv`, the full Table 1). Affinity falls
+monotonically with ionic strength:
+
+| compound | Ka at 0 mM | at 150 mM (plasma-like) | at 500 mM | 0 → 150 |
+|---|---|---|---|---|
+| PFHpA | 2.43 × 10⁴ | 1.22 × 10⁴ | 7.1 × 10³ | 2.0× weaker |
+| PFOS | 1.43 × 10⁶ | 9.2 × 10⁵ | 5.8 × 10⁵ | 1.6× weaker |
+
+Plasma runs ~150 mM in NaCl alone. A constant measured in 20 mM buffer
+therefore **overstates** binding by about 1.5–2× before any other correction,
+and the study's own point is that this shift is the same for every PFAS
+structure — ionic strength does not interact with chain length or head group.
+Gao's own PFOA value, 3.09 × 10⁵ M⁻¹ at 0 mM salt, is K_d 3.2 µM, inside the ✓
+band above; at 80 mM it is 7.1 µM, at its edge. Two further caveats on the same
+series: it is pH 7 and 20 °C, and the authors report affinity *rising* with
+temperature, so the 20 °C numbers are a lower bound at 37 °C.
+
+So there are three independent reasons not to transfer in vitro constants
+unchanged: the temperature at which several were measured, the saturation
+regime in which nearly all of them were fitted, and the ionic strength of the
+buffer. Reproduce with
 `python3 tk_review/scripts/binding_kd_physiological_bound.py`.
 
 ### 6.2 The one dataset measured at a realistic ratio
@@ -1610,7 +1665,7 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ### 6.3a What the in vitro literature says about species and structure
 
-`db/protein_binding.csv` holds 285 rows from 57 study-years, but most of it
+`db/protein_binding.csv` holds 422 rows from 64 study-years, but most of it
 cannot answer either question, because §6.1 showed a single affinity number per pair
 does not exist. What can answer them is the handful of studies that hold method
 constant and vary one thing. Run
@@ -1669,15 +1724,65 @@ occupies the binding cavity while the acid head group hydrogen-bonds to
 residues, so chlorine substitution, ether insertion and branching all act
 *through* chain length and hydrophobicity rather than as independent axes.
 
-**The gap.** There is **no in vitro PFAS–mouse serum albumin binding study**, in
-this database or in PubMed: a search returns one record, which measures mouse
-albumin *concentration*, not binding. So the species question can be answered
-for human, rat, bovine and porcine, and not for the mouse — the animal §10's
-endpoint is built from, and whose fu therefore has no in vitro albumin
-measurement to decompose it against. The one new experimental series found,
-Gao 2025 on bovine albumin across chain length and head group, is in
-`db/protein_binding.csv` without values because its full text was not
-obtainable. See `WANTED.md`.
+**Two studies look beyond albumin, and they disagree with each other.** Both
+are now in the database in full.
+
+*Han et al. 2021* measured liver fatty-acid binding protein (L-FABP) across
+human, mouse, rat and zebrafish by a thermal-shift assay (QITSA: PFAS-induced
+melting-point shift of the endogenous protein, read out by targeted
+proteomics). For PFOS, after dialysis to strip endogenous ligands:
+
+| species | ΔT_m (°C), tissue | ΔT_m (°C), recombinant |
+|---|---|---|
+| human | 14.71 ± 2.09 | — |
+| mouse | 2.32 ± 1.21 | 5.61 ± 0.56 |
+| rat | 1.92 ± 0.89 | 3.91 ± 1.32 |
+| zebrafish | −1.00 ± 0.90 | not available |
+
+That is a **7.7× human-over-mouse** spread, far larger than albumin's ≤4×, and
+in the right direction for human persistence. Three cautions. ΔT_m is a thermal
+shift, not a K_d: the paper's own control shows palmitic acid, which binds
+hL-FABP 28× *tighter* than PFOS (K_d 0.63 vs 18.5 µM), producing a ΔT_m 2.2×
+*smaller*, because it unfolds the protein by a different route. The K_d values
+the paper plots against ΔT_m are not its own — they are quoted from Zhang et al.
+and measured by fluorescence displacement on recombinant hL-FABP. And the
+fatty-acid comparison again shows the endogenous ligand winning: PFAS do not
+displace it.
+
+*Ryu et al. 2024* reaches the opposite conclusion about L-FABP from the other
+direction — whole-tissue equilibrium dialysis of 16 PFAS (nC 3–13) in brain,
+heart, kidney, liver and lung from human, Wistar Han rat, CD-1 mouse and
+C57BL/6J mouse, 37 °C, 5 µM, n = 4. Two results matter here:
+
+1. **Tissue binding is not a species difference.** log f_unbound correlates
+   across every species × tissue pair at R² ≥ 0.97 (Spearman 0.96–1), and rat
+   liver predicts human tissues at R² ≥ 0.98. Table 1 of that paper gives the
+   rat-liver-to-tissue scaling equations, which are recorded in the database
+   row. This is the same verdict albumin gives, from a completely different
+   matrix.
+2. **Liver binding is unremarkable despite L-FABP.** Liver f_unbound was within
+   2-fold of other tissues for 14 of 16 PFAS, which the authors read as evidence
+   that L-FABP matters less for retention than Han 2021 proposes.
+
+The two are not strictly contradictory — Han measures affinity for one purified
+protein, Ryu measures the net sorptive capacity of whole homogenate, where
+structural protein and phospholipid dominate the mass — but they cannot both be
+load-bearing for the species difference. Ryu's design is the one closer to the
+in vivo question, and it says no. One of Ryu's own claims is weaker than it
+reads: PFOS f_unbound is 5.8–11.3× below PFOA, offered as corresponding to the
+human half-lives, which differ by only 1.4× (3.8 vs 5.4 y). Per-congener
+f_unbound values are in that paper's Supporting Information, which was not
+obtained; the database row carries the study design and the scaling equations
+only. See `WANTED_binding_conditions.md`.
+
+**The gap that remains.** There is still **no in vitro PFAS–mouse serum albumin
+binding study**, in this database or in PubMed: a search returns one record,
+which measures mouse albumin *concentration*, not binding. So the albumin
+species question can be answered for human, rat, bovine and porcine, and not
+for the mouse — the animal §10's endpoint is built from, and whose fu therefore
+has no in vitro albumin measurement to decompose it against. Han 2021 and Ryu
+2024 now cover the mouse for L-FABP and for whole tissue; neither covers its
+albumin.
 
 ### 6.4 How much of the species difference is binding? The arithmetic
 
@@ -2345,7 +2450,7 @@ set — is what turns this from an argument into a model.
 | `human_halflife_extended.csv` | 142 | human estimates with design and modelling assumptions |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | clearance factors normalised to mL/kg-day |
-| `protein_binding.csv` | 273 | in vitro binding, with method and ratio regime |
+| `protein_binding.csv` | 422 | in vitro binding, with method and ratio regime |
 | `binding_summary_ka.csv` | 71 | association constants, as ranges |
 | `binding_summary_logD.csv` | 111 | protein/water distribution at realistic ratio |
 | `transporter_kinetics.csv` | 217 | Km/Vmax/IC50 with reabsorption-or-secretion direction |

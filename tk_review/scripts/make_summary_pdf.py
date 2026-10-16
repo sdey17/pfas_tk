@@ -88,7 +88,11 @@ REFS = {
 "fujii2015": "Fujii Y, Niisoe T, Harada KH, Uemoto S, Ogura Y, Takenaka K, Koizumi A (2015). Toxicokinetics of perfluoroalkyl carboxylic acids with different carbon chain lengths in mice and humans. <i>Journal of Occupational Health</i> 57(1):1-12. doi:10.1539/joh.14-0136-OA. (Values reached via OEHHA 2024 PHG Table 4.8.1 and ATSDR 2021 Table 3-6.)",
 "starnes2024": "Starnes HM, Jackson TW, Rock KD, Belcher SM (2024). Quantitative cross-species comparison of serum albumin binding of per- and polyfluoroalkyl substances from five structural classes. <i>Toxicological Sciences</i> 199(1):132-149. doi:10.1093/toxsci/kfae028",
 "gallagher2023": "Gallagher A, Kar S, Sep&uacute;lveda MS (2023). Computational modeling of human serum albumin binding of per- and polyfluoroalkyl substances employing QSAR, read-across, and docking. <i>Molecules</i> 28(14):5375. doi:10.3390/molecules28145375. (Computational; its affinity data are the [starnes2024] set.)",
-"gao2025": "Gao Y, Kibbey TCG, Lee MJ, O'Carroll DM (2025). Predicting salt effects on the binding of PFAS to protein. <i>Environmental Science &amp; Technology</i> 59(49):26716-26728. doi:10.1021/acs.est.5c08779. (Abstract only; per-compound affinities not obtained.)",
+"gao2025": "Gao Y, Kibbey TCG, Lee MJ, O'Carroll DM (2025). Predicting salt effects on the binding of PFAS to protein. <i>Environmental Science &amp; Technology</i> 59(49):26716-26728. doi:10.1021/acs.est.5c08779",
+"chenguo2009": "Chen Y-M, Guo L-H (2009). Fluorescence study on site-specific binding of perfluoroalkyl acids to human serum albumin. <i>Archives of Toxicology</i> 83(3):255-261. doi:10.1007/s00204-008-0359-x",
+"han2021": "Han J, Fu J, Sun J, Hall DR, Yang D, Blatz D, Houck K, Ng C, Doering J, LaLone C, Peng H (2021). Quantitative chemical proteomics reveals interspecies variations on binding schemes of L-FABP with perfluorooctanesulfonate. <i>Environmental Science &amp; Technology</i> 55(13):9012-9023. doi:10.1021/acs.est.1c00509",
+"ryu2024": "Ryu S, Burchett W, Zhang S, Jia X, Sadegh Modaresi SM, Agudelo Areiza J, Rodrigues D, Zhu H, Sunderland EM, Fischer FC, Slitt AL (2024). Unbound fractions of PFAS in human and rodent tissues: rat liver a suitable proxy for evaluating emerging PFAS? <i>Environmental Science &amp; Technology</i> 58(33):14641-14650. doi:10.1021/acs.est.4c04050",
+"starnes2025": "Starnes HM, Green AJ, Reif DM, Belcher SM (2025). An in vitro and machine learning framework for quantifying serum albumin binding of per- and polyfluoroalkyl substances. <i>Toxicological Sciences</i> 203(1):67-78. doi:10.1093/toxsci/kfae124",
 "zhao2023": "Zhao L, Teng M, Zhao X, Li Y, Sun J, Zhao W, Ruan Y, Leung KMY, Wu F (2023). Insight into the binding model of per- and polyfluoroalkyl substances to proteins and membranes. <i>Environment International</i> 175:107951. doi:10.1016/j.envint.2023.107951. (Review.)",
 "chang2008": "Chang S-C, Das K, Ehresman DJ, Ellefson ME, Gorman GS, Hart JA, Noker PE, Tan Y-M, Lieder PH, Lau C, Olsen GW, Butenhoff JL (2008). Comparative pharmacokinetics of perfluorobutyrate in rats, mice, monkeys, and humans and relevance to human exposure via drinking water. <i>Toxicological Sciences</i> 104(1):40-53. doi:10.1093/toxsci/kfn057",
 "chang2012": "Chang S-C, Noker PE, Gorman GS, Gibson SJ, Hart JA, Ehresman DJ, Butenhoff JL (2012). Comparative pharmacokinetics of perfluorooctanesulfonate (PFOS) in rats, mice, and monkeys. <i>Reproductive Toxicology</i> 33(4):428-440. doi:10.1016/j.reprotox.2011.07.002",
@@ -715,7 +719,7 @@ def story_3():
           "substitution propagates.", "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
-        p("Most of the 285-row binding file cannot answer a comparative "
+        p("Most of the 422-row binding file cannot answer a comparative "
           "question, for the reason above: a single affinity number per pair "
           "does not exist. What can are the few studies that fix the method "
           "and vary one thing.", "body"),
@@ -780,17 +784,63 @@ def story_3():
           "bonds to residues, so chlorine substitution, ether insertion and "
           "branching all act through chain length and hydrophobicity rather "
           "than independently.", "body"),
-        p("<b>The gap is in the field, not in this file.</b> There is no in "
-          "vitro measurement of PFAS binding to <i>mouse</i> serum albumin. A "
-          "PubMed search returns one record, and it measures mouse albumin "
-          "concentration rather than binding. So the species question is "
-          "answerable for human, rat, bovine and porcine and not for the "
+        p("Three findings were added to the file after the primary papers "
+          "were obtained, and each changes a conclusion rather than adding a "
+          "row. <b>A dissociation constant quoted without its binding site is "
+          "as incomplete as one quoted without its stoichiometry.</b> "
+          + c("chenguo2009") + " measured five perfluoroalkyl acids at three "
+          "sites on human albumin with three probes, and regulatory summaries "
+          "carry the tryptophan column, which the authors identify as the "
+          "weakest of the three. For PFOS, Sudlow site II binds 345&times; "
+          "more tightly than the quoted tryptophan value - a dissociation "
+          "constant of 0.13 &micro;M rather than 45 &micro;M. The same paper "
+          "supplies the control the field usually lacks: octanoic acid binds "
+          "site II at 1.1 &times; 10<super>7</super> M<super>-1</super>, "
+          "tighter than every PFAS measured there, so these compounds occupy "
+          "the fatty-acid sites without outcompeting the fatty acids.", "body"),
+        p("<b>Ionic strength moves affinity in one direction, and buffers are "
+          "usually too dilute.</b> " + c("gao2025") + " is the only "
+          "chain-length series measured across added salt: ten PFAS on bovine "
+          "albumin with sodium chloride stepped from 0 to 500 mM. Affinity "
+          "falls monotonically, about 1.5 to 2&times; between a 20 mM buffer "
+          "and the roughly 150 mM of plasma, and the shift is independent of "
+          "chain length and head group. Constants measured in dilute buffer "
+          "therefore overstate binding before any other correction.", "body"),
+        p("<b>And whole-tissue binding is no more a species difference than "
+          "albumin binding is.</b> " + c("ryu2024") + " dialysed sixteen PFAS "
+          "against brain, heart, kidney, liver and lung homogenate from human, "
+          "Wistar Han rat, CD-1 mouse and C57BL/6J mouse. Log unbound fraction "
+          "correlates across every species and tissue pair at an "
+          "R<super>2</super> of 0.97 or better, and rat liver predicts human "
+          "tissues at 0.98 or better. Liver binding was within twofold of "
+          "other tissues for fourteen of the sixteen compounds despite its "
+          "enrichment in liver fatty-acid binding protein, which argues "
+          "against that protein as a driver of retention - the opposite "
+          "reading to " + c("han2021") + ", whose thermal-shift assay finds a "
+          "7.7&times; human-over-mouse spread for that protein in isolation. "
+          "The two measure different things, affinity for one purified protein "
+          "against the net sorptive capacity of whole homogenate, but they "
+          "cannot both carry the species difference, and the whole-tissue "
+          "design is the one closer to the in vivo question.", "body"),
+        p("The same batch of papers also doubled the differential scanning "
+          "fluorimetry coverage: " + c("starnes2025") + " reports affinities "
+          "for 65 PFAS across 20 structural classes plus three fatty acids, of "
+          "which 19 did not bind albumin at all - every fluorotelomer alcohol, "
+          "acrylate and methacrylate among them. Where it overlaps "
+          + c("starnes2024") + " the two agree to a geometric mean of "
+          "0.98&times; across seven compounds, so the low affinities that "
+          "assay reports are reproducible. They are a property of reading a "
+          "constant off a melting transition, not a disagreement about "
+          "chemistry, which is why they rank congeners well and should not be "
+          "carried into a kinetic model as affinities.", "body"),
+        p("<b>The gap is in the field, not in this file.</b> There is still no "
+          "in vitro measurement of PFAS binding to <i>mouse</i> serum albumin. "
+          "A PubMed search returns one record, and it measures mouse albumin "
+          "concentration rather than binding. So the albumin species question "
+          "is answerable for human, rat, bovine and porcine and not for the "
           "mouse - the animal whose clearance and unbound fraction section 10's "
           "endpoint is built from, and whose f<sub>u</sub> therefore has no in "
-          "vitro albumin measurement to decompose it against. The one new "
-          "experimental series found, " + c("gao2025") + " on bovine albumin "
-          "across chain length and head group, is logged in the database "
-          "without values because its full text was not obtainable.", "body"),
+          "vitro albumin measurement to decompose it against.", "body"),
         p("What binding does to elimination, quantified", "h2"),
         p("Only unbound PFAS is filtered, so the clearance free filtration "
           "alone would produce is f<sub>u</sub>&middot;GFR, and the measured "
