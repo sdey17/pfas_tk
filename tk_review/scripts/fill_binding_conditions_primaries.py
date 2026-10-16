@@ -30,9 +30,22 @@ Chen et al. 2020, Int J Environ Res Public Health 17:1319 (PMID 32085632)
    series "(10-6 mol/L) 1-10: 0, 2, 4, 8, 12, 16, 20, 30, 40 and 80"
   "fluorescence emission spectra at different temperatures (296, 303, and 310 K)"
 
+Alesio & Bothun 2024, Sci Rep 14:6501 (PMID 38499613)
+  "A BSA concentration of 10 uM in pH 7.4 phosphate buffered saline (PBS) was
+   used in each experiment"; Figure 1: "PFAS:BSA ratios ranged from 0:1 to
+   4:1", fluorescence from 35 to 80 C.
+
+Moro et al. 2022, Chem Res Toxicol 35:2049-2058 (PMID 36148994)
+  "Both dhSA (110 uM) and ligands (HPFO-DA, C6O4, PFHxA, Ibu, and War, 4 mM
+   solutions) were dissolved in 50 mM NaPi, 100 mM NaCl, pH 7.4 ... Titrations
+   of dhSA with ligands were carried out at different temperatures (298 and
+   310 K) ... 25 independent injections of 1.5 uL"
+  The protein is DEFATTED (charcoal treatment at pH 3, then SEC).
+
 Not filled, and why:
-  Chen & Guo 2009 (8 rows) and Chen et al. 2015 (2 rows) - abstract only, no
-  full text retrieved. Fischer et al. 2024 (111 rows) already complete.
+  Chen & Guo 2009 (8 rows) and Chen et al. 2015 (2 rows) - abstract only.
+  Gao et al. 2025 (10 rows) - Environ Sci Technol, paywalled, not in PMC.
+  Fischer et al. 2024 (111 rows) was already complete from Table S2.
 
 Run:  python3 tk_review/scripts/fill_binding_conditions_primaries.py
 """
@@ -60,6 +73,28 @@ FILL = {
                           "ethanol v/v - far above the <1% normally tolerated "
                           "in albumin binding work; treat these constants with "
                           "caution"),
+    ("Alesio & Bothun", "2024"): dict(
+        protein_conc="10", protein_conc_units="uM",
+        ligand_conc_range="0-40", ligand_conc_units="uM",
+        temperature_c="fluorescence recorded 35-80 C; Ka reported at 61 C "
+                      "(native BSA Tm 62 C, 69-71 C with PFAS bound)",
+        buffer="PBS, pH 7.4",
+        assay_volume_note="intrinsic Trp fluorescence, no external dye; "
+                          "'The BSA concentration in pH 7.4 PBS buffer was "
+                          "constant at 10 uM. PFAS:BSA ratios ranged from 0:1 "
+                          "to 4:1'"),
+    ("Moro et al.", "2022"): dict(
+        protein_conc="110", protein_conc_units="uM",
+        ligand_conc_range="4000 (syringe)", ligand_conc_units="uM",
+        temperature_c="25, 37 (298, 310 K)",
+        buffer="50 mM sodium phosphate, 100 mM NaCl, pH 7.4",
+        assay_volume_note="ITC, Microcal PEAQ-ITC: DEFATTED hSA (charcoal, "
+                          "pH 3) at 110 uM in the cell, ligand 4 mM in the "
+                          "syringe, 25 x 1.5 uL injections. Defatting matters "
+                          "- endogenous fatty acids compete for the same "
+                          "Sudlow sites, so these constants are an upper "
+                          "bound relative to native albumin. Warfarin control "
+                          "only carried 2.5% v/v DMSO"),
     ("Chen et al.", "2020"): dict(
         protein_conc="2.0", protein_conc_units="uM",
         ligand_conc_range="0-80", ligand_conc_units="uM",
