@@ -1418,6 +1418,92 @@ disagreement: n ≈ 1 (quenching), 1–3 (low-ratio dialysis), 6–9 (microdesal
 
 *Any table printing one number per pair is misleading. Use the range.*
 
+### 6.1a Which end of that range is physiologically possible
+
+The spread above is wide enough that most of it can be excluded on
+thermodynamic grounds alone, without adjudicating any individual study.
+
+**Setup.** Human serum albumin runs 35–50 g/L at MW 66,500, so
+[albumin] = 526–752 µM; 600 µM is used below. For one binding site,
+
+    L + P ⇌ PL        K_d = [L][P] / [PL]
+    f_bound = [PL] / ([PL] + [L])
+
+Substituting [PL] = [L][P]/K_d, the free-ligand term cancels:
+
+    f_bound = [P] / ([P] + K_d)
+
+and inverting,
+
+    **K_d = [P] × (1/f_bound − 1)**
+
+with n binding sites per albumin simply scaling [P] to n·[albumin].
+
+**What that requires.** PFOA is >99% bound in human plasma (f_u 0.01–0.02):
+
+| f_bound | K_d, n = 1 | n = 3 | n = 6 |
+|---|---|---|---|
+| 95% | 31.6 µM | 94.7 µM | 189 µM |
+| 99% | **6.1 µM** | 18.2 µM | 36.4 µM |
+| 99.5% | 3.0 µM | 9.0 µM | 18.1 µM |
+| 99.9% | 0.60 µM | 1.8 µM | 3.6 µM |
+
+This reproduces OEHHA's own summary of Table A6.2, that PFOA and PFOS bind
+albumin "with particularly high affinity, often with the dissociation constant
+at ~10⁻⁶ M" (OEHHA 2024, p. 40).
+
+**Applying it to the measurements.** Scoring every albumin K_d in OEHHA Table
+A6.2 against the >99% requirement, at a generous n = 6:
+
+| source | K_d (µM) | predicted bound (n=6) | |
+|---|---|---|---|
+| Beesoon & Martin 2015 (n-PFOS) | 0.08 | 100% | ✓ |
+| Bischel et al. 2010 | 0.7–5 | ~100% | ✓ |
+| Chen & Guo 2009 (PFOA) | 3.7 | 99.9% | ✓ |
+| Messina et al. 2005 (step 1) | 6.9 | 99.8% | ✓ |
+| MacManus-Spencer et al. 2010 | 7–30 | 99.8–99.2% | ✓ |
+| Qin et al. 2010 | 21 | 99.4% | ✓ |
+| Wu et al. 2009 (step 1) | 26 | 99.3% | ✓ |
+| Messina et al. 2005 (step 2) | 32 | 99.1% | ✓ |
+| Chen & Guo 2009 (PFOS) | 45 | 98.8% | borderline |
+| Beesoon & Martin 2015 (n-PFOA) | 100 | 97.3% | borderline |
+| Li et al. 2009 (PFOS) | 200 | 94.7% | ✗ |
+| Han et al. 2003 | 400 | 90.0% | ✗ |
+| Starnes et al. 2024 (DSF) | 790 | 82.0% | ✗ |
+| Wu et al. 2009 (step 2) | 1300 | 73.5% | ✗ |
+| Klevens & Ellenbogen 1954 | 3100 | 53.7% | ✗ |
+
+Everything from Qin 2010 upward is consistent with observed plasma binding.
+Everything below the line cannot reproduce it, and the differential scanning
+fluorimetry values sit squarely in that group — 790 µM against the ~1 µM OEHHA
+quotes. That is a statement about the assay, not about the chemistry: a DSF
+K_d is an apparent affinity at the protein's melting transition, around
+60–70 °C, not an equilibrium constant at 37 °C. Those constants rank congeners
+and species usefully and should not be carried into a TK model as affinities.
+
+**Two caveats on the arithmetic.**
+
+*Stoichiometry is load-bearing.* The same K_d is "too weak" at one site and
+"right" at six. Han et al. 2003's 400 µM implies 60% bound at n = 1, yet OEHHA
+annotates that row ">90% of PFOA would be bound to serum albumin (prediction)",
+which only works at n ≈ 6. A K_d quoted without n cannot be scored.
+
+*The cancellation assumes trace ligand*, [L] ≪ [P]. That holds comfortably in
+plasma and fails in most of the assays that produced these constants:
+
+| | [PFOA] | L/P |
+|---|---|---|
+| human background, 4 ng/mL | 0.0097 µM | 1.6 × 10⁻⁵ |
+| Ronneby high exposure, 200 ng/mL | 0.48 µM | 8 × 10⁻⁴ |
+| fluorochemical worker, 5000 ng/mL | 12 µM | 0.02 |
+| Starnes 2024 DSF assay | 1000 µM | 1.7 |
+| Chen 2020 assay | 80 µM vs 2 µM HSA | 40 |
+
+So there are two independent reasons not to transfer in vitro constants
+unchanged: the temperature at which several were measured, and the saturation
+regime in which nearly all of them were fitted. Reproduce with
+`python3 tk_review/scripts/binding_kd_physiological_bound.py`.
+
 ### 6.2 The one dataset measured at a realistic ratio
 
 Fischer et al. 2024 (solid-phase microextraction, PFAS:protein ≤ 0.004), log
