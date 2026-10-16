@@ -784,6 +784,49 @@ def story_3():
           "ceiling is 7-17&times;, so albumin is where the leverage is, and "
           "it has to be fixed as an absolute value per compound on the basis "
           "the model actually uses.", "body"),
+        p("The substitution was tried, and it failed informatively", "h2"),
+        p("With the conversion in hand the obvious experiment is to give both "
+          "mass-balance models the measured albumin value instead of their "
+          "own and re-run the 29 cell-uptake points. Since the assays use "
+          "fetal bovine serum, " + c("fischer2024") + "'s bovine column "
+          "applies. It sits below both models for every compound - a seventh "
+          "of Qin's value for PFHxA, a quarter for PFOA - so substituting it "
+          "shrinks the albumin sink and leaves more of the dose for the cell, "
+          "and both models already over-predict what the cell takes up.", "body"),
+        KeepTogether([
+        p("Predicted over measured, geometric mean across the 29 points:",
+          "body"),
+        tbl([
+            ["variant", "bias", "|err|", "at &le;25 &micro;M", "at 100 &micro;M",
+             "dose swing"],
+            ["Qin, published", "3.43&times;", "3.95&times;", "1.58&times;",
+             "5.52&times;", "3.49&times;"],
+            ["Qin + measured albumin", "4.74&times;", "4.77&times;",
+             "4.78&times;", "4.72&times;", "<b>0.99&times;</b>"],
+            ["Armitage, published", "<b>2.33&times;</b>", "<b>2.42&times;</b>",
+             "2.73&times;", "2.12&times;", "0.78&times;"],
+            ["Armitage + measured albumin", "5.09&times;", "5.10&times;",
+             "5.79&times;", "4.71&times;", "0.81&times;"],
+        ], [52 * mm, 18 * mm, 18 * mm, 22 * mm, 22 * mm, W - 132 * mm]),
+        p("Built by scripts/mbm_fischer_albumin.py.", "caption")]),
+        p("Both models get worse. One thing improves, and it is structural: "
+          "Qin's error swings 3.5&times; across the dose range as published "
+          "and is flat once the albumin coefficient stops saturating. The "
+          "dose dependence Qin produces is its own Langmuir albumin term "
+          "coming off saturation, not a statement about how PFAS enter "
+          "cells.", "body"),
+        p("Inverting the balance asks whether albumin could carry the error "
+          "at all. The albumin coefficient that would make each model "
+          "unbiased is in every case <i>above</i> what the model already "
+          "uses, while the measurement is <i>below</i> it - the data and the "
+          "residual point in opposite directions. For PFHxA the value needed "
+          "exceeds anything ever measured for that compound by eight to "
+          "thirteenfold, even allowing six binding sites per albumin. So "
+          "albumin is where the sensitivity is and not where the error is, "
+          "which leaves the cell term, the plastic term and the measured "
+          "concentrations themselves. That conclusion is not reachable by "
+          "comparing proportionality; it needs the absolute conversion.",
+          "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
         p("Most of the 741-row binding file cannot answer a comparative "

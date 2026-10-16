@@ -1741,6 +1741,114 @@ The conversion above is what makes the binding literature usable for that:
 without it, a K_a in M⁻¹ and a D in L/kg cannot even be compared, let alone
 substituted.
 
+### 6.1c Substituting the measured albumin value into both models
+
+§6.1b says albumin carries 19–94% of the sorptive capacity and gives the
+conversion needed to put a measured binding constant into the models' own
+units. The obvious experiment is then to do it: replace each model's albumin
+partition coefficient with Fischer 2024's, the only one measured at a
+ligand:protein ratio the body sees, and re-run the 29 points.
+
+`python3 tk_review/scripts/mbm_fischer_albumin.py` → `db/mbm_fischer_albumin.csv`
+
+Two details decide the substitution before any arithmetic. The assays use
+fetal **bovine** serum, so Fischer's **BSA** column is the right one, not HSA.
+And both models multiply their albumin coefficient by V_alb, a volume in
+litres, so Fischer's mass-basis log D is shifted by +0.135 to the volume basis
+first.
+
+| compound | nCF | Fischer BSA | Qin | Armitage | Fischer/Qin | Fischer/Arm |
+|---|---|---|---|---|---|---|
+| PFBA | 3 | 2.36* | 2.74 | 2.08 | 0.57× | 2.62× |
+| PFHxA | 5 | 2.83 | 3.83 | 3.73 | **0.14×** | **0.17×** |
+| PFHpA | 6 | 3.93 | 4.38 | 4.33 | 0.48× | 0.54× |
+| PFOA | 7 | 4.20 | 4.93 | 4.61 | 0.25× | 0.53× |
+| PFNA | 8 | 4.54 | 5.48 | 4.89 | 0.16× | 0.61× |
+
+*PFBA extrapolated: Fischer's BSA series starts at nCF 5, so PFBA comes off an
+OLS fit on the rising limb (+0.42 per CF₂, nCF 5–10). Everything below is also
+reported without PFBA.
+
+**Fischer sits below both models for every measured compound.** That is the
+whole story in advance: a smaller albumin sink leaves more dose for the cell,
+and both models already over-predict C_cell.
+
+**The result is negative.**
+
+| variant | bias | \|err\| | without PFBA | ≤25 µM | 100 µM |
+|---|---|---|---|---|---|
+| Qin, published | 3.43× | 3.95× | 3.58× | 1.58× | 5.52× |
+| Qin + Fischer, constant D | 4.74× | 4.77× | 5.16× | 4.78× | 4.72× |
+| Qin + Fischer, rescaled Langmuir | 9.68× | 9.68× | 11.21× | 7.66× | 11.18× |
+| Armitage, published | **2.33×** | **2.42×** | 2.47× | 2.73× | 2.12× |
+| Armitage + Fischer | 5.09× | 5.10× | 6.05× | 5.79× | 4.71× |
+
+Substituting the best available measurement makes **both models worse** —
+Qin from 3.43× to 4.74×, Armitage from 2.33× to 5.09×. The rescaled-Langmuir
+variant, which is the more defensible substitution because it keeps Qin's
+saturation behaviour and only fixes the trace-limit level, is worst of all at
+9.68×.
+
+**One thing it does fix, and it is structural.** Qin's published error swings
+3.5× across the dose range (1.58× at ≤25 µM, 5.52× at 100 µM). With a constant
+Fischer D it is flat:
+
+| variant | ≤25 µM | 100 µM | swing |
+|---|---|---|---|
+| Qin, published | 1.58× | 5.52× | **3.49×** |
+| Qin + Fischer, constant D | 4.78× | 4.72× | **0.99×** |
+| Armitage, published | 2.73× | 2.12× | 0.78× |
+
+So **Qin's dose dependence was its albumin term saturating, not chemistry.**
+That is worth knowing independently of the level error: it means the dose
+exponent Qin produces (1.15–1.82 against a measured 0.85–1.42) is an artefact
+of the Langmuir albumin, not a statement about PFAS uptake.
+
+**The inverse problem settles whether albumin could ever carry the error.**
+C_cell ∝ C_free = n_tot/S with S = V_w + D_alb·V_alb + R, so the albumin
+coefficient that removes a bias of k is
+
+    D_alb,needed = D_alb,now + (k − 1)·S / V_alb
+
+Scoring that against the strictest and the most generous measured ceiling for
+each compound — the tightest reported K_a converted at n = 1 and at n = 6, or
+Fischer, whichever is larger:
+
+| compound | model | bias | log D now | needed | Fischer | lit n=1 | lit n=6 | within measured? |
+|---|---|---|---|---|---|---|---|---|
+| PFBA | Qin | 2.36 | 2.13 | 2.91 | 2.36 | 4.22 | 5.00 | yes, even at n=1 |
+| PFBA | Armitage | 1.42 | 2.14 | 2.51 | 2.36 | 4.22 | 5.00 | yes, even at n=1 |
+| **PFHxA** | **Qin** | 8.78 | 2.92 | 3.95 | 2.83 | 2.83 | 2.83 | **no, 13.2× over** |
+| **PFHxA** | **Armitage** | 1.20 | 3.81 | 3.76 | 2.83 | 2.83 | 2.83 | **no, 8.6× over** |
+| PFHpA | Qin | 9.03 | 3.42 | 4.34 | 3.93 | 4.05 | 4.83 | only if n ≈ 2 |
+| PFHpA | Armitage | 1.54 | 4.42 | 4.48 | 3.93 | 4.05 | 4.83 | only if n ≈ 3 |
+| PFOA | Qin | 3.80 | 3.98 | 4.46 | 4.20 | 4.47 | 5.25 | yes, even at n=1 |
+| PFOA | Armitage | 2.68 | 4.71 | 5.01 | 4.20 | 4.47 | 5.25 | only if n ≈ 3 |
+| PFNA | Qin | 1.51 | 4.58 | 4.63 | 4.54 | 5.07 | 5.85 | yes, even at n=1 |
+| PFNA | Armitage | 3.86 | 5.00 | 5.46 | 4.54 | 5.07 | 5.85 | only if n ≈ 2 |
+
+Four of ten cells close within the strict ceiling, eight within the generous
+one. PFHxA fails outright in both models: it needs log D 3.8–4.0, and 2.83 is
+the most generous value anyone has measured — that is Fischer's own BSA
+number, because no reported PFHxA binding constant reaches it even at six
+sites. Fischer's HSA column (3.20, the wrong albumin for a bovine-serum assay)
+does not close it either.
+
+**The direction is the real finding.** Every needed value is *above* the
+model's current one, because both models over-predict; Fischer's measurement
+is *below* it for every compound. The best measurement pushes the albumin
+parameter the wrong way. **Albumin is where the leverage is and not where the
+error is** — a conclusion that could not be reached by comparing
+proportionality, and that required exactly the absolute-value conversion of
+§6.1b to reach at all.
+
+What that leaves: the cell term, the plastic term, and the measured C_cell
+values themselves. §6.1b's ceiling column already says which assays are worth
+re-examining first — the long chains, where albumin mis-specification can move
+C_cell by 7–17×, are also the ones where the needed correction is nearly
+within measured range, so the residual there is small and plausibly albumin.
+The short chains are where something else is wrong.
+
 ### 6.2 The one dataset measured at a realistic ratio
 
 Fischer et al. 2024 (solid-phase microextraction, PFAS:protein ≤ 0.004), log

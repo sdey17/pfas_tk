@@ -354,3 +354,54 @@ The one thing it was invoked to explain, Amstutz reading 3.6–4.8× below
 Rosenmai for PFHxA and PFHpA while agreeing to 1.0–1.4× for PFOA and PFNA, is
 better explained by short-chain analytical recovery: Rosenmai's own Table S2
 reports internal-standard recoveries of 78–98% that vary by compound.
+
+---
+
+## 12. Testing the albumin parameter against the best measurement
+
+Added 2026-10-16. Reproduce with
+`python3 tk_review/scripts/mbm_fischer_albumin.py`; full detail in
+`report/REPORT.md` §6.1b–6.1c.
+
+Section 4 of this memo found the divergence between the two models to be in
+albumin, not in the cell. That raised an obvious question: can either model be
+improved by giving it a *measured* albumin partition coefficient instead of
+its own? Fischer 2024 is the only albumin dataset taken at a ligand:protein
+ratio below 0.004, so it is the natural reference. The assays run on fetal
+bovine serum, so its BSA column applies.
+
+Converting a binding constant into a partition coefficient is exact in the
+trace limit — `D = 1000·n·Ka / M_alb`, so `log D = log Ka + log n − 1.823`
+(mass basis) or `− 1.688` (the volume basis both models use). Qin's own
+albumin term is this expression: identifying `Cmax = n × 20,527 µM` reproduces
+Qin's two Cmax columns to 0.3% on all four of their measured compounds.
+
+**Result: the substitution makes both models worse.**
+
+| variant | bias | \|err\| | ≤25 µM | 100 µM | dose swing |
+|---|---|---|---|---|---|
+| Qin, published | 3.43× | 3.95× | 1.58× | 5.52× | 3.49× |
+| Qin + Fischer, constant D | 4.74× | 4.77× | 4.78× | 4.72× | **0.99×** |
+| Qin + Fischer, rescaled Langmuir | 9.68× | 9.68× | 7.66× | 11.18× | 1.46× |
+| Armitage, published | **2.33×** | **2.42×** | 2.73× | 2.12× | 0.78× |
+| Armitage + Fischer | 5.09× | 5.10× | 5.79× | 4.71× | 0.81× |
+
+Fischer's value is below both models' for every compound (0.14–0.61× of Qin,
+0.17–0.61× of Armitage), so substituting it shrinks the albumin sink and
+pushes more dose into the cell — and both models already over-predict.
+
+**Two findings survive the negative result.**
+
+*Qin's dose dependence is an albumin-saturation artefact.* Its published error
+swings 3.49× across the dose range; with a constant albumin coefficient the
+swing is 0.99×. The dose exponent Qin produces (1.15–1.82 against a measured
+0.85–1.42, section 4 of this memo) therefore says nothing about PFAS uptake —
+it is the Langmuir term coming off saturation.
+
+*Albumin cannot carry the level error.* Inverting the balance for the D_alb
+that would make each model unbiased gives values **above** each model's
+current one, while the measurement sits **below** it. For PFHxA the needed
+value exceeds anything ever measured for that compound by 8.6–13.2×, even
+allowing six binding sites. So albumin is where the sensitivity is (it holds
+19–94% of sorptive capacity) but not where the error is, and the remaining
+candidates are the cell term, the plastic term, and the measured C_cell values.
