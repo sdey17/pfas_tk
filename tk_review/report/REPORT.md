@@ -1549,7 +1549,11 @@ independently. Use the specific constant for a PBTK calculation and the
 non-specific one for an in vitro mass balance; crossing them costs ~5× for
 carboxylates and more for sulfonates. Detail and caveats in
 `report/ALBUMIN_BINDING.md` §11a, reproduced by
-`python3 tk_review/scripts/chen_fischer_reconciliation.py`.
+`python3 tk_review/scripts/chen_fischer_reconciliation.py`. A follow-up (§11b,
+`chen_pfna_inversion.py`) shows Chen's chain-length profile is additionally
+compressed about a pivot — 0.82 log units lost per log unit of true affinity,
+r² 0.90 — so his apparent optimum at nCF 7 is an assay artefact and his
+rankings should be used only up to about nCF 8.
 
 **The regime effect is now measured, not inferred.** Qin et al. 2024 reports
 specific and nonspecific protein–water distribution ratios separately for the

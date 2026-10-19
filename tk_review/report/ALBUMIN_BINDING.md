@@ -16,7 +16,7 @@ repository, no packages to install. Copy and run them.
 
 - Part I — [Foundations](#part-i--foundations): §1–4
 - Part II — [Why the literature disagrees](#part-ii--why-the-literature-disagrees): §5–8
-- Part III — [What is actually known](#part-iii--what-is-actually-known): §9–11a
+- Part III — [What is actually known](#part-iii--what-is-actually-known): §9–11b
 - Part IV — [Using a binding constant](#part-iv--using-a-binding-constant): §12–14
 - [Check your understanding](#check-your-understanding)
 - [Reading list](#reading-list)
@@ -490,15 +490,84 @@ independently (n_implied = 1.01 for PFOA, 1.12 for PFHpA).
 
 Getting it backwards costs about 5× for carboxylates and more for sulfonates.
 
-**Two honest caveats.** The sulfonates reconcile less cleanly — Qin's own
+**One caveat that remains.** The sulfonates reconcile less cleanly — Qin's own
 specific-to-non-specific separation is much larger for them (PFHxS 27×, PFOS
-13×) than the Fischer–Chen gap, so something else is also moving, most likely
-that a single-site fit over ν = 0.06–2 cannot resolve a very tight sulfonate
-site. And **Chen's PFNA breaks his own series**: his K_d puts PFNA (3.75 µM)
-*weaker* than PFOA (2.57 µM), where Fischer and Qin both put it at or above.
-That is the single largest residual in the table (−0.87 log units).
+13×) than the Fischer–Chen gap, so something else is also moving there.
 
 Reproduce: `python3 scripts/chen_fischer_reconciliation.py`
+
+### 11b. Chen's chain-length profile is compressed, and that is the PFNA story
+
+§11a flagged one residual: Chen's K_d puts PFNA (3.75 µM) *weaker* than PFOA
+(2.57 µM), where Fischer and Qin both put it at or above. It turns out not to
+be about PFNA at all.
+
+**First, it is not significant.** Chen reports standard errors, so the question
+can be asked directly. On log D with the error propagated:
+
+| pair | difference | SE | p |
+|---|---|---|---|
+| PFOA vs PFHpA | 0.382 | 0.110 | **0.000** |
+| PFOA vs PFNA | 0.164 | 0.117 | 0.161 |
+| PFOA vs PFDA | 0.151 | 0.127 | 0.233 |
+| PFOA vs PFUnDA | 0.265 | 0.125 | 0.034 |
+
+PFOA, PFNA and PFDA are **statistically indistinguishable**. Calling it an
+inversion overstates what the data support — PFOA is nominally tightest, and
+PFNA/PFDA sit in a plateau the measurement cannot separate.
+
+**Second, the real difference is dynamic range.** Over the same compounds
+Chen's PFCA series spans **1.52 log units** and Fischer's spans **3.02**.
+Chen's apparent optimum sits at PFOA (nCF 7), Fischer's at PFUnDA (nCF 10).
+The whole profile is compressed by about a factor of two, and that pushes the
+apparent optimum to shorter chains. PFNA is one symptom, not a separate fault.
+
+**Third, what compresses it.** Three candidate predictors of the shortfall
+(Fischer − Chen), each regressed across the series:
+
+| predictor | r², all 16 | r², PFCA only |
+|---|---|---|
+| **affinity** (Fischer log D) | **0.76** | **0.90** |
+| chain length (nCF) | 0.41 | 0.56 |
+| identifiability, \|log(K_d/[P])\| | 0.03 | 0.07 |
+
+Affinity wins decisively. (The identifiability idea — that a single-site K_d is
+only well determined near the protein concentration — was my first guess and
+explains nothing; it is reported because testing it was the point.) Chain
+length is a real but weaker correlate, which is expected because affinity rises
+with chain length over most of the series; the two cannot be fully separated
+here.
+
+The fitted slope is **0.82**: roughly four fifths of any true affinity
+difference is lost. A compression has a pivot, and this one sits at Fischer
+log D ≈ 3.14 — below it, Chen should read *tighter*, with the gap changing
+sign. Leave-one-out prediction (each compound predicted from a fit excluding
+it) gives a mean miss of 0.23 log units, and for PFPeA, the one compound weak
+enough to test the sign flip, **−0.80 predicted against −0.81 observed**.
+
+So it is a genuine compression about a pivot — not a uniform offset, not a few
+bad cells. Chen reads weak binders too tight and tight binders too weak, by a
+factor one line predicts across three log units.
+
+**What this means for using Chen:**
+
+- The **ranking** is sound at the short end. Use it up to about nCF 8.
+- **Do not read a chain-length optimum off Chen alone.** Fischer puts it near
+  nCF 10, Chen near nCF 7, and the difference is assay compression. All three
+  datasets agree there *is* an optimum and that binding falls away after it;
+  they disagree on where inside C7–C10.
+- The **PFNA cell is within noise of PFOA** and should not be treated as a
+  finding in either direction.
+
+The mechanism behind the affinity dependence is most likely that a tight
+binder's specific site is already substantially occupied at Chen's lowest
+ligand concentration, so the single-site fit is dragged toward the
+non-specific value — which is also why §11a finds Chen sitting on Qin's
+non-specific term. But the regression identifies affinity as the *predictor*;
+it does not prove that mechanism over residual container sorption, which would
+also scale with hydrophobicity.
+
+Reproduce: `python3 scripts/chen_pfna_inversion.py`
 
 ---
 
@@ -603,11 +672,14 @@ on neutral organics does not describe an anionic surfactant on protein.
 4. **The sulfonates do not reconcile as cleanly as the carboxylates** (§11a),
    and nobody has explained why their specific-to-non-specific separation is
    so much larger.
-5. **Chen's PFNA inversion** (§11a) is unexplained and is his largest residual
-   against the other two datasets.
+5. **Where is the chain-length optimum?** Fischer says nCF 10, Chen says nCF 7,
+   and §11b shows Chen's is pulled short by compression — but that does not by
+   itself put Fischer's at the right place either.
 
 *Resolved since the first draft:* the apparent Chen-versus-Fischer conflict,
-which turned out to be the specific/non-specific regime difference (§11a).
+which is the specific/non-specific regime difference (§11a); and Chen's PFNA
+"inversion", which is not significant and is one symptom of a general
+compression of his chain-length profile (§11b).
 
 ---
 
@@ -727,6 +799,7 @@ model and still not be the one that is *wrong*.
 | `scripts/kd_to_partition.py` | §12, the full derivation and diagnostics |
 | `scripts/binding_species_and_structure.py` | §9–10 |
 | `scripts/chen_fischer_reconciliation.py` | §11a |
+| `scripts/chen_pfna_inversion.py` | §11b |
 | `scripts/add_chen2025_tableS5.py` | the §9/§11 dataset |
 | `report/REPORT.md` §6.1–6.3 | the same material as evidence in the species argument |
 | `report/MBM_Qin_vs_Armitage.md` §12–14 | §13 in full |
