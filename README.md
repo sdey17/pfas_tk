@@ -23,10 +23,11 @@ constant is most of the work.
 | if you want… | read |
 |---|---|
 | what the whole project found | [`SUMMARY.md`](SUMMARY.md) — six phases, the short version |
-| the species question answered in full | [`tk_review/report/REPORT.md`](tk_review/report/REPORT.md) (~2,000 lines) |
+| the species question answered in full | [`tk_review/report/REPORT.md`](tk_review/report/REPORT.md) (~3,200 lines) |
 | that review in two pages | [`tk_review/EXECUTIVE_SUMMARY.md`](tk_review/EXECUTIVE_SUMMARY.md) |
 | something to print or hand to someone | [`tk_review/report/PFAS_TK_review.pdf`](tk_review/report/PFAS_TK_review.pdf) — 16 pages, A4, 4 figures, 57 references |
 | the whole argument in one figure | [`tk_review/figures/fig00_master.png`](tk_review/figures/fig00_master.png) |
+| protein binding, from first principles | [`tk_review/report/ALBUMIN_BINDING.pdf`](tk_review/report/ALBUMIN_BINDING.pdf) — 14 pages, standalone, with a self-test |
 | to learn toxicokinetic modelling | [`tk_learning/`](tk_learning/) — twelve runnable lessons |
 | the data behind the lessons | [`tk_learning/data/SOURCES.md`](tk_learning/data/SOURCES.md) — nine studies, traced to figure and table |
 
@@ -38,7 +39,7 @@ tk_learning/        twelve lessons: C(t)=C0·exp(-kt) through to a working PBPK 
 pfas_dose/          EPA animal PK pipeline; does clearance depend on dose within a species?
 species_dose/       does dose explain the human/rodent gap? (no — ~13% at best)
 literature/         23 human studies appraised by design rather than reputation
-tk_review/          the species question at the source: 186 full texts, 1,438 database rows
+tk_review/          the species question at the source: 186 full texts, 1,567 database rows
 ```
 
 `tk_learning/` and `tk_review/` are the pair to know: the first teaches the
@@ -94,8 +95,8 @@ into the answer.
 
 ### `tk_review/` — the species question, answered
 
-186 full texts read, 24 per-paper extractions, 1,438 rows across four
-consolidated tables, 16 figures, 34 runnable scripts. Headline results:
+186 full texts read, 24 per-paper extractions, 1,567 rows across four
+consolidated tables, 23 figures, 67 runnable scripts. Headline results:
 
 - **It is clearance, not distribution.** Vd spans 1.33–2.18× between sexes;
   clearance spans 0.78–44.3× and changes sign between species.
@@ -112,6 +113,12 @@ consolidated tables, 16 figures, 34 runnable scripts. Headline results:
 - **Half-life is the wrong structure-activity endpoint.** §11 proposes the
   dimensionless renal handling ratio `R = CL_renal/(fu·GFR)` instead, which
   divides out body size and binding and leaves the transport step.
+- **Albumin binding is not what breaks the serum mass balance.** Substituting
+  the best measured albumin partition coefficient makes both published models
+  *worse*; the cell term is where the error lives (§6.1b–6.1e).
+- **The albumin chain-length optimum is at 10–11 perfluorinated carbons,** not
+  the 6–8 that three datasets report — those place it early because their
+  long-chain measurements fail, and the primer shows how to tell (§6.3b).
 
 ## Conventions this repository holds itself to
 

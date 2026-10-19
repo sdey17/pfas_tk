@@ -282,7 +282,7 @@ Full list of corrections, including three to EPA and OEHHA documents, in
 | `db/combined/regulatory.csv` | 215 | what each agency adopted, from which study, under which assumptions |
 | `db/combined/PFAS_TK_combined.xlsx` | — | all four as one workbook, filterable |
 
-1,438 rows in total, 20 distinct chemicals, 8 species groups. Every row carries a `provenance` column
+1,567 rows in total, 20 distinct chemicals, 8 species groups. Every row carries a `provenance` column
 naming the file it came from and a `study` / `pmid_or_doi` / `source_table` trio
 naming the primary source. Rebuild with
 `python3 scripts/build_combined_datasets.py`.
