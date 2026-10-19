@@ -1,8 +1,11 @@
 # Papers needed to finish the binding assay-condition columns
 
-`db/protein_binding.csv` now has protein concentration on 659 of 741 rows
-(89%), ligand range on 90%, temperature on 89%, buffer on 89%. The 82
+`db/protein_binding.csv` now has protein concentration on 783 of 865 rows
+(91%), ligand range on 92%, temperature on 91%, buffer on 91%. The 82
 remaining rows need the papers below.
+
+A standalone primer on this whole subject, written from zero, is at
+`report/ALBUMIN_BINDING.md`.
 
 Reproduce the fill: `python3 tk_review/scripts/add_binding_assay_conditions.py`,
 then `python3 tk_review/scripts/fill_binding_conditions_primaries.py`, then
@@ -62,11 +65,6 @@ The ones most likely to be wanted:
 
 ## Still outstanding after the 2026-10-16 batch
 
-- **Chen et al. 2025 Supporting Information**, 10.1021/acs.est.4c06734 — the
-  per-congener K_MW (membrane-water) and K_A (HSA) for all 60 PFAS are in the
-  SI; only the regression slopes and the group ordering were extractable from
-  the article. This is the largest single membrane-water dataset in the field
-  and would let Armitage's membrane-lipid spLFER be tested directly
 
 - **Zhang et al.** (Han 2021 ref 34) — the fluorescence-displacement source of
   every L-FABP K_d that Han 2021 plots. Han measures ΔT_m, not K_d, so the
@@ -100,4 +98,6 @@ The ones most likely to be wanted:
 - Qin et al. 2024 — 64 rows, Table 2 complete: 16 PFAS x BSA / human plasma /
   trout plasma, specific and nonspecific terms separated. The only dataset in
   the file that reports BOTH regimes for the same protein and compound
-- Chen et al. 2025 — 1 study-level row; per-congener values need the SI (above)
+- Chen et al. 2025 — 60 rows from SI Table S5: K_D (uM) and paired log K_MW
+  for every compound, measured at a ligand:protein ratio of 0.06-2. The
+  closest wide-coverage dataset to the physiological regime in the file

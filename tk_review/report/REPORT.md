@@ -1384,8 +1384,14 @@ Two further observations worth recording:
 
 ## 6. In vitro binding to albumin and related proteins
 
-`db/protein_binding.csv` — 806 rows, 66 study-years, 64 protein targets, 791
+`db/protein_binding.csv` — 865 rows, 66 study-years, 64 protein targets, 850
 with a DOI, computational values flagged.
+
+**New here?** `report/ALBUMIN_BINDING.md` is a standalone primer on PFAS–albumin
+binding, written from zero: what albumin is, what K_d and K_a mean, why the
+literature spans five orders of magnitude, and what is actually established.
+It has runnable code and self-test questions. This section assumes that
+background and uses the material as evidence instead.
 
 ```bash
 python3 scripts/build_binding_table.py
@@ -2165,7 +2171,7 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ### 6.3a What the in vitro literature says about species and structure
 
-`db/protein_binding.csv` holds 806 rows from 66 study-years, but most of it
+`db/protein_binding.csv` holds 865 rows from 66 study-years, but most of it
 cannot answer either question, because §6.1 showed a single affinity number per pair
 does not exist. What can answer them is the handful of studies that hold method
 constant and vary one thing. Run
@@ -2269,7 +2275,7 @@ C57BL/6J mouse, 37 °C, 5 µM, 18 h, n = 4. **All 320 values are now in the
 database** from SI Tables S4–S7, with `db/ryu2024_funbound.csv` as the tidy
 form and
 `python3 scripts/ryu_funbound_species_tissue.py` for the analysis below. This
-is the largest single species-comparison in the file and, at 320 of 806 rows,
+is the largest single species-comparison in the file and, at 320 of 865 rows,
 it now dominates the row count — read `study` before aggregating anything.
 
 **Species: three rodents, all within 20% of human on average.** Ratio of
@@ -3033,7 +3039,7 @@ set — is what turns this from an argument into a model.
 | `human_halflife_extended.csv` | 142 | human estimates with design and modelling assumptions |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | clearance factors normalised to mL/kg-day |
-| `protein_binding.csv` | 806 | in vitro binding, with method and ratio regime |
+| `protein_binding.csv` | 865 | in vitro binding, with method and ratio regime |
 | `binding_summary_ka.csv` | 71 | association constants, as ranges |
 | `binding_summary_logD.csv` | 111 | protein/water distribution at realistic ratio |
 | `transporter_kinetics.csv` | 217 | Km/Vmax/IC50 with reabsorption-or-secretion direction |
