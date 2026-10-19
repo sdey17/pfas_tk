@@ -2391,6 +2391,73 @@ has no in vitro albumin measurement to decompose it against. Han 2021 and Ryu
 2024 now cover the mouse for L-FABP and for whole tissue; neither covers its
 albumin.
 
+### 6.3b Where the chain-length optimum actually sits
+
+§6.3a and the primer both take as given that albumin affinity rises with chain
+length and then falls. *Where* it falls is contested, and the contest matters
+for a QSAR: a descriptor fitted on the compounds that have toxicity values
+extrapolates straight through the turn.
+
+Four albumin carboxylate series in `db/protein_binding.csv` bracket a maximum
+— measured points on both sides of the highest value. Fischer 2024 puts it at
+10 perfluorinated carbons for both HSA and BSA; Chen 2025 at 7; Starnes 2025 at
+6. Bischel 2011 adds a fifth at 7 from its abstract. Three more — Gao 2025,
+Qin 2024's nonspecific term, Starnes 2024 — never reach a maximum, and that is
+not neutral: Gao is still climbing at nCF 9 and Qin at nCF 10, and an optimum
+at 6–8 requires both to be falling there.
+
+The compression documented in the primer §11b cannot resolve this, because an
+argmax is invariant under any strictly increasing transform: rescaling
+Fischer's curve by 0.82 leaves its peak at nCF 10. The disagreement is in
+shape, and it is localised at the long-chain end — the Chen-on-Fischer
+regression has slope 0.15 but r² of only 0.14, with residuals positive across
+nCF 6–10 and negative at 11–12.
+
+What settles it is that Fischer measured four sorbents in one experiment.
+Their peak **levels** span 1.31 log units (HSA 5.18, γ-globulin 4.81, whole
+serum 3.87); their peak **positions** span one carbon, and globulin peaks one
+CF₂ later than albumin. A ceiling in a method caps at a level, not at a chain
+length. The two albumins agree to 0.01 log units at the peak and to 0.00 at
+nCF 13, the far end of a 20-fold fall. Chen's own tail, by contrast, reverses
+— K_D 31.4 ± 5.1 µM at nCF 12 against 13.1 ± 3.0 at nCF 13 — while the
+membrane–water coefficient measured on the same compounds in the same study
+rises smoothly to nCF 15.
+
+**The optimum is a plateau at nCF 10–11 (PFUnDA, PFDoDA), centred on nCF 10 at
+log D ≈ 5.2 L_water per kg protein; nCF 9 joins within half a log unit.** It is
+not at nCF 6–8: that needs Fischer, Gao and Qin wrong in the same direction
+with three different methods in three different labs.
+
+Three consequences for this report:
+
+1. **Every PFAS with a health advisory is on the rising limb.** PFOA sits 0.70
+   log units — a factor of 5 — below the optimum, PFNA 0.69, PFDA 0.45. §11
+   fits its QSAR entirely inside that limb, which is the right place to be but
+   means the fit carries no information about the turn.
+2. **A linear chain-length descriptor extrapolates badly past nCF 10.**
+   Fischer's HSA limb runs at +0.49 per CF₂ over nCF 4–9; extending it
+   over-predicts nCF 11 by 3×, nCF 12 by 34× and nCF 13 by 487×.
+3. **It does not change §6.1c.** The compounds that broke the mass balance —
+   PFHxA at nCF 5, PFOA at 7 — are three to five carbons from the optimum, so
+   the extra affinity at the top of the curve cannot be borrowed for them.
+   PFHxA needed log D 3.8–4.0 against 3.20 measured.
+
+The optimum is also invisible in vivo, and that is not a contradiction. Ryu
+2024's unbound fractions fall monotonically to nCF 13 across five tissues and
+four species (−0.50 per CF₂, no reversal) and Chen's membrane coefficient rises
+monotonically to nCF 15, because past the optimum long-chain PFCAs stop binding
+*albumin* and go on partitioning into lipid. Whole tissue sums both channels.
+The same logic blocks the reverse argument: rising half-lives with chain length
+are not evidence that albumin affinity keeps rising.
+
+The sulfonate optimum is not located — no dataset here carries a C12 sulfonate,
+so all that can be said is nCF ≥ 9.
+
+Full adjudication, with every series and every test:
+`scripts/albumin_chain_length_optimum.py`, written up in
+`report/ALBUMIN_BINDING.md` §9a. Figure
+`figures/fig17_albumin_chain_length_optimum.png`.
+
 ### 6.4 How much of the species difference is binding? The arithmetic
 
 §6.2 settles what the unbound fraction is and §11.4 shows what the choice does
@@ -2938,6 +3005,36 @@ That exclusion has one cost: **PFHxA has no single-compound female-mouse
 comparator**, so it drops out of the half-life comparison entirely and survives
 only in the volume comparison. PFBS and PFDS have no comparator either, and
 Argoul reports no clearance for PFBS at all.
+
+**One thing Argoul cannot be asked for: individual animals.** Blood was taken
+"immediately antemortem" from 3 to 5 mice at each of 14 designed times, and the
+arithmetic closes only with one plasma observation per mouse (51 IV + 49 oral +
+8 control = 108 animals, 51/14 = 3.6 per time point). No animal has a
+concentration–time curve, which is exactly why the authors fitted a nonlinear
+mixed-effects model rather than individual ones, and why the paper's Fig. 1,
+captioned "individual plasma concentrations", is 3–5 stacked points per time
+rather than trajectories.
+
+What *is* recoverable is the explained part of the between-mouse spread. Urine
+output was weighed per animal and ran 0.19–1.64 mL/24 h, and Table 2's
+covariate model CL_u,i = CL_u,pop (UV_i/0.5)^θ turns that 8.6× spread in diuresis
+into a 13.7× spread in renal clearance for PFDA, 4.5× for PFHxS, 3.2× for PFOS
+and 1.7× for PFOA. Fecal elimination damps it hard at the long-chain end —
+PFDA's 13.7× becomes 1.30× in *total* clearance because 93% leaves in feces,
+while PFOA's 1.7× survives as 1.51×. Carried into the one-compartment solution
+for the six compounds the paper fitted that way, a clearance difference is a
+slope difference on a semilog plot, so the gap fans exponentially: by day 119
+two mice differing in nothing but measured urine output differ **7.5× in plasma
+PFHxS** and 5.8× in PFOS, both above the assay floor. PFOA fans fastest per day
+(doubling every 32 d) but falls below LLOQ in the high-diuresis animal, so its
+defensible figure is 3.7× at day 60.
+
+That is a lower bound on inter-animal variability, not an estimate of it: the
+paper also put random effects on fecal clearance and central volume, and those
+ω values sit in Supplementary Tables S5–S26, which are not in hand. Worked
+through, with the Table 2 reproduction that checks the model was read
+correctly, in `scripts/argoul_individual_variability.py`; figure
+`figures/fig16_argoul_individual_spread.png`.
 
 **What the shape of that result means.** A factor that multiplies Vd and CL
 together cancels from ln2·Vd/CL, so "both terms low, half-life unchanged" is

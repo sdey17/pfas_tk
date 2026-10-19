@@ -348,7 +348,8 @@ is why the "PFAS displace endogenous ligands" story needs care.
 ### 9. Structure: chain length and head group
 
 **Chain length is not monotonic.** This is the finding that most surprises
-people, and three independent datasets now agree on it.
+people. Every dataset that reaches far enough eventually turns over. *Where*
+it turns over is contested, and §9a settles that; start here with the shape.
 
 Chen et al. 2025, equilibrium dialysis, HSA at 1 µM — the cleanest series
 available, K_d in µM (**lower = tighter**):
@@ -367,15 +368,21 @@ available, K_d in µM (**lower = tighter**):
 | 12 | PFTrDA | 31.4 | | PFDoS | 1.29 |
 | 13 | PFTeDA | 13.1 | | | |
 
-Binding tightens from PFBA to about PFOA, then **weakens again**. The usual
-explanation: beyond a certain length the chain no longer fits the pocket and
-has to bend.
+Binding tightens from PFBA to about PFOA, then **weakens again**. The
+mechanism is not in dispute: albumin's fatty-acid sites are channels of finite
+depth, and past some length the chain no longer fits and has to bend or leave
+part of itself in water. A bilayer has no such limit, which is why membrane
+partitioning never turns over (§9a).
 
 Two consequences:
 
 - **A structure–activity model linear in carbon number is wrong at both ends.**
-- The compounds that bind albumin most tightly (C6–C10) are not the longest
-  ones. Long-chain persistence is not an albumin story.
+- The compounds that bind albumin most tightly are not the longest ones.
+  Long-chain persistence is not an albumin story.
+
+What Chen's table gets wrong is the *position* of the turn. Taken at face
+value it puts the maximum at seven perfluorinated carbons, and §9a shows that
+is about three carbons too early.
 
 **The head group is worth about a log unit.** At matched chain length the
 sulfonate binds harder than the carboxylate — PFHxS 1.31 vs PFHpA 6.2 µM at
@@ -386,6 +393,138 @@ measured γ-globulin alongside albumin: globulin binds 2–3 log units weaker at
 short chains, catches up steadily, and for PFTeDA binds *more* tightly than
 albumin. Treating "protein binding" as "albumin binding" degrades exactly where
 the persistent compounds live.
+
+### 9a. Where the optimum actually is
+
+Four series in `db/protein_binding.csv` bracket a maximum — they have measured
+points on *both* sides of their highest value — and they do not agree:
+
+| dataset | method | nCF range | peak | reversals in the first difference |
+|---|---|---|---|---|
+| Fischer 2024 HSA | SPME depletion | 4–13 | **10** | 1 |
+| Fischer 2024 BSA | SPME depletion | 5–13 | **10** | 1 |
+| Chen 2025 HSA | equilibrium dialysis | 3–15 | 7 | 4 |
+| Starnes 2025 HSA | DSF | 3–10 | 6 | 3 |
+
+Bischel et al. 2011 (BSA, equilibrium dialysis + nanoESI-MS + fluorescence)
+adds a fifth from its abstract: peak at nCF 7, total span 1.0 log unit over
+eight CF₂ groups. Three further series — Gao 2025, Qin 2024's nonspecific
+term, Starnes 2024 — never reach a maximum at all, which is not a neutral
+result: Gao is still climbing at nCF 9 and Qin at nCF 10, and both would have
+to be *falling* there if the optimum were at 6–8.
+
+**The compression from §11b is the wrong tool for this.** An argmax survives
+any strictly increasing transform, so rescaling Fischer's curve by 0.82, 0.5
+or 0.25 leaves its peak exactly where it was. Chen and Fischer disagree in
+shape, not in scale. Regressing Chen on Fischer makes that concrete: the slope
+is 0.15 (the same compression, seen from the other side) but r² is only 0.14,
+and the residuals are positive across nCF 6–10 and negative at 11–12.
+
+**The test that decides it.** Fischer measured four sorbents in one
+experiment with one method — HSA, BSA, γ-globulin and whole serum. If the fall
+after nCF 10 were the fiber or the chemistry giving out, it would give out at a
+fixed *level*, because that is what a ceiling is:
+
+| sorbent | peak nCF | log D at the peak | fall to nCF 13 |
+|---|---|---|---|
+| HSA | 10 | 5.18 | 1.31 |
+| BSA | 10 | 5.17 | 1.30 |
+| γ-globulin | **11** | 4.81 | 0.81 |
+| whole serum | 10 | 3.87 | 0.87 |
+
+The peak *levels* span 1.31 log units. The peak *positions* span one carbon.
+And globulin — a different protein in the same tube on the same fiber — peaks
+one CF₂ later than albumin, which is what two cavities of slightly different
+depth look like and is not what a shared artefact looks like. The two albumins
+agree to 0.01 log units at the peak and to 0.00 at nCF 13, the far end of a
+20-fold fall.
+
+**Chen's long-chain tail fails on its own terms.** K_D goes 4.73 → 15.8 →
+31.4 → 13.1 → 10.5 µM across nCF 10, 11, 12, 13, 15: weaker, weaker, then
+*tighter* again. With Chen's own standard errors that reversal is real
+(31.4 ± 5.1 against 13.1 ± 3.0), and a binding cavity cannot do it. Meanwhile
+the membrane–water coefficient Chen measured on the same compounds in the same
+study rises smoothly all the way to nCF 15 (+0.19 to +0.47 per CF₂, no
+reversal). The long-chain compounds were present and quantifiable; what fails
+is the dialysis.
+
+The concentration regimes line up with this. Fischer worked at 0.2–42 µg/L —
+59 nM at the top for PFTeDA — with a PFAS:protein ratio ≤ 0.004. Chen worked
+at up to 2 µM, 34× higher. DSF needs micromolar to millimolar to shift a
+melting temperature at all, and the 2026 Starnes review says of its own method
+family that "the poor aqueous solubility of many PFAS congeners, particularly
+long-chain PFAAs (C12 and above), prevents accurate measurement of their
+binding in the assay." C12 is nCF 11 — exactly where the datasets part company.
+
+**The answer.** Averaging Fischer's two albumins and reading the top of the
+curve rather than a single point:
+
+| nCF | compound | HSA | BSA | mean | below the peak |
+|---|---|---|---|---|---|
+| 8 | PFNA | 4.49 | 4.54 | 4.52 | −0.66 |
+| 9 | PFDA | 4.73 | 4.81 | 4.77 | −0.41 |
+| 10 | **PFUnDA** | 5.18 | 5.17 | **5.17** | **0.00** |
+| 11 | PFDoDA | 5.05 | 5.12 | 5.08 | −0.09 |
+| 12 | PFTrDA | 4.54 | 4.47 | 4.50 | −0.67 |
+| 13 | PFTeDA | 3.87 | 3.87 | 3.87 | −1.30 |
+
+> **The optimum is a plateau at nCF 10–11 — PFUnDA and PFDoDA, the C11 and C12
+> acids — centred on nCF 10 at log D ≈ 5.2 L_water per kg protein. Widen the
+> tolerance to half a log unit and nCF 9 (PFDA) joins; nothing else does.**
+
+Confidence, separated out, because the three parts are not equally strong:
+
+- *That an optimum exists and is not an artefact* — **strong**. Two proteins,
+  0.01 log apart at the peak; position invariant across three sorbents 1.3 log
+  units apart in level.
+- *That it sits at 10 rather than 9 or 11* — **moderate**. The top is flat and
+  nobody publishes per-compound error bars on this stretch.
+- *That it is **not** at nCF 6–8* — **strong**, and this is the part that
+  matters. Fischer's albumins peak at 10, Gao's fluorescence quenching is still
+  climbing at 9, Qin's nonspecific SPME term is still climbing at 10. Three
+  methods, three labs, and a maximum at 7 needs all three wrong in the same
+  direction. Even Chen's own quadratic vertex, fitted through its peak and
+  neighbours, lands at 8.2 rather than at its argmax of 7.
+
+**The sulfonate optimum is not located.** Fischer's PFSA series ends at nCF 10
+(PFDS) still at or near its top, so all that can be said is nCF ≥ 9. No
+dataset here carries a C12 sulfonate.
+
+#### Why this is invisible in vivo, and why that is not a contradiction
+
+Three statements that sound incompatible are all true:
+
+- tissue binding has no chain-length optimum — Ryu 2024's unbound fractions,
+  five tissues × four species, fall monotonically to nCF 13 at −0.50 per CF₂
+  with no reversal;
+- membrane partitioning has no chain-length optimum — Chen's own K_MW, to
+  nCF 15;
+- **albumin binding does** — Fischer, at nCF 10.
+
+They are consistent because past the optimum the long-chain PFCAs do not stop
+binding. They stop binding *to albumin* and go on partitioning into lipid.
+Anything measured on whole tissue, or on whole serum, sums the two and sees the
+sum keep rising. So an optimum found on purified protein is not refuted by an
+in vivo series that shows none — and the reverse inference, "half-lives keep
+rising with chain length, so albumin affinity must too", does not follow either.
+
+#### What it changes
+
+1. **Every regulated PFCA is on the rising limb.** PFOA sits 0.70 log units —
+   a factor of 5 — below the albumin optimum; PFNA 0.69; PFDA 0.45. That is the
+   regime where affinity is most sensitive to chain length, which is where a
+   QSAR has the most to say and the most to get wrong.
+2. **A QSAR fitted on nCF ≤ 9 extrapolates straight through the optimum.**
+   Fischer's HSA limb runs at +0.49 per CF₂ over nCF 4–9. Extending that line
+   over-predicts nCF 11 by 3×, nCF 12 by 34× and nCF 13 by 487×. Almost no
+   training set with toxicity values reaches nCF 12.
+3. **It does not rescue albumin in the mass balance** (§13). The compounds
+   that failed — PFHxA at nCF 5, PFOA at 7 — are on the rising limb, five and
+   three carbons from the optimum. PFHxA needed log D 3.8–4.0 against 3.20
+   measured, and the optimum cannot be borrowed across five CF₂ groups.
+
+Run it: `python3 scripts/albumin_chain_length_optimum.py`
+(`--figure` writes `figures/fig17_albumin_chain_length_optimum.png`).
 
 ### 10. Species: albumin is conserved, and that is the problem
 
@@ -518,9 +657,14 @@ PFNA/PFDA sit in a plateau the measurement cannot separate.
 
 **Second, the real difference is dynamic range.** Over the same compounds
 Chen's PFCA series spans **1.52 log units** and Fischer's spans **3.02**.
-Chen's apparent optimum sits at PFOA (nCF 7), Fischer's at PFUnDA (nCF 10).
-The whole profile is compressed by about a factor of two, and that pushes the
-apparent optimum to shorter chains. PFNA is one symptom, not a separate fault.
+PFNA is one symptom of that compression, not a separate fault.
+
+A caution on what compression does and does not explain, because I got this
+wrong first time: Chen's apparent optimum sits at PFOA (nCF 7) and Fischer's at
+PFUnDA (nCF 10), and **compression is not the reason**. An argmax survives any
+strictly increasing transform, so shrinking a curve toward its mean leaves its
+peak exactly where it was. The two disagree in *shape*, and §9a works out
+which shape is right.
 
 **Third, what compresses it.** Three candidate predictors of the shortfall
 (Fischer − Chen), each regressed across the series:
@@ -552,10 +696,11 @@ factor one line predicts across three log units.
 **What this means for using Chen:**
 
 - The **ranking** is sound at the short end. Use it up to about nCF 8.
-- **Do not read a chain-length optimum off Chen alone.** Fischer puts it near
-  nCF 10, Chen near nCF 7, and the difference is assay compression. All three
-  datasets agree there *is* an optimum and that binding falls away after it;
-  they disagree on where inside C7–C10.
+- **Do not read a chain-length optimum off Chen alone.** Fischer puts it at
+  nCF 10 and Chen at nCF 7. That difference is *not* the compression (see the
+  caution above) — it is a separate failure in Chen's long-chain tail, where
+  K_D reverses direction between nCF 12 and 13. §9a adjudicates it and comes
+  down on nCF 10–11.
 - The **PFNA cell is within noise of PFOA** and should not be treated as a
   finding in either direction.
 
@@ -672,14 +817,18 @@ on neutral organics does not describe an anionic surfactant on protein.
 4. **The sulfonates do not reconcile as cleanly as the carboxylates** (§11a),
    and nobody has explained why their specific-to-non-specific separation is
    so much larger.
-5. **Where is the chain-length optimum?** Fischer says nCF 10, Chen says nCF 7,
-   and §11b shows Chen's is pulled short by compression — but that does not by
-   itself put Fischer's at the right place either.
+5. **Where exactly inside nCF 9–11 is the carboxylate optimum?** §9a puts the
+   plateau at 10–11 and rules out 6–8, but the top is flat and no study
+   publishes per-compound error bars on that stretch.
+6. **Where is the sulfonate optimum?** No dataset here carries a C12
+   sulfonate, so all that can be said is nCF ≥ 9.
 
 *Resolved since the first draft:* the apparent Chen-versus-Fischer conflict,
-which is the specific/non-specific regime difference (§11a); and Chen's PFNA
+which is the specific/non-specific regime difference (§11a); Chen's PFNA
 "inversion", which is not significant and is one symptom of a general
-compression of his chain-length profile (§11b).
+compression of his chain-length profile (§11b); and the location of the
+carboxylate chain-length optimum, which is nCF 10–11 and not the nCF 6–8 that
+three datasets report (§9a).
 
 ---
 
@@ -707,6 +856,14 @@ clears PFOA ~1000× faster. Reconcile these.
 
 **7.** Why does substituting a *better* albumin measurement make a mass-balance
 model *worse*?
+
+**8.** Chen's albumin affinities span 1.52 log units where Fischer's span 3.02
+— Chen's curve is squashed toward its mean. Chen's maximum sits at nCF 7 and
+Fischer's at nCF 10. Does the squashing explain the three-carbon difference?
+
+**9.** Ryu 2024 measures unbound fractions in five tissues across four species
+and finds them falling monotonically all the way to nCF 13, with no optimum.
+Does that refute an albumin optimum at nCF 10?
 
 <details>
 <summary>Answers</summary>
@@ -739,6 +896,22 @@ species. Albumin binding modulates how much is available to be filtered, but a
 shrinks the albumin sink and sends more dose to the cell — and the model already
 over-predicted cell uptake. A parameter can be the most *sensitive* one in a
 model and still not be the one that is *wrong*.
+
+**8.** No, and this is the trap. Squashing a curve toward its mean is a
+strictly increasing transform of the y-axis, and an argmax is invariant under
+any such transform: rescale Fischer by 0.82, or 0.5, or 0.25, and its peak
+stays at nCF 10. Two curves that differ only in scale have the same optimum.
+So the three-carbon gap has to come from somewhere else — in this case a
+failure in Chen's long-chain tail, where K_D reverses direction between nCF 12
+and 13 by more than its own standard errors allow (§9a).
+
+**9.** No. Albumin has a cavity, and a cavity has a depth, so it can have an
+optimum. Lipid does not. Past nCF 10 the long-chain PFCAs do not stop binding —
+they stop binding *albumin* and go on partitioning into membrane, and Chen's
+own membrane–water coefficient rises smoothly to nCF 15 to prove it. Tissue
+f_unbound sums both channels and so sees the sum keep rising. The same logic
+blocks the reverse inference: "half-lives keep rising with chain length, so
+albumin affinity must too" does not follow either.
 
 </details>
 
@@ -800,6 +973,7 @@ model and still not be the one that is *wrong*.
 | `scripts/binding_species_and_structure.py` | §9–10 |
 | `scripts/chen_fischer_reconciliation.py` | §11a |
 | `scripts/chen_pfna_inversion.py` | §11b |
+| `scripts/albumin_chain_length_optimum.py` | §9a, the optimum adjudication |
 | `scripts/add_chen2025_tableS5.py` | the §9/§11 dataset |
 | `report/REPORT.md` §6.1–6.3 | the same material as evidence in the species argument |
 | `report/MBM_Qin_vs_Armitage.md` §12–14 | §13 in full |

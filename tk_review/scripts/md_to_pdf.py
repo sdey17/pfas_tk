@@ -75,6 +75,11 @@ S = {
 SUPER = {"\u2070": "0", "\u00b9": "1", "\u00b2": "2", "\u00b3": "3",
          "\u2074": "4", "\u2075": "5", "\u2076": "6", "\u2077": "7",
          "\u2078": "8", "\u2079": "9", "\u207b": "-", "\u207a": "+"}
+# Subscript digits are outside WinAnsi too (CF2, H2O), so they take the same
+# treatment through reportlab's <sub> tag.
+SUB = {"\u2080": "0", "\u2081": "1", "\u2082": "2", "\u2083": "3",
+       "\u2084": "4", "\u2085": "5", "\u2086": "6", "\u2087": "7",
+       "\u2088": "8", "\u2089": "9", "\u208b": "-", "\u208a": "+"}
 # The Symbol font does not render reliably through this toolchain, so Greek
 # letters are spelled out. In a primer that is arguably clearer anyway.
 GREEK = {"\u03b1": "alpha", "\u03b2": "beta", "\u03b3": "gamma",
@@ -105,6 +110,12 @@ def glyph_safe(t):
                 run += SUPER[t[i]]; i += 1
             out.append(f"<super>{run}</super>")
             continue
+        if c in SUB:
+            run = ""
+            while i < len(t) and t[i] in SUB:
+                run += SUB[t[i]]; i += 1
+            out.append(f"<sub>{run}</sub>")
+            continue
         if c in GREEK:
             out.append(f"<i>{GREEK[c]}</i>")
         elif c in ASCII_MAP:
@@ -120,6 +131,8 @@ def code_safe(t):
         t = t.replace(k, v)
     for k, v in SUPER.items():
         t = t.replace(k, "^" + v if v in "+-" else v)
+    for k, v in SUB.items():
+        t = t.replace(k, v)
     for k, v in GREEK.items():
         t = t.replace(k, v)
     return t
