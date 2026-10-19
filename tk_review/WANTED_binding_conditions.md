@@ -62,6 +62,12 @@ The ones most likely to be wanted:
 
 ## Still outstanding after the 2026-10-16 batch
 
+- **Chen et al. 2025 Supporting Information**, 10.1021/acs.est.4c06734 — the
+  per-congener K_MW (membrane-water) and K_A (HSA) for all 60 PFAS are in the
+  SI; only the regression slopes and the group ordering were extractable from
+  the article. This is the largest single membrane-water dataset in the field
+  and would let Armitage's membrane-lipid spLFER be tested directly
+
 - **Zhang et al.** (Han 2021 ref 34) — the fluorescence-displacement source of
   every L-FABP K_d that Han 2021 plots. Han measures ΔT_m, not K_d, so the
   affinities currently in the database for L-FABP are second-hand
@@ -91,3 +97,7 @@ The ones most likely to be wanted:
   typos and excluded from derived ratios; see
   `scripts/add_ryu2024_si_funbound.py`. Tidy form in `db/ryu2024_funbound.csv`
 - Starnes et al. 2025 — 68 rows from SI Table S4, 49 binders and 19 non-binders
+- Qin et al. 2024 — 64 rows, Table 2 complete: 16 PFAS x BSA / human plasma /
+  trout plasma, specific and nonspecific terms separated. The only dataset in
+  the file that reports BOTH regimes for the same protein and compound
+- Chen et al. 2025 — 1 study-level row; per-congener values need the SI (above)

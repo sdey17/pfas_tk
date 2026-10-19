@@ -1384,7 +1384,7 @@ Two further observations worth recording:
 
 ## 6. In vitro binding to albumin and related proteins
 
-`db/protein_binding.csv` — 741 rows, 64 study-years, 62 protein targets, 726
+`db/protein_binding.csv` — 806 rows, 66 study-years, 64 protein targets, 791
 with a DOI, computational values flagged.
 
 ```bash
@@ -1531,6 +1531,15 @@ K_d is an apparent affinity at the protein's melting transition, around
 60–70 °C, not an equilibrium constant at 37 °C. Those constants rank congeners
 and species usefully and should not be carried into a TK model as affinities.
 
+**The regime effect is now measured, not inferred.** Qin et al. 2024 reports
+specific and nonspecific protein–water distribution ratios separately for the
+same protein and compound (§6.1e). They differ by **3.0–5.0×** across
+PFBA–PFOA, with specific binding dominating below ν ≈ 0.01 and nonspecific
+above ν ≈ 1. That is the size of the error incurred by carrying an in vitro
+constant into a physiological calculation without asking which regime produced
+it, and it is a floor, not a ceiling: it is the gap within one method in one
+laboratory.
+
 **Two caveats on the arithmetic.**
 
 *Stoichiometry is load-bearing.* The same K_d is "too weak" at one site and
@@ -1622,6 +1631,18 @@ Three assumptions, each of which fails somewhere in this literature:
 | trace ligand, C_w ≪ K_d | D = D⁰/(1 + C_w/K_d) | a constant fitted at C_w = 10·K_d reads 11× low — §6.1a's L/P table |
 | one class of equivalent sites | none; n is a lumped effective capacity | albumin has several sites of different affinity (§6.1a, Chen & Guo) |
 | all sorbed ligand is site-bound | add a non-saturating term | which is exactly why Qin carries a separate D_non-specific |
+
+**Two independent sources write the same bridge.** Chen et al. 2025 (ES&T
+59:82) derives, as its Equation 4,
+
+    D_HSA/W = B_max · ρ_HSA / [(K_d + C_aq/MW_PFAS) · MW_HSA]
+
+which is the expression above with B_max for n and the albumin concentration
+already cancelled. It was published independently of anything in this review
+and agrees term for term. And Qin's mass-balance model uses the same equation
+in its albumin term, as the next paragraph shows. A relation three groups
+write the same way is not a modelling choice; it is the definition of a
+partition coefficient applied to a saturable site.
 
 **The conversion is not a guess — Qin's own equation is it.** Qin writes
 D_BSA/w = C_max/(K_d + C_w) + D_non-specific (their Eq. 16). Setting that beside
@@ -1935,6 +1956,100 @@ are wildly different guesses at the same quantity, and they are what the two
 models' cell terms are respectively made of — and the **cell volume** the
 whole thing is normalised by, uncertain to 3.1×.
 
+### 6.1e Cell protein, and where the mass-balance line ends
+
+Two papers close this out. **Qin et al. 2024** (ES&T 58:9954, the same group as
+the 2023 mass-balance model) measured specific *and* nonspecific
+protein–water distribution ratios for 16 PFAS in BSA, human plasma and trout
+plasma by SPME across four orders of magnitude — 64 rows now in
+`db/protein_binding.csv`. **Chen et al. 2025** (ES&T 59:82) derived
+membrane–water and protein–water coefficients for 60 PFAS, and its Equation 4
+is the §6.1b bridge, derived independently.
+
+`python3 tk_review/scripts/mbm_cell_protein.py` → `db/mbm_cell_protein.csv`
+
+**Candidate 1 was the sorptive capacity assigned to cell protein.** Three
+estimates of it, log D_protein/water on the models' volume basis:
+
+| compound | Qin 2023 model | Qin 2024 measured | Armitage (0.035·D_ow) | Armitage / measured |
+|---|---|---|---|---|
+| PFBA | 1.63 | 1.97 | −1.92 | 1.3 × 10⁻⁴ |
+| PFHxA | 2.67* | 2.69 | −0.37 | 8.6 × 10⁻⁴ |
+| PFHpA | 3.18* | 3.47 | 0.40 | 8.5 × 10⁻⁴ |
+| PFOA | 3.70 | 3.88 | 1.18 | 2.0 × 10⁻³ |
+| PFNA | 4.22* | 4.61 | 1.95 | 2.2 × 10⁻³ |
+
+*interpolated in the 2023 model; 2024 measures all five.
+
+Two results. Qin's 2023 interpolation sits within 1.1–2.5× of his own later
+measurement with the same slope, so the model was **not** damaged by having to
+interpolate. **Armitage's octanol surrogate is 457–7,820× too low** and 1.5×
+too steep. That explains §6.1d's composition finding: Armitage's cell is ~100%
+membrane lipid not because protein does not bind PFAS, but because the octanol
+convention has defined its protein term out of existence. A coefficient
+calibrated on neutral organics does not describe an anionic surfactant on
+protein.
+
+**But substituting the measured value makes both models worse** — Qin 3.43× →
+5.92×, Armitage 2.33× → 6.10×. The measured protein affinity is *higher* than
+either model assumes, so it enlarges the cell sink, and both already
+over-predict.
+
+**That is now a pattern across every substitution tried:**
+
+| parameter | best measurement | direction | effect on fit |
+|---|---|---|---|
+| albumin | Fischer 2024 | **below** both models | worse (§6.1c) |
+| cell D_cell/w | Qin 2023 Table 2 | mixed | centres bias, disperses error (§6.1d) |
+| cell protein | Qin 2024 | **above** both models | worse |
+
+The first two push dose into the cell by shrinking the competing sink; the
+third by enlarging the cell's own. All three move the prediction the same way.
+**No partition coefficient in this system fixes an over-prediction, because
+the measured values do not point that way.**
+
+**What does.** The one parameter that scales x_cell directly, with no
+partition coefficient involved, is the cell volume — §6.1d put it at 3.1×
+uncertain. Armitage's AREc2 is 10 ng/cell (~10 pL at 1 mg/mL); the project
+spreadsheet has 3.04 pL/cell for HepG2 at the same protein per cell. Rerunning
+the *published* models on the smaller cell:
+
+| | bias | \|err\| | ≤25 µM | 100 µM |
+|---|---|---|---|---|
+| Qin @ 10 ng/cell (as published) | 3.43× | 3.95× | 1.58× | 5.52× |
+| Qin @ 3.04 ng/cell | **1.60×** | **2.26×** | 0.93× | 2.24× |
+| Armitage @ 10 ng/cell (as published) | 2.33× | 2.42× | 2.73× | 2.12× |
+| Armitage @ 3.04 ng/cell | **1.08×** | 2.32× | 1.61× | 0.85× |
+
+Armitage becomes essentially unbiased and Qin's absolute error drops by 40%.
+The cell volume is the one knob that rescales every compound by the *same*
+factor, which is exactly what a level offset that does not vary with chain
+length requires.
+
+It is not a free parameter being tuned: both volumes are real measurements of
+different cell lines, and the assays being modelled are **HepG2 and HepaRG,
+not AREc2**. Resolving it needs the cell volume of the lines actually used,
+which none of the three uptake papers reports. **That is where this line
+stops.**
+
+**One thing Qin 2024 settles that no model could.** It reports the specific
+and nonspecific constants separately for the same protein and compound:
+
+| compound | specific | nonspecific | ratio |
+|---|---|---|---|
+| PFBA | 2.44 | 1.97 | 3.0× |
+| PFHxA | 3.26 | 2.69 | 3.7× |
+| PFHpA | 4.12 | 3.47 | 4.5× |
+| PFOA | 4.58 | 3.88 | 5.0× |
+
+Which one you measure depends entirely on the PFAS:protein molar ratio ν:
+specific binding dominates below ν ≈ 0.01 (physiological), nonspecific takes
+over above ν ≈ 1 (where in vitro assays are dosed). This is the direct
+measurement of what §6.1a and §6.1b could only infer from the L/P table, and
+it converts that inference into a number: **3–5× for the same protein and
+compound.** Qin's mass balance correctly uses the nonspecific value, because
+the assays it models are dosed in excess. A PBTK model of a human must not.
+
 ### 6.2 The one dataset measured at a realistic ratio
 
 Fischer et al. 2024 (solid-phase microextraction, PFAS:protein ≤ 0.004), log
@@ -2050,7 +2165,7 @@ consistent across methods (FA3/4 + FA5, PDB 4E99).
 
 ### 6.3a What the in vitro literature says about species and structure
 
-`db/protein_binding.csv` holds 741 rows from 64 study-years, but most of it
+`db/protein_binding.csv` holds 806 rows from 66 study-years, but most of it
 cannot answer either question, because §6.1 showed a single affinity number per pair
 does not exist. What can answer them is the handful of studies that hold method
 constant and vary one thing. Run
@@ -2109,6 +2224,19 @@ occupies the binding cavity while the acid head group hydrogen-bonds to
 residues, so chlorine substitution, ether insertion and branching all act
 *through* chain length and hydrophobicity rather than as independent axes.
 
+**A third species comparison, on plasma rather than albumin.** Qin et al. 2024
+measured 16 PFAS against BSA, human plasma and trout plasma by one method.
+Two findings matter here. **BSA is a good surrogate for human plasma** — the
+same verdict Starnes and Fischer reach for albumin, now at the level of whole
+plasma. And the human-versus-trout difference is explained entirely by
+**composition, not protein identity**: human plasma is 42.25 mL/L protein and
+4.46 mL/L lipid, trout 15.46 and 7.08, and a mass balance built from those
+volume fractions plus the protein- and lipid-water constants predicts both
+within a factor of 10. Species differ in what their plasma is made of, not in
+how their proteins bind — which is the same conclusion §6.3 reaches from
+albumin and §6.3a's Ryu analysis reaches from whole tissue, now from a third
+matrix.
+
 **Two studies look beyond albumin, and they disagree with each other.** Both
 are now in the database in full.
 
@@ -2141,7 +2269,7 @@ C57BL/6J mouse, 37 °C, 5 µM, 18 h, n = 4. **All 320 values are now in the
 database** from SI Tables S4–S7, with `db/ryu2024_funbound.csv` as the tidy
 form and
 `python3 scripts/ryu_funbound_species_tissue.py` for the analysis below. This
-is the largest single species-comparison in the file and, at 320 of 741 rows,
+is the largest single species-comparison in the file and, at 320 of 806 rows,
 it now dominates the row count — read `study` before aggregating anything.
 
 **Species: three rodents, all within 20% of human on average.** Ratio of
@@ -2905,7 +3033,7 @@ set — is what turns this from an argument into a model.
 | `human_halflife_extended.csv` | 142 | human estimates with design and modelling assumptions |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | clearance factors normalised to mL/kg-day |
-| `protein_binding.csv` | 741 | in vitro binding, with method and ratio regime |
+| `protein_binding.csv` | 806 | in vitro binding, with method and ratio regime |
 | `binding_summary_ka.csv` | 71 | association constants, as ranges |
 | `binding_summary_logD.csv` | 111 | protein/water distribution at realistic ratio |
 | `transporter_kinetics.csv` | 217 | Km/Vmax/IC50 with reabsorption-or-secretion direction |

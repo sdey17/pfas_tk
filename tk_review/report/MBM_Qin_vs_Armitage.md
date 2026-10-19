@@ -451,3 +451,55 @@ Armitage's "3.5% of protein behaves as octanol" — wildly different guesses at
 the same quantity, and the substance of each model's cell term) and the cell
 volume the result is normalised by, which is uncertain to 3.1× across the
 three compositions in play.
+
+---
+
+## 14. Candidate 1 eliminated; the cell volume is what is left
+
+Added 2026-10-19. Reproduce with `python3 tk_review/scripts/mbm_cell_protein.py`;
+detail in `report/REPORT.md` §6.1e. This closes the mass-balance line.
+
+Two papers made the test possible. **Qin et al. 2024** (ES&T 58:9954, the same
+group as the 2023 model) measured specific and nonspecific protein–water
+distribution ratios for 16 PFAS by SPME over four orders of magnitude.
+**Chen et al. 2025** (ES&T 59:82) independently writes the Kd → partition
+coefficient bridge of §6.1b as its Equation 4.
+
+**Candidate 1 was cell protein.** Qin's 2023 interpolation turns out to sit
+within 1.1–2.5× of his own later measurement with the same slope, so the model
+was not damaged by interpolating three of the five compounds. Armitage's
+octanol surrogate is another matter: 0.035·D_ow runs **457–7,820× below** the
+measured protein affinity and 1.5× too steep. That is why Armitage's cell is
+~100% membrane lipid — the convention has defined its protein term out of
+existence.
+
+But substituting the measured value makes both models **worse** (Qin 3.43 →
+5.92, Armitage 2.33 → 6.10), because the measurement is *higher* than either
+model assumes and both already over-predict.
+
+**The pattern across all three substitutions:**
+
+| parameter | best measurement | direction | effect |
+|---|---|---|---|
+| albumin (Fischer 2024) | below both models | smaller competing sink | worse |
+| cell D_cell/w (Qin 2023 T2) | mixed | — | centres, disperses |
+| cell protein (Qin 2024) | above both models | bigger cell sink | worse |
+
+All three move dose into the cell. No partition coefficient fixes an
+over-prediction here, because the measured values do not point that way.
+
+**The cell volume does.** Rerunning the published models at 3.04 pL/cell
+(project sheet, HepG2) instead of 10 ng/cell (AREc2) gives Qin bias 1.60×
+(|err| 3.95 → 2.26) and **Armitage 1.08×**. It is the one knob that rescales
+every compound by the same factor, which is what a level offset independent of
+chain length requires — and the assays modelled are HepG2 and HepaRG, not
+AREc2. None of the three uptake papers reports its cell volume, so that is
+where this stops.
+
+**One result worth keeping regardless.** Qin 2024 reports both binding regimes
+for the same protein and compound: specific exceeds nonspecific by 3.0–5.0×
+across PFBA–PFOA, with specific dominating below ν ≈ 0.01 and nonspecific
+above ν ≈ 1. That is the direct measurement of the ligand:protein regime
+effect §6.1a inferred, and it quantifies the penalty for carrying an in vitro
+constant into a physiological calculation without asking which regime produced
+it.
