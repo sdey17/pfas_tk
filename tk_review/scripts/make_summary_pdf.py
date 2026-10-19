@@ -827,6 +827,52 @@ def story_3():
           "concentrations themselves. That conclusion is not reachable by "
           "comparing proportionality; it needs the absolute conversion.",
           "body"),
+        p("Which leaves the cell", "h2"),
+        p("The two models disagree about what a cell is more sharply than "
+          "about anything else. Armitage's is 79% water for the shortest "
+          "chain and essentially pure membrane lipid for the longest, with "
+          "protein contributing a fifth of one percent throughout, because "
+          "only 3.5% of protein is treated as sorptive and that fraction is "
+          "modelled as octanol. Qin's is 92-95% protein at every chain length "
+          "and carries no water phase at all. They differ on the cell "
+          "partition itself by up to ninefold, yet their predicted fraction "
+          "of dose in the cell agrees within about twofold, because the "
+          "albumin term dominates the denominator and damps the difference. "
+          "Agreement on the output is not corroboration of the mechanism.",
+          "body"),
+        KeepTogether([
+        p("Chain-length dependence of the cell partition, decades per "
+          "CF<sub>2</sub>, from four independent routes:", "body"),
+        tbl([
+            ["source", "slope"],
+            ["uptake data, by inverting the balance", "+0.55"],
+            ["Qin model", "+0.52"],
+            ["Armitage model", "+0.78"],
+            ["Ryu 2024 whole-tissue unbound fraction", "0.46-0.53"],
+            ["<b>Qin Table 2, cell homogenate</b>", "<b>+0.18</b>"],
+        ], [92 * mm, W - 92 * mm]),
+        p("Built by scripts/mbm_cell_term.py.", "caption")]),
+        p("Measured against Qin's own cell-homogenate numbers both models "
+          "look three to four times too steep, which reads as a model defect "
+          "until the other two routes are added: the cellular uptake data and "
+          "whole-tissue dialysis both land on the models' slope, and Qin's "
+          "Table 2 sits alone, twentyfold above what the uptake requires for "
+          "PFBA. Substituting those measured values confirms it from the "
+          "other side - the mean bias improves, Armitage's to 1.25&times;, "
+          "while the absolute error gets worse and the shortest chain is "
+          "over-predicted twentyfold. Centring a fit while destroying its "
+          "trend is what substituting an outlier looks like.", "body"),
+        p("So the chain-length dependence is not the defect, and what remains "
+          "is a level error in the cell term of several fold, worst in the "
+          "middle of the series. That is the right size and the right "
+          "direction to be the whole over-prediction, where albumin was "
+          "neither. Two candidates remain: the sorptive capacity assigned to "
+          "cell protein, where Qin's measured non-specific affinity and "
+          "Armitage's octanol surrogate are wildly different guesses at the "
+          "same quantity and are the substance of each model's cell term, and "
+          "the cell volume the whole result is normalised by, which is "
+          "uncertain to threefold across the three cell compositions in use.",
+          "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
         p("Most of the 741-row binding file cannot answer a comparative "

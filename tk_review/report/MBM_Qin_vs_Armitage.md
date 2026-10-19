@@ -405,3 +405,49 @@ value exceeds anything ever measured for that compound by 8.6–13.2×, even
 allowing six binding sites. So albumin is where the sensitivity is (it holds
 19–94% of sorptive capacity) but not where the error is, and the remaining
 candidates are the cell term, the plastic term, and the measured C_cell values.
+
+---
+
+## 13. The cell term: slope exonerated, level convicted
+
+Added 2026-10-19. Reproduce with `python3 tk_review/scripts/mbm_cell_term.py`;
+full detail in `report/REPORT.md` §6.1d.
+
+Section 12 ruled albumin out as the source of the over-prediction. The cell
+term is the other large compartment, and it is where the two models disagree
+most about mechanism while agreeing most about value.
+
+**Composition.** Armitage's cell is 79% water at PFBA and 99.7% membrane lipid
+at PFNA, with protein contributing 0.1–0.2% throughout (only 3.5% of protein
+is sorptive, and that fraction is treated as octanol). Qin's cell is 92–95%
+protein at every chain length, with no water phase. They differ on the cell
+partition by 0.44–9.5×, yet their predicted fraction of dose in the cell
+agrees to 0.6–2.5×, because the albumin term damps the difference. Agreement
+on the output is not corroboration of the mechanism.
+
+**The slope.** Against Qin's own Table 2 both models look 2.9–4.4× too steep in
+chain length. That reading is wrong. Inverting the balance for the cell
+partition the uptake data require gives +0.549 decades per CF₂; the models
+give +0.515 and +0.782; Ryu 2024's whole-tissue f_unbound gives 0.46–0.53.
+Qin's Table 2 alone gives +0.177, and at PFBA it is 20× above what the uptake
+requires. Three independent lines against one: the models' slope is fine.
+
+Substituting Qin's measured D_cell/w confirms it. Mean bias improves (Qin
+3.43 → 1.99, Armitage 2.33 → 1.25) while absolute error worsens (3.95 → 4.80,
+2.42 → 3.09), with PFBA over-predicted 20–24× and PFNA under-predicted to
+0.27–0.31×. Centring the fit while destroying the trend is what substituting
+an outlier looks like.
+
+**The level.** Qin's cell partition runs 1.5–9.2× above the uptake requirement
+and Armitage's 0.25–6.2×, both worst mid-series at PFHxA–PFHpA. Those factors
+are conditional: redoing the inversion under Qin's, Armitage's and Fischer's
+albumin moves the implied level 2.6–8.3×, though the slope survives all three
+(+0.72 to +0.82). Read the level as "several-fold too high, worst mid-chain".
+
+**What to fix.** Not the lipid or octanol descriptor — the chain-length
+dependence is already right. The two remaining candidates are the sorptive
+capacity assigned to cell protein (Qin's measured D_non-specific versus
+Armitage's "3.5% of protein behaves as octanol" — wildly different guesses at
+the same quantity, and the substance of each model's cell term) and the cell
+volume the result is normalised by, which is uncertain to 3.1× across the
+three compositions in play.

@@ -1849,6 +1849,92 @@ C_cell by 7–17×, are also the ones where the needed correction is nearly
 within measured range, so the residual there is small and plausibly albumin.
 The short chains are where something else is wrong.
 
+### 6.1d The cell term, and where the error actually is
+
+§6.1c ruled albumin out. This section takes the other big compartment apart.
+`python3 tk_review/scripts/mbm_cell_term.py` → `db/mbm_cell_term.csv`.
+
+**Whose cell?** The protein+lipid volume fraction differs 3.1× across the
+three compositions in play — Armitage's AREc2 0.056, Qin's HEK293H 0.086, the
+project sheet's HepG2 0.173. A D_cell/w quoted per litre of *whole cell*
+therefore means three different things, and Qin's Table 2 is explicitly
+"[L_w/L_cell,prot+lip]". Everything below is on the protein+lipid basis.
+
+**The two models could not disagree more about what a cell is.**
+
+| compound | Armitage: storage lipid / membrane lipid / protein / **water** | Qin: protein / lipid |
+|---|---|---|
+| PFBA | 0.0% / 20.8% / 0.1% / **79.1%** | 92.3% / 7.7% |
+| PFOA | 0.1% / 99.4% / 0.2% / 0.3% | 94.6% / 5.4% |
+| PFNA | 0.1% / 99.7% / 0.2% / 0.0% | 95.1% / 4.9% |
+
+Armitage's cell is 79% water at PFBA and essentially pure membrane lipid by
+PFNA; its protein contributes 0.1–0.2% throughout, because only 3.5% of
+protein is treated as sorptive and that fraction is modelled as octanol.
+Qin's cell is 92–95% protein at every chain length and has no water phase.
+
+**Agreement on the answer is not agreement on the mechanism.** The two models
+differ on the cell partition itself by 0.44–9.5×, worst at PFBA, yet their
+predicted fraction of dose in the cell agrees to 0.6–2.5×. The albumin term
+dominates the denominator and damps the difference. Any "two independent
+models agree" reading of the cell term is worthless.
+
+**Against Qin's own measurement, both models look too steep** — and this is
+where the section nearly went wrong:
+
+| decades of log D_cell/w per CF₂ | |
+|---|---|
+| Qin Table 2, cell homogenate | **+0.177** |
+| Qin model | +0.515 |
+| Armitage model | +0.782 |
+
+Taken alone that reads as a model defect. It is not. Inverting the balance for
+the cell partition the *uptake data themselves* require gives **+0.549**, and
+Ryu 2024's whole-tissue f_unbound gives 0.46–0.53 on the same axis (§6.3a).
+Three independent lines cluster around 0.5–0.8; **Qin's Table 2 sits alone at
+0.18**, and at PFBA it is 20× above what the uptake requires.
+
+| compound | uptake-implied | Qin Table 2 | Qin model | Armitage |
+|---|---|---|---|---|
+| PFBA | 1.25 | 2.56 | 1.63 | 0.65 |
+| PFHxA | 1.71 | 2.92* | 2.66 | 2.21 |
+| PFHpA | 2.21 | 3.09* | 3.17 | 3.00 |
+| PFOA | 3.10 | 3.27 | 3.69 | 3.78 |
+| PFNA | 4.02 | 3.45* | 4.20 | 4.56 |
+
+*interpolated on the measured carboxylate slope; PFBA and PFOA are Qin's two
+measured carboxylate anchors.
+
+Substituting Qin's measured D_cell/w confirms it from the other direction:
+mean bias improves (Qin 3.43× → 1.99×, Armitage 2.33× → **1.25×**) but the
+absolute error gets *worse* (3.95× → 4.80×, 2.42× → 3.09×), because the
+per-compound spread blows out — PFBA over-predicted 20–24×, PFNA
+under-predicted to 0.27–0.31×. Centring the predictions while wrecking the
+chain-length trend is the signature of substituting an outlier.
+
+**So the slope is exonerated, and what remains is a level error in the cell
+term.** Qin's cell partition runs 1.5–9.2× above what the uptake data require,
+Armitage's 0.25–6.2×, both peaking mid-series at PFHxA–PFHpA rather than at
+either end — the same shape as the overall bias.
+
+One caveat on those factors. The inversion holds everything but the cell term
+fixed, so it inherits the albumin parameterisation. Redone under Qin's,
+Armitage's and Fischer's albumin the implied level moves 2.6–8.3×, so read
+"several-fold too high, worst mid-chain" rather than the printed numbers. The
+**slope** survives all three (+0.72 to +0.82 per CF₂ against Table 2's +0.18),
+which is what the conclusion rests on.
+
+**Where that leaves the models.** Albumin could not carry the over-prediction —
+the coefficient needed was above anything measured and the best measurement
+pointed the other way (§6.1c). The cell term can carry it, is the right size
+to carry it, and is wrong in the right direction. It is *not* a chain-length
+problem, so re-fitting the lipid or octanol descriptor will not fix it. Two
+candidates remain: the sorptive capacity assigned to **cell protein** — Qin's
+measured D_non-specific and Armitage's "3.5% of protein behaves as octanol"
+are wildly different guesses at the same quantity, and they are what the two
+models' cell terms are respectively made of — and the **cell volume** the
+whole thing is normalised by, uncertain to 3.1×.
+
 ### 6.2 The one dataset measured at a realistic ratio
 
 Fischer et al. 2024 (solid-phase microextraction, PFAS:protein ≤ 0.004), log
