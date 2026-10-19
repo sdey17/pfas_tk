@@ -1537,6 +1537,20 @@ K_d is an apparent affinity at the protein's melting transition, around
 60–70 °C, not an equilibrium constant at 37 °C. Those constants rank congeners
 and species usefully and should not be carried into a TK model as affinities.
 
+**The regime effect resolves the one conflict between the two best datasets.**
+Chen 2025's K_d values, converted at n = 1, sit about 5× below Fischer's
+directly measured log D. That is not a disagreement: Fischer lands on Qin
+2024's **specific** term (within 0.03–0.12 log units) and Chen on his
+**non-specific** term (0.02–0.48), because Fischer works at ν ≤ 0.004 and Chen
+at ν = 0.06–2. The stoichiometry explanation — that Chen's n is really ~5 —
+would lift Chen onto Fischer only by breaking an agreement that already holds
+to 5%, so n ≈ 1 stands, which is what the backwards conversion above found
+independently. Use the specific constant for a PBTK calculation and the
+non-specific one for an in vitro mass balance; crossing them costs ~5× for
+carboxylates and more for sulfonates. Detail and caveats in
+`report/ALBUMIN_BINDING.md` §11a, reproduced by
+`python3 tk_review/scripts/chen_fischer_reconciliation.py`.
+
 **The regime effect is now measured, not inferred.** Qin et al. 2024 reports
 specific and nonspecific protein–water distribution ratios separately for the
 same protein and compound (§6.1e). They differ by **3.0–5.0×** across

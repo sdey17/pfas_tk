@@ -16,7 +16,7 @@ repository, no packages to install. Copy and run them.
 
 - Part I — [Foundations](#part-i--foundations): §1–4
 - Part II — [Why the literature disagrees](#part-ii--why-the-literature-disagrees): §5–8
-- Part III — [What is actually known](#part-iii--what-is-actually-known): §9–11
+- Part III — [What is actually known](#part-iii--what-is-actually-known): §9–11a
 - Part IV — [Using a binding constant](#part-iv--using-a-binding-constant): §12–14
 - [Check your understanding](#check-your-understanding)
 - [Reading list](#reading-list)
@@ -449,6 +449,57 @@ For comparison, scoring the older literature against the same requirement:
 | Starnes 2024 (DSF) | 790 | 82.0% | ✗ |
 | Klevens & Ellenbogen 1954 | 3100 | 53.7% | ✗ |
 
+### 11a. The two best datasets appear to disagree. They do not.
+
+Chen 2025 and Fischer 2024 are the two cleanest albumin datasets here, both at
+defensible ligand:protein ratios. Converting Chen's PFOA (K_d = 2.57 µM) at one
+site gives log D = 3.77. Fischer measured **4.48**. About 5× apart — which
+looked, at first, like a real problem.
+
+It is not a disagreement. **They measure the two different binding regimes**,
+and each lands on the matching term of the one study that measured both.
+
+Putting all four on the same basis (mass, L_water/kg_protein; Qin shifted
+−0.135 from his volume basis):
+
+| compound | Fischer | Qin **specific** | gap | | Chen | Qin **non-specific** | gap |
+|---|---|---|---|---|---|---|---|
+| PFHxA | 3.20 | 3.13 | +0.07 | | 3.03 | 2.56 | +0.48 |
+| PFHpA | 4.10 | 3.99 | +0.11 | | 3.39 | 3.34 | **+0.05** |
+| PFOA | 4.48 | 4.45 | **+0.03** | | 3.77 | 3.75 | **+0.02** |
+| PFHxS | 4.77 | 4.89 | −0.12 | | 4.06 | 3.45 | +0.62 |
+| PFOS | 4.62 | 5.14 | −0.52 | | 4.20 | 4.04 | +0.17 |
+
+For PFOA the two matches are **0.03 and 0.02 log units** — 7% and 5%. Three
+laboratories, three methods, two regimes, and each pair lands on the other.
+
+**Why it is not a stoichiometry artefact.** The competing explanation was that
+Chen's conversion assumed n = 1 when it is really ~5, which would close the gap
+arithmetically (§12: log D = log K_a + log n − 1.823). But Chen *currently* sits
+on Qin's non-specific term to 0.02 log units. Raising his n to 5 would lift him
+onto Fischer and in doing so **break an agreement that presently holds to 5%**.
+You cannot have both. And n ≈ 1 is what §12's backwards conversion found
+independently (n_implied = 1.01 for PFOA, 1.12 for PFHpA).
+
+**So which do you use?** It depends entirely on the question:
+
+- **A PBTK or plasma-binding calculation → the specific constant** (Fischer, or
+  Qin's specific term). The body runs at ν < 0.01.
+- **An in vitro mass-balance model of a dosed assay → the non-specific
+  constant** (Chen, or Qin's non-specific term). The assay runs at ν > 1.
+
+Getting it backwards costs about 5× for carboxylates and more for sulfonates.
+
+**Two honest caveats.** The sulfonates reconcile less cleanly — Qin's own
+specific-to-non-specific separation is much larger for them (PFHxS 27×, PFOS
+13×) than the Fischer–Chen gap, so something else is also moving, most likely
+that a single-site fit over ν = 0.06–2 cannot resolve a very tight sulfonate
+site. And **Chen's PFNA breaks his own series**: his K_d puts PFNA (3.75 µM)
+*weaker* than PFOA (2.57 µM), where Fischer and Qin both put it at or above.
+That is the single largest residual in the table (−0.87 log units).
+
+Reproduce: `python3 scripts/chen_fischer_reconciliation.py`
+
 ---
 
 ## Part IV — Using a binding constant
@@ -544,12 +595,19 @@ on neutral organics does not describe an anionic surfactant on protein.
 ### 14. What is still open
 
 1. **Mouse albumin has never been measured.** The largest single gap.
-2. **Chen 2025's K_d values are not yet reconciled with Fischer's log D.**
-   Converting Chen's PFOA (2.57 µM) at n=1 gives log D 3.77; Fischer measured
-   4.48 — about 5× apart, two good methods at defensible ratios.
-3. **n is almost never reported** with a K_d, and it moves log D by up to 0.78.
-4. **Nobody has measured a PFAS–albumin constant at a genuinely physiological
+2. **n is almost never reported** with a K_d, and it moves log D by up to 0.78.
+   Where it has been checked, n ≈ 1 is what makes the datasets consistent
+   (§11a, §12) — but that is three compounds, not a rule.
+3. **Nobody has measured a PFAS–albumin constant at a genuinely physiological
    ν** (< 0.01) across a wide compound set. Chen's 0.06–2 is the closest.
+4. **The sulfonates do not reconcile as cleanly as the carboxylates** (§11a),
+   and nobody has explained why their specific-to-non-specific separation is
+   so much larger.
+5. **Chen's PFNA inversion** (§11a) is unexplained and is his largest residual
+   against the other two datasets.
+
+*Resolved since the first draft:* the apparent Chen-versus-Fischer conflict,
+which turned out to be the specific/non-specific regime difference (§11a).
 
 ---
 
@@ -668,6 +726,7 @@ model and still not be the one that is *wrong*.
 | `scripts/binding_kd_physiological_bound.py` | §4 View 2 and the §11 scoring table |
 | `scripts/kd_to_partition.py` | §12, the full derivation and diagnostics |
 | `scripts/binding_species_and_structure.py` | §9–10 |
+| `scripts/chen_fischer_reconciliation.py` | §11a |
 | `scripts/add_chen2025_tableS5.py` | the §9/§11 dataset |
 | `report/REPORT.md` §6.1–6.3 | the same material as evidence in the species argument |
 | `report/MBM_Qin_vs_Armitage.md` §12–14 | §13 in full |
