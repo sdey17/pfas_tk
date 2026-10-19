@@ -92,6 +92,8 @@ REFS = {
 "chenguo2009": "Chen Y-M, Guo L-H (2009). Fluorescence study on site-specific binding of perfluoroalkyl acids to human serum albumin. <i>Archives of Toxicology</i> 83(3):255-261. doi:10.1007/s00204-008-0359-x",
 "han2021": "Han J, Fu J, Sun J, Hall DR, Yang D, Blatz D, Houck K, Ng C, Doering J, LaLone C, Peng H (2021). Quantitative chemical proteomics reveals interspecies variations on binding schemes of L-FABP with perfluorooctanesulfonate. <i>Environmental Science &amp; Technology</i> 55(13):9012-9023. doi:10.1021/acs.est.1c00509",
 "ryu2024": "Ryu S, Burchett W, Zhang S, Jia X, Sadegh Modaresi SM, Agudelo Areiza J, Rodrigues D, Zhu H, Sunderland EM, Fischer FC, Slitt AL (2024). Unbound fractions of PFAS in human and rodent tissues: rat liver a suitable proxy for evaluating emerging PFAS? <i>Environmental Science &amp; Technology</i> 58(33):14641-14650. doi:10.1021/acs.est.4c04050",
+"qin2024": "Qin W-P, Escher BI, Huchthausen J, Fu Q, Henneberger L (2024). Species difference? Bovine, trout, and human plasma protein binding of per- and polyfluoroalkyl substances. <i>Environmental Science &amp; Technology</i> 58(23):9954-9966. doi:10.1021/acs.est.3c10824",
+"chen2025": "Chen R, Muensterman D, Field J, Ng CA (2025). Deriving membrane-water and protein-water partition coefficients from in vitro experiments for per- and polyfluoroalkyl substances (PFAS). <i>Environmental Science &amp; Technology</i> 59(1):82-91. doi:10.1021/acs.est.4c06734",
 "starnes2025": "Starnes HM, Green AJ, Reif DM, Belcher SM (2025). An in vitro and machine learning framework for quantifying serum albumin binding of per- and polyfluoroalkyl substances. <i>Toxicological Sciences</i> 203(1):67-78. doi:10.1093/toxsci/kfae124",
 "zhao2023": "Zhao L, Teng M, Zhao X, Li Y, Sun J, Zhao W, Ruan Y, Leung KMY, Wu F (2023). Insight into the binding model of per- and polyfluoroalkyl substances to proteins and membranes. <i>Environment International</i> 175:107951. doi:10.1016/j.envint.2023.107951. (Review.)",
 "chang2008": "Chang S-C, Das K, Ehresman DJ, Ellefson ME, Gorman GS, Hart JA, Noker PE, Tan Y-M, Lieder PH, Lau C, Olsen GW, Butenhoff JL (2008). Comparative pharmacokinetics of perfluorobutyrate in rats, mice, monkeys, and humans and relevance to human exposure via drinking water. <i>Toxicological Sciences</i> 104(1):40-53. doi:10.1093/toxsci/kfn057",
@@ -742,7 +744,11 @@ def story_3():
           "per litre and per mole of albumin, and the ratio recovers that "
           "concentration to within 0.3% for all four measured compounds. It "
           "also reveals that their fitted n is below one site per albumin for "
-          "PFBA and PFOS: lumped effective parameters, not site counts.", "body"),
+          "PFBA and PFOS: lumped effective parameters, not site counts. "
+          + c("chen2025") + " writes the same relation independently as its "
+          "own equation 4, so three groups now state it identically - it is "
+          "not a modelling choice but the definition of a partition "
+          "coefficient applied to a saturable site.", "body"),
         p("Run backwards the conversion becomes a diagnostic. Asking what "
           "stoichiometry reconciles the tightest reported binding constant "
           "with " + c("fischer2024") + "'s directly measured partition "
@@ -873,6 +879,42 @@ def story_3():
           "the cell volume the whole result is normalised by, which is "
           "uncertain to threefold across the three cell compositions in use.",
           "body"),
+        p("The first of those can now be settled. " + c("qin2024") + ", the "
+          "same group as the mass-balance model, measured protein-water "
+          "distribution ratios for sixteen PFAS by solid-phase microextraction "
+          "across four orders of magnitude in concentration. Qin's own earlier "
+          "interpolation holds up against it, within about twofold at the same "
+          "slope. Armitage's octanol convention does not: it runs four hundred "
+          "to eight thousand times below the measured protein affinity, which "
+          "is why that model's cell reads as pure membrane lipid - the "
+          "convention has defined its protein term out of existence. Yet "
+          "substituting the measured value makes both models worse, because "
+          "it is larger than either assumes and both already over-predict.",
+          "body"),
+        p("That completes a pattern. The best measurement of albumin binding "
+          "sits below what the models use, the best measurement of cell "
+          "protein binding sits above it, and both changes push dose into the "
+          "cell, so both degrade the fit. No partition coefficient in this "
+          "system removes an over-prediction, because the measurements do not "
+          "point that way. What does is the cell volume, the one quantity "
+          "that rescales every compound by the same factor: rerunning the "
+          "published models on a three-picolitre cell rather than a "
+          "ten-picolitre one leaves Armitage essentially unbiased and cuts "
+          "Qin's absolute error by forty percent. The assays being modelled "
+          "use HepG2 and HepaRG, not the line whose composition both models "
+          "carry, and none of them reports its cell volume. That is where "
+          "this line of work stops.", "body"),
+        p("One result outlives the models. " + c("qin2024") + " reports the "
+          "specific and the non-specific binding constant separately for the "
+          "same protein and the same compound, and they differ by three to "
+          "fivefold, with the specific term dominating below a "
+          "PFAS-to-protein ratio of about 0.01 and the non-specific term "
+          "above about 1. The first is the physiological regime and the "
+          "second is where in vitro assays are dosed. That is the direct "
+          "measurement of the effect this report could previously only infer "
+          "from the ratio table, and it puts a number on the cost of carrying "
+          "a laboratory constant into a physiological calculation without "
+          "asking which regime produced it.", "body"),
         p("Species and structure, from the studies that hold method fixed",
           "h2"),
         p("Most of the 741-row binding file cannot answer a comparative "
