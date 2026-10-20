@@ -452,10 +452,13 @@ on the output is not corroboration of the mechanism.
 
 **The slope.** Against Qin's own Table 2 both models look 2.9–4.4× too steep in
 chain length. That reading is wrong. Inverting the balance for the cell
-partition the uptake data require gives +0.549 decades per CF₂; the models
-give +0.515 and +0.782; Ryu 2024's whole-tissue f_unbound gives 0.46–0.53.
-Qin's Table 2 alone gives +0.177, and at PFBA it is 20× above what the uptake
-requires. Three independent lines against one: the models' slope is fine.
+partition the uptake data require gives **+0.407** decades per CF₂ on the
+corrected media; the models give +0.515 and +0.782; Ryu 2024's whole-tissue
+f_unbound gives 0.46–0.53. Qin's Table 2 alone gives +0.177, and at PFBA it is
+20× above what the uptake requires. Three independent lines against one:
+Qin's slope is fine. **Armitage's is not** — it sits 0.38 above the uptake
+requirement, and §16 shows that is where the residual chain-length dependence
+comes from.
 
 Substituting Qin's measured D_cell/w confirms it. Mean bias improves (Qin
 7.52 → 4.61, Armitage 3.87 → 2.15) and so does absolute error (7.52 → 5.43,
@@ -691,3 +694,116 @@ ethanol is stated in §2.4 for the PPARα assay; §2.5 does not repeat it, thoug
 it doses the same ethanol stocks at the same concentrations.
 
 ![three datasets](../figures/fig20_mbm_three_datasets.png)
+
+---
+
+## 16. The residual rises with chain length, and that localises it
+
+Added 2026-10-20. Reproduce with `python3 tk_review/scripts/mbm_chain_length_residual.py`;
+output `db/mbm_chain_length_residual.csv`.
+
+After §15, Armitage over-predicts by 3.87× and Qin by 7.52×. A pure level
+error would sit flat across the series. It does not: Armitage's climbs
+**+0.172 decades per CF₂, r = +0.83**. Four questions, each able to kill a
+candidate outright.
+
+### Q1. Is the trend real, or an artefact of pooling three studies?
+
+Fragki measures only PFOA and PFNA and carries the biggest residuals, so
+pooling alone could manufacture a slope. Ask the question inside one lab:
+
+| | PFBA | PFHxA | PFHpA | PFOA | PFNA | slope | r |
+|---|---|---|---|---|---|---|---|
+| **Rosenmai — Armitage** | 1.42× | 0.86× | 1.10× | 2.38× | 9.33× | **+0.150** | **+0.70** |
+| Rosenmai — Qin | 2.36× | 5.27× | 5.09× | 3.23× | 3.48× | +0.022 | +0.29 |
+| Amstutz — Armitage | — | 3.33× | 4.30× | 2.38× | 5.93× | +0.050 | +0.38 |
+| Amstutz — Qin | — | 40.5× | 50.5× | 9.47× | 6.65× | **−0.308** | −0.90 |
+
+**The trend is Armitage's, and it is real.** Rosenmai holds one lab, one cell
+line, one medium, one vehicle and five compounds fixed, and it is still there.
+Qin has no trend inside a study — positive at Rosenmai, *negative* at Amstutz
+— so Qin's pooled +0.092 is precisely the pooling artefact this test was built
+to catch.
+
+So the question sharpens: **why does Armitage's over-prediction grow with chain
+length where Qin's does not?**
+
+### Q2. Is it cytotoxicity at the long-chain end?
+
+Long chains are the cytotoxic ones. Rosenmai report a significant drop in
+protein content at 100 µM PFDA and PFTeDA; Fragki excluded PFNA at 100 µM from
+their own QIVIVE for the same reason. Dying cells losing PFAS — or losing the
+protein the uptake is normalised to — would read as over-prediction at the long
+end. That hypothesis makes a sharp prediction: worst at the highest dose.
+
+| Rosenmai, Armitage | PFBA | PFHxA | PFHpA | PFOA | PFNA | slope | r |
+|---|---|---|---|---|---|---|---|
+| 10 µM | 1.24× | 0.77× | 1.34× | 2.75× | 13.50× | **+0.194** | +0.77 |
+| 30 µM | 1.34× | 0.77× | 0.97× | 2.44× | 9.20× | +0.157 | +0.70 |
+| 100 µM | 1.74× | 1.05× | 1.02× | 2.00× | 6.53× | **+0.099** | +0.58 |
+
+**Refuted, and backwards.** The trend is *strongest* at 10 µM, where nothing is
+dying, and weakest at 100 µM. It joins the wash hypothesis (§11) on the list of
+measurement artefacts that fail their own direction test.
+
+### Q3. Which term carries it?
+
+§12–14 substituted three measured parameters and judged each on the **level**,
+where all three made the fit worse. Judged on the **slope** they behave
+completely differently (Rosenmai only, Armitage):
+
+| variant | PFBA | PFHxA | PFHpA | PFOA | PFNA | slope | r |
+|---|---|---|---|---|---|---|---|
+| published | 1.42× | 0.86× | 1.10× | 2.38× | 9.33× | +0.150 | +0.70 |
+| + Fischer 2024 albumin | 1.14× | 4.03× | 2.43× | 5.53× | 19.20× | **+0.212** | +0.90 |
+| + Qin 2024 cell protein | 7.10× | 2.98× | 4.03× | 5.08× | 18.51× | +0.067 | +0.42 |
+| **+ Qin 2023 measured D_cell/w** | 23.60× | 3.88× | 1.35× | 0.74× | 0.73× | **−0.321** | **−0.97** |
+
+- **Albumin makes it steeper**, +0.150 → +0.212. The albumin term is not
+  carrying the trend, and Fischer's measurement makes the chain-length story
+  worse rather than better — a small result in its own right.
+- **Cell protein barely moves it** (+0.067) and wrecks the level.
+- **The cell partition flips the sign outright**, +0.150 → −0.321.
+
+A parameter that can swing the residual slope from +0.15 to −0.32 is the
+parameter the residual slope lives in. **The chain-length defect is in
+D_cell/w — in how fast it rises per CF₂.**
+
+### Q4. What would the right value be?
+
+Five independent estimates of d log D_cell/w per CF₂:
+
+| | slope | |
+|---|---|---|
+| Qin 2023 Table 2, cell homogenate, measured | **+0.177** | 4 compounds, HEK293H |
+| inverted from the uptake data themselves | **+0.407** | this work, corrected media |
+| Ryu 2024 whole-tissue f_unbound | +0.46 to +0.53 | §6.3a of the main report |
+| Qin 2023 model, as parameterised | +0.515 | |
+| Armitage 2021 model, as parameterised | **+0.782** | |
+
+Armitage sits **0.38 above** the uptake requirement and 0.27 above the next
+highest estimate. Qin sits 0.11 above. Their residual slopes order the same
+way, +0.150 and +0.022. Qin's own Table 2 sits alone at the bottom, which is
+why substituting it overshoots into a *negative* slope instead of landing on
+zero: the truth is between the model and that measurement.
+
+### Why Armitage is steep, mechanistically
+
+Its cell is 79% water at PFBA and **99.7% membrane lipid at PFNA**, with
+protein contributing 0.1–0.2% throughout — because the convention *"3.5% of
+cell protein behaves as octanol"* puts the protein term **457–7,820× below**
+the measured protein affinity (§14). Define protein out of the cell and what
+remains is a lipid partition coefficient, and lipid affinity climbs with chain
+length faster than protein affinity does. Qin's cell is 92–95% protein at every
+chain length and has essentially the right slope.
+
+**The same convention produces both failures** — the level error of §14 and the
+chain-length error here. They are one defect seen twice.
+
+### What would settle it
+
+A measured D_cell/w for PFBA→PFNA on **HepG2 or HepaRG**, not HEK293H
+homogenate, at a trace ligand:protein ratio. The disagreement to resolve is
++0.177 (Qin's homogenate) against +0.407 (what the uptake data require);
+everything else in the ledger clusters between +0.41 and +0.53. Until that
+measurement exists the slope is **bounded, not known**.

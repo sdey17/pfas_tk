@@ -1938,11 +1938,21 @@ where the section nearly went wrong:
 | Qin model | +0.515 |
 | Armitage model | +0.782 |
 
-Taken alone that reads as a model defect. It is not. Inverting the balance for
-the cell partition the *uptake data themselves* require gives **+0.549**, and
+Taken alone that reads as a defect in both models. It is not. Inverting the
+balance for the cell partition the *uptake data themselves* require gives
+**+0.407** (on the corrected exposure media; it read +0.549 before), and
 Ryu 2024's whole-tissue f_unbound gives 0.46–0.53 on the same axis (§6.3a).
-Three independent lines cluster around 0.5–0.8; **Qin's Table 2 sits alone at
+Three independent lines cluster around 0.4–0.5; **Qin's Table 2 sits alone at
 0.18**, and at PFBA it is 20× above what the uptake requires.
+
+What that clustering does *not* excuse is Armitage's +0.782, which sits 0.38
+above the uptake requirement and 0.27 above the next highest estimate.
+`MBM_Qin_vs_Armitage.md` §16 shows that gap is exactly where the residual
+chain-length dependence comes from: Armitage's over-prediction climbs +0.150
+decades per CF₂ within Rosenmai alone, Qin's does not climb at all, and
+substituting the cell partition is the only change that flips the slope's
+sign. Same cause as the level error of §6.1e — the octanol convention defines
+protein out of the cell, leaving a lipid coefficient that is too steep.
 
 | compound | uptake-implied | Qin Table 2 | Qin model | Armitage |
 |---|---|---|---|---|
