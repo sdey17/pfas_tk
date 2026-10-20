@@ -834,6 +834,172 @@ One result from that work is worth keeping regardless of the models:
 protein affinity 457–7,820× below the measured value.** A coefficient calibrated
 on neutral organics does not describe an anionic surfactant on protein.
 
+### 13a. The one mass balance that does work: serum
+
+§13 is a failure, and a specific one — the *cell* side of an in vitro assay.
+It says nothing about whether a mass balance works at all. This section runs
+the same machinery on a matrix where every term can be measured, and it works.
+
+**The setup.** A mass balance says the total concentration in a matrix is the
+free concentration multiplied by everything that can hold the chemical:
+
+```
+D_serum/w  =  VF_w  +  D_HSA/w · c_alb  +  D_glob/w · c_glob
+f_unbound  =  VF_w / D_serum/w
+```
+
+`D_HSA/w` is in L_water per kg of albumin, `c_alb` in kg of albumin per L of
+serum, so the product is L_water per L of serum — the same units as
+`D_serum/w`. **The protein density cancels.** Fischer writes it as a volumetric
+partition coefficient times a volume fraction, `D_vol · VF`, and since
+`VF = c/ρ` and `D_vol = D_mass · ρ`, the ρ drops out. It survives only in
+`VF_w`, the water volume fraction.
+
+**Why Fischer 2024 and nothing else.** A mass balance is only a test if the
+components and the whole matrix are measured *separately*. Fischer et al. 2024
+measured, by one method (C18-fibre depletion), in one lab, in one species, at a
+PFAS:protein molar ratio ≤ 0.004:
+
+| measured | units | n |
+|---|---|---|
+| log D_HSA/w | L_w / kg HSA | 28 |
+| log D_glob/w | L_w / kg γ-globulin | 27 |
+| log D_serum/w | L_w / L serum | 27 |
+
+26 PFAS have all three. Predicting the third column from the first two is a
+genuine out-of-sample test. Nothing else in our 1,121-row table can do this:
+94% of the f_unbound values are Ryu tissue homogenates, the purified-albumin
+f_unbound are circular (same experiment as the K), and pairing a human K with a
+mouse f_unbound tests the species difference, not the model.
+
+**Run it.**
+
+```python
+import math
+C_ALB, C_GLOB = 0.041, 0.031          # kg/L, NHANES 2017-18 means
+VF_W = 1 - C_ALB/1.36 - C_GLOB/1.20   # protein densities, Fischer §2.7
+
+def serum_D(logD_hsa, logD_glob):
+    return VF_W + 10**logD_hsa * C_ALB + 10**logD_glob * C_GLOB
+
+for name, hsa, glob, meas in [("PFOA",  4.48, 2.16, 2.85),
+                              ("PFHxS", 4.77, 1.95, 3.30),
+                              ("PFTeDA",3.87, 4.00, 3.00),
+                              ("PFHpS", 5.49, 2.47, 3.38)]:
+    pred = math.log10(serum_D(hsa, glob))
+    print(f"{name:7s} pred {pred:5.2f}  meas {meas:5.2f}  "
+          f"x{10**(pred-meas):4.2f}   f_u {VF_W/10**meas:.2e}")
+```
+
+**The result.** Over 26 PFAS, with *no fitted parameter* — the composition is
+the NHANES population average, not something tuned to the data:
+
+| | value |
+|---|---|
+| geometric-mean bias | 1.00× |
+| geometric-mean absolute error | 1.55× |
+| RMSE | 0.262 log units |
+| R² about the 1:1 line | 0.68 |
+
+A 1.55× typical error on a quantity that spans 80× across the compound set.
+For comparison, the two in vitro cell models of §13 sit at 2.3–4.7× bias.
+
+**Does the fit move it?** Letting albumin and globulin float returns **39.5 and
+38.6 g/L** against the NHANES 41 and 31, and the RMSE does not move at all
+(0.262 → 0.262). That is the strongest single result here: the model is not
+being propped up by its parameters, and the parameter it recovers from binding
+data alone is the physiological one. Dropping globulin entirely costs real
+accuracy, but only where Fischer said it would — for the 12 compounds with
+D_glob/D_HSA > 0.1, R² falls from 0.76 to 0.49; for the 14 below that line,
+nothing changes (0.37 → 0.34). **Fischer's 0.1 rule of thumb is quantitatively
+right.**
+
+**Three views of the same 26 numbers** (`figures/fig19_fischer_serum_mbm.png`):
+
+- *As a prediction.* Panel A: predicted against measured, 1:1 line, four points
+  outside 2×.
+- *As a budget.* Panel B: albumin carries > 98% of the capacity for everything
+  shorter than PFDA, and globulin overtakes it at PFTeDA and FDSA. Water never
+  carries more than 1.4% — which is exactly why f_unbound is ~10⁻³ and why
+  every PFAS TK model is sensitive to a protein number.
+- *As a residual.* Panel C: the miss against log(D_glob/D_HSA), r = −0.32.
+  There is **no chain-length trend** (+0.028 log units per CF₂, r = +0.22).
+
+**What the model misses, and the check that matters.** Four compounds fall
+outside 2×: PFHpS over-predicted 5.1×, and 5:3 FTCA, 7:3 FTCA and 6:2 FtS
+under-predicted ~3.2×. Fischer's own §3.3 names exactly those four, in the same
+directions, and nothing else. Reproducing someone's outliers compound for
+compound is better evidence the implementation is right than reproducing their
+summary statistic.
+
+Their explanation for the fluorotelomers is a missing sink. We tested the
+phospholipid half of it with Chen 2025's membrane–water coefficients for 25 of
+the 26 compounds, at 2.3 g/L serum phospholipid: **RMSE 0.266 → 0.264, and AIC
+gets worse.** Fitting the lipid content returns 1.9 g/L — physiologically
+plausible, and still worth nothing. Within this data's resolution, serum is
+albumin and globulin.
+
+**Two things in Fischer that do not tie out.** Neither changes the conclusion,
+and both matter if you reuse the paper.
+
+1. *The headline fit.* "Slope = 0.97, 95%-CI 0.94–1.01, R² = 0.99" is a
+   **no-intercept** regression in log space. On data where log D runs 2.0–3.9
+   and no point is near zero, R² there is measured against Σy², not against the
+   variance of y, so 0.99 is close to automatic. Our implementation reproduces
+   it exactly (slope 0.990, R² 0.993) *and* gives R² = 0.68 about the 1:1 line.
+   Both are true; only the second is a predictive statistic.
+2. *Four f_unbound values in the running text.* `f_unbound = VF_w/D_serum/w`
+   applied to Table S2 gives 0.14% for PFOA where §3.3 says 0.061%, and 0.08%
+   for PFOS where it says 0.042%; PFHxS and PFHpS agree within 20%. The stated
+   *range* (0.01–1.2%) reproduces exactly from Table S2 — PFDS at the floor,
+   PFHxA at the ceiling — so the formula is right and the four individual
+   numbers are what does not reconcile. Everything here uses Table S2.
+
+A third item is unresolved rather than wrong. §2.7 says D was converted to
+volumetric units using densities 1.36 and 1.20 kg/L; §3.4 then gives
+VF_HSA = 4.1%, VF_glob = 3.1%, VF_w = 92.8%, which are the g/L concentrations
+read straight off as volume percentages. Taken literally that applies ρ twice.
+The two readings differ by 1.36× on the albumin term — inside the model's own
+1.55× error, and Fischer's published slope sits between them (0.990 vs 0.953),
+so the comparison cannot settle it. The free fit leans to the mass-balance
+reading: it returns 40 g/L, not the 56 g/L the literal reading implies.
+
+**The TK payoff.** Hold the chemistry fixed and move only the serum. NHANES
+2017–18 albumin runs 21–52 g/L and globulin 20–55 g/L. How much f_unbound moves
+depends entirely on whether the two travel together, and Fischer's Figure S12
+shows they do *not*: low globulin goes with high albumin.
+
+- Sweep them **independently** and every compound lands at 2.6–2.8×. That is an
+  artefact of the sweep — it lets both proteins rise at once.
+- Impose the **anti-correlation** at its limit (total protein fixed at 72 g/L)
+  and the fold range becomes compound-specific: 1.09× for PFDS, 2.46× for
+  PFHpS and PFHxS.
+
+The ordering is mechanistic. A compound that binds *only* albumin takes the
+full albumin swing — 52/21 = 2.48×, and PFHxS lands on 2.46×, matching
+Fischer's reported 2.5× exactly. A compound that binds both about equally is
+**buffered**: what it loses on albumin it gains on globulin. The real NHANES
+correlation is partial, so the truth sits between the two columns (Fischer get
+1.6× for 10:2 FtS against our 1.12× and 2.74× bounds).
+
+**So: two people, same dose, same clearance machinery, 2.5× apart in free
+PFHxS, for no reason but their albumin.** Clearance scales with the free
+fraction, so that propagates straight into half-life. It is a floor on
+interindividual variability that is not pharmacokinetic at all, and it is
+roughly the size of the variability usually attributed to transporter
+polymorphisms.
+
+**The honest scope.** This is one species, one lab, one method, one donor's
+serum, and a surrogate serum at that. It establishes that the *structure* —
+free concentration times a sum of sink capacities — reproduces a measured whole
+matrix to 1.55× from independently measured parts. It does not establish that
+Fischer's absolute D values are right; §11a and §11b are about exactly that
+question. And the matrix it works on is the easy one: serum is two proteins and
+water. A tissue is not.
+
+*Code:* `scripts/mbm_fischer_serum.py`, `scripts/make_mbm_fischer_serum_figure.py`.
+*Data:* `db/mbm_fischer_serum.csv`.
+
 ### 14. What is still open
 
 1. **Mouse albumin has never been measured.** The largest single gap.
@@ -856,7 +1022,10 @@ which is the specific/non-specific regime difference (§11a); Chen's PFNA
 "inversion", which is not significant and is one symptom of a general
 compression of his chain-length profile (§11b); and the location of the
 carboxylate chain-length optimum, which is nCF 10–11 and not the nCF 6–8 that
-three datasets report (§9a).
+three datasets report (§9a); and whether a
+mass balance works at all, which §13a settles in the affirmative for serum —
+components to whole matrix, 26 PFAS, 1.55× typical error, no fitted
+parameter.
 
 ---
 
@@ -892,6 +1061,16 @@ Fischer's at nCF 10. Does the squashing explain the three-carbon difference?
 **9.** Ryu 2024 measures unbound fractions in five tissues across four species
 and finds them falling monotonically all the way to nCF 13, with no optimum.
 Does that refute an albumin optimum at nCF 10?
+
+**10.** A serum mass balance with no fitted parameter reproduces 26 measured
+whole-serum partition coefficients to 1.55×. You then let the two protein
+concentrations float. The fitted albumin comes back at 39.5 g/L against the
+41 g/L you put in, and the RMSE does not improve by a single digit. Is that a
+good sign or a bad one, and what would the opposite result have meant?
+
+**11.** NHANES albumin runs 21–52 g/L, a 2.5× spread. Yet Fischer report only a
+1.6× spread in the unbound fraction of 10:2 FtS, and 2.5× for PFHxS. Both
+compounds sit in the same serum. What distinguishes them?
 
 <details>
 <summary>Answers</summary>
@@ -940,6 +1119,24 @@ own membrane–water coefficient rises smoothly to nCF 15 to prove it. Tissue
 f_unbound sums both channels and so sees the sum keep rising. The same logic
 blocks the reverse inference: "half-lives keep rising with chain length, so
 albumin affinity must too" does not follow either.
+
+**10.** Good, and it is the main reason to believe the model. A parameter that
+*has* to move away from its physiological value to fit the data is telling you
+the structure is wrong and the parameter is absorbing the error. Here the
+parameter stays put and the fit gains nothing, which means the 1.55× residual
+is not an un-tuned albumin term — it is measurement noise plus the four known
+outliers. The opposite result — a fit that only works at, say, 90 g/L albumin —
+would have meant a missing sink was being smuggled into the albumin term.
+
+**11.** Whether the compound binds one protein or two. f_unbound is set by
+D_HSA·c_alb + D_glob·c_glob. PFHxS has D_glob/D_HSA = 0.002, so only the first
+term exists and it takes the full 21→52 g/L albumin swing. 10:2 FtS has
+D_glob/D_HSA = 0.76, so both terms matter — and because albumin and globulin
+are *inversely* correlated between people (Fischer Figure S12), what it loses
+on one it gains on the other. Binding two anti-correlated proteins is a buffer.
+The practical consequence is that the long-chain PFAS, the ones with the
+longest half-lives, are the ones whose free fraction varies *least* between
+people.
 
 </details>
 
@@ -994,7 +1191,7 @@ albumin affinity must too" does not follow either.
 
 | file | what |
 |---|---|
-| `db/protein_binding.csv` | 865 rows, 66 study-years. **Group by study before averaging** — one study supplies 320 rows |
+| `db/protein_binding.csv` | 1,121 rows, 70 study-years. **Group by study before averaging** — one study supplies 320 rows |
 | `scripts/check_protein_binding.py` | validation; reproduces published statistics from three papers |
 | `scripts/binding_kd_physiological_bound.py` | §4 View 2 and the §11 scoring table |
 | `scripts/kd_to_partition.py` | §12, the full derivation and diagnostics |
@@ -1003,5 +1200,8 @@ albumin affinity must too" does not follow either.
 | `scripts/chen_pfna_inversion.py` | §11b |
 | `scripts/albumin_chain_length_optimum.py` | §9a, the optimum adjudication |
 | `scripts/add_chen2025_tableS5.py` | the §9/§11 dataset |
+| `scripts/mbm_fischer_serum.py` | §13a, the serum mass balance and its seven tests |
+| `scripts/make_mbm_fischer_serum_figure.py` | `figures/fig19_fischer_serum_mbm.png` |
+| `db/mbm_fischer_serum.csv` | §13a per-compound output: predicted vs measured, component shares, f_unbound ranges |
 | `report/REPORT.md` §6.1–6.3 | the same material as evidence in the species argument |
 | `report/MBM_Qin_vs_Armitage.md` §12–14 | §13 in full |

@@ -117,6 +117,8 @@ def canon_units(raw, measure):
             return "log10 (L_water/L_protein)"
         if u.startswith("log K_HSA"):
             return "log10 K_HSA (basis as published)"
+        if "L_serum" in u:
+            return "log10 (L_water/L_serum, whole matrix)"
         if "kg_albumin" in u or "kg_protein" in u or u.startswith("log K_PW"):
             return "log10 (L_water/kg_protein)"
         if "L_protein" in u:
@@ -349,6 +351,10 @@ def to_logK(rec, n_sites):
             return ("%.3f" % num,
                     "as reported, biomimetic surrogate; basis not stated by "
                     "the paper, so not placed on the mass basis")
+        if units == "log10 (L_water/L_serum, whole matrix)":
+            return "", ("a whole-matrix coefficient, per L of serum rather than "
+                        "per kg of one protein; it is what a mass balance has to "
+                        "PREDICT, not an input to one")
         if units in ("log10 (L_water/kg_protein)", "log10 (L_water/kg_albumin)"):
             return "%.3f" % num, "as reported (mass basis)"
         if units == "log10 (L_water/L_protein)":
