@@ -36,8 +36,8 @@ See the [root README](../README.md) for how this fits with the other strands.
 | `master_exposure_halflife.csv` | 46 | dose, measured serum concentration, half-life, Vd and clearance on one line per chemical × species × sex |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which primary study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | the human clearance factor each agency uses, normalised to mL/kg-day |
-| `binding_affinity.xlsx` | 742 | **the reading copy**, a sortable workbook, restricted to 83 compounds (the 32 the project models, plus exotic PFAS anchored to a common one in the same study). *Affinity*: PFAS, species, protein, measure, value, units, **`kd_uM`**, **`logK`** (the protein–water partition coefficient the mass-balance models need), each with a `_basis` column. *Conditions*, joined by `id`: mode, concentrations in µM, `ligand_protein_ratio_max`, temperature, stated NaCl, buffer, site. *Compounds*: what is in and why. *Notes*: every column defined |
-| `protein_binding.csv` | 865 | in vitro PFAS binding to albumin and other proteins, with the method and assay conditions for each. **Group by study before averaging** — one study (Ryu 2024) supplies 320 rows |
+| `binding_affinity.xlsx` | 799 | **the reading copy**, a sortable workbook, restricted to 83 compounds (the 32 the project models, plus exotic PFAS anchored to a common one in the same study). *Affinity*: PFAS, species, protein, measure, value, units, **`kd_uM`**, **`logK`** (the protein–water partition coefficient the mass-balance models need), each with a `_basis` column. *Conditions*, joined by `id`: mode, concentrations in µM, `ligand_protein_ratio_max`, temperature, stated NaCl, buffer, site. *Compounds*: what is in and why. *Notes*: every column defined |
+| `protein_binding.csv` | 925 | in vitro PFAS binding to albumin and other proteins, with the method and assay conditions for each. **Group by study before averaging** — one study (Ryu 2024) supplies 320 rows |
 | `transporter_kinetics.csv` | 217 | transporter Km, Vmax and IC50, with the reabsorption-or-secretion direction |
 | `transporter_mechanism.csv` | — | transporter expression, hormonal regulation and species comparison |
 | `animal_halflife_measured.csv` | — | measured (not modelled) animal half-lives by chemical, species, strain, sex, dose, route |
@@ -123,6 +123,7 @@ python3 scripts/make_review_figures.py                # -> figures/fig02..fig04
 python3 scripts/make_summary_pdf.py                   # -> report/PFAS_TK_review.pdf
 
 # protein binding: building the database, then using it
+python3 scripts/add_chen2025_membrane_kmw.py          # Chen's 60 membrane-water coefficients
 python3 scripts/fill_binding_dois.py                  # resolve the missing PMIDs/DOIs
 python3 scripts/build_binding_affinity_table.py       # -> db/binding_affinity.xlsx (the reading copy)
 python3 scripts/check_protein_binding.py              # validation; reproduces 3 papers' own statistics

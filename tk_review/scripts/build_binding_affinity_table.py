@@ -108,6 +108,8 @@ def source_label(study, year):
 
 def canon_units(raw, measure):
     u = " ".join(raw.split())
+    if measure == "log K_membrane":
+        return "log10 K_MW (basis as published)"
     if measure == "log D":
         if "kg_protein" in u or u.startswith("log K_PW"):
             return "log10 (L_water/kg_protein)"
@@ -151,6 +153,8 @@ def measure_of(r):
     ka, kd = r["ka"].strip(), r["kd"].strip()
     kau, kdu = r["ka_units"], r["kd_units"]
     if ka or "no binding detected" in kau:
+        if kau.startswith("log K_MW"):
+            return "log K_membrane", "ka"
         if kau.strip() == "log M^-1":
             return "Ka", "ka"          # a log association constant, not a log D
         if any(t in kau for t in ("log D", "log K_PW", "log L_water",
@@ -257,7 +261,7 @@ def to_kd_uM(rec):
     """
     meas, units, raw = rec["measure"], rec["units"], rec["value"]
 
-    if meas == "log D":
+    if meas in ("log D", "log K_membrane"):
         return "", ("a partition coefficient; converting to Kd needs the "
                     "stoichiometry, which this paper does not report")
     if meas.startswith("docking"):
@@ -325,6 +329,9 @@ def to_logK(rec, n_sites):
     """log10 K in L_water per kg protein, or blank with the reason."""
     meas, units, raw = rec["measure"], rec["units"], rec["value"]
 
+    if meas == "log K_membrane":
+        return "", ("a membrane-water coefficient, not protein-water; it is "
+                    "the lipid limb and belongs in its own column")
     if meas == "log D":
         num, note = parse_value(raw)
         if num is None:
@@ -610,7 +617,9 @@ NOTES = [
     ("pfas", "Chemical as the paper names it."),
     ("species", "Species the protein came from."),
     ("protein", "Protein or matrix, as the paper describes it."),
-    ("measure", "Which quantity: Kd, Ka, log D, f_unbound, docking dG."),
+    ("measure", "Which quantity: Kd, Ka, log D (protein-water), "
+                "log K_membrane (phospholipid membrane-water), f_unbound, "
+                "docking dG."),
     ("value", "The number as printed, including ranges and bounds."),
     ("units", "Canonicalised unit for that value."),
     ("kd_uM", "Everything that converts EXACTLY to a dissociation constant "
