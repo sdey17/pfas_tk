@@ -29,7 +29,9 @@ SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
 OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
 FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "kd_basis", "source", "location"]
+          "kd_uM", "kd_basis", "logK", "logK_basis", "source", "location"]
+
+CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
 
 COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
                "pfas_conc_uM", "protein_conc_uM", "ligand_protein_ratio_max",
@@ -40,6 +42,42 @@ COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
 # there -- see to_kd_uM. Concentrations are converted the same way: unit
 # arithmetic only, never inference.
 TO_UM = {"uM": 1.0, "mM": 1e3, "nM": 1e-3, "M": 1e6}
+
+# --- which compounds this table is about -------------------------------
+# "Common" is not a judgement call: it is the set of chemical strings the
+# repository's own toxicokinetic and regulatory tables model. An exotic PFAS
+# rides along only when the study that measured it also measured a common
+# one, so there is something in the same experiment to anchor it to.
+COMMON = {
+    "PFBA", "PFPeA", "PFHxA", "PFHpA", "PFOA", "PFNA", "PFDA", "PFUnDA",
+    "PFDoDA", "PFDoA", "PFTrDA", "PFTriDA", "PFTeDA",
+    "PFBS", "PFPeS", "PFHxS", "PFHpS", "PFOS", "PFNS", "PFDS",
+    "HFPO-DA (GenX)", "GenX", "ADONA", "NaDONA (ADONA)", "DONA",
+    "6:2 FTS", "6:2 FtS", "6:2 FTSA", "PFOSA", "FOSA", "PFO2OA",
+    "cC6O4", "C6O4", "9Cl-PF3ONS (F-53B, 6:2 Cl-PFESA)",
+    "9Cl-PF3ONS (F-53B)", "9Cl-PF3ONS",
+}
+# A cell naming several compounds at once is a summary, not a measurement of
+# one chemical, so it cannot go into a per-compound table either way.
+MULTI = re.compile(r"\band\b|,|;|\brange\b|\bPFCAs\b|\bPFSAs\b|\bPFAS\b|"
+                   r"\bPFAA\b|\bcompounds\b|\bligands\b|\bstandards\b|"
+                   r"\bcongeners\b|^\d+\s", re.I)
+# A perfluoroalkyl acid, telomer or sulfonamide, as against a reference
+# ligand (octanoic acid, warfarin, DAUDA), a pesticide, or one of the neutral
+# fluorochemicals in a broad screen (acrylates, amines, esters, diols).
+PFAS_LIKE = re.compile(
+    r"^(PF[A-Z0-9]|FOSA|FBSA|FHxSA|FDSA|N-?(Me|Et)FOSA|"
+    r"\d+:\d+\s*(FT|Ft|diPAP|FTCA|FTSA|FTS|FTOH|FTUCA|FtS)|"
+    r"\d+Cl-PF|HFPO|NaDONA|ADONA|DONA|diSAmPAP|cC6O4|C6O4|"
+    r"\d+:\d+(:\d+)?\s*FTB|N-TAmP)", re.I)
+
+
+def compound_class(chem):
+    if chem in COMMON:
+        return "common"
+    if MULTI.search(chem):
+        return "multi-compound summary"
+    return "exotic PFAS" if PFAS_LIKE.match(chem) else "not a PFAS"
 
 # Surnames that are two words, so the "first author" is not just the first token.
 MULTIWORD = {"Sanchez Garcia"}
@@ -248,6 +286,67 @@ def to_kd_uM(rec):
     return "", "no exact conversion defined"
 
 
+# --- the partition coefficient -----------------------------------------
+# K is what a mass-balance model needs: how much PFAS a kilogram of protein
+# holds per litre of water, not how tightly one site binds. Two routes reach
+# it without assuming anything.
+#
+#   1. The paper measured it. Fischer, Qin, Allendorf and Bischel report a
+#      protein-water distribution ratio directly. Qin's is per litre of
+#      protein rather than per kilogram, which is a density conversion, not
+#      an assumption: subtract log10(1.364), from a 0.733 mL/g partial
+#      specific volume.
+#   2. The paper reported BOTH an affinity and a stoichiometry. Then, in the
+#      trace limit of REPORT.md 6.1b,
+#          K (L_water/kg_protein) = 1000 * n / (M_protein * Kd[M])
+#      with every term on the right read off the paper except M_protein,
+#      which is a property of the protein rather than of the experiment.
+#      Restricted to serum albumin, whose 66.5 kDa is not in doubt.
+#
+# There is no third route. Turning a Kd into a K without a stoichiometry is
+# the n = 1 assumption that was removed earlier, and it stays removed.
+VOL_TO_MASS = math.log10(1.364)
+MW_ALBUMIN = 66500.0
+N_NUM = re.compile(r"^\s*(\d*\.?\d+)\s*$")
+
+
+def is_serum_albumin(protein):
+    p = protein.lower()
+    return "serum albumin" in p and "globulin" not in p
+
+
+def to_logK(rec, n_sites):
+    """log10 K in L_water per kg protein, or blank with the reason."""
+    meas, units, raw = rec["measure"], rec["units"], rec["value"]
+
+    if meas == "log D":
+        num, note = parse_value(raw)
+        if num is None:
+            return "", note
+        if units in ("log10 (L_water/kg_protein)", "log10 (L_water/kg_albumin)"):
+            return "%.3f" % num, "as reported (mass basis)"
+        if units == "log10 (L_water/L_protein)":
+            return ("%.3f" % (num - VOL_TO_MASS),
+                    "reported per L protein; density conversion to per kg")
+        return "", "no exact conversion from " + units
+
+    if not rec["kd_uM"]:
+        return "", "no Kd, and the paper reports no partition coefficient"
+    m = N_NUM.match(n_sites or "")
+    if not m:
+        return "", ("the paper reports an affinity but no stoichiometry, and "
+                    "K cannot be had from one without the other")
+    if not is_serum_albumin(rec["protein"]):
+        return "", ("stoichiometry given, but this protein has no "
+                    "unambiguous molar mass to divide by")
+    n = float(m.group(1))
+    kd_M = float(rec["kd_uM"]) * 1e-6
+    if n <= 0 or kd_M <= 0:
+        return "", "conversion out of range"
+    return ("%.3f" % math.log10(1000.0 * n / (MW_ALBUMIN * kd_M)),
+            "from the paper's own Kd and n, albumin 66.5 kDa")
+
+
 CONC_NUM = re.compile(
     r"^\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
     r"\s*(?:(?:-|to)\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?))?"
@@ -365,7 +464,10 @@ def location(src):
     return src.split("|")[0].strip().rstrip(",").strip()
 
 
-def build():
+def build(filter_compounds=True):
+    """filter_compounds=False returns every measurement, for the consolidated
+    database in db/combined/, which is the full record rather than a reading
+    copy and should not lose rows to this table's scope."""
     with open(SRC) as fh:
         rows = list(csv.DictReader(fh))
     out, skipped, qualitative = [], [], []
@@ -386,6 +488,7 @@ def build():
                     _prot_raw=r["protein_conc"], _lig_raw=r["ligand_conc_range"],
                     _temp=r["temperature_c"], _buffer=r["buffer"],
                     _site=r["binding_site_identified"],
+                    _n=r["n_binding_sites"],
                     _method=r["method"])
         meas, col = measure_of(r)
         if meas:
@@ -400,21 +503,59 @@ def build():
                 val, units = "not detected", "not applicable"
             rec = dict(base, measure=meas, value=val, units=units)
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
+            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
             (out if is_quantitative(val) else qualitative).append(rec)
         if r["unbound_fraction"].strip():
             rec = dict(base, measure="f_unbound",
                        value=r["unbound_fraction"].strip(),
                        units=canon_units("", "f_unbound"))
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
+            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
             out.append(rec)
         if not meas and not r["unbound_fraction"].strip():
             skipped.append(r)
     for rec in out:
         if rec["species"] == "bovine; human":
             rec["species"] = "human; bovine"
-    for i, rec in enumerate(out, start=1):
+
+    # Restrict to the compounds this project is about. A common PFAS is kept
+    # wherever it appears; an exotic one only where the same study also
+    # measured a common one, so the experiment itself anchors it.
+    anchored = {(r["_study"], r["_year"]) for r in out
+                if compound_class(r["pfas"]) == "common"}
+    kept, dropped = [], []
+    for rec in out:
+        cls = compound_class(rec["pfas"])
+        rec["_class"] = cls
+        if not filter_compounds or cls == "common" or (
+                cls == "exotic PFAS"
+                and (rec["_study"], rec["_year"]) in anchored):
+            kept.append(rec)
+        else:
+            dropped.append(rec)
+
+    for i, rec in enumerate(kept, start=1):
         rec["id"] = i
-    return rows, out, skipped, qualitative
+    return rows, kept, skipped, qualitative, dropped
+
+
+def compounds(out):
+    """One row per compound kept, so the filter is auditable and overridable."""
+    agg = collections.OrderedDict()
+    for r in out:
+        a = agg.setdefault(r["pfas"], {
+            "pfas": r["pfas"], "class": r["_class"], "rows": 0,
+            "kd_rows": 0, "logK_rows": 0, "_studies": set()})
+        a["rows"] += 1
+        a["kd_rows"] += 1 if r["kd_uM"] else 0
+        a["logK_rows"] += 1 if r["logK"] else 0
+        a["_studies"].add(r["source"])
+    out_rows = []
+    for a in agg.values():
+        a["studies"] = "; ".join(sorted(a.pop("_studies")))
+        out_rows.append(a)
+    out_rows.sort(key=lambda a: (a["class"] != "common", -a["rows"], a["pfas"]))
+    return out_rows
 
 
 def _ratio_cell(r):
@@ -447,11 +588,13 @@ def conditions(out):
     return cond
 
 
-NUMERIC = {"id", "kd_uM", "pfas_conc_uM", "protein_conc_uM",
+NUMERIC = {"id", "kd_uM", "logK", "rows", "kd_rows", "logK_rows", "pfas_conc_uM", "protein_conc_uM",
            "ligand_protein_ratio_max", "temperature_C", "nacl_mM"}
 
 NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
+    ("Compounds", "Which compounds are in and why, so the filter can be "
+                  "audited or overridden."),
     ("", ""),
     ("pfas", "Chemical as the paper names it."),
     ("species", "Species the protein came from."),
@@ -462,6 +605,11 @@ NOTES = [
     ("kd_uM", "Everything that converts EXACTLY to a dissociation constant "
               "in micromolar. Blank is a deliberate state, never a gap."),
     ("kd_basis", "How the kd_uM was reached, or why it is blank. Never empty."),
+    ("logK", "log10 of the protein-water partition coefficient, L_water per "
+             "kg protein -- what a mass-balance model needs. Two exact routes "
+             "only: the paper measured it, or the paper reported BOTH an "
+             "affinity and a stoichiometry. Never inferred from a Kd alone."),
+    ("logK_basis", "Which route, or why the cell is blank. Never empty."),
     ("source", "First Author Year."),
     ("location", "Where the number sits in the paper."),
     ("", ""),
@@ -494,10 +642,22 @@ NOTES = [
     ("buffer", "Buffer verbatim."),
     ("binding_site", "Site, where the paper identifies one (84 of 865 rows do)."),
     ("", ""),
+    ("Compound filter", "Common PFAS are kept wherever they appear. Common "
+                        "means the chemical strings this repository's own "
+                        "toxicokinetic and regulatory tables model, not a "
+                        "judgement call. An exotic PFAS is kept only where "
+                        "the study that measured it also measured a common "
+                        "one, so the same experiment anchors it. Dropped: "
+                        "reference ligands (octanoic acid, warfarin, DAUDA), "
+                        "pesticides, the neutral fluorochemicals in broad "
+                        "screens, and cells naming several compounds at once."),
+    ("", ""),
     ("What is deliberately absent", ""),
-    ("", "log D is not converted to Kd. The bridge in REPORT.md 6.1b is "
-         "sound but needs the stoichiometry n, which almost no paper fits, "
-         "so every such number would rest on an assumed n = 1."),
+    ("", "log D is not converted to Kd, and a Kd is not converted to K "
+         "without a stoichiometry. The bridge in REPORT.md 6.1b is sound "
+         "but needs n, which almost no paper fits, so such a number would "
+         "rest on an assumed n = 1. Where a paper DOES report n, the "
+         "conversion is exact and is used."),
     ("", "Docking energies are not converted. They are computed scores, not "
          "measurements."),
     ("", "Unbound fractions are not converted. That needs a binding-site "
@@ -506,7 +666,7 @@ NOTES = [
 ]
 
 
-def write(out, cond):
+def write(out, cond, cmpd):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -518,7 +678,8 @@ def write(out, cond):
     wb.remove(wb.active)
 
     for title, fields, data in (("Affinity", FIELDS, out),
-                                ("Conditions", COND_FIELDS, cond)):
+                                ("Conditions", COND_FIELDS, cond),
+                                ("Compounds", CMPD_FIELDS, cmpd)):
         ws = wb.create_sheet(title)
         ws.append(fields)
         for r in data:
@@ -557,33 +718,46 @@ def write(out, cond):
     wb.save(OUT)
 
 
-def check(rows, out, skipped, qualitative):
+def check(rows, out, skipped, qualitative, dropped):
     print("=" * 74)
     print("BINDING AFFINITY TABLE")
     print("=" * 74)
     print(f"  source rows (db/protein_binding.csv)   {len(rows):5d}")
     print(f"  measurement rows written               {len(out):5d}")
     print(f"  source rows carrying no value          {len(skipped):5d}")
+    print(f"  rows dropped by the compound filter    {len(dropped):5d}")
     print(f"  rows whose 'value' is prose, not a number {len(qualitative):3d}")
     print()
     # Columns that must never be blank, against the three where a blank is a
     # legitimate state the row explains for itself.
-    REQUIRED = ["pfas", "species", "protein", "measure", "value", "units",
-                "kd_basis", "source", "location"]
+    REQUIRED = ["id", "pfas", "species", "protein", "measure", "value",
+                "units", "kd_basis", "logK_basis", "source", "location"]
     print(f"Completeness of the {len(FIELDS)} columns:")
     for f in FIELDS:
         blank = sum(1 for r in out if not str(r[f]).strip())
         if f in REQUIRED:
             flag = "" if blank == 0 else "   <-- MUST NOT BE BLANK"
         else:
-            flag = f"   ({len(out) - blank} populated; every blank is " \
-                   f"explained in kd_basis)" if f == "kd_uM" else \
-                   f"   ({len(out) - blank} populated; not reported by the paper)"
+            where = {"kd_uM": "kd_basis", "logK": "logK_basis"}.get(f)
+            flag = (f"   ({len(out) - blank} populated; every blank is "
+                    f"explained in {where})" if where else
+                    f"   ({len(out) - blank} populated; not reported by "
+                    f"the paper)")
         print(f"  {f:13s} blank {blank:4d} / {len(out)}{flag}")
     print()
     print("Why kd_uM is blank, where it is:")
     for b, n in collections.Counter(
             r["kd_basis"] for r in out if not r["kd_uM"]).most_common():
+        print(f"  {n:5d}  {b[:86]}")
+    print()
+    print("How the partition coefficient was reached, where it exists:")
+    for b, n in collections.Counter(
+            r["logK_basis"] for r in out if r["logK"]).most_common():
+        print(f"  {n:5d}  {b[:86]}")
+    print()
+    print("Why logK is blank, where it is:")
+    for b, n in collections.Counter(
+            r["logK_basis"] for r in out if not r["logK"]).most_common():
         print(f"  {n:5d}  {b[:86]}")
     print()
     print("How the standardised Kd was reached, where it exists:")
@@ -658,12 +832,12 @@ def main():
     ap.add_argument("--check", action="store_true",
                     help="report only, do not write")
     args = ap.parse_args()
-    rows, out, skipped, qualitative = build()
+    rows, out, skipped, qualitative, dropped = build()
     if not args.check:
-        write(out, conditions(out))
+        write(out, conditions(out), compounds(out))
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
-    check(rows, out, skipped, qualitative)
+    check(rows, out, skipped, qualitative, dropped)
 
 
 if __name__ == "__main__":

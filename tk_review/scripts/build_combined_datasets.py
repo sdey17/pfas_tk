@@ -280,7 +280,8 @@ def binding_rows():
     """The measurement rows that db/binding_affinity.csv is written from."""
     sys.path.insert(0, HERE)
     from build_binding_affinity_table import build as _build
-    return _build()[1]
+    # unfiltered: combined/ is the full record, not the reading copy
+    return _build(filter_compounds=False)[1]
 
 
 # ------------------------------------------------------------- binding table
