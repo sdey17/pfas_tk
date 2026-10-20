@@ -20,7 +20,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | `EXECUTIVE_SUMMARY.md` | the same argument in two pages |
 | `db/` | the structured extractions — one CSV per evidence type |
 | `db/primary_2026/` | 24 per-paper extractions, read from the papers directly |
-| `db/combined/` | the consolidated database — 1,567 rows across four tables, plus an `.xlsx` |
+| `db/combined/` | the consolidated database — 2,084 rows across four tables, plus an `.xlsx` |
 | `db/qsar/` | per-compound structure descriptors paired with the renal handling ratio (§11) |
 | `papers/` | full-text extractions (`.txt`) and the retrieval logs (`SOURCES_*.md`) |
 | `figures/` | 23 analysis figures; `fig00_master.png` is the whole argument in one panel pair |
@@ -36,6 +36,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | `master_exposure_halflife.csv` | 46 | dose, measured serum concentration, half-life, Vd and clearance on one line per chemical × species × sex |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which primary study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | the human clearance factor each agency uses, normalised to mL/kg-day |
+| `binding_affinity.csv` | 828 | **the reading copy**: one measurement per row in eight columns — PFAS, species, protein, measure, value, units, source (First Author Year), location in the paper. Built from `protein_binding.csv`; every cell populated |
 | `protein_binding.csv` | 865 | in vitro PFAS binding to albumin and other proteins, with the method and assay conditions for each. **Group by study before averaging** — one study (Ryu 2024) supplies 320 rows |
 | `transporter_kinetics.csv` | 217 | transporter Km, Vmax and IC50, with the reabsorption-or-secretion direction |
 | `transporter_mechanism.csv` | — | transporter expression, hormonal regulation and species comparison |
@@ -53,7 +54,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | File | Rows | What it holds |
 |---|---|---|
 | `tk_parameters.csv` | 750 | half-life, clearance, Vd, MRT, bioavailability, GFR and reabsorption by chemical × species × sex × source, units normalised, every row carrying its provenance |
-| `binding.csv` | 198 | protein binding constants and unbound fractions with the method for each |
+| `binding.csv` | 844 | protein binding constants and unbound fractions with the method for each |
 | `transporters.csv` | 275 | transporter Km, PBPK Tm/KT, mRNA sex ratios and direction |
 | `regulatory.csv` | 215 | what each agency adopted, from which study, under which assumptions |
 | `PFAS_TK_combined.xlsx` | — | all four as one filterable workbook |
@@ -122,6 +123,8 @@ python3 scripts/make_review_figures.py                # -> figures/fig02..fig04
 python3 scripts/make_summary_pdf.py                   # -> report/PFAS_TK_review.pdf
 
 # protein binding: building the database, then using it
+python3 scripts/fill_binding_dois.py                  # resolve the missing PMIDs/DOIs
+python3 scripts/build_binding_affinity_table.py       # -> db/binding_affinity.csv (the reading copy)
 python3 scripts/check_protein_binding.py              # validation; reproduces 3 papers' own statistics
 python3 scripts/build_binding_table.py                # the usable-affinity view of db/protein_binding.csv
 python3 scripts/binding_species_and_structure.py      # species and chain-length cuts

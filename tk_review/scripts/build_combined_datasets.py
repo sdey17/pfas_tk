@@ -21,6 +21,7 @@ Run:  python3 scripts/build_combined_datasets.py
 """
 import csv
 import os
+import sys
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -275,24 +276,37 @@ def build_tk():
     return out
 
 
+def binding_rows():
+    """The measurement rows that db/binding_affinity.csv is written from."""
+    sys.path.insert(0, HERE)
+    from build_binding_affinity_table import build as _build
+    return _build()[1]
+
+
 # ------------------------------------------------------------- binding table
 BIND_FIELDS = ["chemical", "species", "protein", "measure", "value", "units",
                "method", "study", "year", "pmid_or_doi", "provenance", "notes"]
 
 
 def build_binding():
+    """One row per binding measurement, from db/protein_binding.csv.
+
+    This used to read binding_summary_ka.csv and binding_summary_logD.csv,
+    which are per-chemical AGGREGATES carrying ka_M-1_geomean / studies, not
+    value / study. Every .get() missed and 311 of 327 rows came out with
+    species, value, units, method, study, year and the identifier all blank.
+    The per-measurement table is the right source and is shared with
+    db/binding_affinity.csv so the two cannot drift apart.
+    """
     out = []
-    for fn, meas in (("binding_summary_ka.csv", "association constant Ka"),
-                     ("binding_summary_logD.csv", "log D_protein/water")):
-        for r in rows(os.path.join(DB, fn)):
-            out.append({
-                "chemical": r.get("chemical", ""), "species": r.get("species", ""),
-                "protein": r.get("protein", ""), "measure": meas,
-                "value": r.get("value", "") or r.get("mean", ""),
-                "units": r.get("units", ""), "method": r.get("method", ""),
-                "study": r.get("study", ""), "year": r.get("year", ""),
-                "pmid_or_doi": r.get("pmid", "") or r.get("doi", ""),
-                "provenance": fn, "notes": r.get("notes", "")})
+    for r in binding_rows():
+        out.append({
+            "chemical": r["pfas"], "species": r["species"],
+            "protein": r["protein"], "measure": r["measure"],
+            "value": r["value"], "units": r["units"],
+            "method": r["_method"], "study": r["_study"], "year": r["_year"],
+            "pmid_or_doi": r["_id"], "provenance": "protein_binding.csv",
+            "notes": r["location"]})
     for r in rows(os.path.join(PRIM, "han2003_pfoa_albumin_binding.csv")):
         out.append({
             "chemical": "PFOA", "species": "rat and human",
