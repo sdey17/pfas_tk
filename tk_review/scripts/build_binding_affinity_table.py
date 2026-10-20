@@ -33,6 +33,12 @@ FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
 
 CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
 
+# The unfiltered table, kept alongside the filtered one so nothing is lost to
+# this workbook's scope. Same columns plus the class that decided the filter.
+ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
+              "units", "kd_uM", "kd_basis", "logK", "logK_basis",
+              "source", "location"]
+
 COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
                "pfas_conc_uM", "protein_conc_uM", "ligand_protein_ratio_max",
                "ratio_basis", "temperature_C", "temperature_as_stated", "nacl_mM",
@@ -527,6 +533,7 @@ def build(filter_compounds=True):
     for rec in out:
         cls = compound_class(rec["pfas"])
         rec["_class"] = cls
+        rec["class"] = cls
         if not filter_compounds or cls == "common" or (
                 cls == "exotic PFAS"
                 and (rec["_study"], rec["_year"]) in anchored):
@@ -595,6 +602,10 @@ NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
     ("Compounds", "Which compounds are in and why, so the filter can be "
                   "audited or overridden."),
+    ("All measurements", "Every measurement in db/protein_binding.csv, "
+                         "unfiltered, with the `class` column that decided "
+                         "whether it reached the Affinity tab. Nothing is "
+                         "lost to the compound filter; it is only set aside."),
     ("", ""),
     ("pfas", "Chemical as the paper names it."),
     ("species", "Species the protein came from."),
@@ -666,7 +677,7 @@ NOTES = [
 ]
 
 
-def write(out, cond, cmpd):
+def write(out, cond, cmpd, full):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -679,7 +690,8 @@ def write(out, cond, cmpd):
 
     for title, fields, data in (("Affinity", FIELDS, out),
                                 ("Conditions", COND_FIELDS, cond),
-                                ("Compounds", CMPD_FIELDS, cmpd)):
+                                ("Compounds", CMPD_FIELDS, cmpd),
+                                ("All measurements", ALL_FIELDS, full)):
         ws = wb.create_sheet(title)
         ws.append(fields)
         for r in data:
@@ -834,7 +846,8 @@ def main():
     args = ap.parse_args()
     rows, out, skipped, qualitative, dropped = build()
     if not args.check:
-        write(out, conditions(out), compounds(out))
+        full = build(filter_compounds=False)[1]
+        write(out, conditions(out), compounds(out), full)
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
     check(rows, out, skipped, qualitative, dropped)
