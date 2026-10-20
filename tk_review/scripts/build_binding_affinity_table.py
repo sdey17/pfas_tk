@@ -109,11 +109,14 @@ def source_label(study, year):
 def canon_units(raw, measure):
     u = " ".join(raw.split())
     if measure == "log K_membrane":
-        return "log10 K_MW (basis as published)"
+        return ("log10 K_IAM (basis as published)" if u.startswith("log K_IAM")
+                else "log10 K_MW (basis as published)")
     if measure == "log D":
         if u.startswith("log K_PW (protein-water distribution coefficient), "
                         "L_water per L_albumin"):
             return "log10 (L_water/L_protein)"
+        if u.startswith("log K_HSA"):
+            return "log10 K_HSA (basis as published)"
         if "kg_albumin" in u or "kg_protein" in u or u.startswith("log K_PW"):
             return "log10 (L_water/kg_protein)"
         if "L_protein" in u:
@@ -156,8 +159,10 @@ def measure_of(r):
     ka, kd = r["ka"].strip(), r["kd"].strip()
     kau, kdu = r["ka_units"], r["kd_units"]
     if ka or "no binding detected" in kau:
-        if kau.startswith("log K_MW"):
+        if kau.startswith("log K_MW") or kau.startswith("log K_IAM"):
             return "log K_membrane", "ka"
+        if kau.startswith("log K_HSA"):
+            return "log D", "ka"
         if kau.strip() == "log M^-1":
             return "Ka", "ka"          # a log association constant, not a log D
         if any(t in kau for t in ("log D", "log K_PW", "log L_water",
@@ -340,6 +345,10 @@ def to_logK(rec, n_sites):
         num, note = parse_value(raw)
         if num is None:
             return "", note
+        if units == "log10 K_HSA (basis as published)":
+            return ("%.3f" % num,
+                    "as reported, biomimetic surrogate; basis not stated by "
+                    "the paper, so not placed on the mass basis")
         if units in ("log10 (L_water/kg_protein)", "log10 (L_water/kg_albumin)"):
             return "%.3f" % num, "as reported (mass basis)"
         if units == "log10 (L_water/L_protein)":

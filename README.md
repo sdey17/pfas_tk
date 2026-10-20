@@ -39,7 +39,7 @@ tk_learning/        twelve lessons: C(t)=C0·exp(-kt) through to a working PBPK 
 pfas_dose/          EPA animal PK pipeline; does clearance depend on dose within a species?
 species_dose/       does dose explain the human/rodent gap? (no — ~13% at best)
 literature/         23 human studies appraised by design rather than reputation
-tk_review/          the species question at the source: 186 full texts, 2,186 database rows
+tk_review/          the species question at the source: 186 full texts, 2,351 database rows
 ```
 
 `tk_learning/` and `tk_review/` are the pair to know: the first teaches the
@@ -95,7 +95,7 @@ into the answer.
 
 ### `tk_review/` — the species question, answered
 
-186 full texts read, 24 per-paper extractions, 2,186 rows across four
+186 full texts read, 24 per-paper extractions, 2,351 rows across four
 consolidated tables, 23 figures, 67 runnable scripts. Headline results:
 
 - **It is clearance, not distribution.** Vd spans 1.33–2.18× between sexes;

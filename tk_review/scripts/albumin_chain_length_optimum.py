@@ -232,6 +232,11 @@ def build(rows):
         s=series(rows, "Fischer et al.", "2024",
                  protein_sub="whole human serum", islog=True),
         method="SPME depletion", units="log D", conc="0.2-42 ug/L")
+    S["Muensterman 2026 HSA"] = dict(
+        s=series(rows, "Muensterman et al.", "2026",
+                 protein_sub="human serum albumin", islog=True),
+        method="biomimetic chromatography (surrogate)",
+        units="log K_HSA", conc="10 uL injection, immobilised phase")
     S["Allendorf 2019 BSA"] = dict(
         s=series(rows, "Allendorf et al.", "2019", protein_sub="A3803",
                  islog=True),

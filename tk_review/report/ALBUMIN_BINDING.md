@@ -409,6 +409,7 @@ points on *both* sides of their highest value — and they do not agree:
 | **Bischel 2011 BSA** | equilibrium dialysis | 4–11 | 6 | 0.83 | 1 |
 | Chen 2025 HSA | equilibrium dialysis | 3–15 | 7 | 0.80 | 4 |
 | Starnes 2025 HSA | DSF | 3–10 | 6 | 0.67 | 3 |
+| **Muensterman 2026 HSA** | biomimetic chromatography | 3–17 | 7 | 0.60 | 1 |
 
 Three further series — Gao 2025, Qin 2024's nonspecific term, Starnes 2024 —
 never reach a maximum at all, which is not a neutral result: Gao is still
@@ -416,11 +417,20 @@ climbing at nCF 9 and Qin at nCF 10, and both would have to be *falling*
 there if the optimum were at 6–8.
 
 **Sort that table by span and the peak sorts with it.** Spearman ρ between
-dynamic range over the shared window and peak position is **+0.83** across
-the eight bracketed series. Every series spanning more than 1.3 log units
-peaks at nCF 9–11; every series spanning less than 0.85 peaks at 6–7. A
-curve that cannot resolve three orders of magnitude cannot locate a maximum
-inside them.
+dynamic range over the shared window and peak position is **+0.80** across
+the nine bracketed series, from eight laboratories and six methods. Every
+series spanning more than 1.3 log units peaks at nCF 9–11; every series
+spanning less than 0.85 peaks at 6–7. A curve that cannot resolve three
+orders of magnitude cannot locate a maximum inside them.
+
+Muensterman 2026 is the newest and the largest — 83 compounds, the only
+dataset here reaching nCF 17 — and it lands exactly where the relationship
+predicts: the narrowest range in the table, 0.60 log units, and a peak at
+nCF 7. It is also the one measurement in this section that is not an
+equilibrium method at all. Retention on an albumin-coated column is
+calibrated against pharmaceuticals of known partition coefficient, so a
+compressed response is what the technique produces rather than something
+that happened to it.
 
 **The compression from §11b is the wrong tool for this.** An argmax survives
 any strictly increasing transform, so rescaling Fischer's curve by 0.82, 0.5
