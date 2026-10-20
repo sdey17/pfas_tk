@@ -1822,17 +1822,22 @@ and both models already over-predict C_cell.
 
 | variant | bias | \|err\| | without PFBA | ≤25 µM | 100 µM |
 |---|---|---|---|---|---|
-| Qin, published | 3.43× | 3.95× | 3.58× | 1.58× | 5.52× |
-| Qin + Fischer, constant D | 4.74× | 4.77× | 5.16× | 4.78× | 4.72× |
-| Qin + Fischer, rescaled Langmuir | 9.68× | 9.68× | 11.21× | 7.66× | 11.18× |
-| Armitage, published | **2.33×** | **2.42×** | 2.47× | 2.73× | 2.12× |
-| Armitage + Fischer | 5.09× | 5.10× | 6.05× | 5.79× | 4.71× |
+| Qin, published | 7.52× | 7.52× | 8.59× | 5.99× | 8.63× |
+| Qin + Fischer, constant D | 7.75× | 7.75× | 8.93× | 10.39× | 6.47× |
+| Qin + Fischer, rescaled Langmuir | 15.71× | 15.71× | 19.23× | 17.59× | 14.66× |
+| Armitage, published | **3.87×** | **4.02×** | 4.35× | 6.08× | 2.94× |
+| Armitage + Fischer | 8.08× | 8.08× | 10.12× | 12.01× | 6.34× |
 
 Substituting the best available measurement makes **both models worse** —
-Qin from 3.43× to 4.74×, Armitage from 2.33× to 5.09×. The rescaled-Langmuir
+Qin from 7.52× to 7.75×, Armitage from 3.87× to 8.08×. The rescaled-Langmuir
 variant, which is the more defensible substitution because it keeps Qin's
 saturation behaviour and only fixes the trace-limit level, is worst of all at
-9.68×.
+15.71×.
+
+*(All figures here are on the corrected exposure media:
+`MBM_Qin_vs_Armitage.md` §15 traced one of the three assays to 2% FBS, not the
+10% of its growth medium. The pre-correction numbers were Qin 3.43× and
+Armitage 2.33×.)*
 
 **One thing it does fix, and it is structural.** Qin's published error swings
 3.5× across the dose range (1.58× at ≤25 µM, 5.52× at 100 µM). With a constant
@@ -1951,11 +1956,12 @@ Three independent lines cluster around 0.5–0.8; **Qin's Table 2 sits alone at
 measured carboxylate anchors.
 
 Substituting Qin's measured D_cell/w confirms it from the other direction:
-mean bias improves (Qin 3.43× → 1.99×, Armitage 2.33× → **1.25×**) but the
-absolute error gets *worse* (3.95× → 4.80×, 2.42× → 3.09×), because the
-per-compound spread blows out — PFBA over-predicted 20–24×, PFNA
-under-predicted to 0.27–0.31×. Centring the predictions while wrecking the
-chain-length trend is the signature of substituting an outlier.
+mean bias improves (Qin 7.52× → 4.61×, Armitage 3.87× → **2.15×**) and so does
+the absolute error (7.52× → 5.43×, 4.02× → 2.91×) — but the per-compound spread
+blows out: PFBA over-predicted **19.7× and 23.6×** against PFNA at 1.14× and
+0.73×. The aggregate improves only because a wild miss at one end of the series
+is averaged against a good fit at the other. Centring the predictions while
+wrecking the chain-length trend is the signature of substituting an outlier.
 
 **So the slope is exonerated, and what remains is a level error in the cell
 term.** Qin's cell partition runs 1.5–9.2× above what the uptake data require,
@@ -2014,8 +2020,8 @@ convention has defined its protein term out of existence. A coefficient
 calibrated on neutral organics does not describe an anionic surfactant on
 protein.
 
-**But substituting the measured value makes both models worse** — Qin 3.43× →
-5.92×, Armitage 2.33× → 6.10×. The measured protein affinity is *higher* than
+**But substituting the measured value makes both models worse** — Qin 7.52× →
+12.24×, Armitage 3.87× → 9.81×. The measured protein affinity is *higher* than
 either model assumes, so it enlarges the cell sink, and both already
 over-predict.
 
@@ -2040,12 +2046,15 @@ the *published* models on the smaller cell:
 
 | | bias | \|err\| | ≤25 µM | 100 µM |
 |---|---|---|---|---|
-| Qin @ 10 ng/cell (as published) | 3.43× | 3.95× | 1.58× | 5.52× |
-| Qin @ 3.04 ng/cell | **1.60×** | **2.26×** | 0.93× | 2.24× |
-| Armitage @ 10 ng/cell (as published) | 2.33× | 2.42× | 2.73× | 2.12× |
-| Armitage @ 3.04 ng/cell | **1.08×** | 2.32× | 1.61× | 0.85× |
+| Qin @ 10 ng/cell (as published) | 7.52× | 7.52× | 5.99× | 8.63× |
+| Qin @ 3.04 ng/cell | **3.71×** | **4.56×** | 3.80× | 3.65× |
+| Armitage @ 10 ng/cell (as published) | 3.87× | 4.02× | 6.08× | 2.94× |
+| Armitage @ 3.04 ng/cell | **1.84×** | 3.95× | 3.73× | 1.19× |
 
-Armitage becomes essentially unbiased and Qin's absolute error drops by 40%.
+Both biases roughly halve, which is what the volume ratio predicts. Before the
+§15 medium correction this substitution reached 1.60× and **1.08×** and looked
+like the whole answer; on the corrected media it accounts for about half the
+residual in log terms and leaves a 1.8–3.7× over-prediction standing.
 The cell volume is the one knob that rescales every compound by the *same*
 factor, which is exactly what a level offset that does not vary with chain
 length requires.

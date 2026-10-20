@@ -289,10 +289,13 @@ ASSAYS = {
                         v_working_uL=250.0, cell_yield=4.0e4, FBSf=0.10,
                         doses=[100.0], vol_assumed=False,
                         basis="recovered"),
-    # Fragki 2023: HepaRG.  Plate format and working volume are not in the
-    # supplementary file available here; 24-well / 500 uL is assumed.
+    # Fragki 2022 (Food Chem Toxicol 172:113559).  HepaRG, 24-well, dosed in
+    # 550 uL of "assay medium (growth medium containing 2% FBS)" -- the growth
+    # medium's 10% is not what the cells were exposed in.  See
+    # mbm_medium_composition.py.  Volume kept at the older 500 uL here because
+    # this script is superseded by mbm_published_equations.py.
     "Fragki2023": dict(cells="HepaRG", plate="24-well(assumed)", diam_mm=15.6,
-                       v_working_uL=500.0, cell_yield=2.5e5, FBSf=0.10,
+                       v_working_uL=500.0, cell_yield=2.5e5, FBSf=0.02,
                        doses=[6.25, 25.0, 100.0], vol_assumed=True,
                        basis="nominal"),
 }

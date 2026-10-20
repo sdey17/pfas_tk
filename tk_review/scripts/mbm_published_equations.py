@@ -125,14 +125,20 @@ ASSAYS = {
     # ng/mg reconciliation implies ~0.7 mL/well.
     "Rosenmai": dict(line="AREc2", diam_mm=22.1, wells=3, v_uL=3000.0,
                      cells=5.434e5, FBS=0.10, doses=[10.0, 30.0, 100.0]),
-    # Amstutz 2022: HepG2, 96-well, 4e4 cells, 250 uL exposure medium, 10% FBS.
+    # Amstutz 2022 (Toxicology 480:153312) S2.2/2.3/2.5: HepG2, 96-well, 4e4
+    # cells, 250 uL dosed, exposed in the GROWTH medium -- DMEM + 10% FBS,
+    # 0.1% DMSO carrier.  FBS verified at source.
     "Amstutz": dict(line="AREc2", diam_mm=6.4, wells=1, v_uL=250.0,
                     cells=4.0e4, FBS=0.10, doses=[100.0]),
-    # Fragki 2023 main paper: HepaRG, 24-well, seeded 55,000/well in 500 uL,
-    # exposed in 550 uL, William's E + 10% FBS. Differentiated HepaRG reach
-    # roughly 4x the seeding density by the end of differentiation.
+    # Fragki 2022 (Food Chem Toxicol 172:113559) S2.2/2.3: HepaRG, 24-well,
+    # seeded 55,000/well in 500 uL, dosed in 550 uL.  The growth medium is
+    # William's E + 10% FBS, but exposure is in "assay medium (growth medium
+    # containing 2% FBS) supplemented with 0.5% DMSO" -- FBS = 0.02, NOT 0.10.
+    # This was 0.10 until mbm_medium_composition.py traced it to the source;
+    # the 5x matters because albumin carries 79-97% of the denominator here.
+    # Differentiated HepaRG reach roughly 4x the seeding density.
     "Fragki": dict(line="AREc2", diam_mm=15.6, wells=1, v_uL=550.0,
-                   cells=2.2e5, FBS=0.10,
+                   cells=2.2e5, FBS=0.02,
                    doses=[6.25, 12.5, 25.0, 50.0, 100.0]),
 }
 

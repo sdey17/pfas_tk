@@ -6,7 +6,12 @@ Rosenmai supporting information are now in hand, and two of the earlier
 conclusions were artefacts of substituting EPA's `httk` for the published
 parameterisation. What changed, and why, is in §2.
 
-Reproduce: `python3 tk_review/scripts/mbm_published_equations.py` and
+**Second correction, 2026-10-20 (§15).** Fragki's exposure medium is 2% FBS,
+not the 10% of its growth medium. Every number below is on the corrected
+value; the pre-correction figures are in this file's history.
+
+Reproduce: `python3 tk_review/scripts/mbm_published_equations.py`,
+`python3 tk_review/scripts/mbm_medium_composition.py` and
 `python3 tk_review/scripts/make_mbm_figure.py`.
 Outputs: `db/mbm_published_equations.csv`, `figures/fig10_mbm_qin_vs_armitage.png`.
 
@@ -101,19 +106,27 @@ Fitting C_cell ∝ C_nom^b:
 | Rosenmai PFHxA | 0.87 | 1.58 | 1.00 |
 | Rosenmai PFOA | 1.14 | 1.82 | 1.00 |
 | Rosenmai PFNA | 1.31 | 1.81 | 1.00 |
-| Fragki PFOA | 1.42 | 1.71 | 1.00 |
-| Fragki PFNA | 1.42 | 1.66 | 1.00 |
+| Fragki PFOA | 1.42 | 1.49 | 1.00 |
+| Fragki PFNA | 1.42 | 1.62 | 1.00 |
 
 Armitage is linear by construction and is pinned at exactly 1.00. The measured
 exponent rises monotonically with chain length, 0.85 → 1.42, and Qin reproduces
-that ordering while overshooting the magnitude by 0.3–0.7. This is the only
-place where Qin's extra machinery buys something Armitage structurally cannot
-deliver, and it is why the two models' error swaps sign with dose:
+that ordering, overshooting by 0.30–0.71 on Rosenmai and by only 0.07–0.20 on
+Fragki. This is the only place where Qin's extra machinery buys something
+Armitage structurally cannot deliver.
 
-| | ≤25 µM | 100 µM |
+It is also the one thing the §15 medium correction *improves*: on 2% FBS
+Qin's Fragki exponents fall from 1.71 and 1.66 to 1.49 and 1.62 against a
+measured 1.42. Less albumin means less of Qin's Langmuir saturation, and the
+curvature it was adding was partly an artefact of a sink five times too big.
+
+The two models' error still swaps sign with dose, though the correction has
+moved Qin's low-dose advantage onto Armitage:
+
+| | ≤25 µM | >25 µM |
 |---|---|---|
-| Armitage | 2.73× | 2.29× |
-| Qin | **1.58×** | **8.95×** |
+| Armitage | 6.08× | **2.94×** |
+| Qin | 5.99× | 8.63× |
 
 ## 5. Performance
 
@@ -124,14 +137,19 @@ Fraction of dose in cells, n = 29:
 | PFBA | 1.2–1.7× | 1.8–3.4× |
 | PFHxA | 0.8–3.3× | 2.5–40.5× |
 | PFHpA | 1.0–4.3× | 2.8–50.5× |
-| PFOA | 1.9–5.8× | 1.7–9.5× |
-| PFNA | 1.0–13.5× | 0.5–7.3× |
-| **overall bias** | **2.33×** | 3.43× |
-| **overall \|error\|** | **2.42×** | 3.95× |
+| PFOA | 2.0–26.3× | 1.7–32.9× |
+| PFNA | 4.2–14.6× | 2.4–10.6× |
+| **overall bias** | **3.87×** | 7.52× |
+| **overall \|error\|** | **4.02×** | 7.52× |
 
 Implemented from its own SI, Armitage is the better predictor overall and is
-remarkably good on Rosenmai's short chains (0.8–1.7×). Qin wins at low dose and
-loses badly at 100 µM, where its albumin term has saturated too far.
+remarkably good on Rosenmai's short chains (0.8–1.7×). Both models now
+over-predict everywhere; what used to look like a low-dose regime where Qin
+won was Fragki's dose series being run on five times too much albumin (§15).
+
+The error is no longer spread evenly across compounds. PFBA–PFHpA, which only
+Rosenmai and Amstutz measure, are unchanged at 1.2–1.6× for Armitage. PFOA and
+PFNA, the two compounds Fragki contributes, carry almost the whole residual.
 
 Qin's parameters are measured only for PFBA and PFOA; PFHxA and PFHpA are
 interpolated between those two carboxylate anchors and PFNA is extrapolated
@@ -236,11 +254,13 @@ the *fraction of dose in cells* is insensitive to that disagreement while
 | | plate | medium | cells | FBS |
 |---|---|---|---|---|
 | Rosenmai | 12-well × 3 pooled | 3 × 1 mL (assumed; §6b implies ~0.7 mL/well) | 5.43 × 10⁵ | 10% |
-| Amstutz | 96-well | 250 µL | 4 × 10⁴ | 10% |
-| Fragki | 24-well | **550 µL** (stated) | seeded 55 000/well, differentiated | 10% |
+| Amstutz | 96-well | 250 µL | 4 × 10⁴ | 10% (verified) |
+| Fragki | 24-well | **550 µL** (stated) | seeded 55 000/well, differentiated | **2%** (verified, §15) |
 
-Fragki's main paper confirms the plate and volume I had assumed. The cell count
-at exposure is still not stated for differentiated HepaRG; 2.2 × 10⁵ is used.
+Fragki's main paper confirms the plate and volume I had assumed. The FBS it
+does not confirm: exposure was in "assay medium (growth medium containing 2%
+FBS)", not the 10% growth medium — see §15. The cell count at exposure is still
+not stated for differentiated HepaRG; 2.2 × 10⁵ is used.
 Because the measured fraction and the predicted fraction both scale with cell
 number, the ratio is insensitive to it.
 
@@ -254,6 +274,11 @@ number, the ratio is insensitive to it.
   AEID1325), which would make a direct validation target, but the sheets' two-
   row headers defeat clean extraction and the PFAS rows could not be read
   reliably. Not pursued.
+- **Rosenmai's exposure FBS is the one medium not verified at source.** Its
+  full text is paywalled here; 10% is the standard HepG2 condition and is what
+  Amstutz followed ("based on the study of Rosenmai et al. (2018), with small
+  modifications"), but after §15 that is an assumption, not a reading. Fifteen
+  of the 29 points rest on it.
 - AREc2's water content of 0.944 is high for a cell and its protein of 0.0514
   low; it is used because it is the composition Armitage's own model was run
   with for a HepG2-derived line, not because it is independently plausible.
@@ -266,8 +291,8 @@ spreadsheet's nmol/mg columns with the agreed 675 pg protein per cell:
 | over 29 points | bias | \|error\| |
 |---|---|---|
 | project sheet Armitage | **0.90×** | 2.86× |
-| published-equation Armitage | 2.33× | **2.42×** |
-| published-equation Qin | 3.43× | 3.95× |
+| published-equation Armitage | 3.87× | **4.02×** |
+| published-equation Qin | 7.52× | 7.52× |
 | project sheet Qin | **57×** | 57× |
 
 The sheet's Armitage is essentially unbiased and runs 0.39× of the
@@ -331,11 +356,12 @@ monotonically with chain length:
 | PFBA | 3 | 1.42× | 2.36× |
 | PFHxA | 5 | 1.20× | 8.78× |
 | PFHpA | 6 | 1.55× | 9.03× |
-| PFOA | 7 | 2.68× | 3.80× |
-| PFNA | 8 | 3.86× | 1.51× |
+| PFOA | 7 | 6.21× | 12.71× |
+| PFNA | 8 | 8.54× | 5.62× |
 
-Armitage: **+0.091 decades per CF2, r = +0.83**. Qin shows no trend
-(−0.035, r = −0.20).
+Armitage: **+0.172 decades per CF2, r = +0.83**. Qin now shows the same trend
+(+0.092, r = +0.63); before the §15 correction it showed none. Washing would
+strip short chains hardest, so both trends point away from the hypothesis.
 
 **(c) The magnitude is two orders out.** Fragki's time course puts steady state
 at ~1 h, so the cell↔medium exchange half-time is ~10–30 min. Five quick rinses
@@ -380,11 +406,11 @@ Qin's two Cmax columns to 0.3% on all four of their measured compounds.
 
 | variant | bias | \|err\| | ≤25 µM | 100 µM | dose swing |
 |---|---|---|---|---|---|
-| Qin, published | 3.43× | 3.95× | 1.58× | 5.52× | 3.49× |
-| Qin + Fischer, constant D | 4.74× | 4.77× | 4.78× | 4.72× | **0.99×** |
-| Qin + Fischer, rescaled Langmuir | 9.68× | 9.68× | 7.66× | 11.18× | 1.46× |
-| Armitage, published | **2.33×** | **2.42×** | 2.73× | 2.12× | 0.78× |
-| Armitage + Fischer | 5.09× | 5.10× | 5.79× | 4.71× | 0.81× |
+| Qin, published | 7.52× | 7.52× | 5.99× | 8.63× | 1.44× |
+| Qin + Fischer, constant D | 7.75× | 7.75× | 10.39× | 6.47× | **0.62×** |
+| Qin + Fischer, rescaled Langmuir | 15.71× | 15.71× | 17.59× | 14.66× | 0.83× |
+| Armitage, published | **3.87×** | **4.02×** | 6.08× | 2.94× | 0.48× |
+| Armitage + Fischer | 8.08× | 8.08× | 12.01× | 6.34× | 0.53× |
 
 Fischer's value is below both models' for every compound (0.14–0.61× of Qin,
 0.17–0.61× of Armitage), so substituting it shrinks the albumin sink and
@@ -433,10 +459,12 @@ Qin's Table 2 alone gives +0.177, and at PFBA it is 20× above what the uptake
 requires. Three independent lines against one: the models' slope is fine.
 
 Substituting Qin's measured D_cell/w confirms it. Mean bias improves (Qin
-3.43 → 1.99, Armitage 2.33 → 1.25) while absolute error worsens (3.95 → 4.80,
-2.42 → 3.09), with PFBA over-predicted 20–24× and PFNA under-predicted to
-0.27–0.31×. Centring the fit while destroying the trend is what substituting
-an outlier looks like.
+7.52 → 4.61, Armitage 3.87 → 2.15) and so does absolute error (7.52 → 5.43,
+4.02 → 2.91) — but look at where it goes: PFBA is over-predicted **19.7× and
+23.6×** while PFNA lands at 1.14× and 0.73×. The aggregate improves because a
+wild over-prediction at one end is being averaged against a good fit at the
+other. Centring the fit while destroying the trend is what substituting an
+outlier looks like.
 
 **The level.** Qin's cell partition runs 1.5–9.2× above the uptake requirement
 and Armitage's 0.25–6.2×, both worst mid-series at PFHxA–PFHpA. Those factors
@@ -473,8 +501,8 @@ measured protein affinity and 1.5× too steep. That is why Armitage's cell is
 ~100% membrane lipid — the convention has defined its protein term out of
 existence.
 
-But substituting the measured value makes both models **worse** (Qin 3.43 →
-5.92, Armitage 2.33 → 6.10), because the measurement is *higher* than either
+But substituting the measured value makes both models **worse** (Qin 7.52 →
+12.24, Armitage 3.87 → 9.81), because the measurement is *higher* than either
 model assumes and both already over-predict.
 
 **The pattern across all three substitutions:**
@@ -488,13 +516,16 @@ model assumes and both already over-predict.
 All three move dose into the cell. No partition coefficient fixes an
 over-prediction here, because the measured values do not point that way.
 
-**The cell volume does.** Rerunning the published models at 3.04 pL/cell
-(project sheet, HepG2) instead of 10 ng/cell (AREc2) gives Qin bias 1.60×
-(|err| 3.95 → 2.26) and **Armitage 1.08×**. It is the one knob that rescales
-every compound by the same factor, which is what a level offset independent of
-chain length requires — and the assays modelled are HepG2 and HepaRG, not
-AREc2. None of the three uptake papers reports its cell volume, so that is
-where this stops.
+**The cell volume halves it, and no longer closes it.** Rerunning the published
+models at 3.04 pL/cell (project sheet, HepG2) instead of 10 ng/cell (AREc2)
+gives Qin 7.52 → 3.71× and Armitage 3.87 → 1.84×. It is still the one knob that
+rescales every compound by the same factor, which is what a level offset
+independent of chain length requires — and the assays modelled are HepG2 and
+HepaRG, not AREc2. But before §15 this substitution reached 1.60× and 1.08×,
+i.e. it looked like the whole answer. On the corrected medium it accounts for
+about half the residual in log terms and leaves a 1.8–3.7× over-prediction
+standing. None of the three uptake papers reports its cell volume, so that part
+stops here; what §15 adds is that the cell volume now has to share the blame.
 
 **One result worth keeping regardless.** Qin 2024 reports both binding regimes
 for the same protein and compound: specific exceeds nonspecific by 3.0–5.0×
@@ -503,3 +534,126 @@ above ν ≈ 1. That is the direct measurement of the ligand:protein regime
 effect §6.1a inferred, and it quantifies the penalty for carrying an in vitro
 constant into a physiological calculation without asking which regime produced
 it.
+
+---
+
+## 15. The exposure medium is not the growth medium
+
+Added 2026-10-20. Reproduce with `python3 tk_review/scripts/mbm_medium_composition.py`;
+output `db/mbm_medium_composition.csv`.
+
+All three assays were coded at 10% FBS, read off each paper's **culture**
+section. Two of the three state something different for the medium the cells
+were actually **dosed** in.
+
+| | growth medium | exposure medium | DMSO carrier | verified |
+|---|---|---|---|---|
+| Rosenmai 2018 | 10% FBS | assumed 10% | not stated here | **no** — paywalled |
+| Amstutz 2022 | DMEM + 10% FBS | *the culture medium*, 10% FBS | 0.1% | yes |
+| Fragki 2022 | William's E + 10% FBS | **assay medium: growth medium + 2% FBS** | 0.5% | yes |
+
+Fragki et al. 2022, §2.2–2.3, verbatim:
+
+> "Prior to biokinetic studies, differentiated HepaRG cells were incubated for
+> 24 h in assay medium (growth medium containing **2% FBS**) supplemented with
+> 0.5% DMSO… Test chemicals were diluted from 200-fold concentrated stock
+> solutions **in assay medium**, providing exposure medium with a final DMSO
+> concentration of 0.5%."
+
+Amstutz et al. 2022, §2.3, verbatim: PFAS were "added from stocks in DMSO **to
+the culture medium**", the DMEM + 10% FBS of §2.2.
+
+**Why it matters more than it looks.** Serum fraction multiplies the two
+largest sinks in the denominator:
+
+```
+V_albumin     = V_medium · f_FBS · 0.733 mL/g · 42 g/L
+V_serum_lipid = V_medium · f_FBS · 1.03 g/L
+```
+
+and in Fragki's well albumin carries **97% of the denominator for PFOA** at
+10% FBS. Cutting the serum five-fold shrinks the sorptive capacity ~4×, which
+raises the free concentration ~4×, which raises every predicted uptake ~4×.
+
+| Fragki, bias | at 10% FBS (as coded) | at 2% FBS (as dosed) |
+|---|---|---|
+| Qin | 1.54× | **14.92×** |
+| Armitage | 2.48× | **10.80×** |
+
+**The dataset that looked like the models' best case was the one being handed
+five times more albumin than it had.** Overall: Qin 3.43 → 7.52×, Armitage
+2.33 → 3.87×.
+
+Armitage moves by 4.4×, which is the denominator argument almost exactly,
+because its albumin term is linear. Qin moves by 9.7× — *more* than the
+denominator shrinks — because its albumin is a saturating Langmuir: a higher
+free concentration drives D_BSA/w down, which shrinks the denominator again.
+**A model with a saturating sink amplifies an error in the size of that sink.**
+That is a general property worth carrying forward, not a quirk of this dataset.
+
+### The DMSO is a red herring
+
+0.5% vs 0.1% is a real difference and it is worth nothing. Log-linear
+cosolvency shifts log K by σ·f_cosolvent, with σ ≈ 1.5–4 per unit volume
+fraction for a hydrophobic solute in aqueous DMSO. At the aggressive σ = 4:
+
+| | shift | as a factor |
+|---|---|---|
+| Fragki, 0.5% DMSO | 0.020 log | 1.047× |
+| Amstutz, 0.1% DMSO | 0.004 log | 1.009× |
+| **difference** | **0.016 log** | **1.038×** |
+| the serum difference | **0.70 log** | **5.00×** |
+
+**44× smaller, and inside the noise on any of these measurements.** The 2%
+versus 10% that matters is the serum, not the solvent.
+
+One DMSO point is *not* about partitioning. HepaRG are differentiated in 1.7%
+DMSO for twelve days and held there — that is what makes them hepatocyte-like,
+and it also loads them with triglyceride, which the companion paper (Louisse
+et al. 2023) measures as an endpoint. Both models run Fragki on the **AREc2**
+composition, a HepG2-derived reporter line with membrane lipid 0.00414, because
+that is the only liver-line composition Armitage's SI publishes. A
+differentiated, DMSO-matured HepaRG is a different cell. That error is in the
+cell term, which §13–14 already name as where the residual lives — so the two
+errors are independent and stack.
+
+### Does the measured data show the serum effect?
+
+If 2% FBS leaves five times less albumin competing with the cells, Fragki's
+*measured* uptake should sit above the 10% FBS studies at the same nominal
+dose. It does:
+
+| | dose | Rosenmai 10% | Amstutz 10% | Fragki 2% | ratio |
+|---|---|---|---|---|---|
+| PFOA | 100 µM | 0.330% | 0.245% | 0.780% | 2.7× |
+| PFNA | 100 µM | 0.310% | 0.302% | 4.385% | 14.3× |
+
+The direction is right and the PFOA magnitude is close to the predicted ~4×.
+It is corroboration, not proof: the cell line differs too, and differentiated
+HepaRG are larger and more lipid-rich than HepG2. PFNA at 100 µM is also the
+one point Fragki themselves set aside from their QIVIVE, for low protein
+content suggesting cytotoxicity; it is retained in the model comparison here
+and it is the largest measured value in the set.
+
+### What this changes
+
+1. **§5 performance.** Both models over-predict everywhere. PFBA–PFHpA, which
+   only the 10% FBS studies measure, are untouched (Armitage 1.2–1.6×). PFOA
+   and PFNA carry almost the whole residual.
+2. **§4 dose exponent** *improves* for Qin on Fragki, 1.71 → 1.49 against a
+   measured 1.42. Some of the curvature Qin was adding was an artefact of a
+   sink five times too big.
+3. **§14's conclusion weakens.** The cell-volume substitution used to reach
+   1.08× for Armitage and looked like the whole answer; on the corrected
+   medium it reaches 1.84× and accounts for about half the residual.
+4. **A methodological point for the QIVIVE literature.** Fragki's biokinetics
+   were explicitly "designed based on the study of [Amstutz], who assessed the
+   cellular accumulation of PFASs in HepG2 cells", and the two datasets get
+   used side by side. They were measured five-fold apart in the single medium
+   property a mass balance is most sensitive to, and neither paper flags it.
+
+**Still open.** Rosenmai's exposure FBS, which 15 of the 29 points depend on,
+is unverified at source (§9). Fragki and Amstutz both took a t = 0 medium
+sample for a mass balance (550 → 500 µL and 250 → 200 µL); neither mass balance
+is reported in the text available here. If it were, it would test the plastic
+term directly instead of by difference.

@@ -281,6 +281,10 @@ def main():
                   f"{math.log10(r['Dbsa']):>11.2f}{need_mass:>9.2f}"
                   f"{fis[nm][1]:>9.2f}{c1:>9.2f}{ceil:>9.2f}  {ok}")
             inv.append((nm, label, k, r["Dbsa"], need, fl, need_mass, ceil, c1))
+    fails = [(x[0], x[1].split(",")[0], x[6], x[7]) for x in inv if x[6] > x[7]]
+    fail_txt = ("; ".join(f"{nm} under {md} needs log D {nd:.2f} against a "
+                          f"{ce:.2f} ceiling" for nm, md, nd, ce in fails)
+                if fails else "none")
     nfit = sum(1 for x in inv if x[6] <= x[7])
     n1fit = sum(1 for x in inv if x[6] <= x[8])
     print(f"""
@@ -290,11 +294,10 @@ def main():
   generous ceiling on what has actually been measured.
 
   {n1fit} of {len(inv)} cells can be fixed within the strict ceiling, {nfit} of {len(inv)} within the
-  generous one.  The two that fail outright are both PFHxA, which needs log D
-  3.8-4.0 against 2.83 - and 2.83 is Fischer's own BSA value, because no
-  reported PFHxA binding constant reaches it even at six sites.  Using
-  Fischer's HSA column instead (3.20, the wrong albumin for a bovine-serum
-  assay) does not close the gap either.
+  generous one.  Failing outright: {fail_txt}.  Those ceilings are already
+  generous - six sites on albumin, and Fischer's own BSA column where it is
+  higher - so a cell that fails there cannot be rescued by any albumin number
+  anyone has measured.
 
   But the direction is the real result.  Every "needed" value is ABOVE the
   model's current one, because both models over-predict C_cell, while

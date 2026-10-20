@@ -811,23 +811,30 @@ Short version: **albumin binding turned out not to explain what we hoped.**
 
 Two published mass-balance models (Qin 2023, Armitage 2021) predict how much
 PFAS gets into cells in an in vitro assay. Both over-predict against 29
-measured points. Albumin carries 19–94% of the sorptive capacity in those
-assays, so it looked like the obvious culprit.
+measured points — by 7.52× and 3.87×, once the exposure media are read from the
+source papers rather than their culture sections (`MBM_Qin_vs_Armitage.md` §15:
+one of the three assays dosed in 2% FBS, not 10%, and was being handed five
+times too much albumin). Albumin carries 19–97% of the sorptive capacity in
+those assays, so it looked like the obvious culprit.
 
 We substituted Fischer's measured albumin partition coefficient — the only one
 measured at a physiological ligand:protein ratio — into both models. **Both got
-worse** (Qin 3.43× → 4.74×, Armitage 2.33× → 5.09×). Fischer's value is *lower*
+worse** (Qin 7.52× → 7.75×, Armitage 3.87× → 8.08×). Fischer's value is *lower*
 than the models assume, which shrinks the albumin sink and pushes more dose into
 the cell, and the models already over-predicted.
 
 Inverting the balance for the albumin coefficient that *would* fix them gives
-values **above** anything measured. The data and the residual point in opposite
-directions. **Albumin is where the sensitivity is and not where the error is.**
+values above the model's current one in all ten model × compound cells, and
+above anything measured in two of them even at a generous six binding sites.
+The data and the residual point in opposite directions. **Albumin is where the
+sensitivity is and not where the error is.**
 
 The same thing happened with cell protein, from the other direction. Tracking
-it down (`MBM_Qin_vs_Armitage.md` §12–14) ended at the **cell volume**, which is
+it down (`MBM_Qin_vs_Armitage.md` §12–15) ends at the **cell volume**, which is
 uncertain to 3.1× and is the only parameter that rescales every compound by the
-same factor.
+same factor — but on the corrected media it only halves the residual (Armitage
+3.87× → 1.84×) where it used to close it. Part of what looked like a cell-volume
+problem was a medium-composition problem.
 
 One result from that work is worth keeping regardless of the models:
 **Armitage's convention that 3.5% of cell protein behaves as octanol gives a
