@@ -36,7 +36,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 | `master_exposure_halflife.csv` | 46 | dose, measured serum concentration, half-life, Vd and clearance on one line per chemical × species × sex |
 | `regulatory_values.csv` | 173 | what each agency adopted, from which primary study, under which assumptions |
 | `agency_clearance_comparison.csv` | 16 | the human clearance factor each agency uses, normalised to mL/kg-day |
-| `binding_affinity.csv` | 828 | **the reading copy**: one measurement per row — PFAS, species, protein, measure, value, units, **`kd_uM`** (everything standardised to a dissociation constant in µM, with **`kd_basis`** saying how each one was reached), **`pfas_conc`** and **`protein_conc`** as the papers report them, source (First Author Year), location in the paper |
+| `binding_affinity.xlsx` | 828 | **the reading copy**, a sortable workbook. *Affinity* tab: PFAS, species, protein, measure, value, units, **`kd_uM`** (only where an exact conversion exists), **`kd_basis`**, source (First Author Year), location. *Conditions* tab, joined by `id`: mode, concentrations in µM, **`ligand_protein_ratio_max`**, temperature, stated NaCl, buffer, binding site. *Notes* tab defines every column and records what is deliberately absent |
 | `protein_binding.csv` | 865 | in vitro PFAS binding to albumin and other proteins, with the method and assay conditions for each. **Group by study before averaging** — one study (Ryu 2024) supplies 320 rows |
 | `transporter_kinetics.csv` | 217 | transporter Km, Vmax and IC50, with the reabsorption-or-secretion direction |
 | `transporter_mechanism.csv` | — | transporter expression, hormonal regulation and species comparison |
@@ -124,7 +124,7 @@ python3 scripts/make_summary_pdf.py                   # -> report/PFAS_TK_review
 
 # protein binding: building the database, then using it
 python3 scripts/fill_binding_dois.py                  # resolve the missing PMIDs/DOIs
-python3 scripts/build_binding_affinity_table.py       # -> db/binding_affinity.csv (the reading copy)
+python3 scripts/build_binding_affinity_table.py       # -> db/binding_affinity.xlsx (the reading copy)
 python3 scripts/check_protein_binding.py              # validation; reproduces 3 papers' own statistics
 python3 scripts/build_binding_table.py                # the usable-affinity view of db/protein_binding.csv
 python3 scripts/binding_species_and_structure.py      # species and chain-length cuts

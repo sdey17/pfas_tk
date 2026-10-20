@@ -26,34 +26,20 @@ import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
-OUT = os.path.join(HERE, "..", "db", "binding_affinity.csv")
+OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
-FIELDS = ["pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "kd_basis", "pfas_conc", "protein_conc",
-          "source", "location"]
+FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
+          "kd_uM", "kd_basis", "source", "location"]
 
-# --- putting everything on one scale -----------------------------------
-# Kd in micromolar is the common currency: it is what most of this
-# literature reports, and the rest converts into it exactly except for the
-# partition coefficients, which need a stoichiometry and a molar mass.
-#
-# The bridge is the one derived in REPORT.md 6.1b. From Langmuir occupancy,
-# dividing by sorbent mass makes the protein concentration cancel, and in
-# the trace limit
-#
-#     log D (L_water/kg_protein) = log Ka + log n - log10(M_protein / 1000)
-#
-# so  log Ka = log D - log n + log10(M_protein / 1000).  n is the number of
-# binding sites, which most papers do not fit, so n = 1 is assumed and said
-# so in kd_basis on every row it touches.
-MW_PROTEIN = {          # g/mol
-    "albumin": 66500.0,     # the value the 6.1b derivation uses
-    "globulin": 150000.0,   # IgG
-}
-# D on a volume basis (L_water per L_protein) is the mass basis times the
-# protein density, 1.364 kg/L from a 0.733 mL/g partial specific volume.
-VOL_TO_MASS = math.log10(1.364)
-RT_KCAL = 0.5925        # kcal/mol at 298 K, for docking dG -> Ka
+COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
+               "pfas_conc_uM", "protein_conc_uM", "ligand_protein_ratio_max",
+               "ratio_basis", "temperature_C", "temperature_as_stated", "nacl_mM",
+               "buffer", "binding_site"]
+
+# Kd in micromolar is the common currency. Only exact routes are used to get
+# there -- see to_kd_uM. Concentrations are converted the same way: unit
+# arithmetic only, never inference.
+TO_UM = {"uM": 1.0, "mM": 1e3, "nM": 1e-3, "M": 1e6}
 
 # Surnames that are two words, so the "first author" is not just the first token.
 MULTIWORD = {"Sanchez Garcia"}
@@ -204,24 +190,38 @@ def parse_value(v):
     return None, "value is not reducible to one number"
 
 
-def protein_mw(protein):
-    """Molar mass for the partition-coefficient bridge, or None when the
-    sorbent has no single one (whole serum, plasma, a membrane)."""
-    p = protein.lower()
-    if "globulin" in p and "corticosteroid" not in p and "thyroxine" not in p:
-        return MW_PROTEIN["globulin"], "gamma-globulin, 150 kDa"
-    if "albumin" in p:
-        return MW_PROTEIN["albumin"], "albumin, 66.5 kDa"
-    return None, None
-
-
 def to_kd_uM(rec):
-    """Standardise to a dissociation constant in micromolar.
+    """Standardise to a dissociation constant in micromolar, EXACTLY or not
+    at all.
 
-    Returns (value_or_blank, basis). The basis is never empty: a converted
-    number always says what it came from, and a blank value always says why.
+    Three routes are exact and are the only ones used:
+      - a Kd already in uM            -> as reported
+      - a Kd in mM, M or nM           -> unit conversion
+      - a Ka                          -> Kd = 1/Ka, true by definition
+
+    Two routes were tried and removed, because each needs a quantity the
+    papers do not report:
+      - log D -> Kd needs the stoichiometry n. The REPORT.md 6.1b bridge is
+        sound, but almost nobody fits n, so every such number rested on an
+        assumed n = 1. The measured quantity is the log D itself, and it is
+        in `value` and `units` where it belongs.
+      - a docking dG is a computed score. Converting it into the same column
+        as measured constants would put a prediction beside data.
+
+    Returns (value_or_blank, basis). The basis is never empty: a number says
+    where it came from, a blank says why it is blank.
     """
     meas, units, raw = rec["measure"], rec["units"], rec["value"]
+
+    if meas == "log D":
+        return "", ("a partition coefficient; converting to Kd needs the "
+                    "stoichiometry, which this paper does not report")
+    if meas.startswith("docking"):
+        return "", "a computed docking score, not a measured constant"
+    if meas == "f_unbound":
+        return "", ("an unbound fraction, not an affinity; converting needs "
+                    "the binding-site molarity, which this paper does not give")
+
     num, note = parse_value(raw)
     if num is None:
         return "", note
@@ -232,53 +232,131 @@ def to_kd_uM(rec):
         return f"{kd:.4g}", basis + (f"; {note}" if note else "")
 
     if meas == "Kd":
-        factor = {"uM": 1.0, "mM": 1e3, "nM": 1e-3, "M": 1e6}.get(units)
+        factor = TO_UM.get(units)
         if factor is None:
-            return "", f"no conversion defined for {units}"
+            return "", "no exact conversion from " + units
         return out(num * factor, "as reported" if factor == 1
-                   else f"unit conversion from {units}")
+                   else "unit conversion from " + units)
 
     if meas == "Ka":
         if units == "M^-1":
             return out(1e6 / num, "1/Ka")
         if units == "log10 M^-1":
             return out(1e6 / 10 ** num, "1/Ka, from log10 Ka")
-        return "", f"no conversion defined for {units}"
+        return "", "no exact conversion from " + units
 
-    if meas == "log D":
-        mw, label = protein_mw(rec["protein"])
-        if mw is None:
-            return "", ("no single molar mass for this sorbent "
-                        "(whole serum, plasma or membrane)")
-        logd = num
-        basis = f"from log D via REPORT 6.1b, n=1 assumed, {label}"
-        if units == "log10 (L_water/L_protein)":
-            logd -= VOL_TO_MASS
-            basis += "; volume basis converted to mass basis"
-        elif units not in ("log10 (L_water/kg_protein)",
-                           "log10 (L_water/kg_albumin)"):
-            return "", f"no conversion defined for {units}"
-        return out(1e6 / 10 ** (logd + math.log10(mw / 1000.0)), basis)
-
-    if meas.startswith("docking"):
-        return out(1e6 / math.exp(-num / RT_KCAL),
-                   "from docking dG at 298 K (COMPUTATIONAL, not measured)")
-
-    if meas == "f_unbound":
-        return "", ("an unbound fraction, not an affinity; converting needs "
-                    "the binding-site molarity, which these papers do not give")
-    return "", "no conversion defined"
+    return "", "no exact conversion defined"
 
 
-def conc(value, units):
-    """Concentration as one readable string: the units here are heterogeneous
-    (uM, mM, a dilution factor, a mol/mol ratio) and do not normalise."""
+CONC_NUM = re.compile(
+    r"^\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
+    r"\s*(?:(?:-|to)\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?))?"
+    r"\s*(?:\(.*\))?\s*$")
+
+
+def conc_range_uM(value, units):
+    """(low, high) in micromolar, or (None, None).
+
+    Unit arithmetic only. A dilution factor, a mol/mol ratio and a
+    mass-per-volume with no molar mass all return nothing rather than a guess.
+    """
     v, u = value.strip(), units.strip()
-    if not v:
+    if not v or not u:
+        return None, None
+    factor = TO_UM.get(u.split()[0])
+    if factor is None:
+        return None, None
+    m = CONC_NUM.match(v)
+    if not m:
+        return None, None
+    lo = float(m.group(1))
+    hi = float(m.group(2)) if m.group(2) else lo
+    return min(lo, hi) * factor, max(lo, hi) * factor
+
+
+def conc_uM(value, units):
+    """The highest concentration used, in uM -- the one that decides whether
+    the protein approached saturation."""
+    _, hi = conc_range_uM(value, units)
+    return "" if hi is None else "%.6g" % hi
+
+
+TEMP_NUM = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*$")
+# Only an NaCl concentration the buffer states outright. Full ionic strength
+# is not computed: most of these buffer descriptions name the salt but not
+# every ionic species, and a phosphate buffer's contribution depends on the
+# protonation state at that pH. Reading what is written beats modelling what
+# is not.
+NACL = re.compile(r"(\d+(?:\.\d+)?)\s*mM\s+(?:added\s+)?NaCl", re.I)
+NACL_M = re.compile(r"(\d*\.\d+)\s*M\s+NaCl", re.I)
+
+
+def temperature(raw):
+    """(numeric C, verbatim). Numeric only when the field is just a number --
+    'thermal ramp', 'room temperature' and multi-temperature series stay as
+    text, because none of them is a single temperature the constant holds at.
+    """
+    v = raw.strip()
+    m = TEMP_NUM.match(v)
+    return ((v, v) if m else ("", v))
+
+
+def nacl_mM(buffer_text):
+    m = NACL.search(buffer_text)
+    if m:
+        return m.group(1)
+    m = NACL_M.search(buffer_text)
+    if m:
+        return "%.6g" % (float(m.group(1)) * 1000.0)
+    return ""
+
+
+# Some papers state the mole ratio instead of both concentrations. Reading it
+# off is not a guess, so it is used where the concentrations do not compute --
+# but the two are flagged apart in ratio_basis, because a stated bound and a
+# computed value are not the same kind of number.
+STATED_RATIO = [
+    (re.compile(r"PFAS:protein molar ratio\s*<=\s*([\d.]+)\s*\(HSA,BSA\)"
+                r".*?<=\s*([\d.]+)\s*\(gamma-globulin\)", re.I | re.S),
+     "albumin_globulin"),
+    (re.compile(r"up to\s+([\d.]+)\s*:\s*1", re.I), "simple"),
+    (re.compile(r"^\s*([\d.]+)\s*:\s*1\b", re.I), "simple"),
+]
+
+
+def stated_ratio(protein_conc_text, ligand_conc_text, protein):
+    """The mole ratio a paper states in words, where it states one."""
+    p = protein.lower()
+    for text in (protein_conc_text, ligand_conc_text):
+        for rx, kind in STATED_RATIO:
+            m = rx.search(text)
+            if not m:
+                continue
+            if kind == "albumin_globulin":
+                if "albumin" in p:
+                    return m.group(1)
+                if "globulin" in p:
+                    return m.group(2)
+                return ""      # whole serum is not covered by that sentence
+            return m.group(1)
+    return ""
+
+
+def ratio_max(lig_hi, prot_lo):
+    """The HIGHEST ligand:protein molar ratio the assay reached -- most
+    ligand over least protein -- computed only when both are in hand.
+
+    This is the axis that orders most of the spread in this literature: below
+    about 0.01 a measurement sees the specific site, above 1 it sees
+    non-specific partitioning, and the two differ by orders of magnitude.
+    Taking the worst case is what makes it a saturation check, and it
+    reproduces the ligand_over_protein_max column of the working file on all
+    151 rows that carry one.
+    """
+    if lig_hi is None or not prot_lo:
         return ""
-    if not u or u.lower() in v.lower():
-        return v
-    return f"{v} {u}"
+    return "%.4g" % (lig_hi / prot_lo) if prot_lo > 0 else ""
+
 
 
 def location(src):
@@ -296,10 +374,19 @@ def build():
         loc = location(r["source_table"])
         base = dict(pfas=r["chemical"], species=r["protein_species"],
                     protein=r["protein"], source=src, location=loc,
-                    _method=r["method"], _id=(r["doi"] or r["pmid"]),
+                    _id=(r["doi"] or r["pmid"]),
                     _study=r["study"], _year=r["year"],
-                    pfas_conc=conc(r["ligand_conc_range"], r["ligand_conc_units"]),
-                    protein_conc=conc(r["protein_conc"], r["protein_conc_units"]))
+                    _mode=r["method"],
+                    _lig=conc_uM(r["ligand_conc_range"], r["ligand_conc_units"]),
+                    _prot=conc_uM(r["protein_conc"], r["protein_conc_units"]),
+                    _lig_hi=conc_range_uM(r["ligand_conc_range"],
+                                          r["ligand_conc_units"])[1],
+                    _prot_lo=conc_range_uM(r["protein_conc"],
+                                           r["protein_conc_units"])[0],
+                    _prot_raw=r["protein_conc"], _lig_raw=r["ligand_conc_range"],
+                    _temp=r["temperature_c"], _buffer=r["buffer"],
+                    _site=r["binding_site_identified"],
+                    _method=r["method"])
         meas, col = measure_of(r)
         if meas:
             raw_u = r["ka_units"] if col == "ka" else r["kd_units"]
@@ -325,14 +412,149 @@ def build():
     for rec in out:
         if rec["species"] == "bovine; human":
             rec["species"] = "human; bovine"
+    for i, rec in enumerate(out, start=1):
+        rec["id"] = i
     return rows, out, skipped, qualitative
 
 
-def write(out):
-    with open(OUT, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=FIELDS, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(out)
+def _ratio_cell(r):
+    computed = ratio_max(r["_lig_hi"], r["_prot_lo"])
+    if computed:
+        return {"ligand_protein_ratio_max": computed,
+                "ratio_basis": "computed from the two concentrations"}
+    stated = stated_ratio(r["_prot_raw"], r["_lig_raw"], r["protein"])
+    if stated:
+        return {"ligand_protein_ratio_max": stated,
+                "ratio_basis": "upper bound stated by the paper"}
+    return {"ligand_protein_ratio_max": "",
+            "ratio_basis": "neither both concentrations nor a stated ratio"}
+
+
+def conditions(out):
+    """The assay conditions, one row per measurement, joined by `id`."""
+    cond = []
+    for r in out:
+        t_num, t_raw = temperature(r["_temp"])
+        cond.append({
+            "id": r["id"], "pfas": r["pfas"], "species": r["species"],
+            "protein": r["protein"], "source": r["source"],
+            "mode": r["_mode"],
+            "pfas_conc_uM": r["_lig"], "protein_conc_uM": r["_prot"],
+            **_ratio_cell(r),
+            "temperature_C": t_num, "temperature_as_stated": t_raw,
+            "nacl_mM": nacl_mM(r["_buffer"]), "buffer": r["_buffer"],
+            "binding_site": r["_site"]})
+    return cond
+
+
+NUMERIC = {"id", "kd_uM", "pfas_conc_uM", "protein_conc_uM",
+           "ligand_protein_ratio_max", "temperature_C", "nacl_mM"}
+
+NOTES = [
+    ("Affinity", "One row per binding measurement, joined to Conditions by id."),
+    ("", ""),
+    ("pfas", "Chemical as the paper names it."),
+    ("species", "Species the protein came from."),
+    ("protein", "Protein or matrix, as the paper describes it."),
+    ("measure", "Which quantity: Kd, Ka, log D, f_unbound, docking dG."),
+    ("value", "The number as printed, including ranges and bounds."),
+    ("units", "Canonicalised unit for that value."),
+    ("kd_uM", "Everything that converts EXACTLY to a dissociation constant "
+              "in micromolar. Blank is a deliberate state, never a gap."),
+    ("kd_basis", "How the kd_uM was reached, or why it is blank. Never empty."),
+    ("source", "First Author Year."),
+    ("location", "Where the number sits in the paper."),
+    ("", ""),
+    ("Conditions", "The assay each measurement was made under."),
+    ("", ""),
+    ("mode", "Experimental method, verbatim."),
+    ("pfas_conc_uM", "Ligand concentration in uM; the top of the range where "
+                     "one is given. Blank where the paper gives a dilution "
+                     "factor, a mol/mol ratio or a mass-per-volume with no "
+                     "molar mass -- those are not convertible without a guess."),
+    ("protein_conc_uM", "Protein concentration in uM, same rule."),
+    ("ligand_protein_ratio_max", "the highest ratio the assay reached: most ligand "
+                             "over least protein. Below ~0.01 a measurement "
+                             "sees the specific site; above ~1 it sees "
+                             "non-specific partitioning, and the two differ "
+                             "by orders of magnitude. This column is the "
+                             "single best predictor of where a constant will "
+                             "land. 239 of 828 rows support one."),
+    ("ratio_basis", "Whether the ratio was computed from the two "
+                    "concentrations or read off a bound the paper states in "
+                    "words. A computed value and a stated upper bound are "
+                    "not the same kind of number, so they are kept apart."),
+    ("temperature_C", "Numeric only where the paper states one temperature. "
+                      "A thermal ramp or 'room temperature' stays in "
+                      "temperature_as_stated and leaves this blank."),
+    ("nacl_mM", "NaCl the buffer states outright. Full ionic strength is NOT "
+                "computed: most buffer descriptions name the salt but not "
+                "every ionic species, and a phosphate buffer's contribution "
+                "depends on protonation at that pH."),
+    ("buffer", "Buffer verbatim."),
+    ("binding_site", "Site, where the paper identifies one (84 of 865 rows do)."),
+    ("", ""),
+    ("What is deliberately absent", ""),
+    ("", "log D is not converted to Kd. The bridge in REPORT.md 6.1b is "
+         "sound but needs the stoichiometry n, which almost no paper fits, "
+         "so every such number would rest on an assumed n = 1."),
+    ("", "Docking energies are not converted. They are computed scores, not "
+         "measurements."),
+    ("", "Unbound fractions are not converted. That needs a binding-site "
+         "molarity these papers do not give."),
+    ("", "Ionic strength is not computed from buffer prose."),
+]
+
+
+def write(out, cond):
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+
+    head_fill = PatternFill("solid", fgColor="2A78D6")
+    head_font = Font(bold=True, color="FFFFFF")
+
+    wb = Workbook()
+    wb.remove(wb.active)
+
+    for title, fields, data in (("Affinity", FIELDS, out),
+                                ("Conditions", COND_FIELDS, cond)):
+        ws = wb.create_sheet(title)
+        ws.append(fields)
+        for r in data:
+            row = []
+            for f in fields:
+                v = r.get(f, "")
+                if f in NUMERIC and str(v).strip():
+                    try:
+                        v = float(v)
+                        if f == "id":
+                            v = int(v)
+                    except ValueError:
+                        pass
+                row.append(v)
+            ws.append(row)
+        for c, f in enumerate(fields, start=1):
+            cell = ws.cell(row=1, column=c)
+            cell.fill, cell.font = head_fill, head_font
+            cell.alignment = Alignment(vertical="center")
+            width = max([len(f)] + [len(str(r.get(f, ""))) for r in data[:400]])
+            ws.column_dimensions[get_column_letter(c)].width = \
+                min(max(width + 2, 9), 42)
+        ws.freeze_panes = "A2"
+        ws.auto_filter.ref = ws.dimensions
+
+    ws = wb.create_sheet("Notes")
+    ws["A1"] = "binding_affinity.xlsx -- column definitions"
+    ws["A1"].font = Font(bold=True, size=13)
+    for i, (k, v) in enumerate(NOTES, start=3):
+        ws.cell(row=i, column=1, value=k).font = Font(bold=True)
+        ws.cell(row=i, column=2, value=v).alignment = \
+            Alignment(wrap_text=True, vertical="top")
+    ws.column_dimensions["A"].width = 24
+    ws.column_dimensions["B"].width = 96
+
+    wb.save(OUT)
 
 
 def check(rows, out, skipped, qualitative):
@@ -438,7 +660,7 @@ def main():
     args = ap.parse_args()
     rows, out, skipped, qualitative = build()
     if not args.check:
-        write(out)
+        write(out, conditions(out))
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
     check(rows, out, skipped, qualitative)
