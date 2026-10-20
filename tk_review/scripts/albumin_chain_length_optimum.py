@@ -232,6 +232,15 @@ def build(rows):
         s=series(rows, "Fischer et al.", "2024",
                  protein_sub="whole human serum", islog=True),
         method="SPME depletion", units="log D", conc="0.2-42 ug/L")
+    S["Allendorf 2019 BSA"] = dict(
+        s=series(rows, "Allendorf et al.", "2019", protein_sub="A3803",
+                 islog=True),
+        method="equilibrium dialysis, 37 C", units="log D (L_w/kg_protein)",
+        conc="compound:BSA molar ratio below 0.1")
+    S["Bischel 2011 BSA"] = dict(
+        s=series(rows, "Bischel et al.", "2011", islog=True),
+        method="equilibrium dialysis", units="log K_PW (volume basis)",
+        conc="BSA 200 uM, PFAA 0.009-0.68 uM, ratio <= 0.0034")
     S["Chen 2025 HSA"] = dict(
         s=series(rows, "Chen et al.", "2025", field="kd", invert=True),
         method="equilibrium dialysis", units="-log K_D (M)",
@@ -334,6 +343,8 @@ def section1(S):
     print("dropped from the adjudication and kept in the table only so the")
     print("exclusion is on the record.")
     print()
+    print("(Bischel 2011 and Allendorf 2019 are now per-compound series in")
+    print(" the table above; the abstract-only summary below is superseded.)")
     print("Bischel et al. 2011 (BSA, C4-C12 carboxylates, equilibrium dialysis")
     print("+ nanoESI-MS + fluorescence at low PFAA:albumin mole ratios) adds a")
     print(f"further bracketed maximum, from its abstract only: peak at nCF "

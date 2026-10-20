@@ -111,7 +111,10 @@ def canon_units(raw, measure):
     if measure == "log K_membrane":
         return "log10 K_MW (basis as published)"
     if measure == "log D":
-        if "kg_protein" in u or u.startswith("log K_PW"):
+        if u.startswith("log K_PW (protein-water distribution coefficient), "
+                        "L_water per L_albumin"):
+            return "log10 (L_water/L_protein)"
+        if "kg_albumin" in u or "kg_protein" in u or u.startswith("log K_PW"):
             return "log10 (L_water/kg_protein)"
         if "L_protein" in u:
             return "log10 (L_water/L_protein)"
@@ -158,6 +161,7 @@ def measure_of(r):
         if kau.strip() == "log M^-1":
             return "Ka", "ka"          # a log association constant, not a log D
         if any(t in kau for t in ("log D", "log K_PW", "log L_water",
+                                  "log K_albumin/water",
                                   "L_water/kg_membrane")):
             return "log D", "ka"
         if "computed as 1/K_D" in kau and kd:

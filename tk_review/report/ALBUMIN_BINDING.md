@@ -399,19 +399,28 @@ the persistent compounds live.
 Four series in `db/protein_binding.csv` bracket a maximum — they have measured
 points on *both* sides of their highest value — and they do not agree:
 
-| dataset | method | nCF range | peak | reversals in the first difference |
-|---|---|---|---|---|
-| Fischer 2024 HSA | SPME depletion | 4–13 | **10** | 1 |
-| Fischer 2024 BSA | SPME depletion | 5–13 | **10** | 1 |
-| Chen 2025 HSA | equilibrium dialysis | 3–15 | 7 | 4 |
-| Starnes 2025 HSA | DSF | 3–10 | 6 | 3 |
+| dataset | method | nCF range | peak | span (nCF 4–9) | reversals |
+|---|---|---|---|---|---|
+| Fischer 2024 HSA | SPME depletion | 4–13 | **10** | 2.57 | 1 |
+| Fischer 2024 BSA | SPME depletion | 5–13 | **10** | 1.98 | 1 |
+| Fischer 2024 γ-globulin | SPME depletion | 5–13 | **11** | 1.94 | 1 |
+| Fischer 2024 whole serum | SPME depletion | 4–13 | **10** | 1.41 | 2 |
+| **Allendorf 2019 BSA** | equilibrium dialysis, 37 °C | 3–10 | **9** | 1.30 | 1 |
+| **Bischel 2011 BSA** | equilibrium dialysis | 4–11 | 6 | 0.83 | 1 |
+| Chen 2025 HSA | equilibrium dialysis | 3–15 | 7 | 0.80 | 4 |
+| Starnes 2025 HSA | DSF | 3–10 | 6 | 0.67 | 3 |
 
-Bischel et al. 2011 (BSA, equilibrium dialysis + nanoESI-MS + fluorescence)
-adds a fifth from its abstract: peak at nCF 7, total span 1.0 log unit over
-eight CF₂ groups. Three further series — Gao 2025, Qin 2024's nonspecific
-term, Starnes 2024 — never reach a maximum at all, which is not a neutral
-result: Gao is still climbing at nCF 9 and Qin at nCF 10, and both would have
-to be *falling* there if the optimum were at 6–8.
+Three further series — Gao 2025, Qin 2024's nonspecific term, Starnes 2024 —
+never reach a maximum at all, which is not a neutral result: Gao is still
+climbing at nCF 9 and Qin at nCF 10, and both would have to be *falling*
+there if the optimum were at 6–8.
+
+**Sort that table by span and the peak sorts with it.** Spearman ρ between
+dynamic range over the shared window and peak position is **+0.83** across
+the eight bracketed series. Every series spanning more than 1.3 log units
+peaks at nCF 9–11; every series spanning less than 0.85 peaks at 6–7. A
+curve that cannot resolve three orders of magnitude cannot locate a maximum
+inside them.
 
 **The compression from §11b is the wrong tool for this.** An argmax survives
 any strictly increasing transform, so rescaling Fischer's curve by 0.82, 0.5
@@ -448,13 +457,20 @@ study rises smoothly all the way to nCF 15 (+0.19 to +0.47 per CF₂, no
 reversal). The long-chain compounds were present and quantifiable; what fails
 is the dialysis.
 
-The concentration regimes line up with this. Fischer worked at 0.2–42 µg/L —
-59 nM at the top for PFTeDA — with a PFAS:protein ratio ≤ 0.004. Chen worked
-at up to 2 µM, 34× higher. DSF needs micromolar to millimolar to shift a
-melting temperature at all, and the 2026 Starnes review says of its own method
-family that "the poor aqueous solubility of many PFAS congeners, particularly
-long-chain PFAAs (C12 and above), prevents accurate measurement of their
-binding in the assay." C12 is nCF 11 — exactly where the datasets part company.
+**The ligand:protein ratio is *not* what separates them, and I had that
+wrong.** It was tempting: Fischer works at ≤ 0.004, Chen at up to 2, DSF at
+micromolar to millimolar. But Bischel 2011 ran equilibrium dialysis against
+200 µM BSA with 0.009–0.68 µM PFAA — a ratio of at most **0.0034**, *lower
+than Fischer's* — and still produced the second most compressed series in
+the table and a peak at nCF 6. Allendorf held its ratio below 0.1 and landed
+at nCF 9. So the regime matters for what a constant *means* (§7 Axis 1) but
+does not predict where a series puts its maximum. Dynamic range does.
+
+The solubility caveat still stands on its own: the 2026 Starnes review says
+of its own method family that "the poor aqueous solubility of many PFAS
+congeners, particularly long-chain PFAAs (C12 and above), prevents accurate
+measurement of their binding in the assay." C12 is nCF 11 — exactly where the
+datasets part company.
 
 **The answer.** Averaging Fischer's two albumins and reading the top of the
 curve rather than a single point:
@@ -480,11 +496,13 @@ Confidence, separated out, because the three parts are not equally strong:
 - *That it sits at 10 rather than 9 or 11* — **moderate**. The top is flat and
   nobody publishes per-compound error bars on this stretch.
 - *That it is **not** at nCF 6–8* — **strong**, and this is the part that
-  matters. Fischer's albumins peak at 10, Gao's fluorescence quenching is still
-  climbing at 9, Qin's nonspecific SPME term is still climbing at 10. Three
-  methods, three labs, and a maximum at 7 needs all three wrong in the same
-  direction. Even Chen's own quadratic vertex, fitted through its peak and
-  neighbours, lands at 8.2 rather than at its argmax of 7.
+  matters. Fischer's albumins peak at 10 and its γ-globulin at 11; Allendorf's
+  equilibrium dialysis at 37 °C peaks at 9 with a smooth curve; Gao's
+  fluorescence quenching is still climbing at 9; Qin's nonspecific SPME term
+  is still climbing at 10. Four methods, four labs, and a maximum at 7 needs
+  all four wrong in the same direction. Even Chen's own quadratic vertex,
+  fitted through its peak and neighbours, lands at 8.2 rather than at its
+  argmax of 7.
 
 **The sulfonate optimum is not located.** Fischer's PFSA series ends at nCF 10
 (PFDS) still at or near its top, so all that can be said is nCF ≥ 9. No
