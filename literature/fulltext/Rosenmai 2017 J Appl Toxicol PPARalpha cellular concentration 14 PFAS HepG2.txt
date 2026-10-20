@@ -1,0 +1,528 @@
+Received: 21 June 2017        Revised: 24 July 2017       Accepted: 29 July 2017
+DOI: 10.1002/jat.3515
+
+
+
+RESEARCH ARTICLE
+
+
+
+Relationship between peroxisome proliferator‐activated
+receptor alpha activity and cellular concentration of 14
+perfluoroalkyl substances in HepG2 cells
+Anna Kjerstine Rosenmai1                              | Lutz Ahrens2                 | Théo le Godec1 | Johan Lundqvist1                                |
+
+Agneta Oskarsson1
+
+1
+ Department of Biomedical Sciences and
+Veterinary Public Health, Swedish University           Abstract
+of Agricultural Sciences, Box 7028, SE‐750 07          Peroxisome proliferator‐activated receptor alpha (PPARα) is a molecular target for perfluoroalkyl
+Uppsala, Sweden                                        substances (PFASs). Little is known about the cellular uptake of PFASs and how it affects the
+2
+ Department of Aquatic Sciences and                    PPARα activity. We investigated the relationship between PPARα activity and cellular concentra-
+Assessment, Swedish University of
+                                                       tion in HepG2 cells of 14 PFASs, including perfluoroalkyl carboxylates (PFCAs), perfluoroalkyl sul-
+Agricultural Sciences, Box 7050, SE‐750 07
+Uppsala, Sweden                                        fonates and perfluorooctane sulfonamide (FOSA). Cellular concentrations were determined by
+Correspondence                                         high‐performance liquid chromatography–tandem mass spectrometry and PPARα activity was
+Anna Kjerstine Rosenmai, Department of                 determined in transiently transfected cells by reporter gene assay. Cellular uptake of the PFASs
+Biomedical Sciences and Veterinary Public
+                                                       was low (0.04–4.1%) with absolute cellular concentrations in the range 4–2500 ng mg−1 protein.
+Health, Swedish University of Agricultural
+Sciences, Box 7028, SE‐750 07 Uppsala,                 Cellular concentration of PFCAs increased with perfluorocarbon chain length up to
+Sweden.                                                perfluorododecanoate. PPARα activity of PFCAs increased with chain length up to
+Email: anna.rosenmai@slu.se
+                                                       perfluorooctanoate. The maximum induction of PPARα activity was similar for short‐chain
+Funding information
+                                                       (perfluorobutanoate and perfluoropentanoate) and long‐chain PFCAs (perfluorododecanoate and
+Swedish Research Council Formas, Grant/
+Award Number: 222‐2012‐2124                            perfluorotetradecanoate) (approximately twofold). However, PPARα activities were induced at
+                                                       lower cellular concentrations for the short‐chain homologs compared to the long‐chain homologs.
+                                                       Perfluorohexanoate, perfluoroheptanoate, perfluorooctanoate, perfluorononanoate (PFNA) and
+                                                       perfluorodecanoate induced PPARα activities >2.5‐fold compared to controls. The concentration–
+                                                       response relationships were positive for all the tested compounds, except perfluorooctane sulfonate
+                                                       PFOS and FOSA, and were compound‐specific, as demonstrated by differences in the estimated
+                                                       slopes. The relationships were steeper for PFCAs with chain lengths up to and including PFNA than
+                                                       for the other studied PFASs. To our knowledge, this is the first report establishing relationships
+                                                       between PPARα activity and cellular concentration of a broad range of PFASs.
+
+
+                                                       KEY W ORDS
+
+                                                       cellular concentration, perfluoroalkane sulfonamide, perfluoroalkyl carboxylates, perfluoroalkyl
+                                                       sulfonates, peroxisome proliferator‐activated receptor alpha, PPARα
+
+
+
+
+1     |    I N T RO D U CT I O N                                                           belonging   to   the   perfluoroalkyl   carboxylates    (PFCAs)   and
+                                                                                           perfluoroalkyl sulfonates (PFSAs), respectively, but homologs of these
+Perfluoroalkyl substances (PFASs) have been used in a variety of con-                      exist with shorter or longer perfluorocarbon chains.
+sumer products, such as surface treatment of textiles, leather, carpets                        PFASs are ubiquitously spread in the environment (Ahrens, 2011;
+and       food   contact    materials   (Wang,   Cousins,       Scheringer,     &          Giesy & Kannan, 2002; Houde, De Silva, Muir, & Letcher, 2011;
+Hungerbühler, 2013). PFASs are aliphatic substances in which all car-                      McLachlan, Holmström, Reth, & Berger, 2007; Zareitalabad, Siemens,
+bons are fully fluorinated, except the carbon in the functional group                      Hamer, & Amelung, 2013) and are detected in human blood worldwide
+(Buck et al., 2011) (Figure 1). Examples are the well‐known                                (CDC, 2015; Fromme, Tittlemier, Völkel, Wilhelm, & Twardella, 2009).
+perfluorooctanoate (PFOA) and perfluorooctane sulfonate (PFOS)                             In the period 1999–2008, PFOA, PFOS, perfluorohexane sulfonate
+
+
+J Appl Toxicol. 2017;1–8.                             wileyonlinelibrary.com/journal/jat                          Copyright © 2017 John Wiley & Sons, Ltd.     1
+2                                                                                                                                       ROSENMAI ET AL.
+
+
+                                                                                (PFPeA, 97%), perfluorohexanoate (PFHxA, ≥97%), perfluoroheptanoate
+                                                                                (PFHpA, 99%), PFOA (≥98%), PFNA (97%), perfluorodecanoate (PFDA,
+                                                                                98%), perfluoroundecanoate (PFUnDA, 95%), perfluorododecanoate
+                                                                                (PFDoDA, 95%), perfluorotetradecanoate (PFTeDA, 97%), perflu-
+FIGURE 1    Chemical structures of perfluoroalkyl carboxylate (PFCA),
+perfluoroalkyl sulfonate (PFSA) and perfluorooctane sulfonamide                 orobutane sulfonate (PFBS, purity 98%), PFHxS (≥98%), PFOS (98%)
+(FOSA). R = F(CF2)n, represent the perfluorocarbon chain of the tested          and FOSA (99%) (purchased from Sigma‐Aldrich, St. Louis, MO, USA)
+PFASs with n = 3–11 and 13 for the PFCAs, n = 4, 6 and 8 for the                (Supporting information, Table S1). PFASs used as standards for chemical
+PFSAs and n = 8 for the FOSA                                                    analysis were purchased from Wellington Laboratories (Guelph, ON,
+                                                                                Canada). An internal standard mixture was used for the determination
+(PFHxS) and perfluorononanoate (PFNA) have consistently been                    of cellular concentrations containing mass‐labeled 13C8‐FOSA, 13C4‐
+detected in more than 94% of serum samples in the US population                 PFBA, 13C2‐PFHxA, 13C4‐PFOA, 13C5‐PFNA, 13C2‐PFDA, 13C2‐PFUnDA,
+(n = 1562–2120) (Kato, Wong, Jia, Kuklenyik, & Calafat, 2011) and                C2‐PFDoDA, 18O2‐PFHxS and 13C4‐PFOS (purchased from Wellington
+                                                                                13
+
+
+geometric mean concentrations of 2.08, 6.31, 1.28 and 0.881 μg l−1,             Laboratories). PFAS stock solutions for in vitro investigations were pre-
+respectively, have been reported in serum samples from 2011 to                  pared in ethanol in concentrations ranging from 4 to 350 mM depending
+2012 (CDC, 2015). Some PFASs have long serum half‐lives, e.g.                   on compound solubility.
+~8.5 years for PFHxS (Olsen et al., 2007) and thus once exposure
+has occurred a long residence time is expected in humans.                       2.2   |   Cell culture
+      PFASs have been reported to have adverse effects in animal stud-
+                                                                                Human hepatocellular carcinoma (HepG2) cells were cultured in
+ies and particularly the toxicity of PFOA and PFOS is well documented
+                                                                                Dulbecco's modified Eagle medium (Lonza, Basel, Switzerland)
+(Andersen et al., 2008; Kennedy et al., 2004; Lau et al., 2007; Lau,
+                                                                                supplemented with 2 mM L‐glutamine (Gibco, Thermo Fisher Scientific,
+Butenhoff, & Rogers, 2004). Among the reported effects are hepato-
+                                                                                Waltham, MA, USA), an antibiotic–antimycotic solution with a final
+toxicity, including hepatomegaly through hepatocytic hypertrophy,
+                                                                                concentration of 100 U ml−1 penicillin, 100 μg ml−1 streptomycin,
+induced peroxisome β‐oxidation and tumor development (Lau, 2012).
+                                                                                and 0.25 μg ml−1 Gibco amphotericin B (Gibco, Thermo Fisher
+Though the mechanisms behind the toxicity is not well understood,
+                                                                                Scientific) and 10% fetal bovine serum (FBS) (Gibco, Thermo Fisher
+one molecular target for PFASs is the peroxisome proliferator‐acti-
+                                                                                Scientific). The cell culture was kept in a humidified atmosphere at
+vated receptor alpha (PPARα), which is supported by in vitro data
+                                                                                37°C containing 95% air and 5% CO2.
+(Buhrke, Kibellus, & Lampen, 2013; Rosenmai et al., 2016; Takacs &
+Abbott, 2007; Wolf, Schmid, Lau, & Abbott, 2012; Wolf, Takacs,
+Schmid, Lau, & Abbott, 2008). PPARα activities are dependent on the             2.3   |   Cell viability
+cellular concentration and affinity to the receptor of PFASs. Surpris-          Cell viability was tested by the MTS‐based colorimetric assay (Cell
+ingly little information is available on the cellular uptake of PFASs,          Titer 96® Aqueous One Solution Cell Proliferation Assay; Promega,
+the impact of chain length and functional groups on cellular uptake,            Madison, WI, USA). The formation of the colored product formazan
+and the relationship between biological activity and cellular uptake.           from a tetrazolium compound (MTS) is measured, which is directly pro-
+      Regulatory measures have been taken to ban or reduce some                 portional to the number of viable cells in culture. HepG2 cells were
+PFASs, which has led to a search for substitutes such as short‐chain            seeded in transparent 96‐well plates, 1.5 × 104 cells per well, medium
+PFASs (Scheringer et al., 2014; Wang et al., 2013). However, the                was changed after 48 hours and treatment with 0.1–100 μM PFASs
+short‐chain homologs are less investigated, and thus further informa-           was initiated 24 hours later. After 24 hours treatment, 20 μl per well
+tion on their potential toxicity is needed.                                     of cell viability assay reagent was added, cells were incubated for
+      The aim of this study was to investigate the relationship between         approximately 15 minutes and absorbance was measured on a Wallac
+PPARα activity and cellular concentration of PFASs. We tested 14                Victor 1420 microplate reader (PerkinElmer, Waltham, MA, USA) at
+PFASs of varying perfluorocarbon chain lengths and functional groups,           490 nm. A decrease in viability of ≥20% was considered as cytotoxic
+including 10 PFCAs, three PFSAs, as well as perfluorooctane sulfon-             and such concentrations of test compounds were not included in the
+amide (FOSA) (Figure 1). All the tested PFASs were detected in the              following experiments.
+cells, most but not all PFASs induced PPARα activity, there was gener-
+ally a statistically significant relationship between the activity and the
+                                                                                2.4 | Peroxisome proliferator‐activated receptor
+cellular concentration, and the cellular concentration as well as PPARα
+activity was dependent on chain length and functional group.
+                                                                                alpha activity
+                                                                                The PPARα activity was determined by a reporter gene assay in
+                                                                                HepG2 cells. Cells were seeded in 48‐well plates (Sarstedt, North
+                                                                                Rhine‐Westphalia, Nümbrecht, Germany) with 3.75 × 104 cells per well
+2     |       MATERIALS AND METHODS
+                                                                                and cultured for 48 hours. After changing the medium, cells were tran-
+                                                                                siently transfected using 0.6 μl per well of Lipofectamine (Invitrogen,
+2.1       |   Test chemicals                                                    Thermo Fisher Scientific, Waltham, MA, USA) in accordance with the
+In total, 14 PFASs were included for analysis of in vitro activity and cellu-   manufacturer's protocol. The plasmids used were a human PPARα
+lar concentration; perfluorobutanoate (PFBA, 98%), perfluoropentanoate          ligand binding domain‐GAL4‐plasmid (75 ng per well), a Gal4‐
+ROSENMAI ET AL.                                                                                                                                          3
+
+
+responsive luciferase expressing reporter plasmid (UAS‐Gal‐Luc) (75 ng        Aldrich) in 25% passive lysis buffer (Promega). The standards and cell
+per well) (both donated by Dr. Jan Fleckner, Novo Nordic, Denmark),           lysates (2.5 μl per well in duplicates) were added to 96‐well plates
+and a renilla luciferase plasmid (50 ng per well) as a control for the        and diluted 1:4 with MilliQ water. BCA protein assay reagent, 190 μl
+transfection efficiency. Following transfection, cells were incubated         (1:50, copper sulfate:BCA solution; Sigma‐Aldrich), was added and
+for 24 hours before treatment with individual PFASs in concentrations         incubated at 37°C for 30 minutes. Absorbance was measured at
+of 10, 30 and 100 μM for 24 hours. Ethanol was used as control and            570 nm (Wallac Victor 1420 microplate reader; PerkinElmer).
+the ethanol concentration was constant across all treatments and con-
+trols at 3% ethanol, a concentration that did not affect cell viability. In
+                                                                              2.7       |   Data processing and statistical analysis
+addition, a known PPARα agonist, WY‐14643, was included as a posi-
+tive control. The experiments were finalized with medium removal and          The relative light units for PPARα activity was determined by normali-
+cell lysis with 65 μl of passive lysis buffer (Promega) for 15–30 minutes.    zation of the firefly to the renilla luminescence in the well. Successively,
+Two aliquots of 2.5 μl cell lysate were sampled for protein quantifica-       PPARα activity was normalized to the means of the controls after
+tion and 20 μl was transferred to white 96‐well plates (Corning, NY,          adjustment for protein levels in the respective well. The PFAS cellular
+USA). Luciferase activity was assayed using the Dual‐Luciferase®              concentrations were normalized to the protein level in the pooled wells.
+Reporter Assay System (Promega) according to the manufacturer's                     The PPARα activity data were analyzed by Kruskal–Wallis to
+protocol. The substrate for the firefly luciferase was added, 45 μl,          detect differences among treatment groups followed by a Dunn's
+and the luminescence was measured on a Wallac Victor 1420 micro-              post‐hoc test to assess differences between controls and the various
+plate reader. Successively, 45 μl substrate was added to allow for            treatment groups. A non‐parametric test was selected as some treat-
+renilla luciferase activity measurement.                                      ment groups had a small number of replicates (n = 3) and thus normal-
+                                                                              ity was not assessed. A two‐sided Jonckheere's trend test was used to
+                                                                              examine possible concentration–response relationships between
+2.5     |   Cellular perfluoroalkyl substance quantification                  PPARα activity and cellular concentration. All PFASs exhibiting a statis-
+For determination of cellular PFASs concentration HepG2 cells were            tically significant positive relationship in the Jonckheere's trend test
+seeded in 12‐well plates (Corning) at a concentration of 18 × 104 cells       were fitted by linear regression. Finally, Mann–Whitney was per-
+per well. Medium was changed after 48 hours and after another                 formed for pair‐wise comparison between PFCAs and PFSAs with
+24 hours, cells were exposed to PFASs in concentrations of 10, 30             the same perfluorocarbon chain lengths, but different functional
+and 100 μM. After 24 hours of treatment with PFASs, cells were                groups, to assess statistically significant differences in PPARα activi-
+washed 5 times with ice‐cold phosphate‐buffered saline after which            ties. The level of significance was set at P < 0.05. All graphs and statis-
+cells were lysed with 250 μl passive lysis buffer (from the Dual‐Lucif-       tical analyses were conducted in GraphPad Prism 5.02, except the
+erase® Reporter Assay System; Promega) and lysates from three wells           Jonckheere's trend test, which was performed in StatXact 10.0.
+per treatment were pooled. An aliquot of the pooled sample was used
+for protein quantification and the lysate for PFAS quantification was
+                                                                              3     |       RESULTS
+centrifuged at 16 000 g for 15 minutes. The supernatant was collected
+in Eppendorf tubes and stored at −80°C until PFAS analysis.
+      Fifty μl of the cell lysate was transferred into a 1.5 ml brown glass   3.1       |   Cell viability
+                                                             −1
+vial, and 100 μl internal standard mixture (c = 50 ng ml ) as well as         Of the tested PFASs, only FOSA led to more than 20% decrease in cell
+850 μl methanol were added. Vials were subsequently vortexed for              viability at 100 μM and thus this concentration was not included in fur-
+30 seconds. The separation and detection of PFASs were performed              ther testing. A few other statistically significant effects on cell viability
+by high‐performance liquid chromatography (Agilent Technologies               were observed, although sporadic and not concentration dependent
+1200 Series, Palo Alto, CA, USA) coupled to a triple quadrupole mass          (Supporting information, Figure S1).
+spectrometer interfaced with an electrospray ionization source in neg-
+ative‐ion mode (Agilent 6460 Triple Quadrupole System). The isotope
+dilution method was used for quantification using a five‐point calibra-
+                                                                              3.2       |   Protein content
+tion curve (0.5, 2.5, 10, 40, 80 and 400 pg absolute injected). The aver-     The total protein content was generally stable across different PFAS
+age recoveries in the cell lysates were in the range of 78–98%                treatments in cells used for PPARα activity and cellular concentration
+(Supporting information, Table S2). Details on the analytical method          determination (Supporting information, Figure S2). A slight but statisti-
+are described previously (Ahrens, Norström, Viktor, Cousins, &                cally significant decrease in protein content was observed at 100 μM of
+Josefsson, 2015).                                                             PFDA and PFTeDA.
+
+
+
+2.6     |   Protein determination                                             3.3 | Cellular perfluoroalkyl substance
+                                                                              concentrations
+Protein content was determined by the bicinchoninic acid (BCA) assay
+in lysates from cells for PPARα activity determination as well as cells       All tested PFASs were detected in cell lysates in concentrations above
+for cellular PFAS quantification to enable comparison between activity        the limit of quantification in all treatment groups. The fraction of
+and concentration. A protein standard curve was prepared (Sigma‐              PFASs taken up by the cells was calculated as the total moles detected
+4                                                                                                                                       ROSENMAI ET AL.
+
+
+in the cells divided by the total moles added to the well, and expressed        3.4 | Peroxisome proliferator‐activated receptor
+as percentages (Table 1). The uptake percentage was not dependent               alpha activity
+on the medium concentrations of PFASs and was below 1%, except
+                                                                                All PFASs induced PPARα activity statistically significantly, as com-
+for PFDoDA, PFTeDA and FOSA, for which uptake between 1.21
+                                                                                pared to the vehicle control, except PFUnDA, PFOS and FOSA
+and 4.06% was observed (Table 1).
+                                                                                (Figure 2B). The lowest observed effect concentrations (LOECs),
+      The cellular PFAS concentrations, expressed as nmol mg−1 protein,
+                                                                                expressed as nominal concentrations, causing statistically significant
+for the 14 PFASs at treatment concentrations of 10, 30 and 100 μM
+                                                                                PPARα activation were 30 or 100 μM, except PFTeDA for which an
+are shown in Figure 2(A). The concentrations ranged 18–2490 nmol
+                                                                                effect was observed from 10 μM. For all treatment concentrations,
+mg−1 protein for the PFCAs, 4–494 nmol mg−1 protein for the PFSAs,
+                                                                                there was an apparent increase in PPARα activity with PFCA perfluo-
+and were 81 and 435 nmol mg−1 protein for FOSA. The cellular con-
+                                                                                rocarbon chain length, which peaked with PFOA. Short‐chain (PFBA
+centrations increased with increasing treatment concentrations of
+                                                                                and PFPeA) and long‐chain (PFDoDA and PFTeDA) PFCAs induced
+PFASs. The highest cellular concentrations of the PFCAs were
+                                                                                PPARα activity up to twofold. Similar fold‐induction was observed
+observed after treatment of cells with the long‐chain PFUnDA,
+                                                                                for PFBS and PFHxS. The highest induction of PPARα activity, 2.5–
+PFDoDA and PFTeDA, whereas the lowest cellular concentrations
+                                                                                3.7‐fold, was observed after treatment of cells with PFHxA, PFHpA,
+were seen after treatment with the short‐chain PFBA (Figure 2A). This
+                                                                                PFOA, PFNA and PFDA.
+pattern was not observed for the PFSAs, for which PFHxS had the
+                                                                                    To study the impact of the functional group on PPARα activity, we
+highest cellular concentration both at 30 and 100 μM, followed by
+                                                                                compared PFASs with the same perfluorocarbon chain lengths, but
+PFBS, and PFOS with the lowest cellular concentration.
+                                                                                with different functional groups. Thus, PFPeA, PFHpA and PFNA were
+      To study the impact of the functional group on cellular concentra-
+                                                                                compared to PFBS, PFHxS and PFOS, respectively (Figure 2B). The
+tions, we compared PFASs with the same perfluorocarbon chain
+                                                                                PPARα activity was generally higher for PFCAs than PFSAs with the
+lengths, but with different functional groups. Though the conventional
+                                                                                same perfluorocarbon chain length, a difference that was statistically
+PFAS nomenclature is used in this paper, which is based on the total
+                                                                                significant for PFNA compared to PFOS at 30 and 100 μM (P < 0.05).
+number of carbon atoms in the molecule, a comparison based on per-
+fluorocarbon chain length is imperative to obtain information on the
+structure–activity relationships. Thus, PFPeA, PFHpA and PFNA were
+                                                                                3.5 | Peroxisome proliferator‐activated receptor
+compared to PFBS, PFHxS and PFOS, respectively. The cellular con-
+centration was higher for the PFCAs than the PFSAs, except for PFPeA
+                                                                                alpha activity and cellular concentrations
+compared to PFBS at 10 μM and PFHpA compared to PFHxS at                        Of the 11 PFASs exhibiting statistically significant activation of PPARα,
+100 μM. FOSA had higher cellular concentration compared to the                  seven had LOECs in the range 38–164 nmol mg−1 protein, expressed
+two compounds with the same perfluorocarbon chain length, but dif-              as cellular concentrations (Figure 2A,B). These PFASs included PFCAs
+ferent functional groups: carboxylate (PFNA) and sulfonate (PFOS)               with chain lengths up to and including PFOA, as well as PFBS and
+(Figure 2A).                                                                    PFHxS. The remaining four PFASs had LOECs ranging from 458 to
+                                                                                2490 nmol mg−1 protein and this group contained the long‐chain
+TABLE 1 PFAS uptake in HepG2 cells expressed as percentage total                PFCAs, PFNA, PFDA, PFDoDA and PFTeDA. The maximum induction
+moles detected in the cells of total moles added to the wells at treat-         of PPARα activity was similar for short‐chain (PFBA and PFPeA) and
+ment concentrations of 10, 30 and 100 μM for 24 hours. Values are
+                                                                                long‐chain PFCAs (PFDoDA and PFTeDA) (approximately twofold),
+based on three pooled wells for each treatment concentration.
+                                                                                but PPARα activities were induced at lower cellular concentrations
+                         Cellular uptake (%)                                    for the short‐chain homologs compared to the long‐chain homologs
+                         10 μM                 30 μM               100 μM       (Figure 2A,B).
+    PFBA                 0.14                  0.13                0.10             A statistically significant positive relationship between PPARα
+    PFPeA                0.18                  0.26                0.23         activity and cellular PFAS concentration was demonstrated for all
+    PFHxA                0.19                  0.19                0.14         PFASs, except PFOS and FOSA. For FOSA there was a statistically sig-
+    PFHpA                0.16                  0.22                0.21         nificant negative relationship. Linear regression was performed for all
+    PFOA                 0.24                  0.27                0.33         PFASs with a statistically significant positive relationship (Figure 3).
+    PFNA                 0.15                  0.22                0.31         In general, the linear relationships exhibited a continuous decrease in
+    PFDA                 0.23                  0.23                0.45         steepness with increasing chain length for PFCAs, indicating a higher
+    PFUnDA               0.61                  0.54                0.84         potency of short‐chain PFCAs (Figure 3A). PFBS and PFHxS displayed
+    PFDoDA               1.21                  1.33                1.65         flat relationships (Figure 3B). Estimated slopes and r2 values obtained
+    PFTeDA               4.06                  1.73                0.55         from linear regression are given in Table 2. The r2 values were ≥0.5,
+    PFBS                 0.25                  0.19                0.15         except for PFUnDA, PFBS and PFHxS. The estimated slopes were sig-
+    PFHxS                0.08                  0.18                0.33         nificantly different from zero and were higher for PFBA, PFPeA,
+    PFOS                 0.04                  0.04                0.05         PFHxA, PFHpA, PFOA and PFNA, than for PFDA, PFUnDA, PFDoDA,
+    FOSA                 0.91                  1.35                –            PFBS and PFHxS. Slopes were decreasing from PFHxA to PFDoDA,
+(−) not tested due to compromised cell viability. See text for definitions of   supporting the general observation in Figure 3 of a continuous
+abbreviations.                                                                  decrease in steepness with increasing chain length.
+ROSENMAI ET AL.                                                                                                                                    5
+
+
+
+
+FIGURE 2     Cellular PFAS concentrations (nmol mg−1 protein) (a) and PPARα activity (fold‐change compared to controls (dotted lines), RLU mg−1
+protein) (B) in HepG2 cells treated with 10, 30 and 100 μM of PFASs for 24 hours. Results are shown in the order of increasing perfluorocarbon
+chain length. White = PFCAs, light gray = PFSA; dark gray = FOSA. Bars showing cellular concentrations are based on three pooled wells for each
+treatment concentration (a) and bars showing PPARα activity are means ± SD from three to four replicates for PFAS treatment and seven to eight
+replicates for vehicle controls (B). N.D., not determined as FOSA was cytotoxic at 100 μM. *significant difference compared to control (P < 0.05).
+See text for definitions of abbreviations
+
+
+
+4   |    DISCUSSION                                                         Lacorte, & Porte, 2014; Nakagawa et al., 2007; Weaver, Ehresman,
+                                                                            Butenhoff, & Hagenbuch, 2010). Our results demonstrate that cellular
+The present study in HepG2 cells demonstrates for the first time rela-      concentrations are affected by the functional group and the perfluoro-
+tionships between PPARα activity and cellular concentration of a            carbon chain length. For the PFCAs the long‐chain PFUnDA, PFDoDA
+broad range of PFASs with varying perfluorocarbon chain lengths             and PFTeDA had the highest cellular concentration and the short‐
+and functional groups. The relationships were positive for all the tested   chain PFBA had the lowest cellular concentration in all treatment
+compounds, except PFOS and FOSA, and were compound‐specific, as             groups. To our knowledge, there are no studies on cellular uptake of
+demonstrated by differences in the estimated slopes. The concentra-         PFASs in liver cell lines. However, in JEG‐3 cells treated with a mixture
+tion–response relationships were steeper for PFCAs with chain lengths       of eight PFASs, similar effects of chain length on cellular uptake have
+up to and including PFNA than for the other studied PFASs. This indi-       been demonstrated (Gorrochategui et al., 2014). The order of PFASs
+cates that the PPARα activity is not only dependent on the cellular         ranked         by          cellular        concentrations          were
+concentration, but also varies with the chemical characteristics of the     PFDoDA > PFOS> > PFNA > PFOA > PFHxA, while the short‐chain
+PFASs.                                                                      PFBA, PFBS and PFHxS were not detected (Gorrochategui et al.,
+    The percentage uptake of PFASs from the medium was low and              2014). Similarly, Kudo, Suzuki‐Nakajima, Mitsumoto, and Kawashima
+varied from 0.04 to 4.1%. This may seem low; however, the absolute          (2006) reported increasing liver concentrations with increasing PFCA
+cellular concentrations of 4–2500 nmol mg−1 protein was sufficient          chain length in mice intraperitoneally administered with PFHxA,
+to induce PPARα activity and somewhat higher than reported previ-           PFHpA, PFOA or PFNA for 5 days, which was positively correlated
+ously in other cell lines (Gorrochategui, Pérez‐Albaladejo, Casas,          with liver peroxisomal β‐oxidation (Kudo et al., 2006).
+6                                                                                                                                          ROSENMAI ET AL.
+
+
+
+
+                                                                                                           FIGURE 3 Relationship between PPARα
+                                                                                                           activity (fold‐change compared to control
+                                                                                                           (RLU mg−1 protein) and cellular concentrations
+                                                                                                           (nmol mg−1 protein) of PFCAs (A) and PFSA
+                                                                                                           and FOSA (B). A statistically significant
+                                                                                                           positive relationship was demonstrated
+                                                                                                           between PPARα activity and cellular
+                                                                                                           concentrations for all PFASs, except PFOS and
+                                                                                                           FOSA by Jonckheere's trend test. Linear
+                                                                                                           regression was performed on all statistically
+                                                                                                           significant positive relationships. Based on
+                                                                                                           data from Figure 2. See text for definitions of
+                                                                                                           abbreviations
+
+
+TABLE 2   Estimated slopes and r2 values based on linear regression on
+                                                                                   Hungerbühler, 2011), which may explain the high cellular concentra-
+protein adjusted PPARα activity and cellular concentration
+                                                                                   tions of long‐chain PFCAs demonstrated in our study. Furthermore,
+                                    Slope                                r2
+                                                                                   PFASs can traverse the cell membrane either by simple diffusion, as
+    PFBA                            7.4 × 10−3                           0.69
+                                                                                   shown for PFOA in isolated rat hepatocytes (Han, Yang, Snajdr, Nabb,
+    PFPeA                           3.0 × 10−3                           0.67
+                                                                                   & Mingoia, 2008) or uptake by specific transporter proteins, as shown
+    PFHxA                           9.3 × 10−3                           0.89
+                                                                                   for some PFASs (Nakagawa et al., 2007; Weaver et al., 2010; Yang,
+    PFHpA                           6.8 × 10−3                           0.86
+                                                                                   Glover, & Han, 2010; Zhao et al., 2017). Another factor, which may
+    PFOA                            4.9 × 10−3                           0.78
+                                                                                   affect the cellular uptake, is interaction with serum proteins (Bischel,
+    PFNA                            3.5 × 10−3                           0.78
+                                                                                   MacManus‐Spencer, & Luthy, 2010; Bischel, Macmanus‐Spencer,
+    PFDA                            2.1 × 10−3                           0.74
+                                                                                   Zhang, & Luthy, 2011; D'eon, Simpson, Kumar, Baer, & Mabury, 2010).
+    PFUnDA                          0.4 × 10−3                           0.25
+                                                                                       PPARα activity was increased statistically significantly, except
+    PFDoDA                          0.3 × 10−3                           0.49
+                                                                                   after treatment with PFUnDA, PFOS and FOSA. The magnitude of
+    PFTeDA                          1.2 × 10−3                           0.61
+                                                                                   PFCA‐induced activity increased with chain length up to and including
+    PFBS                            2.6 × 10−3                           0.28
+                                                                                   PFOA and the PFCAs generally exhibited greater activities than the
+    PFHxS                           1.4 × 10−3                           0.39
+                                                                                   PFSAs. Our results on human PPARα activities in transfected HepG2
+    PFOS                            –                                    –
+                                                                                   cells are generally in line with previous reports on effects of PFSAs
+    FOSA                            –                                    –
+                                                                                   and PFCAs in transfected HEK293 and COS‐1 cells. Thus, most of
+–, no positive statistically significant relationship by the Jonckheere trend      the examined compounds have previously been reported to activate
+test.                                                                              human PPARα, an increase in potency has been reported up to and
+All slopes were statistically significant different from zero. See text for def-   including PFOA or PFNA, and PFCAs are generally more potent than
+initions of abbreviations.
+                                                                                   the PFSAs (Buhrke et al., 2013; Takacs & Abbott, 2007; Wolf et al.,
+                                                                                   2012, 2008). Wallace, Kissling, Melnick, and Blystone (2013), who
+      Physico‐chemical characteristics and molecular processes may                 studied effects on rat liver mitochondrial respiration of 16 PFASs, also
+explain differences in cellular uptake of PFASs. As the tested PFASs               demonstrated, similar to our results, an increase in potency with
+are not metabolized, the variations in cellular concentrations are not             increasing chain lengths of PFASs with a prominent inflection point
+due to differences in metabolism. Increasing perfluorocarbon chain                 between the six‐ and eight‐carbon congeners (Wallace et al., 2013).
+length is associated with increasing partitioning coefficients (Hidalgo            To the best of our knowledge, there are no previous reports on PPARα
+& Mora‐Diez, 2016; Wang, MacLeod, Cousins, Scheringer, &                           activity of FOSA, which in the present study did not increase the
+ROSENMAI ET AL.                                                                                                                                              7
+
+
+PPARα activity, and of PFTeDA, which induced PPARα activity even at         Lutz Ahrens      http://orcid.org/0000-0002-5430-6764
+the lowest tested concentration of 10 μM.                                   Johan Lundqvist       http://orcid.org/0000-0001-5693-9007
+    Interestingly, despite the higher cellular concentrations of long‐      Agneta Oskarsson        http://orcid.org/0000-0002-3134-7811
+chain PFCAs, they caused lower activity than PFHxA, PFHpA, PFOA
+and PFNA. This may reflect differences in receptor affinity and effi-       RE FE RE NC ES
+cacy leading to differences in activity, but may also be the result of      Ahrens, L. (2011). Polyfluoroalkyl compounds in the aquatic environment: A
+                                                                               review of their occurrence and fate. Journal of Environmental Monitoring,
+long‐chain PFCA cell membrane binding, rather than an actual uptake
+                                                                               13, 20–31.
+into the cell. PFASs are amphiphilic and can incorporate into cell
+                                                                            Ahrens, L., Norström, K., Viktor, T., Cousins, A. P., & Josefsson, S. (2015).
+membranes, which are composed of amphiphilic phospholipids. In line            Stockholm Arlanda airport as a source of per‐ and polyfluoroalkyl sub-
+with this, Kasuya, Nakano, Katayama, and Hatanaka (2011) reported              stances to water, sediment and fish. Chemosphere, 129, 33–38.
+that liposome membrane affinity increased with increasing chain             Andersen, M. E., Butenhoff, J. L., Chang, S. C., Farrar, D. G., Kennedy, G.
+length of perfluoroalkyl glycosides and suggested that the glycosides          L., Lau, C., … Wallace, K. B. (2008). Perfluoroalkyl acids and related
+                                                                               chemistries ‐ Toxicokinetics and modes of action. Toxicological
+with high fluorine content remained embedded in the cell membrane
+                                                                               Sciences, 102, 3–14.
+(Kasuya et al., 2011). Additionally, long‐chain PFCAs have been
+                                                                            Bischel, H. N., MacManus‐Spencer, L. A., & Luthy, R. G. (2010).
+reported to be transported to the nucleus to a lower extent by                  Noncovalent interactions of long‐chain perfluoroalkyl acids with serum
+human liver fatty acid binding protein compared to short‐chain                  albumin. Environmental Science and Technology, 44, 5263–5269.
+PFCAs, which may further explain the lower PPARα activity (Zhang,           Bischel, H. N., Macmanus‐Spencer, L. A., Zhang, C., & Luthy, R. G. (2011).
+Ren, & Guo, 2013).                                                              Strong associations of short‐chain perfluoroalkyl acids with serum albu-
+                                                                                min and investigation of binding mechanisms. Environmental Toxicology
+    Overall we found that: (1) all the tested PFASs were detected in
+                                                                                and Chemistry, 30, 2423–2430.
+the cells with a low percentage cellular uptake; (2) the cellular concen-
+                                                                            Buck, R. C., Franklin, J., Berger, U., Conder, J. M., Cousins, I. T., Voogt, P. D.,
+tration increased with increasing chain lengths for the PFCAs; (3) when        … van Leeuwen, S. P. J. (2011). Perfluoroalkyl and polyfluoroalkyl sub-
+comparing PFASs with the same perfluorocarbon chain length, the cel-           stances in the environment: Terminology, classification, and origins.
+                                                                               Integrated Environmental Assessment and Management, 7, 513–541.
+lular concentration was highest for FOSA, followed by PFCAs and
+lastly PFSAs; (4) all PFCAs, except PFUnDA, induced PPARα activity          Buhrke, T., Kibellus, A., & Lampen, A. (2013). In vitro toxicological charac-
+                                                                               terization of perfluorinated carboxylic acids with different carbon
+with potencies increasing up to and including PFOA; (5) the PPARα              chain lengths. Toxicology Letters, 218, 97–104.
+activity was higher for PFCAs than PFSAs; (6) there was a significant
+                                                                            CDC. (2015). Fourth national report on human exposure to environmental
+positive relationship between the PPARα activity and the cellular PFAS        chemicals, updates tables, february 2015. Retrieved from: http://
+concentration except for PFOS and FOSA; and (7) the relationships             www.cdc.gov/biomonitoring/pdf/FourthReport_UpdatedTables_
+                                                                              Feb2015.pdf
+were compound specific.
+                                                                            D'eon, J. C., Simpson, A. J., Kumar, R., Baer, A. J., & Mabury, S. A. (2010).
+    To our knowledge, this is the first report of cellular concentration
+                                                                               Determining the molecular interactions of perfluorinated carboxylic
+in HepG2 cells of a broad range of PFASs of varying perfluorocarbon            acids with human sera and isolated human serum albumin using nuclear
+chain lengths and functional groups and the first report establishing a        magnetic resonance spectroscopy. Environmental Toxicology and
+relationship between PPARα activity and cellular concentration. Most           Chemistry, 29, 1678–1688.
+
+in vitro studies do not include measurements of cellular concentra-         Fromme, H., Tittlemier, S. A., Völkel, W., Wilhelm, M., & Twardella, D.
+                                                                               (2009). Perfluorinated compounds – Exposure assessment for the gen-
+tions, and conclusions on dose–response relationships are usually
+                                                                               eral population in western countries. International Journal of Hygiene
+based on the added nominal concentration of the test substance. By             and Environmental Health, 212, 239–270.
+measuring cellular concentrations, it was revealed that short‐chain         Giesy, J. P., & Kannan, K. (2002). Perfluorochemical surfactants in the envi-
+PFASs exhibited activity at low cellular concentrations, which is of par-      ronment. Environmental Science & Technology, 36, 146A–152A.
+ticular interest as they have replaced long‐chain PFASs for some appli-     Gorrochategui, E., Pérez‐Albaladejo, E., Casas, J., Lacorte, S., & Porte, C.
+cations. Thus, the present investigation demonstrates that combining           (2014). Perfluorinated chemicals: Differential toxicity, inhibition of aro-
+                                                                               matase activity and alteration of cellular lipids in human placental cells.
+chemical analysis of cellular concentration with activity measurements         Toxicology and Applied Pharmacology, 277, 124–130.
+allows a more exhaustive analysis of concentration–response relation-
+                                                                            Han, X., Yang, C. H., Snajdr, S. I., Nabb, D. L., & Mingoia, R. T. (2008).
+ships from in vitro studies.                                                   Uptake of perfluorooctanoate in freshly isolated hepatocytes from male
+                                                                               and female rats. Toxicology Letters, 181, 81–86.
+CONF LICT OF INTE R ES T                                                    Hidalgo, A., & Mora‐Diez, N. (2016). Novel approach for predicting parti-
+                                                                               tion coefficients of linear perfluorinated compounds. Theoretical
+The authors did not report any conflict of interest.                           Chemistry Accounts, 135, 1–11.
+                                                                            Houde, M., De Silva, A. O., Muir, D. C. G., & Letcher, R. J. (2011). Monitor-
+ACKNOWLEDGEMEN TS                                                             ing of perfluorinated compounds in aquatic biota: An updated review.
+                                                                              Environmental Science and Technology, 45, 7962–7973.
+The authors would like to thank Frida Niss for experimental assistance.
+                                                                            Kasuya, M. C. Z., Nakano, S., Katayama, R., & Hatanaka, K. (2011). Evalua-
+This research was financially supported by the Swedish Research
+                                                                               tion of the hydrophobicity of perfluoroalkyl chains in amphiphilic
+Council Formas (grant no 222‐2012‐2124).                                       compounds that are incorporated into cell membrane. Journal of Fluo-
+                                                                               rine Chemistry, 132, 202–206.
+
+ORCID                                                                       Kato, K., Wong, L. Y., Jia, L. T., Kuklenyik, Z., & Calafat, A. M. (2011). Trends
+                                                                               in exposure to polyfluoroalkyl chemicals in the U.S. population: 1999‐
+Anna Kjerstine Rosenmai        http://orcid.org/0000-0002-0588-607X            2008. Environmental Science and Technology, 45, 8037–8045.
+8                                                                                                                                                      ROSENMAI ET AL.
+
+
+Kennedy, G. L., Butenhoff, J. L., Olsen, G. W., O'Connor, J. C., Seacat, A. M.,         Wang, Z., MacLeod, M., Cousins, I. T., Scheringer, M., & Hungerbühler, K.
+   Perkins, R. G., … Farrar, D. G. (2004). The toxicology of                              (2011). Using COSMOtherm to predict physicochemical properties of
+   perfluorooctanoate. Critical Reviews in Toxicology, 34, 351–384.                       poly‐ and perfluorinated alkyl substances (PFASs). Environmental Chem-
+Kudo, N., Suzuki‐Nakajima, E., Mitsumoto, A., & Kawashima, Y. (2006).                     istry, 8, 389–398.
+   Responses of the liver to perfluorinated fatty acids with different car-             Weaver, Y. M., Ehresman, D. J., Butenhoff, J. L., & Hagenbuch, B. (2010).
+   bon chain length in male and female mice: In relation to induction of                  Roles of rat renal organic anion transporters in transporting
+   hepatomegaly, peroxisomal beta‐oxidation and microsomal 1‐                             perfluorinated carboxylates with different chain lengths. Toxicological
+   acylglycerophosphocholine acyltransferase. Biological & Pharmaceutical                 Sciences, 113, 305–314.
+   Bulletin, 29, 1952–1957.                                                             Wolf, C. J., Schmid, J. E., Lau, C., & Abbott, B. D. (2012). Activation of
+Lau, C. (2012). Perfluorinated compounds. In A. Luch (Ed.), Molecular, Clini-             mouse and human peroxisome proliferator‐activated receptor‐alpha
+   cal and Environmental Toxicology, Volume 3: Environmental Toxicology                   (PPARα) by perfluoroalkyl acids (PFAAs): Further investigation of C4‐
+   (pp. 47–86). Basel, Switzerland: Springer.                                             C12 compounds. Reproductive Toxicology, 33, 546–551.
+Lau, C., Anitole, K., Hodes, C., Lai, D., Pfahles‐Hutchens, A., & Seed, J.              Wolf, C. J., Takacs, M. L., Schmid, J. E., Lau, C., & Abbott, B. D. (2008). Acti-
+   (2007). Perfluoroalkyl acids: A review of monitoring and toxicological                 vation of mouse and human peroxisome proliferator‐activated receptor
+   findings. Toxicological Sciences, 99, 366–394.                                         alpha by perfluoroalkyl acids of different functional groups and chain
+Lau, C., Butenhoff, J. L., & Rogers, J. M. (2004). The developmental toxicity             lengths. Toxicological Sciences, 106, 162–171.
+   of perfluoroalkyl acids and their derivatives. Toxicology and Applied                Yang, C. H., Glover, K. P., & Han, X. (2010). Characterization of cellular
+   Pharmacology, 198, 231–241.                                                             uptake of perfluorooctanoate via organic anion‐transporting polypep-
+McLachlan, M. S., Holmström, K. E., Reth, M., & Berger, U. (2007). Riverine                tide 1A2, organic anion transporter 4, and urate transporter 1 for
+  discharge of perfluorinated carboxylates from the European continent.                    their potential roles in mediating human renal reabsorption of
+  Environmental Science and Technology, 41, 7260–7265.                                     perfluorocarboxylates. Toxicological Sciences, 117, 294–302.
+
+Nakagawa, H., Hirata, T., Terada, T., Jutabha, P., Miura, D., Harada, K. H., …          Zareitalabad, P., Siemens, J., Hamer, M., & Amelung, W. (2013).
+   Koizumi, A. (2007). Roles of organic anion transporters in the renal                    Perfluorooctanoic acid (PFOA) and perfluorooctanesulfonic acid (PFOS)
+   excretion of perfluorooctanoic acid. Basic and Clinical Pharmacology                    in surface waters, sediments, soils and wastewater – A review on con-
+   and Toxicology, 103, 1–8.                                                               centrations and distribution coefficients. Chemosphere, 91, 725–732.
+
+Olsen, G. W., Burris, J. M., Ehresman, D. J., Froelich, J. W., Seacat, A. M.,           Zhang, L., Ren, X. M., & Guo, L. H. (2013). Structure‐based investigation
+   Butenhoff, J. L., & Zobel, L. R. (2007). Half‐life of serum elimination of              on the interaction of perfluorinated compounds with human liver fatty
+   perfluorooctanesulfonate,          perfluorohexanesulfonate,          and               acid binding protein. Environmental Science & Technology, 47, 11293–
+   perfluorooctanoate in retired fluorochemical production workers. Envi-                  11301.
+   ronmental Health Perspectives, 115, 1298–1305.                                       Zhao, W., Zitzow, J. D., Weaver, Y., Ehresman, D. J., Chang, S., Butenhoff, J.
+Rosenmai, A. K., Taxvig, C., Svingen, T., Trier, X., van Vugt‐Lussenburg, B.               L., & Hagenbuch, B. (2017). Organic anion transporting polypeptides
+   M. A., Pedersen, M., … Vinggaard, A. M. (2016). Fluorinated alkyl sub-                  contribute to the disposition of perfluoroalkyl acids in humans and rats.
+   stances and technical mixtures used in food paper‐packaging exhibit                     Toxicological Sciences, 1–12. https://doi.org/10.1093/toxsci/kfw236
+   endocrine‐related activity in vitro. Andrology, 4, 662–672.
+Scheringer, M., Trier, X., Cousins, I. T., de Voogt, P., Fletcher, T., Wang, Z., &      SUPPOR TI NG INF ORMATI ON
+   Webster, T. F. (2014). Helsingoer statement on poly‐ and perfluorinated
+                                                                                        Additional Supporting Information may be found online in the
+   alkyl substances (PFASs). Chemosphere, 114, 337–339.
+                                                                                        supporting information tab for this article.
+Takacs, M. L., & Abbott, B. D. (2007). Activation of mouse and human per-
+   oxisome proliferator–activated receptors (α, β/δ, γ) by
+   perfluorooctanoic acid and perfluorooctane sulfonate. Toxicological Sci-
+   ences, 95, 108–117.
+Wallace, K. B., Kissling, G. E., Melnick, R. L., & Blystone, C. R. (2013). Structure‐       How to cite this article: Rosenmai AK, Ahrens L, le Godec T,
+  activity relationships for perfluoroalkane‐induced in vitro interference                  Lundqvist J, Oskarsson A. Relationship between peroxisome
+  with rat liver mitochondrial respiration. Toxicology Letters, 222, 257–264.               proliferator‐activated receptor alpha activity and cellular con-
+Wang, Z., Cousins, I. T., Scheringer, M., & Hungerbühler, K. (2013). Fluori-                centration of 14 perfluoroalkyl substances in HepG2 cells. J
+  nated alternatives to long‐chain perfluoroalkyl carboxylic acids
+                                                                                            Appl Toxicol. 2017;1–8. https://doi.org/10.1002/jat.3515
+  (PFCAs), perfluoroalkane sulfonic acids (PFSAs) and their potential pre-
+  cursors. Environment International, 60, 242–248.
+

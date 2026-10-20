@@ -37,9 +37,18 @@ actually DOSED in.
       -> exposure in 2% FBS, not 10%.  NOT as coded: 5x too much albumin.
 
     Rosenmai et al. 2018, J Appl Toxicol 38:219-226, doi 10.1002/jat.3515
-      Full text paywalled here; 10% is the standard HepG2 condition and is
-      what Amstutz followed ("based on the study of Rosenmai et al. (2018),
-      with small modifications"), but it is NOT verified at source.  Flagged.
+      2.2 "HepG2 cells were cultured in Dulbecco's modified Eagle medium ...
+          and 10% fetal bovine serum"
+      2.5 "cells were seeded in 12-well plates at a concentration of 18 x 10^4
+          cells per well ... cells were exposed to PFASs in concentrations of
+          10, 30 and 100 uM" -- no serum reduction stated, so 10%.  As coded.
+      2.1 "PFAS stock solutions for in vitro investigations were prepared in
+          ETHANOL in concentrations ranging from 4 to 350 mM"
+      2.4 "Ethanol was used as control and the ethanol concentration was
+          constant across all treatments and controls at 3% ETHANOL"
+      -> 10% FBS as coded, but a 3% ethanol co-solvent: 6x Fragki's and 30x
+         Amstutz's.  Stated for the PPARa assay; section 2.5 does not repeat
+         it, though it doses the same stocks at the same concentrations.
 
 The two cell-associated datasets that the QIVIVE literature treats as
 interchangeable were therefore measured five-fold apart in the one medium
@@ -63,15 +72,18 @@ DB = os.path.join(os.path.dirname(HERE), "db")
 # Sourced exposure conditions.  fbs_exposure is the number this script argues
 # for; fbs_growth is what the paper's culture section says and what was coded.
 SOURCED = {
-    "Rosenmai": dict(fbs_growth=0.10, fbs_exposure=0.10, dmso=None,
+    "Rosenmai": dict(fbs_growth=0.10, fbs_exposure=0.10,
+                     solvent="ethanol", f_solvent=0.03,
                      v_dosed_uL=3000.0, v_after_t0_uL=3000.0,
-                     verified=False,
-                     cite="Rosenmai 2018 J Appl Toxicol 38:219 (paywalled)"),
-    "Amstutz":  dict(fbs_growth=0.10, fbs_exposure=0.10, dmso=0.001,
+                     verified=True,
+                     cite="Rosenmai 2018 J Appl Toxicol 38:219 S2.1, 2.2, 2.4, 2.5"),
+    "Amstutz":  dict(fbs_growth=0.10, fbs_exposure=0.10,
+                     solvent="DMSO", f_solvent=0.001,
                      v_dosed_uL=250.0, v_after_t0_uL=200.0,
                      verified=True,
                      cite="Amstutz 2022 Toxicology 480:153312 S2.2, 2.3, 2.5"),
-    "Fragki":   dict(fbs_growth=0.10, fbs_exposure=0.02, dmso=0.005,
+    "Fragki":   dict(fbs_growth=0.10, fbs_exposure=0.02,
+                     solvent="DMSO", f_solvent=0.005,
                      v_dosed_uL=550.0, v_after_t0_uL=500.0,
                      verified=True,
                      cite="Fragki 2022 Food Chem Toxicol 172:113559 S2.2, 2.3"),
@@ -81,7 +93,7 @@ SOURCED = {
 # with hydrophobic organics is ~1.5-4 per unit volume fraction; 4 is the
 # aggressive end, chosen so the estimate cannot be accused of being generous
 # to the conclusion.
-SIGMA_DMSO = 4.0
+SIGMA = {"DMSO": 4.0, "ethanol": 4.5}
 
 
 def gm(xs):
@@ -144,13 +156,13 @@ def main():
     print("=" * 80)
     print("1.  WHAT EACH PAPER ACTUALLY SAYS")
     print("=" * 80)
-    print(f"\n  {'study':11s}{'growth':>8s}{'EXPOSURE':>10s}{'DMSO':>8s}"
+    print(f"\n  {'study':11s}{'growth':>8s}{'EXPOSURE':>10s}{'co-solvent':>14s}"
           f"{'dosed':>9s}{'after t0':>10s}  source")
     for s, d in SOURCED.items():
-        dm = "-" if d["dmso"] is None else f"{d['dmso']:.1%}"
+        sv = f"{d['f_solvent']:.1%} {d['solvent']}"
         mark = "" if d["verified"] else "   [NOT VERIFIED AT SOURCE]"
         print(f"  {s:11s}{d['fbs_growth']:>8.0%}{d['fbs_exposure']:>10.0%}"
-              f"{dm:>8s}{d['v_dosed_uL']:>8.0f}uL{d['v_after_t0_uL']:>9.0f}uL"
+              f"{sv:>14s}{d['v_dosed_uL']:>8.0f}uL{d['v_after_t0_uL']:>9.0f}uL"
               f"  {d['cite']}{mark}")
 
     # ------------------------------------------------------------------ 2
@@ -212,31 +224,85 @@ def main():
 
     # ------------------------------------------------------------------ 4
     print("\n" + "=" * 80)
-    print("4.  IS THE 0.5% vs 0.1% DMSO WORTH ANYTHING?")
+    print("4.  THE CO-SOLVENTS: 3% ethanol vs 0.5% DMSO vs 0.1% DMSO")
     print("=" * 80)
-    shift = SIGMA_DMSO * (SOURCED["Fragki"]["dmso"] - SOURCED["Amstutz"]["dmso"])
-    print(f"""
+    print("""
   Log-linear cosolvency: log K falls by sigma x f_cosolvent, with sigma ~ 1.5-4
-  per unit volume fraction for a hydrophobic solute in aqueous DMSO.  Taking
-  the aggressive sigma = {SIGMA_DMSO:.0f}:
+  per unit volume fraction for a hydrophobic solute in aqueous DMSO and a
+  little higher in ethanol.  Taking the aggressive end of each:
+""")
+    print(f"  {'study':11s}{'co-solvent':>15s}{'sigma':>7s}{'log shift':>11s}"
+          f"{'as a factor':>13s}")
+    for st, d in SOURCED.items():
+        sig = SIGMA[d["solvent"]]
+        sh = sig * d["f_solvent"]
+        print(f"  {st:11s}{d['f_solvent']:>9.1%} {d['solvent']:<5s}{sig:>7.1f}"
+              f"{sh:>11.3f}{10**sh:>12.2f}x")
+    print(f"""
+  Rosenmai's 3% ethanol is {SIGMA['ethanol']*0.03:.2f} log units, {SIGMA['ethanol']*0.03/(SIGMA['DMSO']*0.005):.0f}x the DMSO shift in Fragki
+  and {SIGMA['ethanol']*0.03/(SIGMA['DMSO']*0.001):.0f}x the one in Amstutz -- so the co-solvent IS a between-study
+  variable after all, just not the one the 2% vs 10% looked like.  The serum
+  difference is still {math.log10(0.10/0.02):.2f} log units, {math.log10(0.10/0.02)/(SIGMA['ethanol']*0.03):.1f}x larger than even the ethanol.
 
-    Fragki  0.5% DMSO  ->  {SIGMA_DMSO*SOURCED['Fragki']['dmso']:.3f} log units = {10**(SIGMA_DMSO*SOURCED['Fragki']['dmso']):.3f}x on any partition coefficient
-    Amstutz 0.1% DMSO  ->  {SIGMA_DMSO*SOURCED['Amstutz']['dmso']:.3f} log units = {10**(SIGMA_DMSO*SOURCED['Amstutz']['dmso']):.3f}x
-    difference between them: {shift:.3f} log units = {10**shift:.3f}x
+  BUT -- and this is the part that matters -- a co-solvent lowers EVERY
+  water-to-phase partition coefficient by the same factor, and the quantity
+  being predicted is a RATIO of sorptive terms:
 
-  The serum difference is {math.log10(0.10/0.02):.2f} log units = 5.00x.  The solvent difference is
-  {shift:.3f} log units -- {math.log10(0.10/0.02)/shift:.0f} times smaller, and inside the noise on any of these
-  measurements.  So: the 2% vs 10% that matters is the SERUM, not the DMSO.
+      x_cell = D_cell V_cell / (V_w + D_alb V_alb + D_lip V_lip + D_cell V_cell)
 
-  One DMSO caveat that is NOT about partitioning.  HepaRG are differentiated in
-  1.7% DMSO for twelve days and held there.  That is what makes them
+  Divide every D by k and the k cancels in numerator and denominator -- except
+  against V_w, the one term with no D on it.  So the co-solvent only bites
+  where water carries a real share of the denominator.  Run it and see:
+""")
+    print(f"  {'all D divided by':>18s}{'Armitage bias':>16s}{'PFBA':>9s}"
+          f"{'PFHxA':>9s}{'PFOA':>9s}{'PFNA':>9s}   water share at PFBA")
+    V = P.volumes(P.ASSAYS["Rosenmai"])
+    for k in (1.0, 1.35, 1.5):
+        per, allr = {}, []
+        for (nm, nC, nCF, mw, ko, kc, ks) in Q.COMPOUNDS:
+            lk = ko if ko is not None else Q.KOW_OPERA(nCF)
+            D = P.armitage_D(lk, V["comp"])
+            for d in P.ASSAYS["Rosenmai"]["doses"]:
+                m = P.measured_x_cell("Rosenmai", nm, d, V, P.ASSAYS["Rosenmai"])
+                if m is None:
+                    continue
+                ntot = d * V["Vbm"]
+                den = (V["Vw"] + D["Dsa"] / k * V["Valb"]
+                       + D["Dow"] / k * V["Vslip"] + D["Dcw"] / k * V["Vcells"]
+                       + D["Dpl"] / k * V["sarea"] * 1000.0)
+                x = D["Dcw"] / k * (ntot / den) * V["Vcells"] / ntot
+                per.setdefault(nm, []).append(x / m)
+                allr.append(x / m)
+        lkb = next(c[4] if c[4] is not None else Q.KOW_OPERA(c[2])
+                   for c in Q.COMPOUNDS if c[0] == "PFBA")
+        Db = P.armitage_D(lkb, V["comp"])
+        denb = (V["Vw"] + Db["Dsa"] / k * V["Valb"] + Db["Dow"] / k * V["Vslip"]
+                + Db["Dcw"] / k * V["Vcells"] + Db["Dpl"] / k * V["sarea"] * 1000.0)
+        print(f"  {k:>18.2f}{gm(allr):>15.2f}x" + "".join(
+            f"{gm(per[c]):>8.2f}x" for c in ("PFBA", "PFHxA", "PFOA", "PFNA"))
+            + f"{V['Vw']/denb:>21.0%}")
+    print("""
+  PFBA moves 1.42x -> 1.02x and PFNA does not move at all (9.33x -> 9.30x),
+  because water is 80% of PFBA's denominator and 0.5% of PFNA's.  The overall
+  bias barely stirs, 1.97x -> 1.82x.
+
+  So Rosenmai's 3% ethanol is a real protocol difference, it is the largest
+  co-solvent of the three, and it is worth almost nothing to this comparison
+  -- for the specific reason that the fraction-in-cells axis is scale-free in
+  the partition coefficients.  That is also the general lesson: an error that
+  multiplies EVERY sorptive term cancels here, and only an error in the
+  RELATIVE size of two sinks (such as how much albumin is present) survives.
+
+  One DMSO point is not about partitioning at all.  HepaRG are differentiated
+  in 1.7% DMSO for twelve days and held there.  That is what makes them
   hepatocyte-like, and it also loads them with triglyceride -- the companion
   paper measures exactly that as an endpoint.  Both models run Fragki on the
   AREc2 composition (a HepG2-derived reporter line, membrane lipid 0.00414),
-  because that is the only composition Armitage's SI publishes for a liver
-  line.  A differentiated, DMSO-matured HepaRG is a different cell.  That is a
-  separate error from the medium, and it is in the cell term, which section 14
-  of the main memo already names as where the residual lives.""")
+  because that is the only liver-line composition Armitage's SI publishes.  A
+  differentiated, DMSO-matured HepaRG is a different cell.  That error is in
+  the cell term, which section 14 of the main memo already names as where the
+  residual lives, and it does NOT cancel, because it changes one sink and not
+  the others.""")
 
     # ------------------------------------------------------------------ 5
     print("\n" + "=" * 80)

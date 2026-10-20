@@ -274,11 +274,10 @@ number, the ratio is insensitive to it.
   AEID1325), which would make a direct validation target, but the sheets' two-
   row headers defeat clean extraction and the PFAS rows could not be read
   reliably. Not pursued.
-- **Rosenmai's exposure FBS is the one medium not verified at source.** Its
-  full text is paywalled here; 10% is the standard HepG2 condition and is what
-  Amstutz followed ("based on the study of Rosenmai et al. (2018), with small
-  modifications"), but after §15 that is an assumption, not a reading. Fifteen
-  of the 29 points rest on it.
+- ~~Rosenmai's exposure FBS is unverified at source.~~ **Resolved 2026-10-20**:
+  the paper is now in hand and §2.2 gives DMEM + 10% FBS with no serum
+  reduction at exposure, so the coded value is right. What it also gives is a
+  **3% ethanol** co-solvent (§2.1, §2.4) — see §15.
 - AREc2's water content of 0.944 is high for a cell and its protein of 0.0514
   low; it is used because it is the composition Armitage's own model was run
   with for a HepG2-derived line, not because it is independently plausible.
@@ -548,9 +547,9 @@ were actually **dosed** in.
 
 | | growth medium | exposure medium | DMSO carrier | verified |
 |---|---|---|---|---|
-| Rosenmai 2018 | 10% FBS | assumed 10% | not stated here | **no** — paywalled |
-| Amstutz 2022 | DMEM + 10% FBS | *the culture medium*, 10% FBS | 0.1% | yes |
-| Fragki 2022 | William's E + 10% FBS | **assay medium: growth medium + 2% FBS** | 0.5% | yes |
+| Rosenmai 2018 | DMEM + 10% FBS | *the culture medium*, 10% FBS | **3% ethanol** | yes |
+| Amstutz 2022 | DMEM + 10% FBS | *the culture medium*, 10% FBS | 0.1% DMSO | yes |
+| Fragki 2022 | William's E + 10% FBS | **assay medium: growth medium + 2% FBS** | 0.5% DMSO | yes |
 
 Fragki et al. 2022, §2.2–2.3, verbatim:
 
@@ -591,21 +590,47 @@ free concentration drives D_BSA/w down, which shrinks the denominator again.
 **A model with a saturating sink amplifies an error in the size of that sink.**
 That is a general property worth carrying forward, not a quirk of this dataset.
 
-### The DMSO is a red herring
+### The co-solvents: real, 30-fold apart, and almost worthless
 
-0.5% vs 0.1% is a real difference and it is worth nothing. Log-linear
-cosolvency shifts log K by σ·f_cosolvent, with σ ≈ 1.5–4 per unit volume
-fraction for a hydrophobic solute in aqueous DMSO. At the aggressive σ = 4:
+The three assays dose from three different vehicles, and the spread is larger
+than the FBS spread looks:
 
-| | shift | as a factor |
-|---|---|---|
-| Fragki, 0.5% DMSO | 0.020 log | 1.047× |
-| Amstutz, 0.1% DMSO | 0.004 log | 1.009× |
-| **difference** | **0.016 log** | **1.038×** |
-| the serum difference | **0.70 log** | **5.00×** |
+| | co-solvent | σ | log shift | as a factor |
+|---|---|---|---|---|
+| Rosenmai | **3% ethanol** | 4.5 | **0.135** | **1.36×** |
+| Fragki | 0.5% DMSO | 4.0 | 0.020 | 1.05× |
+| Amstutz | 0.1% DMSO | 4.0 | 0.004 | 1.01× |
+| *the serum difference* | — | — | *0.70* | *5.00×* |
 
-**44× smaller, and inside the noise on any of these measurements.** The 2%
-versus 10% that matters is the serum, not the solvent.
+Log-linear cosolvency shifts log K by σ·f_cosolvent; σ ≈ 1.5–4 per unit volume
+fraction for a hydrophobic solute in aqueous DMSO and a little more in ethanol,
+and the aggressive end is used throughout so the estimate cannot flatter the
+conclusion. Rosenmai's ethanol is **7× Fragki's DMSO shift and 34× Amstutz's**.
+So the co-solvent *is* a between-study variable — just not the one the 2% vs
+10% looked like, and still 5× smaller than the serum.
+
+**And it cancels.** A co-solvent lowers *every* water-to-phase partition
+coefficient by the same factor k, and the quantity being predicted is a ratio
+of sorptive terms:
+
+```
+x_cell = D_cell·V_cell / (V_w + D_alb·V_alb + D_lip·V_lip + D_cell·V_cell)
+```
+
+Divide every D by k and k cancels top and bottom — except against **V_w**, the
+one term with no D on it. So the co-solvent only bites where water carries a
+real share of the denominator. Dividing all of Rosenmai's D by 1.35:
+
+| | Armitage bias | PFBA | PFHxA | PFOA | PFNA |
+|---|---|---|---|---|---|
+| as published | 1.97× | 1.42× | 0.86× | 2.38× | 9.33× |
+| ÷1.35 (3% ethanol) | 1.86× | **1.11×** | 0.83× | 2.37× | **9.31×** |
+
+PFBA moves (water is 80% of its denominator); PFNA does not move at all (water
+is 0.5% of its denominator). **The general lesson is worth more than the
+number: an error that multiplies every sorptive term cancels on this axis, and
+only an error in the *relative* size of two sinks survives.** That is exactly
+why the FBS fraction is devastating and the vehicle is not.
 
 One DMSO point is *not* about partitioning. HepaRG are differentiated in 1.7%
 DMSO for twelve days and held there — that is what makes them hepatocyte-like,
@@ -652,8 +677,17 @@ and it is the largest measured value in the set.
    used side by side. They were measured five-fold apart in the single medium
    property a mass balance is most sensitive to, and neither paper flags it.
 
-**Still open.** Rosenmai's exposure FBS, which 15 of the 29 points depend on,
-is unverified at source (§9). Fragki and Amstutz both took a t = 0 medium
-sample for a mass balance (550 → 500 µL and 250 → 200 µL); neither mass balance
-is reported in the text available here. If it were, it would test the plastic
-term directly instead of by difference.
+**Still open.** All three media are now read at source. What is not in hand:
+Fragki and Amstutz both took a t = 0 medium sample for a mass balance
+(550 → 500 µL and 250 → 200 µL) and neither mass balance is reported in the
+text available here. If it were, it would test the plastic term directly
+instead of by difference. Rosenmai reports 78–98% recovery in the cell lysates
+but no medium-side balance either.
+
+Also unverified rather than wrong: Rosenmai's §2.5 states the 12-well format,
+18 × 10⁴ cells per well and three pooled wells — all as coded — but **not the
+working volume**, which remains the 1 mL/well assumption of §8. And the 3%
+ethanol is stated in §2.4 for the PPARα assay; §2.5 does not repeat it, though
+it doses the same ethanol stocks at the same concentrations.
+
+![three datasets](../figures/fig20_mbm_three_datasets.png)
