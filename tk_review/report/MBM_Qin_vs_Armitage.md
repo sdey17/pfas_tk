@@ -260,9 +260,21 @@ the *fraction of dose in cells* is insensitive to that disagreement while
 Fragki's main paper confirms the plate and volume I had assumed. The FBS it
 does not confirm: exposure was in "assay medium (growth medium containing 2%
 FBS)", not the 10% growth medium — see §15. The cell count at exposure is still
-not stated for differentiated HepaRG; 2.2 × 10⁵ is used.
-Because the measured fraction and the predicted fraction both scale with cell
-number, the ratio is insensitive to it.
+not stated for differentiated HepaRG; 2.2 × 10⁵ is used. Because Fragki reports
+nmol/mg protein, the measured fraction and the predicted fraction both scale
+with cell number and the ratio is insensitive to it — over a 4× change in N the
+Armitage ratio moves only 8.69× → 7.89×.
+
+**That cancellation is specific to Fragki and does not extend to Rosenmai**,
+whose Table 1 is already an uptake *percentage*: the measured value is fixed,
+only the prediction scales, and the ratio moves 1.00× → 3.97× over the same 4×
+change in N. Rosenmai's 5.43 × 10⁵ is three wells at the *seeded* 1.8 × 10⁵,
+and HepG2 divide between seeding and exposure (medium changed at 48 h, dosed at
+72 h), so the true count is plausibly higher and the comparison would move with
+it. `MBM_PRIMER.md` §5 works this through, along with the related point that
+choosing the fraction-of-dose axis buys comparability between studies but **no**
+immunity to the cell-volume uncertainty: predicted ÷ measured is identical on
+the concentration and fraction axes.
 
 ## 9. Remaining caveats
 

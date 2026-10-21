@@ -119,23 +119,66 @@ Everything that had to be true to get from the well to (★):
 A1, A8 and A10 are the ones that have actually cost us something in this
 project. A4 is the one nobody can check.
 
-### 5. Two axes, and why the choice matters
+### 5. Two axes, and a trap worth naming
 
-There are two ways to report the answer, and they are *not* equally robust:
+There are two ways to report the answer:
 
 ```
 C_cell  = D_cell · n_total / S                      [concentration]
 x_cell  = D_cell · V_cell / S                       [fraction of dose]
 ```
 
-`C_cell` needs the **cell volume** to convert a measured "nmol per mg protein"
-into a concentration. Published cell volumes for hepatic lines span 3.1×
-(10 ng/cell for AREc2 against 3.04 pL/cell for HepG2), and none of the three
-uptake papers reports its own.
+Read those as written and `x_cell` is the one carrying `V_cell`. That is
+correct — and it is the opposite of what a careless reading of "which axis
+needs the cell volume" suggests, because the question has two sides.
 
-`x_cell` needs only **protein per cell**, on which all sources agree
-(~675–694 pg/cell). So the fraction axis is the one to test models on. That is
-why every table in the companion memo is in % of dose.
+**On the model side.** `x_cell ∝ V_cell` directly. `C_cell` contains `V_cell`
+only inside `S`, where the cell term is 0.1–18% of the total, so predicted
+`C_cell` is nearly volume-free.
+
+**On the measurement side**, converting a published "nmol per mg protein":
+
+```
+measured x_cell = (nmol/mg) · (mg protein in the well) / (nmol added)       no volume
+measured C_cell = (nmol/mg) · (mg protein per cell) / (litres per cell)     needs volume
+```
+
+**The volume dependence does not disappear — it changes sides.** And the
+quantity actually tested, predicted ÷ measured, is *identical* on the two
+axes. Rosenmai PFOA at 100 µM, holding protein per cell fixed at 694 pg and
+changing only the volume:
+
+| ng/cell | meas x_cell | pred x_cell | **ratio** | meas C | pred C | **ratio** |
+|---|---|---|---|---|---|---|
+| 10.0 | 0.330% | 0.660% | **2.00×** | 182 µM | 364 µM | **2.00×** |
+| 3.04 | 0.330% | 0.201% | **0.61×** | 599 µM | 366 µM | **0.61×** |
+
+> **Choosing the fraction axis buys no protection against the cell-volume
+> uncertainty.** Both ratios scale as (volume per cell)/(protein per cell).
+> That is exactly why §14 of the memo can move Armitage's bias from 3.87× to
+> 1.84× by swapping 10 ng/cell for 3.04 pL/cell — it is a real lever, not an
+> artefact of the axis.
+
+**What the fraction axis does buy** is that the *measurements* become mutually
+comparable with no volume assumption at all. Rosenmai, Amstutz and Fragki can
+be put on one plot and read against each other directly (fig. 20A). On the
+concentration axis they could not be, because each would need a cell volume
+nobody measured.
+
+**A cancellation that does work — sometimes.** Cell *number* per well is also
+uncertain (HepG2 divide between seeding and exposure; Fragki never state the
+count for differentiated HepaRG). Whether it cancels depends on what the paper
+reported:
+
+| | reports | measured x_cell | ratio over a 4× change in N |
+|---|---|---|---|
+| Fragki | nmol/mg protein | built from N, so ∝ N | **8.69× → 7.89×**, cancels |
+| Rosenmai | uptake % directly | a fixed published number | **1.00× → 3.97×**, does not |
+
+So the memo's §8 remark — that the ratio is insensitive to cell number — holds
+for Fragki, which is where it is made, and **not** for Rosenmai, whose Table 1
+is already a percentage. For Rosenmai the assumed 5.43 × 10⁵ (three wells at
+the *seeded* 1.8 × 10⁵) propagates straight into the comparison.
 
 ---
 
