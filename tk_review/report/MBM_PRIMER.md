@@ -349,9 +349,10 @@ in SI Table S1:
 | plastic | 3.1 |
 
 > **Approximation A11.** `d_SaW_acid = 0` says the anion binds albumin exactly
-> as well as the neutral form would. That is a modelling choice, not a
-> measurement, and it is a large part of why albumin ends up holding 94–97% of
-> the well in this model.
+> as well as the neutral form would. **Confirmed at source** — Armitage 2021
+> SI Table S1 gives 0.0 for acidic IOCs against 1.3 for bases. It is a
+> modelling choice, not a measurement, and it is a large part of why albumin
+> ends up holding 94–97% of the well in this model.
 
 #### 9b. The spLFERs
 
@@ -396,16 +397,27 @@ f_sl = 0.00046    f_ml = 0.00414    f_prot = 0.0514    f_water = 0.944
 > is a convention imported from the neutral-organics literature. Measured
 > against Qin 2024's protein–water ratios it is **457–7,820× too low**.
 >
-> **Provenance caveat, added on audit.** The 0.035 in this implementation comes
-> from EPA's `httk`, and the code flags it as *not found in Armitage's SI S1*.
-> So "Armitage's convention" — as §13–14 and §16 of the memo call it — is an
-> attribution this project has not verified at source. The *consequence* is a
-> property of the implementation either way: with a protein term this small the
-> cell is lipid, and a lipid cell has too steep a chain-length slope. But whose
-> convention it is remains open, and it matters, because if Armitage's own
-> model treats cell protein differently then the §16 verdict lands on `httk`
-> rather than on the paper. **Resolving this needs SI S1 §2, which is not in
-> hand.** The
+> **Provenance, resolved as far as the literature allows.** The SI is now in
+> hand (Europe PMC supplementary package; MDPI blocks direct download). Every
+> other Armitage parameter in this implementation is confirmed verbatim:
+> both spLFERs (§S1.3), the four scaling factors including `d_SaW = 0.0`
+> (Table S1), and the AREc2 and PPARγ compositions including protein 0.0514
+> and 0.08 (Table S5).
+>
+> **The protein sorption coefficient is not there.** Section S1 covers anionic
+> phospholipids, lysosomal sequestration and the spLFERs, then defers to
+> Armitage 2014 for temperature and salinity adjustments *only*. There is no
+> 0.035, no octanol-equivalence statement, and no equation for `K_cell/w`
+> anywhere in the SI or the main text. And it cannot be in the 2014 SI either:
+> the main text lists bulk protein as something v2.0 *added* — "proximate
+> composition of cells **expanded to include** storage lipids, membrane lipids,
+> bulk proteins and water".
+>
+> So the bulk-protein term is **new in v2.0 and undocumented in the published
+> record**; it exists only in the Excel/VBA tool, available by request. The
+> 0.035 used here is `httk`'s. **The §16 chain-length verdict is therefore
+> demonstrably about `httk`'s implementation of IV-MBM EQP v2.0, and whether it
+> also applies to Armitage's own tool cannot be settled from the papers.** The
 > consequence: the protein term contributes 0.1–0.2% of Armitage's cell, so
 > the cell is 79% water at PFBA and **99.7% membrane lipid at PFNA**. The
 > convention has defined protein out of the cell.

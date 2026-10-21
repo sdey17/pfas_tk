@@ -70,7 +70,15 @@ CELL_COMP = {
     "PPARg":   dict(sl=0.001,   ml=0.009,   prot=0.08,   water=0.91,  ng_cell=7.3),
     "generic": dict(sl=0.01,    ml=0.04,    prot=0.055,  water=0.895, ng_cell=1.0),
 }
-P_NLOM = 0.035      # octanol-equivalence of bulk protein (httk; not in SI S1)
+# Octanol-equivalence of bulk cell protein.  This is httk's value.  The
+# Armitage 2021 SI is in hand (literature/fulltext/) and confirms every OTHER
+# parameter below verbatim -- both spLFERs, all four scaling factors (Table S1)
+# and the AREc2/PPARg compositions (Table S5) -- but states nothing about how
+# bulk protein sorbs.  The bulk-protein phase is new in v2.0 ("expanded to
+# include ... bulk proteins") so the 2014 SI cannot hold it either.  It exists
+# only in the Excel/VBA tool, by request.  Findings that turn on this constant
+# are findings about httk's implementation.  See MBM_Qin_vs_Armitage.md section 14.
+P_NLOM = 0.035
 
 
 def armitage_K(logKow_n, piecewise=True):

@@ -515,16 +515,34 @@ measured protein affinity and 1.5× too steep. That is why Armitage's cell is
 ~100% membrane lipid — the convention has defined its protein term out of
 existence.
 
-> **Provenance caveat (added 2026-10-21 on audit).** The 0.035 used here comes
-> from EPA's `httk`, and `mbm_published_equations.py` flags it as **not found
-> in Armitage's SI S1**. Calling it "Armitage's convention" — as this section
-> and §16 do — is therefore an attribution not verified at source. The
-> consequence stands for the implementation either way: a protein term this
-> small leaves a cell made of lipid, and a lipid cell carries too steep a
-> chain-length slope (§16). But if Armitage's published model treats cell
-> protein differently, the §16 verdict lands on `httk` rather than on the
-> paper. Resolving it needs SI S1 §2, which is not in hand. Flagged, not
-> assumed.
+> **Provenance, settled 2026-10-21.** The SI is now in hand
+> (`literature/fulltext/Armitage 2021 Toxics IV-MBM EQP v2.0 SUPPLEMENTARY.pdf`,
+> from the Europe PMC supplementary package — MDPI blocks direct download).
+>
+> It confirms **everything else** this implementation uses, verbatim: both
+> spLFERs (S1.3, `1.01·logKow + 0.12` and the piecewise albumin form), all four
+> scaling factors (Table S1: d_OW 3.1, d_MW 1.0, **d_SaW 0.0** for acids,
+> d_PlW 3.1), and the AREc2 and PPARγ cell compositions (Table S5: 10 ng/cell,
+> 0.00046 / 0.00414 / **0.0514** / 0.944). Table S5 also confirms §6.1b's
+> remark that Armitage's own evaluation mixes serum levels — AREc2 at 10% FBS,
+> PPARγ at 2.0%.
+>
+> **What it does not contain is any statement of how bulk protein sorbs.** No
+> 0.035, no octanol-equivalence, no `K_cell/w` equation. Section S1 covers
+> anionic phospholipids, lysosomal sequestration and the spLFERs, then defers
+> to Armitage 2014 for temperature and salinity adjustments *only*. Nor can the
+> 2014 SI hold it: the v2.0 main text lists bulk protein among the things v2.0
+> **added** ("proximate composition of cells expanded to include storage
+> lipids, membrane lipids, bulk proteins and water").
+>
+> **So the cell-protein term is new in v2.0 and undocumented in the published
+> record** — it lives only in the Excel/VBA tool, available by request. The
+> 0.035 here is `httk`'s. Accordingly this section and §16 should be read as
+> findings about **`httk`'s implementation** of IV-MBM EQP v2.0; whether they
+> also indict Armitage's own tool cannot be decided from the papers, and would
+> need the tool itself. The *structural* point is unaffected either way: a cell
+> whose protein term is negligible is a cell made of lipid, and a lipid cell
+> carries too steep a chain-length slope.
 
 But substituting the measured value makes both models **worse** (Qin 7.52 →
 12.24, Armitage 3.87 → 9.81), because the measurement is *higher* than either
