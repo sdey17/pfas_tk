@@ -352,6 +352,110 @@ litre of BSA and per mole of BSA; the ratio must be 20,523 µM:
 0.2% from the derived value. The derivation is right, and `n` = 0.45 for PFBA
 and 1.24 for PFOA — **less than one site for PFBA**.
 
+#### 10a-bis. How badly Approximation 1 breaks here
+
+A1 does not break *in* Qin's model. **Qin's model is what you build because A1
+broke in the experiment** — he measured the isotherm, found it curved, and
+wrote (★6) to carry the curvature. Armitage keeps A1; Qin abandons it. Here is
+how much was at stake.
+
+**Albumin has about one site.** From the C_max identity above, `n` = 0.45
+(PFBA), 1.24 (PFOA), 0.92 (PFHxS), 0.39 (PFOS). So albumin's high-affinity
+capacity for PFAS is bounded at roughly **one mole per mole of albumin**.
+
+**Now count the albumin actually in the well.** Armitage's serum albumin is
+24 g/L, so the medium holds `24 × f_FBS` g/L:
+
+| | FBS | albumin | doses | **nominal PFAS : albumin** |
+|---|---|---|---|---|
+| Rosenmai | 10% | 2.40 g/L = **36.1 µM** | 10–100 µM | 0.28 – 2.77 mol/mol |
+| Amstutz | 10% | 2.40 g/L = **36.1 µM** | 100 µM | 2.77 mol/mol |
+| Fragki | 2% | 0.48 g/L = **7.2 µM** | 6.25–100 µM | 0.87 – **13.85 mol/mol** |
+
+Against `n ≈ 1`, a ratio of 2.8 means roughly three times more PFAS than there
+are sites. A ratio of 13.9 means fourteen times. For scale, Fischer 2024 worked
+at ≤ 0.004 mol/mol and estimated the ratio in human serum at ≤ 0.0005 — so
+**these assays run 5,500–27,700× above the physiological ligand:protein
+ratio.** A1 is not marginally violated here; it is nowhere near true.
+
+**What that does to the "constant".** Rearranging (★6), the specific term is
+just its own trace limit times a saturation penalty:
+
+```
+D_specific = C_max/(K_d + C_w) = D_trace,spec · 1 / (1 + C_w/K_d)
+```
+
+That factor `1/(1 + C_w/K_d)` **is** the activity-coefficient correction of
+Approximation 1, written for a site-binding sorbent. γ constant means "the
+sorbent the Nth molecule meets is the same one the first molecule met". Fill
+the sites and it is not.
+
+Between the trace limit and full saturation, `D_BSA/w` falls to the
+non-specific floor:
+
+| | K_d (µM) | D at trace | D at the floor | **collapse** |
+|---|---|---|---|---|
+| PFBA | 18.3 | 546 | 43 | 12.8× |
+| PFOA | 0.317 | 85,100 | 5,010 | 17.0× |
+| PFHxS | 0.0744 | 256,000 | 2,950 | **86.6×** |
+| PFOS | 0.00624 | 1,350,000 | 69,200 | 19.6× |
+
+**And inside the actual wells**, solving the balance self-consistently:
+
+| study | cmpd | dose | C_free | C_free/K_d | occupancy | D / D_trace |
+|---|---|---|---|---|---|---|
+| Rosenmai | PFOA | 10 µM | 0.081 µM | 0.26 | 20% | 0.81× |
+| Rosenmai | PFOA | 30 µM | 0.419 µM | 1.3 | 57% | 0.46× |
+| Rosenmai | PFOA | 100 µM | 5.30 µM | 16.7 | **94%** | **0.11×** |
+| Fragki | PFOA | 6.25 µM | 0.367 µM | 1.2 | 54% | 0.50× |
+| Fragki | PFOA | 100 µM | 22.9 µM | 72.4 | **99%** | **0.07×** |
+
+**A parameter that is supposed to be a constant moves 7-fold inside a single
+dose series.** That is the whole justification for Qin's extra machinery.
+
+**Four consequences that run through the entire comparison:**
+
+1. **The dose exponent (§4 of the memo).** Armitage is linear by construction,
+   pinned at b = 1.00. Measured b runs 0.85–1.42 and rises with chain length.
+   Only a saturating model can produce that, and Qin does.
+2. **Qin's error swings with dose** where Armitage's does not — his saturation
+   is fitted to BSA isotherms, and the well's saturation need not match it.
+3. **A saturating sink amplifies an error in its own size.** Cut the albumin
+   5× and Armitage's prediction moves by exactly the denominator arithmetic,
+   4.54× at every dose. Qin's moves by up to 14×, because less albumin → more
+   free → higher occupancy → lower D_BSA → less capacity → more free:
+
+   | Fragki PFOA, 10% → 2% FBS | occupancy | D_BSA ratio | **Qin x_cell** | **Armitage x_cell** |
+   |---|---|---|---|---|
+   | 6.25 µM | 13% → 54% | 0.56× | **7.89×** | 4.54× |
+   | 25 µM | 48% → 93% | 0.23× | **14.17×** | 4.54× |
+   | 100 µM | 94% → 99% | 0.63× | 4.56× | 4.54× |
+
+   The feedback is largest **mid-range**, where the 10% well is still linear
+   and the 2% well has already tipped into saturation. At the top dose both
+   are saturated and it vanishes.
+4. **A literature binding constant is meaningless without its ν.** An apparent
+   K_a measured at ν = 3 is not the number measured at ν = 0.004 — Qin 2024
+   later measured both regimes and found specific binding exceeds non-specific
+   by 3.0–5.0×, with the changeover around ν ≈ 0.01 to ν ≈ 1. This is why the
+   binding database in `ALBUMIN_BINDING.md` records the ligand:protein ratio
+   for every row it can.
+
+```python
+import sys; sys.path.insert(0, "tk_review/scripts")
+import mbm_published_equations as P, mbm_qin_vs_armitage as Q
+
+p = Q.qin_params("PFOA", 7)
+trace = p["Cmax"] / p["Kd"] + 10 ** p["logDnonspec"]
+a = P.ASSAYS["Fragki"]; V = P.volumes(a)
+alb = P.SI["conc_ser_alb"] * a["FBS"] / Q.BSA_MW * 1e6      # uM albumin
+for d in a["doses"]:
+    r = P.qin_run("PFOA", d, V)
+    theta = r["Cw"] / (p["Kd"] + r["Cw"])
+    print(f"{d:6g} uM   nominal PFAS:alb {d/alb:5.2f}   C_free {r['Cw']:7.3f} uM"
+          f"   occupancy {theta:6.1%}   D/D_trace {r['Dbsa']/trace:5.2f}x")
+```
+
 #### 10b. The trace limit, and the bridge to the binding literature
 
 When `C_w ≪ K_d`, (★6) collapses to a constant:
