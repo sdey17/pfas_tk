@@ -190,19 +190,40 @@ consequence of (★★); none needs a model.
 ### 6. Why a co-solvent almost cancels
 
 A co-solvent makes water a better solvent, so **every** water→phase partition
-coefficient falls by roughly the same factor `k`. Put `D_i → D_i/k` into (★★):
+coefficient falls by roughly the same factor `k`. Put `D_i → D_i/k` into (★★)
+and work it through. Split the capacity into its water part and the rest,
+`S = V_w + Σ` with `Σ ≡ Σ_i D_i V_i`, and write `w ≡ V_w/S`, so `Σ = S(1−w)`:
 
 ```
-x'_cell = (D_cell/k)·V_cell / ( V_w + Σ (D_i/k)·V_i )
-        = D_cell·V_cell / ( k·V_w + Σ D_i·V_i )
+x'_cell = (D_cell/k)·V_cell / ( V_w + Σ/k )
+
+x'_cell     (D_cell/k)·V_cell        S              1          S
+-------  =  ----------------- × ------------  =   ---  ×  ----------
+x_cell       V_w + Σ/k           D_cell·V_cell      k      V_w + Σ/k
 ```
 
-The `k` cancels everywhere **except against V_w**, the one term with no `D` on
-it. Writing `w ≡ V_w / S` for water's share of the capacity:
+Substitute `V_w = wS` and `Σ = S(1−w)`; every `S` cancels:
+
+```
+x'_cell        1              1                  1                   1
+-------  =    ---  ×  ----------------  =  -------------  =  ---------------
+x_cell         k       w + (1−w)/k           k·w + 1 − w       1 + (k−1)·w
+```
+
+which is
 
 ```
 x'_cell / x_cell = 1 / ( 1 + (k−1)·w )               (★★★)
 ```
+
+Read it off: the numerator falls by `k`, and so does the denominator — but only
+on the `(1−w)` of it that carries a `D`. The mismatch is exactly water's share.
+
+Three sanity checks, all immediate: `k = 1` gives 1 (no co-solvent, no effect);
+`w = 0` gives 1 (nothing dissolved in water, total cancellation); `w = 1` gives
+`1/k` (no sorbents at all, the full effect). And it is **exact**, not a
+linearisation — checked against the model to machine precision for all five
+compounds.
 
 - `w → 0` (long chains, albumin dominates): no effect at all.
 - `w → 1` (short chains, water dominates): the full `1/k`.
@@ -214,8 +235,18 @@ Check it against the real run. Rosenmai, Armitage, 3% ethanol ⇒ k ≈ 1.35:
 | PFBA | 0.80 | 1/(1+0.35·0.80) = **0.781** | 1.11/1.42 = **0.782** |
 | PFNA | 0.005 | 1/(1+0.35·0.005) = **0.998** | 9.31/9.33 = **0.998** |
 
-Exact. **An error that multiplies every sorptive term cancels on this axis.
-Only an error in the *relative* size of two sinks survives.**
+Exact to five decimals.
+
+> **The approximation inside the result.** (★★★) assumes one `k` for every
+> phase. Real cosolvency powers σ differ by sorbent, so strictly
+> `D_cell → D_cell/k₁` and `D_alb → D_alb/k₂`. In the albumin-dominated limit
+> the ratio becomes `≈ k₂/k₁`, so what survives is the *difference* in σ, not
+> σ itself. A full unit of σ difference at 3% ethanol
+> (σ_cell = 5 vs σ_alb = 4) is worth 10^(0.03×1) = 1.07, i.e. 7%. Still small
+> against 5×, but it is not identically zero the way the single-`k` version is.
+
+**An error that multiplies every sorptive term cancels on this axis. Only an
+error in the *relative* size of two sinks survives.**
 
 ### 7. Why albumin's share sets the sensitivity
 
@@ -226,20 +257,42 @@ albumin coefficient by `f` (an error):
 S' = S·(1 − a + f·a)        so      x'_cell / x_cell = 1 / (1 − a + f·a)   (★4)
 ```
 
-For a 10×-too-low albumin coefficient (`f = 0.1`), that is `1/(1 − 0.9a)`:
+Two things follow, and it is worth being careful about which is which.
 
-| FBS | a | error in x_cell |
-|---|---|---|
-| 0% | 0.00 | 1.00× |
-| 2% | 0.57 | 2.06× |
-| 10% | 0.89 | **5.06×** |
+**(i) How much a wrong albumin *coefficient* costs you.** For a 10×-too-low
+one (`f = 0.1`), (★4) is `1/(1 − 0.9a)`. In Fragki's well:
 
-**This is why the Fragki FBS error was so expensive.** Coding 10% where the
-paper says 2% does not change albumin's coefficient — it changes `V_alb` by
-5×, which moves `a` from 0.57 to 0.89 and the prediction by ~4×.
+| | a at 0% FBS | a at 2% | a at 10% | cost at 2% | cost at 10% |
+|---|---|---|---|---|---|
+| PFBA | 0.000 | 0.046 | 0.195 | 1.04× | 1.21× |
+| PFHxA | 0.000 | 0.687 | 0.917 | 2.62× | 5.71× |
+| PFOA | 0.000 | 0.884 | **0.974** | 4.89× | **8.09×** |
+| PFNA | 0.000 | 0.791 | 0.948 | 3.47× | 6.80× |
 
-It is also a warning label: *a model validated on serum-free data says nothing
-about its behaviour at 10% FBS.*
+At 0% serum the albumin parameter is irrelevant and the number is exactly 1.00
+by construction. **A model validated on serum-free data says nothing about its
+behaviour at 10% FBS** — and the same model is 4–8× more sensitive to its
+albumin parameter in a 10% FBS well than in a 2% one.
+
+**(ii) How much a wrong albumin *volume* costs you**, which is the Fragki case.
+Coding 10% FBS where the paper says 2% leaves the coefficient alone and
+multiplies `V_alb` by 5 — equivalent to `f = 0.2` going from the true well to
+the coded one. (★4) with the true `a` then predicts the whole error:
+
+| | a (true, 2% FBS) | (★4) with f = 0.2 | actual Armitage |
+|---|---|---|---|
+| PFBA | 0.046 | 1.19× | 1.18× |
+| PFHxA | 0.687 | 3.75× | 3.75× |
+| PFOA | 0.884 | **4.53×** | **4.54×** |
+| PFNA | 0.791 | 4.14× | 4.17× |
+
+Three lines of algebra reproduce a 4.5× modelling error to two decimals. That
+is what it means to say the balance is an albumin calculation with a cell
+attached.
+
+> Note `a` is evaluated in the *reference* system — the one you are coming
+> from. Use the coded system's `a` instead and you get the inverse factor, not
+> the same number, because (★4) is not symmetric in `f`.
 
 ### 8. Why the residual's chain-length slope is a *ratio*
 
@@ -341,7 +394,18 @@ f_sl = 0.00046    f_ml = 0.00414    f_prot = 0.0514    f_water = 0.944
 
 > **Approximation A14, the big one.** "3.5% of bulk protein behaves as octanol"
 > is a convention imported from the neutral-organics literature. Measured
-> against Qin 2024's protein–water ratios it is **457–7,820× too low**. The
+> against Qin 2024's protein–water ratios it is **457–7,820× too low**.
+>
+> **Provenance caveat, added on audit.** The 0.035 in this implementation comes
+> from EPA's `httk`, and the code flags it as *not found in Armitage's SI S1*.
+> So "Armitage's convention" — as §13–14 and §16 of the memo call it — is an
+> attribution this project has not verified at source. The *consequence* is a
+> property of the implementation either way: with a protein term this small the
+> cell is lipid, and a lipid cell has too steep a chain-length slope. But whose
+> convention it is remains open, and it matters, because if Armitage's own
+> model treats cell protein differently then the §16 verdict lands on `httk`
+> rather than on the paper. **Resolving this needs SI S1 §2, which is not in
+> hand.** The
 > consequence: the protein term contributes 0.1–0.2% of Armitage's cell, so
 > the cell is 79% water at PFBA and **99.7% membrane lipid at PFNA**. The
 > convention has defined protein out of the cell.
@@ -749,7 +813,7 @@ chain-length problem better or worse — and what would it do to Qin's?
 (V_w + … + D_cell·V_cell)`. When the cell term is small the denominator barely
 moves and `x_cell ∝ V_cell` — doubling cells doubles uptake. When cells hold a
 large share, the denominator grows too and the fraction saturates toward 1. In
-these assays the cell share is 0.4–18%, so the proportionality roughly holds —
+these assays the cell share is 0.1–18%, so the proportionality roughly holds —
 which is also why the *ratio* predicted/measured is insensitive to the cell
 count, and why §8 of the memo says the comparison survives not knowing it.
 

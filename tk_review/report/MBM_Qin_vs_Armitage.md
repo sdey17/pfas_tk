@@ -515,6 +515,17 @@ measured protein affinity and 1.5× too steep. That is why Armitage's cell is
 ~100% membrane lipid — the convention has defined its protein term out of
 existence.
 
+> **Provenance caveat (added 2026-10-21 on audit).** The 0.035 used here comes
+> from EPA's `httk`, and `mbm_published_equations.py` flags it as **not found
+> in Armitage's SI S1**. Calling it "Armitage's convention" — as this section
+> and §16 do — is therefore an attribution not verified at source. The
+> consequence stands for the implementation either way: a protein term this
+> small leaves a cell made of lipid, and a lipid cell carries too steep a
+> chain-length slope (§16). But if Armitage's published model treats cell
+> protein differently, the §16 verdict lands on `httk` rather than on the
+> paper. Resolving it needs SI S1 §2, which is not in hand. Flagged, not
+> assumed.
+
 But substituting the measured value makes both models **worse** (Qin 7.52 →
 12.24, Armitage 3.87 → 9.81), because the measurement is *higher* than either
 model assumes and both already over-predict.
