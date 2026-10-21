@@ -746,64 +746,103 @@ end. That hypothesis makes a sharp prediction: worst at the highest dose.
 dying, and weakest at 100 µM. It joins the wash hypothesis (§11) on the list of
 measurement artefacts that fail their own direction test.
 
-### Q3. Which term carries it?
+### Q3. Is the fitted slope itself an artefact of PFBA?
 
-§12–14 substituted three measured parameters and judged each on the **level**,
-where all three made the fit worse. Judged on the **slope** they behave
-completely differently (Rosenmai only, Armitage):
+PFBA sits at nCF 3, two carbons from the next compound in a five-point
+regression, so it swings the fitted line hard. It is also the one compound
+where **water** carries the denominator — 80% of it, against 0.5% at PFNA —
+which makes it the point least informative about the sorptive terms. Reporting
+every slope twice:
 
-| variant | PFBA | PFHxA | PFHpA | PFOA | PFNA | slope | r |
+| Armitage, Rosenmai | PFBA | PFHxA | PFHpA | PFOA | PFNA | all five | nCF 5–8 |
 |---|---|---|---|---|---|---|---|
-| published | 1.42× | 0.86× | 1.10× | 2.38× | 9.33× | +0.150 | +0.70 |
-| + Fischer 2024 albumin | 1.14× | 4.03× | 2.43× | 5.53× | 19.20× | **+0.212** | +0.90 |
-| + Qin 2024 cell protein | 7.10× | 2.98× | 4.03× | 5.08× | 18.51× | +0.067 | +0.42 |
-| **+ Qin 2023 measured D_cell/w** | 23.60× | 3.88× | 1.35× | 0.74× | 0.73× | **−0.321** | **−0.97** |
+| | 1.42× | 0.86× | 1.10× | 2.38× | 9.33× | +0.150 | **+0.345** |
 
-- **Albumin makes it steeper**, +0.150 → +0.212. The albumin term is not
-  carrying the trend, and Fischer's measurement makes the chain-length story
-  worse rather than better — a small result in its own right.
-- **Cell protein barely moves it** (+0.067) and wrecks the level.
-- **The cell partition flips the sign outright**, +0.150 → −0.321.
+**The trend is more than twice what the five-point fit says.** PFBA sits
+*above* the line at the short end and drags the slope down. Over nCF 5–8,
+Armitage climbs 0.86× → 9.33×, a factor of **10.8 across three CF₂**. Qin over
+the same range: −0.074, i.e. nothing. The contrast sharpens once the leverage
+point is out.
 
-A parameter that can swing the residual slope from +0.15 to −0.32 is the
-parameter the residual slope lives in. **The chain-length defect is in
-D_cell/w — in how fast it rises per CF₂.**
+### Q4. Which term carries it?
 
-### Q4. What would the right value be?
+§12–14 judged three substitutions on the **level**, where all three made the
+fit worse. On the slope (Rosenmai):
 
-Five independent estimates of d log D_cell/w per CF₂:
-
-| | slope | |
+| Armitage variant | all five | **nCF 5–8** |
 |---|---|---|
-| Qin 2023 Table 2, cell homogenate, measured | **+0.177** | 4 compounds, HEK293H |
-| inverted from the uptake data themselves | **+0.407** | this work, corrected media |
-| Ryu 2024 whole-tissue f_unbound | +0.46 to +0.53 | §6.3a of the main report |
-| Qin 2023 model, as parameterised | +0.515 | |
-| Armitage 2021 model, as parameterised | **+0.782** | |
+| published | +0.150 | **+0.345** |
+| + Fischer 2024 albumin | +0.212 | **+0.239** |
+| + Qin 2024 cell protein | +0.067 | **+0.248** |
+| + Qin 2023 measured D_cell/w | −0.321 | **−0.243** |
 
-Armitage sits **0.38 above** the uptake requirement and 0.27 above the next
-highest estimate. Qin sits 0.11 above. Their residual slopes order the same
-way, +0.150 and +0.022. Qin's own Table 2 sits alone at the bottom, which is
-why substituting it overshoots into a *negative* slope instead of landing on
-zero: the truth is between the model and that measurement.
+**No single substitution zeroes it.** Albumin takes out about a third, cell
+protein about a third, and the cell partition over-corrects past zero.
 
-### Why Armitage is steep, mechanistically
+> *Correction to an earlier draft of this section:* the five-compound column
+> says Fischer's albumin makes the slope **steeper**, and I read that as
+> evidence the albumin term was innocent. It is the PFBA trap. Fischer's
+> albumin is 10× below Armitage's at PFHxA but only 2.9× below at PFNA, so the
+> short chains gain most — except PFBA, which is water-dominated and barely
+> moves, tipping the five-point line the other way. Over nCF 5–8 the albumin
+> substitution **flattens** the trend, as it should.
 
-Its cell is 79% water at PFBA and **99.7% membrane lipid at PFNA**, with
-protein contributing 0.1–0.2% throughout — because the convention *"3.5% of
-cell protein behaves as octanol"* puts the protein term **457–7,820× below**
-the measured protein affinity (§14). Define protein out of the cell and what
-remains is a lipid partition coefficient, and lipid affinity climbs with chain
-length faster than protein affinity does. Qin's cell is 92–95% protein at every
-chain length and has essentially the right slope.
+### Q5. The mechanism: it is the *ratio*, not either term
 
-**The same convention produces both failures** — the level error of §14 and the
-chain-length error here. They are one defect seen twice.
+Once albumin dominates the denominator — 94–97% of it from PFOA up —
+
+```
+x_cell  ≈  D_cell · V_cell / (D_alb · V_alb)
+```
+
+so the residual's chain-length slope is the chain-length slope of the **ratio
+D_cell/D_alb**. Neither coefficient alone predicts it.
+
+| | nCF | Arm D_alb | Arm D_cell | **ratio** | Qin D_alb | Qin D_cell | **ratio** | Fischer BSA |
+|---|---|---|---|---|---|---|---|---|
+| PFHxA | 5 | 3.81 | 1.00 | −2.81 | 3.83 | 1.40 | −2.43 | 2.83 |
+| PFHpA | 6 | 4.42 | 1.75 | −2.67 | 4.38 | 1.92 | −2.46 | 3.93 |
+| PFOA | 7 | 4.71 | 2.53 | −2.19 | 4.93 | 2.44 | −2.49 | 4.20 |
+| PFNA | 8 | 5.00 | 3.31 | **−1.69** | 5.48 | 2.95 | **−2.52** | 4.54 |
+
+Decades per CF₂ over nCF 5–8:
+
+| | albumin | cell | **ratio** | residual, observed |
+|---|---|---|---|---|
+| **Armitage** | +0.386 | +0.769 | **+0.383** | **+0.345** |
+| **Qin** | +0.547 | +0.515 | **−0.032** | **−0.074** |
+| Fischer 2024, measured BSA | **+0.540** | — | — | — |
+
+**The ratio *is* the residual**, to within the noise on a four-point fit.
+
+**Armitage gets it wrong from both ends, and the two errors stack:**
+
+- its **albumin rises at +0.386** where Fischer measures **+0.540** — too
+  shallow by 0.154, so the albumin sink grows too slowly with chain length;
+- its **cell rises at +0.769** where a flat ratio needs ≈ +0.540 — too steep
+  by 0.229.
+
+**40% of the gap is the albumin spLFER, 60% the cell term.** Both have the same
+root: the piecewise spLFER flattens to 0.37·log K_ow above log K_ow 4.5, and
+the cell is 99.7% membrane lipid at PFNA because *"3.5% of cell protein behaves
+as octanol"* puts the protein term 457–7,820× below the measured affinity
+(§14). **A cell made of lipid climbs faster with chain length than a cell made
+of protein; an albumin spLFER that flattens climbs slower than albumin does.**
+
+**Qin gets both right.** Albumin +0.547 — within 0.007 of Fischer's measured
++0.540 — and cell +0.515, so the ratio is flat to 0.032 per CF₂.
+
+> **Qin has the right chain-length physics and the wrong level; Armitage has
+> the better level and the wrong chain-length physics.** The two failures are
+> independent, which is why no single substitution fixes both, and why their
+> aggregate biases keep swapping places with dose and with compound set.
 
 ### What would settle it
 
-A measured D_cell/w for PFBA→PFNA on **HepG2 or HepaRG**, not HEK293H
-homogenate, at a trace ligand:protein ratio. The disagreement to resolve is
-+0.177 (Qin's homogenate) against +0.407 (what the uptake data require);
-everything else in the ledger clusters between +0.41 and +0.53. Until that
-measurement exists the slope is **bounded, not known**.
+A measured D_cell/w for PFBA→PFNA on **HepG2 or HepaRG** rather than HEK293H
+homogenate, at a trace ligand:protein ratio, read alongside a measured albumin
+series on the same compounds. **The quantity to report is the ratio and its
+slope**, not either coefficient alone. The existing ledger for the cell term —
+Qin's Table 2 at +0.177, the uptake inversion at +0.407, Ryu 2024's
+whole-tissue f_unbound at +0.46 to +0.53, and the two models at +0.515 and
++0.782 — brackets it between roughly +0.4 and +0.55 without pinning it.

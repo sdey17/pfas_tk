@@ -8,16 +8,18 @@ length -- +0.172 decades per CF2 over the pooled 29 points, r = +0.83.  A
 level error would not do that.  Something in the model's chain-length
 dependence is wrong, or something in the measurements is.
 
-FOUR QUESTIONS, IN ORDER.  Each one can kill a candidate outright:
+FIVE QUESTIONS, IN ORDER.  Each one can kill a candidate outright:
 
   1. Is the trend real, or an artefact of pooling three studies that measure
      different compound sets?  (Fragki contributes only PFOA and PFNA, and
      has the largest residuals, so pooling alone could manufacture a slope.)
   2. Is it a measurement artefact at the long-chain end -- cytotoxicity
      suppressing the measured uptake?
-  3. Which term in the balance carries it?  Substitute each candidate in turn
+  3. Is the fitted slope itself an artefact of PFBA's leverage in a five-point
+     regression?
+  4. Which term in the balance carries it?  Substitute each candidate in turn
      and watch the SLOPE, not the level.
-  4. What would the right value have to be, and does anything measure it?
+  5. What is the actual mechanism, and what would settle it?
 
 Run:  python3 tk_review/scripts/mbm_chain_length_residual.py
 """
@@ -149,84 +151,148 @@ def main():
 
     # ------------------------------------------------------------------ 3
     print("\n" + "=" * 94)
-    print("3.  WHICH TERM CARRIES IT?  Substitute each, watch the SLOPE")
+    print("3.  PFBA HAS ENORMOUS LEVERAGE, AND IT IS THE WRONG KIND OF POINT")
     print("=" * 94)
     print("""
-  Section 12-14 substituted three measured parameters and judged each on the
-  LEVEL, where all three made the fit worse.  Judged on the SLOPE they behave
-  completely differently, and that is what localises the defect.
+  PFBA sits at nCF 3, two carbons from the next compound in a five-point
+  regression, so it swings the fitted slope hard.  It is also the one compound
+  where WATER carries the denominator (80% of it, against 0.5% at PFNA), which
+  makes it the compound least informative about the sorptive terms.  Every
+  slope below is therefore reported twice: over all five, and over nCF 5-8.
 """)
-    for study, tag in ((None, "all 29 points"), ("Rosenmai", "Rosenmai only")):
-        print(f"\n  --- {tag} ---")
-        header()
-        for model, pub, fis, dcw, prot in (
-            ("Armitage", "armitage_published_x_cell_pct",
-             "armitage_plus_fischer_x_cell_pct",
-             "armitage_plus_measured_d_cell_w_x_cell_pct",
-             "armitage_plus_qin_2024_cell_protein_x_cell_pct"),
-            ("Qin", "qin_published_x_cell_pct",
-             "qin_plus_fischer_constant_d_x_cell_pct",
-             "qin_plus_measured_d_cell_w_x_cell_pct",
-             "qin_plus_qin_2024_cell_protein_x_cell_pct")):
-            row(f"{model}, published",
-                from_csv("mbm_fischer_albumin.csv", pub, study))
-            row(f"{model} + Fischer 2024 albumin",
-                from_csv("mbm_fischer_albumin.csv", fis, study))
-            row(f"{model} + Qin 2024 cell protein",
-                from_csv("mbm_cell_protein.csv", prot, study))
-            row(f"{model} + Qin 2023 measured D_cell/w",
-                from_csv("mbm_cell_term.csv", dcw, study))
-            print()
-    print("""  VERDICT.  Only one substitution touches the slope, and it does not nudge it,
-  it INVERTS it:
-
-    albumin        makes the slope STEEPER (+0.150 -> +0.212 at Rosenmai).
-                   So the albumin term is not carrying the trend -- and
-                   Fischer's measurement makes the chain-length story worse,
-                   not better, which is its own small result.
-    cell protein   barely moves it (+0.150 -> +0.067), and wrecks the level.
-    D_cell/w       flips the sign outright: +0.150 -> -0.321, r = -0.97.
-
-  A parameter that can swing the residual slope from +0.15 to -0.32 is the
-  parameter the residual slope lives in.  The chain-length defect is in the
-  CELL PARTITION COEFFICIENT, specifically in how fast it rises per CF2.""")
+    header(38)
+    for model in ("Armitage", "Qin"):
+        for study in ("Rosenmai", None):
+            per = residuals(study, model=model)
+            sl5 = fit({c: v for c, v in per.items() if c != "PFBA"})[0]
+            sl = row(f"{model} -- {study or 'all 29 points'}", per, 38)
+            print(f"  {'':38s}{'':45s}  nCF 5-8 only: {sl5:+.3f}")
+    print("""
+  Armitage's rise over nCF 5-8 is +0.345 at Rosenmai and +0.316 pooled -- more
+  than twice what the five-point fit reports, because PFBA sits ABOVE the line
+  at the short end and drags the slope down.  Qin's is -0.074 and -0.043: no
+  trend, or a slight fall.  The contrast between the two models is sharper, not
+  weaker, once the leverage point is out.""")
 
     # ------------------------------------------------------------------ 4
     print("\n" + "=" * 94)
-    print("4.  THE SLOPE LEDGER: five estimates of one number")
+    print("4.  WHICH TERM CARRIES IT?  Substitute each, watch the SLOPE")
     print("=" * 94)
     print("""
-  d log D_cell/w per CF2, every independent estimate in hand:
+  Sections 12-14 of the memo judged three substitutions on the LEVEL, where all
+  three made the fit worse.  On the SLOPE they behave differently.
+""")
+    VAR = {"Armitage": [
+        ("published", "mbm_fischer_albumin.csv", "armitage_published_x_cell_pct"),
+        ("+ Fischer 2024 albumin", "mbm_fischer_albumin.csv",
+         "armitage_plus_fischer_x_cell_pct"),
+        ("+ Qin 2024 cell protein", "mbm_cell_protein.csv",
+         "armitage_plus_qin_2024_cell_protein_x_cell_pct"),
+        ("+ Qin 2023 measured D_cell/w", "mbm_cell_term.csv",
+         "armitage_plus_measured_d_cell_w_x_cell_pct")],
+        "Qin": [
+        ("published", "mbm_fischer_albumin.csv", "qin_published_x_cell_pct"),
+        ("+ Fischer 2024 albumin", "mbm_fischer_albumin.csv",
+         "qin_plus_fischer_constant_d_x_cell_pct"),
+        ("+ Qin 2024 cell protein", "mbm_cell_protein.csv",
+         "qin_plus_qin_2024_cell_protein_x_cell_pct"),
+        ("+ Qin 2023 measured D_cell/w", "mbm_cell_term.csv",
+         "qin_plus_measured_d_cell_w_x_cell_pct")]}
+    print(f"  {'':38s}{'all five':>12s}{'nCF 5-8':>11s}")
+    for model in ("Armitage", "Qin"):
+        for lab, fn, col in VAR[model]:
+            per = from_csv(fn, col, "Rosenmai")
+            a = fit(per)[0]
+            b = fit({c: v for c, v in per.items() if c != "PFBA"})[0]
+            print(f"  {model + ', ' + lab:38s}{a:>+12.3f}{b:>+11.3f}")
+        print()
+    print("""  VERDICT, on the nCF 5-8 column.  No single substitution zeroes the trend:
 
-    Qin 2023 Table 2, cell homogenate, measured      +0.177   (4 compounds)
-    inverted from the uptake data themselves         +0.407   (this work)
-    Ryu 2024 whole-tissue f_unbound                  +0.46 to +0.53
-    Qin 2023 model, as parameterised                 +0.515
-    Armitage 2021 model, as parameterised            +0.782
+    + Fischer albumin        +0.345 -> +0.239   takes out about a third
+    + Qin 2024 cell protein  +0.345 -> +0.248   takes out about a third
+    + measured D_cell/w      +0.345 -> -0.243   over-corrects past zero
 
-  Armitage sits 0.38 above the uptake requirement and 0.27 above the next
-  highest estimate.  Qin sits 0.11 above it.  Their residual slopes order the
-  same way: +0.150 and +0.022.  Qin's own Table 2 sits alone at the bottom,
-  which is why substituting it overshoots into a negative slope rather than
-  landing on zero -- the truth is between the model and that measurement.
+  (The five-compound column says albumin makes the slope STEEPER.  That is the
+  PFBA leverage: Fischer's albumin is 10x below Armitage's at PFHxA but only
+  2.9x below at PFNA, so the short chains gain most -- except PFBA, which is
+  water-dominated and barely moves, so the five-point line tips the other way.
+  An earlier draft of this section read the trap rather than the data.)""")
 
-  WHY ARMITAGE IS STEEP, mechanistically.  Its cell is 79% water at PFBA and
-  99.7% MEMBRANE LIPID at PFNA, with protein contributing 0.1-0.2% throughout,
-  because the convention "3.5% of cell protein behaves as octanol" puts the
-  protein term 457-7,820x below the measured protein affinity (section 14).
-  Define protein out of the cell and what is left is a lipid partition
-  coefficient, and lipid affinity climbs with chain length faster than protein
-  affinity does.  Qin's cell is 92-95% protein at every chain length and has
-  essentially the right slope.
+    # ------------------------------------------------------------------ 5
+    print("\n" + "=" * 94)
+    print("5.  THE ACTUAL MECHANISM: it is the RATIO, not either term alone")
+    print("=" * 94)
+    print("""
+  Once albumin dominates the denominator -- 94-97% of it from PFOA up --
 
-  So the same convention produces BOTH failures: the level error of section 14
-  and the chain-length error here.  They are one defect seen twice.
+      x_cell  ~  D_cell . V_cell / (D_alb . V_alb)
 
-  WHAT WOULD SETTLE IT.  A measured D_cell/w for PFBA through PFNA on HepG2 or
-  HepaRG, not HEK293H homogenate, at a trace ligand:protein ratio.  The
-  disagreement to resolve is +0.177 (Qin's homogenate) against +0.407 (what
-  the uptake data require); everything else in the ledger clusters between
-  +0.41 and +0.53.  Until that exists the slope is bounded, not known.""")
+  so the residual's chain-length slope is the chain-length slope of the RATIO
+  D_cell/D_alb, and neither term alone predicts it.  Both models, as coded:
+""")
+    V = P.volumes(P.ASSAYS["Rosenmai"])
+    print(f"  {'cmpd':8s}{'nCF':>4s} |{'Arm D_alb':>10s}{'Arm D_cell':>11s}"
+          f"{'ratio':>8s} |{'Qin D_alb':>10s}{'Qin D_cell':>11s}{'ratio':>8s}"
+          f" |{'Fischer BSA':>12s}")
+    FIS = {5: 2.83, 6: 3.93, 7: 4.20, 8: 4.54}
+    tab = []
+    for (nm, nC, nCF, mw, ko, kc, ks) in Q.COMPOUNDS:
+        lk = ko if ko is not None else Q.KOW_OPERA(nCF)
+        D = P.armitage_D(lk, V["comp"])
+        Db, Dsp, Dlip, _p = P.qin_D(nm, 1e-3)
+        qcell = (Dsp * V["Vprot_cell"] + Dlip * V["Vlip_cell"]) / V["Vcells"]
+        t = (nm, nCF, math.log10(D["Dsa"]), math.log10(D["Dcw"]),
+             math.log10(Db), math.log10(qcell), FIS.get(nCF))
+        tab.append(t)
+        print(f"  {nm:8s}{nCF:>4d} |{t[2]:>10.2f}{t[3]:>11.2f}{t[3]-t[2]:>8.2f}"
+              f" |{t[4]:>10.2f}{t[5]:>11.2f}{t[5]-t[4]:>8.2f}"
+              f" |{('%.2f' % t[6]) if t[6] else '-':>12s}")
+
+    def s58(idx):
+        sub = [t for t in tab if t[1] >= 5]
+        return float(np.polyfit([t[1] for t in sub],
+                                [t[idx] if not callable(idx) else idx(t)
+                                 for t in sub], 1)[0])
+    arm_alb, arm_cell = s58(2), s58(3)
+    qin_alb, qin_cell = s58(4), s58(5)
+    fis = s58(6)
+    print(f"""
+  decades per CF2 over nCF 5-8:
+
+    Armitage   albumin {arm_alb:+.3f}   cell {arm_cell:+.3f}   RATIO {arm_cell-arm_alb:+.3f}
+    Qin        albumin {qin_alb:+.3f}   cell {qin_cell:+.3f}   RATIO {qin_cell-qin_alb:+.3f}
+    Fischer 2024 measured BSA  {fis:+.3f}
+
+  Compare those ratio slopes with the residual slopes over the same range:
+  Armitage {arm_cell-arm_alb:+.3f} predicted against +0.345 observed; Qin {qin_cell-qin_alb:+.3f} against -0.074.
+  The ratio IS the residual, to within the noise on a four-point fit.
+
+  ARMITAGE GETS IT WRONG FROM BOTH ENDS, and the two errors stack:
+
+    its albumin rises at {arm_alb:+.3f} where Fischer MEASURES {fis:+.3f}
+        -> too shallow by {fis-arm_alb:.3f}, so the albumin sink grows too slowly
+    its cell rises at {arm_cell:+.3f} where a flat ratio would need about {fis:+.3f}
+        -> too steep by {arm_cell-fis:.3f}
+
+  {(fis-arm_alb)/(arm_cell-arm_alb):.0%} of the gap is the albumin spLFER and {(arm_cell-fis)/(arm_cell-arm_alb):.0%} is the cell term.  Both have
+  the same root: Armitage's piecewise albumin spLFER flattens to 0.37*logKow
+  above logKow 4.5, and its cell is 99.7% membrane lipid at PFNA because
+  "3.5% of cell protein behaves as octanol" puts the protein term 457-7,820x
+  below the measured affinity (section 14).  A cell made of lipid climbs faster
+  with chain length than a cell made of protein; an albumin spLFER that
+  flattens climbs slower than albumin does.
+
+  QIN GETS BOTH RIGHT.  Its albumin rises at {qin_alb:+.3f}, within {abs(qin_alb-fis):.3f} of Fischer's
+  measurement, and its cell at {qin_cell:+.3f}, so the ratio is flat to {abs(qin_cell-qin_alb):.3f} per CF2.
+  That is the headline: **Qin has the right chain-length physics and the wrong
+  level; Armitage has the better level and the wrong chain-length physics.**
+  The two failures are independent, which is why no single substitution fixes
+  both and why their aggregate biases have been swapping places all along.
+
+  WHAT WOULD SETTLE IT.  A measured D_cell/w for PFBA-PFNA on HepG2 or HepaRG
+  rather than HEK293H homogenate, at a trace ligand:protein ratio, read
+  alongside a measured albumin series on the same compounds.  The quantity to
+  report is the RATIO and its slope, not either coefficient alone.""")
 
     dst = os.path.join(DB, "mbm_chain_length_residual.csv")
     with open(dst, "w", newline="") as fh:
