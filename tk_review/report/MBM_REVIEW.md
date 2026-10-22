@@ -1,0 +1,747 @@
+# Mass-balance dosimetry for in vitro PFAS testing: a source-verified reassessment of two models against three uptake datasets
+
+**Working manuscript.** Analysis, figures and tables are reproducible from
+`tk_review/scripts/`; see *Data and code availability*.
+
+---
+
+## Abstract
+
+**Background.** Quantitative in vitro to in vivo extrapolation (QIVIVE) for
+per- and polyfluoroalkyl substances (PFAS) requires knowing how much of an
+administered dose actually reaches cells in a bioassay. Nominal medium
+concentrations overstate it, sometimes by three orders of magnitude, because
+PFAS bind extensively to serum albumin and sorb to vessel walls. Equilibrium
+mass-balance models (IV-MBM) were developed to recover the freely dissolved and
+cellular concentrations from first principles.
+
+**Objective.** To reassess two published IV-MBM formulations — the
+single-descriptor IV-MBM EQP v2.0 of Armitage et al. and the
+concentration-dependent balance of Qin et al. — against the three published
+datasets reporting PFAS cellular uptake in human liver cell lines, with all
+model parameters and all exposure conditions verified against primary sources.
+
+**Approach.** Both models were re-implemented from their published equations and
+supplementary parameterisations. The three uptake datasets (Rosenmai et al.;
+Amstutz et al.; Fragki et al.) were harmonised onto the fraction-of-dose axis.
+Exposure conditions were read from the primary methods sections rather than
+inherited from derived descriptions. Model residuals were decomposed by study,
+compound, dose and chain length, and each candidate parameter was replaced with
+the best available independent measurement.
+
+**Principal findings.** (i) Reading the primary methods revealed that one of the
+three assays was dosed in 2% rather than 10% serum, a five-fold error in the
+dominant sorptive phase that is not apparent from secondary descriptions;
+correcting it degraded the apparent fit of the dataset that had previously
+looked best. (ii) On corrected media both models over-predict cellular uptake —
+geometric-mean bias 3.9× (Armitage) and 7.5× (Qin) over 29 observations. (iii)
+Every substitution of a best-available measured parameter made the fit worse,
+in each case because the measurement moved the balance in the direction the
+residual did not need. (iv) The residual separates into a level error and a
+chain-length error with different causes: the chain-length drift is governed by
+the ratio of the cell to the albumin distribution ratio, not by either term
+alone. (v) The same formalism applied to human serum reproduces measured
+whole-serum partitioning for 26 PFAS with no fitted parameter, establishing
+that the accounting is sound and localising the failure to the in vitro system.
+(vi) All three assays operate 5,500–27,700× above the physiological
+ligand:protein ratio, confirming and quantifying the regime concern raised by
+Qin et al.
+
+**Implication.** Improved bookkeeping within the well yields a better
+description of the experiment but does not by itself yield a better oral
+equivalent dose, because the experiments occupy a binding regime that does not
+occur in vivo. We give specific reporting requirements that would make such
+assays usable for QIVIVE.
+
+**Keywords:** PFAS; in vitro dosimetry; mass balance; QIVIVE; serum albumin;
+ligand:protein ratio; freely dissolved concentration
+
+---
+
+## 1. Introduction
+
+### 1.1 The nominal concentration problem
+
+In vitro bioactivity data are reported almost universally on a nominal basis:
+the concentration weighed into the medium. For chemicals that distribute
+appreciably out of the aqueous phase, that number is not the exposure the cells
+experienced. Chemical partitions into serum lipids and proteins, sorbs to the
+plastic of the well, is taken up by the cells themselves, and — for volatiles —
+escapes to the headspace. The freely dissolved concentration that drives uptake
+can be orders of magnitude below nominal [1,12].
+
+This matters because the purpose of the measurement is extrapolation. If an
+effect concentration measured in a dish is to be compared with a blood
+concentration in a person, the two must be expressed on comparable bases. A
+bioassay medium may contain anywhere from 0 to 20% serum; blood is blood. Using
+a nominal effect concentration as a direct surrogate for a blood concentration
+embeds a bias whose size depends on hydrophobicity and on assay composition
+[1].
+
+Equilibrium mass-balance models were developed to close this gap
+[1,2,12,13,16]. They are now sufficiently mature that several independent
+implementations exist, and a comparison of their features has been published
+[17, cited via 1].
+
+### 1.2 Why PFAS are a difficult case
+
+The spLFER-based mass-balance approach was calibrated on neutral, hydrophobic
+organics, for which a single descriptor — the octanol–water partition ratio —
+predicts partitioning to most biological phases well. PFAS violate the premises
+of that approach in three distinct ways.
+
+First, they are surfactants: a perfluorinated tail with an ionisable head
+group. Their behaviour at interfaces and in mixed phases is not well captured
+by a bulk hydrophobicity descriptor, and the descriptor itself is difficult to
+measure for them.
+
+Second, they are essentially fully anionic at physiological pH. Ionisation is
+handled in these models by scaling the neutral-form partition ratio by a
+phase-specific penalty. For serum albumin, Armitage et al. set that penalty to
+zero for acids — the anion is assumed to bind albumin exactly as well as the
+neutral form would (ref. [1], SI Table S1). This is a modelling decision rather
+than a measurement, and it is consequential: it is a major reason albumin ends
+up carrying the great majority of the chemical in these calculations.
+
+Third, PFAS bind albumin at discrete sites rather than dissolving into it
+diffusely. Site binding saturates. Qin et al. [3] measured PFAS–albumin
+isotherms over five orders of magnitude and found the binding strongly
+concentration-dependent, which is the basis of their model and the reason the
+linearity assumption common to spLFER approaches cannot simply be carried over.
+
+### 1.3 Aims
+
+This reassessment addresses four questions:
+
+1. How well do the two models predict PFAS cellular uptake when both are
+   implemented from their own published parameterisations?
+2. Are the available uptake data mutually consistent enough to adjudicate
+   between models?
+3. Where does the residual lie, and can it be attributed to a parameter?
+4. What do the answers imply for the use of these assays in QIVIVE?
+
+We stress at the outset that question 4 was raised, and answered in principle,
+by Qin et al. [3], who hypothesised that concentration-dependent protein
+binding causes the binding regime in bioassays to differ substantially from
+that in plasma, with consequences for QIVIVE. What follows quantifies that gap
+for the specific uptake datasets used to parameterise and test these models,
+and examines what it leaves achievable.
+
+---
+
+## 2. The mass-balance formalism
+
+### 2.1 Governing relation
+
+The well is treated as a set of phases at equilibrium. Conservation of the
+administered amount, with each phase concentration expressed relative to the
+freely dissolved concentration by a distribution ratio *D*, gives
+
+> *n*<sub>total</sub> = *C*<sub>free</sub> · ( *V*<sub>w</sub> + Σ<sub>i</sub> *D*<sub>i</sub>*V*<sub>i</sub> )
+
+so that *C*<sub>free</sub> = *n*<sub>total</sub> / *S*, where *S* ≡
+*V*<sub>w</sub> + Σ *D*<sub>i</sub>*V*<sub>i</sub> is the total sorptive capacity
+of the well in units of water-equivalent volume. The fraction of the
+administered dose residing in cells follows as *x*<sub>cell</sub> =
+*D*<sub>cell</sub>*V*<sub>cell</sub> / *S*.
+
+Models differ only in how the *D*<sub>i</sub> are obtained. The accounting is
+not in dispute.
+
+### 2.2 Assumptions
+
+The derivation requires: equilibrium; no degradation, metabolism or active
+transport; no losses; additive, non-interacting phases; and — the load-bearing
+one — linear sorption, i.e. constant activity coefficients, which holds only
+while the chemical is dilute with respect to every sorptive phase.
+
+For PFAS in these assays, equilibrium is defensible: Fragki et al. [7] report
+cellular steady state within approximately 1 h against a 24 h exposure.
+Metabolic stability is defensible for perfluoroalkyl acids, though not for
+fluorotelomer alcohols. Active transport is assumed absent and cannot be
+checked. The linearity assumption is the one that fails outright, and §7
+quantifies by how much.
+
+### 2.3 Choice of output metric
+
+Two metrics are available: the cellular concentration and the fraction of the
+dose in cells. The published uptake data are reported as amount per mass of
+cell protein, so converting them to a concentration requires a cell volume,
+while converting them to a fraction requires only protein per cell.
+
+It should be noted — because it is easy to get wrong — that this does *not*
+make the fraction axis immune to cell-volume uncertainty. The predicted
+fraction is proportional to cell volume even though the measured fraction is
+not, with the result that the ratio of predicted to measured scales with
+assumed cell volume on *either* axis. What the fraction axis does buy is that
+the three datasets' *measurements* become mutually comparable without any cell
+volume being assumed. We use it for that reason.
+
+---
+
+## 3. The two models
+
+### 3.1 IV-MBM EQP v2.0 (Armitage et al.)
+
+The model predicts all required distribution ratios from the neutral-form
+octanol–water partition ratio via sorbent-phase-specific linear free energy
+relationships (spLFERs), with ionisation handled by phase-specific scaling
+factors [1]. The cell is represented as a proximate composition — storage
+lipid, membrane lipid, bulk protein and water — each contributing in proportion
+to its volume fraction. Plastic sorption is included via one of two published
+spLFERs.
+
+We verified every parameter used here against the published supplementary
+material: both spLFERs (SI §S1.3), all four ionisation scaling factors (SI
+Table S1), and the cell-line compositions (SI Table S5). All agree exactly.
+
+One parameter could not be verified. How bulk cell protein is converted into
+sorptive capacity is stated nowhere in the main text or the supplementary
+material; §S1 covers anionic phospholipids, lysosomal sequestration and the
+spLFERs, then defers to ref. [2] for temperature and ionic-strength adjustments
+only. Nor can ref. [2] contain it, since bulk protein is listed among the
+phases that v2.0 *added*. The implementation used here therefore adopts the
+convention in EPA's `httk` package, under which 3.5% of bulk protein is treated
+as octanol-equivalent. **Findings below that turn on this constant are findings
+about that implementation.** We return to this in §9.3.
+
+The consequence of a small protein term is structural: with protein
+contributing 0.1–0.2% of the cell's sorptive capacity, the modelled cell is
+79% water for the shortest chain tested and 99.7% membrane lipid for the
+longest. The cell is, in effect, a lipid droplet.
+
+### 3.2 The concentration-dependent balance (Qin et al.)
+
+Qin et al. [3] measured PFAS binding to bovine serum albumin, γ-globulin, lipid
+and cells by C18 solid-phase microextraction over five orders of magnitude, and
+represent albumin binding as a saturable term plus a linear non-specific term.
+Their cell comprises protein and lipid with no aqueous phase, and the protein
+term is a measured non-specific protein–water ratio rather than an
+octanol surrogate. Their cell is 92–95% protein at every chain length.
+
+The saturable albumin term can be derived from mass action: for *n* independent
+sites, the site concentration within pure albumin is *n*·ρ/*M*. Using the
+albumin density and molecular weight implied by their own reported values, this
+evaluates to *n* × 20,523 µM, which reproduces their published site-capacity
+column to within 0.2% and implies *n* = 0.45 for PFBA and 1.24 for PFOA. In the
+trace limit the term collapses to a constant, recovering the standard bridge
+between a binding constant and a partition coefficient.
+
+Parameters were measured for four compounds (PFBA, PFOA, PFHxS, PFOS). Values
+for PFHxA and PFHpA are interpolated between the two carboxylate anchors and
+PFNA is extrapolated beyond both; only the lipid term has a published
+interpolation rule.
+
+### 3.3 Structural comparison
+
+**Table 1.** Structural differences between the two models.
+
+| | IV-MBM EQP v2.0 | Qin et al. |
+|---|---|---|
+| source of *D* | predicted from log K<sub>OW</sub> | measured, then interpolated |
+| albumin | linear, piecewise spLFER | saturable (site binding + non-specific) |
+| albumin anion penalty | 0.0 (acids) | not applicable; measured on the anion |
+| cell phases | storage lipid, membrane lipid, 3.5%·protein, water | protein, lipid; no water |
+| cell composition at short chain | ~79% water | ~92% protein |
+| cell composition at long chain | ~99.7% membrane lipid | ~95% protein |
+| dose dependence | linear by construction | non-linear |
+| chemical coverage | any, from one descriptor | four measured compounds |
+
+The two models hold opposite views of what a cell is. Their predicted uptake
+nonetheless agrees to within a factor of ~2.5 in many cases, because albumin
+dominates the denominator in both and masks the difference. Agreement between
+them should not be read as corroboration of either cell representation.
+
+---
+
+## 4. The empirical basis
+
+### 4.1 Three datasets
+
+Three studies report PFAS cellular uptake in human liver cell lines on a
+fraction-of-dose basis: Rosenmai et al. [5] (HepG2, 14 PFAS, three doses),
+Amstutz et al. [6] (HepG2, 13 PFAS, one dose) and Fragki et al. [7]
+(differentiated HepaRG, four PFAS, five doses). Twenty-nine observations
+overlap the five compounds for which both models can be parameterised.
+
+### 4.2 Exposure conditions, read from source
+
+**Table 2.** Exposure conditions as stated in the primary methods sections.
+Entries in bold differ from what a reader would infer from the cell-culture
+section alone.
+
+| | Rosenmai [5] | Amstutz [6] | Fragki [7] |
+|---|---|---|---|
+| cell line | HepG2 | HepG2 | differentiated HepaRG |
+| growth medium serum | 10% FBS | 10% FBS | 10% FBS |
+| **exposure medium serum** | 10% FBS | 10% FBS | **2% FBS** |
+| co-solvent | **3% ethanol** | 0.1% DMSO | 0.5% DMSO |
+| plate format | 12-well, 3 wells pooled | 96-well | 24-well |
+| volume dosed → after t=0 sample | not stated | 250 → 200 µL | 550 → 500 µL |
+| wash | 5× ice-cold PBS | 5× DPBS | 5× DPBS |
+| uptake normalised to | nominal | **recovered** | nominal |
+
+Two entries require comment. Fragki et al. state that exposure was conducted in
+"assay medium (growth medium containing 2% FBS)"; the 10% figure belongs to the
+growth and differentiation medium. Because serum fraction multiplies the volume
+of the dominant sorptive phase, this is a five-fold difference in the parameter
+to which the balance is most sensitive, and it is not recoverable from
+descriptions that quote the culture conditions. Second, Amstutz et al.
+normalise their intracellular fraction to *recovered* rather than
+administered mass, so their denominator excludes material lost to the vessel;
+their values are not strictly on the same axis as the other two.
+
+Rosenmai et al. do not state a working volume; 1 mL per well is assumed, as in
+all prior analyses of this dataset known to us.
+
+### 4.3 Inter-study consistency
+
+The three datasets disagree with one another before any model is involved. At
+100 µM, cellular uptake of PFNA is reported as 0.31% [5], 0.30% [6] and 4.39%
+[7] — a 14-fold spread. For PFHxA at the same dose the two HepG2 studies differ
+by 3.6-fold (0.14% [5] vs 0.039% [6]) despite using the same cell line and
+nominally similar protocols; part of this is attributable to the different
+normalisation noted above.
+
+Any model-performance statement must be read against this. A model disagreeing
+with these data by a factor of four is disagreeing with a target that is itself
+uncertain by a comparable factor.
+
+---
+
+## 5. Methods of this reassessment
+
+Both models were implemented in Python from their published equations and
+parameterisations (`mbm_published_equations.py`). Armitage parameters were
+taken from ref. [1] and its supplementary material; Qin parameters from ref.
+[3]. Where the Armitage implementation required a parameter not present in the
+published record (cell protein sorption, §3.1), the `httk` convention was used
+and is flagged throughout.
+
+Assay geometry, cell number, serum fraction and dose series were taken from the
+primary publications (Table 2). Measured uptake was placed on the
+fraction-of-nominal-dose axis. Model performance is reported as geometric-mean
+bias (predicted ÷ measured) and geometric-mean absolute error.
+
+Residuals were decomposed by study, by compound, by dose and against
+perfluorocarbon chain length. Four parameters were then replaced in turn with
+the best available independent measurement: albumin partitioning from Fischer
+et al. [9]; cell partitioning from the measured values in ref. [3]; cell protein
+sorption from ref. [4]; and cell volume from an independent HepG2 determination.
+
+---
+
+## 6. Results
+
+### 6.1 Effect of the medium correction
+
+Implementing Fragki et al. at the serum fraction stated in their methods rather
+than the growth-medium value changes that dataset's geometric-mean bias from
+1.54× to 14.92× (Qin) and from 2.48× to 10.80× (Armitage). Pooled across all 29
+observations, bias moves from 3.43× to 7.52× (Qin) and 2.33× to 3.87×
+(Armitage).
+
+The direction is worth stating plainly: the dataset that had appeared to be the
+models' best case was the one being supplied with five times more albumin than
+it contained. Correcting an error degraded the apparent fit. This is the
+expected behaviour when a model is accidentally compensated, and it is a
+cautionary result for any benchmarking exercise that inherits assay conditions
+from secondary sources.
+
+The Armitage response (4.4×) matches the denominator arithmetic, since its
+albumin term is linear. The Qin response (9.7×) exceeds it, because a saturable
+sink amplifies an error in its own size: reducing albumin raises the free
+concentration, which raises site occupancy, which lowers the apparent
+distribution ratio, which reduces capacity further. The amplification is
+largest at intermediate doses, where the 10% and 2% wells fall on opposite
+sides of saturation, and vanishes at the top dose where both are saturated.
+
+### 6.2 Overall performance
+
+**Table 3.** Model performance on corrected media, 29 observations.
+
+| | geometric-mean bias | geometric-mean \|error\| |
+|---|---|---|
+| IV-MBM EQP v2.0 | **3.87×** | **4.02×** |
+| Qin et al. | 7.52× | 7.52× |
+
+| by study | Armitage | Qin |
+|---|---|---|
+| Rosenmai [5] (n=15) | 1.97× | 3.72× |
+| Amstutz [6] (n=4) | 3.77× | 18.95× |
+| Fragki [7] (n=10) | 10.80× | 14.92× |
+
+Both models over-predict throughout. The error is not uniform across
+compounds: for PFBA–PFHpA, which only the two 10% FBS studies measure, Armitage
+bias is 1.2–1.6×, while PFOA and PFNA — the compounds Fragki contributes —
+carry almost the entire residual.
+
+### 6.3 Dose dependence
+
+Armitage is linear by construction and its fitted dose exponent is pinned at
+1.00. Measured exponents run 0.85–1.42 and rise with chain length. Qin
+reproduces that ordering, overshooting by 0.30–0.71 on the Rosenmai series and
+by 0.07–0.20 on the Fragki series. This is the one respect in which the
+additional machinery of the saturable model buys something the linear model
+structurally cannot deliver, and it is also the one respect in which the medium
+correction *improves* Qin: the Fragki exponents fall from 1.71 and 1.66 to 1.49
+and 1.62 against a measured 1.42, indicating that part of the curvature
+previously attributed to chemistry was an artefact of an oversized albumin
+sink.
+
+### 6.4 Parameter substitutions
+
+**Table 4.** Effect of replacing each parameter with the best available
+independent measurement. Bias is the geometric mean over 29 observations.
+
+| substitution | direction of the measurement | Armitage | Qin |
+|---|---|---|---|
+| published models | — | 3.87× | 7.52× |
+| albumin partitioning [9] | **below** both models | 8.08× | 7.75× |
+| cell partitioning (measured, [3]) | mixed | 2.15× | 4.61× |
+| cell protein sorption [4] | **above** both models | 9.81× | 12.24× |
+| cell volume (independent HepG2) | — | **1.84×** | 3.71× |
+
+Three of the four substitutions worsen the fit, and they do so for a consistent
+reason: each measurement moves the balance in the direction the residual does
+not require. A weaker albumin reduces competition and sends more chemical into
+the cell; a stronger cell-protein affinity enlarges the cell sink and does the
+same. Both models already over-predict.
+
+The cell-partitioning substitution improves the aggregate but at the cost of
+destroying the chain-length trend, over-predicting PFBA by 19.7× (Qin) and
+23.6× (Armitage) while landing within a factor of 1.4 at PFNA. Aggregate
+improvement achieved by averaging a large miss at one end of a series against a
+good fit at the other is not evidence of a better parameter.
+
+Only cell volume improves the fit without that penalty, and it is the one
+parameter none of the three studies measured. It is also the only parameter
+that rescales every compound by the same factor, which is what an offset
+independent of chain length requires. On corrected media it accounts for
+roughly half the residual in log terms and leaves a 1.8–3.7× over-prediction
+standing.
+
+**This is the central negative result of the reassessment: a parameter can be
+the most influential term in a model and not be the term that is wrong.**
+Albumin carries 94–97% of the sorptive capacity for the longer chains, which
+makes it the obvious suspect and the obvious thing to tune; the best available
+measurement of it moves the prediction further from the data.
+
+### 6.5 Chain-length structure of the residual
+
+Armitage's over-prediction rises monotonically with perfluorocarbon chain
+length; Qin's does not. Within the Rosenmai dataset alone — one laboratory, one
+cell line, one medium, one vehicle — the Armitage residual climbs 0.86× to
+9.33× between PFHxA and PFNA. Qin shows no trend within any single study.
+
+The cause is not either distribution ratio alone. Where albumin dominates the
+denominator, the predicted fraction in cells varies as the *ratio*
+*D*<sub>cell</sub>/*D*<sub>albumin</sub>, so the residual's chain-length slope
+is the error in the slope of that ratio.
+
+**Table 5.** Chain-length dependence over nCF 5–8, decades per CF₂.
+
+| | albumin | cell | **ratio** | residual, observed |
+|---|---|---|---|---|
+| IV-MBM EQP v2.0 | +0.386 | +0.769 | **+0.383** | **+0.345** |
+| Qin et al. | +0.547 | +0.515 | **−0.032** | **−0.074** |
+| measured albumin [9] | **+0.540** | — | — | — |
+
+The ratio slope predicts the residual slope to within the uncertainty of a
+four-point fit. Armitage's albumin spLFER rises more slowly with chain length
+than the measurement, because the piecewise form flattens above log K<sub>OW</sub>
+4.5 — a feature calibrated on neutral organics and pharmaceuticals, where a
+binding cavity of finite depth does plateau. Its cell term rises faster than a
+constant ratio would require, because a cell represented as lipid gains
+affinity with chain length faster than albumin does. The two errors compound,
+contributing roughly 40% and 60% of the gap respectively.
+
+Qin's albumin slope sits within 0.007 of the measured value and his ratio is
+flat. **The two models therefore fail in different ways: Qin has the
+chain-length behaviour approximately right and the level wrong; Armitage has
+the level closer and the chain-length behaviour wrong.**
+
+Independent estimates of the cell distribution ratio's chain-length slope span
++0.177 (cell homogenate, [3]) to +0.782 (the Armitage parameterisation), with
+the uptake-implied value (+0.407) and whole-tissue unbound fractions [11]
+(+0.46 to +0.53) in between. The quantity is bounded, not known.
+
+### 6.6 What does not explain the residual
+
+Two candidate artefacts were tested and rejected.
+
+*Wash losses.* All three studies wash five times with cold buffer, so it cannot
+be a between-study variable; and the direction is wrong, since washing should
+preferentially strip the shortest, most weakly bound chains, whereas
+over-prediction rises with chain length.
+
+*Cytotoxicity at the long-chain end.* Reduced protein content at high dose is
+documented in two of the three studies, and Fragki et al. excluded PFNA at
+100 µM from their own analysis on those grounds. If cell loss were suppressing
+measured uptake, the chain-length trend would be strongest at the highest dose.
+It is strongest at the lowest (+0.194 at 10 µM, +0.099 at 100 µM).
+
+*Co-solvent.* The three assays differ 30-fold in vehicle strength (Table 2).
+A co-solvent lowers every water-to-phase distribution ratio by approximately
+the same factor, and the predicted fraction is a ratio of sorptive terms, so
+the effect cancels except against the aqueous term. It is therefore material
+only where water carries a substantial share of the capacity — PFBA, where it
+changes the residual from 1.42× to 1.11×, and negligible elsewhere (PFNA,
+9.33× to 9.31×). The 30-fold difference in vehicle is, counter-intuitively, of
+almost no consequence for this comparison.
+
+---
+
+## 7. The ligand:protein regime
+
+Qin et al. [3] hypothesised that concentration-dependent protein binding makes
+the binding regime in bioassays differ substantially from that in plasma, with
+consequences for QIVIVE. Figure 1 quantifies that gap for the three uptake
+datasets.
+
+Albumin offers approximately one high-affinity site per molecule for these
+compounds (§3.2). The two 10% FBS assays contain 36.1 µM albumin and the 2% FBS
+assay 7.2 µM, against nominal doses of 6.25–100 µM. The resulting nominal
+ligand:albumin ratios are 0.28–2.77 and 0.87–13.85 mol/mol respectively.
+Fischer et al. [9] worked at ≤ 0.004 mol/mol and estimate the ratio in human
+serum at ≈ 0.0005. **The assays therefore operate 5,500–27,700× above the
+physiological regime.**
+
+The consequence for the models is direct. Solved self-consistently within the
+wells, albumin site occupancy runs from 20% to 99% across the dose series, and
+the apparent albumin distribution ratio falls to between 0.11 and 0.07 of its
+trace-limit value — a sevenfold change in a quantity that a linear model treats
+as a constant, within a single experiment (Fig. 1B).
+
+This is why the Qin formulation requires its saturable term and why a linear
+spLFER treatment cannot be correct here, whatever its merits for the neutral
+organics it was calibrated on.
+
+It also bounds what the exercise can deliver. Even an exactly correct model of
+these wells would describe a binding regime that does not occur in vivo.
+Improving the in vitro mass balance improves the description of the experiment;
+it does not, on its own, improve the extrapolation, because the experiment is
+in the wrong regime.
+
+*(Figure 1: `figures/fig21_mbm_regime_gap.png`. A, nominal ligand:albumin ratio
+against dose for the three assays with the physiological band marked; B,
+apparent albumin distribution ratio relative to its trace limit as a function
+of freely dissolved concentration, with the positions occupied by the three
+assays marked.)*
+
+---
+
+## 8. A positive control: the same formalism in serum
+
+The results above could be read as indicting the mass-balance approach itself.
+A control argues otherwise.
+
+Fischer et al. [9] measured, by one method in one laboratory, PFAS
+distribution ratios to purified human serum albumin, to γ-globulin, and to
+whole human serum, at a ligand:protein ratio of ≤ 0.004. The components and the
+whole matrix are separate experiments, so predicting the latter from the former
+is an out-of-sample test of the identical accounting used above.
+
+For the 26 PFAS with all three measurements, the balance evaluated at
+population-average serum composition and with no fitted parameter gives a
+geometric-mean bias of 1.00× and a geometric-mean absolute error of 1.55×
+(RMSE 0.262 log units; R² = 0.68 about the 1:1 line) for a quantity spanning
+nearly two orders of magnitude. Allowing the two protein concentrations to
+float returns 39.5 and 38.6 g/L against population values of 41 and 31 g/L and
+does not reduce the RMSE at all — the model is not being supported by its
+parameters. Globulin earns its term only above the ratio threshold the authors
+themselves propose. Adding a phospholipid sink improves nothing.
+
+**The accounting is therefore sound, and the failure is specific to the in
+vitro system** — which has more phases, a vessel-wall term that is poorly
+constrained, cell volumes nobody measured, and a ligand:protein regime in which
+the central linearity assumption does not hold.
+
+*(Figure 3: `figures/fig19_fischer_serum_mbm.png`.)*
+
+---
+
+## 9. Discussion
+
+### 9.1 Implications for QIVIVE
+
+Three findings bear on the use of these assays for reverse dosimetry.
+
+First, the models over-predict cellular uptake by factors of 2–10 on data whose
+own inter-study spread is a factor of 14. Neither model is currently accurate
+enough to carry a QIVIVE calculation without an uncertainty statement of
+comparable size.
+
+Second, the residual is not attributable to any parameter for which a better
+measurement exists. Substituting the best available value for albumin, for cell
+partitioning and for cell protein each worsens the fit. The only parameter that
+improves it is the one nobody measured.
+
+Third, and most consequentially, the regime gap of §7 means that improving the
+in vitro balance does not translate directly into a better oral equivalent
+dose. Qin et al. [3] reached the same conclusion from the opposite direction,
+showing that free-concentration-based QIVIVE ratios exceed nominal-based ones
+precisely because of protein-content differences between blood and bioassays.
+Our contribution is to show that the gap is large enough — three to four orders
+of magnitude in ligand:protein ratio — that the saturation state of albumin
+differs qualitatively, not merely quantitatively, between the two settings.
+
+### 9.2 Reporting recommendations
+
+Several of the difficulties encountered here are avoidable at no experimental
+cost.
+
+1. **Report the exposure medium composition, not the culture medium
+   composition.** The single most consequential error in this work arose from
+   a five-fold difference between the two in one study, stated in one sentence
+   of its methods and absent from derived descriptions.
+2. **Report the working volume.** One of the three studies does not, leaving a
+   parameter that enters the balance linearly to be assumed.
+3. **Report the cell volume, or cells per well together with protein per
+   cell.** Cell volume is the only parameter that improved the fit here and
+   the only one none of the studies measured.
+4. **Report the ligand:protein molar ratio.** It determines whether a measured
+   binding constant is in the trace regime and therefore whether it can be
+   transferred to another setting at all.
+5. **State the normalisation basis** — administered or recovered — since the
+   two differ by whatever was lost to the vessel.
+6. **Report the mass balance where it was measured.** Two of the three studies
+   took a t = 0 medium sample explicitly for this purpose; neither reports the
+   result. Doing so would constrain the vessel-wall term directly rather than
+   by difference.
+
+### 9.3 Limitations of this reassessment
+
+The Armitage implementation depends on one parameter — the sorptive capacity
+assigned to bulk cell protein — that is not documented in the published record
+(§3.1). We used the `httk` convention. Findings in §6.4 and §6.5 that turn on
+the size of the cell protein term are therefore findings about that
+implementation; whether they apply to the authors' own tool cannot be decided
+from the papers, and would require the Excel/VBA implementation, which is
+available on request. The structural argument is unaffected: a cell whose
+protein term is negligible is represented as lipid, and a lipid representation
+carries too steep a chain-length dependence.
+
+Qin's parameters exist for four compounds; two of the five modelled here are
+interpolated and one extrapolated. The extrapolated compound, PFNA, is among
+the worst-fitting.
+
+The uptake datasets are small, mutually inconsistent, and partly not on a
+common normalisation basis. Rosenmai's working volume is assumed. Conclusions
+about absolute bias are correspondingly weaker than conclusions about
+*direction* and about *structure*, which is why we have emphasised the latter.
+
+Finally, we have not evaluated the other published in vitro distribution models
+[17, cited via 1], and the comparison here should not be read as a ranking of
+the field.
+
+---
+
+## 10. Conclusions
+
+1. Both mass-balance models over-predict PFAS cellular uptake in human liver
+   cell lines, by 3.9× (IV-MBM EQP v2.0) and 7.5× (Qin et al.) in geometric
+   mean, once exposure conditions are read from primary sources.
+2. Exposure media differ between the three available datasets in ways that
+   dominate the model comparison and are not recoverable from secondary
+   descriptions. One assay was dosed at one-fifth the serum concentration
+   generally assumed for it.
+3. Every substitution of a best-available measured parameter worsens the fit.
+   Albumin is the most influential term in the balance and is not the source of
+   the error.
+4. The residual separates into a level component and a chain-length component.
+   The latter is governed by the ratio of cell to albumin distribution ratios;
+   the two models get opposite halves of this right.
+5. All three assays operate three to four orders of magnitude above the
+   physiological ligand:protein ratio, with albumin between 20% and 99%
+   saturated. The linearity assumption underlying spLFER-based balances does
+   not hold in this regime.
+6. The same formalism applied to human serum reproduces measured whole-serum
+   partitioning for 26 PFAS with no fitted parameter. The accounting is sound;
+   the in vitro system is the problem.
+7. Consequently, better in vitro dosimetry yields a better description of the
+   experiment, but not by itself a better oral equivalent dose. Closing that
+   gap requires assays run nearer the physiological binding regime, not better
+   models of assays that are not.
+
+---
+
+## Data and code availability
+
+| | |
+|---|---|
+| model implementations | `tk_review/scripts/mbm_published_equations.py` |
+| exposure conditions, source-verified | `tk_review/scripts/mbm_medium_composition.py` |
+| chain-length decomposition | `tk_review/scripts/mbm_chain_length_residual.py` |
+| parameter substitutions | `mbm_fischer_albumin.py`, `mbm_cell_term.py`, `mbm_cell_protein.py` |
+| serum control | `tk_review/scripts/mbm_fischer_serum.py` |
+| Figure 1 | `tk_review/scripts/make_mbm_regime_figure.py` |
+| Figure 2 | `tk_review/scripts/make_mbm_correction_figure.py` |
+| Figure 3 | `tk_review/scripts/make_mbm_fischer_serum_figure.py` |
+| primary sources held locally | `literature/fulltext/` |
+
+Extended derivations and the full approximation inventory are in
+`report/MBM_PRIMER.md`; a non-technical exposition is in
+`report/MBM_UNDERSTANDING.md`; the detailed working memo, including material
+not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
+
+---
+
+## References
+
+1. Armitage JM, Sangion A, Parmar R, Looky AB, Arnot JA. Update and evaluation
+   of a high-throughput in vitro mass balance distribution model: IV-MBM EQP
+   v2.0. *Toxics* 2021;9:315. doi:10.3390/toxics9110315
+2. Armitage JM, et al. *Environ Sci Technol* 2014;48:9770–9779. (Original
+   IV-MBM; cited here as in ref. 1, SI.)
+3. Qin W, Henneberger L, Huchthausen J, König M, Escher BI. Role of
+   bioavailability and protein binding of four anionic perfluoroalkyl
+   substances in cell-based bioassays for quantitative in vitro to in vivo
+   extrapolations. *Environ Int* 2023;173:107857.
+   doi:10.1016/j.envint.2023.107857
+4. Qin W, et al. *Environ Sci Technol* 2024;58:9954. doi:10.1021/acs.est.3c10824
+5. Rosenmai AK, Ahrens L, le Godec T, Lundqvist J, Oskarsson A. Relationship
+   between peroxisome proliferator-activated receptor alpha activity and
+   cellular concentration of 14 perfluoroalkyl substances in HepG2 cells.
+   *J Appl Toxicol* 2018;38:219–226. doi:10.1002/jat.3515
+6. Amstutz VH, Cengo A, Gehres F, Sijm DTHM, Vrolijk MF. Investigating the
+   cytotoxicity of per- and polyfluoroalkyl substances in HepG2 cells: a
+   structure-activity relationship approach. *Toxicology* 2022;480:153312.
+   doi:10.1016/j.tox.2022.153312
+7. Fragki S, Louisse J, Bokkers B, Luijten M, Peijnenburg A, Rijkers D,
+   Piersma AH, Zeilmaker MJ. New approach methodologies: a quantitative in
+   vitro to in vivo extrapolation case study with PFASs. *Food Chem Toxicol*
+   2022;172:113559. doi:10.1016/j.fct.2022.113559
+8. Louisse J, Fragki S, Rijkers D, et al. Determination of in vitro hepatotoxic
+   potencies of a series of perfluoroalkyl substances (PFASs) based on gene
+   expression changes in HepaRG liver cells. *Arch Toxicol* 2023;97:1113–1131.
+   doi:10.1007/s00204-023-03450-2
+9. Fischer FC, et al. *Environ Sci Technol* 2024;58:1055–1063.
+   doi:10.1021/acs.est.3c07415
+10. Chen Y, et al. *Environ Sci Technol* 2025. doi:10.1021/acs.est.4c06734
+11. Ryu S, et al. *Environ Sci Technol* 2024. doi:10.1021/acs.est.4c04050
+12. Fischer FC, Henneberger L, König M, Bittermann K, Linden L, Goss K-U,
+    Escher BI. Modeling exposure in the Tox21 in vitro bioassays. *Chem Res
+    Toxicol* 2017;30:1197–1208.
+13. Fischer FC, Cirpka OA, Goss K-U, Henneberger L, Escher BI. Application of
+    experimental polystyrene partition constants and diffusion coefficients to
+    predict the sorption of neutral organic chemicals to multiwell plates.
+    *Environ Sci Technol* 2018;52:13511–13522.
+14. Henneberger L, Mühlenbrink M, Fischer FC, Escher BI. C18-coated solid-phase
+    microextraction fibers for the quantification of partitioning of organic
+    acids to proteins, lipids, and cells. *Chem Res Toxicol* 2019;32:168–178.
+15. Huchthausen J, Mühlenbrink M, König M, Escher BI, Henneberger L.
+    Experimental exposure assessment of ionizable organic chemicals in in
+    vitro cell-based bioassays. *Chem Res Toxicol* 2020;33:1845–1854.
+16. Endo S, Brown TN, Goss K-U. General model for estimating partition
+    coefficients to organisms and their tissues using the biological
+    compositions and polyparameter linear free energy relationships. *Environ
+    Sci Technol* 2013;47:6630–6639.
+17. Proença S, et al. Review and comparison of in vitro chemical distribution
+    models. **Secondary citation** — cited by ref. 1; not independently
+    retrieved for this reassessment.
+
+*References 12–16 are cited as the methodological context of refs. 1 and 3 and
+were taken from the reference list of ref. 1; they were not re-read in full for
+this reassessment. References 1, 3, 5, 6, 7, 8 and 9 were read at source,
+including the supplementary material of ref. 1.*

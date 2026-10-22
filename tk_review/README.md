@@ -14,6 +14,7 @@ See the [root README](../README.md) for how this fits with the other strands.
 |---|---|
 | `report/REPORT.md` | the written review — start here |
 | `report/ALBUMIN_BINDING.md` / `.pdf` | standalone primer and review of PFAS–serum albumin binding: what a binding constant is, why the literature spans six orders of magnitude, where the chain-length optimum is, and how to convert K_d to a partition coefficient. 14 pages, 4 runnable code blocks, 9-question self-test |
+| `report/MBM_REVIEW.md` | **the manuscript** — a source-verified reassessment of two IV-MBM models against three PFAS uptake datasets |
 | `report/MBM_UNDERSTANDING.md` | **start here for the mass-balance work** — the whole subject in prose, no equations |
 | `report/MBM_PRIMER.md` | the machinery behind it: derivations, every approximation named, worked checks |
 | `report/MBM_Qin_vs_Armitage.md` | the two published serum mass-balance models, reimplemented from their equations and tested against measured uptake |
