@@ -769,6 +769,16 @@ measurement work in the expected direction on the level — the measured
 hepatic composition gains 1.7× over the MCF7 one, and the measured medium
 protein gains 3.1× — and together they leave 5.56× standing.
 
+Figure 1 places every parameterisation tested in this work on those two axes
+alongside the lipid series that drives the horizontal one. The discriminator
+for the slope is specifically the lipid coefficient: every variant whose
+lipid–water ratio is measured falls at or below zero, Qin et al.'s included
+since they take theirs from liposome measurements, and the only two that sit
+on the positive side are the two that predict the lipid term from
+log K<sub>OW</sub>.
+
+*(Figure 1: `figures/fig22_mbm_separation.png`.)*
+
 Chen's coefficients carry the slope result in both Tables 6 and 7, so the
 basis on which they are reported has to be established. It can be. Chen et al.
 define K<sub>MW</sub> in their Supplementary equation S1 as
@@ -906,7 +916,7 @@ the high concentration needed to trigger effects in in vitro bioassays have a
 higher fraction unbound." What is added here is the magnitude of the gap for
 three datasets neither group analysed, and the demonstration that it is large
 enough to invalidate the linearity assumption within a single dose series.
-Figure 1 quantifies it.
+Figure 2 quantifies it.
 
 Albumin offers approximately one high-affinity site per molecule for these
 compounds (§3.2). The two 10% FBS assays contain 36.1 µM albumin and the 2% FBS
@@ -920,7 +930,7 @@ The consequence for the models is direct. Solved self-consistently within the
 wells, albumin site occupancy runs from 20% to 99% across the dose series, and
 the apparent albumin distribution ratio falls to between 0.11 and 0.07 of its
 trace-limit value — a sevenfold change in a quantity that a linear model treats
-as a constant, within a single experiment (Fig. 1B).
+as a constant, within a single experiment (Fig. 2B).
 
 This is why the Qin formulation requires its saturable term and why a linear
 spLFER treatment cannot be correct here, whatever its merits for the neutral
@@ -932,7 +942,7 @@ Improving the in vitro mass balance improves the description of the experiment;
 it does not, on its own, improve the extrapolation, because the experiment is
 in the wrong regime.
 
-*(Figure 1: `figures/fig21_mbm_regime_gap.png`. A, nominal ligand:albumin ratio
+*(Figure 2: `figures/fig21_mbm_regime_gap.png`. A, nominal ligand:albumin ratio
 against dose for the three assays with the physiological band marked; B,
 apparent albumin distribution ratio relative to its trace limit as a function
 of freely dissolved concentration, with the positions occupied by the three
@@ -1110,13 +1120,17 @@ thing as the model as its authors would run it.
 
 | | |
 |---|---|
-| model implementations | `tk_review/scripts/mbm_published_equations.py` |
-| exposure conditions, source-verified | `tk_review/scripts/mbm_medium_composition.py` |
-| chain-length decomposition | `tk_review/scripts/mbm_chain_length_residual.py` |
-| parameter substitutions | `mbm_fischer_albumin.py`, `mbm_cell_term.py`, `mbm_cell_protein.py` |
-| serum control | `tk_review/scripts/mbm_fischer_serum.py` |
-| Figure 1 | `tk_review/scripts/make_mbm_regime_figure.py` |
-| Figure 2 | `tk_review/scripts/make_mbm_correction_figure.py` |
+| model implementations (§3.1, §3.2) | `tk_review/scripts/mbm_published_equations.py` |
+| exposure conditions, source-verified (§4.2) | `tk_review/scripts/mbm_medium_composition.py` |
+| chain-length decomposition (§6.5) | `tk_review/scripts/mbm_chain_length_residual.py` |
+| parameter substitutions (§6.4) | `mbm_fischer_albumin.py`, `mbm_cell_term.py`, `mbm_cell_protein.py` |
+| coefficient substitutions, Armitage structure (§6.7.1) | `tk_review/scripts/mbm_measured_parameter_variant.py` |
+| the Fischer et al. form (§6.7.2) | `tk_review/scripts/mbm_fischer_escher_balance.py` |
+| Qin's model against Qin's measurement (§6.8) | `tk_review/scripts/mbm_qin_internal_check.py` |
+| IV-MBM v1.0 against v2.0 (§3.1) | `tk_review/scripts/mbm_armitage_v1_vs_v2.py` |
+| serum control (§8) | `tk_review/scripts/mbm_fischer_serum.py` |
+| Figure 1 | `tk_review/scripts/make_mbm_separation_figure.py` |
+| Figure 2 | `tk_review/scripts/make_mbm_regime_figure.py` |
 | Figure 3 | `tk_review/scripts/make_mbm_fischer_serum_figure.py` |
 | primary sources held locally | `literature/fulltext/` |
 
