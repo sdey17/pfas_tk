@@ -199,16 +199,42 @@ One parameter could not be verified. How bulk cell protein is converted into
 sorptive capacity is stated nowhere in the main text or the supplementary
 material; §S1 covers anionic phospholipids, lysosomal sequestration and the
 spLFERs, then defers to ref. [2] for temperature and ionic-strength adjustments
-only. Nor can ref. [2] contain it, since bulk protein is listed among the
-phases that v2.0 *added*. The implementation used here therefore adopts the
-convention in EPA's `httk` package, under which 3.5% of bulk protein is treated
-as octanol-equivalent. **Findings below that turn on this constant are findings
-about that implementation.** We return to this in §9.3.
+only. The earlier paper does not contain it either, and the reason is stronger
+than the absence of a documented value: in v1.0 there is no protein term at
+all. Its mass balance represents the cell as a single lumped phase,
+K<sub>CW</sub> = K<sub>OW</sub>·*f*<sub>L</sub>, where *f*<sub>L</sub> is "the
+volume fraction of lipid equivalents (i.e., pseudo-octanol content)" after the
+standard multimedia-model convention, assumed to be 0.05 for cells and varied
+over 0.01–0.05 [2]. There is no membrane-lipid phase and no cell-water phase
+either. The proximate composition of v2.0 is a new construction, so the
+coefficient attached to its protein phase cannot be recovered from the earlier
+record; and the 3.5% convention does not appear there. The implementation used
+here therefore adopts the convention in EPA's `httk` package, under which 3.5%
+of bulk protein is treated as octanol-equivalent.
 
-The consequence of a small protein term is structural: with protein
-contributing 0.1–0.2% of the cell's sorptive capacity, the modelled cell is
-79% water for the shortest chain tested and 99.7% membrane lipid for the
-longest. The cell is, in effect, a lipid droplet.
+Two further points follow from the earlier paper and bear on how much this
+matters.
+
+First, **v1.0 excludes PFAS by its own statement**: it "is intended for neutral
+organic chemicals and should only be applied to ionogenic organic chemicals
+(IOCs) if the compound is predominantly neutral at the test pH", and its
+future-work list names the gap — "to expand the approach for neutral organic
+chemicals to ionogenic organic chemicals that are predominantly charged in the
+test system" [2]. The IOC machinery of v2.0 is that extension. Fully anionic
+PFAS are among the first applications of it, not a case on which the formalism
+was calibrated.
+
+Second, the undocumented coefficient has **little leverage at its own value**.
+With protein contributing 0.05–0.25% of the cell's sorptive capacity, the
+modelled cell is 79% water for the shortest chain tested and 99.7% membrane
+lipid for the longest: the cell is, in effect, a lipid droplet. The model's
+output is therefore insensitive to the value of 0.035 over any plausible range.
+What has leverage is the *choice* it encodes — octanol-equivalence for bulk
+protein — and replacing that choice with a measured structural-protein affinity
+enlarges the cell sink by 1.4–3.4× (§6.4). The distinction matters for reading
+what follows: results that turn on the modelling choice are robust; results
+that would turn on the particular constant do not arise, because none is
+sensitive to it.
 
 ### 3.2 The concentration-dependent balance (Qin et al.)
 
@@ -834,13 +860,16 @@ cost.
 
 The Armitage implementation depends on one parameter — the sorptive capacity
 assigned to bulk cell protein — that is not documented in the published record
-(§3.1). We used the `httk` convention. Findings in §6.4 and §6.5 that turn on
-the size of the cell protein term are therefore findings about that
-implementation; whether they apply to the authors' own tool cannot be decided
-from the papers, and would require the Excel/VBA implementation, which is
-available on request. The structural argument is unaffected: a cell whose
-protein term is negligible is represented as lipid, and a lipid representation
-carries too steep a chain-length dependence.
+(§3.1). We used the `httk` convention. Having read both papers, we can now
+bound what this costs. At the `httk` value the protein phase carries 0.05–0.25%
+of the cell term, so no result here is sensitive to the number itself; what the
+papers do not settle is whether the authors' own tool makes the same
+octanol-equivalence *choice*, and that choice does have leverage (§6.4).
+Deciding it would require the Excel/VBA implementation, which is available from
+the authors on request. The structural argument is unaffected either way: a
+cell whose protein term is small is represented as lipid, and a lipid
+representation carries too steep a chain-length dependence — which three
+independent measured lipid series now corroborate (§6.7).
 
 Qin's parameters exist for four compounds; two of the five modelled here are
 interpolated and one extrapolated. The extrapolated compound, PFNA, is among
@@ -1001,9 +1030,9 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     [3], whose Table 2 and Figure A1 regression are the values used.
 
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 3, 5, 6, 7, 8, 9, 10. Bibliographic record and
+material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10. Bibliographic record and
 abstract verified, full text not retrieved: 12, 17. Bibliographic record
-verified: 2, 4, 11, 18, 19. Cited via ref. [3], which is the source of the
+verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
 values used: 20. Cited as methodological context from the reference list of
 ref. 1, not independently retrieved: 13, 14, 15, 16.
 
@@ -1011,4 +1040,8 @@ Both models under assessment have now been read at source. For ref. [3] the
 full text supplied the balance equations, the cell composition and the authors'
 own cell-term validation, all used in §3.2 and §6.8. For ref. [1] the
 supplementary information supplied every parameter except the cell-protein
-sorption term, which is not in the published record (§9.3).
+sorption term; ref. [2] establishes that no such term existed in v1.0 and that
+the 3.5% convention is not in the published record (§3.1, §9.3). Only the
+main text of ref. [2] was read; its supplementary sections S1–S9 were not
+retrieved, and the statements made here rest on its Eq. 1 and the surrounding
+model description, which are in the main text.
