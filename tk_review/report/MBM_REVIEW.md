@@ -2,7 +2,7 @@
 
 **Working manuscript**, 22 October 2026. Analysis, figures and tables are
 reproducible from `tk_review/scripts/`; see *Data and code availability* for
-the script behind each section and figure. Four figures and nine tables.
+the script behind each section and figure. Four figures and ten tables.
 All model parameters and all exposure conditions are verified against primary
 sources; the provenance of every reference is stated after the reference
 list.
@@ -401,7 +401,11 @@ Three studies report PFAS cellular uptake in human liver cell lines on a
 fraction-of-dose basis: Rosenmai et al. [5] (HepG2, 14 PFAS, three doses),
 Amstutz et al. [6] (HepG2, 13 PFAS, one dose) and Fragki et al. [7]
 (differentiated HepaRG, four PFAS, five doses). Twenty-nine observations
-overlap the five compounds for which both models can be parameterised.
+overlap the five perfluoroalkyl carboxylates for which both models can be
+parameterised, and those 29 are the basis of §§6.1–6.8. Fragki et al. also
+measured two sulfonates, PFHxS and PFOS; those ten observations are analysed
+separately in §6.9, because pooling them would confound head group with
+study.
 
 Two provenance notes on the third dataset. First, its biokinetic measurements
 are in Fragki et al. [7]; the companion paper from the same group on the same
@@ -948,6 +952,54 @@ The same floor cannot be established for IV-MBM EQP v2.0 from the published
 record, because the cell-protein sorption parameter is not documented there at
 all (§3.1, §9.3).
 
+### 6.9 A head-group test: the sulfonates
+
+Everything above is a carboxylate result. Fragki et al. [7] also measured
+uptake for two perfluoroalkane sulfonates, PFHxS and PFOS, in the same wells,
+the same medium and the same protocol as their carboxylates, which makes the
+head-group contrast a within-study comparison with the study-level variables
+controlled. Qin et al. [3] measured every parameter for exactly those two
+compounds, so their limb needs no interpolation here — cleaner than for three
+of the five carboxylates.
+
+**Table 9.** Fragki et al. [7] only, by head group. Geometric-mean bias.
+
+| | compounds | IV-MBM EQP v2.0 | Qin et al. |
+|---|---|---|---|
+| carboxylates | PFOA, PFNA | 6.66× | 9.20× |
+| **sulfonates** | **PFHxS, PFOS** | **0.98×** | 7.38× |
+
+**Armitage's over-prediction is head-group specific; Qin's is not.** On the
+sulfonates IV-MBM EQP v2.0 is unbiased to 2%, against a factor of 6.7 on the
+carboxylates measured alongside them.
+
+The per-compound measurements show why, and it is not a success:
+
+| | measured uptake | Armitage predicts |
+|---|---|---|
+| PFOA | 1.03% | 6.56% |
+| PFNA | 2.61% | 18.21% |
+| PFHxS | 1.10% | 0.94% |
+| PFOS | 6.62% | 7.44% |
+
+PFHxS and PFOA are taken up almost identically — 1.10% against 1.03% — while
+the model separates them sevenfold, because their OPERA log K<sub>OW</sub>
+values differ by two log units (3.69 against 5.68). The agreement on the
+sulfonates is a coincidence of level between two compounds the model happens
+to place correctly, not evidence that the sulfonate case is better described.
+What the comparison actually shows is that **measured cellular uptake does not
+order these compounds the way log K<sub>OW</sub> does** — the same conclusion
+§6.7 reaches along the chain-length axis, reached here along the head-group
+axis with an independent set of compounds.
+
+Two cautions. This rests on two compounds in one laboratory, so it is a test
+the published record barely supports; and PFHxS carries a log K<sub>OW</sub>
+disagreement of its own, 3.69 by OPERA against 5.29 by COSMOtherm (Qin
+Table 1), which moves the Armitage bias from 0.98× to 3.4× and which nothing
+here can adjudicate. The sulfonates are reported separately rather than pooled
+into the 29 observations precisely because head group would otherwise be
+confounded with study.
+
 ---
 
 ## 7. The ligand:protein regime
@@ -1123,6 +1175,13 @@ have no published warrant beyond the lipid term.
 The measured-membrane result of §6.7 rests on a coefficient reported at pH 7.0
 and applied here at pH 7.4; the reporting basis itself is resolved (§6.7) but
 the 0.4-unit pH extrapolation is not.
+
+The empirical basis is almost entirely perfluoroalkyl carboxylates. The
+head-group test of §6.9 rests on two sulfonates in one laboratory, and it
+already shows IV-MBM EQP v2.0 behaving differently there (unbiased rather than
+6.7× high). Whether the chain-length result of §6.5 and §6.7 holds for
+sulfonates cannot be decided from the published uptake data, because no study
+reports a sulfonate chain-length series.
 
 The uptake datasets are small, mutually inconsistent, and partly not on a
 common normalisation basis. Rosenmai's working volume is assumed. Conclusions

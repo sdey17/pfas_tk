@@ -129,6 +129,13 @@ def qin_params(name, nCF):
     if name in QIN_BSA_MEASURED and name in QIN_T2:
         Kd, Cmax, CmaxM, lKs, lDns, nFr1, lKFr = QIN_BSA_MEASURED[name]
         d_cell = QIN_T2[name][1]
+        # Use the MEASURED lipid-water ratio, not the Fig A1 regression.  The
+        # regression is fit to perfluoroCARBOXYLATES, and for those the two
+        # agree (PFBA 1.600 vs 1.61, PFOA 3.504 vs 3.52).  For the sulfonates
+        # it is out by about a log unit (PFHxS 3.03 vs 4.13, PFOS 3.98 vs
+        # 4.89), because sulfonates partition into lipid far more strongly at
+        # the same chain length.
+        d_lip = QIN_T2[name][0]
         src = "measured"
     else:
         pb = QIN_BSA_MEASURED["PFBA"]; po = QIN_BSA_MEASURED["PFOA"]

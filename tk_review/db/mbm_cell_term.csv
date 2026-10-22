@@ -1,28 +1,28 @@
 study,compound,dose_uM,qin_measured_logDcellw_protlip,provenance,meas_x_cell_pct,qin_published_x_cell_pct,qin_published_x_cell_pct_ratio,qin_plus_measured_d_cell_w_x_cell_pct,qin_plus_measured_d_cell_w_x_cell_pct_ratio,armitage_published_x_cell_pct,armitage_published_x_cell_pct_ratio,armitage_plus_measured_d_cell_w_x_cell_pct,armitage_plus_measured_d_cell_w_x_cell_pct_ratio
-Rosenmai,PFBA,10.0,2.56,measured,0.14,0.2443,1.745,2.0493,14.638,0.1738,1.242,2.8813,20.581
-Rosenmai,PFBA,30.0,2.56,measured,0.13,0.285,2.192,2.3792,18.302,0.1738,1.337,2.8813,22.164
-Rosenmai,PFBA,100.0,2.56,measured,0.1,0.3443,3.443,2.863,28.63,0.1738,1.738,2.8813,28.813
+Rosenmai,PFBA,10.0,2.56,measured,0.14,0.2447,1.748,2.0491,14.636,0.1738,1.242,2.8813,20.581
+Rosenmai,PFBA,30.0,2.56,measured,0.13,0.2855,2.196,2.3789,18.299,0.1738,1.337,2.8813,22.164
+Rosenmai,PFBA,100.0,2.56,measured,0.1,0.3448,3.448,2.8625,28.625,0.1738,1.738,2.8813,28.813
 Rosenmai,PFHxA,10.0,2.915,interpolated on the measured carboxylate slope (+0.177/CF2),0.19,0.4711,2.479,0.8495,4.471,0.1468,0.773,0.6659,3.505
 Rosenmai,PFHxA,30.0,2.915,interpolated on the measured carboxylate slope (+0.177/CF2),0.19,0.8797,4.63,1.5742,8.285,0.1468,0.773,0.6659,3.505
 Rosenmai,PFHxA,100.0,2.915,interpolated on the measured carboxylate slope (+0.177/CF2),0.14,1.7844,12.746,3.1737,22.669,0.1468,1.049,0.6659,4.756
 Rosenmai,PFHpA,10.0,3.093,interpolated on the measured carboxylate slope (+0.177/CF2),0.16,0.4476,2.798,0.3734,2.334,0.214,1.337,0.2628,1.642
 Rosenmai,PFHpA,30.0,3.093,interpolated on the measured carboxylate slope (+0.177/CF2),0.22,0.8677,3.944,0.7252,3.296,0.214,0.973,0.2628,1.195
 Rosenmai,PFHpA,100.0,3.093,interpolated on the measured carboxylate slope (+0.177/CF2),0.21,2.5062,11.934,2.1013,10.006,0.214,1.019,0.2628,1.251
-Rosenmai,PFOA,10.0,3.27,measured,0.24,0.4006,1.669,0.1539,0.641,0.6596,2.748,0.2051,0.855
-Rosenmai,PFOA,30.0,3.27,measured,0.27,0.6883,2.549,0.2658,0.984,0.6596,2.443,0.2051,0.76
-Rosenmai,PFOA,100.0,3.27,measured,0.33,2.6136,7.92,1.0285,3.117,0.6596,1.999,0.2051,0.622
+Rosenmai,PFOA,10.0,3.27,measured,0.24,0.4013,1.672,0.1538,0.641,0.6596,2.748,0.2051,0.855
+Rosenmai,PFOA,30.0,3.27,measured,0.27,0.6893,2.553,0.2656,0.984,0.6596,2.443,0.2051,0.76
+Rosenmai,PFOA,100.0,3.27,measured,0.33,2.6135,7.92,1.0264,3.11,0.6596,1.999,0.2051,0.622
 Rosenmai,PFNA,10.0,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),0.15,0.3563,2.375,0.0629,0.419,2.0247,13.498,0.159,1.06
 Rosenmai,PFNA,30.0,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),0.22,0.5349,2.432,0.0948,0.431,2.0247,9.203,0.159,0.723
 Rosenmai,PFNA,100.0,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),0.31,2.2605,7.292,0.4128,1.332,2.0247,6.531,0.159,0.513
 Amstutz,PFHxA,100.0,2.915,interpolated on the measured carboxylate slope (+0.177/CF2),0.039,1.5806,40.527,2.8171,72.233,0.1297,3.326,0.5887,15.094
 Amstutz,PFHpA,100.0,3.093,interpolated on the measured carboxylate slope (+0.177/CF2),0.044,2.2233,50.529,1.8628,42.335,0.1891,4.297,0.2322,5.277
-Amstutz,PFOA,100.0,3.27,measured,0.245,2.3204,9.471,0.9103,3.716,0.583,2.38,0.1812,0.74
+Amstutz,PFOA,100.0,3.27,measured,0.245,2.3203,9.471,0.9084,3.708,0.583,2.38,0.1812,0.74
 Amstutz,PFNA,100.0,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),0.302,2.0072,6.646,0.365,1.209,1.7923,5.935,0.1405,0.465
-Fragki,PFOA,6.25,3.27,measured,0.55,6.3899,11.618,2.6272,4.777,6.5589,11.925,2.1266,3.867
-Fragki,PFOA,12.5,3.27,measured,0.84,11.5864,13.793,5.1426,6.122,6.5589,7.808,2.1266,2.532
-Fragki,PFOA,25.0,3.27,measured,1.23,18.3001,14.878,8.3859,6.818,6.5589,5.332,2.1266,1.729
-Fragki,PFOA,50.0,3.27,measured,1.34,22.6568,16.908,10.432,7.785,6.5589,4.895,2.1266,1.587
-Fragki,PFOA,100.0,3.27,measured,1.55,24.9949,16.126,11.5181,7.431,6.5589,4.232,2.1266,1.372
+Fragki,PFOA,6.25,3.27,measured,0.55,6.3986,11.634,2.6258,4.774,6.5589,11.925,2.1266,3.867
+Fragki,PFOA,12.5,3.27,measured,0.84,11.5942,13.803,5.1369,6.115,6.5589,7.808,2.1266,2.532
+Fragki,PFOA,25.0,3.27,measured,1.23,18.3071,14.884,8.3747,6.809,6.5589,5.332,2.1266,1.729
+Fragki,PFOA,50.0,3.27,measured,1.34,22.6643,16.914,10.4177,7.774,6.5589,4.895,2.1266,1.587
+Fragki,PFOA,100.0,3.27,measured,1.55,25.003,16.131,11.5022,7.421,6.5589,4.232,2.1266,1.372
 Fragki,PFNA,6.25,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),1.12,5.4542,4.87,1.0365,0.925,18.2078,16.257,1.687,1.506
 Fragki,PFNA,12.5,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),2.34,10.1208,4.325,2.1855,0.934,18.2078,7.781,1.687,0.721
 Fragki,PFNA,25.0,3.447,interpolated on the measured carboxylate slope (+0.177/CF2),2.65,19.1382,7.222,4.5642,1.722,18.2078,6.871,1.687,0.637

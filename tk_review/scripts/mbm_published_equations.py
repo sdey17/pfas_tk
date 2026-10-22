@@ -72,6 +72,28 @@ DB = os.path.join(os.path.dirname(HERE), "db")
 MW = {c[0]: c[3] for c in Q.COMPOUNDS}
 NCF = {c[0]: c[2] for c in Q.COMPOUNDS}
 
+# Perfluoroalkane sulfonates.  Qin measured EVERY parameter for these two, so
+# they need no interpolation at all -- they are the cleanest case in his
+# dataset, cleaner than three of the five carboxylates.  They are deliberately
+# absent from Q.COMPOUNDS, which is the carboxylate series that supplies the
+# interpolation anchors; putting a sulfonate in there would let it anchor a
+# carboxylate estimate, and sulfonates partition about a log unit more
+# strongly into lipid at the same chain length.
+#
+# nCF counts perfluorinated carbons.  A sulfonate has no carboxyl carbon, so
+# PFHxS (C6F13SO3-) is nCF 6 and PFOS (C8F17SO3-) is nCF 8, whereas the
+# carboxylate PFOA (C7F15COO-) is nCF 7 at nC 8.
+#
+# log K_OW is from Qin Table 1.  Note the OPERA/COSMOtherm disagreement for
+# PFHxS -- 3.69 against 5.29, a factor of 40 - which the Armitage limb rides
+# on directly.  Both are carried so the spread can be reported.
+SULFONATES = [
+    # name     nC  nCF    MW       logKow_opera  logKow_cosmo
+    ("PFHxS",   6,   6,  400.11,    3.69,        5.29),
+    ("PFOS",    8,   8,  500.13,    5.77,        None),
+]
+NCF.update({c[0]: c[2] for c in SULFONATES})
+
 # ---------------------------------------------------------------- Armitage
 SI = dict(
     d_OW=3.1, d_MW=1.0, d_SaW_acid=0.0, d_PlW=3.1,    # Table S1
