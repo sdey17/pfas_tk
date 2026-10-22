@@ -20,9 +20,9 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import mm
-from reportlab.platypus import (BaseDocTemplate, Frame, KeepTogether,
-                                PageTemplate, Paragraph, Spacer, Table,
-                                TableStyle)
+from reportlab.platypus import (BaseDocTemplate, CondPageBreak, Frame,
+                                Image, KeepTogether, PageTemplate, Paragraph,
+                                Spacer, Table, TableStyle)
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -64,7 +64,13 @@ S = {
                             leading=10.0, textColor=INK),
     "caption": ParagraphStyle("caption", fontName="Times-Italic", fontSize=8.2,
                               leading=10.6, textColor=SOFT, spaceAfter=8),
+    "figcap": ParagraphStyle("figcap", fontName="Times-Roman", fontSize=8.3,
+                             leading=11.0, textColor=SOFT, spaceBefore=5,
+                             spaceAfter=12, leftIndent=6, rightIndent=6),
 }
+
+# Usable text width, for scaling figures to the frame.
+FRAME_W = A4[0] - 40 * mm
 
 
 
@@ -236,8 +242,54 @@ def hr():
 
 
 # ---------------------------------------------------------------- parse
-def build(md):
-    lines = md.split("\n")
+def figure_block(path, caption, n):
+    """A figure plate: the image scaled to the frame, with its caption under it.
+
+    Markdown image syntax is used in the source (![caption](path)), so the
+    .md renders correctly on its own; here the alt text becomes the caption
+    and is prefixed with a figure number.  Image and caption are kept on one
+    page, and a tall plate is pushed to a fresh page rather than orphaned.
+    """
+    if not os.path.exists(path):
+        return [Paragraph(f"[missing figure: {html.escape(path)}]", S["figcap"])]
+    from reportlab.lib.utils import ImageReader
+    iw, ih = ImageReader(path).getSize()
+    w = FRAME_W
+    h = w * ih / iw
+    cap_h = 0.0
+    max_h = (A4[1] - 38 * mm) * 0.76          # leave room for the caption
+    if h > max_h:
+        h, w = max_h, max_h * iw / ih
+    img = Image(path, width=w, height=h, hAlign="CENTER")
+    cap = Paragraph(f"<b>Figure {n}.</b> {inline(caption)}", S["figcap"])
+    return [CondPageBreak(h + 34), Spacer(1, 6), KeepTogether([img, cap])]
+
+
+def join_images(md):
+    """Collapse multi-line ![caption](path) directives onto one line.
+
+    Figure captions in these reports are long enough to wrap in the source,
+    which keeps the markdown readable and diffable; the renderer wants them
+    as a single token.
+    """
+    out, lines, i = [], md.split("\n"), 0
+    while i < len(lines):
+        if lines[i].lstrip().startswith("![") and ")" not in lines[i]:
+            buf = [lines[i].strip()]
+            i += 1
+            while i < len(lines) and not buf[-1].rstrip().endswith(")"):
+                buf.append(lines[i].strip())
+                i += 1
+            out.append(" ".join(buf))
+            continue
+        out.append(lines[i])
+        i += 1
+    return "\n".join(out)
+
+
+def build(md, base=HERE):
+    build.fign = 0
+    lines = join_images(md).split("\n")
     flow, i, first_h1 = [], 0, True
     while i < len(lines):
         ln = lines[i]
@@ -330,6 +382,16 @@ def build(md):
             i = j
             continue
 
+        m = re.match(r"^!\[(.*)\]\(([^)]+)\)\s*$", ln.strip())
+        if m:
+            build.fign = getattr(build, "fign", 0) + 1
+            src = m.group(2)
+            if not os.path.isabs(src):
+                src = os.path.normpath(os.path.join(base, src))
+            flow += figure_block(src, m.group(1), build.fign)
+            i += 1
+            continue
+
         if not ln.strip():
             i += 1
             continue
@@ -337,7 +399,7 @@ def build(md):
         buf, j = [ln], i + 1
         while j < len(lines) and lines[j].strip() and \
                 not re.match(r"^(#{1,4}\s|\s*\||```|> |>$|-{3,}|\s*[-*]\s"
-                             r"|\s*\d+\.\s|<)", lines[j]):
+                             r"|\s*\d+\.\s|<|!\[)", lines[j]):
             buf.append(lines[j]); j += 1
         para = " ".join(x.strip() for x in buf)
         style = S["lead"] if (len(flow) < 4) else S["body"]
@@ -373,7 +435,7 @@ def render(src_path, out_path):
                   id="f", showBoundary=0)
     doc.addPageTemplates([PageTemplate(id="body", frames=[frame],
                                        onPage=_page)])
-    doc.build(build(md))
+    doc.build(build(md, os.path.dirname(os.path.abspath(src_path))))
     size = os.path.getsize(out_path)
     print(f"wrote {out_path}  ({size/1024:.0f} KB)")
 

@@ -1,7 +1,11 @@
 # Mass-balance dosimetry for in vitro PFAS testing: a source-verified reassessment of two models against three uptake datasets
 
-**Working manuscript.** Analysis, figures and tables are reproducible from
-`tk_review/scripts/`; see *Data and code availability*.
+**Working manuscript**, 22 October 2026. Analysis, figures and tables are
+reproducible from `tk_review/scripts/`; see *Data and code availability* for
+the script behind each section and figure. Four figures and nine tables.
+All model parameters and all exposure conditions are verified against primary
+sources; the provenance of every reference is stated after the reference
+list.
 
 ---
 
@@ -522,6 +526,23 @@ compounds: for PFBA–PFHpA, which only the two 10% FBS studies measure, Armitag
 bias is 1.2–1.6×, while PFOA and PFNA — the compounds Fragki contributes —
 carry almost the entire residual.
 
+![**A**, the three uptake datasets on a common axis: measured fraction of dose
+in cells against nominal concentration, for the five compounds both models can
+be parameterised for. The datasets disagree with each other by up to 14× at
+PFNA, so no single model can match all three. **B**, predicted against measured
+for the 29 observations; open symbols are Fragki et al. as coded at 10% FBS and
+filled symbols after the correction to the 2% at which the assay was actually
+dosed (§6.1), with arrows joining the pairs. The grey diagonals are the 1:1
+line and 10× over. **C**, where the balance puts the dose in each well, by
+sorptive phase. Albumin carries 94–97% of the capacity at PFOA and PFNA in the
+10% FBS assays; the cells carry a visible share only in Fragki's 2% FBS medium
+at the long-chain end. **D**, the geometric-mean bias of each parameter
+substitution, with 1× a perfect model (§6.1, §6.4). Every best-available
+measurement moves at least one model further from the data. The last two bars
+are the same substitution taken two ways: Fischer et al.'s HepG2 cell volume
+alone, and that volume together with the cell composition they measured in the
+same table.](../figures/fig20_mbm_three_datasets.png)
+
 ### 6.3 Dose dependence
 
 Armitage is linear by construction and its fitted dose exponent is pinned at
@@ -769,7 +790,7 @@ measurement work in the expected direction on the level — the measured
 hepatic composition gains 1.7× over the MCF7 one, and the measured medium
 protein gains 3.1× — and together they leave 5.56× standing.
 
-Figure 1 places every parameterisation tested in this work on those two axes
+Figure 2 places every parameterisation tested in this work on those two axes
 alongside the lipid series that drives the horizontal one. The discriminator
 for the slope is specifically the lipid coefficient: every variant whose
 lipid–water ratio is measured falls at or below zero, Qin et al.'s included
@@ -777,7 +798,23 @@ since they take theirs from liposome measurements, and the only two that sit
 on the positive side are the two that predict the lipid term from
 log K<sub>OW</sub>.
 
-*(Figure 1: `figures/fig22_mbm_separation.png`.)*
+![**A**, the lipid–water partition ratio against chain length. The orange line
+is log D<sub>MW</sub> for the anion at pH 7.4 as IV-MBM EQP v2.0 evaluates it
+(1.01·log K<sub>OW</sub> + 0.12, with the anion penalty d<sub>MW</sub> = 1.0);
+the blue points and line are Chen et al.'s measurements on solid-supported
+bilayers at pH 7.0 (SI Table S5, 12 perfluoroalkyl carboxylates); the dashed
+green line is the regression Qin et al. fit to Ebert et al.'s liposome data
+(Figure A1). The prediction rises more than twice as fast with chain length as
+either measurement. **B**, every parameterisation tested in this work placed on
+(chain-length slope, geometric-mean bias), recomputed over nCF 5–8 so both axes
+are on one footing; PFBA is excluded throughout because it has no measured
+albumin value. The star at (0, 1×) is a model with neither error. Substituting
+measured coefficients moves points horizontally; changing cell and medium
+volumes and compositions moves them vertically. Every variant whose lipid
+coefficient is measured falls in the shaded band — Qin et al.'s included, since
+they take theirs from liposome measurements — and the only two outside it are
+the two that predict the lipid term from log K<sub>OW</sub>. Nothing tested
+reaches the star.](../figures/fig22_mbm_separation.png)
 
 Chen's coefficients carry the slope result in both Tables 6 and 7, so the
 basis on which they are reported has to be established. It can be. Chen et al.
@@ -916,7 +953,7 @@ the high concentration needed to trigger effects in in vitro bioassays have a
 higher fraction unbound." What is added here is the magnitude of the gap for
 three datasets neither group analysed, and the demonstration that it is large
 enough to invalidate the linearity assumption within a single dose series.
-Figure 2 quantifies it.
+Figure 3 quantifies it.
 
 Albumin offers approximately one high-affinity site per molecule for these
 compounds (§3.2). The two 10% FBS assays contain 36.1 µM albumin and the 2% FBS
@@ -930,7 +967,7 @@ The consequence for the models is direct. Solved self-consistently within the
 wells, albumin site occupancy runs from 20% to 99% across the dose series, and
 the apparent albumin distribution ratio falls to between 0.11 and 0.07 of its
 trace-limit value — a sevenfold change in a quantity that a linear model treats
-as a constant, within a single experiment (Fig. 2B).
+as a constant, within a single experiment (Fig. 3B).
 
 This is why the Qin formulation requires its saturable term and why a linear
 spLFER treatment cannot be correct here, whatever its merits for the neutral
@@ -942,11 +979,15 @@ Improving the in vitro mass balance improves the description of the experiment;
 it does not, on its own, improve the extrapolation, because the experiment is
 in the wrong regime.
 
-*(Figure 2: `figures/fig21_mbm_regime_gap.png`. A, nominal ligand:albumin ratio
-against dose for the three assays with the physiological band marked; B,
-apparent albumin distribution ratio relative to its trace limit as a function
-of freely dissolved concentration, with the positions occupied by the three
-assays marked.)*
+![**A**, the nominal ligand:albumin molar ratio against dose for the three
+assays, with the physiological band marked. Albumin offers approximately one
+high-affinity site per molecule for these compounds (§3.2), so a ratio of 1
+means the sites are nominally filled. All three assays run three to four orders
+of magnitude above the band. **B**, the consequence for the models: the
+apparent albumin distribution ratio, relative to its trace limit, as a function
+of freely dissolved concentration, with the positions the three assays occupy
+marked. Within a single dose series the quantity a linear model treats as a
+constant falls to between 0.11 and 0.07 of its trace value.](../figures/fig21_mbm_regime_gap.png)
 
 ---
 
@@ -977,7 +1018,13 @@ constrained, cell compositions the studies themselves did not measure, and a
 ligand:protein regime in which the central linearity assumption does not
 hold.
 
-*(Figure 3: `figures/fig19_fischer_serum_mbm.png`.)*
+![The same mass-balance formalism applied to human serum, as a positive
+control. Predicted against measured whole-serum–water distribution for the 26
+PFAS in Fischer et al.'s Table S2, using their measured albumin coefficients,
+physiological albumin and globulin concentrations, and no fitted parameter.
+Geometric-mean bias 1.00×, geometric-mean |error| 1.55×, R² = 0.68. The
+accounting is sound; the failure documented in §6 is specific to the in vitro
+system.](../figures/fig19_fischer_serum_mbm.png)
 
 ---
 
@@ -1129,9 +1176,10 @@ thing as the model as its authors would run it.
 | Qin's model against Qin's measurement (§6.8) | `tk_review/scripts/mbm_qin_internal_check.py` |
 | IV-MBM v1.0 against v2.0 (§3.1) | `tk_review/scripts/mbm_armitage_v1_vs_v2.py` |
 | serum control (§8) | `tk_review/scripts/mbm_fischer_serum.py` |
-| Figure 1 | `tk_review/scripts/make_mbm_separation_figure.py` |
-| Figure 2 | `tk_review/scripts/make_mbm_regime_figure.py` |
-| Figure 3 | `tk_review/scripts/make_mbm_fischer_serum_figure.py` |
+| Figure 1 | `tk_review/scripts/make_mbm_correction_figure.py` |
+| Figure 2 | `tk_review/scripts/make_mbm_separation_figure.py` |
+| Figure 3 | `tk_review/scripts/make_mbm_regime_figure.py` |
+| Figure 4 | `tk_review/scripts/make_mbm_fischer_serum_figure.py` |
 | primary sources held locally | `literature/fulltext/` |
 
 Extended derivations and the full approximation inventory are in

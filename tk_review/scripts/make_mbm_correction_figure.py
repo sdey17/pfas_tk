@@ -183,6 +183,30 @@ def panel_c(ax):
 
 
 # ------------------------------------------------------------------ panel D
+def cell_sub(comp):
+    """Re-run both published models with a substituted cell characterisation.
+
+    Returns (Qin, Armitage) geometric-mean bias over the same 29 observations.
+    Computed rather than hard-coded, because the two rows this feeds differ
+    only in whether Fischer et al. 2017's cell measurement is taken whole or
+    only for its volume -- and that distinction is the point of the pair.
+    """
+    P.CELL_COMP["_sub"] = comp
+    q, a = [], []
+    for study, assay in P.ASSAYS.items():
+        s = dict(assay, line="_sub")
+        V = P.volumes(s)
+        for (nm, _nC, nCF, _mw, ko, _kc, _ks) in Q.COMPOUNDS:
+            lk = ko if ko is not None else Q.KOW_OPERA(nCF)
+            for d in assay["doses"]:
+                m = P.measured_x_cell(study, nm, d, V, s)
+                if m is None:
+                    continue
+                q.append(P.qin_run(nm, d, V)["x_cell"] / m)
+                a.append(P.armitage_run(nm, lk, d, V)["x_cell"] / m)
+    return gm(q), gm(a)
+
+
 def panel_d(ax):
     def ladder_from(fn, meas_col, cols):
         rows = list(csv.DictReader(open(os.path.join(DB, fn))))
@@ -212,7 +236,10 @@ def panel_d(ax):
             ("+ Fischer 2024 albumin", fa["qin_fis"], fa["arm_fis"], False),
             ("+ Qin 2023 measured D$_{cell/w}$", ct["qin_dcw"], ct["arm_dcw"], False),
             ("+ Qin 2024 cell protein", cp["qin_prot"], cp["arm_prot"], False),
-            ("+ 3.04 pL cell (HepG2)", 3.71, 1.84, False)]
+            ("+ 3.04 pL cell volume only\n(half of Fischer 2017)",
+             *cell_sub(dict(P.CELL_COMP["AREc2"], ng_cell=3.04)), False),
+            ("+ Fischer 2017 HepG2 volume\nAND composition",
+             *cell_sub(dict(P.CELL_COMP["HepG2_Fischer"])), False)]
     y = np.arange(len(rows))[::-1]
     h = 0.34
     ax.axvline(1.0, color=MUTED, lw=1.0)
@@ -229,9 +256,9 @@ def panel_d(ax):
         ax.text(qv * 1.06, yy - h / 2, f"{qv:.1f}×", fontsize=7,
                 color=INK2, va="center")
     ax.set_yticks(y)
-    ax.set_yticklabels([r[0] for r in rows], fontsize=7.5)
+    ax.set_yticklabels([r[0] for r in rows], fontsize=7.0)
     ax.set_xscale("log")
-    ax.set_xlim(0.8, 40)
+    ax.set_xlim(0.8, 46)
     ax.set_xlabel("predicted / measured, geometric mean over 29 points")
     ax.set_title("D.  Every substitution tried, and which way it moved\n"
                  "1× would be a perfect model", fontsize=10, color=INK, pad=8)

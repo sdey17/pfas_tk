@@ -124,7 +124,7 @@ def main():
     fig, axes = plt.subplots(1, 2, figsize=(13.2, 5.6))
     panel_a(axes[0])
     panel_b(axes[1])
-    fig.suptitle("Figure 1.  In vitro PFAS uptake assays operate three to four orders "
+    fig.suptitle("In vitro PFAS uptake assays operate three to four orders "
                  "of magnitude above the physiological ligand:protein ratio",
                  fontsize=11, color=INK, y=1.01)
     fig.tight_layout()
