@@ -79,11 +79,29 @@ SI = dict(
     csalt=0.15, pH=7.4, cell_pH=7.4,
 )
 # Cell composition by line, Armitage SI Tables S3-S6.
-# AREc2 is HepG2-derived and is the closest published match for HepG2/HepaRG.
+#
+# CAUTION on AREc2.  Armitage's cell-line-specific entries are for the two
+# lines Huchthausen et al. 2020 used: AREc2 (= AREc32) and a PPARgamma
+# reporter.  AREc32 is MCF7-derived, not HepG2-derived (Wang, Hayes & Wolf
+# 2006; Cellosaurus CVCL_1D32 "MCF7 AREc32"), so it is NOT a hepatic
+# composition.  It is retained as the published Armitage parameterisation --
+# the thing being tested -- but it is a breast-carcinoma line applied to
+# HepG2 and HepaRG assays, which is a real mismatch, not a close match.
+# Armitage's PPARgamma entry reproduces Fischer et al. 2017's measured HEK293
+# composition (8.43% protein, 1.00% lipid, 90.57% water) to the digits shown,
+# which is where it evidently comes from.
+#
+# HepG2_Fischer is the MEASURED composition of the actual cell line used by
+# two of the three datasets here: Fischer et al. 2017 Table 2, ARE assay,
+# HepG2 (ARE-bla) -- 87.35% water, 9.46% protein, 3.19% lipid, and 3.04 pg per
+# cell from their own volumes (6.077 nL for 2000 cells).  Fischer assumes "all
+# cellular lipids are membrane lipids", so the whole 3.19% is entered as ml.
 CELL_COMP = {
     "AREc2":   dict(sl=0.00046, ml=0.00414, prot=0.0514, water=0.944, ng_cell=10.0),
     "PPARg":   dict(sl=0.001,   ml=0.009,   prot=0.08,   water=0.91,  ng_cell=7.3),
     "generic": dict(sl=0.01,    ml=0.04,    prot=0.055,  water=0.895, ng_cell=1.0),
+    "HepG2_Fischer": dict(sl=0.0, ml=0.0319, prot=0.0946, water=0.8735,
+                          ng_cell=3.04),
 }
 # Octanol-equivalence of bulk cell protein.  This is httk's value.  The
 # Armitage 2021 SI is in hand (literature/fulltext/) and confirms every OTHER

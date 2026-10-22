@@ -38,9 +38,17 @@ geometric-mean bias 3.9× (Armitage) and 7.5× (Qin) over 29 observations. (iii)
 Every substitution of a best-available measured parameter made the fit worse,
 in each case because the measurement moved the balance in the direction the
 residual did not need. (iv) The residual separates into a level error and a
-chain-length error with different causes: the chain-length drift is governed by
-the ratio of the cell to the albumin distribution ratio, not by either term
-alone. (v) The same formalism applied to human serum reproduces measured
+chain-length error with different causes, and the separation is clean: the
+chain-length behaviour is a property of the partition coefficients and the
+level is a property of the volumes and compositions, each invariant to changes
+in the other. Reconstructing a third published formulation — the
+measured-parameter linear balance of Fischer et al., using measured PFAS
+albumin and membrane coefficients — removes the chain-length drift entirely
+over nCF 5–7 while leaving a 5.6× over-prediction, so no parameterisation
+tested here corrects the level. The over-steepening of the lipid term that
+causes the drift is corroborated by two independent laboratories, two lipid
+preparations and two analytical routes (+0.36 to +0.48 decades per CF₂
+measured, against +0.78 predicted). (v) The same formalism applied to human serum reproduces measured
 whole-serum partitioning for 26 PFAS with no fitted parameter, establishing
 that the accounting is sound and localising the failure to the in vitro system.
 (vi) All three assays operate 5,500–27,700× above the physiological
@@ -316,21 +324,33 @@ three design axes that matter for PFAS:
 
 **Table 1b.** Design axes across published in vitro distribution approaches.
 
-| | source of partitioning | albumin treatment | cell representation |
-|---|---|---|---|
-| Armitage et al. [1,2] | spLFERs from log K<sub>OW</sub> | linear, piecewise | lipid + 3.5%·protein + water |
-| Escher-school balances [12,14,15] | **measured** biopartitioning | linear | lipid + protein, measured |
-| Qin et al. [3] | measured, PFAS-specific | **saturable** | protein + lipid |
-| Stadnicka-Michalak et al. [18] | regressions on log K<sub>OW</sub> | linear | kinetic, not equilibrium |
-| VCBA / PBK-coupled [19] | varies | linear | kinetic, coupled to PBK |
+| | source of partitioning | albumin treatment | cell representation | normalising volume |
+|---|---|---|---|---|
+| Armitage et al. v1.0 [2] | K<sub>OW</sub> × lipid-equivalent fraction | linear | one lumped pseudo-octanol phase | V<sub>cell</sub> |
+| Armitage et al. v2.0 [1] | spLFERs from log K<sub>OW</sub> | linear, piecewise | lipid + 3.5%·protein + water | V<sub>cell</sub> |
+| Fischer et al. [12] | **measured**, else PP-LFER / 3D-QSAR / COSMOmic | linear | protein + lipid + water, measured; D<sub>BSA/w</sub> for all protein | V<sub>cell</sub> |
+| Qin et al. [3] | measured, PFAS-specific | **saturable** | protein + lipid; water non-sorbing | V<sub>prot+lip</sub> |
+| Stadnicka-Michalak et al. [18] | regressions on log K<sub>OW</sub> | linear | kinetic, not equilibrium | — |
+| VCBA / PBK-coupled [19] | varies | linear | kinetic, coupled to PBK | — |
 
 Two of these — the kinetic approaches — answer a different question, since the
 PFAS uptake data here reach steady state within ~1 h against a 24 h exposure
 and an equilibrium treatment is adequate. Of the equilibrium models, the two
-tested here occupy opposite corners of the first two axes, which is why they
+tested in full occupy opposite corners of the first two axes, which is why they
 were selected. The third corner — measured biopartitioning with a *linear*
-albumin term, the Escher-school design — can be constructed from published
-PFAS measurements without reimplementing anyone's code, and §6.7 does so.
+albumin term — is the Fischer et al. design, and §6.7 reconstructs it from
+published PFAS measurements without reimplementing anyone's code.
+
+Two details in the last column are easy to lose and both caused errors in
+earlier drafts of this work. The three equilibrium balances do not report
+cell–water distribution on a common basis: Armitage and Fischer normalise by
+total cell volume, Qin by the volume of cell protein plus lipid, and the two
+differ by a factor of ~17 for a hepatic composition. And the treatment of cell
+protein is not a detail of parameterisation but a structural choice: Armitage
+gives it an octanol equivalence, which makes it negligible; Fischer gives it
+the albumin surrogate, which makes it comparable to the lipid term; Qin gives
+it a measured non-specific protein coefficient, which makes it dominant. A
+model's cell is defined as much by that choice as by its composition.
 
 ---
 
@@ -407,7 +427,11 @@ Residuals were decomposed by study, by compound, by dose and against
 perfluorocarbon chain length. Four parameters were then replaced in turn with
 the best available independent measurement: albumin partitioning from Fischer
 et al. [9]; cell partitioning from the measured values in ref. [3]; cell protein
-sorption from ref. [4]; and cell volume from an independent HepG2 determination.
+sorption from ref. [4]; and cell volume and composition from Fischer et al.'s
+measurements on HepG2 [12]. A third formulation, the measured-parameter linear
+balance of Fischer et al. [12], was then reconstructed from its published
+equations and run on the same data with measured PFAS coefficients
+throughout.
 
 ---
 
@@ -480,12 +504,12 @@ independent measurement. Bias is the geometric mean over 29 observations.
 | albumin partitioning [9] | **below** both models | 8.08× | 7.75× |
 | cell partitioning (measured, [3]) | mixed | 2.15× | 4.61× |
 | cell protein sorption [4] | **above** both models | 9.81× | 12.24× |
-| cell volume (independent HepG2) | — | **1.84×** | 3.71× |
+| cell volume alone (measured HepG2 [12]) | — | 1.84× | 3.71× |
+| cell volume **and** composition [12] | — | 9.10× | — |
 
-Three of the four substitutions worsen the fit, and they do so for a consistent
-reason: each measurement moves the balance in the direction the residual does
-not require. A weaker albumin reduces competition and sends more chemical into
-the cell; a stronger cell-protein affinity enlarges the cell sink and does the
+Each measurement moves the balance in the direction the residual does not
+require. A weaker albumin reduces competition and sends more chemical into the
+cell; a stronger cell-protein affinity enlarges the cell sink and does the
 same. Both models already over-predict.
 
 The cell-partitioning substitution improves the aggregate but at the cost of
@@ -494,18 +518,25 @@ destroying the chain-length trend, over-predicting PFBA by 19.7× (Qin) and
 improvement achieved by averaging a large miss at one end of a series against a
 good fit at the other is not evidence of a better parameter.
 
-Only cell volume improves the fit without that penalty, and it is the one
-parameter none of the three studies measured. It is also the only parameter
-that rescales every compound by the same factor, which is what an offset
-independent of chain length requires. On corrected media it accounts for
-roughly half the residual in log terms and leaves a 1.8–3.7× over-prediction
-standing.
+The cell-volume row requires care, and an earlier version of this work read it
+wrongly. Taken alone it looks like the one substitution that helps: 3.87× to
+1.84×, and it is also the only parameter that rescales every compound by the
+same factor, which is what a chain-length-independent offset requires. But the
+measured cell volume comes from Fischer et al. [12], who measured the
+*composition* of the same HepG2 cells in the same table. Using the volume while
+retaining Armitage's composition takes half of one measurement. Taking it whole
+moves the bias to 9.10× — the measured hepatic lipid fraction is 6.9× larger
+than the published parameterisation's while the cell volume is only 3.3×
+smaller, so the cell sink roughly doubles.
 
-**This is the central negative result of the reassessment: a parameter can be
-the most influential term in a model and not be the term that is wrong.**
-Albumin carries 94–97% of the sorptive capacity for the longer chains, which
-makes it the obvious suspect and the obvious thing to tune; the best available
-measurement of it moves the prediction further from the data.
+**Every best-available measurement therefore worsens the fit, with no
+exception. This is the central negative result of the reassessment: a parameter
+can be the most influential term in a model and not be the term that is
+wrong.** Albumin carries 94–97% of the sorptive capacity for the longer chains,
+which makes it the obvious suspect and the obvious thing to tune; the best
+available measurement of it moves the prediction further from the data. The
+corollary is methodological: a substitution that improves a fit should be
+checked for whether it imported only the convenient half of its source.
 
 ### 6.5 Chain-length structure of the residual
 
@@ -573,48 +604,125 @@ almost no consequence for this comparison.
 ### 6.7 A third parameterisation: measured biopartitioning
 
 The design decision separating the Escher-school balances [12,14,15] from
-IV-MBM EQP v2.0 is the use of measured membrane–water and protein–water
-partitioning in place of single-descriptor regressions, retaining a linear
-albumin term. Armitage et al. report that this substitution substantially
-improves their own model's performance for ionisable organics [1].
-
-That variant can now be built for PFAS from published measurements: albumin
-from Fischer et al. [9] and phospholipid membrane–water coefficients from Chen
-et al. [10], substituted into the Armitage cell composition and plastic term.
-PFBA is excluded (no measured albumin value), so comparisons are over nCF 5–8
-and are directly comparable with the corresponding columns in §6.5.
+IV-MBM EQP v2.0 is the use of measured — or multi-descriptor predicted —
+membrane–water and protein–water partitioning in place of a single-descriptor
+regression, retaining a linear albumin term. Fischer et al. state the premise
+directly: distribution ratios derived "by log K<sub>OW</sub> correlation can
+lead to a high uncertainty and inaccuracy", whereas methods using several
+chemical properties "can substantially improve the quality of predicted
+partition constants" [12]. Armitage et al. report the same for their own model
+on ionisable organics [1]. Fischer et al. use polyparameter LFERs for neutral
+species, a 3D-QSAR for anionic albumin–water and COSMOmic for anionic
+lipid–water, preferring measured values where they exist. For PFAS measured
+values now exist, so the reconstruction below uses them: albumin from Fischer
+et al. [9], phospholipid membrane–water from Chen et al. [10]. PFBA is
+excluded (no measured albumin value), so comparisons are over nCF 5–8 and are
+directly comparable with the corresponding columns in §6.5.
 
 Both measured series sit below the spLFER predictions — albumin by 2–7× and
 membrane lipid by 8–90× over nCF 5–8, with the membrane discrepancy growing
 systematically with chain length.
 
-**Table 6.** Performance over nCF 5–8.
+#### 6.7.1 Parameter sensitivity within the Armitage structure
+
+Substituting each measured series into IV-MBM EQP v2.0 while leaving its
+structure intact isolates the leverage of each coefficient.
+
+**Table 6.** Coefficient substitutions within the Armitage structure, nCF 5–8.
 
 | parameterisation | bias | slope (decades/CF₂) |
 |---|---|---|
 | Armitage, as published | 4.35× | +0.316 |
 | + measured albumin only | 10.12× | +0.194 |
 | + measured membrane only | 0.16× | −0.049 |
-| **+ both measured (Escher-school design)** | **0.40×** | **−0.156** |
+| + both measured | 0.40× | −0.156 |
 | Qin, as published (saturable albumin) | 8.59× | −0.043 |
 
-Two observations follow, and they point in different directions.
+Read as a sensitivity analysis, this table says that the measured membrane
+coefficient is where the chain-length drift lives: substituting it alone takes
+the slope from +0.316 to −0.049 and no other single substitution comes close.
 
-First, **this is the only substitution attempted in this work that moves the
-level toward unity** rather than away from it, and it does so decisively —
-from 4.35× over-prediction to 0.40×, i.e. 2.5× under. The term responsible is
-the membrane-lipid spLFER, not albumin and not cell protein. Given that §6.4
-found every other best-available measurement worsening the fit, this deserves
-emphasis: it identifies the membrane-lipid term as a candidate location for
-the level error that the earlier substitutions had not reached.
+It does **not**, however, describe the Escher-school design, and an earlier
+version of this section wrongly presented the last row as such. Within the
+Armitage structure, cell protein sorbs by octanol-equivalence, so it
+contributes almost nothing (§3.1); substituting a membrane coefficient 8–90×
+smaller than the spLFER's therefore collapses the cell sink almost to its water
+term, which is what produces the 0.40×. That is an artefact of mixing one
+model's structure with another's coefficients, not a result about either.
 
-Second, and more robustly, **the chain-length drift is not removed by measured
-parameters alone**. It falls from +0.316 to −0.156 but does not vanish, and it
-is the *saturable* albumin treatment that flattens it (−0.043), at the cost of
-the worst level of the four.
+#### 6.7.2 The Escher-school balance as published
 
-The basis question that would undermine the first observation can be
-settled. Chen et al. define K<sub>MW</sub> in their Supplementary equation S1 as
+Fischer et al.'s own form differs from the Armitage structure in four ways
+[12]. Their cell–water ratio is
+
+> D<sub>cell/w</sub> = VF<sub>prot,cell</sub>·D<sub>BSA/w</sub>
+> + VF<sub>lip,cell</sub>·D<sub>lip/w</sub> + VF<sub>w,cell</sub>
+
+so (i) **one protein surrogate is used everywhere** — cell protein receives
+D<sub>BSA/w</sub>, not an octanol equivalence, which is the difference that
+invalidates the reconstruction above; (ii) cell water is a phase of
+D<sub>cell/w</sub>, unlike Qin's formulation; (iii) the normalising volume is
+V<sub>cell</sub>, so the basis matches Armitage's and not Qin's; and (iv) there
+is no plastic term. The medium protein volume is also different in kind: it is
+total measured protein, not albumin. Fischer et al. measured 0.520% at 10%
+dialysed FBS, 3.0× the albumin volume the serum convention gives.
+
+Fischer et al. also supply the cell composition these datasets most need —
+measured HepG2 (ARE-bla): 87.35% water, 9.46% protein, 3.19% lipid, 3.04 pg
+per cell, with all cellular lipid treated as membrane lipid. This matters
+because **Armitage's cell-line-specific entry is not a hepatic composition**.
+His AREc2 is AREc32, which is MCF7-derived (Cellosaurus CVCL_1D32), and
+carries 0.46% total lipid against the 3.19% measured for HepG2. Two of the
+three datasets modelled here use HepG2 and the third HepaRG, so the published
+parameterisation applies a breast-carcinoma composition throughout. (Armitage's
+other entry, for the PPARγ line, reproduces Fischer et al.'s measured HEK293
+numbers to the digits shown, which is evidently its source.)
+
+**Table 7.** The Fischer et al. form, parameterised on measured PFAS
+coefficients, nCF 5–8.
+
+| cells | medium protein | bias | slope (decades/CF₂) |
+|---|---|---|---|
+| **measured HepG2 [12]** | **measured total [12]** | **5.56×** | **−0.100** |
+| measured HepG2 [12] | albumin volume only | 17.09× | −0.033 |
+| Armitage AREc2 (MCF7) | measured total [12] | 9.47× | −0.100 |
+| Armitage AREc2 (MCF7) | albumin volume only | 27.64× | −0.044 |
+
+Three results follow, and the first is a correction.
+
+**The level is not fixed by measured parameters.** The faithful Escher-school
+balance over-predicts by 5.56×, against 4.35× for Armitage as published. The
+0.40× of Table 6 was a structural artefact, and the claim that measured
+membrane partitioning moves the level toward unity does not survive. As it
+stands, **no parameterisation tested in this work fixes the level**, which
+strengthens rather than weakens the central negative result of §6.4.
+
+**The chain-length drift is removed.** The slope falls from +0.316 to −0.100,
+and over nCF 5–7 — where three of the four compounds sit — it is −0.007, i.e.
+flat. The reason is visible in the coefficients: Fischer's measured albumin
+series and Chen's measured membrane series rise with chain length at nearly
+the same rate, so their ratio, which is what the predicted fraction depends
+on (§6.5), is almost constant. Measured biopartitioning does solve the
+chain-length problem; it simply does not solve the level problem.
+
+**The two failures are cleanly separable.** The slope in Table 7 is unchanged
+across a 6.9× change in cell lipid, a 3.3× change in cell volume and a 3×
+change in medium protein — it is −0.100 in both rows with measured medium
+protein and −0.03 to −0.04 in both without. Conversely the level moves by
+5× across those same changes while the coefficients stay fixed. So:
+
+> the chain-length behaviour is a property of the partition coefficients;
+> the level is a property of the volumes and compositions.
+
+Each error must be diagnosed with the corresponding class of parameter, and
+neither can be diagnosed from the other. Both improvements available from
+measurement work in the expected direction on the level — the measured
+hepatic composition gains 1.7× over the MCF7 one, and the measured medium
+protein gains 3.1× — and together they leave 5.56× standing.
+
+Chen's coefficients carry the slope result in both Tables 6 and 7, so the
+basis on which they are reported has to be established. It can be. Chen et al.
+define K<sub>MW</sub> in their Supplementary equation S1 as
 
 > K<sub>MW</sub> = (C<sub>spike</sub> − C<sub>PFAS,W</sub>)·V<sub>W</sub> /
 > (C<sub>PFAS,W</sub>·M<sub>PL</sub>)
@@ -634,8 +742,8 @@ D<sub>MW</sub>, and the same density convention the cell-volume conversion used
 here already adopts (10 ng per cell at 1 g·cm<sup>−3</sup>). Real phospholipid
 densities of 1.01–1.06 g·cm<sup>−3</sup> bound the residual basis error at
 ≤0.03 log units, which is two orders of magnitude smaller than the
-discrepancies in Table 6. **The level result in Table 6 is therefore not
-provisional.**
+discrepancies in Tables 6 and 7. **The slope results therefore do not rest on
+an unverified basis.**
 
 Two independent checks support this reading. The tabulated values reproduce the
 authors' own unweighted regression of log K<sub>MW</sub> on chain length — we
@@ -645,8 +753,7 @@ obtain +0.361 (R² = 0.983) for the perfluoroalkyl carboxylates and +0.374
 transcribed correctly. And the absolute values sit in the published range for
 PFAS membrane–water partitioning measured by the same technique.
 
-The slope comparison is the part of §6.7 that is invariant to any residual
-basis question, and it is now anchored at source: the measured series rises
+The slope comparison is anchored at source: the measured series rises
 +0.361 decades per CF<sub>2</sub> across the authors' full C4–C16 carboxylate
 range (+0.44 over the nCF 5–8 window used in Table 6), against +0.78 for the
 spLFER, which inherits +0.77 per CF<sub>2</sub> from the log K<sub>OW</sub>
@@ -692,7 +799,7 @@ line and compared them with the prediction from their Eq. 17. Reconstructing
 that comparison from their published composition and parameters reproduces
 their stated figures exactly:
 
-**Table 7.** Qin's Eq. 17 against Qin's own measured D<sub>cell/w</sub>.
+**Table 8.** Qin's Eq. 17 against Qin's own measured D<sub>cell/w</sub>.
 
 | | predicted | measured | Δ log | predicted/measured | % of log value |
 |---|---|---|---|---|---|
@@ -800,8 +907,9 @@ themselves propose. Adding a phospholipid sink improves nothing.
 
 **The accounting is therefore sound, and the failure is specific to the in
 vitro system** — which has more phases, a vessel-wall term that is poorly
-constrained, cell volumes nobody measured, and a ligand:protein regime in which
-the central linearity assumption does not hold.
+constrained, cell compositions the studies themselves did not measure, and a
+ligand:protein regime in which the central linearity assumption does not
+hold.
 
 *(Figure 3: `figures/fig19_fischer_serum_mbm.png`.)*
 
@@ -910,17 +1018,26 @@ the field.
 3. Every substitution of a best-available measured parameter worsens the fit.
    Albumin is the most influential term in the balance and is not the source of
    the error.
-4. The residual separates into a level component and a chain-length component.
-   The latter is governed by the ratio of cell to albumin distribution ratios;
-   the two models get opposite halves of this right.
-5. All three assays operate three to four orders of magnitude above the
+4. The residual separates into a level component and a chain-length
+   component, and the two are governed by different classes of parameter: the
+   chain-length behaviour by the partition coefficients, the level by the
+   volumes and compositions. Each is invariant to large changes in the other,
+   so neither error can be diagnosed with the wrong class of parameter.
+5. Measured biopartitioning removes the chain-length error and not the level
+   error. A faithful reconstruction of the measured-parameter linear design is
+   flat over nCF 5–7 and still over-predicts by 5.6×. The cause of the
+   chain-length error is specifically that single-descriptor prediction
+   over-steepens the lipid term: three independent measured series place the
+   lipid–water chain-length slope at +0.36 to +0.48 decades per CF₂ against
+   +0.78 predicted.
+6. All three assays operate three to four orders of magnitude above the
    physiological ligand:protein ratio, with albumin between 20% and 99%
    saturated. The linearity assumption underlying spLFER-based balances does
    not hold in this regime.
-6. The same formalism applied to human serum reproduces measured whole-serum
+7. The same formalism applied to human serum reproduces measured whole-serum
    partitioning for 26 PFAS with no fitted parameter. The accounting is sound;
    the in vitro system is the problem.
-7. Consequently, better in vitro dosimetry yields a better description of the
+8. Consequently, better in vitro dosimetry yields a better description of the
    experiment, but not by itself a better oral equivalent dose. Closing that
    gap requires assays run nearer the physiological binding regime, not better
    models of assays that are not.
@@ -1030,8 +1147,8 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     [3], whose Table 2 and Figure A1 regression are the values used.
 
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10. Bibliographic record and
-abstract verified, full text not retrieved: 12, 17. Bibliographic record
+material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12. Bibliographic record and
+abstract verified, full text not retrieved: 17. Bibliographic record
 verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
 values used: 20. Cited as methodological context from the reference list of
 ref. 1, not independently retrieved: 13, 14, 15, 16.
@@ -1044,4 +1161,9 @@ sorption term; ref. [2] establishes that no such term existed in v1.0 and that
 the 3.5% convention is not in the published record (§3.1, §9.3). Only the
 main text of ref. [2] was read; its supplementary sections S1–S9 were not
 retrieved, and the statements made here rest on its Eq. 1 and the surrounding
-model description, which are in the main text.
+model description, which are in the main text. Ref. [12] was read in full; only
+its main text was retrieved, and the cell and medium compositions used here are
+from its Table 2, not its Tables S1–S2, which carry the full set of cell lines
+and assays. The AREc32 provenance is from Cellosaurus (CVCL_1D32) and Wang,
+Hayes & Wolf 2006, not from ref. [1], which does not state the line's
+derivation.
