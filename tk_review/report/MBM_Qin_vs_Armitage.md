@@ -47,7 +47,7 @@ them contributed."*
 
 | | httk `armitage.R` | Armitage 2021 SI | effect |
 |---|---|---|---|
-| cell composition | one generic cell, membrane lipid **0.04** | **cell-line specific**; the HepG2-derived AREc2 line is 0.00046 / **0.00414** / 0.0514 / 0.944 (Table S4) | **9.1×** |
+| cell composition | one generic cell, membrane lipid **0.04** | **cell-line specific**; the AREc2 line is 0.00046 / **0.00414** / 0.0514 / 0.944 (Table S5). AREc2 is AREc32, which is **MCF7-derived**, not hepatic — see §17 | **9.1×** |
 | albumin spLFER | `0.71 logKow + 0.42` | piecewise `1.08 logKow − 0.70` / `0.37 logKow + 2.56` | 1.6× |
 | ionisation offsets | d_OW = d_PlW = 3.5 | **3.1** | small |
 | anionic phospholipids, lysosomes | present | absent from the published model | small |
@@ -290,9 +290,14 @@ the concentration and fraction axes.
   the paper is now in hand and §2.2 gives DMEM + 10% FBS with no serum
   reduction at exposure, so the coded value is right. What it also gives is a
   **3% ethanol** co-solvent (§2.1, §2.4) — see §15.
-- AREc2's water content of 0.944 is high for a cell and its protein of 0.0514
-  low; it is used because it is the composition Armitage's own model was run
-  with for a HepG2-derived line, not because it is independently plausible.
+- ~~AREc2's water content of 0.944 is high for a cell and its protein of
+  0.0514 low; it is used because it is the composition Armitage's own model was
+  run with for a HepG2-derived line, not because it is independently
+  plausible.~~ **Half resolved, half wrong, 2026-10-22** (§17): the suspicion
+  about the numbers was right — Fischer et al. 2017 measured HepG2 at 87.35%
+  water, 9.46% protein, 3.19% lipid — but the justification was wrong. AREc2 is
+  AREc32, an **MCF7-derived** line (Cellosaurus CVCL_1D32), so it is not a
+  hepatic composition at all and was never the closest published match.
 
 ## 10. The fraction-of-dose axis, and the project spreadsheet on it
 
@@ -560,11 +565,14 @@ All three move dose into the cell. No partition coefficient fixes an
 over-prediction here, because the measured values do not point that way.
 
 **The cell volume halves it, and no longer closes it.** Rerunning the published
-models at 3.04 pL/cell (project sheet, HepG2) instead of 10 ng/cell (AREc2)
-gives Qin 7.52 → 3.71× and Armitage 3.87 → 1.84×. It is still the one knob that
-rescales every compound by the same factor, which is what a level offset
-independent of chain length requires — and the assays modelled are HepG2 and
-HepaRG, not AREc2. But before §15 this substitution reached 1.60× and 1.08×,
+models at 3.04 pL/cell instead of 10 ng/cell (AREc2) gives Qin 7.52 → 3.71×
+and Armitage 3.87 → 1.84×. It is still the one knob that rescales every
+compound by the same factor, which is what a level offset independent of chain
+length requires — and the assays modelled are HepG2 and HepaRG, not AREc2.
+**But see §17: that 3.04 pL is Fischer et al. 2017's measurement, and Fischer
+measured the composition of the same cells in the same table. Taking the
+volume while keeping Armitage's composition uses half of one measurement;
+taking it whole gives 9.10×, not 1.84×.** But before §15 this substitution reached 1.60× and 1.08×,
 i.e. it looked like the whole answer. On the corrected medium it accounts for
 about half the residual in log terms and leaves a 1.8–3.7× over-prediction
 standing. None of the three uptake papers reports its cell volume, so that part
@@ -680,9 +688,10 @@ One DMSO point is *not* about partitioning. HepaRG are differentiated in 1.7%
 DMSO for twelve days and held there — that is what makes them hepatocyte-like,
 and it also loads them with triglyceride, which the companion paper (Louisse
 et al. 2023) measures as an endpoint. Both models run Fragki on the **AREc2**
-composition, a HepG2-derived reporter line with membrane lipid 0.00414, because
-that is the only liver-line composition Armitage's SI publishes. A
-differentiated, DMSO-matured HepaRG is a different cell. That error is in the
+composition, with membrane lipid 0.00414, because that is the composition
+Armitage's SI publishes for its own reporter-line simulations. It is not a
+liver-line composition: AREc2 is AREc32, which is MCF7-derived (§17). A
+differentiated, DMSO-matured HepaRG is a different cell again. That error is in the
 cell term, which §13–14 already name as where the residual lives — so the two
 errors are independent and stack.
 
@@ -887,3 +896,128 @@ slope**, not either coefficient alone. The existing ledger for the cell term —
 Qin's Table 2 at +0.177, the uptake inversion at +0.407, Ryu 2024's
 whole-tissue f_unbound at +0.46 to +0.53, and the two models at +0.515 and
 +0.782 — brackets it between roughly +0.4 and +0.55 without pinning it.
+
+---
+
+## 17. Five papers read at source, and what they overturn
+
+All five remaining sources are now in hand: Chen 2025's SI, Qin 2023 in full,
+Proença 2021, Armitage 2014 and Fischer 2017. They settle four open items and
+overturn two things this memo and the review had asserted.
+
+### 17.1 Settled
+
+**Chen's K_MW basis.** SI eq S1 defines it as
+`(C_spike − C_w)·V_w / (C_w · M_PL)` with a unit conversion applied to make it
+dimensionless, and the TRANSIL kit supplies the membrane as a stated *volume*
+(0.067–2.166 µL per 500 µL tube), so mass and volume bases coincide at
+ρ_lipid ≈ 1 g/cm³. That is the basis Armitage's D_MW needs and the one our
+V_cells conversion already assumes. Residual basis error ≤ 0.03 log units.
+Reproducing their own `lm()` returns +0.361 (R² 0.983) for carboxylates and
++0.374 (R² 0.985) for sulfonates against their stated +0.361 ± 0.014 and
++0.374 ± 0.019, so the series is transcribed right. The one live caveat is pH:
+reported at 7.0, applied at 7.4.
+
+**Qin's equations.** Eq. 17 normalises by the *sorptive* volume V_prot+lip, not
+V_i — Table 2's units say `L_w/L_cell,prot+lip`. Substituted into Eq. 20 that
+gives exactly the form coded here, so the implementation is faithful. Eq. 20
+*does* carry a cell-water term, as a non-sorbing phase at D = 1 pooled with the
+medium water rather than inside D_cell/w; added, and it moves the Qin bias
+7.517× → 7.513×. The §8 statement that there is "no cell-water term" was
+imprecise: the contrast with Henneberger is about the numerator, not the
+denominator. D_SP/w = D_non-specific is confirmed verbatim. Qin's own stated
+ρ_BSA = 1.36 kg/L and M = 66,463 Da give 20,462 µM, which our independently
+reconstructed 1/0.733 = 1.364 matches to 0.3%.
+
+**Armitage's cell protein.** v1.0's Eq. 1 has one lumped cell phase,
+`K_CW = K_OW · f_L`, f_L the "volume fraction of lipid equivalents (pseudo-
+octanol content)", assumed 0.05 and varied 0.01–0.05. There is no protein term,
+no membrane-lipid term and no cell-water term, so v2.0's composition is a new
+construction and the 3.5% cannot be recovered from the earlier record. v1.0
+also excludes PFAS by its own statement ("intended for neutral organic
+chemicals... only... if the compound is predominantly neutral at the test pH"),
+with the extension to charged IOCs on its own future-work list. And the
+undocumented 0.035 carries ≤ 0.25% of the v2.0 cell term at its own value, so
+nothing here is sensitive to the number — only to the octanol-equivalence
+choice it encodes, which is worth 1.4–3.4× on the cell sink.
+
+**Qin's model against Qin's own measurement.** Their Eq. 17 run on their own
+Table A5 composition reproduces their stated agreement figures exactly, and
+those figures are percentages of the *log* distribution ratio: PFOA +13%,
+PFHxS +10%, PFOS +16%, PFBA −36%. On the quantity entering the balance that is
+a 2.0–4.5× over-prediction for the three hydrophobic PFAS and 8.5× under for
+PFBA. The residual is ordered by chain length, +0.34 per CF₂ — the same sign
+and nearly the same size as the drift §16 found in the Armitage cell term, in a
+model whose cell parameters are measured. So the chain-length problem in the
+cell term is not an artefact of the spLFER approach.
+
+### 17.2 Overturned
+
+**AREc2 is not hepatic.** It is AREc32, which is MCF7-derived (Cellosaurus
+CVCL_1D32; Wang, Hayes & Wolf 2006). The memo and the code said "HepG2-derived"
+and used it as "the closest published match for HepG2/HepaRG". It is a
+breast-carcinoma composition. Fischer et al. 2017 Table 2 measured the line
+that two of the three datasets actually use — HepG2 (ARE-bla): 87.35% water,
+9.46% protein, 3.19% lipid, 3.04 pg/cell. Armitage's *other* entry, for the
+PPARγ line, reproduces Fischer's measured HEK293 numbers to the digits shown,
+which is evidently where it came from.
+
+**The cell-volume substitution of §14 used half a measurement.** The 3.04 pL
+that took Armitage 3.87× → 1.84× is Fischer's, and Fischer measured the
+composition of the same cells in the same table. Taken whole the substitution
+gives 9.10×: the measured hepatic lipid fraction is 6.9× larger while the
+volume is only 3.3× smaller, so the cell sink roughly doubles. §14's conclusion
+that the cell volume is the one knob whose best measurement improves the fit
+does not hold. Every best-available measurement worsens it, without exception —
+which makes the negative result stronger, not weaker.
+
+**And the same error pattern invalidated the review's §6.7 level result.**
+Substituting Chen's membrane coefficient into Armitage's structure, where cell
+protein sorbs by octanol-equivalence and therefore contributes nothing,
+collapses the cell sink to its water term and produces an apparent 0.40×. The
+Escher-school design is not that. Fischer's eq 4 is
+
+```
+D_cell/w = VF_prot,cell · D_BSA/w + VF_lip,cell · D_lip/w + VF_w,cell
+```
+
+— one protein surrogate used everywhere, cell water included, normalised by
+V_cell, no plastic term, and the medium protein volume is measured *total*
+protein (0.520% at 10% d-FBS, 3.0× the albumin volume). Built faithfully with
+measured PFAS coefficients it gives **5.56×, not 0.40×**.
+
+### 17.3 What survives, and is now better supported
+
+**Measured parameters fix the slope and not the level.** The faithful form runs
++0.316 → −0.100 overall and −0.007 over nCF 5–7, i.e. flat, while
+over-predicting by 5.56×. Three independent measured lipid series agree on why:
+Chen's SSLM gives +0.361 (carboxylates) and +0.374 (sulfonates), and Ebert 2020
+liposomes via Qin's Figure A1 give +0.476 and +0.38, against +0.78 for the
+spLFER. Two labs, two lipid preparations, two analytical routes.
+
+**And the two failures separate cleanly.** Across a 6.9× change in cell lipid,
+a 3.3× change in cell volume and a 3× change in medium protein, the slope does
+not move; the level moves 5×. Conversely the slope tracks the coefficients.
+
+> The chain-length behaviour is a property of the partition coefficients.
+> The level is a property of the volumes and compositions.
+
+Neither error can be diagnosed with the wrong class of parameter, which is why
+every coefficient substitution in §12–13 failed to close the level and why
+§14's volume substitution could not touch the slope.
+
+### 17.4 Credit where it is due
+
+Proença et al. 2021 state three of this memo's findings before it. On albumin:
+anionic sorption "cannot be predicted with a simple partition since saturation
+of albumin binding sites for these chemicals occurs at concentrations relevant
+for toxicity testing" (citing Henneberger et al. 2020), with organic acids
+having "only one binding site". On lipid: "a bulk solvent such as octanol is
+not a good surrogate for anisotropic lipid bilayer membranes, especially for
+partitioning of ionised chemicals". On scope: "the main limitation remains
+accurate QSPRs to predict partitioning of heavily charged chemicals". Their
+own five-model simulation also puts Fischer above Armitage on C_cell and
+attributes it to "the cellular compartments added (i.e. just lipid or protein
+and lipid) and QSPRs used" — the ordering and the attribution reproduced here.
+And they name the gap this work addresses: "especially for the generic models
+more extensive experimental validation is long overdue."

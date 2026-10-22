@@ -1,0 +1,687 @@
+                                                                                                                                                      Article
+
+                                                                                                                                            pubs.acs.org/est
+
+
+
+
+Application of Mass Balance Models and the Chemical Activity
+Concept To Facilitate the Use of in Vitro Toxicity Data for Risk
+Assessment
+James M. Armitage,*,† Frank Wania,† and Jon A. Arnot†,§
+†
+ Department of Physical and Environmental Sciences, University of Toronto Scarborough, 1265 Military Trail, Toronto, Ontario
+ M1C 1A4, Canada
+
+
+
+
+                                                                                                                                                                     Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+§
+ ARC Arnot Research and Consulting, Inc., 36 Sproat Avenue, Toronto, Ontario M4M 1W4, Canada
+    *
+    S Supporting Information
+
+
+
+    ABSTRACT: Practical, ﬁnancial, and ethical considerations
+    related to conducting extensive animal testing have resulted in
+    various initiatives to promote and expand the use of in vitro
+    testing data for chemical evaluations. Nominal concentrations
+    in the aqueous phase corresponding to an eﬀect (or biological
+    activity) are commonly reported and used to characterize
+    toxicity (or biological response). However, the true concen-
+    tration in the aqueous phase can be substantially diﬀerent from
+    the nominal. To support in vitro test design and aid the interpretation of in vitro toxicity data, we developed a mass balance
+    model that can be parametrized and applied to represent typical in vitro test systems. The model calculates the mass distribution,
+    freely dissolved concentrations, and cell/tissue concentrations corresponding to the initial nominal concentration and
+    experimental conditions speciﬁed by the user. Chemical activity, a metric which can be used to assess the potential for baseline
+    toxicity to occur, is also calculated. The model is ﬁrst applied to a set of hypothetical chemicals to illustrate the degree to which
+    test conditions (e.g., presence or absence of serum) inﬂuence the distribution of the chemical in the test system. The model is
+    then applied to set of 1194 real substances (predominantly from the ToxCast chemical database) to calculate the potential range
+    of concentrations and chemical activities under assumed test conditions. The model demonstrates how both concentrations and
+    chemical activities can vary by orders of magnitude for the same nominal concentration.
+
+
+■    INTRODUCTION
+Reliable and representative toxicity and eﬀects data are a
+                                                                           concentration at which biological activity related to a response
+                                                                           following exposure is 50% of its maximum) are being used to
+prerequisite for conducting chemical risk assessment (RA).                 derive exposure metrics applicable to the whole organism (e.g.,
+However, only a small proportion of the many thousands of                  oral equivalent doses) through extrapolation techniques.12,14,16
+chemicals in use can be considered well characterized with                 Complementary methods to translate other in vitro toxicity
+respect to toxicity and potential to cause adverse eﬀects.1 For            data (e.g., EC50s) into metrics amenable to the needs of RA are
+ecological risk assessment (ERA), wildlife exposure and eﬀects             required, as reliance on such data will increase in the future.
+data are often compared using external concentration metrics                  In vitro test systems are multicomponent environments, and
+(e.g., LC50s derived from aquatic toxicity tests; LD50s derived            diﬀerences in chemical behavior in these systems have long
+from dietary exposure studies) and in some cases on a whole                been recognized as important factors inﬂuencing re-
+body or tissue-speciﬁc basis.2,3 For human health risk                     sponses.17−30 In particular, the dependence of cytotoxicity on
+assessment (HHRA), estimates of total daily intake rates                   the serum content of the bulk in vitro medium is well-
+(exposures) are compared with thresholds of toxicological                  established. This dependency follows from the reduction in
+concern (TTC) or reference doses based on extrapolations of                freely dissolved concentration of chemical due to sorption to
+appropriate dose-based end points (e.g., LD50s derived from                plasma proteins and other biological macromolecules (e.g.,
+dietary exposure studies).4−7 Because of the practical, ﬁnancial,          lipids) present in the medium. In other words, the total
+and ethical considerations related to conducting extensive                 assumed (i.e., nominal, unmeasured) concentration in the
+animal testing, initiatives to promote and expand the use of in            medium is not an adequate indicator of exposure when
+vitro toxicity testing are gaining prominence (e.g., the US EPA’s          interpreting and comparing in vitro toxicity data for diﬀerent
+Tox21 (http://epa.gov/ncct/Tox21) and ToxCast (www.epa.
+gov/ncct/toxcast) programs; the EU sixth Framework Pro-                    Received: April 21, 2014
+gramme project OSIRIS; www.ufz.de/osiris/; the CellSens                    Revised: July 10, 2014
+project www.ceﬁc-lri.org/projects).8−16 For example, in vitro              Accepted: July 11, 2014
+concentration metrics termed Activity Concentrations (AC50,                Published: July 11, 2014
+
+                               © 2014 American Chemical Society     9770                 dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                         Article
+
+
+
+
+                                                                                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+Figure 1. Conceptual representation of an in vitro test system. DMSO: dimethyl sulfoxide, an example of a cosolvent. OM: organic matter.
+
+chemicals and between diﬀerent in vitro systems. As succinctly
+stated by Gülden and Seibert,19 “concentration-eﬀect relation-
+                                                                              ■    MATERIALS AND METHODS
+                                                                              An in vitro test system is represented conceptually in Figure 1.
+ships determined in vitro depend not only on the activity of the              The exposure scenario considered here is a single addition of
+chemical compounds or the sensitivity of the targets but also on              chemical to the test system (e.g., via “solvent spiking”), which
+the distribution of compounds in the in vitro systems”. Various               yields a nominal test concentration based on the amount of
+factors inﬂuencing chemical distribution in an in vitro test                  chemical added (mol) and the volume of bulk medium (L). It
+system have been explored by these authors and others. Based                  does not refer to passive dosing approaches which use sorbent
+on this research, a partitioning-based approach for extrapolating             materials (e.g., silicone O-rings41,42) loaded with chemical to
+                                                                              supply the bulk medium with test compounds. As illustrated,
+in vitro concentration data to equivalent human serum                         the mass of chemical added to the bulk medium is expected to
+concentrations has been developed.31,32 Partitioning-based                    distribute between the key phases in the system (i.e., aqueous
+approaches have also been applied to characterize the behavior                phase, head space, cells/tissue) according to the partitioning
+of chemicals in microsomal incubation systems and their                       properties of the chemical. Figure 1 also illustrates that serum
+sorption to hepatocytes suspended in culture medium.33,34 The                 constituents (i.e., plasma proteins and lipids) and dissolved
+ability to conﬁdently relate nominal (assumed) concentrations                 organic matter (DOM) may be present in the bulk medium,
+to cell/tissue concentrations would clearly be valuable for high-             both of which can inﬂuence the distribution of the chemical in
+throughput screening (HTS) as well.                                           the test system. DOM could be present unintentionally (e.g.,
+   Chemical activity, its relationship to chemical concentration,             cell exudates) or intentionally (e.g., other types of proteins
+                                                                              present in the cell culture medium). Besides partitioning
+and its use to characterize baseline toxicity (narcosis) were ﬁrst
+                                                                              processes, degradation in the aqueous phase or within the cells/
+described by Ferguson over 70 years ago.35 More recently, the                 tissues may also occur. Sorption to the vessel walls has also
+utility of chemical activity for distinguishing between chemicals             been observed but is dependent on the type of material used
+exerting baseline toxicity and more speciﬁc modes of action and               and experimental conditions.29,43,44 The approaches applied to
+for applications in RA has been explored.36−40 Just as with in                characterize the distribution of neutral organic chemicals in in
+vivo toxicity data, the ability to categorize in vitro toxicity test          vitro test systems are presented in the following sections.
+results in terms of mode of action would be useful. Accordingly,                 Equilibrium Distribution Model. The model assumes
+the main objective of this paper is to develop a generic mass                 instantaneous equilibrium partitioning between the various
+balance modeling approach to estimate the distribution of                     phases present in the in vitro test system. The nominal test
+                                                                              concentration is converted to total amount (MT, mol) and then
+neutral organic chemicals in in vitro test systems and the
+                                                                              used along with phase volumes and partition coeﬃcients to
+corresponding chemical activity. Note that chemical activity is a             calculate the freely dissolved aqueous concentration in the test
+well-deﬁned metric rooted in thermodynamic considerations,                    system (CW, in mol L−1, M) as
+whereas biological activity and Activity Concentrations are
+                                                                                                                  MT
+generic terms for characterizing any sort of biological response                  CW =
+                                                                                         KAW VA + VW + K SaW VSa + K SlW VSl + KDW VD + K CW VC
+to chemical exposure. The model is ﬁrst applied to a set of
+                                                                                                                                                                  (1)
+hypothetical chemicals to illustrate the signiﬁcance of chemical
+distribution in a typical in vitro test system across a range of              where KAW is the air−water partition coeﬃcient, VA is the
+                                                                              volume of head space, VW is the volume of medium (aqueous
+partitioning properties. The model is then applied to chemicals               phase only), KSaW is the serum albumin−water partition
+being used in high-throughput in vitro bioassay and toxicity                  coeﬃcient, VSa is the volume of serum albumin, KSlW is the
+screening to illustrate how both mass balance models and the                  serum lipid−water partition coeﬃcient, VSl is the volume of
+chemical activity concept can potentially be used to help                     serum lipids, KDW is the dissolved organic matter (DOM)−
+interpret and apply such results for HTS and prioritization.                  water partition coeﬃcient, VD is the volume of DOM, KCW is
+                                                                       9771                   dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                      Article
+
+the cell/tissue-water partition coeﬃcient, and VC is the volume             modeling approach is that the cells/tissues exhibit no growth
+of cells/tissue. All partition coeﬃcients are dimensionless (i.e.,          during the exposure period. As the experimental scenario
+L L−1), and all phase volumes are expressed in liters (L) for the           considered here is static (i.e., ﬁxed amount of chemical added
+calculations. In the absence of user-speciﬁed values, KCW is                to system, not constant input), steady-state modeling
+estimated as KOW multiplied by the volume fraction of lipid                 approaches cannot be applied. The treatment of the in vitro
+equivalents (i.e., pseudo-octanol content) ( f L),45 and serum              test system is thus analogous to a Level I multimedia
+albumin−water partitioning (KSaW) is based on the data analysis             environmental fate model.45
+of Endo and Goss.46 It is assumed that interactions with serum                 Chemical Activity Concept and Baseline Toxicity. For a
+albumin occur according to a linear sorption isotherm (i.e., the            chemical dissolved in water, the chemical activity (a; unitless) is
+potential for saturation at high substrate concentrations is not            calculated as38
+considered). Methods for estimating other partition coeﬃcients
+are described in the Supporting Information (section S1). If a                      CW
+                                                                               a=    L
+phase is not present in the system, its volume can be set to zero.                  SW                                                                         (3)
+The model is intended for neutral organic chemicals and should
+
+
+
+
+                                                                                                                                                                       Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+only be applied to ionogenic organic chemicals (IOCs) if the                where SLW is the subcooled liquid water solubility limit if the
+compound is predominantly neutral at the test pH.                           chemical is a solid at the test system temperature or the water
+   Once calculated, CW is then compared to the water solubility             solubility limit if the chemical is a liquid. If the chemical is a
+limit of the chemical (SW). If the water solubility limit is                solid at the test system temperature, SLW is calculated using the
+exceeded (i.e., CW > SW), the excess is assumed to precipitate              water solubility of the solid (SSW) and the fugacity ratio (F).37,45
+out of solution (i.e., be unavailable to partition into any other           Under this approach, the chemical activity of a solid will always
+phase) and SW is used to recalculate the mass of chemical freely            be less than 1 even at the water solubility limit because SLW >
+dissolved in the test system (MW) along with the concen-                    SSW, as determined by F. At equilibrium, the chemical activity in
+trations of chemical associated with all other phases. If the               the cell/tissue (and all other phases) is equivalent to the
+water solubility is not exceeded, CW is used for all calculations           chemical activity in the aqueous phase. The main uncertainties
+as                                                                          in chemical activity calculations stem from potential errors in
+                                                                            water solubility limits, melting point, and entropies of fusion.
+   MW = (C W or S W )VW ,      C X = (C W or S W )KXW ,                     See the Supporting Information (section S3) for details. All
+      MX = C XVX                                              (2)           chemicals are expected to exert baseline toxicity regardless of
+                                                                            whether or not other modes of action are exhibited. For the
+where CX, KXW, MX, and VX are chemical concentrations,                      purposes of this exercise, it is assumed that a chemical activity
+partition coeﬃcients with water, masses of chemicals, and                   of 0.01 or higher indicates the potential for baseline toxicity to
+volumes for other phases in the system. As justiﬁed in the                  occur.36−40 In an in vitro cell assay, baseline toxicity is assumed
+Supporting Information (section S2), the potential inﬂuence of              to reﬂect disruption of membrane integrity and functioning
+cosolvents (e.g., dimethyl sulfoxide, DMSO) on SW is ignored.               (e.g., loss of insular capacity).52
+Adsorption to the vessel walls is also ignored in the current                  Model Parametrization and Application. The model is
+calculations. The potential inﬂuence of adsorption to the vessel            implemented in Microsoft Excel 2010 using the Visual Basic for
+walls is likely to be most important in bulk media with very low            Applications (VBA) programming language and is provided as
+serum volume fractions (VFs), particularly when concen-                     Supporting Information. The tool can be parametrized for any
+trations exceed the water solubility limit. For example, the                in vitro test system as long as estimated volumes and
+estimated fraction of brominated diphenyl ether (BDE-47)                    compositions of the various components are available. For
+associated with vessel walls was approximately 25−40% in                    the current study, the model was parametrized to represent a 25
+experiments with no serum added, approximately 15% with a                   cm2 cell culture ﬂask with a total volume of 50 mL. All
+serum VF of 0.01 and negligible with a serum VF of 0.10.43                  calculations assume a temperature of 37 °C and an ionic
+Available data suggests that polymer−water partition coef-                  strength of 0.15 M. The total volume of the bulk medium (i.e.,
+ﬁcients (log KPW, volumetric) are substantially lower than log              aqueous phase, serum albumin/lipids, DOM) excluding cells/
+KOW (and hence lipid−water partition coeﬃcients).47−51 These                tissues was set to 5 mL. The mass of cells/tissue was assumed
+data are consistent with the relationship between serum VF and              to be 3 mg, corresponding to a volume of 3 μL given a density
+mass fraction sorbed to vessel wall described above (i.e.,                  of 1 kg L−1. The volume of head space (VA) is then the
+chemicals have greater aﬃnity for serum lipids than the vessel              remainder (i.e., ∼45 mL). The model can be reparameterized
+walls). Additional studies are required to validate a generic               to simulate in vitro tests conducted in well plates commonly
+approach to quantify this phenomenon under realistic in vitro               used for HTS but would require the user to estimate an
+test conditions. Exposure duration, contact surface area, and the           appropriate volume of head space above the medium.
+relative sorption capacities of the vessel material and bulk                   The volumes of serum albumin and serum lipids are
+medium are key variables. The implications of ignoring                      calculated from the user-deﬁned serum VF in the bulk medium,
+sorption to the vessel walls are discussed following presentation           concentrations of albumin and lipids in the serum (g L−1), and
+of the model output.                                                        densities of 1.36 and 1 kg L−1 for serum albumin and lipids,
+   The modeling approach implicitly assumes no degradation in               respectively.46,53 Calculations presented here assume serum
+all phases, and accordingly, will overestimate masses and                   albumin and lipid concentrations of 24 and 1.9 g L−1
+concentrations of chemicals highly prone to degradation in the              respectively, representative values for fetal bovine serum
+test system. The potential bias is particularly relevant for                (FBS).32 For reference, serum albumin and lipid concentrations
+chemicals that degrade quickly (e.g., via hydrolysis) and for               in human serum were reported as 38 and 7.2 g L−1, respectively,
+tests using cells/tissues with a high capacity to biotransform              in the same publication. The bulk medium was assumed to
+chemicals (e.g., hepatocytes). Another assumption of the                    contain negligible amounts of DOM (i.e., VDOM = 0 mL).
+                                                                     9772                  dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                         Article
+
+Assuming f L = 0.05 and the VF of FBS in the bulk medium is                    limitations for the proposed model are summarized in the
+0.10, the model parametrization described above corresponds                    Supporting Information (section S6).
+to a test system with 3.0 × 10−5 mL cell/tissue lipid per mL
+bulk medium and 1.8 × 10−3 mL serum albumin and 1.8 × 10−4
+mL serum lipid per mL bulk medium, respectively. Assuming f L
+                                                                               ■    RESULTS AND DISCUSSION
+                                                                                  Generic Model Application. Figure 2 presents the MDs,
+= 0.01, the test system has 6.0 × 10−6 mL cell/tissue lipid per                EFs, and DFs for the set of hypothetical chemicals as a function
+mL bulk medium. These values are broadly consistent with the                   of log KOW and log KAW assuming there is no serum present in
+phase VFs reported in an empirical study by Gülden et al.32                   the bulk medium and FBS is present at a VF of 0.10, i.e.,
+  Two illustrative applications of the model were conducted.                   common cell/tissue in vitro test conditions. Note that f L of the
+The model was ﬁrst applied to a set of hypothetical chemicals                  cells/tissue was assumed to be 0.05 for the results displayed in
+with log KOW ranging from 1 to 10 and log KAW ranging from                     Figure 2. The mass distribution plots identify partitioning
+−4 to 5. Water solubility limits were estimated using KOW and                  property combinations which result in two-thirds of the total
+an assumed solubility in octanol (SO), as detailed in the                      mass in the head space, bulk medium (i.e., dissolved phase of
+Supporting Information (section S4). The VF of serum in the                    medium plus serum albumin and lipids, if present), and cells/
+
+
+
+
+                                                                                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+bulk medium was varied from 0−0.20, and f L was assumed to                     tissues, respectively. To help put this application into context,
+range between 0.01−0.05. The main purpose of this model                        partitioning properties for real chemicals are superimposed in
+application is to highlight the relationship between partitioning              Figure 2.
+properties and the behavior of neutral organic chemicals in the                   As illustrated in Figure 2, the head space in the 50 mL culture
+test system under diﬀerent conditions. The behavior is                         ﬂask is the dominant phase for chemicals with log KAW > −0.5
+characterized by the mass distribution (MD), the cell/tissue                   and log KOW < 5 under the current model assumptions. As KAW
+enrichment factor (EF), and the nominal concentration                          decreases and/or hydrophobicity increases (i.e., log KOW↑), the
+depletion factor (DF). EF and DF are calculated as                             cells/tissues or bulk medium become the main reservoirs. A key
+                        ⎛ C ⎞−1                                                result shown in the MD panels of Figure 2 is the dominance of
+        CC                                                                     serum albumin and lipids over cell/tissue lipids as a mass
+   EF =       and DF = ⎜⎜ W ⎟⎟
+        C N,I           ⎝ C N,I ⎠                                (4)
+                                                                               reservoir when FBS is present. This model output is driven by
+                                                                               the VFs of serum albumin and lipids in the test system being
+where CC is the concentration in the cell/tissue (wet weight)                  much greater than the VF of cell/tissue lipids (see the Materials
+and CN,I is the nominal concentration in the test system (0.1                  and Methods) and is generated across the typical range of
+nM for the generic application). The EF metric indicates the                   serum VFs in cell culture medium (0.02−0.20).
+extent to which the nominal concentration reﬂects the                             The presence of serum albumin and lipids also drives the
+exposure-relevant concentration in the cells/tissue at equili-                 diﬀerences in EF displayed in Figure 2. For example, the
+brium, whereas the DF metric indicates the extent to which the                 maximum EF in the absence of serum (1670) approximates the
+nominal concentration reﬂects the bioavailable (i.e., freely                   ratio between the volume of bulk medium (5 mL) and volume
+dissolved) concentration in the bulk medium at equilibrium.                    of cell/tissue (3 μL or 0.003 mL). However, once serum is
+   The second illustrative application of the model used the                   present in the aqueous phase of the test system, the maximum
+physical-chemical properties of 1194 real chemicals; 1181 from                 EF is sensitive to the assumed concentrations (g L−1) and
+the ToxCast chemical database. The procedures for compiling                    partitioning properties of serum albumin and lipids. The value
+required property values and screening for ionization are                      assumed for f L is also a key determinant. For example, the
+described in the Supporting Information (section S5). Only                     maximum EF when f L = 0.05 is 1000, 390, 220, 150, and 120
+neutral organic chemicals and IOCs that are predominantly                      with FBS VFs of 0.01, 0.05, 0.1, 0.15, and 0.20 respectively. If f L
+neutral at pH 7.4 were selected for this application. Note that                is assumed to be 0.01, the maximum EFs are 390, 95, 50, 35,
+unlike for the application to the hypothetical chemicals (see                  and 25 for the same FBS volume fractions. If FBS is replaced
+above), the user is expected to enter measured or estimated                    with human serum (see characteristics reported above), the
+water solubility data. The reactivity of these chemicals in the                maximum EFs when f L = 0.05 fall to 485, 125, 65, 45, and 35,
+test system was not considered (i.e., we assume there is no                    respectively, for the same serum VFs. Both the VF and
+chemical degradation or transformation during the test period).                characteristics of serum present in bulk medium are key
+Model output was generated for nominal test concentrations                     parameters for determining the distribution of neutral organic
+ranging from 1 nM−50 μM, f L from 0.01−0.05, and FBS VFs                       chemicals in in vitro test systems, consistent with empirical
+in serum ranging from 0−0.20. This range of nominal test                       data.19,24,43 Note that whereas the fractional distributions
+concentrations is consistent with data reported for some                       displayed in Figure 2 will not be inﬂuenced by sorption to
+persistent organic pollutants (POPs)43,54−57 and the ToxCast                   vessel walls, the absolute values of EF will be sensitive to this
+in vitro assays.11 Molar concentrations in cells/tissue are                    phenomenon. For example, if 50% of the total mass is sorbed to
+expressed in units more commonly reported for risk assessment                  the vessel walls, the EFs would be 2-fold lower. However, as
+(e.g., ng g−1). The main objective of this application is to                   losses due to this process under typical in vitro test conditions
+demonstrate the potential utility of the model for interpreting                appear to be lower (e.g., 10−20%43,44), other factors (e.g.,
+in vitro toxicity test data and, in particular, the value of relating          diﬀerences in serum VF) are likely to be more important
+nominal test concentrations to cell/tissue concentrations and                  considerations when interpreting in vitro toxicity data. More
+chemical activity. As such, the model is not parametrized to the               systematic data characterizing the relationship between
+various bioassay-speciﬁc test conditions. The purpose of using                 chemical properties, test conditions, and propensity to sorb
+chemicals from the ToxCast database is to explore the potential                to vessel walls are required to explicitly include this process in
+range of partitioning behavior in a generic in vitro test system               the model calculations.
+environment for substances already established to be of                           The main conclusion following from the generic model
+scientiﬁc and regulatory interest. Key assumptions and                         exercise is that in most cases nominal concentrations in the test
+                                                                        9773                  dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                    Article
+
+
+
+
+                                                                                                                                                                     Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+Figure 2. Mass distribution (MD), enrichment factors (EF), and depletion factors (DFs) as a function of partitioning properties in bulk medium
+with no serum and a serum (fetal bovine serum, FBS) volume fraction of 0.10. The approximate partitioning properties of nitrobenzene (NB),
+carbon tetrachloride (CCl4), styrene (St), naphthalene (NaP), phenanthrene (PHE), hexachlorocyclohexanes (HCHs), decane (Dc),
+hexachlorobenzne (HCB), 1-tetradecene (1T), polychlorinated biphenyls (PCBs), brominated ﬂame retardants (BFRs), and decamethylcyclo-
+pentasiloxane (D5) are indicated on the EF panels.
+
+system cannot be used as a proxy for either cell/tissue                    presence and characteristics of serum in the bulk medium is
+concentration or freely dissolved concentrations. Screening and            conﬁrmed as a key confounding factor limiting the com-
+prioritizing chemicals with respect to “potency” or potential              parability of in vitro test data reported using nominal
+hazard using nominal concentrations is also problematic. For               concentrations.
+example, chemicals may cause an “eﬀect” in the in vitro test                  Modeled versus Measured EFs: Persistent Organic
+system at (freely dissolved) concentrations much lower than                Pollutants (POPs). Evaluation of model performance is
+the nominal concentrations (i.e., they are more “potent” than              hindered by a general lack of appropriate measurement data.
+they may appear). While this conclusion is not novel, the                  In typical in vitro toxicity and bioassay studies, only the
+generic application demonstrates that it is true across a wider            nominal test concentrations are reported along with some
+range of partitioning properties than may be appreciated based             details on the cells (e.g., type and initial seeding density) and
+on the available empirical data for individual chemicals. The              medium used (e.g., commercial name, serum type, and VF).
+                                                                    9774                 dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                    Article
+
+Where EFs or cell/tissue concentrations are measured,                     function of log KOW in Figure 3. Cell/tissue concentrations and
+parametrization of the model to precisely match the                       chemical activities calculated for the same scenarios but
+experimental conditions is diﬃcult because some of the
+required details (e.g., mass of cells/tissue, cell/tissue lipid
+content, lipid and serum albumin levels in serum) are
+unavailable. These issues limit the number of opportunities to
+assess model performance; however, some comparisons are still
+possible.
+   The generic model output indicates that EFs in the range of
+50−1000 can be expected for typical hydrophobic POPs (i.e.,
+log KOW > 5), depending on serum type, serum VF, and cell/
+tissue lipid content. EFs of this magnitude tend to exceed
+expectations based on empirical data for BDE-47 (EF = 20−
+125, serum VF = 0−0.10)43 and Aroclor 1254 (mixture of
+
+
+
+
+                                                                                                                                                                     Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+PCBs) (EF = 30−150, serum VF = 0).54 However, the BDE-47
+data cited above were reported after 60 and 120 min exposures,
+which may be insuﬃcient for equilibrium conditions to be
+approached. Additionally, the nominal test concentration in the
+study (1 μM) is approximately 20-fold higher than the
+estimated solubility limit of BDE-47 (50 nM).58 The nominal
+test concentration in the Aroclor 1254 study (∼2 μM) also
+implies supersaturated conditions in the test system, given that
+the commonly assumed “average” water solubility of Aroclor
+1254 is approximately 0.01 μM (3.4 μg/L at 25 °C).59 In other
+words, the actual medium concentration corresponding to the
+observations is lower than the nominal concentration. Generic
+model output using a 1 μM nominal test concentration is
+presented in the Supporting Information (section S7).
+Supersaturation occurs for chemicals with log KOW > 5.5
+(serum VF = 0) or log KOW > 6.5 (serum VF = 0.10), reducing
+modeled EFs approximately 2−500-fold compared to output at                Figure 3. Estimated concentration in cell/tissue (C, wet weight) (top
+a nominal test concentration of 1 nM. Modeled EFs assuming 1              panel) and chemical activity (a) (bottom panel) at equilibrium as a
+and 2 μM nominal concentrations (serum VF = 0) are                        function of log KOW and initial nominal concentration in the test
+                                                                          system assuming assuming f L = 0.05 and initial nominal concen-
+consistent with expectations based on the empirical data for
+                                                                          trations of 50 μM (open circles), 1 μM (gray circles), and 1 nM (black
+chemicals with partitioning properties in the range of                    circles). The volume fraction of fetal bovine serum (FBS) in the bulk
+brominated ﬂame retardants (BFRs) and PCBs but are still                  medium was set to 0.10 for these calculations. The red transparent bar
+elevated compared to the BDE-47 data at serum VF = 0.10.                  in the bottom panel indicates approximate range of chemical activities
+Exposure duration and serum characteristics are plausible                 associated with baseline toxicity (a ≥ 0.01).
+factors underlying these diﬀerences. Additional empirical data
+characterizing the relationship between nominal test concen-              assuming f L = 0.01 are presented in the Supporting Information
+trations and cell/tissue concentration for BDE-47 in three cell           (section S9). Evaporative losses (i.e., extensive partitioning into
+lines (MCF-7, HepG2, PC12) are summarized in the                          head space; see Figure 2) for this model application are also
+Supporting Information (section S8).56 The exposure duration              characterized in the Supporting Information (section S9).
+(3 days) and use of nominal test concentrations below the                    Figure 3 illustrates how equilibrium cell/tissue concen-
+solubility limit make these data more appropriate for evaluating          trations can vary over orders of magnitude for a given nominal
+model performance (although cell and serum characteristics                test concentration solely due to diﬀerences in either hydro-
+were not adequately reported). The measured wet weight                    phobicity (KOW) or volatility (KAW). For example, a nominal
+concentrations correspond to empirical EFs ranging from                   test concentration of 1 nM corresponds to cell/tissue
+approximately 37−62 in MCF-7 cells, 57−84 in HepG2 cells,                 concentrations in the fg g−1 to ng g−1 wet weight range.
+and 130−320 in PC12 cells. The modeled EFs tend to                        Modeled wet weight concentrations scale with the assumed
+overestimate empirical EFs for MCF-7 and underestimate the                value of f L, (i.e., are proportional to the lipid equivalent content
+empirical EFs for the PC12 cell line, whereas the modeled EFs             and, hence, 5-fold lower assuming f L = 0.01 vs 0.05)
+and empirical EFs for the HepG2 cells span a similar range of             (Supporting Information, section S9). The large range in
+values. As shown in the Supporting Information (section S8),              cell/tissue concentrations corresponding to the same nominal
+the modeled EFs are within 1 order of magnitude, and hence,               concentration does not stem from an unrepresentative selection
+performance is deemed acceptable for screening level purposes,            of compounds but simply reﬂects the diversity of estimated
+especially given the uncertainties in the model parametrization           property values exhibited by chemicals selected for high-
+and variability in the empirical data.                                    throughput screening (Supporting Information, Table S2). The
+   Illustrative Model Application Using Partitioning                      ng g−1 concentration range is achieved for chemicals with log
+Properties of Real Chemicals. Cell/tissue concentrations                  KOW ≥ ∼2, as long as the KAW is low enough so that
+and chemical activities calculated for the set of real chemicals          partitioning into the head space is minimal. Model output
+assuming f L = 0.05 and a serum VF of 0.10 (FBS) with nominal             scales proportionally with the amount of chemical added and
+concentrations of 1 nM, 1 μM, and 50 μM are presented as a                mg g−1 wet weight concentrations are possible for hydrophobic
+                                                                   9775                  dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                        Article
+
+chemicals when nominal test concentrations are greater than 1                 selection of appropriate nominal test concentrations expected
+μM. A ﬁgure where modeled cell/tissue concentrations are                      to result in cell/tissue concentrations bracketing the range of
+expressed on a molar basis is presented in the Supporting                     observed or modeled tissue concentrations in diﬀerent
+Information (section S9). Toxicity thresholds based on the                    organisms. Experimental conditions with the potential to
+critical body residue (CBR) approach for baseline toxicity (e.g.,             cause supersaturation of the aqueous phase can also be
+1−10 mmol kg−1)60,61 are also indicated and can be reached by                 identiﬁed and avoided.
+more hydrophobic chemicals once nominal test concentrations                      Relevance for Risk Assessment. The most important
+are greater than 1 μM. The modeled cell/tissue concentrations                 question to address in risk assessment is whether observed (or
+are sensitive to the serum VF, particularly for the more                      predicted) concentrations are likely to result in signiﬁcant
+hydrophobic chemicals, which can exhibit diﬀerences of up to                  adverse eﬀects being experienced by the organism. This
+20-fold over the range of serum VFs considered.                               modeling study reaﬃrms that in vitro toxicity test data
+   The relationship between nominal test concentration and                    expressed in terms of nominal test concentration are of limited
+chemical activity presented in Figure 3 is also highly variable.              value for quantifying risk associated with chemical exposure
+Cell/tissue concentrations and chemical activities span multiple              because nominal concentrations are not the bioavailable/freely
+
+
+
+
+                                                                                                                                                                         Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+orders of magnitude for the same nominal concentration but                    dissolved concentrations in the aqueous phase or the cell/tissue
+are more scattered as a function of log KOW. At a nominal test                concentrations associated with toxicity.17,19,22,27 The distribu-
+concentration of 50 μM and serum VF of 0.10, 47.6% of the                     tion of the chemical in the test system needs to be quantiﬁed.
+test chemicals exhibit modeled chemical activities correspond-                   In addition to prospective applications (i.e., study design),
+ing to levels typically associated with baseline toxicity                     the modeling tool can be applied retrospectively if suﬃcient
+(membrane disruption) (i.e., a ≥ 0.01), whereas at 1 μM, the                  data characterizing the in vitro test system are available. If this is
+proportion falls to 5.9%. Model output is similar assuming f L =              the case, empirical EC50s for the true chemical concentration
+0.01 as opposed to f L = 0.05 (Supporting Information, section                corresponding to the observed eﬀect or biological response
+S9). Chemicals with a ≥ 0.01 at nominal test concentrations of                derived from nominal test concentrations can be related to
+1 μM are generally more hydrophobic (log KOW > 5) and                         corresponding chemical activities. As illustrated in the
+include several brominated ﬂame retardants (e.g., γ-hexabro-                  Supporting Information (section S9), model output generated
+mocyclododecane, BDE-99, BDE-153) and pyrethroids (e.g.,                      by the tool can also be interpreted using the critical body or
+esfenvalerate, permethrin, etofenprox). Note that 0.5% and                    critical cell residue (CBR, CCR) approach.52,60,61,63−65 Either
+12.8% of the chemicals simulated were ﬁrst corrected for                      way, chemical toxicity can be ranked in a more robust manner.
+supersaturation following the initial equilibrium distribution                For example, if two chemicals cause the same (biological)
+calculation (i.e., exhibited CW > SW after the ﬁrst iteration of the          response at the same nominal concentration (e.g., EC50 = 1
+calculation) at nominal test concentrations of 1 and 50 μM,                   nM for both), the perception may be that the chemicals are
+respectively. With no serum present in the bulk medium,                       “equi-toxic” for that particular end point. However, the model
+corrections for supersaturation are required for 3.5% and 25.9%               output in Figure 3 shows that the less hydrophobic chemical of
+of the compounds at nominal test concentrations of 1 and 50                   the two can be the “more toxic” chemical because it elicits the
+μM, respectively. Many of the chemicals included in this case                 response at a lower chemical activity (and cell/tissue
+study are also being tested in high-throughput cell-free assays.              concentration). Given the scatter in the model output for
+Supporting Information (section S9, Table S6) summarizes the                  chemical activity, this pattern should not be assumed to be
+screening results when the cell/tissue volume (and hence                      universal. Exceptions are possible, and discrepancies can arise
+lipids) are assumed to be zero. While the proportion of                       due to errors in physical−chemical property data (e.g., lack of
+chemicals exhibiting supersaturation and a ≥ 0.01 are similar,                internal consistency66).
+the baseline narcosis activity level is not directly applicable                  It may also be possible to use in vitro testing data in
+because the test system does not include the target site, i.e., no            combination with the modeling tool to hypothesize whether or
+cell membranes. Nevertheless, it is still useful to consider cell-            not a chemical exerts baseline toxicity or a more speciﬁc mode
+free assays in terms of concentrations, water solubility limits,              of action. For example, nominal EC50s (growth inhibition)
+and chemical activity.                                                        reported for γ-HCH, dieldrin, and 4-nonylphenol under
+   The sensitivity of the model output to the parametrization of              diﬀerent experimental conditions are screened in the
+the bulk medium highlights the importance of detailed                         Supporting Information (section S10).32 The modeling results
+characterization and reporting of the composition of these                    implicate baseline toxicity as the mode of action in all
+mixtures. Additionally, the model demonstrates how in vitro                   experimental scenarios evaluated (a > 0.01), but this conclusion
+testing requires careful consideration of chemical properties to              is subject to uncertainty given that growth dilution is not
+ensure that tests are conducted below saturation (solubility)                 accounted for in the model calculations.
+limits. The general error when concentrations are above                          Limitations and Future Considerations. The main
+solubility limits is an overestimation of the dissolved                       concern when applying the modeling tool described here is
+(bioavailable) concentration corresponding to the observed                    the dependence on the equilibrium distribution assumption.
+biological response, i.e., underestimation of toxicity. A                     Because of this assumption, the model cannot be applied to
+complicating factor is that the observed biological response                  simulate time-dependent accumulation of chemicals in cells/
+may be a function of the supersaturated condition (i.e.,                      tissues nor can it explicitly account for degradation or cell/
+presence of precipitates) and not a function of a chemical−                   tissue growth during the exposure period.43,44,67 The bias in the
+biological interaction that would occur under standard (not                   equilibrium distribution calculations related to ignoring growth
+supersaturated) conditions.62 Overall, Figure 3 demonstrates                  will depend on the relative rates of uptake into the cells/tissue
+how the proposed modeling approach is valuable as a screening                 versus cell doubling time. Rapid uptake kinetics may be
+tool to be applied prior to conducting in vitro toxicity testing.             suﬃcient to largely counteract growth dilution during cell
+Speciﬁcally, models such as this can be used to guide the                     division. Degradation is not expected to be a key factor for
+                                                                       9776                  dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                             Article
+
+typical POPs but can be anticipated to substantially widen the                      (2) Arnot, J. A.; Armitage, J. M.; McCarty, L. S.; Wania, F.; Cousins,
+range of cell/tissue concentrations and chemical activities                       I. T.; Toose-Reid, L. Toward a consistent evaluative framework for
+corresponding to a given nominal test concentration for more                      POP risk characterization. Environ. Sci. Technol. 2011, 45 (1), 97−103.
+labile chemicals. Future modeling eﬀorts should be dedicated to                     (3) Marvin, C. H.; Tomy, G. T.; Armitage, J. M.; Arnot, J. A.;
+developing and evaluating a dynamic version of the model (e.g.,                   McCarty, L.; Covaci, A.; Palace, V. Hexabromocyclododecane: current
+                                                                                  understanding of chemistry, environmental fate and toxicology and
+a Level IV fugacity-based approach). Diﬀusivity in water and
+                                                                                  implications for global management. Environ. Sci. Technol. 2011, 45
+membrane permeability could potentially be used to estimate                       (20), 8613−8623.
+mass-transfer coeﬃcients characterizing exchange kinetics for                       (4) Kroes, R.; Galli, C.; Munro, I.; Schilter, B.; Tran, L.; Walker, R.;
+the cells/tissues (assuming surface area for exchange can be                      Wurtzen, G. Threshold of toxicological concern for chemical
+estimated reliably). Changes in cell mass (volume) can be                         substances present in the diet: a practical tool for assessing the need
+simulated, and degradation in all compartments can be                             for toxicity testing. Food Chem. Toxicol. 2000, 38 (2−3), 255−312.
+accounted for in the calculations using ﬁrst-order rate constants                   (5) Barlow, S. M.; Kozianowski, G.; Wurtzen, G.; Schlatter, J.
+(or Michaelis−Menten kinetics for biotransformation).                             Threshold of toxicological concern for chemical substances present in
+   While the equilibrium distribution modeling approach is                        the diet. Food Chem. Toxicol. 2001, 39 (9), 893−905.
+
+
+
+
+                                                                                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+subject to limitations, uncertainties, and potential bias, there is                 (6) Kroes, R.; Renwick, A. G.; Cheeseman, M.; Kleiner, J.;
+clearly great value in the application of such tools to (i) plan                  Mangelsdorf, I.; Piersma, A.; Schilter, B.; Schlatter, J.; van
+appropriate in vitro exposure scenarios based on physical−                        Schothorst, F.; Vos, J. G.; Wurtzen, G. Structure-based thresholds of
+chemical properties, (ii) avoid the confounding factor of                         toxicological concern (TTC): guidance for application to substances
+supersaturating the aqueous phase, and (iii) facilitate the                       present at low levels in the diet. Food Chem. Toxicol. 2004, 42 (1), 65−
+                                                                                  83.
+interpretation and use of in vitro toxicity and bioassay data for                   (7) Munro, I. C.; Renwick, A. G.; Danielewska-Nikiel, B. The
+risk assessment and prioritization. Further development,                          threshold of toxicological concern (TTC) in risk assessment. Toxicol.
+application, and evaluation of modeling approaches for in                         Lett. 2008, 180 (2), 151−6.
+vitro test systems is warranted. Modeling eﬀorts to address                         (8) Tice, R. R.; Austin, C. P.; Kavlock, R. J.; Bucher, J. R. Improving
+uncertainty in quantifying the concentrations and chemical                        the human hazard characterization of chemicals: a Tox21 update.
+activities corresponding with in vitro biological responses                       Environ. Health Perspect 2013, 121 (7), 756−65.
+would be greatly assisted by more detailed characterization of                      (9) Dix, D. J.; Houck, K. A.; Martin, M. T.; Richard, A. M.; Setzer, R.
+cell/tissue properties and other experimental conditions used                     W.; Kavlock, R. J. The ToxCast program for prioritizing toxicity testing
+for in vitro toxicity and bioassay testing. Test-speciﬁc                          of environmental chemicals. Toxicol. Sci. 2007, 95 (1), 5−12.
+parameters required by the model (and other similar ones,                           (10) Crump, K. S.; Chen, C.; Louis, T. A. The future use of in vitro
+e.g., ref 32) should be measured and reported to the greatest                     data in risk assessment to set human exposure standards: challenging
+extent possible. More systematic data relating physical−                          problems and familiar solutions. Environ. Health Perspect. 2010, 118
+chemical properties to the propensity to sorb to vessel walls                     (10), 1350−1354.
+                                                                                    (11) Judson, R. S.; Houck, K. A.; Kavlock, R. J.; Knudsen, T. B.;
+under diﬀerent test conditions (e.g., presence/absence of                         Martin, M. T.; Mortensen, H. M.; Reif, D. M.; Rotroff, D. M.; Shah, I.;
+serum) are required. An additional task is to expand the                          Richard, A. M.; Dix, D. J. In vitro screening of environmental
+approach for neutral organic chemicals to ionogenic organic                       chemicals for targeted testing prioritization: the ToxCast project.
+chemicals that are predominantly charged in the test system.
+
+■
+                                                                                  Environ. Health Perspect. 2010, 118 (4), 485−492.
+                                                                                    (12) Rotroff, D. M.; Wetmore, B. A.; Dix, D. J.; Ferguson, S. S.;
+    ASSOCIATED CONTENT                                                            Clewell, H. J.; Houck, K. A.; LeCluyse, E. L.; Andersen, M. E.; Judson,
+*
+S Supporting Information                                                          R. S.; Smith, C. M.; Sochaski, M. A.; Kavlock, R. J.; Boellmann, F.;
+Additional details on the modeling approach, property values,                     Martin, M. T.; Reif, D. M.; Wambaugh, J. F.; Thomas, R. S.
+model inputs, and empirical data. A version of the model is also                  Incorporating human dosimetry and exposure into high-throughput in
+included. This material is available free of charge via the                       vitro toxicity screening. Toxicol. Sci. 2010, 117 (2), 348−358.
+Internet at http://pubs.acs.org.                                                    (13) Knobel, M.; Busser, F. J. M.; Rico-Rico, A.; Kramer, N. I.;
+
+
+■
+                                                                                  Hermens, J. L. M.; Hafner, C.; Tanneberger, K.; Schirmer, K.; Scholz,
+    AUTHOR INFORMATION                                                            S. Predicting adult fish acute lethality with the zebrafish embryo:
+                                                                                  relevance of test duration, endpoints, compound properties, and
+Corresponding Author                                                              exposure concentration analysis. Environ. Sci. Technol. 2012, 46 (17),
+*E-mail: james.armitage@utoronto.ca. Phone: +1 416 287                            9690−9700.
+7277. Fax: +1 416 287 7279.                                                         (14) Wetmore, B. A.; Wambaugh, J. F.; Ferguson, S. S.; Sochaski, M.
+Notes                                                                             A.; Rotroff, D. M.; Freeman, K.; Clewell, H. J.; Dix, D. J.; Andersen, M.
+The authors declare no competing ﬁnancial interest.                               E.; Houck, K. A.; Allen, B.; Judson, R. S.; Singh, R.; Kavlock, R. J.;
+
+■   ACKNOWLEDGMENTS
+We acknowledge partial funding support from the American
+                                                                                  Richard, A. M.; Thomas, R. S. Integration of dosimetry, exposure, and
+                                                                                  high-throughput screening data in chemical toxicity assessment.
+                                                                                  Toxicol. Sci. 2012, 125 (1), 157−174.
+                                                                                    (15) Thomas, R. S.; Philbert, M. A.; Auerbach, S. S.; Wetmore, B. A.;
+Chemistry Council Long-Range Research Initiative and Uni-                         Devito, M. J.; Cote, I.; Rowlands, J. C.; Whelan, M. P.; Hays, S. M.;
+lever. This publication has not been formally reviewed by the                     Andersen, M. E.; Meek, M. E.; Reiter, L. W.; Lambert, J. C.; Clewell,
+American Chemistry Council. The views expressed in this                           H. J.; Stephens, M. L.; Zhao, Q. J.; Wesselkamper, S. C.; Flowers, L.;
+document are solely those of the authors.
+
+■
+                                                                                  Carney, E. W.; Pastoor, T. P.; Petersen, D. D.; Yauk, C. L.; Nong, A.
+                                                                                  Incorporating new technologies into toxicity testing and risk
+    REFERENCES                                                                    assessment: moving from 21st century vision to a data-driven
+ (1) Judson, R.; Richard, A.; Dix, D. J.; Houck, K.; Martin, M.;                  framework. Toxicol. Sci. 2013, 136 (1), 4−18.
+Kavlock, R.; Dellarco, V.; Henry, T.; Holderman, T.; Sayre, P.; Tan, S.;            (16) Judson, R. S.; Kavlock, R. J.; Setzer, R. W.; Hubal, E. A.; Martin,
+Carpenter, T.; Smith, E. The toxicity data landscape for environmental            M. T.; Knudsen, T. B.; Houck, K. A.; Thomas, R. S.; Wetmore, B. A.;
+chemicals. Environ. Health Perspect. 2009, 117 (5), 685−695.                      Dix, D. J. Estimating toxicity-related biological pathway altering doses
+
+                                                                           9777                   dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                                 Article
+
+for high-throughput chemical risk assessment. Chem. Res. Toxicol.                       (36) Mayer, P.; Reichenberg, F. Can highly hydrophobic organic
+2011, 24 (4), 451−62.                                                                 substances cause aquatic baseline toxicity and can they contribute to
+  (17) Gulden, M.; Seibert, H.; Voss, J. U. Inclusion of physicochemical              mixture toxicity? Environ. Toxicol. Chem. 2006, 25 (10), 2639−2644.
+data in quantitative comparisons of in-vitro and in-vivo toxic potencies.               (37) Mackay, D.; Arnot, J. A.; Petkova, E. P.; Wallace, K. B.; Call, D.
+ATLA Altern. Lab. Anim. 1994, 22 (3), 185−192.                                        J.; Brooke, L. T.; Veith, G. D. The physicochemical basis of QSARs for
+  (18) Vaes, W. H. J.; Ramos, E. U.; Verhaar, H. J. M.; Seinen, W.;                   baseline toxicity. SAR QSAR Environ. Res. 2009, 20 (3−4), 393−414.
+Hermens, J. L. M. Measurement of the free concentration using solid-                    (38) Mackay, D.; Arnot, J. A.; Wania, F.; Bailey, R. E. Chemical
+phase microextraction: Binding to protein. Anal. Chem. 1996, 68 (24),                 activity as an integrating concept in environmental assessment and
+4463−4467.                                                                            management of contaminants. Integr. Environ. Assess. Manag. 2011, 7
+  (19) Gulden, M.; Seibert, H. Influence of protein binding and                       (2), 248−255.
+lipophilicity on the distribution of chemical compounds in in vitro                     (39) Smith, K. E. C.; Schmicdt, S. N.; Dom, N.; Blust, R.; Holmstrup,
+systems. Toxicol. In Vitro 1997, 11 (5), 479−483.                                     M.; Mayer, P. Baseline toxic mixtures of non-toxic chemicals:
+  (20) Schirmer, K.; Chan, A. G. J.; Greenberg, B. M.; Dixon, D. G.;                  “solubility addition” increases exposure for solid hydrophobic
+Bols, N. C. Methodology for demonstrating and measuring the                           chemicals. Environ. Sci. Technol. 2013, 47 (4), 2026−2033.
+photocytotoxicity of fluoranthene to fish cells in culture. Toxicol. In                 (40) Mackay, D.; Arnot, J. A.; Celsie, A.; Orazietti, A.; Parnis, J. M.
+Vitro 1997, 11 (1−2), 107−+.
+
+
+
+
+                                                                                                                                                                                  Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+                                                                                      QSARs for aquatic toxicity: celebrating, extending and displaying the
+  (21) Vaes, W. H. J.; Ramos, E. U.; Hamwijk, C.; vanHolsteijn, I.;                   pioneering contributions of Ferguson, Konemann and Veith. SAR
+Blaauboer, B. J.; Seinen, W.; Verhaar, H. J. M.; Hermens, J. L. M. Solid              QSAR Environ. Res. 2014, 25 (5), 343−55.
+phase microextraction as a tool to determine membrane/water                             (41) Smith, K. E. C.; Oostingh, G. J.; Mayer, P. Passive dosing for
+partition coefficients and bioavailable concentrations in in vitro                    producing defined and constant exposure of hydrophobic organic
+systems. Chem. Res. Toxicol. 1997, 10 (10), 1067−1072.                                compounds during in vitro toxicity tests. Chem. Res. Toxicol. 2010, 23
+  (22) Hestermann, E. V.; Stegeman, J. J.; Hahn, M. E. Serum alters the               (1), 55−65.
+uptake and relative potencies of halogenated aromatic hydrocarbons in                   (42) Smith, K. E. C.; Heringa, M. B.; Uytewaal, M.; Mayer, P. The
+cell culture bioassays. Toxicol. Sci. 2000, 53 (2), 316−325.                          dosing determines mutagenicity of hydrophobic compounds in the
+  (23) Gulden, M.; Morchel, S.; Seibert, H. Factors influencing                       Ames II assay with metabolic transformation: passive dosing versus
+nominal effective concentrations of chemical compounds in vitro: cell                 solvent spiking. Mutat. Res.-Genet. Toxicol. Environ. Mutag. 2013, 750
+concentration. Toxicol. In Vitro 2001, 15 (3), 233−243.                               (1−2), 12−18.
+  (24) Gulden, M.; Morchel, S.; Tahan, S.; Seibert, H. Impact of                        (43) Mundy, W. R.; Freudenrich, T. M.; Crofton, K. M.; DeVito, M.
+protein binding on the availability and cytotoxic potency of                          J. Accumulation of PBDE-47 in primary cultures of rat neocortical
+organochlorine pesticides and chlorophenols in vitro. Toxicology
+                                                                                      cells. Toxicol. Sci. 2004, 82 (1), 164−169.
+2002, 175 (1−3), 201−213.                                                               (44) Shafer, T. J.; Hughes, M. F. Accumulation of pyrethroid
+  (25) Seibert, H.; Morchel, S.; Gulden, M. Factors influencing
+                                                                                      compounds in primary cultures from rat cortex. Toxicol. In Vitro 2010,
+nominal effective concentrations of chemical compounds in vitro:
+                                                                                      24 (7), 2053−2057.
+medium protein concentration. Toxicol. In Vitro 2002, 16 (3), 289−
+                                                                                        (45) Mackay, D. Multimedia Environmental Models. The Fugacity
+297.
+                                                                                      Approach, 2nd ed.; CRC Press LLC.: Boca Raton, 2001.
+  (26) Heringa, M. B.; Schreurs, R.; Busser, F.; Van Der Saag, P. T.;
+                                                                                        (46) Endo, S.; Goss, K. U. Serum albumin binding of structurally
+Van Der Burg, B.; Hermens, J. L. M. Toward more useful in vitro
+                                                                                      diverse neutral organic compounds: data and models. Chem. Res.
+toxicity data with measured free concentrations. Environ. Sci. Technol.
+                                                                                      Toxicol. 2011, 24 (12), 2293−2301.
+2004, 38 (23), 6263−6270.
+                                                                                        (47) Polack, A. E.; Nunez, L. J.; Autian, J. Transport of solutes into
+  (27) Gulden, M.; Seibert, H. Impact of bioavailability on the
+correlation between in vitro cytotoxic and in vivo acute fish toxic                   polyethylene bottles from aqueous solutions - empirical relationships
+concentrations of chemicals. Aquat. Toxicol. 2005, 72 (4), 327−337.                   of the data. Int. J. Pharm. 1979, 3 (2−3), 157−175.
+  (28) Riedl, J.; Altenburger, R. Physicochemical substance properties                  (48) Pitt, C. G.; Bao, Y. T.; Andrady, A. L.; Samuel, P. N. K. The
+as indicators for unreliable exposure in microplate-based bioassays.                  correlation of polymer water and octanol water partition coefficients -
+Chemosphere 2007, 67 (11), 2210−2220.                                                 estimation of drug solubilites in polymers. Int. J. Pharm. 1988, 45 (1−
+  (29) Schreiber, R.; Altenburger, R.; Paschke, A.; Kuster, E. How to                 2), 1−11.
+deal with lipophilic and volatile organic substances in microtiter plate                (49) Hayward, D. S.; Jenke, D. R. Interactions between polymer
+assays. Environ. Toxicol. Chem. 2008, 27 (8), 1676−1682.                              containers and parenteral solutions - correlating equilibrium polymer−
+  (30) Tanneberger, K.; Rico-Rico, A.; Kramer, N. I.; Busser, F. J. M.;               water interaction constants with solute partition coefficients. Int. J.
+Hermens, J. L. M.; Schirmer, K. Effects of solvents and dosing                        Pharm. 1990, 66 (1−3), 87−96.
+procedure on chemical toxicity in cell-based in vitro Assays. Environ.                  (50) Gavara, R.; Hernandez, R. J.; Giacin, J. Methods to determine
+Sci. Technol. 2010, 44 (12), 4775−4781.                                               partition coefficient of organic compounds in water/polystyrene
+  (31) Gulden, M.; Seibert, H. In vitro−in vivo extrapolation:                        systems. J. Food Sci. 1996, 61 (5), 947−952.
+estimation of human serum concentrations of chemicals equivalent                        (51) Gasslander, U.; Arbin, A.; Albertsson, A. C. Polymer−water
+to cytotoxic concentrations in vitro. Toxicology 2003, 189 (3), 211−                  partition coefficients of extended range measured by using organic
+222.                                                                                  modifiers in the aqueous phase. Polymer 2007, 48 (26), 7523−7530.
+  (32) Gulden, M.; Dierickx, P.; Seibert, H. Validation of a prediction                 (52) Escher, B. I.; Eggen, R. I. L.; Schreiber, U.; Schreiber, Z.; Vye,
+model for estimating serum concentrations of chemicals which are                      E.; Wisner, B.; Schwarzenbach, R. P. Baseline toxicity (narcosis) of
+equivalent to toxic concentrations in vitro. Toxicol. In Vitro 2006, 20               organic chemicals determined by in vitro membrane potential
+(7), 1114−1124.                                                                       measurements in energy-transducing membranes. Environ. Sci. Technol.
+  (33) Poulin, P.; Haddad, S. Microsome composition-based model as                    2002, 36 (9), 1971−1979.
+a mechanistic tool to predict nonspecific binding of drugs in liver                     (53) Fischer, H.; Polikarpov, I.; Craievich, A. F. Average protein
+microsomes. J. Pharm. Sci. 2011, 100 (10), 4501−4517.                                 density is a molecular-weight-dependent function. Protein Sci. 2004, 13
+  (34) Poulin, P.; Haddad, S. Hepatocyte composition-based model as                   (10), 2825−2828.
+a mechanistic tool for predicting the cell suspension: aqueous phase                    (54) Meacham, C. A.; Freudenrich, T. M.; Anderson, W. L.; Sui, L.;
+partition coefficient of drugs in in vitro metabolic studies. J. Pharm. Sci.          Lyons-Darden, T.; Barone, S.; Gilbert, M. E.; Mundy, W. R.; Shafer, T.
+2013, 102 (8), 2806−2818.                                                             J. Accumulation of methylmercury or polychlorinated biphenyls in in
+  (35) Ferguson, J. The use of chemical potentials as indices of toxicity.            vitro models of rat neuronal tissue. Toxicol. Appl. Pharmacol. 2005, 205
+Proc. R. Soc. Ser. B, Biol. Sci. 1939, 127 (848), 387−404.                            (2), 177−187.
+
+                                                                               9778                   dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+Environmental Science & Technology                                                                                                                Article
+
+ (55) Crump, D.; Chiu, S.; Egloff, C.; Kennedy, S. W. Effects of
+hexabromocyclododecane and polybrominated diphenyl ethers on
+mRNA expression in chicken (Gallus domesticus) hepatocytes. Toxicol.
+Sci. 2008, 106 (2), 479−487.
+ (56) Wei, R. G.; Zhao, Y. X.; Liu, P. Y.; Qin, Z. F.; Yan, S. S.; Li, Y.;
+Qin, X. F.; Xia, X. J.; Xu, X. B.; Yan, M. C. Determination of
+environmentally relevant exposure concentrations of polybrominated
+diphenyl ethers for in vitro toxicological studies. Toxicol. In Vitro 2010,
+24 (4), 1078−1085.
+ (57) Wang, L. L.; Zou, W.; Zhong, Y. F.; An, J.; Zhang, X. Y.; Wu, M.
+H.; Yu, Z. Q. The hormesis effect of BDE-47 in HepG(2) cells and the
+potential molecular mechanism. Toxicol. Lett. 2012, 209 (2), 193−201.
+ (58) Wania, F.; Dugani, C. B. Assessing the long-range transport
+potential of polybrominated diphenyl ethers: A comparison of four
+multimedia models. Environ. Toxicol. Chem. 2003, 22 (6), 1252−1261.
+ (59) US EPA. Estimation Programs Interface Suite for Microsoft
+
+
+
+
+                                                                                                                                                                 Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​48/​16/​9770/​7993675/​es501955g.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+Windows, v 4.10; United States Environmental Protection Agency:
+Washington, DC, 2014.
+ (60) McCarty, L. S.; Mackay, D.; Smith, A. D.; Ozburn, G. W.;
+Dixon, D. G. Residue-based interpretation of toxicity and bioconcen-
+tration QSARs from aquatic bioassays - neutral narcotic organics.
+Environ. Toxicol. Chem. 1992, 11 (7), 917−930.
+ (61) McCarty, L. S.; Mackay, D. Enhancing ecotoxicological
+modeling and assessment. Environ. Sci. Technol. 1993, 27 (9), 1719−
+1728.
+ (62) Knudsen, T. B.; Houck, K. A.; Sipes, N. S.; Singh, A. V.; Judson,
+R. S.; Martin, M. T.; Weissman, A.; Kleinstreuer, N. C.; Mortensen, H.
+M.; Reif, D. M.; Rabinowitz, J. R.; Setzer, R. W.; Richard, A. M.; Dix,
+D. J.; Kavlock, R. J. Activity profiles of 309 ToxCast chemicals
+evaluated across 292 biochemical targets. Toxicology 2011, 282 (1−2),
+1−15.
+ (63) Vanwezel, A. P.; Opperhuizen, A. Narcosis due to environ-
+mental pollutants in aquatic organisms - residue-base toxicity,
+mechanisms, and membrane burdens. Crit. Rev. Toxicol. 1995, 25
+(3), 255−279.
+ (64) Vaes, W. H. J.; Ramos, E. U.; Verhaar, H. J. M.; Hermens, J. L.
+M. Acute toxicity of nonpolar versus polar narcosis: Is there a
+difference? Environ. Toxicol. Chem. 1998, 17 (7), 1380−1384.
+ (65) Bernhard, M. J.; Dyer, S. D. Fish critical cellular residues for
+surfactants and surfactant mixtures. Environ. Toxicol. Chem. 2005, 24
+(7), 1738−1744.
+ (66) Beyer, A.; Wania, F.; Gouin, T.; Mackay, D.; Matthies, M.
+Selecting internally consistent physicochemical properties of organic
+compounds. Environ. Toxicol. Chem. 2002, 21 (5), 941−953.
+ (67) Harrill, J. A.; Meacham, C. A.; Shafer, T. J.; Hughes, M. F.;
+Crofton, K. M. Time and concentration dependent accumulation of H-
+3-deltamethrin in Xenopus laevis oocytes. Toxicol. Lett. 2005, 157 (1),
+79−88.
+
+
+
+
+                                                                              9779   dx.doi.org/10.1021/es501955g | Environ. Sci. Technol. 2014, 48, 9770−9779
+

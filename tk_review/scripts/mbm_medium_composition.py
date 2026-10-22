@@ -297,7 +297,7 @@ def main():
   in 1.7% DMSO for twelve days and held there.  That is what makes them
   hepatocyte-like, and it also loads them with triglyceride -- the companion
   paper measures exactly that as an endpoint.  Both models run Fragki on the
-  AREc2 composition (a HepG2-derived reporter line, membrane lipid 0.00414),
+  AREc2 composition (an MCF7-derived reporter line, membrane lipid 0.00414),
   because that is the only liver-line composition Armitage's SI publishes.  A
   differentiated, DMSO-matured HepaRG is a different cell.  That error is in
   the cell term, which section 14 of the main memo already names as where the

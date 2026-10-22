@@ -1,0 +1,1014 @@
+                                                                   Environment International 173 (2023) 107857
+
+
+                                                                     Contents lists available at ScienceDirect
+
+
+                                                                 Environment International
+                                                           journal homepage: www.elsevier.com/locate/envint
+
+
+Full length article
+
+Role of bioavailability and protein binding of four anionic perfluoroalkyl
+substances in cell-based bioassays for quantitative in vitro to in
+vivo extrapolations
+Weiping Qin a, b, Luise Henneberger a, Julia Huchthausen a, b, Maria König a, Beate I. Escher a, b, *
+a
+    Department of Cell Toxicology, UFZ–Helmholtz Centre for Environmental Research, 04318 Leipzig, Germany
+b
+    Environmental Toxicology, Department of Geosciences, Eberhard Karls University Tübingen, Schnarrenbergstr, 94-96, DE-72076 Tübingen, Germany
+
+
+
+
+A R T I C L E I N F O                                       A B S T R A C T
+
+Handling Editor: Adrian Covaci                              Perfluoroalkyl substances (PFAS) are persistent and pose a risk to human health. High throughput screening
+                                                            (HTS) cell-based bioassays may inform risk assessment of PFAS provided that quantitative in vitro to in vivo
+Keywords:                                                   extrapolation (QIVIVE) can be developed. The QIVIVE ratio is the ratio of nominal (Cnom) or freely dissolved
+Per- and polyfluoroalkyl substances (PFAS)                  concentration (Cfree) in human blood to Cnom or Cfree in the bioassays. Considering that the concentrations of
+Solid phase microextraction (SPME)
+                                                            PFAS in human plasma and in vitro bioassays may vary by orders of magnitude, we tested the hypothesis that
+Freely dissolved concentration (Cfree)
+                                                            anionic PFAS bind to proteins concentration-dependently and therefore the binding differs substantially between
+Peroxisome proliferator-activated receptor
+gamma (PPARγ)                                               human plasma and bioassays, which has an impact on QIVIVE. Solid phase microextraction (SPME) with C18-
+Quantitative in vitro to in vivo extrapolation              coated fibers served to quantify the Cfree of four anionic PFAS (perfluorobutanoate (PFBA), perfluorooctanoate
+(QIVIVE)                                                    (PFOA), perfluorohexane sulfonate (PFHxS) and perfluorooctane sulfonate (PFOS)) in the presence of proteins
+                                                            and lipid, medium components, cells and human plasma over five orders of magnitude in concentrations. The
+                                                            C18-SPME method was used to quantify the non-linear binding to proteins, human plasma and medium, and the
+                                                            partition constants to cells. These binding parameters were used to predict Cfree of PFAS in cell bioassays and
+                                                            human plasma by a concentration-dependent mass balance model (MBM). The approach was illustrated with a
+                                                            reporter gene assay indicating activation of the peroxisome proliferator-activated receptor gamma (PPARγ-
+                                                            GeneBLAzer). Blood plasma levels were collected from literature for occupational exposure and the general
+                                                            population. The QIVIVEnom ratios were higher than the QIVIVEfree ratios due to the strong affinity to proteins and
+                                                            large differences in protein contents between human blood and bioassays. For human health risk assessment, the
+                                                            QIVIVEfree ratios of many in vitro assays need to be combined to cover all health relevant endpoints. If Cfree
+                                                            cannot be measured, they can be estimated with the MBM and concentration-dependent distribution ratios.
+
+
+
+
+1. Introduction                                                                                 (DeWitt et al., 2009).
+                                                                                                    Traditional toxicology based on in vivo animal testing is expensive
+    Per- and polyfluoroalkyl substances (PFAS) are used in commercial,                          and time-consuming, making it impossible to generate safety informa­
+industrial and military products for waterproofing, grease- and heat-                           tion for thousands of commercial PFAS. High-throughput screening
+resistance (Gluge et al., 2020). PFAS are persistent in the environment                         (HTS) cell-based bioassays proposed by the Tox21 and ToxCast program
+(Evich et al., 2022), which has led to diffuse worldwide contamination,                         may inform risk assessment provided that quantitative in vitro to in vivo
+e.g., in rainwater, that regularly exceed health-based advisory values                          extrapolation (QIVIVE) can be developed for HTS (Bell et al., 2018; Sipes
+(Cousins et al., 2022). Epidemiological investigations and toxicological                        et al., 2017). In vitro concentration-response curves (CRC) and thereof
+studies have revealed associations between exposure to PFAS and                                 derived effect concentrations can be converted by QIVIVE models into
+human diseases, caused by endocrine disruption (Mokra 2021), repro­                             equivalent in vivo concentrations which are further compared to the
+ductive (Calvert et al., 2021) and developmental toxicity (Rappazzo                             human exposure levels or translated by reverse dosimetry to external in
+et al., 2017), neurotoxicity (Mariussen 2012) and immunotoxicity                                vivo oral exposure (Wetmore 2015).
+
+
+
+    * Corresponding author.
+      E-mail address: beate.escher@ufz.de (B.I. Escher).
+
+https://doi.org/10.1016/j.envint.2023.107857
+Received 2 September 2022; Received in revised form 24 February 2023; Accepted 25 February 2023
+Available online 1 March 2023
+0160-4120/© 2023 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/).
+W. Qin et al.                                                                                                             Environment International 173 (2023) 107857
+
+
+    Currently, QIVIVE models use nominal concentrations (Cnom), but                   sulfonic (PFHxS), perfluorooctane sulfonic acid (PFOS) as representa­
+PFAS strongly bind to proteins and lipids in bioassays and blood, which               tives of acidic PFAS. They are fully deprotonated at physiological pH to
+will lower their bioavailability and hence the freely dissolved concen­               the corresponding anions, perfluorobutanoate, perfluorooctanoate,
+trations (Cfree) in different ways in bioassays and blood. This problem               perfluorohexane sulfonate and perfluorooctane sulfonate. They were
+might be more severe for the anionic PFAS due to their strong and                     selected because anionic surfactants are known for their non-linear
+specific binding to proteins.                                                         binding to proteins. The four selected anionic PFAS are a special case
+    Effect concentrations in HTS assays are typically based on Cnom                   of anionic surfactants and represent a wide range of hydrophobicity due
+because there is no routine method available to measure Cfree in the                  to the differences in alkyl chain length and two different acid groups.
+1536-well plates used by Tox21 and most reported Cfree stem from 96-                  Therefore, they serve for a proof of principle if existing knowledge of
+well plates (Huchthausen et al., 2020) or larger formats or were                      anionic organic chemicals can be translated to anionic PFAS.
+merely predicted (Proenca et al., 2021). Negligible-depletion solid phase                 Typically, the octanol–water partition coefficients (log Kow) are used
+microextraction (SPME) has been the choice for quantification of Cfree of             as measure of hydrophobicity, but they can only be predicted and not
+neutral organic chemicals for almost two decades (Heringa et al., 2004;               measured for surface-active anionic PFAS (Table 1). The octanol–water
+Kramer et al., 2012), and the development of C18-coated fibers and                    distribution ratio (log Dow) is strongly dependent on pH and the con­
+SPME based on mass balances allowed the extension to ionizable                        entration of counterions (Park et al., 2020) and the predicted log Dow
+chemicals in cell-based bioassay, as well as the experimental quantifi­               (pH 7.4) cover four orders of magnitude (Table 1). A more suitable
+cation of Cfree of ionizable chemicals in complex bioassay media (Hen­                predictor of hydrophobicity of surfactants is the distribution ratio be­
+neberger et al., 2019b; Huchthausen et al., 2020).                                    tween liposomes and water (Dlip/w). The experimental log Dlip/w of PFBA
+    If Cfree cannot be measured directly, it can be predicted with mass               is 1.48, which is considered to be hydrophilic, while other three PFAS
+balance models (MBM) (Fischer et al., 2017; Proenca et al., 2021).                    with log Dlip/w > 2 are more hydrophobic (Table 2, data from Ebert et al.
+Chemicals may specifically bind or non-specifically partition to medium               (2020), measured with equilibrium dialysis).
+components and cells, resulting in Cfree lower than Cnom (Henneberger                     The protein binding of PFAS and partitioning to medium and cells, as
+et al., 2019a; 2020). Distribution ratios of chemicals between protein                well as Cfree in the in vitro bioassay were studied by SPME using C18-
+and water (Dprot/w), lipid and water (Dlip/w), cell and water (Dcell/w), and          coated fibers. The measured binding parameters were further used to
+their corresponding volumes (Vprotein, Vlipid and Vcell) serve as input               predict Cfree by MBM. Literature blood levels of PFAS of workers and
+parameters in these MBM (Fischer et al., 2017). SPME has also been used               residents living near fluorochemical plants (Bao et al., 2022; Gao et al.,
+to measure the binding and partition constants of ionizable chemicals to              2015) and the general population (Gao et al., 2019, https://www.cdc.go
+diverse biological materials and cells (Henneberger et al., 2019a).                   v/exposurereport/data_tables.html) were converted to Cfree in blood
+Anionic chemicals are particularly challenging because they show non-                 with an adjusted blood-MBM using experimental plasma binding con­
+linear binding isotherms to proteins and protein-rich biomaterials                    stants. An overview of the current approach can be found in Fig. 1. The
+(Henneberger et al., 2019a) and while the non-linearity of protein                    cytotoxicity and specific effects of PFAS were characterized in a PPARγ
+binding of diverse organic ions has been investigated, no such studies                reporter gene assay in agonistic and antagonistic model as a proof of
+exist for anionic PFAS.                                                               principle. For a comprehensive risk assessment, a large set of responsive
+    PFAS have been reported to cause numerous toxic effects in vitro and              in vitro assays would need to be applied but this study is a demonstration
+in vivo (Zeng et al., 2019). Specific interactions of PFAS with functional            of the importance and impact of nonlinear protein binding of anionic
+proteins dominate their molecular initiating events, including activation             PFAS on QIVIVE.
+of receptor-mediated signaling pathways (Behr et al., 2020; Qin et al.,
+2020), interference of activities and functions of enzymes (Liu et al.,               2. Materials and methods
+2020; Wang et al., 2014) and competitive binding with transport pro­
+teins (Ren et al., 2016). Nuclear receptors are universal in HTS testing              2.1. Materials
+because reporter gene technology makes the interaction of chemicals
+with functional proteins measurable. The peroxisome proliferator-                         Four PFAS (purity > 98%) were used in this study. Perfluorobutanoic
+activated receptor (PPAR) family comprises endogenous receptors of                    acid (PFBA, CAS. 375-22-4) was purchased from J&K. Perfluorooctanoic
+fatty acids and is involved in the homeostasis of lipid and glucose                   acid (PFOA, CAS. 335-67-1), perfluorohexane sulfonate potassium
+metabolism. Due to the structural similarity of PFAS and fatty acids,                 (PFHxS-K, CAS. 3871-99-6) and perfluorooctane sulfonate potassium
+PPARs have been widely proven to be the specific targets for certain                  (PFOS-K, CAS. 2795-39-3) were from Sigma Aldrich. All PFAS were
+PFAS (Vanden Heuvel et al., 2006). A PPARγ reporter gene assay was                    dissolved in methanol as stock solution. Bovine serum albumin (BSA,
+selected as an example to show how to characterize the difference of                  CAS. 9048-46-8) was from Sigma-Aldrich, Rosiglitazone (CAS. 122320-
+Cnom and Cfree of PFAS in HTS cell-based bioassays.                                   73-4) and C18-coated fibers (CAT. 5728I-U) were purchased from
+    In vitro specific effects of PFAS can be linked to in vivo effects via            Sigma-Aldrich. DCTM protein assay kit (CAT. 500-0114) was from Bio­
+QIVIVE. For example, Loizou et al. (2021) predicted in vivo benchmark                 red. GeneBLAzer® FRET Assay kit (LOT. 21972428) was from Invi­
+doses (BMD) of perfluorooctanoic acid (PFOA) from in vitro concen­                    trogen. GeneBLAzer PPARγ-UAS-bla 293H Cells (HEK293H) were
+tration–response curves of the U.S. Environmental Protection Agency                   purchased from Thermo Fisher. The GeneBLAzer assay medium con­
+(EPA) HTS database using physiologically based pharmacokinetic                        tained 98% Opti-MEM (LOT.11058-021, Gibco), 2% charcoal-stripped
+(PBPK) model-reverse dosimetry. Typical PBPK models use a large group                 FBS (cs-FBS, LOT. 2001639, Gibco) and 100 U/mL Penicillin-
+of parameters involving chemical absorption, distribution, metabolism                 Streptomycin (LOT. 15140-122, Gibco). Solvents used in the assays
+and excretion processes (Loizou et al., 2021; Worley and Fisher, 2015).               were methanol (CAS. 67-56-1, Chemsolute), acetonitrile (CAS. 75-05-8,
+This greatly limited the application of QIVIVE for the assessments of                 Chemsolute) and formic acid (CAS. 64-18-6, Honeywell).
+large numbers of PFAS in screening type assessments. Sipes et al. (2017)
+developed an intuitive model, a ratio of maximum blood concentration                  2.2. Methods
+in vivo (Cmax,blood) to half-maximum effective concentration (AC50)
+directly from in vitro Tox21-HTS assay. The ratio > 1 indicated that the              2.2.1. Method development
+in vitro effect likely also occurred in in vivo. In its simplest form, a QIVIVE           Fibers with low C18-coating volume (5 mm coating length, 173 nL
+ratio can be calculated by dividing the plasma concentrations by the                  coating volume) were used for the hydrophobic PFOS as it showed very
+effective concentrations in vitro (Henneberger et al., 2021).                         strong affinity for the fibers. PFOS samples were incubated at 37 ◦ C
+    We selected perfluorobutanoic acid (PFBA), PFOA, perfluorohexane                  using high-speed vortex shaker (DMS-2500, 1200 rpm around a 3.6 mm
+
+                                                                                  2
+W. Qin et al.                                                                                                                               Environment International 173 (2023) 107857
+
+
+Table 1
+Predicted octanol-water partition coefficients (log Kow) of the neutral and anionic species, octanol-water distribution ratios (log Dow) at pH 7.4, and experimental data
+for binding to bovine serum albumin (BSA) of PFBA, PFOA, PFHxS and PFOS. The non-linear binding to BSA was described with a non-linear mechanistic combined
+binding/partitioning model, where Kd is the dissociation constant and Cmax corresponds to the number of binding sites Eq. (14). log Kspecific Eq. (15) and log Dnon-specific
+Eq. (16) refer to the specific and non-specific binding to the BSA according to ν, the molar ratio of PFAS to BSA (molPFAS/molBSA, Eq. (13)). The measured bovine serum
+albumin (BSA) to water distribution ratios (log DBSA/w) were also fitted as a function of the aqueous concentration Cw with a Freundlich-type model (Eq. (12)), where
+the slope corresponds to nFr-1 and the intercept to the Freundlich constant KFr.
+                  log Kow         log Kow           log Dow      Mechanistic combined binding/partitioning model                                         Freundlich-type model
+                  (neutral        (anionic          (pH7.4)
+                  species)        species)
+  Chemical                                                       Kd [μmol/          Cmax            Cmax [mol/    log Kspecific      log Dnon-specific   log DBSA/w [Lw/          R2
+                                                                 Lw]                [μmol/          molBSA]       [Lw/LBSA] ν        [Lw/LBSA] ν         LBSA](Cw in µM)
+                                                                                    LBSA]                         ≪1                 >1
+
+  PFBA            2.60a/2.95b     − 3.76b           − 1.22c      18.3               9.22 × 103      0.450         2.40               1.63                logDBSA/w = −            0.67
+                                                                                                                                                         0.391 × logCw +
+                                                                                                                                                          2.80
+  PFOA            5.68a/5.73b     − 0.585b          1.58c            0.317          2.54 × 104      1.24          4.60               3.70                logDBSA/w = −            0.98
+                                                                                                                                                         0.381 × logCw +
+                                                                                                                                                          4.32
+  PFHxS           3.69a/5.29b     − 1.77b           1.65c            7.44 × 10− 2   1.88 × 104      0.919         5.10               3.47                logDBSA/w = −            0.97
+                                                                                                                                                         0.480 × logCw +
+                                                                                                                                                          4.32
+  PFOS            5.77a           − 0.153b          3.05c            6.24 × 10− 3   8.01 × 103      0.391         5.81               4.84                logDBSA/w = −            0.96
+                                                                                                                                                         0.381 × logCw +
+                                                                                                                                                          4.91
+  a
+    log Kow predicted average by OPERA from https://comptox.epa.gov.
+  b
+    log Kow predicted by COSMOtherm.
+  c
+    log Dow were from Park et al. (2020) and predicted by MarvinSketch from https://chemaxon.com/.
+
+
+
+Table 2
+Distribution ratios of PFBA, PFOA, PFHxS and PFOS between liposomes and water (Dlip/w) (Ebert 2020), cells and water (Dcell/w) (Eq. (11)) and plasma and water
+(Dplasma/w). log Dplasma/w (ν < 1) refer to the specific binding and were from experiments (Eq. (15)). log Dplasma/w (ν < 1) were also predicted by the mass balance model
+(MBM, Eq. (17)) with log Kspecific of BSA (Table 1) and log Dlip/w. Contributions of protein and lipid to the Dplasma/w (ν < 1).
+                log Dlip/w [Lw/   log Dcell/w [Lw/Lcell,      log Dplasma/w [Lw/             log Dplasma/w [Lw/          Contribution of protein          Contribution of lipid
+                Llip]             protþlip]                   Lprotþlip]                     Lprotþlip]                  binding                          binding
+                                                              (experiment) at ν < 1          (MBM) at ν < 1
+
+  PFBA          1.61a             2.56                        2.12                           2.36                        98.3%                            1.68%
+  PFOA          3.52              3.27                        4.60                           4.56                        99.1%                            0.867%
+  PFHxS         4.13              3.23                        5.18                           5.06                        98.9%                            1.12%
+  PFOS          4.89              4.19                        5.96                           5.77                        98.7%                            1.26%
+  a
+      log Dlip/w of PFBA was predicted with a linear relationship of log Dlip/w and the number of fluorinated carbons of PFBA (Figure A1).
+
+
+
+
+Fig. 1. An overview of the models and experiments needed to derive quantitative in vitro to in vivo extrapolation ratios (QIVIVE ratio) based on free and nominal
+(nom) concentrations (Cfree and Cnom). Abbreviations: BSA = bovine serum albumin; Di/w = distribution ratio between i and water; EC = effect concentration; lip =
+liposome; MBM = mass balance model; SPME = Solid phase microextraction.
+
+
+orbit) to accelerate adsorption. Pure solvent (100% MeOH) was used to                            desorption. A summary of SPME method is given in Table A1.
+desorb PFOS from fibers. For moderately hydrophobic PFOA, PFHxS and                                 There were three steps in the SPME process: adsorption, desorption
+hydrophilic PFBA, fibers with a larger capacity (15 mm coating length,                           and sample measurement. According to Henneberger et al. (2019a),
+520 nL coating volume) and a less vigorous shaking on an orbital shaker                          C18-coated fibers were conditioned in methanol (2 h) and water (0.5 h)
+(MaxQ 6000, 250 rpm around a 19 mm orbit) was used for adsorption,                               before being inserted to the samples.
+and a mixed solvent (50% MeOH and 50% MilliQ water) was used for
+
+
+                                                                                          3
+W. Qin et al.                                                                                                           Environment International 173 (2023) 107857
+
+
+2.2.2. Fiber uptake kinetics and sorption isotherm                                  ultrasonic treatment (Sonoplus 2070, Germany) in an ice-water bath for
+    Methanolic PFAS stock solutions were diluted with phosphate buff­               3 × 30 s to avoid protein denaturation due to localized overheating. 100
+ered saline (PBS). The concentrations of each PFAS are listed in                    μL of cell homogenate were transferred to HPLC vials with insert and
+Table A2. The final percentages of MeOH in samples were < 1%. The pH                another 100 μL PFAS solution in PBS were added. Samples were vor­
+value of samples was adjusted to pH 7.4 using sodium hydroxide (NaOH)               texed for 5 s to mix and then shaken for 15 min (37 ◦ C, 250 rpm) prior to
+and hydrogen chloride (HCl) before SPME.                                            inserting the SPME fibers.
+    For adsorption kinetics, 18 aliquots of 1 mL for each PFAS solution
+were filled into 1.5 mL HPLC vials (ART. 7,654,554 or 7663230, Lab­                 2.2.4. Desorption and quantification of PFAS
+solute). The initial concentrations of each PFAS are listed in Table A2.                For desorption, fibers were transferred to new vials with 100%
+The fibers were inserted into the vials individually using blunt cannulas.          MeOH (PFOS) or a mixture of 50% MeOH and 50% MilliQ water (PFOA,
+The samples were incubated at 37 ◦ C using high-speed vortex shaker                 PFHxS, PFBA). The volume of samples and desorption solvents for
+(1200 rpm) or orbital shaker (250 rpm) for 0.25, 0.5, 1, 2, 4, 6, 24, 48 h.         different assays are listed in Table A3. Then, these vials were shaken
+    For sorption isotherm measurements, PFAS stock solutions were                   with vortex or orbital shakers for another 2 h.
+diluted with PBS serially with a factor of 2. The concentrations of each                PFAS in PBS and all extracts were analyzed by a 1260 Infinity liquid
+PFAS varied by 2–3 orders of magnitude. The concentration ranges are                chromatograph (LC) equipped with a Kinetex 1.7 μm, C18, 100 Å, LC
+listed in Table A2. Duplicates of 1 mL for each concentration were filled           column (50 × 2.1 mm) and coupled to 6420 Triple Quad mass spec­
+into 1.5 mL HPLC vials. All the samples were shaken with the fibers for             trometer (MS) from Agilent. Detailed information of LC/MS analysis can
+16 h to reach equilibrium for adsorption.                                           be found in Table A4. All samples were diluted to concentrations in the
+    The desorption and measurement were described in 2.2.4. Concen­                 calibration range of PFAS (1–10000 ng/L).
+trations of PFAS in PBS and solvent extracts were used to calculate the
+recovery of the SPME method and distribution ratios of PFAS between                 2.2.5. Lipid and protein quantification
+fiber and water.                                                                        Lipid and protein content of medium, cell homogenates, human
+                                                                                    plasma was determined according to Fischer et al. (2017). Protein and
+2.2.3. Partitioning to biological materials                                         lipid content were quantified with protein assay kit and sulpho-
+    The SPME measurement for PFAS partitioning to biological materials              phospho-vanillin reaction, respectively. Samples were diluted with
+(BSA, plasma, medium, cells) were similar as above but different in                 MilliQ water to assure that the protein and lipid contents were within
+sample preparations. For determination of protein-water distribution                calibration ranges.
+ratios, BSA was dissolved in PBS at a concentration of 5 g/L to aim at a
+fraction of PFAS bound to protein > 20%. The highest concentrations for             2.2.6. PPARγ reporter gene assay
+PFBA, PFOA, PFHxS and PFOS were 2000, 500, 500 and 166 μmol/L and                      The commercially available GeneBLAzer PPARγ-UAS-bla 293H cells
+these concentrations were serially diluted by BSA buffer with a dilution            (ThermoFisher) were cultured as described previously (Neale et al.,
+factor of 2 to obtain 10 concentration points (Table A2). The concen­               2017). There were four steps in GeneBLAzer Assay: cell attachment,
+tration ranges of PFAS were designed to include both concentrations                 PFAS exposure, cytotoxicity measurement and reporter protein
+below and above saturation of the primary binding site as ν values                  detection.
+(molPFAS /molBSA) ranged from 0.01 to 2. All the samples were shaken
+for 15 min (37 ◦ C, 250 rpm) before aliquoting duplicates of 1 mL PFAS              2.2.6.1. Cell attachment. HEK293H Cells were harvested by trypsini­
+solution into 1.5 mL HPLC vials. The fibers were inserted into vials                zation and the number of cells was counted by CASY Counter. Cell pellet
+individually and the samples were shaken for 16 h to reach equilibrium              was resuspended with assay medium at the density of 2.1 × 105 cells/
+between SPME fibers and all other components.                                       mL. 100 μL of the cell suspension were seeded in each well of the 96-well
+    For determination of plasma-water distribution ratios, human                    plates (Corning® BioCoat™ Poly-D-Lysine). After the seeding, the plates
+plasma was diluted by PBS buffer to 20% or 4% plasma contents. PFAS                 were left to rest for 10–30 min at room temperature and incubated at
+solutions were serially diluted in PBS with a dilution factor of 2 to obtain        37 ◦ C and 5% CO2 and 100% humidity for 24 h to let the cells attach to
+5 concentration points. 100 µL plasma buffer were transferred to HPLC               the plate before dosing with PFAS.
+vials with insert and 100 µL PFAS solution were added. The final plasma
+contents were then 10% or 2% and highest concentrations of PFBA,                    2.2.6.2. PFAS exposure. PFAS stocks were prepared in MeOH. MeOH
+PFOA, PFHxS and PFOS were 500, 125, 125 and 50 μmol/L (Table A2).                   was evaporated with a gentle stream of nitrogen, leaving only PFAS
+Samples were vortexed for 5 s to mix and then shaken for 15 min (37 ◦ C,            precipitaties at the bottom of dosing vials. Assay medium contained 2%
+250 rpm) before SPME.                                                               cs-FBS, which has a low background signal caused by hormone (data not
+    For determination of medium-water distribution ratios, the highest              shown), and was added to dissolve the PFAS before being serially diluted
+concentrations for PFBA, PFOA, PFHxS and PFOS were 4000, 500, 500                   with medium in a 96-well plate. 120 μL solution from each well were
+and 200 μmol/L (Table A2) and GeneBLAzer assay medium was used to                   transferred to previous 96-well plate with adhered cells using a 12-chan­
+serially dilute PFAS in a 96-well plate with a dilution factor of 2 to obtain       nel pipette. For antagonistic assay, medium containing rosiglitazone
+10 concentration points. The bioassay medium contained 2% cs-FBS,                   (agonist of PPARγ) was used to prepare PFAS solution (Table A2). The
+which had proteins and lipids as sorptive phases, and the charcoal                  dilution process of PFAS was the same as above. The final concentration
+stripping (cs) was used to remove hormones and other compounds that                 of rosiglitazone in the cell plate was 7 nmol/L, which was expected to
+would cause a background effect in the bioassay. Nominal PFAS con­                  trigger approximately 80% of the maximum effects. An 80% effect level
+centrations ranged over 2–3 orders of magnitude while the contents of               was chosen following the recommendations of Neale et al. (2015) and
+protein and lipid were constant in the experiments. 180 μL of PFAS so­              because some chemicals may have potential weak activation effects at
+lution were transferred from each well to HPLC vials with insert (CAT.              low concentrations. Both agonist and antagonistic effect could be
+7648146 or 7651116, Labsolute). All the samples were shaken for 15                  recorded. After PFAS dosing, cell plates were incubated for another 24 h.
+min (37 ◦ C, 250 rpm) before SPME fibers were inserted.
+    For determination of cell-water distribution ratios, HEK293H cells              2.2.6.3. Cytotoxicity measurement. Cells were imaged non-invasively
+were harvested by trypsinization and the number of cells was counted by             with the IncuCyte S3 (Essen BioScience) before dosing and the con­
+CASY Counter (Roche Innovatis, Reutlingen, Germany) before centri­                  fluency of the cells was calculated by software (IncuCyte S3 v2019A)
+fugation for a cell pellet. The cell pellet was resuspended with PBS at the         with details provided in Escher et al. (2019). The confluency of the cells
+density of 2 × 107 cells/mL. 1 mL cell suspension was homogenized by
+
+                                                                                4
+W. Qin et al.                                                                                                                       Environment International 173 (2023) 107857
+
+
+was measured again by IncuCyte S3 24 h after dosing. The cell viability                           (
+                                                                                                          1
+                                                                                                               )
+                                                                                                                               logKFr
+was determined by comparing the confluency of the exposed and un­                 logDf/w =        1−              × logCf +                                               (9)
+                                                                                                         nFr                     nFr
+exposed cells 24 h after dosing.
+                                                                                  2.3.3. Binding of PFAS to biological materials
+2.2.6.4. Reporter protein detection. Before the detection of reporter
+                                                                                      SPME measurements were used to quantify the aqueous concentra­
+protein, 200 μL of supernatant from each well were transferred to a new
+                                                                                  tion in presence of biomaterials (i = proteins, lipid, human plasma,
+96-well plate and then used for SPME measurement (2.2.3). The acti­
+                                                                                  medium or HEK293H cells) and the mass balance ntot = nf + nw + nbound
+vation signal of PPARγ coupled to a reporter gene encoding for β-lac­
+                                                                                  was used to derive the distribution ratios of PFAS between biomaterials i
+tamase was measured by fluorescence after addition of the
+                                                                                  and water. Concentration of PFAS bound to sorptive phases i (Cbound,i)
+GeneBLAzer® FRET reagent and additional 2 h incubation. The detailed
+                                                                                  can be calculated by Eq. (10):
+protocol can be found in Neale et al. (2017).                                              [      ]
+                                                                                             µmol     nbound,i   ntot -nf -nw
+                                                                                  Cbound,i          =          =                                     (10)
+2.3. Data evaluation                                                                          L         Vi            Vi
+                                                                                      The distribution ratios of PFAS between phase i and water (Di/w)
+2.3.1. Fiber uptake kinetics
+                                                                                  were calculated from experimental data by Eq. (11) for each concen­
+   PFAS on the C18-coated fiber were desorbed by solvents and the
+                                                                                  tration and experiment.
+extract was measured directly by LC/MS. The concentration of PFAS in
+                                                                                                         (         )
+the fiber (Cf) was calculated from the concentration measured in the                   [ ]                 ntot
+                                                                                                                − 1 × Df/w × Vf − Vw
+                                                                                        Lw    Cbound,i
+extract (Cextract) and the volume of extract (Vextract) divided by the vol­                                                                       (11)
+                                                                                                            nf
+                                                                                  Di/w      =          =
+                                                                                        Li      Cw                    Vi
+ume of fiber coating (Vf) (Eq. (1)).
+                                                                                      The experimental concentration-dependence of Di/w was fitted with
+       Cextract × Vextract
+Cf =                                                                   (1)        a Freundlich-type model using Eq. (12). The distribution to biomaterials,
+                Vf
+                                                                                  unlike binding to the SPME fiber, is not a pure surface sorption process
+    Adsorption kinetics determine the time required to reach equilib­             but a mix of specific binding to proteins and non-specific partitioning to
+rium. In a single adsorbate system, the rate of adsorption process is             proteins and lipids. Therefore, Eq. (12) is only a phenomenological fit of
+expressed based on the amount of chemicals. The amount of PFAS in                 the experimental data, and in case of nFr deviated from 1, a mechanistic
+water as a function of time nw(t) can be defined by Eq. (2):                      model was invoked to describe the non-linear binding. However, the
+                  (            )                                                  empirical model of the non-linear binding will suffice for developing a
+nw (t) = nw (eq) × 1 − e− k1 ×t + nw (t0 ) × e− k1 ×t             (2)
+                                                                                  mass balance model for the bioassays and to derive the dissolved con­
+      nw (eq) and nw (t0 ) are the amounts of PFAS in water at equilibrium        centration Cw.
+and at the start of the experiment. k1 is the rate constant for kinetic
+                                                                                  logDi/w = (nFr − 1) × logCw + logKFr                                                   (12)
+model. Since nf (t0 ) = 0, the amount of PFAS in fiber nf (t) can be fitted
+by Eq. (3):
+                                                                                  2.3.4. Mechanistic model for protein/plasma binding
+                  (             )
+nf (t) = nf (eq) × 1 − e− k2 ×t                                         (3)           Protein binding is known to be concentration-dependent and there­
+                                                                                  fore DBSA/w was also modeled with a mechanistic combined binding/
+   The time to reach 95% of equilibrium of fiber absorption (t0.95) was
+                                                                                  partitioning model. PFAS may bind specifically to one or more specific
+derived by Eq. (4).
+                                                                                  binding sites on proteins at low concentration and partition non-
+          ln0.05                                                                  specifically to the protein and lipid at high concentrations. At a ratio ν
+t0.95 =                                                                (4)
+            -k2                                                                   of bound PFAS molecules to protein molecules (eq. (13), [molPFAS
+                                                                                  /molprotein]) of ν < 1, a saturation binding model (Eq. (14)) can be used
+   The recovery of PFAS during the SPME extraction was calculated by
+                                                                                  to describe the binding curves of the bound concentration (Cbound) as a
+Eq. (5).
+                                                                                  function of Cw with the dissociation constant Kd and Cmax as maximum
+                       nf + nw                                                    bound concentration. Cmax reflects the number of binding sites on the
+recovery ratio =                                                       (5)
+                          ntot                                                    protein in case of BSA after the concentrations in [molPFAS/Lprotein] were
+                                                                                  converted to [molPFAS/molBSA] using the molecular weight of BSA of
+2.3.2. Sorption isotherms to the SPME fiber                                       66463 Da and a density of 1.36 kg/L (Eq. (13)).
+    Sorption isotherms can be used to describe the binding of chemicals                nbound
+to surfaces. The binding of anionic chemicals to C18 fibers is an                 ν=                                                                                     (13)
+                                                                                       nprotein
+adsorption process with limited binding sites. In this case the sorption
+isotherms of Cf against the aqueous concentration Cw are non-linear and                               Cmax ⋅Cw
+experimental sorption data can be fitted with an empirical model,                 Cbound,specific =                                                                      (14)
+                                                                                                      Kd + Cw
+known as Freundlich isotherm (Eq. (6)).
+                                                                                     The low-concentration linear range of the binding curves extends
+Cf = KFr × (Cw )nFr                                                    (6)        approximately to Cmax/2 and can be described by Kspecific (Eq. (15)).
+   KFR and nFR are Freundlich constant and exponent, which can be                                Cmax
+                                                                                  Kspecific =                                                                            (15)
+deduced from experimental data by the logarithmic form of Eq. (6),                              2 × Kd
+which is (Eq. (7)):
+                                                                                      After obtaining the Kd and Cmax from the low-concentration portion
+logCf = nFr × logCw + logKFr                                           (7)        of the binding curve (ν < 1) the non-specific distribution constant Dnon-
+                                                                                  specific was fitted to the full sorption model by keeping the previously
+   The apparent distribution ratio of PFAS between fiber and water Df/w
+                                                                                  determined Kd and Cmax constants (Eq. (16)).
+Eq. (8) at equilibrium is dependent on the concentrations and can be
+calculated with KFR and nFR Eq. (9).                                                               Cmax ⋅Cw
+                                                                                  Cbound,total =            + Dnon− specific × Cw                                        (16)
+                                                                                                   Kd + Cw
+       Cf
+Df/w =                                                                 (8)
+       Cw
+
+
+                                                                              5
+W. Qin et al.                                                                                                                                 Environment International 173 (2023) 107857
+
+
+2.3.5. Mass balance model for distribution to biomaterials                                         curve below 30% cytotoxicity with Eq. (22) (Escher et al., 2018).
+   The biomaterial-water distribution ratio Di/w can also be predicted
+                                                                                                                 10%
+by a mass balance model (MBM, Eq. (17)) from the concentration-                                    IC10 =                                                                          (22)
+                                                                                                            slopecytotoxicity
+dependent protein binding constants and the concentration-
+independent distribution to the lipid phases, assuming that protein                                    The specific effect was the reporter gene activation or suppression of
+and lipid are the major sorptive phases in the tested biomaterials (me­                            PPARγ. For agonistic effects, effective concentration that triggered 10%
+dium, cells, plasma).                                                                              of the maximum PPARγ activation induced by the positive control
+                         Vprot                 Vlip                                                rosiglitazone (EC10, Eq. (23)) was calculated from the linear portion of
+Di/w = DBSA/w ×                   + Dlip/w ×                                           (17)        concentration-effect curve (eq. (23)), at non-cytotoxic concentrations, i.
+                        Vprot+lip            Vprot+lip
+                                                                                                   e., at concentrations below IC10 and below 30% of maximum effect, with
+    The volume of protein (Vprot) and lipid (Vlip) in plasma, medium,                              Eq. (24).
+HEK293H cells were measured for the materials used in this study as
+                                                                                                               10%
+described by Fischer et al. (2017).                                                                EC10 =                                                                          (23)
+    DBSA/w measured here served as proxy for protein distribution and                                       slopeeffect
+the liposome (phospholipid vesicles)-water distribution ratio Dlip/w from
+                                                                                                   % of maximum PPARγ activation = slopeeffect × concentration                     (24)
+Ebert et al. (2020) as proxy of lipid distribution. The Dlip/w of PFBA was
+predicted from a linear relationship between log Dlip/w of per­                                        For antagonistic effects, 7 nM rosiglitazone (agonist of PPARγ) was
+fluorocarboxylic acids and the number of fluorinated carbon (C-F)                                  added in all wells to trigger approximately 80% of the maximum effects
+(Figure A1). The R-squared of this linear regression was 0.95, the slope                           and a dilution series of the PFAS was run against that background. The
+was 0.476 and intercept was 0.172.                                                                 suppression ratio (SPR) of PFAS can be calculated by the reduction of the
+                                                                                                   activation signal of the constant concentration of rosiglitazone (Eq.
+2.3.6. Freely dissolved concentration in the bioassays                                             (25)).
+    The aqueous concentration in the bioassay medium was quantified at
+                                                                                                                     Activationsample
+the end of the bioassay experiment. Since the SPME extraction leads to a                           SPR = 100%-                                                                     (25)
+                                                                                                                    Activationrosiglitazone
+substantial depletion of some of PFAS, one needs to back-calculate to the
+original aqueous concentration in the bioassay using Eq. (18) (Henne­                                 The effective concentration causing a SPR of 20% (ECSPR20, Eq. (26))
+berger et al., 2019b). In in vitro toxicology, this aqueous concentration is                       was derived from the linear portion of the concentration-suppression
+often termed freely dissolved concentration (Cfree,bioassay) and we use                            curve (similar to Eq. (25)).
+this terminology for consistency. The Df/w used for this conversion was
+                                                                                                                20%
+calculated from Cf using the equations given in Table A6.                                          ECSPR20 =                                                                       (26)
+                                                                                                                slope
+                            ntot
+Cfree,bioassay =            (                )                                         (18)
+                                                                                                   3. Results and discussions
+                              ntot
+                   Df/w ×     Cf
+                                   −    Vf
+
+     Cfree,bioassay can also be predicted by a mass balance model (Eq. (19))                       3.1. Fiber uptake kinetics and sorption isotherm of PFAS
+with the Di/w of different biomaterials i (medium, cells) and their cor­
+responding volume Vi.                                                                                  To establish a SPME method specifically for PFAS, we performed
+                                          (
+                                                ∑
+                                                n
+                                                  (           )
+                                                               )                                   kinetic uptake and sorption isotherm experiments (Figure A2) to study
+ntot = nfree + nbound,i = Cfree,bioassay × Vw +     Di/w × Vi           (19)                       adsorption characteristics of PFAS to C18-coated fibers. All four PFAS
+                                                         i=1                                       reached equilibrium status within 16 h (Eq. (4), Fig. A2a-d and
+    The Cfree,bioassay can be calculated by rearranging Eq. (19) and                               Table A1) and their average recovery ratios (Eq. (5)) were 95%-120%.
+introducing the measured Dmedium/w of GeneBLAzer assay medium and                                  Hydrophobic PFHxS, PFOA and PFOS showed strong affinities to fibers
+Dcell/w of the HEK293H cell line (Eq. (20)).                                                       in a concentration-dependent way. The sorption isotherm was linear for
+                                                                                                   PFBA but non-linear for the other PFAS with Freundlich exponents nFr
+
+
+
+                                                              ntot
+Cfree,bioassay = (                                                                                      )                                                                          (20)
+                     Dcell/w × Vcell, prot+lip + Vcell, w ) + (Dmedium/w × Vmedium,prot+lip + Vmedium,w
+
+
+
+                                                                                                   ranging from 0.641 to 0.764 (Eq. (7), Fig. A2e-h, Table A6). The Df/w of
+                                                                                                   PFHxS, PFOA and PFOS hence showed a strong concentration depen­
+                                                                                                   dence (Eq. (9), Fig. A2j-l and Table A6).
+2.3.7. PPARγ bioassay
+   Cytotoxicity was expressed as a percentage of reduced cell numbers                              3.2. Binding to proteins
+(confluency) compared to the unexposed cells (eq. (21)). The
+concentration-cytotoxicity curve, which is typically linear up to 30%                                  The concentrations of PFAS bound to BSA (Cbound,BSA) (Eq. (10))
+reduction of confluency (Escher et al., 2018) was fitted with Eq. (21).                            increased non-linearly with Cw (Fig. 2a-d). In the experiment, the volume
+                                           confluency(sample)                                      of BSA was kept constant, while the concentration of PFAS ranged over
+%Cytotoxicity = 100% −
+                                       confluency(unexposedcells)                                  four to five orders of magnitude. The binding curves of PFOA, PFHxS and
+                                                                                                   PFOS showed three phases. The PFAS appeared to bind to the high-affinity
+                     = slopecytotoxicity × concentration                               (21)
+                                                                                                   sites of BSA at low concentrations. When these sites gradually saturated, a
+   The inhibitory concentration that caused 10% of cytotoxicity (IC10)                             transition stage in the middle part of curve appeared. At high concentra­
+was calculated from the linear portion of the concentration-cytotoxicity                           tions, non-specific partitioning was observed. For hydrophilic PFBA, the
+                                                                                                   transition phase was affected by non-specific binding. The binding curves
+
+                                                                                               6
+W. Qin et al.                                                                                                                 Environment International 173 (2023) 107857
+
+
+
+
+Fig. 2. Protein (BSA) binding curves. The concentrations of (a) PFBA, (b) PFOA, (c) PFHxS and (d) PFOS bound to bovine serum albumin (Cbound,BSA, circles) were
+fitted with a mechanistic combined binding/partitioning model (Eq. (16)). Distribution ratios between BSA and water (DBSA/w) for (e) PFBA, (f) PFOA, (g) PFHxS and
+(h) PFOS. log DBSA/w (black circle) was fitted phenomenologically by a Freundlich-type model (Eq. (12)). The experimental data were compared with previous
+dialysis experiments from Allendorf et al (2019) (orange upward triangles) and Xia et al (2013) (green downward triangles) for comparison. (For interpretation of the
+references to colour in this figure legend, the reader is referred to the web version of this article.)
+
+were fitted with Eq. (16). The specific saturation binding Kspecific (Eq. (15))              Bischel et al. (2010) found up to eight binding sites in PFAS-BSA
+and the non-specific distribution ratio Dnon-specific (Eq. (16), Table 1) were           complexes at ν > 4 (molPFAS:molBSA) using Nano-electrospray ioniza­
+not as distinctly differentiated as for other anionic organics such as nap­              tion mass spectrometry. Human serum albumin (HSA) and BSA are 76%
+roxen (Henneberger et al., 2019a). The Cmax of PFBA, PFOA, PFHxS and                     conserved in sequences (Theodore 1985) and thus some PFAS showed
+PFOS were 0.450, 1.24, 0.919 and 0.391 molPFAS/molBSA, respectively                      similar affinity to both BSA and HSA (Bischel et al., 2010). Chen and Guo
+(Table 1), indicating that there is most likely only one high-affinity                   (2009) further investigated the affinities of PFAS on three binding sites
+binding site for PFAS. PFOS showed the highest potency of specific pro­                  of HSA using site-specific fluorescence. PFBA, PFOA, PFOS had different
+tein binding with a log Kspecific of 5.81. The log Dnon-specific (ν > 1) (Table 1)       preferences among these binding sites with orders of magnitude differ­
+were lower than log Kspecific but were remarkably similar to the log Dlip/w              ence in binding constants. If the strongest binding site contributed the
+for PFBA, PFOA and PFOS (Table 2).                                                       most of the PFAS binding to protein, the binding model can be simplified
+    Since PFAS binding to BSA was non-linear, DBSA/w (Eq. (11)) of PFAS                  as one high-affinity binding site model as we did here.
+were concentration-dependent (Fig. 2e-h). The decrease of experimental                       Several models have been used in previous studies to analyze how
+DBSA/w with increasing Cw was phenomenologically fitted with Eq. (12)                    PFAS-protein binding is affected by hydrophobicity, steric limitation
+and the resulting Freundlich parameters KFr and nFr are listed in Table 1.               and number of fluorinated carbon (nC-F) (Alesio et al. 2022; Almeida
+Note that this very simplified linearization of the three-phasic binding                 et al., 2021; Qin et al., 2020; Ren et al., 2016). Their results suggested
+curve does not reflect the complex binding mechanism, but the resulting                  that nC-F plays an important role in PFAS-protein binding because it has
+linear regressions may serve as input function for the MBM.                              positive correlations with chemical hydrophobicity and molecular size
+    There are two studies using dialysis experiments to investigate the                  (Alesio et al., 2022). In our study, the value of log Dnon-specific showed a
+protein binding of PFAS. Allendorf et al. (2019) measured BSA-water                      good relationship with nC-F, PFOS (nC-F:8) > PFOA (nC-F:7) > PFHxS (nC-
+partition coefficients for seven PFAS at one constant concentration.                     F:6) > PFBA (nC-F:3), suggesting nC-F may dominate the non-specific
+Their experimental data of PFBA, PFOA, PFHxS and PFOS are compared in                    binding of PFAS to protein (Figure A3). Different functional groups (e.
+Fig. 2 with the present binding curves measured with SPME. All are sit­                  g., sulfonic, carboxylic or hydroxy group) were also reported to impact
+uated at different regions of the binding curves. PFBA (Fig. 2a, orange                  the interactions of PFAS with protein, such as van der Waals in­
+upward triangle) was measured at very low linear specific binding at                     teractions, electrostatic interactions and hydrogen bonding (Almeida
+concentrations that were two orders of magnitude lower than the con­                     et al., 2021; Qin et al., 2020; Ren et al., 2016). The higher values of log
+centration range measured here, PFOA (Fig. 2b, orange upward triangle)                   Kspecific (Table 1) of PFHxS and PFOS suggest that sulfonic acids may
+and PFHxS (Fig. 2c, orange upward triangle) were situated at the linear                  have stronger binding affinity to the ligand binding pockets, which is
+specific binding concentration range, and PFOS (Fig. 2d, orange upward                   consistent with previous studies using nuclear protein (e.g., PPARγ),
+triangle) at the transition zone, where specific binding was going towards               membrane protein (e.g., GPR40) and transport protein (e.g. trans­
+saturation and non-specific binding contributed to the overall binding.                  thyretin) (Almeida et al., 2021; Qin et al., 2020; Ren et al., 2016).
+    Xia et al. (2013) studied the protein binding of six PFAS with                           Overall, the comparison with literature data demonstrates that it is
+different protein concentrations of BSA and found non-linear binding                     important to measure protein binding at a wide concentration range to
+curves of PFOA and PFOS. Their binding curves for PFOA (Fig. 2b, green                   assure that all aspects of binding, including specific saturable binding as
+downward triangles) were in the range of specific binding and their                      well as nonspecific partitioning are captured. We extended the con­
+experimental data from dialysis experiments agreed remarkably well                       centration range over five orders of magnitude and chose appropriate
+with our data from SPME experiments. PFOS binding was measured at                        concentration ranges for each of the tested PFAS to capture all phases of
+the same concentration range as PFOA but fell into the transition zone                   the binding curves. The drawback of literature data was that it was
+between saturation of specific binding and non-specific binding (Fig. 2d,                typically measured at a narrower concentration range, which resulted in
+green downward triangles). The present SPME experiment indicated                         measurements at different phases of the binding curves, which limits
+stronger binding in the same concentration range as the dialysis                         comparisons of the experimental binding constants.
+experiment data from Allendorf et al. (2019) and Xia et al. (2013).
+
+
+                                                                                     7
+W. Qin et al.                                                                                                                    Environment International 173 (2023) 107857
+
+
+
+
+Fig. 3. Partitioning to biological materials (plasma, medium, cells). The concentration of (a) PFBA, (b) PFOA, (c) PFHxS and (d) PFOS bound to plasma (Cbound,plamsa,
+circles) were fitted with a mechanistic combined binding/partitioning model (Eq. (16)). Distribution ratios between plasma and water (Dplasma/w) of (e) PFBA, (f)
+PFOA, (g) PFHxS and (h) PFOS were fitted phenomenologically by the Freundlich-type model (Eq. (12), black solid line) and predicted by the mass balance model
+(MBM, Eq. (17)) with concentration-dependent BSA-water distribution ratios, DBSA/w from the Freundlich-type model (Eq. (12), Table 1, green dotted line) or from
+the mechanistic combined binding/partitioning model (Eq. (16), green hollow circle), and the liposome-water distribution ratio, Dlip/w (Table 2). Distribution ratio
+between medium and water (Dmedium/w) of (i) PFBA, (j) PFOA, (k) PFHxS and (l) PFOS were fitted phenomenologically by the Freundlich-type model (Eq. (12), black
+solid line) and predicted by the MBM (Eq. (17), green dotted line) with the DBSA/w from the Freundlich-type model (Eq. (12), Table 1) and the Dlip/w (Table 2).
+Distribution ratios between cell and water (Dcell/w) of (m) PFBA, (n) PFOA, (o) PFHxS and (p) PFOS were calculated by Eq. (11) (black circle) from experiments and
+predicted by the MBM (Eq. (17), green dotted line) with Dnon-specific of BSA (Table 1) and Dlip/w (Table 2). (For interpretation of the references to colour in this figure
+legend, the reader is referred to the web version of this article.)
+
+
+
+
+Fig. 4. Freely dissolved concentration of (a) PFBA, (b) PFOA, (c) PFHxS and (d) PFOS in GeneBLAzer medium (220 μL) in presence of 21,000 cells after 24 h cell
+exposure. log Cfree,bioassay of PFAS were quantified with SPME (Eq. (18), filled circles) and predicted by mass balance model (MBM, Eq. (20), empty diamond) with the
+concentration-dependent medium-water distribution ratio, Dmedium/w (Eq. (12), Table A6) and cell-water distribution ratio, Dcell/w (Table 2). Inhibitory concentration
+(IC10, Eq. (22)) for cytotoxicity and effect concentration (EC10 in agonist mode (Eq. (23)) or ECSPR20 in antagonistic mode (Eq. (26))) were measured with the PPARγ-
+GeneBLAzer assays.
+
+                                                                                     8
+W. Qin et al.                                                                                                              Environment International 173 (2023) 107857
+
+
+3.3. Binding to human plasma                                                             Since PFAS binding to protein was concentration-dependent and the
+                                                                                     protein content was 140 times higher than lipid content in the Gene­
+     C18-SPME was also used to measure Cfree in plasma samples and to                BLAzer assay medium, the log Dmedium/w of PFOA, PFHxS and PFOS (Eq.
+derive binding curves. As shown in Fig. 3a-e, the plasma binding curves of           (12)) were also concentration-dependent. The log Dmedium/w of PFOA,
+all four PFAS were also concentration-dependent and could be fitted by               PFHxS and PFOS predicted with the MBM (Eq. (17), Table A6) showed
+the mechanistic combined binding/partitioning model. To align the units,             the same trends as the experimental results but predictions resulted in
+the saturation binding (Eq. (14)) was multiplied by the volume fraction of           slightly higher Dmedium/w than experiments (green dashed line in Fig. 3j-
+protein (Vprot /Vprot+lip = 0.909) in the plasma. Dplasma/w (ν < 1) in Table 2       k). For the hydrophilic PFBA, the log Dmedium/w was nearly constant over
+refers to the specific binding constant Kspecific (Eq. (16) and was derived          the tested concentration range and the predicted Dmedium/w of PFBA was
+from the low-concentration portion of the binding curves with Eq. (14).              lower than experimental ones (Fig. 3i), which might have been caused
+Dplasma/w (ν > 1) refers to non-specific binding (Eq. (16)). All fit param­          by the slightly higher recovery of the SPME (95–120%, Eq. (5)),
+eters of the mechanistic binding model are listed in Table A7.                       resulting in lower Cbound,medium and Dmedium/w calculated for the MBM
+     The binding curves to BSA and to plasma overlapped for PFBA                     (Eqs. (10) and (11)).
+(Fig. A4a) and PFOS (Fig. A4d), but only overlapped at the low con­
+centration range of protein-specific binding and gradually separated as
+                                                                                     3.5. Partitioning to cells
+the concentration increased for PFOA (Fig. A4b) and PFHxS (Fig. A4c).
+The good agreement is an indication that the plasma binding is domi­
+                                                                                         The concentrations of PFAS bound to HEK293H cells (Cbound,cell, Eq.
+nated by protein binding with a low contribution of the lipids to the
+                                                                                     (10)) were measured at two nominal concentrations that differ by a
+overall plasma binding, which justifies the application of the mecha­
+                                                                                     factor of eight (Table A2). The volume fractions of water, protein and
+nistic combined binding/partitioning model that was derived for BSA.
+                                                                                     lipid of cells were 91.6%, 8.14% and 0.432% (Table A5), which were
+     Despite the non-linearity of plasma binding, we also fitted the
+                                                                                     comparable to the values determined in previous study (Fischer et al.,
+experimental Dplasma/w with the Freundlich-type model (Eq. (12)) and
+                                                                                     2017). Dcell/w derived from different concentrations of the same PFAS
+compared the logDplasma/w – logCw relationship with the prediction by
+                                                                                     did not show any statistical difference (Student’s t test, p > 0.05) and an
+the MBM (Fig. 3e-h, Table 2, and Table A7). There was a decent
+                                                                                     average value of log Dcell/w for each PFAS is listed in Table 2.
+agreement between the experimental Dplasma/w (black circle) and the fit
+                                                                                         A previous study pointed out that structural proteins (e.g. cytoskel­
+with the Freundlich-type model (black solid lines) and the MBM pre­
+                                                                                     eton) are abundant in mammalian cells and organic acids have lower af­
+diction that was based on the Freundlich model for DBSA/w (green dashed
+                                                                                     finity to structural proteins compared to BSA (Henneberger et al., 2016).
+lines) as well as the MBM prediction that were based on the mechanistic
+                                                                                     Non-specific binding of PFAS to structural protein and lipid may dominate
+protein binding model (green circles) in Fig. 3e-h.
+                                                                                     their partitioning to the cells. Based on this assumption, Dcell/w was pre­
+     The MBM for plasma based in the mechanistic combined binding/
+                                                                                     dicted by the MBM (Eq. (17)) with Dnon-specific (Table 1) as a surrogate for
+partitioning model for BSA was also used to analyze how lipids and pro­
+                                                                                     partitioning to structural proteins and Dlip/w (Table 2) for lipid.
+teins contribute to the bound PFAS. Dplasma/w (ν < 1) predicted for real­
+                                                                                         The predicted Dcell/w (green dashed line in Fig. 3m-p) were not much
+istically low concentrations with Kspecific_BSA (Table 1) were comparable to
+                                                                                     different from the experimental Dcell/w for PFOA, PFHxS and PFOS with
+the experimental ones with>98% contribution by protein binding
+                                                                                     discrepancies within 15%. For PFBA, the predicted Dcell/w was around
+(Table 2). This also rationalizes the overlay of the binding curves to BSA
+                                                                                     35% lower than the experimental Dcell/w similarly to what has been
+and plasma. Dplasma/w (ν > 1) predicted for high concentrations with Dnon-
+                                                                                     observed for medium. Here, we considered only proteins and lipids of
+specific_BSA of PFBA, PFOA, PFOS agreed well with the experimental Dplasma/
+                                                                                     the cell homogenate as the main sorptive phase for Dcell/w, which is
+w and the contribution of lipid increased from approximately 1% for low
+                                                                                     different from Henneberger et al (2019a) where the cells were recog­
+concentrations and specific binding (Table 2) to 10% for high concen­
+                                                                                     nized as an entity containing water, protein and lipid and all of them
+trations and dominant non-specific binding (Table A7).
+                                                                                     contributed to cell-water distribution.
+     Forsthuber et al. (2020) analyzed 11 PFAS bound to albumin and
+lipoproteins in human blood samples and concluded that albumin was
+the main carrier in plasma. However, this study only analyzed the blood              3.6. Freely dissolved concentration of PFAS in PPARγ reporter gene
+concentration and did not investigate any binding mechanism. C18-                    assays
+SPME combined with MBM can not only obtain partition constants,
+but also differentiate the specific and non-specific binding within wide                 In the bioassay, the partitioning of PFAS to medium components and
+concentration ranges and predict the contribution of lipids and proteins.            cells inevitably resulted in substantial differences between freely dis­
+                                                                                     solved concentration (Cfree,bioassay) and nominal concentration (Cnom,
+3.4. Partitioning in medium                                                          bioassay). The log Df/w in Table A6 were used to derive Cfree,bioassay in
+                                                                                     complex assay medium from measured concentrations in the fiber by Eq.
+    We further studied the partitioning of PFAS in GeneBLAzer assay                  (18). As shown in Fig. 4, if Cfree,bioassay is equal to Cnom,bioassay, data
+medium that is commonly used for reporter gene assays in Tox21.                      points fell on the 1:1 diagonal. For the hydrophilic PFBA, log Cfree,bioassay
+Binding curves are depicted in Figure A5. Volume fractions of protein                and log Cnom,bioassay were almost equal with deviations below 10%, but
+and lipid in the GeneBLAzer assay medium were 0.08% and 0.0007%                      for hydrophobic PFHxS, PFOA and PFOS, Cfree,bioassay were up to 100
+(Table A5). The Cbound,medium of PFAS was also fitted with the combined              times lower than Cnom,bioassay. Our results are consistent with a recent
+binding/partitioning model (Eq. (16)). The saturation binding portion of             study that hydrophilic chemicals and highly protein-bound chemicals
+Eq. (14) was multiplied by the volume fraction of protein (Vprot                     behave differently on Cfree (Dimitrijevic et al., 2022).
+/Vprot+lip = 0.992) in the medium to align the units. Apart from PFOS                    Considering medium components and cells may be contributing to
+(Figure A5d), which showed an excellent fit, the other three PFAS did                PFAS depletion in bioassays, a MBM (Eq. (20)) with Dmedium/w and Dcell/
+not show the pronounced non-linear binding and a much lower quality                  w for these PFAS (Table A6 and Table 2) was used to predict the values of
+of the fit (Figure A5 a-c). The highest concentration of PFOA and PFHxS              Cfree,bioassay of PFAS. The log Cfree,bioassay predicted with the MBM agreed
+were excluded from the fit, but the model was still not able to explain the          well with experimental data (Fig. 4). This means that existing PFAS ef­
+shape of the binding curves. This may be caused by protein denaturation              fect data can be assessed for their freely dissolved effect concentrations
+at high concentrations due to the surface-active properties of PFOA and              in the future by the simple MBM, provided that the distribution ratios
+PFHxS, which may have caused unfolding of the protein (MacManus-                     (DBSA/w and Dlip/w) and experimental conditions (lipid and protein
+Spencer et al., 2010).                                                               content of medium and cells) are available.
+
+                                                                                 9
+    W. Qin et al.                                                                                                                     Environment International 173 (2023) 107857
+
+
+    Table 3
+    Nominal and freely dissolved concentration of PFBA, PFOA, PFHxS and PFOS in PPARγ reporter gene assays and human plasma. Quantitative in vitro to in vivo
+    extrapolation (QIVIVE) ratio for workers and residents living near fluorochemical plants and general population.
+                    PPARγ reporter gene assay                                    Workers or residents near fluorochemical plant              General residents
+
+                    Cytotoxicity    PPARγ-activation              Human plasma                                                               Human plasma
+
+                    IC10,nom        Agonism        Antagonism     Cnom,plasma    QIVIVEnom ratio                                             Cnom,plasma         QIVIVEnom ratio
+                    [μmol/Lw]       EC10,nom       ECSPR20,nom    [μmol/L]                                                                   [μmol/L]
+                                    [μmol/Lw]      [μmol/Lw]
+
+        PFBA        2.20 × 103      316                           0.408a         1.29 × 10− 3                                                5.30 × 10− 3c       1.68 × 10− 5
+        PFOA        91.0                           18.2           35.8b          1.96                                                        1.23 × 10− 2d       6.74 × 10− 4
+        PFHxS       125                            70.7           26.4b          0.373                                                       1.40 × 10− 2d       1.98 × 10− 4
+        PFOS        29.5                           5.54           126b           22.7                                                        3.30 × 10− 2d       5.95 × 10− 3
+
+                    IC10,free       Agonism        Antagonism     Cfree,plasma   QIVIVEfree ratio                                            Cfree, plasma       QIVIVEfree ratio
+                    [μmol/Lw]       EC10,free      ECSPR20,free   [μmol/L]                                                                   [μmol/L]
+                                    [μmol/Lw]      [μmol/Lw]
+
+        PFBA        1.61 × 103      259                           5.72 × 10− 2   2.21 × 10− 4                                                7.42 × 10− 4        2.87 × 10− 6
+        PFOA        27.0                           3.64           1.93 × 10− 2   5.31 × 10− 3                                                6.63 × 10− 6        1.82 × 10− 6
+        PFHxS       81.6                           31.9           3.76 × 10− 3   1.18 × 10− 4                                                2.00 × 10− 6        6.25 × 10− 8
+        PFOS        2.98                           0.243          2.94 × 10− 3   1.21 × 10− 2                                                7.71 × 10− 7        3.17 × 10− 6
+    c
+        Data from Gao et al. 2019.
+    d
+        Data from https://www.cdc.gov/exposurereport/data_tables.html.
+        a
+          Data from Bao et al. 2022.
+        b
+          Data from Gao et al. 2015.
+
+    3.7. Effect concentrations of PFAS in PPARγ reporter gene assays                    et al., 2015; Sakr et al., 2007; Wang et al., 2012). For example, the
+                                                                                        maximum level of PFOA, PFHxS and PFOS of workers from one of the
+        All PFAS were cytotoxic at the highest exposure concentrations                  largest PFAS-related producers in China (Henxin Chemical Plant) were
+    (Figure A6). Inhibitory concentration that caused 10% of cytotoxicity               35.8, 26.4 and 126 μmol/L (Table 3) (Gao et al., 2015). The hydrophilic
+    (IC10,free) (Eqs. (21) and (22)) of PFBA, PFOA, PFHxS and PFOS were                 PFBA was seldomly measured in plasma samples, but it was one of the
+    1610, 27.0, 81.6 and 2.98 μM respectively (Table 3). To avoid artefacts             dominant PFAS in urine (Peng et al., 2021). However, some studies
+    on the PPARγ activation caused by the cytotoxicity, the cellular effects            applied more sensitive methods and found PFBA in maternal and cord
+    were evaluated in the non-cytotoxic concentration range below IC10.                 serum (Bao et al., 2022; Gao et al., 2019). The maximum level of PFBA
+        Both agonistic and antagonistic effects in the PPARγ-GeneBLAzer                 was 0.408 μmol/L among 50 pregnant women living near the fluo­
+    reporter gene assay were observed after 24 h exposure to PFAS                       rochemical industrial plant-Fuxin in China (Bao et al., 2022).
+    (Figure A6). PFBA showed agonistic effects up to 30% at lower con­                      PFAS were also found in the general population at nanomolar level
+    centrations and then suppression at higher concentrations, which were               according to national health surveys among developing and developed
+    already impacted by cytotoxicity (Figure A6a). The effective concen­                countries (Cakmak et al., 2022; Gockener et al., 2020; Lin et al., 2019;
+    tration that triggered 10% of the maximum PPARγ activation (EC10,free)              Petriello et al., 2022; Yu et al., 2020; Zhang et al., 2019). The U.S. Center
+    (Eqs. (23) and (24)) of PFBA was 259 μM.                                            for Disease Control and Prevention conducted PFAS monitoring of the
+        PFOA, PFHxS and PFOS showed antagonistic effects on PPARγ                       general U.S. population and their latest results (2017–2018) showed
+    (Figure A6b-d), that were measured at a background of 80% activation                that the maximum concentration of PFHxS, PFOA and PFOS were 12.3,
+    effect of rosiglitazone. PFHxS suppressed nearly half of the signal from            14.0, 33.0 nmol/L respectively (https://www.cdc.gov/exposurereport
+    rosiglitazone, and PFOA and PFOS almost eliminated the signal. Sup­                 /data_tables.html). The maximum concentration of PFBA was 5.30
+    pression ratios (SPR) (Eq. (25)) of 20% of PFHxS, PFOA and PFOS were                nmol/L among 132 non-occupationally exposed pregnant women in
+    observed at ECSPR20,free of 3.64, 31.9 and 0.243 μM (Eq. (26), Table 3).            Beijing, China (Gao et al., 2019).
+        PPARγ-regulated signal pathways have been demonstrated to                           Cfree,plasma was calculated with Eq. (27). Since the ν (molPFAS/mol
+    involve in PFAS disrupting lipid metabolism in many studies (Abbott                 protein) of PFAS in human plasma samples were usually ≪1 and most of
+    2009; Ma et al., 2018; Pan et al., 2021). Some researchers further                  PFAS may bind highly specifically to proteins, leading to very low free
+    investigated the interaction of PFAS with PPARγ by using reporter gene              PFAS concentrations.
+    assays but their activities on the receptor were inconsistent. For
+                                                                                                               Cnom,plasma × Vw
+    example, no significant activation of PPARγ by PFOA and PFOS were                   Cfree,plasma =                                                                          (27)
+                                                                                                         Vw + Dplasma/w × Vprot+lip,plasma
+    observed on Cos-1 cells (Takacs and Abbott, 2007), which were trans­
+    fected with plasmid DNA using lipofectamine reagent, while other                        We derived the log Dplasma/w at ν < 1 (Table 2) from the binding
+    studies proved they were potential agonists of PPARγ using transient                curves of PFAS to human plasma (Fig. 3a-d) and used these values to
+    transfected 3 T3-L1 cells (Vanden Heuvel et al., 2006) or HEK293 cells              calculate Cfree,plasma by the MBM (Eq. (27)). As shown in Table 3, Cfree,
+    (Li et al., 2019, 2018; Zhang et al., 2014). PFOA, PFHxS and PFOS                   plasma was predicted to be lower than Cnom,plasma but the ratio was highly
+    showed very faint activation effects in the PPARγ GeneBLAzer assay at               chemical-specific. Cfree,plasma of PFBA was only seven times lower than
+    the low concentration range in absence of rosiglitazone (data not shown)            Cnom,plasma but this ratio increased with protein binding affinity to
+    but obvious suppression without prior increase of the rosiglitazone                 almost 40,000 for PFOS. There was little difference in this ratio for each
+    signal when co-exposed with rosiglitazone.                                          PFAS between the exposed workers and the general population.
+
+
+    3.8. Freely dissolved concentration of PFAS in human plasma                         3.9. Quantitative in vitro to in vivo extrapolation
+
+       Many PFAS have been detected at micromolar levels in human                          The QIVIVE ratio is the ratio of concentration of PFAS in human
+    plasma of firefighters and workers engaged in PFAS utilization and                  plasma and effect concentration EC (EC10 or ECSPR20) in the bioassay
+    manufacturing facilities (Costa et al., 2009; Gao et al., 2015; Rotander            (Henneberger et al., 2021). The QIVIVEnom ratio was calculated with Eq.
+
+                                                                                   10
+­
+W. Qin et al.                                                                                                                 Environment International 173 (2023) 107857
+
+
+(28). Nominal concentration of PFAS in human plasma samples (Cnom,                       4. Conclusion
+plasma) were collected from epidemiological studies and ECnom were
+measured as illustrative example with the PPARγ GeneBLAzer assay.                             The use of PFAS has improved the quality of our life, but their
+                                                                                         persistence and continued usage perpetuate their adverse impact on
+                     Cnom, plasma
+QIVIVEnom ratio =                                                           (28)         humans and the environment. HTS cell-based bioassays can be used to
+                      ECnom
+                                                                                         characterize the potential toxicity of PFAS, and the associated QIVIVE
+   The corresponding QIVIVEfree ratio was calculated with Eq. (29)                       ratios allow one rank their relative risk (Bell et al., 2018). This may be a
+from Cfree,plasma (Eq. (27) and ECfree (calculated with Eq. (18)).                       practical strategy to deal with a conflict between commercial needs and
+                     Cfree,plasma                                                        environmental health protection.
+QIVIVEfree ratio =                                                          (29)              PFAS bound to proteins in plasma can also be transported to cells or
+                      ECfree
+                                                                                         different tissues in bound form with the blood and released at other
+    As an illustrative example, we calculated the QIVIVE ratio for plasma                organs and sites. There is an equilibrium distribution of Cfree and Cbound
+concentrations (Cplasma) of PFBA, PFOA, PFHxS and PFOS in workers                        (Fischer et al., 2018) due to the reversible binding of PFAS to proteins.
+and residents living near fluorochemical plants from Bao et al. (2022)                   Receptors with high affinity could trigger the dissociation from serum
+and Gao et al. (2015) or the general population in the US (https://www.                  albumins acting as transporters. Such redistribution can occur in blood
+cdc.gov/exposurereport/data_tables.html) and Gao et al. (2019), and                      and in the in vitro bioassays and therefore Cfree can be considered still a
+the EC of PFAS in the PPARγ GeneBLAzer assay (Table 3).                                  useful parameter from comparisons.
+    A QIVIVE ratio > 1 would indicate that the particular in vitro effect on                  The binding of PFAS to proteins is strongly concentration-dependent.
+the PPARγ receptor may have the potential of causing associated adverse                  All biomaterials that have much higher protein than lipid content
+outcomes in in vivo (Sipes et al., 2017). Notably, this assay is only one                showed also concentration-dependent binding curves, which is a great
+example - for a full QIVIVE, one needs to measure many in vitro endpoints                experimental challenge if many anionic PFAS need to be characterized.
+and evaluate the distributions of QIVIVE ratios. This can be done in the                 Given the small contribution of lipid binding in case of human plasma, it
+future when more bioassay data become available from HTS studies.                        is possible to use DBSA/w as a surrogate for Dplasma/w but for plasma of
+    The QIVIVEnom ratios of PFOA and PFOS were 1.96 and 22.7, sug­                       other environmental organisms with higher lipid content, lipid parti­
+gesting PFOA and PFOS might cause an in vivo effect after occupational                   tioning would need to be included.
+exposure with respect to this particular biological endpoint (Table 3,                        The MBM yielded an adequate prediction of Cfree in cell-based bio­
+Fig. 5). In epidemiological studies, associations between decrease of                    assays. Although we demonstrated the validity of the MBM only for four
+PFOS and PFOA concentrations in serum and low-density lipoprotein                        anionic PFAS, one type of bioassay medium and one cell line, previous
+cholesterol have been demonstrated (Fitz-Simon et al., 2013), which                      work on other organic anions has demonstrated that models can be
+hints at the relevance of lipid metabolism and hence binding to PPARγ as                 transferred to other bioassay setups if the lipid and protein content has
+relevant molecular initiating event.                                                     been quantified (Henneberger et al., 2019b; Huchthausen et al., 2020).
+    The QIVIVEfree ratio of PFOA and PFOS were reduced to 5.87 × 10− 3                   Again, it must be stressed that the nonlinear binding behavior of anionic
+and 1.34 × 10− 2 (Table 3, Fig. 5), indicating that proteins and lipids in               PFAS to proteins is not a feature of the perfluorination of the molecules
+plasma may act as reservoirs of PFAS, reducing the freely dissolved con­                 but caused by the deprotonated carboxylic acid or sulfonic acid group of
+centration of PFAS. But this does not mean it is safe since a majority of                the tested PFAS. Thus, with respect to protein binding, our results and
+bound PFAS still accumulate in the body and can be remobilized. The large                comparison to protein binding of non-fluorinated organic ions demon­
+difference between QIVIVEnom and QIVIVEfree for anionic PFAS is because                  strate that the anionic PFAS behave like other organic anions.
+protein binding is highly concentration-dependent with a high-affinity                        The PPARγ reporter gene assay is just one exemplary HTS assay that
+specific binding at low concentrations and lower non-specific binding at                 was included in Tox21. The Tox21 collaboration has employed>60 HTS
+higher concentrations. Thus, the low concentrations in human plasma are                  assays for chemical assessments, including assays for cytotoxicity, cell
+strongly bound to proteins, while the high concentration needed to trigger               stress, mitochondrial function and nuclear receptor activation (Sipes
+effects in in vitro bioassays have a higher fraction unbound.                            et al., 2017). A bioassay test battery that covers a range of relevant
+    Since the concentrations of these PFAS in general population were                    modes of action may be used for overall toxicity evaluation for
+thousands of times lower than those in workers or residents living near                  commercially available PFAS. 75 PFAS were selected for high-
+fluorochemical plants, both QIVIVEnom and QIVIVEfree ratios of general                   throughput effect screening (Patlewicz et al., 2019) conducted by re­
+population were thus calculated to be thousands lower (Table 3, Fig. 5).                 searchers of U.S. EPA and the National Toxicology Program
+                                                                                         (https://www.epa.gov/pfas, accessed January 2023) and the results are
+                                                                                         still pending. Furthermore, more complex in vitro models such as models
+                                                                                         derived from human induced pluripotent stem cells (Corbett 2019) may
+                                                                                         serve in the future as a more suitable point of departure for QIVIVE.
+                                                                                              As the anionic PFAS have shown such a strong and non-linear
+                                                                                         binding to proteins, their true internal effect concentrations might be
+                                                                                         much different from neutral PFAS and the toxic effects of hydrophobic
+                                                                                         anionic PFAS may be underestimated as compared to the hydrophilic
+                                                                                         ones. Therefore, Cfree,bioassay may be a more appropriate dose-metric for
+                                                                                         comparative effect assessment and QIVIVE of PFAS. The MBM was
+                                                                                         successfully used to predict Cfree,bioassay of PFAS in one bioassay, which
+                                                                                         will greatly improve the accuracy of HTS to identify specific effects and
+                                                                                         compare effects across bioassay types. It will not always be necessary to
+                                                                                         measure Cfree of PFAS but existing HTS effect data based on nominal
+                                                                                         concentrations can be converted to free effect concentrations using the
+                                                                                         MBM.
+Fig. 5. Quantitative in vitro to in vivo extrapolation (QIVIVE ratio) for workers
+and residents living near fluorochemical plants and general population based
+on nominal concentrations (nom, (Eq. (28)) or free concentrations (free, (Eq.            Funding
+(29)) of human exposure level and effective concentrations in the PPARγ-
+GeneBLAzer bioassay.                                                                        Weiping Qin received funding through Chinese Scholarship Council
+
+                                                                                    11
+W. Qin et al.                                                                                                                                       Environment International 173 (2023) 107857
+
+
+and was supported by the Helmholtz Association under the recruiting                                        function and metabolism in participants of the Canadian Health Measures Survey
+                                                                                                           (CHMS). Sci. Total Environ. 827, 153900.
+initiative scheme, which is funded by the German Ministry of Education
+                                                                                                      Calvert, L., Green, M.P., De Iuliis, G.N., Dun, M.D., Turner, B.D., Clarke, B.O., Eamens, A.
+and Research, within the Helmholtz POF IV Topic 9 “Healthy Planet-                                         L., Roman, S.D., Nixon, B., 2021. Assessment of the emerging threat posed by
+towards a non-toxic environment”.                                                                          perfluoroalkyl and polyfluoroalkyl substances to male reproduction in humans.
+                                                                                                           Front. Endocrinol. (Lausanne) 12, 799043.
+                                                                                                      Chen, Y.M., Guo, L.H., 2009. Fluorescence study on site-specific binding of
+CRediT authorship contribution statement                                                                   perfluoroalkyl acids to human serum albumin. Arch. Toxicol. 83, 255–261.
+                                                                                                      Corbett, J.L. and D., S.A. iPSC-Derived Hepatocytes as a Platform for Disease Modeling
+                                                                                                           and Drug Discovery. Front Med (Lausanne) 2019;15:265.
+   Weiping Qin: Conceptualization, Investigation, Validation, Formal
+                                                                                                      Costa, G., Sartori, S., Consonni, D., 2009. Thirty years of medical surveillance in
+analysis, Writing – original draft, Writing – review & editing, Funding                                    perfluooctanoic acid production workers. J. Occup. Environ. Med. 51, 364–372.
+acquisition. Luise Henneberger: Methodology, Validation, Writing –                                    Cousins, I.T., Johansson, J.H., Salter, M.E., Sha, B., Scheringer, M., 2022. Outside the
+review & editing. Julia Huchthausen: Methodology, Validation,                                              Safe Operating Space of a New Planetary Boundary for Per- and Polyfluoroalkyl
+                                                                                                           Substances (PFAS). Environ. Sci. Tech. 56, 11172–11179.
+Writing – review & editing. Maria König: Investigation, Writing – re­                                Dimitrijevic, D., Fabian, E., Nicol, B., Funk-Weyer, D., Landsiedel, R., 2022. Toward
+view & editing. Beate I. Escher: Conceptualization, Methodology,                                           realistic dosimetry in vitro: Determining effective concentrations of test substances
+Validation, Visualization, Resources, Writing – review & editing, Su­                                      in cell culture and their prediction by an in silico mass balance model. Chem. Res.
+                                                                                                           Toxicol. 35, 1962–1973. https://doi.org/10.1021/acs.chemrestox.2c00128.
+pervision, Funding acquisition.                                                                       DeWitt, J.C., Shnyra, A., Badr, M.Z., Loveless, S.E., Hoban, D., Frame, S.R., Cunard, R.,
+                                                                                                           Anderson, S.E., Meade, B.J., Peden-Adams, M.M., Luebke, R.W., Luster, M.I., 2009.
+Declaration of Competing Interest                                                                          Immunotoxicity of perfluorooctanoic acid and perfluorooctane sulfonate and the role
+                                                                                                           of peroxisome proliferator-activated receptor alpha. Crit. Rev. Toxicol. 39, 76–94.
+                                                                                                      Ebert, A., Allendorf, F., Berger, U., Goss, K.U., Ulrich, N., 2020. Membrane/water
+    The authors declare that they have no known competing financial                                        partitioning and permeabilities of perfluoroalkyl acids and four of their alternatives
+interests or personal relationships that could have appeared to influence                                  and the effects on toxicokinetic behavior. Environ. Sci. Tech. 54, 5051–5061.
+                                                                                                      Escher, B.I., Glauch, L., Konig, M., Mayer, P., Schlichting, R., 2019. Baseline toxicity and
+the work reported in this paper.                                                                           volatility cutoff in reporter gene assays used for high-throughput screening. Chem.
+                                                                                                           Res. Toxicol. 32, 1646–1655.
+Data availability                                                                                     Escher, B.I., Neale, P.A., Villeneuve, D.L., 2018. The advantages of linear concentration-
+                                                                                                           response curves for in vitro bioassays with environmental samples. Environ. Toxicol.
+                                                                                                           Chem. 37, 2273–2280.
+    Data will be made available on request.                                                           Evich, M.G., Davis, M. J. B., McCord, J. P., Acrey, B., Awkerman, J. A., Knappe, D. R. U.,
+                                                                                                           Lindstrom, A. B., Speth, T. F., Tebes-Stevens, C., Strynar, M. J., Wang, Z., Weber, E.
+                                                                                                           J., Henderson, W. M. and Washington, J. W. Per- and polyfluoroalkyl substances in
+Acknowledgement
+                                                                                                           the environment. Science 2022;375:eabg9065.
+                                                                                                      Fischer, F.C., Cirpka, O. A., Goss, K. U., nneberger, L. and Escher, B. I. Application of
+   We thank Juliane Glüge of ETH Zürich, Switzerland for helpful dis­                                      experimental polystyrene partition constants and diffusion coefficients to predict the
+                                                                                                           sorption of neutral organic chemicals to multiwell plates in in vivo and in vitro
+cussions and prediction of octanol-water partition constants with COS­
+                                                                                                           bioassays. Environ Sci Technol 2018;52:13511-13522.
+MOtherm. We thank Xinghui Xia for providing the raw data of their                                     Fischer, F.C., Henneberger, L., Konig, M., Bittermann, K., Linden, L., Goss, K.U.,
+dialysis experiments with BSA (Xia et al., 2013). We gratefully                                            Escher, B.I., 2017. Modeling exposure in the Tox21 in vitro bioassays. Chem. Res.
+acknowledge access to the platform CITEPro (Chemicals in the Envi­                                         Toxicol. 30, 1197–1208.
+                                                                                                      Fitz-Simon, N., Fletcher, T., Luster, M.I., Steenland, K., Calafat, A.M., Kato, K.,
+ronment Profiler) funded by the Helmholtz Association for bioassay                                         Armstrong, B., 2013. Reductions in serum lipids with a 4-year decline in serum
+measurements and chemical analysis.                                                                        perfluorooctanoic acid and perfluorooctanesulfonic acid. Epidemiology 24,
+                                                                                                           569–576.
+                                                                                                      Forsthuber, M., Kaiser, A.M., Granitzer, S., Hassl, I., Hengstschläger, M., Stangl, H.,
+Appendix A. Supplementary material                                                                         Gundacker, C., 2020. Albumin is the major carrier protein for PFOS, PFOA, PFHxS,
+                                                                                                           PFNA and PFDA in human plasma. Environ. Int. 137, 105324.
+   Supplementary data to this article can be found online at https://doi.                             Gao, K., Zhuang, T., Liu, X., Fu, J., Zhang, J., Fu, J., Wang, L., Zhang, A., Liang, Y.,
+                                                                                                           Song, M., Jiang, G., 2019. Prenatal exposure to per- and polyfluoroalkyl substances
+org/10.1016/j.envint.2023.107857.                                                                          (PFASs) and association between the placental transfer efficiencies and dissociation
+                                                                                                           constant of serum proteins-PFAS complexes. Environ. Sci. Tech. 53, 6529–6538.
+References                                                                                            Gao, Y., Fu, J., Cao, H., Wang, Y., Zhang, A., Liang, Y., Wang, T., Zhao, C., Jiang, G.,
+                                                                                                           2015. Differential accumulation and elimination behavior of perfluoroalkyl acid
+                                                                                                           isomers in occupational workers in a manufactory in China. Environ. Sci. Tech. 49,
+Abbott, B.D., 2009. Review of the expression of peroxisome proliferator-activated
+                                                                                                           6953–6962.
+     receptors alpha (PPAR alpha), beta (PPAR beta), and gamma (PPAR gamma) in
+                                                                                                      Gluge, J., Scheringer, M., Cousins, I.T., DeWitt, J.C., Goldenman, G., Herzke, D.,
+     rodent and human development. Reprod. Toxicol. 27, 246–257.
+                                                                                                           Lohmann, R., Ng, C.A., Trier, X., Wang, Z., 2020. An overview of the uses of per- and
+Alesio, J.L., Slitt, A., Bothun, G.D., 2022. Critical new insights into the binding of poly-
+                                                                                                           polyfluoroalkyl substances (PFAS). Environ. Sci. Process Impacts 22, 2345–2373.
+     and perfluoroalkyl substances (PFAS) to albumin protein. Chemosphere 287,
+                                                                                                      Gockener, B., Weber, T., Rudel, H., Bucking, M., Kolossa-Gehring, M., 2020. Human
+     131979.
+                                                                                                           biomonitoring of per- and polyfluoroalkyl substances in German blood plasma
+Allendorf, F., Berger, U., Goss, K.U., Ulrich, N., 2019. Partition coefficients of four
+                                                                                                           samples from 1982 to 2019. Environ. Int. 145, 106123.
+     perfluoroalkyl acid alternatives between bovine serum albumin (BSA) and water in
+                                                                                                      Henneberger, L., Goss, K.U., Endo, S., 2016. Equilibrium sorption of structurally diverse
+     comparison to ten classical perfluoroalkyl acids. Environ. Sci. Process Impacts 21,
+                                                                                                           organic ions to bovine serum albumin. Environ. Sci. Tech. 50, 5119–5126.
+     1852–1863.
+                                                                                                      Henneberger, L., Huchthausen, J., Wojtysiak, N., Escher, B.I., 2021. Quantitative in vitro-
+Almeida, N.M.S., Eken, Y., Wilson, A.K., 2021. Binding of per- and polyfluoro-alkyl
+                                                                                                           to-in vivo extrapolation: nominal versus freely dissolved concentration. Chem. Res.
+     substances to peroxisome proliferator-activated receptor gamma. ACS Omega 6,
+                                                                                                           Toxicol. 34, 1175–1182.
+     15103–15114.
+                                                                                                      Henneberger, L., Muhlenbrink, M., Fischer, F.C., Escher, B.I., 2019a. C18-coated solid-
+Bao, J., Shao, L.X., Liu, Y., Cui, S.W., Wang, X., Lu, G.L., Wang, X., Jin, Y.H., 2022. Target
+                                                                                                           phase microextraction fibers for the quantification of partitioning of organic acids to
+     analysis and suspect screening of per- and polyfluoroalkyl substances in paired
+                                                                                                           proteins, lipids, and cells. Chem. Res. Toxicol. 32, 168–178.
+     samples of maternal serum, umbilical cord serum, and placenta near fluorochemical
+                                                                                                      Henneberger, L., Muhlenbrink, M., Heinrich, D.J., Teixeira, A., Nicol, B., Escher, B.I.,
+     plants in Fuxin, China. Chemosphere 307, 135731.
+                                                                                                           2020. Experimental validation of mass balance models for in vitro cell-based
+Behr, A.C., Plinsch, C., Braeuning, A., Buhrke, T., 2020. Activation of human nuclear
+                                                                                                           bioassays. Environ. Sci. Tech. 54, 1120–1127.
+     receptors by perfluoroalkylated substances (PFAS). Toxicol. In Vitro 62, 104700.
+                                                                                                      Henneberger, L., Muhlenbrink, M., Konig, M., Schlichting, R., Fischer, F.C., Escher, B.I.,
+Bell, S.M., Chang, X., Wambaugh, J.F., Allen, D.G., Bartels, M., Brouwer, K.L.R.,
+                                                                                                           2019b. Quantification of freely dissolved effect concentrations in in vitro cell-based
+     Casey, W.M., Choksi, N., Ferguson, S.S., Fraczkiewicz, G., Jarabek, A.M., Ke, A.,
+                                                                                                           bioassays. Arch. Toxicol. 93, 2295–2305.
+     Lumen, A., Lynn, S.G., Paini, A., Price, P.S., Ring, C., Simon, T.W., Sipes, N.S.,
+                                                                                                      Heringa, M.B., Schreurs, R., Busser, F., Van Der Saag, P.T., Van Der Burg, B., Hermens, J.
+     Sprankle, C.S., Strickland, J., Troutman, J., Wetmore, B.A., Kleinstreuer, N.C., 2018.
+                                                                                                           L.M., 2004. Toward more useful in vitro toxicity data with measured free
+     In vitro to in vivo extrapolation for high throughput prioritization and decision
+                                                                                                           concentrations. Environ. Sci. Tech. 38, 6263–6270.
+     making. Toxicol. In Vitro 47, 213–227.
+                                                                                                      Huchthausen, J., Muhlenbrink, M., Konig, M., Escher, B.I., Henneberger, L., 2020.
+Bischel, H.N., Macmanus-Spencer, L.A., Luthy, R.G., 2010. Noncovalent interactions of
+                                                                                                           Experimental exposure assessment of ionizable organic chemicals in in vitro cell-
+     long-chain perfluoroalkyl acids with serum albumin. Environ. Sci. Tech. 44,
+                                                                                                           based bioassays. Chem. Res. Toxicol. 33, 1845–1854.
+     5263–5269.
+Cakmak, S., Lukina, A., Karthikeyan, S., Atlas, E., Dales, R., 2022. The association
+     between blood PFAS concentrations and clinical biochemical measures of organ
+
+
+                                                                                                 12
+W. Qin et al.                                                                                                                                          Environment International 173 (2023) 107857
+
+Kramer, N.I., Krismartina, M., Rico-Rico, A., Blaauboer, B.J., Hermens, J.L., 2012.                          per- and polyfluoroalkyl substances in the Anniston Community Health Surveys
+     Quantifying processes determining the free concentration of phenanthrene in Basal                       (ACHS I and ACHS II). Environ. Int. 158, 106907.
+     cytotoxicity assays. Chem. Res. Toxicol. 25, 436–445.                                               Proenca, S., Escher, B.I., Fischer, F.C., Fisher, C., Gregoire, S., Hewitt, N.J., Nicol, B.,
+Li, C.H., Ren, X.M., Guo, L.H., 2019. Adipogenic activity of oligomeric                                      Paini, A., Kramer, N.I., 2021. Effective exposure of chemicals in in vitro cell systems:
+     hexafluoropropylene oxide (perfluorooctanoic acid alternative) through peroxisome                       A review of chemical distribution models. Toxicol. In Vitro 73, 105133.
+     proliferator-activated receptor gamma pathway. Environ. Sci. Tech. 53, 3287–3295.                   Qin, W.P., Cao, L.Y., Li, C.H., Guo, L.H., Colbourne, J., Ren, X.M., 2020. Perfluoroalkyl
+Li, C.H., Ren, X.M., Ruan, T., Cao, L.Y., Xin, Y., Guo, L.H., Jiang, G., 2018. Chlorinated                   substances stimulate insulin secretion by islet beta cells via G protein-coupled
+     polyfluorinated ether sulfonates exhibit higher activity toward peroxisome                              receptor 40. Environ. Sci. Tech. 54, 3428–3436.
+     proliferator-activated receptors signaling pathways than perfluorooctanesulfonate.                  Rappazzo, K.M., Coffman, E., Hines, E.P., 2017. Exposure to perfluorinated alkyl
+     Environ. Sci. Tech. 52, 3232–3239.                                                                      substances and health outcomes in children: A systematic review of the
+Lin, P.D., Cardenas, A., Hauser, R., Gold, D.R., Kleinman, K.P., Hivert, M.F., Fleisch, A.F.,                epidemiologic literature. Int. J. Environ. Res. Public Health 14.
+     Calafat, A.M., Webster, T.F., Horton, E.S., Oken, E., 2019. Per- and polyfluoroalkyl                Ren, X.M., Qin, W.P., Cao, L.Y., Zhang, J., Yang, Y., Wan, B., Guo, L.H., 2016. Binding
+     substances and blood lipid levels in pre-diabetic adults-longitudinal analysis of the                   interactions of perfluoroalkyl substances with thyroid hormone transport proteins
+     diabetes prevention program outcomes study. Environ. Int. 129, 343–353.                                 and potential toxicological implications. Toxicology 366–367, 32–42.
+Liu, Y.Z., Pan, L.H., Bai, Y., Yang, K., Dong, P.P., Fang, Z.Z., 2020. Per- and                          Rotander, A., Toms, L.M., Aylward, L., Kay, M., Mueller, J.F., 2015. Elevated levels of
+     polyfluoroalkyl substances exert strong inhibition towards human carboxylesterases.                     PFOS and PFHxS in firefighters exposed to aqueous film forming foam (AFFF).
+     Environ. Pollut. 263, 114463.                                                                           Environ. Int. 82, 28–34.
+Loizou, G., McNally, K., Dorne, J.C.M., Hogg, A., 2021. Derivation of a human in vivo                    Sakr, C.J., Leonard, R.C., Kreckmann, K.H., Slade, M.D., Cullen, M.R., 2007. Longitudinal
+     benchmark dose for perfluorooctanoic acid from ToxCast in vitro concentration-                          study of serum lipids and liver enzymes in workers with occupational exposure to
+     response data using a computational workflow for probabilistic quantitative in vitro                    ammonium perfluorooctanoate. J. Occup. Environ. Med. 49, 872–879.
+     to in vivo extrapolation. Front. Pharmacol. 12, 630457.                                             Sipes, N.S., Wambaugh, J.F., Pearce, R., Auerbach, S.S., Wetmore, B.A., Hsieh, J.H.,
+Ma, Y., Yang, J., Wan, Y., Peng, Y., Ding, S., Li, Y., Xu, B., Chen, X., Xia, W., Ke, Y., Xu, S.,            Shapiro, A.J., Svoboda, D., DeVito, M.J., Ferguson, S.S., 2017. An Intuitive approach
+     2018. Low-level perfluorooctanoic acid enhances 3T3-L1 preadipocyte                                     for predicting potential human health risk with the Tox21 10k Library. Environ. Sci.
+     differentiation via altering peroxisome proliferator activated receptor gamma                           Tech. 51, 10786–10796.
+     expression and its promoter DNA methylation. J. Appl. Toxicol. 38, 398–407.                         Takacs, M.L., Abbott, B.D., 2007. Activation of mouse and human peroxisome
+MacManus-Spencer, L.A., Tse, M.L., Hebert, P.C., Bischel, H.N., Luthy, R.G., 2010.                           proliferator-activated receptors (alpha, beta/delta, gamma) by perfluorooctanoic
+     Binding of perfluorocarboxylates to serum albumin: a comparison of analytical                           acid and perfluorooctane sulfonate. Toxicol. Sci. 95, 108–117.
+     methods. Anal. Chem. 82, 974–981.                                                                   Theodore, P.J., 1985. Serum albumin. Adv. Protein Chem. 37, 161–245.
+Mariussen, E., 2012. Neurotoxic effects of perfluoroalkylated compounds: mechanisms of                   Vanden Heuvel, J.P., Thompson, J.T., Frame, S.R., Gillies, P.J., 2006. Differential
+     action and environmental relevance. Arch. Toxicol. 86, 1349–1367.                                       activation of nuclear receptors by perfluorinated fatty acid analogs and natural fatty
+Mokra, K., 2021. Endocrine disruptor potential of short- and long-chain perfluoroalkyl                       acids: a comparison of human, mouse, and rat peroxisome proliferator-activated
+     substances (PFASs)-A synthesis of current knowledge with proposal of molecular                          receptor-alpha, -beta, and -gamma, liver X receptor-beta, and retinoid X receptor-
+     mechanism. Int. J. Mol. Sci. 22.                                                                        alpha. Toxicol. Sci. 92, 476–489.
+Neale, P.A., Altenburger, R., Ait-Aissa, S., Brion, F., Busch, W., de Aragao Umbuzeiro, G.,              Wang, J., Zhang, Y., Zhang, W., Jin, Y., Dai, J., 2012. Association of perfluorooctanoic
+     Denison, M.S., Du Pasquier, D., Hilscherova, K., Hollert, H., Morales, D.A., Novak, J.,                 acid with HDL cholesterol and circulating miR-26b and miR-199-3p in workers of a
+     Schlichting, R., Seiler, T.B., Serra, H., Shao, Y., Tindall, A.J., Tollefsen, K.E.,                     fluorochemical plant and nearby residents. Environ. Sci. Tech. 46, 9274–9281.
+     Williams, T.D., Escher, B.I., 2017. Development of a bioanalytical test battery for                 Wang, S., Lv, Q., Yang, Y., Guo, L.H., Wan, B., Zhao, L., 2014. Cellular target recognition
+     water quality monitoring: Fingerprinting identified micropollutants and their                           of perfluoroalkyl acids: in vitro evaluation of inhibitory effects on lysine
+     contribution to effects in surface water. Water Res. 123, 734–750.                                      decarboxylase. Sci. Total Environ. 496, 381–388.
+Neale, P.A.a.L., F. D. Considerations when assessing antagonism in vitro: Why                            Wetmore, B.A., 2015. Quantitative in vitro-to-in vivo extrapolation in a high-throughput
+     standardizing the agonist concentration matters. Chemosphere 2015;135:20-23.                            environment. Toxicology 332, 94–101.
+Pan, Z., Miao, W., Wang, C., Tu, W., Jin, C., Jin, Y., 2021. 6:2 Cl-PFESA has the potential              Worley, R.R., Fisher, J., 2015. Application of physiologically-based pharmacokinetic
+     to cause liver damage and induce lipid metabolism disorders in female mice through                      modeling to explore the role of kidney transporters in renal reabsorption of
+     the action of PPAR-gamma. Environ. Pollut. 287, 117329.                                                 perfluorooctanoic acid in the rat. Toxicol. Appl. Pharmacol. 289, 428–441.
+Park, M., W.S.M., Lopez, I.J., Chang J.Y., Karanfil T. and Snyder, S.A. Adsorption of                    Xia, X., Rabearisoa, A.H., Jiang, X., Dai, Z., 2013. Bioaccumulation of perfluoroalkyl
+     perfluoroalkyl substances (PFAS) in groundwater by granular activated carbons:                          substances by Daphnia magna in water with different types and concentrations of
+     Roles of hydrophobicity of PFAS and carbon characteristics. Water Res. 2020;170:                        protein. Environ. Sci. Tech. 47, 10955–10963.
+     115364.                                                                                             Yu, C.H., Riker, C.D., Lu, S.E., Fan, Z.T., 2020. Biomonitoring of emerging contaminants,
+Patlewicz, G., Richard, A.M., Williams, A.J., Grulke, C.M., Sams, R., Lambert, J.,                           perfluoroalkyl and polyfluoroalkyl substances (PFAS), in New Jersey adults in
+     Noyes, P.D., DeVito, M.J., Hines, R.N., Strynar, M., Guiseppi-Elie, A., Thomas, R.S.,                   2016–2018. Int. J. Hyg. Environ. Health 223, 34–44.
+     2019. A Chemical Category-Based Prioritization Approach for Selecting 75 Per- and                   Zeng, Z., Song, B., Xiao, R., Zeng, G., Gong, J., Chen, M., Xu, P., Zhang, P., Shen, M.,
+     Polyfluoroalkyl Substances (PFAS) for Tiered Toxicity and Toxicokinetic Testing.                        Yi, H., 2019. Assessing the human health risks of perfluorooctane sulfonate by in
+     Environ. Health Perspect. 127, 14501.                                                                   vivo and in vitro studies. Environ. Int. 126, 598–610.
+Peng, L., Xu, W., Zeng, Q., Cheng, Y., Zhang, Y., Guo, Y., Chen, D., Jiang, C., Wang, F.,                Zhang, L., Ren, X.M., Wan, B., Guo, L.H., 2014. Structure-dependent binding and
+     2021. Distribution characteristics of per- and polyfluoroalkyl substances (PFASs) in                    activation of perfluorinated compounds on human peroxisome proliferator-activated
+     human urines of acrylic fiber plant and chemical plant. Environ. Sci. Pollut. Res. Int.                 receptor gamma. Toxicol. Appl. Pharmacol. 279, 275–283.
+     28, 69181–69189.                                                                                    Zhang, S., Kang, Q., Peng, H., Ding, M., Zhao, F., Zhou, Y., Dong, Z., Zhang, H., Yang, M.,
+Petriello, M.C., Mottaleb, M.A., Serio, T.C., Balyan, B., Cave, M.C., Pavuk, M.,                             Tao, S., Hu, J., 2019. Relationship between perfluorooctanoate and perfluorooctane
+     Birnbaum, L.S., Morris, A.J., 2022. Serum concentrations of legacy and emerging                         sulfonate blood concentrations in the general population and routine drinking water
+                                                                                                             exposure. Environ. Int. 126, 54–60.
+
+
+
+
+                                                                                                    13
+

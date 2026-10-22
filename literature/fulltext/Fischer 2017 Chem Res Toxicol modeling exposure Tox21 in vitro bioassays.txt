@@ -1,0 +1,883 @@
+                                                                                                                                                Article
+
+                                                                                                                                      pubs.acs.org/crt
+
+
+
+
+Modeling Exposure in the Tox21 in Vitro Bioassays
+Fabian C. Fischer,*,† Luise Henneberger,† Maria König,† Kai Bittermann,‡ Lukas Linden,‡
+Kai-Uwe Goss,‡ and Beate I. Escher†
+†
+Department Cell Toxicology, Helmholtz Centre for Environmental Research - UFZ, Permoserstraße 15, 04318 Leipzig, Germany
+‡
+Department Analytical Environmental Chemistry, Helmholtz Centre for Environmental Research - UFZ, Permoserstraße 15, 04318
+Leipzig, Germany
+    *
+    S Supporting Information
+
+
+
+
+                                                                                                                                                              Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+    ABSTRACT: High-throughput in vitro bioassays are becoming
+    increasingly important in the risk characterization of anthro-
+    pogenic chemicals. Large databases gather nominal eﬀect
+    concentrations (Cnom) for diverse modes of action. However,
+    the biologically eﬀective concentration can substantially deviate
+    due to diﬀerences in chemical partitioning. In this study, we
+    modeled freely dissolved (Cfree), cellular (Ccell), and membrane
+    concentrations (Cmem) in the Tox21 GeneBLAzer bioassays for
+    a set of neutral and ionogenic organic chemicals covering a large
+    physicochemical space. Cells and medium constituents were
+    experimentally characterized for their lipid and protein content,
+    and partition constants were either collected from the literature
+    or predicted by mechanistic models. The chemicals exhibited
+    multifaceted partitioning to proteins and lipids with distribution
+    ratios spanning over 8 orders of magnitude. Modeled Cfree deviated over 5 orders of magnitude from Cnom and can be compared
+    to in vivo eﬀect data, environmental concentrations, and the unbound fraction in plasma, which is needed for the in vitro to in vivo
+    extrapolation. Ccell was relatively constant for chemicals with membrane lipid−water distribution ratios of 1000 or higher and
+    proportional to Cnom. Representing a sum parameter for exposure that integrates the entire dose from intracellular partitioning,
+    Ccell is particularly suitable for the eﬀect characterization of chemicals with multiple target sites and the calculation of their relative
+    eﬀect potencies. Eﬀective membrane concentrations indicated that the speciﬁc eﬀects of very hydrophobic chemicals in multiple
+    bioassays are occurring at concentrations close to baseline toxicity. The equilibrium partitioning model including all relevant
+    system parameters and a generic bioassay setup is attached as an excel workbook to this paper and can readily be applied to
+    diverse in vitro bioassays.
+
+
+1. INTRODUCTION                                                                processes.11 The relative importance of these processes
+In vitro cell bioassays present a simple, fast and cost-eﬃcient                depends on the bioassay setup and the physicochemical
+tool for the eﬀect characterization of chemicals. Particularly                 properties of the tested chemical.12,13 These diﬀerences may
+when run in high-throughput screening (HTS) format, in vitro                   result in a large and nonproportional deviation of Cfree from
+bioassays will meet the high demands of eﬀect data for the                     Cnom and hence to reduced sensitivity of and low comparability
+increasing number and variety of anthropogenic chemicals. The                  between in vitro bioassays.
+dose metric in in vitro testing is typically the nominal                          Recent studies demonstrated the variability of in vitro
+concentration (Cnom). However, only the freely dissolved                       bioavailability as a result of chemical equilibrium partitioning
+concentration (Cfree) is available for uptake and thus driving                 between medium constituents and cells in diﬀerent bioassay
+eﬀects.1 Cfree should be quantiﬁed for interassay comparison                   formats.8,13 These studies normalized Ccell to the total cellular
+and interpretation of in vitro eﬀect data and for subsequent use               lipid content leading to underestimated Ccell of hydrophilic
+in the quantitative in vitro to in vivo extrapolation (QIVIVE).2−4             chemicals and chemicals that exhibit high protein sorption, such
+The total cellular concentration (Ccell) is directly related to Cfree          as anions.14 Relevant partition constants were predicted by the
+by the cell−water partition constant (Kcell/w) under equilibrium               chemicals’ octanol−water partition constants (Kow). However,
+conditions and can serve as a proxy for the biological dose of                 the sorption of chemicals to biomolecules such as serum
+chemicals.5,6                                                                  proteins can be very complex and dependent on various
+   In in vitro bioassays, Cfree can be depleted by sorption to                 molecular interactions between the chemical and the sorbent, in
+medium constituents, such as the proteins and lipids from the
+medium.7,8 Continuous reduction can be caused by evapo-                        Received: January 27, 2017
+ration,9 partitioning into plate materials,10 and degradation                  Published: March 19, 2017
+
+                                © 2017 American Chemical Society        1197                                          DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                    Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                      Article
+
+particular for ionogenic organic chemicals (IOCs), leading to                enhance the precision and accuracy of model outputs while
+high errors in the prediction of partition constants via Kow.14,15           extending their domain of applicability to complex chemicals
+   A large in vitro database is available on the iCSS ToxCast                such as IOCs. Linking eﬀect data to Cfree and Ccell would
+Dashboard (https://actor.epa.gov/dashboard) provided by the                  improve the comparability between diﬀerent in vitro bioassays,
+US EPA, in which data from ToxCast (https://www.epa.gov/                     the analysis and interpretation of in vitro eﬀect data, as well as
+chemical-research/toxicity-forecasting) and Tox21 (https://                  its suitability for the QIVIVE.4,27
+www.epa.gov/chemical-research/toxicology-testing-21st-
+century-tox21) are collected. While ToxCast included more                    2. THEORY
+than 700 bioassays, the number of chemicals was limited to                   As described by Armitage et al.,13 the partition properties of in
+∼1800. In contrast, in Tox21, ∼10,000 chemicals (Tox21 10K                   vitro assays can be deﬁned by the composition and volumes of
+library) were tested in ∼50 in vitro bioassays covering various              their system compartments, such as the medium, cells,
+steps of the cellular signaling pathway.16 Reporter gene assays              headspace, and well plate materials as well as the respective
+based on various nuclear receptors and transcription factors are             partition constants for the chemicals of interest. Since we
+included in Tox21, and experiments were performed in HTS                     assume equilibrium, kinetic processes such as evaporation,
+format in 1536 well plates using robotic systems.16 In the iCSS
+
+
+
+
+                                                                                                                                                                   Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+                                                                             diﬀusion into well plate materials, cellular uptake kinetics, and
+ToxCast Dashboard, measured toxicity is expressed as 50%                     degradation were neglected for this study.
+activity concentration (AC50), hereinafter referred to as 50%                   Quantifying evaporative losses from the well would only be
+eﬀect concentration (EC50). The use of 1536 well plates and                  possible in closed systems with a deﬁned headspace volume,
+the very small medium volumes of 5−6 μL hampered the                         which generally hampers in vitro toxicity testing of volatile
+analytical quantiﬁcation of Cfree and Ccell; thus, all reported              chemicals in unsealed HTS plate format. Therefore, only
+eﬀect data are based on Cnom.                                                nonvolatile chemicals (air−water partition constant ≤0.03)
+   As representative examples of the Tox21 bioassays, we chose               were chosen for this study. The binding to plate material may
+26 bioassays of the GeneBLAzer platform,17−19 which use                      be an important and time-dependent inﬂuencing factor in
+various human cell lines with reporter genes for diverse                     aqueous media with low organic matter content, e.g., in the
+receptors. The cells constitutively coexpress a fusion protein of            Aliivibrio f ischeri,28 the Danio rerio ﬁsh embryo,9 and the algae
+the ligand binding domain of the human nuclear receptor or                   toxicity test, for which considerable losses are generally
+transcription factor (DNA-binding domain).17 Upon ligand                     expected to occur for neutral chemicals with a log Kow > 3.10
+binding, the fusion protein translocates to the nucleus and                  Availability of partition constants and diﬀusion coeﬃcients to
+binds to the Upstream Activator Sequence (UAS) which                         polystyrene is relatively low, impeding the integration of
+controls the transcription of β-lactamase. The amount of β-                  sorption to plate materials into the model so far.
+lactamase is quantiﬁed via the changing ﬂuorescence property                    Preliminary experiments showed that equilibrium partition-
+of a speciﬁc substrate that is transformed by β-lactamase.17                 ing kinetics between the medium and the cells can be slow and
+   This study aimed (i) at modeling 50% eﬀective freely                      diﬀerent between neutral chemicals and IOCs,29 which can lead
+dissolved, cellular and membrane concentrations (EC50free,                   to an underestimation of Ccell for a large period of the test
+EC50cell, EC50mem) of 100 neutral, anionic, cationic, and                    duration. Because of this variability, equilibrium might not be
+multiprotic (multiple acid and base functional groups) river                 achieved within the typical assay duration of up to 24 h,
+pollutants with heterogeneous physicochemical properties and                 requiring modeling approaches to quantify exposure over time
+multiple modes of action20 that have been comprehensively                    in future studies.
+assessed with the Tox21 GeneBLAzer assays and (ii) to discuss                   Proteins and lipids are the major sorptive colloids for organic
+the utility of the diﬀerent dose metrics. As the basis for our               chemicals in in vitro bioassays.12,30 Thus, we deﬁne that the
+model, relevant system parameters such as water, protein, and                medium and the cells are composed of their respective volumes
+lipid contents in the assay media and cells were determined by               of proteins (Vprotein in L, density 1.36 kg L−1), lipids (Vlipid in L,
+experiment. Bovine serum albumin (BSA) and phospholipid                      density 1.0 kg L−1), and water (Vw in L, density 1.0 kg L−1)
+liposomes (lip) were used in the modeling approach as                        (eqs 1 and 2) and that components with a low sorptive capacity
+surrogates for assay proteins and lipids, respectively. For both             such as carbohydrates are neglected.
+sorptive matrices, several databases of experimental partition
+constants are available in the literature,14,15,21−23 and validated             Vmedium = Vprotein,medium + Vlipid,medium + Vw,medium                      (1)
+prediction approaches have been developed.15,24−26 These were
+used to derive speciation-corrected distribution ratios at pH 7.4               Vcell = Vprotein,cell + Vlipid,cell + Vw,cell                              (2)
+between both surrogates and water (DBSA/w, Dlip/w). We
+hypothesized that the chemicals would exhibit multifaceted                      Assuming equilibrium state and similar physical conditions
+partitioning between and within the medium and the cells                     (pH) between and within the medium and the cells results in
+dependent on the physicochemical properties of the chemicals                 equal medium and intracellular Cfree as well as deﬁned Ccell, as
+and the assay setup, leading to a large variability in exposure              illustrated in Figure 1.
+between diﬀerent chemicals and bioassays. This diversity could                  BSA and lip were used as surrogates for all medium and
+have hampered the risk prioritization within the Tox21                       cellular proteins and lipids, respectively. However, given that
+program because the diﬀerences in the EC50 could be due to                   both medium and, foremost, cells are composed of innumerable
+both, diﬀerences in exposure and diﬀerences in the reporter                  proteins and lipids of variable structure, this could represent a
+gene construct of the particular cell line. Here, we address the             source of uncertainty. The distribution ratios between medium
+former point, the variability in exposure and the insuﬃciency of             and water (Dmedium/w, Lw Lmedium−1) as well as cells and water
+nominal concentrations as a dose metric. Experimental                        (Dcell/w, Lw Lcell−1) are given as a function of their respective
+determination of assay parameters as well as the use of state-               volume fractions (VF) of proteins, lipids, and water and the
+of-the-art methods for the prediction of partition constants will            chemicals DBSA/w and Dlip/w (eqs 3 and 4).
+                                                                      1198                                                 DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                         Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                             Article
+
+                                                                                       DBSA/w (pH 7.4) = fneutral × K BSA/w(neutral)
+                                                                                                              + fion × K BSA/w(ion)                               (5)
+
+
+                                                                                       D lip/w (pH 7.4) = fneutral × K lip/w(neutral)
+                                                                                                             + fion × K lip/w(ion)                                (6)
+
+                                                                                    Chemical partitioning between medium and cells (Dmedium/cell,
+                                                                                    Lcell Lmedium−1) was quantiﬁed with eq 7.
+                                                                                                                  Dmedium/w
+                                                                                       Dmedium/cell (pH 7.4) =
+                                                                                                                      Dcell/w                                     (7)
+
+
+
+
+                                                                                                                                                                          Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+                                                                                    The chemical fractions in the cells and the medium were
+                                                                                    calculated by a mass balance equation (eqs 8 and 9).
+Figure 1. Mass balance model used for this study. The chemical
+partitioning was calculated from the distribution ratios between
+medium and cells at a medium pH of 7.4. Both compartments are                                  ⎛                   Vmedium ⎞
+                                                                                                                            −1
+
+composed of water, proteins, and lipids. Proteins and lipids are
+                                                                                       fcell = ⎜1 + Dmedium/cell ×         ⎟
+                                                                                               ⎝                    Vcell ⎠                                       (8)
+represented by BSA and lip.
+
+   Dmedium/w (pH 7.4)                                                                  fmedium = 1 − fcell                                                        (9)
+
+      = VFprotein,medium × DBSA/w + VFlipid,medium × D lip/w                        Fractions within the two compartments (cells and medium)
+         + VFw,medium                                                  (3)
+                                                                                    were calculated by the respective phase volumes (proteins,
+                                                                                    lipids, and water). For instance, the freely dissolved fraction in
+                                                                                    the medium (f free,medium) and the fraction in cell membranes
+   Dcell/w (pH 7.4) = VFprotein,cell × DBSA/w + VFlipid,cell                        ( f mem) are deﬁned by eqs 10 and 11.
+
+                         × D lip/w + VFw,cell                          (4)                             ⎛             Vprotein,medium
+                                                                                       ffree,medium = ⎜⎜1 + DBSA/w ×                 + D lip/w
+                                                                                                       ⎝               Vw,medium
+DBSA/w (Lw LBSA−1) and Dlip/w (Lw Llip−1) result from the                                                Vlipid,medium                               ⎞−1
+                                                                                                                                               Vcell
+                                                                                                     ×                   + Dcell/w ×                 ⎟⎟
+fraction of neutral and ionized species at medium pH of 7.4 and                                           Vw,medium                        Vw,medium ⎠
+their associated partition constants (eqs 5 and 6).                                                                                                              (10)
+
+Table 1. Assay-Speciﬁc Information of the 26 Evaluated Tox21 Reporter Gene Assays of the GeneBLAzer Panel
+
+                                                                                                                                                             cell
+          assay name                               biological target                              medium information                       cell line       number
+AR BLA agonist ratio             androgen receptor (AR)                                6 μL of OptiMEM + 10% d-FBS                       HEK293T             2000
+AR BLA antagonist ratio          androgen receptor (AR)                                5 μL of OptiMEM + 10% d-FBS                       HEK293T             2000
+AR BLA antagonist viability      cell viability                                        5 μL of OptiMEM + 10% d-FBS                       HEK293T             2000
+ER BLA agonist ratio             estrogen receptor (ER)                                6 μL of DMEM phenol-red free +2% cs-FBS           HEK293T             5000
+ER BLA antagonist ratio          estrogen receptor (ER)                                5 μL of DMEM phenol-red free +2% cs-FBS           HEK293T             5000
+ER BLA antagonist viability      cell viability                                        5 μL of DMEM phenol-red free +2% cs-FBS           HEK293T             5000
+GR BLA agonist ratio             glucocorticoid receptor (GR)                          6 μL of OptiMEM + 1% d-FBS                        HEK293T             1500
+GR BLA antagonist ratio          glucocorticoid receptor (GR)                          5 μL of OptiMEM + 1% d-FBS                        HEK293T             1500
+GR BLA antagonist viability      cell viability                                        5 μL of OptiMEM + 1% d-FBS                        HEK293T             1500
+PPARG BLA agonist ratio          peroxisome proliferator-activated receptor γ          6 μL of DMEM phenol-red free + 1% cs-FBS          HEK293H             3000
+                                   (PPARG)
+PPARG BLA antagonist ratio       peroxisome proliferator-activated receptor γ          6 μL of DMEM phenol-red free + 1% cs-FBS          HEK293H             3000
+                                   (PPARG)
+PPARG BLA antagonist viability   cell viability                                        6 μL of DMEM phenol-red free + 1% cs-FBS          HEK293H             3000
+ARE BLA agonist ratio            nuclear factor: (erythroid-derived 2)-like 2          5 μL of DMEM GlutaMAX + 1% FBS                    HepG2               2000
+ARE BLA agonist viability        cell viability                                        5 μL of DMEM GlutaMAX + 1% FBS                    HepG2               2000
+P53 BLA p1−5 ratio               nuclear factor: tumor protein p53                     5 μL of OptiMEM + 0.5% d-FBS                      HCT 116             4000
+P53 BLA p1−5 viability           cell viability                                        5 μL of OptiMEM + 0.5% d-FBS                      HCT 116             4000
+NFKB BLA agonist ratio           nuclear factor: kappa light polypeptide gene          6 μL of OptiMEM + 10% d-FBS                       ME-180              2000
+NFKB BLA agonist viability       cell viability                                        6 μL of OptiMEM + 10% d-FBS                       ME-180              2000
+
+                                                                             1199                                                 DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                                Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                       Article
+
+           ⎛               Vw,cell      DBSA/w    Vprotein,cell                 BSA calibration (0.1−1 mg mL−1, Carl Roth GmbH + Co. KG,
+                   1
+   fmem = ⎜⎜1 +         ×             +         ×                               Karlsruhe, Germany). In a 96-well plate (clear, ﬂat bottom, Corning,
+           ⎝    D lip/w   Vlipid,cell   D lip/w    Vlipid,cell                  Lowell, MA, USA), 200 μL of Lowry reagent (1% CuSO4 in H2O, 2%
+                                                                                K−Na-tartrate in H2O, 2% Na2CO3 in H2O, v/v 0.5:0.5:25) was added
+                              Vmedium ⎞
+                                            −1
+                Dmedium/w                                                       to 20 μL of BSA standard or sample. The well plate was shaken on a
+            +               ×              ⎟
+                              Vlipid,cell ⎟⎠
+                                                                                vortex mixer (VXR basic, IKA, Staufen, Germany) for 5 min at 900
+                  D lip/w                                                       rpm. Twenty microliters of a 1 M Folin−Ciocalteu reagent (Sigma-
+                                                                 (11)           Aldrich, Munich, Germany) was added to each well. After 30 min at
+                                                                                900 rpm, the color intensity at 750 nm was measured in an UV/Vis
+(E)Cfree in the medium (mol Lw,medium−1) can thereof be                         plate reader (F200 Inﬁnite Pro, TECAN, Männedorf, Switzerland),
+calculated by multiplying the free fraction in the medium                       whereby 16 measurements were automatically performed at diﬀerent
+(f free,medium) with (E)Cnom (mol Ltotal−1) and the ratio of the                positions in the well. The protein content of the samples was then
+system volume (Vsystem, Ltotal) to the water phase volume of the                quantiﬁed by the resulting linear regression equation of the BSA
+medium (Vw,medium, Lw,medium).                                                  calibration series.
+                                                                                   Lipids in the cells and media constituents were extracted according
+                                                  Vsystem                       to a modiﬁed Bligh−Dyer method without use of chlorinated
+   (E)Cfree = (E)C nom × ffree,medium ×
+
+
+
+
+                                                                                                                                                                    Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+                                                 Vw,medium       (12)           solvents.32,33 Brieﬂy, 2-propanol (99% purity, Merck KGaA,
+                                                                                Darmstadt, Deutschland) and cyclohexane (99% purity, Merck)
+                    −1
+(E)Ccell (mol Lcell ) can be derived by multiplying (E)Cfree                    were added to samples of homogenized cells in bidistilled water and
+(mol Lw,medium−1) with Dcell/w (Lw Lcell−1).                                    single medium constituents yielding a volume ratio of 8:10:11. The
+                                                                                tubes were then vortexed for 30 s, sonicated for 5 min in a water bath
+   (E)Ccell = (E)Cfree × Dcell/w                                 (13)           at room temperature and centrifuged at 2000 rpm for 5 min
+                                                                                (Centrifuge 5804, Eppendorf, Hamburg, Germany). The resulting
+(E)Cmem (mol Lmem−1) is the product of f mem, (E)Cnom (mol                      upper cyclohexane layer was removed from the tubes and gathered.
+Ltotal−1), and the quotient of the system volume (Vsystem, Ltotal)              The extraction was repeated once with 1 mL of cyclohexane. The lipid
+with the lipid volume of the cells (Vlipid,cell, Lmem), assuming that           contents of the extracts were subsequently determined with three
+all cellular lipids are membrane lipids.                                        diﬀerent methods. The total lipid content in the extract was
+                                                                                determined gravimetrically. Lipids were further quantiﬁed by a
+                                         Vsystem                                modiﬁed sulfo-phosphovanillin method via the number of double
+   (E)Cmem = (E)Cnom × fmem ×
+                                        Vlipid,cell              (14)           bonds on the fatty acids.34 The extracts were transferred to 1.5 mL
+                                                                                HPLC vials and dried under nitrogen, followed by the addition of 0.2
+                                                                                mL 95% concentrated sulfuric acid (Merck) and heating at 100 °C for
+3. MATERIALS AND METHODS                                                        10 min. After adding 0.8 mL of phosphoric acid-vanillin reagent (0.2 g
+   3.1. System Parameters. The information on the experimental                  vanillin (Sigma-Aldrich) in 80 mL of H2O and 20 mL of 85%
+setup of the selected GeneBLAzer assays was gathered from the iCSS              phosphoric acid (Merck)) and 10 min of incubation at room
+ToxCast Dashboard (https://actor.epa.gov/dashboard/, accessed on                temperature, absorbance was measured at 530 nm. Triolein (Sigma-
+June 15, 2016). They were performed in 1536 well plate format with              Aldrich), 1-palmitoyl-2-oleoyl-sn-glycero-3-phosphocholine (POPC,
+medium volumes of 5−6 μL and a maximum of 1 vol % of dimethyl                   Avanti Polar Lipids, Alabaster, AL, USA), and cholesterol (Sigma-
+sulfoxide. All cells were adherent. The end points, either binding to           Aldrich) were used as calibration standards (0−100 μg). Since the lipid
+nuclear receptors or transcription factor activity measured as a                compositions of cells and media are unknown, the mean value of the
+ﬂuorescence signal produced by GAL4 β-lactamase inducible reporter              three calibrations with three diﬀerent calibration standards was ﬁnally
+technology or cell viability based on luciferase-coupled ATP                    used for quantiﬁcation. The total organic phosphorus content (TOP)
+quantiﬁcation, were quantiﬁed after 24 h of chemical exposure.                  of the extracts was determined in addition to estimate the
+   3.1.1. Determination of Water, Protein, and Lipid Contents of                phospholipid content as representative of membrane lipids. For the
+Cells and Media. In the 26 evaluated Tox21 GeneBLAzer assays                    TOP measurements, the cyclohexane extracts were gathered in 250
+(Table 1), either Opti Minimum Essential Medium (OptiMEM) or                    mL round ﬂasks and evaporated in a rotary evaporator (RE 121, Büchi,
+Dulbecco’s Modiﬁed Eagle Medium (DMEM, phenol-red free or                       Essen, Germany) to form thin lipid ﬁlms for improved formation of
+GlutaMAX) were used as basic medium with fetal bovine serum as                  membrane lipid vesicles. After adding 8 mL of bidistilled water and
+supplement, either untreated (FBS), charcoal stripped (cs-FBS), or              resuspension in an ultrasonic bath for 5 min, the TOP was determined
+dialyzed (d-FBS). We used the cell lines HEK293T (ER alpha Griptite,            by inductively coupled plasma atomic emission spectroscopy. The
+CN: K1393), HEK293H (PPAR gamma-UAS-bla, CN: K1419),                            phospholipid concentration in POPC equivalents (CPOPC) was
+HepG2 (ARE-bla, CN: K1208), HCT116 (p53RE-bla, CN: K1202),                      calculated based on the molecular weight of phosphorus (MP = 31 g
+and ME-180 (HRE-bla, CN: K1202) for the quantiﬁcation of cell                   mol−1) and POPC (MPOPC = 760 g mol−1):
+parameters. All medium constituents and cells were purchased from                              CP
+Thermo Fisher Scientiﬁc (Waltham, MA, USA).                                        C POPC =    MP
+   To determine the water content of the cell lines, a deﬁned number                          MPOPC                                                        (15)
+of cells (3−8 million cells) of each cell line was washed once with
+phosphate buﬀered saline (8% NaCl in H2O, 0.2% KCl in H2O,                         The sulfo-phosphovanillin method was found to be most suitable
+1.442% Na2HPO4 in H2O, and 0.25% KH2PO4 in H2O, v/v 1:1:1:1),                   for the lipid determination of in vitro test media and cells due to the
+gathered in a microtube and centrifuged. The cell number was                    small amounts of lipids that rendered the gravimetric method
+quantiﬁed with the automated cell counter CASY MODEL TT (Roche                  unreliable. The values from the sulfo-phosphovanillin method were
+Innovatis, Reutlingen, Germany). Wet weight of the cell pellet was              used for modeling. A discussion on the diﬀerent lipid determination
+measured. Subsequently, the cells were freeze-dried for at least 24 h,          methods can be found in the Supporting Information (section S1).
+and their dry weight was measured. The water content of the cells was              All results from the water, protein and lipid determinations can be
+deﬁned as the diﬀerence between wet and dry weights.                            found in the Supporting Information (Table S1).
+   The protein contents of cells and media were quantiﬁed with the                 3.2. Chemical Descriptors. The 100 chemicals cover a wide range
+Lowry assay.31 The cells were homogenized for 1 min by ultrasonic               of physicochemical properties. The hydrophobicity of the neutral
+treatment (Sonoplus 2070, Bandelin, Berlin, Germany). Both the                  species of the chemicals spans almost 9 orders of magnitude with log
+homogenized cells and medium constituents were diluted in bidistilled           Kow ranging from 0.07 to 8.48 (Table S3) with water solubility diﬀering
+water yielding protein concentrations that fell into the range of the           from easily soluble (e.g., caﬀeine with 200 g L−1) to almost insoluble in
+
+                                                                         1200                                               DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                          Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                            Article
+
+Table 2. System Parameters of Two Reporter Gene Assays of the GeneBLAzer Panela
+                        androgen receptor (AR) assay                                                 antioxidant response element (ARE) assay
+                                  medium                                                                             medium
+       volume                 6 μL                                                     volume                    5 μL
+       medium                 OptiMEM + 10% d-FBS                                      medium                    DMEM GlutaMAX + 1% FBS
+       Vwater                 5.97 × 10−03 μL                 99.45%                   Vwater                    4.99 × 10−03 μL                     99.84%
+       Vprotein               3.12 × 10−05 μL                 0.52%                    Vprotein                  6.90 × 10−06 μL                     0.14%
+       Vlipid                 1.66 × 10−06 μL                 0.03%                    Vlipid                    1.04 × 10−06 μL                     0.02%
+                                   cells                                                                              cells
+      cell line                 HEK293T                                                cell line                   HepG2
+      cell number               2000                                                   cell number                 2000
+      Vwater                    1.32 × 10−05 μL               90.57%                   Vwater                      5.31 × 10−06 μL                   87.35%
+      Vprotein                  1.23 × 10−06 μL               8.43%                    Vprotein                    5.75 × 10−07 μL                   9.46%
+
+
+
+
+                                                                                                                                                                         Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+      Vlipid                    1.46 × 10−07 μL               1.00%                    Vlipid                      1.94 × 10−07 μL                   3.19%
+a
+ The water, protein, and lipid contents of the cells and media were experimentally determined as described in section 3.1. The characteristics of all
+other assays are described in Table S2.
+
+water (e.g., indeno(1,2,3-c,d)pyrene with 0.01 μg L−1). Four chemicals                3.2.3. COSMOmic. In those cases where no experimental values
+are permanently charged, and 46 chemicals are ionizable, of which 31               were available for Klip/w of ions, we used COSMOmic for
+are >99% ionized in water at medium pH of 7.4, 16 are present with a               prediction.24,42 COSMOmic is a mechanistic, quantum mechanistically
+fraction of the neutral species ≤98%, and 6 are multiprotic (forming               based model, which extends the Conductor-like Screening Model for
+dicationic, dianionic, and zwitterionic species).                                  Real Solvents (COSMO-RS)40 in order to describe anisotropic micelle
+    The partition constants that were used to calculate the distribution           or lipid bilayer systems.24 The implementation of the membrane
+ratio of the chemicals were preferably experimental values from the                bilayer potential enables the calculation of Klip/w of charged organic
+literature. If no experimental data were available, partition constants            chemicals42 both more reliably and in a more mechanistically based
+for the neutral and ionic species were modeled as described in the                 manner using other models.26 COSMOmic accounts for the
+following sections. The complete data set including all relevant                   anisotropy of a phospholipid bilayer by virtually slicing the bilayer
+physicochemical properties and distribution ratios D for the chemicals             into consecutive layers and successively calculating the Gibbs free
+at pH 7.4 is provided in the Supporting Information (Table S3).                    energy of the chemicals between a bulk water layer and each
+    3.2.1. PP-LFERs to Predict Partition Constants of Neutral Species.             phospholipid layer. Thereby, the diﬀerent contributions of the depth-
+For neutral chemicals and the neutral fraction of IOCs, the                        dependent chemical environments of a phospholipid bilayer can be
+polyparameter linear free energy relationships (PP-LFERs) shown in                 taken into account.
+eqs 1615 and 1723 were used to predict KBSA/w and Klip/w.                             3.3. Tox21 Data Extraction. We extracted EC50nom from the
+                                                                                   iCSS ToxCast Dashboard (https://actor.epa.gov/dashboard, accessed
+    log KBSA/w = 0.35 + 0.28 × L − 0.46 × S + 0.2 × A                              on January 27, 2017) for the active chemicals in the selected bioassays.
+                                                                                   Between 2 and 31 chemicals were active in 25 of the 26 selected assays,
+                    − 3.18 × B + 1.84 × V                           (16)
+                                                                                   and the literature EC50nom values are compiled in Table S4.
+
+    log Klip/w = 0.53 + 0.49 × L − 0.93 × S − 0.18 × A                             4. RESULTS AND DISCUSSION
+                  − 3.75 × B + 1.73 × V                             (17)              4.1. System Parameters of the Tox21 GeneBLAzer
+                                                                                   Reporter Gene Battery. As is common for human cell-based
+The capital letters describe the properties of the chemical, wherein S is          bioassays, the media used in the Tox21 GeneBLAzer battery are
+the dipolarity/polarizability parameter, A is the solute’s H-bond
+acidity, B is the solute’s H-bond basicity, V is the molar volume, and L           consistently composed of a basic medium amended with a
+is the logarithm of the hexadecane-air partition constant. These                   deﬁned amount of FBS. The experimental quantiﬁcation of
+chemical descriptors are multiplied with system descriptors that                   protein, lipid, and water volumes revealed that protein and lipid
+depend on the diﬀerence in chemical properties between two sorbates                contents of the three diﬀerent basic media (OptiMEM, DMEM
+and are derived from multiple linear regression analysis against                   GlutaMAX, and phenol-red free DMEM) varied by 46 and
+experimental partition constants. Experimental substance and system                18%, respectively. Variability among FBS, d-FBS, and cs-FBS
+descriptors were obtained from the UFZ-LSER database,35 and                        was 17% in terms of protein and 5% in terms of lipid content.
+missing substance descriptors were calculated using the Absolv module              Cellular water, protein, and lipid contents of the ﬁve cell lines
+available in ACD/Laboratories.36
+   3.2.2. 3D-QSARs. A 3D quantitative structure-activity relationship              diﬀered by 52%, 41%, and 20% from the average.
+(3D-QSAR) model was used to predict KBSA/w for those ions that have                   The experimental setup regarding basic medium, FBS
+no reported experimental values on partition constants or fraction                 content, as well as used cell line and cell number varied
+bound in plasma.37 Two experimental data sets of 83 neutral                        considerably between the assays (Table 1). For example, the
+chemicals15 and 45 anionic chemicals14 were used to construct a                    androgen receptor (AR) assay was performed in OptiMEM
+3D-QSAR model with open3DQSAR.38 The detailed procedure is                         with a d-FBS content of 10%, whereas DMEM GlutaMAX with
+reported elsewhere39 and shall be explained here only brieﬂy. The                  only 1% FBS was used in the antioxidant response element
+basis for the calculation is the COSMO-RS theory40 and the                         (ARE) assay (Table 2). The medium made up >99% of the
+representation of chemicals through their polarized surface (sigma
+surface). The sigma surface is used for the alignment41 of the 3D-
+                                                                                   total volume in all evaluated assays, and both, the medium and
+QSAR model, and the model is calibrated in the same way as it was                  the cells, were predominantly composed of water with minor
+done in a previous publication for various data sets.37 After model                volume contributions of proteins and lipids (Table S2).
+calibration, KBSA/w could be estimated with a RMSE of 0.63 ± 0.10 and              Proteins and lipids are considered the main sorptive phases
+R2 of 0.52 ± 0.15 for the 128 chemicals of the data set.39                         in in vitro bioassays. The proportion of proteins and lipids were
+                                                                            1201                                                 DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                               Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                   Article
+
+consistently higher in the cells (AR assay: VFprotein,cell = 8.43%;          ammonium cations with long carbon chains, such as
+VFlipid,cell = 1.00%) compared to the medium (AR assay:                      didecyldimethylammonium chloride (DDAC) (fcation = 1, log
+VFprotein,medium = 0.52%; VFlipid,medium = 0.03%) (Table 2),                 DBSA/w = 1.02, log Dlip/w = 6.77), are >99% bound to lipids,
+whereby the volume of proteins was higher than the volume of                 probably as a result of structural similarities to phospholipids
+lipids in the medium (AR assay: 17.3:1) and in the cells (AR                 that make up liposomes.23
+assay: 8.4:1).                                                                  The distribution ratios for the 100 chemicals illustrate the
+   These diﬀerences led to a 4.5 times higher protein and a 1.6              complexity of chemical partitioning to proteins and lipids,
+times higher lipid content in the AR medium than in the ARE                  which emphasizes that their derivation by log Kow correlation
+medium. The bioassays were also performed with diﬀerent cell                 can lead to a high uncertainty and inaccuracy.14,23,26 Using
+lines. In the AR assay, HEK293T cells derived from a human                   prediction methods such as PP-LFERs, COSMOmic, and 3D-
+embryonic kidney were used, whereas the human liver cancer                   QSARs that include several chemical properties and even 3D
+cell line HepG2 was used in the ARE assay (Table 2). Although                interactions can substantially improve the quality of predicted
+having a 2.4 times higher total volume and being composed of                 partition constants compared to predictions via log Kow.
+2.5 times and 2.1 times more water and proteins, respectively,                  4.3. Freely Dissolved Concentration as the in Vitro
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+the VFlipid of the HEK293T cells was measured to be 3.2 times                Dose Metric. A key objective of in vitro eﬀect testing is the
+lower compared to that of the HepG2 cells. HepG2 cells                       comparison and extrapolation of observed eﬀects to realistic
+synthesize fatty acids during cultivation which explains their               exposure scenarios, e.g., in the environment. Cfree serves as most
+high lipid content.43 The system parameters of all evaluated                 appropriate dose metric for this purpose since it is safe to
+GeneBLAzer assays with associated volumes of water, proteins,                assume that the target site concentration is in equilibrium with
+and lipids can be found in Table S2.                                         Cfree in the vicinity of the target site in most scenarios. Cfree can
+   4.2. Chemical Partitioning. The sorption aﬃnities to BSA                  thus be used as an indicator of whether an eﬀect is to be
+and liposomes vary by orders of magnitude between the                        expected.6,8,12,13,44 In other words, if an assay shows an eﬀect at
+chemicals, with log DBSA/w and log Dlip/w ranging from −0.2 up               a given Cfree, then we can expect to measure the same eﬀects at
+to 6.5 and −0.4 up to 8 (Figure 2), respectively. Even very                  equal Cfree in any other exposure scenario.
+                                                                                As shown for the AR assay for a constant Cnom of 10 μM
+                                                                             (Figure 3A), modeled Cfree can diﬀer considerably and
+
+
+
+
+Figure 2. Dlip/w and DBSA/w of neutral, cationic, anionic, and
+multiprotic chemicals at a medium pH of 7.4. Didecyldimethylammo-
+nium chloride (DDAC), caﬀeine (CAF), fexofenadine (FEX),
+genistein (GEN), and benzo(g,h,i)perylene (B(g,h,i)P) are empha-
+sized as examples.
+
+hydrophilic chemicals such as caﬀeine (CAF, log Dlip/w = 0.33)
+sorb considerably to BSA (log DBSA/w = 1.31), while polycyclic
+aromatic hydrocarbons such as benzo(g,h,i)perylene (B(g,h,i)-
+P) show very high sorption aﬃnity to both surrogates (log
+DBSA/w = 4.89, log Dlip/w = 7.66).
+  For the neutral chemicals (f neutral > 98%), there is an
+apparent correlation between log DBSA/w and log Dlip/w with
+binding to liposomes a factor of up to 1000 times stronger than
+that to BSA. Although most of the investigated anionic
+chemicals (fanion ≥ 2%) show higher aﬃnity to proteins
+compared to phospholipids, e.g., genistein (GEN) ( fanion = 0.61,            Figure 3. Modeled freely dissolved (A) and cellular (B) concen-
+log DBSA/w = 5.19, log Dlip/w = 3.20), there are also exceptions,            trations of neutral, cationic, anionic, and multiprotic chemicals in the
+such as pentobarbital (fanion = 0.16, log DBSA/w = 1.38, log Dlip/w          AR assay based on a nominal concentration of 10 μM, sorted by
+= 1.68). Most of the considered cations are predominantly                    chemicals’ Dlip/w at medium pH 7.4. Note that chemicals could have
+available in the water phase of the medium, but quaternary                   been sorted just as well by DBSA/w.
+
+                                                                      1202                                              DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                      Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                 Article
+
+nonproportionally from Cnom with a deviation of up to 5 orders
+of magnitude for very hydrophobic chemicals. There are also
+large deviations of Cfree from Cnom for anionic chemicals with
+log Dlip/w < 3, conﬁrming that Cnom is not suitable as an
+approximation for Cfree in the Tox21 GeneBLAzer assays.
+   Modeling Cfree by our approach can substantially increase the
+comparability within the Tox21 GeneBLAzer battery, to other
+in vitro constructs, and to in vivo systems, for which controlling
+and measuring Cfree is progressively becoming the norm.7,45−47
+Since environmental monitoring of chemicals is increasingly
+based on Cfree measured by, e.g., in situ passive sampling
+devices,48,49 modeled Cfree can directly be compared to
+environmental concentrations. Cfree represents the most
+appropriate input parameter for the QIVIVE since it can
+directly be related to the unbound fraction in plasma.4,27
+
+
+
+
+                                                                                                                                                              Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+   4.4. Cellular Concentration as the in Vitro Dose
+Metric. The toxic eﬀects of a chemical most probably result
+from complex combinations of speciﬁc (e.g., hormone receptor
+binding), reactive, and baseline eﬀects. As discussed in earlier             Figure 4. Mass balance of exemplary chemicals in water, proteins, and
+studies, internal eﬀect concentrations (IEC) can serve as proxy              lipids of (A) the medium and (B) the cells of the AR assay. Note that
+for the biologically eﬀective dose in whole organisms.5,50,51                the mass balance diﬀers considerably between the compartments, as a
+Analogous to this concept, Ccell represents a sum parameter that             result of their respective water, lipid, and protein volume fractions
+integrates the entire intracellular dose from partitioning into              (Table 2).
+diﬀerent biological targets, e.g., suitable to describe exposure to
+electrophilic chemicals that can react with biological                       chemical fexofenadine (FEX) is distributed between all phases
+nucleophiles located in diﬀerent cell organelles52 or to evaluate            in the medium but mainly resides in the lipids within the cells.
+baseline toxicity based on membrane concentrations.53                           In contrast, for DDAC and GEN, the distribution does not
+   At a constant Cnom in the AR assay, Ccell is fairly constant for          diﬀer much within the cells and within the medium, caused by
+chemicals with log Dlip/w > 3, and there is only a narrow gap of             the higher sorption aﬃnity of DDAC to lipids compared to
+1 order of magnitude between Cnom and Ccell (Figure 3B). This                proteins ( fcation = 1, log DBSA/w = 1.02, log Dlip/w = 6.77), and
+ﬁnding is relevant considering the approach to characterize the              contrarily of GEN to proteins compared to lipids ( fanion = 0.61,
+in vitro toxicity of chemicals and mixtures based on relative                log DBSA/w = 5.19, log Dlip/w = 3.20).
+eﬀect potencies (REP), which relate the eﬀect of a chemical to                  The partitioning of all evaluated chemicals and the resulting
+a potent reference chemical.54,55 Because of the systematic                  large variability in exposure are illustrated for the AR and ARE
+diﬀerence between Cnom and Ccell, the REP values in in vitro                 assays (Figure 5). The medium generally represents the
+assays when derived from Cnom and Ccell are very similar for a               dominant sink for the chemicals in all Tox21 GeneBLAzer
+given chemical across a large chemical space. Thus, the                      assays (>84%, Figure 5A and D). This phenomenon results
+approach remains valid for in vitro systems even though                      from the large volume fraction of the medium (>99%) and the
+bioavailability can vary greatly. The WHO toxic equivalency                  fact that the medium makes up a large proportion of total
+factors (TEF) are consensus values for comparison of the                     system proteins and lipids, for instance, 96.2% and 91.9% in the
+potency of dioxin-like chemicals,56,57 and they were derived                 AR assay, respectively. This leads to high reductions in the Cfree
+from measured in vivo REPs mainly from mammalian tests                       of chemicals with high Dlip/w and DBSA/w and a large deviation
+using a dose metric of mass per kg body weight, hence a                      from Cnom (Figure 3A).
+nominal dose. For the derivation of TEF for ﬁsh,57 in vivo                      In the AR medium (Figure 5B), 72 of the 100 chemicals were
+biomarkers and ﬁsh cell lines were used and appear to also have              modeled to partition >70% to proteins and lipids, mainly as a
+been based on nominal concentrations in most cases. The REP                  result of the 10% FBS content of the medium leading to a
+derived from Cnom and Ccell are thus good proxies for in vivo                VFprotein of 0.52%, whereas only four chemicals are ≥90% freely
+REP and can be used in the future for TEF revisions. The                     dissolved in the water phase. In the medium of the ARE assay
+proportionality between Cnom and Ccell over a wide range of                  with 1% FBS and a consequently lower VFprotein of 0.14%
+hydrophobicity is given for this particular in vitro battery as a            (Figure 5E), 52 chemicals were bound >70%, whereas 12 were
+result of the colloid-rich medium. Ccell deviates nonproportion-             >90% freely available. These ﬁndings indicate that Cfree and thus
+ally from Cnom in a colloid-free cell-based system (Figure S3).              the measured eﬀects can considerably be reduced in in vitro
+The same would hold for the cell-free assays that are among the              bioassays by the colloid-rich media,1,30 wherein the degree of
+ToxCast assays. For cell-free assays, a simpler model solely                 reduction highly depends on the FBS content in the medium.
+based on receptor binding could be invoked, which lies beyond                   Because of the lower VFw in the cells (90.6% for AR and
+the scope of this study.                                                     87.4% for ARE) compared to the medium (>99%), the proteins
+   4.5. Chemical Partitioning in the Tox21 GeneBLAzer                        and lipids are the dominant sink for most chemicals in the cells.
+Assays. The dependency of chemical partitioning on the                       However, due to the higher volume fraction of lipids (VFlipid =
+composition of the medium and cells is illustrated in Figure 4.              3.2% in ARE compared to 1.0% in AR), chemical partitioning
+B(g,h,i)P is mainly bound to lipids in medium and cells.                     to the lipid phase of the ARE cells is considerably higher
+Although being >90% available in the water phase of the                      compared to the AR cells (Figure 5C and F).
+medium of the AR assay (Figure 4A), within the cells CAF is                     In the ARE assay with a medium amended with only 1% FBS,
+mainly bound to proteins (Figure 4B). The multimedia                         the partitioning into the cells becomes more relevant in the
+                                                                      1203                                            DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                    Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                Article
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+Figure 5. Modeled chemical partitioning of neutral, cationic, anionic, and multiprotic chemicals between cells and medium as well as among lipids
+(yellow), proteins (green), and water (blue) within the medium and the cells in the AR (A,B,C) and the ARE (D,E,F) assays, based on chemicals’
+Dlip/w and DBSA/w at a medium pH of 7.4. The marked lines indicate the 50%, 70%, 90%, and 99% thresholds that result from the respective phase
+volume fractions (VF) in cells and medium.
+
+overall mass balance (Figure 5D). Although accounting for only               The literature EC50nom and corresponding modeled eﬀect
+0.12% of the total system volume, the cells make up 8.0% and                 concentrations of all active chemicals in all evaluated bioassays
+15.8% of total system proteins and lipids (opposed to only                   can be found in Table S4.
+3.8% and 8.1% in the AR assay); thus, particularly chemicals                    Figure 6 shows the REP of 6 of the 31 active chemicals in the
+with high Dlip/w and DBSA/w partition to a larger proportion into            Tox 21 ARE agonist assay in relation to the highly potent and
+the cells (up to 16%). In contrast, a medium such as the AR                  very hydrophobic reference chemical 2,3,7,8-tetrachlorodiben-
+medium with 10% FBS is generally less depleted by cellular                   zodioxin (2,3,7,8-TCDD) (Figure 6A) and the REP with the
+uptake (<8%, Figure 5A); however, at the same Cnom, Ccell in                 very hydrophilic chemical CAF as reference (Figure 6B). The
+the AR assay are lower compared to that of the ARE assay.                    REPfree based on the EC50free may underestimate the potency
+   4.6. Application of the Model to GeneBLAzer Eﬀect                         of a more hydrophilic chemical if the reference chemical is
+Data. 48 of the 100 evaluated chemicals were active in at least              hydrophobic, whereas the REPfree is overestimated for hydro-
+one of the evaluated GeneBLAzer assays, of which 28 are                      phobic chemicals if the reference chemical is hydrophilic. These
+neutral, 13 partially anionic, 1 partially cationic, 1 permanently           diﬀerences are caused by the large deviations in chemical
+charged anionic, 2 permanently charged cationic, and 3                       partitioning and thus large variety in Cfree (Figure 3A).
+multiprotic at medium pH of 7.4. Note that 13 of the                         Representing a sum parameter for internal exposure, Ccell
+chemicals were not tested within the Tox21 GeneBLAzer                        integrates diﬀerences in intracellular chemical partitioning
+battery, and 3 were only tested in a subset of the assays. The               between the test chemical and the reference chemical which
+very hydrophobic neutral polycyclic aromatic hydrocarbons                    result from diﬀerences in the physicochemical properties, which
+benzo(a)pyrene (B(a)P) and benzo(b)ﬂuoranthene as well as                    may span several orders of magnitude, as exempliﬁed by 2,3,7,8-
+the cationic long chain quaternary ammonium compounds                        TCDD (log Dlip/w = 6.89, Figure 6A) and CAF (log Dlip/w =
+DDAC and hexadecyltrimethylammonium were active in                           0.33, Figure 6B). EC50cell thus represents a better input than
+various assays, while other chemicals were only active in a                  EC50free for the REP calculations in the same in vitro test
+single assay, such as CAF (ARE) and indometacin (PPARG).                     system. Considering the proportionality of Cnom and Ccell for
+                                                                      1204                                           DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                   Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                   Article
+
+                                                                               Given the fact that the biological target site of the ARE assay is
+                                                                               located in the cytosol, measured activities of hydrophobic
+                                                                               chemicals might be less speciﬁc since concentration−response
+                                                                               testing was performed up to cytotoxic concentrations (i.e.,
+                                                                               critical Cmem), also explaining their broad activity in assays
+                                                                               indicative of diﬀerent toxic mechanisms (e.g., B(a)P is active in
+                                                                               10 of the 26 evaluated assays). These results agree with the
+                                                                               ﬁndings of a recent study by Judson et al.,61 who revealed that
+                                                                               chemicals that tend to cause cytotoxicity within a nominal
+                                                                               concentration range of up to 100 μM activated 12% of the
+                                                                               evaluated speciﬁc end points, whereas chemicals that did not
+                                                                               show cytotoxicity within the concentration range were active in
+                                                                               only 1.3% of the 815 assays. This phenomenon probably
+                                                                               resulted from high Cmem since most of the broadly active
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+                                                                               chemicals are hydrophobic and thus exhibit high sorption to
+                                                                               biological membranes, such as 7,12-dimethylbenz(a)anthracene
+                                                                               (log Klip/w = 6.99). Modeling EC50mem can help to diﬀerentiate
+                                                                               between chemicals showing speciﬁc eﬀects and chemicals for
+                                                                               which reported EC50 values might be partly inﬂuenced by
+                                                                               underlying cytotoxicity. The reported diﬀerences in cell
+                                                                               sensitivity to chemical-induced cytotoxicity between diﬀerent
+                                                                               cell lines62 could result from diﬀerences in cellular composition
+                                                                               resulting in diﬀerent Cmem for similar Cnom of the chemical
+Figure 6. REP of six active chemicals in the ARE agonist assay with
+                                                                               (Figure 5C and F). However, it could also be explained by
+(A) 2,3,7,8-tetrachlorodibenzodioxin (2,3,7,8-TCDD) and (B) caﬀeine            diﬀerences in the medium composition of the considered in
+(CAF) as reference chemicals on basis of EC50nom, EC50free, and                vitro bioassays.
+EC50cell.                                                                         Most of the target sites in in vitro bioassays are located either
+                                                                               in the cytosol or in cell compartments such as the nucleus.
+most of the chemicals (Figure 3B), Cnom may thereby serve as                   More detailed modeling of chemical partitioning between
+proxy for Ccell because REPnom is very close to the REPcell                    diﬀerent cell compartments could further enhance the
+independent of the physicochemical properties of the reference                 interpretability of a cellular response. Further parametrization
+chemical (Figure 6).                                                           of compartment-speciﬁc proteins and lipids is therefore needed
+   Baseline toxicity of organic chemicals occurs above a deﬁned                considering the complexity of chemical sorption to biomole-
+membrane concentration of approximately 300 mmol Lmem−1 in                     cules.14,15
+isolated cell membranes58 and is considered to be related to                      4.7. Implication for Chemical Risk Assessment and
+membrane concentrations of 0.1 to 1 mol Llipid−1 in aquatic                    Future Steps. The protein- and lipid-rich nutrient medium
+species.59,60 Figure 7 shows the EC50 values of agonist                        used in cellular assays with mammalian cell lines could have led
+chemicals in the ARE assay based on Cmem.                                      to a decreased sensitivity of the Tox21 in vitro bioassays due to
+   Although most of the EC50mem are below the threshold for                    reduced Cfree. The model output is consistent with the
+baseline toxicity, which constitutes the minimum toxicity a                    conclusion of earlier studies that Cnom is generally not an
+chemical can have, particularly neutral hydrophobic chemicals                  adequate metric to describe the in vitro exposure of most of the
+with high log Dlip/w are close to the critical membrane                        evaluated chemicals since they are bound to a large extent even
+concentration for baseline toxicity (prazepam and B(a)P).                      in media with low FBS content.6,12,13 Given the fact that
+                                                                               measured eﬀects were exclusively linked to Cnom within the
+                                                                               Tox21 program, chemical risk classiﬁcation and prioritization
+                                                                               hence suﬀers from low comparability between assays at a
+                                                                               constant Cnom (Figure S4) and particularly to other exposure
+                                                                               scenarios, such as in vivo toxicity data. Taking into account
+                                                                               chemical partitioning by equilibrium model approaches such as
+                                                                               those presented here considerably enhances the interpretability
+                                                                               of in vitro toxicity data, but further reﬁnement of the model,
+                                                                               system, and chemical parameters as well as moving from an
+                                                                               equilibrium to a kinetically resolved model will further improve
+                                                                               the accuracy of the dose descriptors. However, the presented
+                                                                               model is already a major leap as compared to purely Kow-based
+                                                                               equilibrium partitioning models.
+                                                                                  The relative distribution of the chemicals in the Tox21
+                                                                               GeneBLAzer assays shows that chemical partitioning in in vitro
+Figure 7. Modeled EC50mem of active neutral, anionic, and multiprotic          assays can vary greatly between and within the cells and
+chemicals in the ARE agonist assay plotted against their Dlip/w at pH          medium. Cfree is strongly dependent on (i) the physicochemical
+7.4. The membrane concentration range of 0.1−1 mol Lmem−1 is given             properties of all species of the chemicals as well as (ii) the
+as a threshold for baseline toxicity (gray shading).59,60 No cationic          composition of the medium and the cells in terms of volume
+study chemicals were active in this bioassay.                                  fractions of lipids, proteins, and water. Inconsistency in basic
+                                                                        1205                                            DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                      Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                  Article
+
+medium and FBS content as well as the natural variability of the            robustly measure partition constants of IOCs for the relevant
+FBS can thereby lead to highly variable Cfree between bioassays             binding matrices, such as third-phase partitioning approaches66
+of a single experimental platform but even more so across                   based on novel sampling devices for IOCs.67
+diﬀerent platforms. One should be aware of this variability
+when comparing eﬀect data of bioassays carried out with
+diﬀerent setups or when changing the experimental setup of an
+                                                                            ■
+                                                                            *
+                                                                                ASSOCIATED CONTENT
+                                                                            S Supporting Information
+assay.                                                                      The Supporting Information is available free of charge on the
+   Modeling Cfree, Ccell, and even target site concentrations such          ACS Publications website at DOI: 10.1021/acs.chemres-
+as Cmem allows evaluation of whether diﬀerences in measured                 tox.7b00023.
+toxicity between in vitro platforms are the result of intrinsic
+sensitivity diﬀerences of the cell lines, the receptor expression,                Model calculations (XLSX)
+and/or the reporter gene design or whether they are simply the                    Experimental data on the system parameters, the relevant
+result of diﬀerences in bioavailability. However, in most                         partition constants and modeled eﬀect data for the study
+databases, system parameters are either poorly reported or                        chemicals were gathered (XLSX)
+
+
+
+
+                                                                                                                                                               Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+not available. Clear and traceable information on the system                      Utility of the experimental methods used for lipid
+parameters (e.g., medium composition) should always be part                       determination and additional plots (PDF)
+
+                                                                            ■
+of published in vitro eﬀect data, in order to allow retrospective
+bioavailability calculations. Extending the equilibrium model to
+                                                                                AUTHOR INFORMATION
+kinetic processes such as sorption to plate materials,
+degradation, cellular growth, and uptake kinetics can further               Corresponding Author
+improve the accuracy and correctness of the model output.                   *Phone: +49 341 235-1512. Fax: +49 341 235-1787. E-mail:
+   BSA and liposomes were used as surrogates for all medium                 fabian.ﬁscher@ufz.de.
+and cellular proteins and lipids in order to improve the model              ORCID
+over previous Kow-based estimates. Sorption to proteins can be              Fabian C. Fischer: 0000-0002-9511-0506
+very complex,63,64 in particular for IOCs for which strong steric           Beate I. Escher: 0000-0002-5304-706X
+and 3D structure eﬀects on BSA sorption were measured for
+isomeric chemicals.14 Studies are therefore needed that test the            Funding
+suitability of BSA and liposomes as surrogates for medium and               We gratefully acknowledge the ﬁnancial support and the
+cellular proteins and lipids when testing IOCs. The sorption of             CEFIC Long-Range Research Initiative (LRI), project ECO30.
+a chemical might be considerably diﬀerent between proteins                  Notes
+due to diﬀerences in the structure and conformation of binding              The authors declare no competing ﬁnancial interest.
+sites, in particular when comparing serum proteins with
+structural proteins.65 In contrast to neutral chemicals, ions
+are not expected to partition into storage lipids, but some have
+                                                                            ■    ACKNOWLEDGMENTS
+                                                                            We thank Cedric Abele and Christin Kühnert for laboratory
+higher aﬃnity to membrane bilayers. A more detailed                         support. Nils Klüver, Rita Schlichting, Till Luckenbach, and
+parametrization of the medium and cell composition is                       Annika Jahnke are gratefully acknowledged for their critical
+warranted to ﬁnd out if a more complex model is required or                 review of the manuscript. We thank Nadin Ulrich for the
+if the present model is suﬃcient for routine applications.                  persistent upkeep and expansion of the UFZ LSER database.
+   The model can readily be used and is included as Supporting              Christoph D. Rummel and Annika Jahnke are acknowledged for
+Information. We provide experimental data on water, protein,                assistance with the table of contents graphic. We thank Jessica
+and lipid contents of diﬀerent media and diﬀerent cell lines in             Hellweg for proofreading and assistance with the MATLAB
+Table S1, and there is also an average generic set of system                codes.
+
+                                                                            ■
+parameters that can be applied for cells and media, for which
+protein and lipid contents have not been characterized. The                      ABBREVIATIONS
+modiﬁed Lowry assay and sulfo-phosphovanillin method are
+both rapid, robust photometric tests performed in multiwell                 Cnom, nominal concentration; Cfree, freely dissolved concen-
+plate format and can be implemented with low equipment and                  tration; Ccell, cellular concentration; Cmem, membrane concen-
+personnel costs. Considering that FBS is produced from natural              tration; IOC, ionogenic organic chemicals; Kow, octanol−water
+blood, meaning its composition can vary considerably, we                    partition constant; Dlip/w, liposome−water distribution ratio;
+recommend quantifying proteins and lipids when using a new                  DBSA/w, bovine serum albumin−water distribution ratio
+lot. Cellular composition may diﬀer for similar cell lines of
+diﬀerent culture. The partition constants of the study chemicals
+(log KBSA/w and log Klip/w) are gathered in Table S3. Input
+                                                                            ■   REFERENCES
+                                                                             (1) Gülden, M., and Seibert, H. (1997) Influence of protein binding
+values needed to perform predictions for neutral organic                    and lipophilicity on the distribution of chemical compounds in in vitro
+chemicals via PP-LFERs are moreover freely available for                    systems. Toxicol. In Vitro 11, 479−483.
+>8,000 chemicals. 35 Although state-of-the-art prediction                    (2) Gülden, M., and Seibert, H. (2003) In vitro−in vivo extrapolation:
+approaches for ions such as COSMOmic and 3D-QSARs are                       estimation of human serum concentrations of chemicals equivalent to
+                                                                            cytotoxic concentrations in vitro. Toxicology 189, 211−222.
+not that easily accessible so far, there are ongoing eﬀorts to
+                                                                             (3) Yoon, M., Campbell, J. L., Andersen, M. E., and Clewell, H. J.
+develop user-friendly models for the prediction of IOCs.                    (2012) Quantitative in vitro to in vivo extrapolation of cell-based
+Considering the complexity of partitioning of ions into complex             toxicity assay results. Crit. Rev. Toxicol. 42, 633−652.
+matrices such as BSA,14,63,64 we need more experimental data                 (4) Wetmore, B. A. (2015) Quantitative in vitro-to-in vivo
+for the mass balance model but also to improve the prediction               extrapolation in a high-throughput environment. Toxicology 332,
+methods for the binding constants. Methods are needed to                    94−101.
+
+                                                                     1206                                              DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                     Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                               Article
+
+ (5) Escher, B. I., and Hermens, J. L. M. (2002) Modes of action in                      (22) Endo, S., Mewburn, B., and Escher, B. I. (2013) Liposome and
+ecotoxicology: Their role in body burdens, species sensitivity, QSARs,                 protein-water partitioning of polybrominated diphenyl ethers
+and mixture effects. Environ. Sci. Technol. 36, 4201−4217.                             (PBDEs). Chemosphere 90, 505−511.
+ (6) Escher, B. I., and Hermens, J. L. M. (2004) Internal exposure:                      (23) Endo, S., Escher, B. I., and Goss, K. U. (2011) Capacities of
+Linking bioavailability to effects. Environ. Sci. Technol. 38, 455A−462A.              membrane lipids to accumulate neutral organic chemicals. Environ. Sci.
+ (7) Heringa, M. B., Schreurs, R., Busser, F., Van Der Saag, P. T., Van                Technol. 45, 5912−5921.
+Der Burg, B., and Hermens, J. L. M. (2004) Toward more useful in                         (24) Klamt, A., Huniar, U., Spycher, S., and Keldenich, J. (2008)
+vitro toxicity data with measured free concentrations. Environ. Sci.                   COSMOmic: A mechanistic approach to the calculation of
+Technol. 38, 6263−6270.                                                                membrane−water partition coefficients and internal distributions
+ (8) Kramer, N. I., Krismartina, M., Rico-Rico, A., Blaauboer, B. J., and              within membranes and micelles. J. Phys. Chem. B 112, 12148−12157.
+Hermens, J. L. M. (2012) Quantifying processes determining the free                      (25) Endo, S., and Goss, K.-U. (2014) Applications of polyparameter
+concentration of phenanthrene in basal cytotoxicity assays. Chem. Res.                 linear free energy relationships in environmental chemistry. Environ.
+Toxicol. 25, 436−445.                                                                  Sci. Technol. 48, 12477−12491.
+ (9) Schreiber, R., Altenburger, R., Paschke, A., and Kuster, E. (2008)                  (26) Bittermann, K., Spycher, S., and Goss, K.-U. (2016)
+How to deal with lipophilic and volatile organic substances in                         Comparison of different models predicting the phospholipid-
+
+
+
+
+                                                                                                                                                                            Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+microtiter plate assays. Environ. Toxicol. Chem. 27, 1676−1682.                        membrane water partition coefficients of charged compounds.
+ (10) Riedl, J., and Altenburger, R. (2007) Physicochemical substance                  Chemosphere 144, 382−391.
+properties as indicators for unreliable exposure in microplate-based                     (27) Wetmore, B. A., Wambaugh, J. F., Ferguson, S. S., Sochaski, M.
+bioassays. Chemosphere 67, 2210−2220.                                                  A., Rotroff, D. M., Freeman, K., Clewell, H. J., III, Dix, D. J., Andersen,
+ (11) Wilk-Zasadna, I., Bernasconi, C., Pelkonen, O., and Coecke, S.                   M. E., Houck, K. A., Allen, B., Judson, R. S., Singh, R., Kavlock, R. J.,
+(2015) Biotransformation in vitro: An essential consideration in the                   Richard, A. M., and Thomas, R. S. (2012) Integration of dosimetry,
+quantitative in vitro-to-in vivo extrapolation (QIVIVE) of toxicity data.              exposure, and high-throughput screening data in chemical toxicity
+Toxicology 332, 8−19.                                                                  assessment. Toxicol. Sci. 125, 157−174.
+ (12) Gülden, M., Morchel, S., and Seibert, H. (2001) Factors                           (28) Gellert, G., and Stommel, A. (1999) Influence of microplate
+influencing nominal effective concentrations of chemical compounds                     material on the sensitivity of growth inhibition tests with bacteria
+in vitro: cell concentration. Toxicol. In Vitro 15, 233−243.                           assessing toxic organic substances in water and waste water. Environ.
+ (13) Armitage, J. M., Wania, F., and Arnot, J. A. (2014) Application                  Toxicol. 14, 424−428.
+of mass balance models and the chemical activity concept to facilitate                   (29) Abele, C. (2016) Uptake Kinetics of Organic Compounds into
+the use of in vitro toxicity data for risk assessment. Environ. Sci. Technol.          Cells Quantiﬁed with Fluorescence Microscopy, Bachelor Thesis,
+48, 9770−9779.                                                                         University of Tübingen.
+ (14) Henneberger, L., Goss, K. U., and Endo, S. (2016) Equilibrium                      (30) Gülden, M., Morchel, S., Tahan, S., and Seibert, H. (2002)
+sorption of structurally diverse organic ions to bovine serum albumin.                 Impact of protein binding on the availability and cytotoxic potency of
+Environ. Sci. Technol. 50, 5119−5126.                                                  organochlorine pesticides and chlorophenols in vitro. Toxicology 175,
+ (15) Endo, S., and Goss, K. U. (2011) Serum albumin binding of                        201−213.
+structurally diverse neutral organic compounds: data and models.                         (31) Lowry, O. H., Rosebrough, N. J., Farr, A. L., and Randall, R. J.
+Chem. Res. Toxicol. 24, 2293−2301.                                                     (1951) Protein measurement with the Folin phenol reagent. J. Biol.
+ (16) Attene-Ramos, M. S., Miller, N., Huang, R., Michael, S., Itkin,                  Chem. 193, 265−75.
+M., Kavlock, R. J., Austin, C. P., Shinn, P., Simeonov, A., Tice, R. R.,                 (32) Smedes, F. (1999) Determination of total lipid using non-
+                                                                                       chlorinated solvents. Analyst 124, 1711−1718.
+and Xia, M. (2013) The Tox21 robotic platform for the assessment of
+                                                                                         (33) Bligh, E. G., and Dyer, W. J. (1959) A rapid method of total
+environmental chemicals - from vision to reality. Drug Discovery Today
+                                                                                       lipid extraction and purification. Can. J. Biochem. Physiol. 37, 911−917.
+18, 716−723.
+                                                                                         (34) Frings, C. S., and Dunn, R. T. (1970) A colorimetric method for
+ (17) Huang, R. L., Xia, M. H., Cho, M. H., Sakamuru, S., Shinn, P.,
+                                                                                       determination of total serum lipids based on sulfo-phospho-vanillin
+Houck, K. A., Dix, D. J., Judson, R. S., Witt, K. L., Kavlock, R. J., Tice,
+                                                                                       reaction. Am. J. Clin. Pathol. 53, 89−91.
+R. R., and Austin, C. P. (2011) Chemical genomics profiling of                           (35) Endo, S., Brown, T. N., Watanabe, N., Ulrich, N., Bronner, G.,
+environmental chemical modulation of human nuclear receptors.                          Abraham, M. H., and Goss, K.-U. (2015) UFZ-LSER Database v 3.1
+Environ. Health Persp. 119, 1142−1148.                                                 [Internet], Helmholtz Centre for Environmental Research-UFZ,
+ (18) Shukla, S. J., Huang, R. L., Sommons, S. O., Tice, R. R., Witt, K.               Leipzig, Germany, http://www.ufz.de/lserd (accessed on Jan 27,
+L., vanLeer, D., Rabamabhardan, R., Austin, C. P., and Xia, M. H.                      2017).
+(2012) Profiling environmental chemicals for activity in the                             (36) ACD/Percepta (2015) Build 2726, Advanced Chemistry
+andioxidant response element signaling pathway using a high-                           Development, Inc., Toronto, Canada, http://www.acdlabs.com.
+throughput screening approach. Environ. Health Persp. 120, 1150−                         (37) Klamt, A., Thormann, M., Wichmann, K., and Tosco, P. (2012)
+1156.                                                                                  COSMOsar3D: Molecular field analysis based on local COSMO σ-
+ (19) Huang, R., Sakamuru, S., Martin, M. T., Reif, D. M., Judson, R.                  Profiles. J. Chem. Inf. Model. 52, 2157−2164.
+S., Houck, K. A., Casey, W., Hsieh, J.-H., Shockley, K. R., Ceger, P.,                   (38) Tosco, P., and Balle, T. (2011) Open3DQSAR: a new open-
+Fostel, J., Witt, K. L., Tong, W., Rotroff, D. M., Zhao, T., Shinn, P.,                source software aimed at high-throughput chemometric analysis of
+Simeonov, A., Dix, D. J., Austin, C. P., Kavlock, R. J., Tice, R. R., and              molecular interaction fields. J. Mol. Model. 17, 201−8.
+Xia, M. (2014) Profiling of the Tox21 10K compound library for                           (39) Linden, L., Goss, K. U., and Endo, S. (2017) 3D-QSAR
+agonists and antagonists of the estrogen receptor alpha signaling                      predictions for alpha-cyclodextrin binding constants using quantum
+pathway. Sci. Rep. 4, 5664−5664.                                                       mechanically based descriptors. Chemosphere 169, 693−699.
+ (20) Busch, W., Schmidt, S., Kuhne, R., Schulze, T., Krauss, M., and                    (40) Klamt, A. (1995) Conductor-like screening model for real
+Altenburger, R. (2016) Micropollutants in European rivers: A mode of                   solvents: A new approach to the quantitative calculation of solvation
+action survey to support the development of effect-based tools for                     phenomena. J. Phys. Chem. 99, 2224−2235.
+water monitoring. Environ. Toxicol. Chem. 35, 1887−99.                                   (41) Thormann, M., Klamt, A., and Wichmann, K. (2012)
+ (21) Escher, B. I., Berg, M., Muhlemann, J., Schwarz, M. A. A.,                       COSMOsim3D: 3D-similarity and alignment based on COSMO
+Hermens, J. L. M., Vaes, W. H. J., and Schwarzenbach, R. P. (2002)                     polarization charge densities. J. Chem. Inf. Model. 52, 2149−56.
+Determination of liposome/water partition coefficients of organic                        (42) Bittermann, K., Spycher, S., Endo, S., Pohler, L., Huniar, U.,
+acids and bases by solid-phase microextraction. Analyst 127, 42−48.                    Goss, K.-U., and Klamt, A. (2014) Prediction of phospholipid-water
+
+                                                                                1207                                                DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                                  Chem. Res. Toxicol. 2017, 30, 1197−1208
+Chemical Research in Toxicology                                                                                                                                Article
+
+partition coefficients of ionic organic chemicals using the mechanistic                  (57) Van den Berg, M., Birnbaum, L., Bosveld, A. T., Brunström, B.,
+model COSMOmic. J. Phys. Chem. B 118, 14833−14842.                                     Cook, P., Feeley, M., Giesy, J. P., Hanberg, A., Hasegawa, R., Kennedy,
+  (43) Gibbons, G. F., Khurana, R., Odwell, A., and Seelaender, M. C.                  S. W., Kubiak, T., Larsen, J. C., van Leeuwen, F. X., Liem, A. K., Nolt,
+L. (1994) Lipid balance in HepG2 cells - active synthesis and impaired                 C., Peterson, R. E., Poellinger, L., Safe, S., Schrenk, D., Tillitt, D.,
+mobilization. J. Lipid Res. 35, 1801−1808.                                             Tysklind, M., Younes, M., Waern, F., and Zacharewski, T. (1998)
+  (44) Groothuis, F. A., Heringa, M. B., Nicol, B., Hermens, J. L. M.,                 Toxic equivalency factors (TEFs) for PCBs, PCDDs, PCDFs for
+Blaauboer, B. J., and Kramer, N. I. (2015) Dose metric considerations                  humans and wildlife. Environ. Health Perspect. 106, 775−792.
+in in vitro assays to improve quantitative in vitro-in vivo dose                         (58) Escher, B. I., Schwarzenbach, R. P., and Westall, J. C. (2000)
+extrapolations. Toxicology 332, 30−40.                                                 Evaluation of liposome-water partitioning of organic acids and bases.
+  (45) Bandow, N., Altenburger, R., and Brack, W. (2010) Application                   Development of a sorption model. Environ. Sci. Technol. 34, 3954−
+of nd-SPME to determine freely dissolved concentrations in the                         3961.
+presence of green algae and algae-water partition coefficients.                          (59) McCarty, L. S., and Mackay, D. (1993) Enhancing
+Chemosphere 79, 1070−1076.                                                             ecotoxicological modeling and assessment. Environ. Sci. Technol. 27,
+  (46) Smith, K. E. C., Oostingh, G. J., and Mayer, P. (2010) Passive                  1718−1728.
+dosing for producing defined and constant exposure of hydrophobic                        (60) Escher, B. I., and Schwarzenbach, R. P. (2002) Mechanistic
+organic compounds during in vitro toxicity Tests. Chem. Res. Toxicol.                  studies on baseline toxicity and uncoupling as a basis for modeling
+
+
+
+
+                                                                                                                                                                             Downloaded from pubs.​acs.​org/​crtoec/​article-pdf/​30/​5/​1197/​12332916/​tx7b00023.​pdf by UNIV OF ILLINOIS CHICAGO user on 22 October 2026
+23, 55−65.                                                                             internal lethal concentrations in aquatic organisms. Aquat. Sci. 64, 20−
+  (47) Adolfsson-Erici, M., Akerman, G., Jahnke, A., Mayer, P., and                    35.
+McLachlan, M. S. (2012) A flow-through passive dosing system for                         (61) Judson, R., Houck, K., Martin, M., Richard, A. M., Knudsen, T.
+continuously supplying aqueous solutions of hydrophobic chemicals to                   B., Shah, I., Little, S., Wambaugh, J., Setzer, R. W., Kothya, P., Phuong,
+                                                                                       J., Filer, D., Smith, D., Reif, D., Rotroff, D., Kleinstreuer, N., Sipes, N.,
+bioconcentration and aquatic toxicity tests. Chemosphere 86, 593−599.
+  (48) Zabiegala, B., Kot-Wasik, A., Urbanowicz, M., and Namiesnik, J.                 Xia, M. H., Huang, R. L., Crofton, K., and Thomas, R. S. (2016)
+                                                                                       Analysis of the effects of cell stress and cytotoxicity on in vitro assay
+(2010) Passive sampling as a tool for obtaining reliable analytical
+                                                                                       activity across a diverse chemical and assay space. Toxicol. Sci. 152,
+information in environmental quality monitoring. Anal. Bioanal. Chem.
+                                                                                       323−339.
+396, 273−296.
+                                                                                         (62) Xia, M., Huang, R., Witt, K. L., Southall, N., Fostel, J., Cho, M.
+  (49) Booij, K., Robinson, C. D., Burgess, R. M., Mayer, P., Roberts,
+                                                                                       H., Jadhav, A., Smith, C. S., Inglese, J., Portier, C. J., Tice, R. R., and
+C. A., Ahrens, L., Allan, I. J., Brant, J., Jones, L., Kraus, U. R., Larsen,           Austin, C. P. (2008) Compound cytotoxicity profiling using
+M. M., Lepom, P., Petersen, J., Profrock, D., Roose, P., Schafer, S.,                  quantitative high-throughput screening. Environ. Health Persp 116,
+Smedes, F., Tixier, C., Vorkamp, K., and Whitehouse, P. (2016)                         284−291.
+Passive sampling in regulatory chemical monitoring of nonpolar                           (63) Fasano, M., Curry, S., Terreno, E., Galliano, M., Fanali, G.,
+organic compounds in the aquatic environment. Environ. Sci. Technol.                   Narciso, P., Notari, S., and Ascenzi, P. (2005) The extraordinary ligand
+50, 3−17.                                                                              binding properties of human serum albumin. IUBMB Life 57, 787−
+  (50) McCarty, L. S., Landrum, P. F., Luoma, S. N., Meador, J. P.,                    796.
+Merten, A. A., Shephard, B. K., and van Wezel, A. P. (2011) Advancing                    (64) Bischel, H. N., Macmanus-Spencer, L. A., Zhang, C., and Luthy,
+environmental toxicology through chemical dosimetry: external                          R. G. (2011) Strong associations of short-chain perfluoroalkyl acids
+exposures versus tissue residues. Integr. Environ. Assess. Manage. 7,                  with serum albumin and investigation of binding mechanisms. Environ.
+7−27.                                                                                  Toxicol. Chem. 30, 2423−30.
+  (51) McCarty, L. S., Mackay, D., Smith, A. D., Ozburn, G. W., and                      (65) Henneberger, L., Goss, K. U., and Endo, S. (2016) Partitioning
+Dixon, D. G. (1993) Residue-based interpretation of toxicity and                       of Organic Ions to Muscle Protein: Experimental Data, Modeling, and
+bioconcentration QSARs from aquatic bioassays - polar narcotic                         Implications for in Vivo Distribution of Organic Ions. Environ. Sci.
+organics. Ecotoxicol. Environ. Saf. 25, 253−270.                                       Technol. 50, 7029−7036.
+  (52) Schultz, T. W., Carlson, R. E., Cronin, M. T. D., Hermens, J. L.                  (66) Escher, B. I., Cowan-Ellsberry, C. E., Dyer, S., Embry, M. R.,
+M., Johnson, R., O’Brien, P. J., Roberts, D. W., Siraki, A., Wallace, K.               Erhardt, S., Halder, M., Kwon, J. H., Johanning, K., Oosterwijk, M. T.
+B., and Veith, G. D. (2006) A conceptual framework for predicting the                  T., Rutishauser, S., Segner, H., and Nichols, J. (2011) Protein and lipid
+toxicity of reactive chemicals: modeling soft electrophilicity. Sar Qsar               binding parameters in rainbow trout (Oncorhynchus mykiss) blood and
+Environ. Res. 17, 413−428.                                                             liver fractions to extrapolate from an in Vitro metabolic degradation
+  (53) Escher, B. I., Eggen, R. I. L., Schreiber, U., Schreiber, Z., Vye, E.,          assay to in Vivo bioaccumulation potential of hydrophobic organic
+Wisner, B., and Schwarzenbach, R. P. (2002) Baseline toxicity                          chemicals. Chem. Res. Toxicol. 24, 1134−1143.
+(narcosis) of organic chemicals determined by in vitro membrane                          (67) Peltenburg, H., Bosman, I. J., and Hermens, J. L. M. (2015)
+potential measurements in energy-transducing membranes. Environ.                       Sensitive determination of plasma protein binding of cationic drugs
+Sci. Technol. 36, 1971−1979.                                                           using mixed-mode solid-phase microextraction. J. Pharm. Biomed. Anal.
+  (54) Villeneuve, D. L., Kannan, K., Khim, J. S., Falandysz, J.,                      115, 534−542.
+Nikiforov, V. A., Blankenship, A. L., and Giesy, J. P. (2000) Relative
+potencies of individual polychlorinated naphthalenes to induce dioxin-
+like responses in fish and mammalian in vitro bioassays. Arch. Environ.
+Contam. Toxicol. 39, 273−81.
+  (55) Escher, B. I., Bramaz, N., Mueller, J. F., Quayle, P., Rutishauser,
+S., and Vermeirssen, E. L. M. (2008) Toxic equivalent concentrations
+(TEQs) for baseline toxicity and specific modes of action as a tool to
+improve interpretation of ecotoxicity testing of environmental samples.
+J. Environ. Monit. 10, 612−621.
+  (56) Van den Berg, M., Birnbaum, L. S., Denison, M., De Vito, M.,
+Farland, W., Feeley, M., Fiedler, H., Hakansson, H., Hanberg, A.,
+Haws, L., Rose, M., Safe, S., Schrenk, D., Tohyama, C., Tritscher, A.,
+Tuomisto, J., Tysklind, M., Walker, N., and Peterson, R. E. (2006) The
+2005 World Health Organization reevaluation of human and
+mammalian toxic equivalency factors for dioxins and dioxin-like
+compounds. Toxicol. Sci. 93, 223−241.
+
+                                                                                1208                                                 DOI: 10.1021/acs.chemrestox.7b00023
+                                                                                                                                   Chem. Res. Toxicol. 2017, 30, 1197−1208
+

@@ -392,11 +392,22 @@ Four terms: storage lipid behaves as octanol; membrane lipid as a phospholipid
 membrane; **3.5% of the protein behaves as octanol and the rest is inert**; the
 cell's own water behaves as water.
 
-The AREc2 composition (SI Tables S3–S6), used for all three assays:
+The AREc2 composition (SI Table S5), used for all three assays:
 
 ```
 f_sl = 0.00046    f_ml = 0.00414    f_prot = 0.0514    f_water = 0.944
 ```
+
+> **Approximation A14-bis, added 2026-10-22.** AREc2 is **AREc32**, which is
+> **MCF7-derived** (Cellosaurus CVCL_1D32; Wang, Hayes & Wolf 2006) — a
+> breast-carcinoma line, not a hepatic one. Earlier drafts of this primer and
+> of the code called it "HepG2-derived" and used it as the closest published
+> match for HepG2/HepaRG. It is not. Fischer et al. 2017 Table 2 measured the
+> line two of the three datasets actually use — HepG2 (ARE-bla): **87.35%
+> water, 9.46% protein, 3.19% lipid, 3.04 pg/cell** — 6.9× the lipid and 1.84×
+> the protein of AREc2, in 0.30× the volume. The AREc2 composition is retained
+> above because it is *the published Armitage parameterisation*, which is the
+> thing being tested; it is not retained because it is appropriate.
 
 > **Approximation A14, the big one.** "3.5% of bulk protein behaves as octanol"
 > is a convention imported from the neutral-organics literature. Measured
@@ -420,12 +431,36 @@ f_sl = 0.00046    f_ml = 0.00414    f_prot = 0.0514    f_water = 0.944
 >
 > So the bulk-protein term is **new in v2.0 and undocumented in the published
 > record**; it exists only in the Excel/VBA tool, available by request. The
-> 0.035 used here is `httk`'s. **The §16 chain-length verdict is therefore
-> demonstrably about `httk`'s implementation of IV-MBM EQP v2.0, and whether it
-> also applies to Armitage's own tool cannot be settled from the papers.** The
-> consequence: the protein term contributes 0.1–0.2% of Armitage's cell, so
-> the cell is 79% water at PFBA and **99.7% membrane lipid at PFNA**. The
-> convention has defined protein out of the cell.
+> 0.035 used here is `httk`'s.
+>
+> **Confirmed at source, 2026-10-22.** Armitage 2014 is now in hand and the
+> inference above is right, for a stronger reason than the "expanded to
+> include" wording. v1.0's Eq. 1 has **one** lumped cell phase:
+>
+> ```
+> K_CW = K_OW × f_L        f_L = "volume fraction of lipid equivalents
+>                                  (i.e. pseudo-octanol content)"
+> ```
+>
+> with f_L assumed 0.05 for cells and varied 0.01–0.05. No protein term, no
+> membrane-lipid term, no cell-water term. The proximate composition is wholly
+> new in v2.0, so its protein coefficient cannot be in the earlier record, and
+> the 3.5% appears nowhere in the 2014 paper (its only "3.5%" is a
+> supersaturation statistic). v1.0 also **excludes PFAS by its own statement**:
+> "intended for neutral organic chemicals and should only be applied to
+> ionogenic organic chemicals (IOCs) if the compound is predominantly neutral
+> at the test pH", with the extension to predominantly-charged IOCs on its own
+> future-work list.
+>
+> **And the sensitivity is bounded.** The protein term contributes 0.05–0.25% of
+> Armitage's cell at the `httk` value, so the cell is 79% water at PFBA and
+> **99.7% membrane lipid at PFNA** — the convention has defined protein out of
+> the cell — and *nothing here is sensitive to the value of 0.035*. What has
+> leverage is the octanol-equivalence **choice**: substituting a measured
+> structural-protein affinity enlarges the cell sink 1.4–3.4×. So the §16
+> chain-length verdict does not turn on `httk`'s number; it turns on a
+> modelling choice whose presence in Armitage's own tool the papers do not
+> settle either way.
 
 ### 10. Qin 2023
 
@@ -751,7 +786,8 @@ reaches steady state at **~1 h** — which is what licenses A2.
   every Fragki prediction.
 - Cells are differentiated in **1.7% DMSO for twelve days** and held there —
   hepatocyte-like and triglyceride-loaded, nothing like the AREc2 composition
-  they are modelled with (A10, A14).
+  they are modelled with (A10, A14, A14-bis), which is in any case an
+  MCF7-derived line.
 - The authors themselves **excluded PFNA at 100 µM** from their QIVIVE for low
   protein content suggesting cytotoxicity. It is the largest value in the set.
 

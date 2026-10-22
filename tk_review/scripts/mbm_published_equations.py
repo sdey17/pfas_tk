@@ -14,12 +14,14 @@ implementation in four ways that matter:
                                           >= 4.5: 0.37 logKow + 2.56
   d_OW = 3.5, d_PlW = 3.5               d_OW = 3.1, d_PlW = 3.1
   one generic cell: 0.01/0.04/0.05      CELL-LINE-SPECIFIC (Tables S3-S6).
-                                          The HepG2-derived line AREc2 is
+                                          AREc2 (MCF7-derived) is
                                           0.00046 / 0.00414 / 0.0514 / 0.944
   anionic phospholipids + lysosomes     neither appears in the published model
 
 The cell-composition point is the big one: Armitage's PFAS cell term is ~99%
-membrane lipid, and the hepatic line's membrane lipid is 0.00414, not 0.04.
+membrane lipid, and AREc2's membrane lipid is 0.00414, not 0.04.  Note that
+AREc2 is not a hepatic line -- see the CELL_COMP comment below -- and that
+Fischer et al. 2017 measured 0.0319 total lipid for HepG2.
 
 Qin's equations, now verified against the full text (Environ Int 173:107857):
 
