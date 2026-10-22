@@ -212,25 +212,55 @@ longest. The cell is, in effect, a lipid droplet.
 
 ### 3.2 The concentration-dependent balance (Qin et al.)
 
-Qin et al. [3] measured PFAS binding to bovine serum albumin, γ-globulin, lipid
-and cells by C18 solid-phase microextraction over five orders of magnitude, and
-represent albumin binding as a saturable term plus a linear non-specific term.
-Their cell comprises protein and lipid with no aqueous phase, and the protein
-term is a measured non-specific protein–water ratio rather than an
-octanol surrogate. Their cell is 92–95% protein at every chain length.
+Qin et al. [3] measured PFAS binding to bovine serum albumin, lipid, human
+plasma, assay medium and cells by C18 solid-phase microextraction over five
+orders of magnitude, and represent albumin binding as a saturable term plus a
+linear non-specific term. Their biomaterial–water ratio is
+
+> D<sub>i/w</sub> = D<sub>BSA/w</sub>·(V<sub>prot</sub>/V<sub>prot+lip</sub>)
+> + D<sub>lip/w</sub>·(V<sub>lip</sub>/V<sub>prot+lip</sub>)
+
+and the bioassay balance is
+
+> C<sub>free</sub> = n<sub>tot</sub> /
+> [(D<sub>cell/w</sub>·V<sub>cell,prot+lip</sub> + V<sub>cell,w</sub>)
+> + (D<sub>medium/w</sub>·V<sub>medium,prot+lip</sub> + V<sub>medium,w</sub>)]
+
+Two features of this form are easy to misread and are worth stating explicitly,
+because both bear on the comparison in §3.3. First, the normalising volume is
+the *sorptive* volume V<sub>prot+lip</sub>, not the volume of the biomaterial;
+the authors give the units of their tabulated cell–water ratio as
+L<sub>w</sub>/L<sub>cell,prot+lip</sub>, confirming it. Second, cell water does
+appear in the balance, but as a non-sorbing phase at D = 1 pooled with the
+medium water rather than inside D<sub>cell/w</sub>. The distinction the authors
+draw against the earlier Henneberger formulation is about the *numerator*: they
+"considered only proteins and lipids of the cell homogenate as the main
+sorptive phase", so cell water lowers the free concentration but does not count
+as PFAS in the cell. For the cell term itself the composition is protein and
+lipid only, 95% protein by sorptive volume for their HEK293H line (8.14%
+protein and 0.432% lipid of cell volume; water 91.6%).
+
+The protein term is the measured non-specific protein–water ratio rather than
+an octanol surrogate: the authors take D<sub>non-specific</sub> "as a surrogate
+for partitioning to structural proteins", on the argument that cytoskeletal
+protein binds organic acids more weakly than albumin does.
 
 The saturable albumin term can be derived from mass action: for *n* independent
-sites, the site concentration within pure albumin is *n*·ρ/*M*. Using the
-albumin density and molecular weight implied by their own reported values, this
-evaluates to *n* × 20,523 µM, which reproduces their published site-capacity
-column to within 0.2% and implies *n* = 0.45 for PFBA and 1.24 for PFOA. In the
-trace limit the term collapses to a constant, recovering the standard bridge
-between a binding constant and a partition coefficient.
+sites, the site concentration within pure albumin is *n*·ρ/*M*. With the
+authors' own stated values (ρ = 1.36 kg/L, M = 66,463 Da) this evaluates to
+*n* × 20,462 µM, which reproduces their published site-capacity column to
+within 0.2% across all four measured compounds and implies *n* = 0.45 for PFBA
+and 1.24 for PFOA. In the trace limit the term collapses to a constant,
+recovering the standard bridge between a binding constant and a partition
+coefficient.
 
 Parameters were measured for four compounds (PFBA, PFOA, PFHxS, PFOS). Values
 for PFHxA and PFHpA are interpolated between the two carboxylate anchors and
-PFNA is extrapolated beyond both; only the lipid term has a published
-interpolation rule.
+PFNA is extrapolated beyond both. Only the lipid term has a published
+interpolation rule — a regression of log D<sub>lip/w</sub> on the number of
+fluorinated carbons with slope +0.476 and intercept +0.172, which the authors
+used to supply the PFBA value and which reproduces their tabulated carboxylate
+entries exactly.
 
 ### 3.3 Structural comparison
 
@@ -241,9 +271,9 @@ interpolation rule.
 | source of *D* | predicted from log K<sub>OW</sub> | measured, then interpolated |
 | albumin | linear, piecewise spLFER | saturable (site binding + non-specific) |
 | albumin anion penalty | 0.0 (acids) | not applicable; measured on the anion |
-| cell phases | storage lipid, membrane lipid, 3.5%·protein, water | protein, lipid; no water |
-| cell composition at short chain | ~79% water | ~92% protein |
-| cell composition at long chain | ~99.7% membrane lipid | ~95% protein |
+| cell phases | storage lipid, membrane lipid, 3.5%·protein, water | protein, lipid; water non-sorbing |
+| cell composition at short chain | ~79% water | ~95% protein (sorptive volume) |
+| cell composition at long chain | ~99.7% membrane lipid | ~95% protein (sorptive volume) |
 | dose dependence | linear by construction | non-linear |
 | chemical coverage | any, from one descriptor | four measured compounds |
 
@@ -529,8 +559,8 @@ PFBA is excluded (no measured albumin value), so comparisons are over nCF 5–8
 and are directly comparable with the corresponding columns in §6.5.
 
 Both measured series sit below the spLFER predictions — albumin by 2–7× and
-membrane lipid by 8–90×, with the membrane discrepancy growing systematically
-with chain length.
+membrane lipid by 8–90× over nCF 5–8, with the membrane discrepancy growing
+systematically with chain length.
 
 **Table 6.** Performance over nCF 5–8.
 
@@ -557,13 +587,67 @@ parameters alone**. It falls from +0.316 to −0.156 but does not vanish, and it
 is the *saturable* albumin treatment that flattens it (−0.043), at the cost of
 the worst level of the four.
 
-An important caveat attaches to the first observation. The basis on which Chen
-et al. report K<sub>MW</sub> is defined in a supplementary equation not
-available to us, so the absolute offset between the measured and predicted
-membrane series may include a basis mismatch. The *slope* difference — the
-measured series rising ≈0.44 decades per CF₂ against ≈0.78 for the spLFER — is
-invariant to any constant basis error and is the part we would defend. The
-level shift should be treated as provisional pending that definition.
+The basis question that would undermine the first observation can be
+settled. Chen et al. define K<sub>MW</sub> in their Supplementary equation S1 as
+
+> K<sub>MW</sub> = (C<sub>spike</sub> − C<sub>PFAS,W</sub>)·V<sub>W</sub> /
+> (C<sub>PFAS,W</sub>·M<sub>PL</sub>)
+
+where C<sub>spike</sub> is the aqueous concentration in a lipid-free control at
+the end of the incubation, C<sub>PFAS,W</sub> the aqueous concentration in the
+sample, V<sub>W</sub> the water volume and M<sub>PL</sub> the quantity of
+phospholipid membrane in the tube; the authors note that a unit conversion is
+applied so that the reported coefficient is dimensionless. The measurement uses
+a commercial solid-supported lipid membrane kit in which the membrane is
+supplied as a stated *volume* — 0.067 to 2.166 µL of bilayer per tube in 500 µL
+of PBS — so the lipid quantity is natively volumetric and the mass and volume
+bases coincide at a phospholipid density of 1 g·cm<sup>−3</sup>. The reported
+log K<sub>MW</sub> is therefore a dimensionless concentration ratio on a
+volume-of-membrane to volume-of-water basis: the same basis as Armitage's
+D<sub>MW</sub>, and the same density convention the cell-volume conversion used
+here already adopts (10 ng per cell at 1 g·cm<sup>−3</sup>). Real phospholipid
+densities of 1.01–1.06 g·cm<sup>−3</sup> bound the residual basis error at
+≤0.03 log units, which is two orders of magnitude smaller than the
+discrepancies in Table 6. **The level result in Table 6 is therefore not
+provisional.**
+
+Two independent checks support this reading. The tabulated values reproduce the
+authors' own unweighted regression of log K<sub>MW</sub> on chain length — we
+obtain +0.361 (R² = 0.983) for the perfluoroalkyl carboxylates and +0.374
+(R² = 0.985) for the sulfonates against their stated +0.361 ± 0.014
+(R² = 0.982) and +0.374 ± 0.019 (R² = 0.983) — confirming that the series was
+transcribed correctly. And the absolute values sit in the published range for
+PFAS membrane–water partitioning measured by the same technique.
+
+The slope comparison is the part of §6.7 that is invariant to any residual
+basis question, and it is now anchored at source: the measured series rises
++0.361 decades per CF<sub>2</sub> across the authors' full C4–C16 carboxylate
+range (+0.44 over the nCF 5–8 window used in Table 6), against +0.78 for the
+spLFER, which inherits +0.77 per CF<sub>2</sub> from the log K<sub>OW</sub>
+series and multiplies it by 1.01. The spLFER over-steepens membrane
+partitioning by a factor of about 2.6 per CF<sub>2</sub> added; compounded over
+Chen's measured range this reaches three orders of magnitude, and the
+predicted-to-measured ratio runs from 0.7 at PFBA to 0.001 at PFDoA.
+
+A third, fully independent series agrees. Qin et al. [3] take their
+lipid–water ratios from liposome measurements [20] and report the regression
+they used to fill in PFBA: slope **+0.476** per fluorinated carbon for the
+carboxylates. Their two sulfonate entries imply **+0.38**, against Chen's
+**+0.374** for the same head group. So two laboratories, two lipid
+preparations — phospholipid vesicles and solid-supported bilayers — and two
+analytical routes place the lipid–water chain-length slope between +0.36 and
++0.48, while the spLFER inherits +0.77 from the log K<sub>OW</sub> series and
+multiplies it by 1.01. **The over-steepening of the lipid term is not an
+artefact of any one measurement.** It is the single most consistently
+corroborated discrepancy in this reassessment, and it is the term that
+represents almost the whole of the Armitage cell at long chain length
+(Table 1).
+
+One genuine caveat remains, and it is small. Chen et al. report K<sub>MW</sub>
+at pH 7.0 while the balance is evaluated at pH 7.4, so a 0.4-unit
+extrapolation is implicit. The authors measured at pH 6 and pH 7 and present
+both, which bounds the pH sensitivity empirically, but they do not extend the
+series to 7.4.
 
 **The wider implication for the landscape** is that the two failure modes
 documented here map onto two independent design axes. Measured biopartitioning
@@ -571,14 +655,69 @@ addresses the level; a saturable albumin term addresses the chain-length
 behaviour. No published model currently occupies the corner that combines
 both with a protein-realistic cell.
 
+### 6.8 How much agreement did the source models claim?
+
+A model's own validation sets a floor on what an external benchmark can
+resolve, so it is worth asking what each model was shown to achieve before
+being applied here.
+
+Qin et al. [3] measured cell–water distribution ratios for their own HEK293H
+line and compared them with the prediction from their Eq. 17. Reconstructing
+that comparison from their published composition and parameters reproduces
+their stated figures exactly:
+
+**Table 7.** Qin's Eq. 17 against Qin's own measured D<sub>cell/w</sub>.
+
+| | predicted | measured | Δ log | predicted/measured | % of log value |
+|---|---|---|---|---|---|
+| PFBA | 1.63 | 2.56 | −0.93 | 0.12× | −36% |
+| PFOA | 3.69 | 3.27 | +0.42 | 2.65× | +13% |
+| PFHxS | 3.54 | 3.23 | +0.31 | 2.05× | +10% |
+| PFOS | 4.84 | 4.19 | +0.65 | 4.49× | +16% |
+
+The paper describes this as agreement "within 15%" for PFOA, PFHxS and PFOS
+and "around 35% lower" for PFBA. The final column shows what those percentages
+are percentages of: the *logarithm* of the distribution ratio. On the quantity
+that enters the mass balance the same residuals are a 2.0–4.5×
+over-prediction for the three hydrophobic compounds and an 8.5×
+under-prediction for PFBA. This is not a criticism of the measurement or of
+the model's construction, and it does not affect the authors' conclusions,
+which concern the free concentration in a medium where albumin carries more
+than 98% of the capacity and the cell term is therefore nearly irrelevant. But
+it has two consequences for the present work.
+
+First, the cell-term residual is **ordered by chain length**: within the
+carboxylates it gains +1.35 log units between nCF 3 and nCF 7, or +0.34 per
+CF<sub>2</sub>. That is the same sign and nearly the same magnitude as the
+drift found above in the Armitage cell term (+0.38 per CF<sub>2</sub>,
+Table 5) — in a model whose cell parameters are measured rather than
+predicted. The chain-length problem in the cell term is therefore not specific
+to the spLFER approach.
+
+Second, a 2–4.5× discrepancy in D<sub>cell/w</sub> is **inside the envelope
+the model was published with**. An external benchmark cannot attribute a level
+error smaller than that to the model rather than to its inputs, which bounds
+how firmly the biases in Table 3 can be interpreted.
+
+The same floor cannot be established for IV-MBM EQP v2.0 from the published
+record, because the cell-protein sorption parameter is not documented there at
+all (§3.1, §9.3).
+
 ---
 
 ## 7. The ligand:protein regime
 
 Qin et al. [3] hypothesised that concentration-dependent protein binding makes
 the binding regime in bioassays differ substantially from that in plasma, with
-consequences for QIVIVE. Figure 1 quantifies that gap for the three uptake
-datasets.
+consequences for QIVIVE. The full text states the mechanism directly: the gap
+between their nominal and free QIVIVE ratios arises "because protein binding is
+highly concentration-dependent with a high-affinity specific binding at low
+concentrations and lower non-specific binding at higher concentrations. Thus,
+the low concentrations in human plasma are strongly bound to proteins, while
+the high concentration needed to trigger effects in in vitro bioassays have a
+higher fraction unbound." The argument of this section is theirs; what is added
+here is its magnitude for three datasets they did not analyse. Figure 1
+quantifies that gap.
 
 Albumin offers approximately one high-affinity site per molecule for these
 compounds (§3.2). The two 10% FBS assays contain 36.1 µM albumin and the 2% FBS
@@ -705,15 +844,19 @@ carries too steep a chain-length dependence.
 
 Qin's parameters exist for four compounds; two of the five modelled here are
 interpolated and one extrapolated. The extrapolated compound, PFNA, is among
-the worst-fitting. More seriously, **the full text of ref. [3] was not
-available to us**: the model was implemented from its published equation form
-and tabulated parameters. Any qualification the authors place on their own
-parameterisation that is not visible in the tables would not have been
-captured.
+the worst-fitting. The authors scope their own claim narrowly — they
+demonstrated the model's validity "only for four anionic PFAS, one type of
+bioassay medium and one cell line" — while arguing that prior work on other
+organic anions supports transfer to other setups "if the lipid and protein
+content has been quantified". Applying the model to three other datasets with
+quantified composition is therefore the use the authors anticipate; extending
+it along the chain-length axis to compounds they did not measure is not, and
+the interpolation used here for PFHxA and PFHpA and the extrapolation for PFNA
+have no published warrant beyond the lipid term.
 
-The measured-membrane result of §6.7 rests on a coefficient whose published
-basis is defined in a supplementary equation we could not obtain; the level
-shift it produces is provisional for that reason, as stated there.
+The measured-membrane result of §6.7 rests on a coefficient reported at pH 7.0
+and applied here at pH 7.4; the reporting basis itself is resolved (§6.7) but
+the 0.4-unit pH extrapolation is not.
 
 The uptake datasets are small, mutually inconsistent, and partly not on a
 common normalisation basis. Rosenmai's working volume is assumed. Conclusions
@@ -850,13 +993,22 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     integration of the virtual cell based assay with physiologically based
     kinetic modelling. *Toxicol In Vitro* 2017;45(Pt 2):241–248.
     doi:10.1016/j.tiv.2017.06.015
+20. Ebert A, Allendorf F, Berger U, Goss K-U, Ulrich N. Membrane/water
+    partitioning and permeabilities of perfluoroalkyl acids and four of their
+    alternatives and the effects on toxicokinetic behavior. *Environ Sci
+    Technol* 2020;54(8):5051–5061. doi:10.1021/acs.est.0c00157
+    — Source of the liposome–water ratios used by ref. [3]; cited here via
+    [3], whose Table 2 and Figure A1 regression are the values used.
 
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 5, 6, 7, 8, 9. Bibliographic record and abstract
-verified, full text not retrieved (not open access): 3, 12, 17. Bibliographic
-record verified: 2, 4, 10, 11, 18, 19. Cited as methodological context from the
-reference list of ref. 1, not independently retrieved: 13, 14, 15, 16.
+material where cited: 1, 3, 5, 6, 7, 8, 9, 10. Bibliographic record and
+abstract verified, full text not retrieved: 12, 17. Bibliographic record
+verified: 2, 4, 11, 18, 19. Cited via ref. [3], which is the source of the
+values used: 20. Cited as methodological context from the reference list of
+ref. 1, not independently retrieved: 13, 14, 15, 16.
 
-Reference 3 is one of the two models under assessment; its parameterisation was
-taken from tabulated values and its full text has not been read. This is stated
-among the limitations (§9.3).
+Both models under assessment have now been read at source. For ref. [3] the
+full text supplied the balance equations, the cell composition and the authors'
+own cell-term validation, all used in §3.2 and §6.8. For ref. [1] the
+supplementary information supplied every parameter except the cell-protein
+sorption term, which is not in the published record (§9.3).

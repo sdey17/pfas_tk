@@ -20,9 +20,16 @@ Keeping Armitage's cell composition and plastic term, and substituting both
 measured series, gives a "measured-parameter linear balance" -- structurally
 the Escher-school design, parameterised from the best PFAS data available.
 
-CAVEAT.  Chen's K_MW basis is as published; the SI equation defining it is not
-in hand, so it is used on the assumption that it is a volumetric
-membrane-water ratio comparable to Armitage's D_MW.  PFBA has no Fischer BSA
+BASIS (resolved).  Chen's SI eq S1 defines K_MW as
+(C_spike - C_w)*V_w / (C_w * M_PL), with a unit conversion applied so that the
+reported coefficient is dimensionless.  The TRANSIL SSLM kit supplies the
+membrane as a stated VOLUME (0.067-2.166 uL of bilayer per 500 uL tube), so
+the lipid quantity is natively volumetric and the mass and volume bases
+coincide at rho_lipid = 1 g/cm3 -- the same convention V_cells uses here
+(10 ng/cell at 1 mg/uL).  Real phospholipid densities of 1.01-1.06 bound the
+residual basis error at <=0.03 log units.  So log K_MW is directly usable as
+Armitage's D_MW.  The one live caveat is pH: Chen reports at pH 7.0, the
+balance runs at 7.4.  PFBA has no Fischer BSA
 value (N.D.) and is excluded, which removes the compound with the most
 leverage on any chain-length fit -- so slopes here are over nCF 5-8 only and
 are directly comparable with the nCF 5-8 columns in the memo.

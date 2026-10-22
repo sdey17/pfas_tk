@@ -21,20 +21,35 @@ implementation in four ways that matter:
 The cell-composition point is the big one: Armitage's PFAS cell term is ~99%
 membrane lipid, and the hepatic line's membrane lipid is 0.00414, not 0.04.
 
-Qin's equation, as given in the project notes and confirmed by his text:
+Qin's equations, now verified against the full text (Environ Int 173:107857):
 
-  C_free = C_nom x V_tot / ( V_w
-                           + D_BSA/w        x V_protein,medium
-                           + D_lip/w        x V_lipid,medium
-                           + D_SP/w         x V_protein,cell
-                           + D_lip/w        x V_lipid,cell )
+  Eq. 17   D_i/w = D_BSA/w x V_prot/V_prot+lip  +  D_lip/w x V_lip/V_prot+lip
+  Eq. 20   C_free = n_tot / [ (D_cell/w   x V_cell,prot+lip   + V_cell,w)
+                            + (D_medium/w x V_medium,prot+lip + V_medium,w) ]
 
-with D_SP/w = D_non-specific: "D_cell/w was predicted by the MBM (Eq. 17) with
-D_non-specific (Table 1) as a surrogate for partitioning to structural proteins
-and D_lip/w (Table 2) for lipid". There is NO cell-water term -- "we considered
-only proteins and lipids of the cell homogenate as the main sorptive phase for
-D_cell/w, which is different from Henneberger et al. where the cells were
-recognized as an entity containing water, protein and lipid".
+Three points of fidelity that the tabulated parameters alone did not settle:
+
+  * The normalising volume in Eq. 17 is the SORPTIVE volume V_prot+lip, not
+    the volume of the biomaterial.  Table 2 gives the units as
+    [L_w / L_cell,prot+lip], confirming it.  Substituting Eq. 17 into Eq. 20
+    therefore gives exactly D_SP/w x V_prot,cell + D_lip/w x V_lip,cell, which
+    is the form used below -- the two are algebraically identical.
+  * Cell water IS in Eq. 20, but as a non-sorbing phase at D = 1 pooled with
+    the medium water, NOT inside D_cell/w.  The contrast the authors draw with
+    Henneberger et al. 2019a is about the NUMERATOR: "we considered only
+    proteins and lipids of the cell homogenate as the main sorptive phase for
+    D_cell/w, which is different from Henneberger et al. where the cells were
+    recognized as an entity containing water, protein and lipid and all of
+    them contributed to cell-water distribution".  So cell water counts
+    towards the denominator but not towards the amount "in the cell".
+  * D_SP/w = D_non-specific: "D_cell/w was predicted by the MBM (Eq. 17) with
+    D_non-specific (Table 1) as a surrogate for partitioning to structural
+    proteins and D_lip/w (Table 2) for lipid" (Sec 3.5).
+
+Qin's own cell composition (Table A5, HEK293H) is water 91.6%, protein 8.14%,
+lipid 0.432% by volume -- within 7% of Armitage's AREc2 lipid but 1.6x his
+protein.  The composition used below is Armitage's, for both models, so that
+the two differ only in their partitioning treatment.
 
 That single difference is most of the story: Armitage's cell contains water as
 a sorptive phase and Qin's does not, and Armitage's cell protein runs on
@@ -159,6 +174,7 @@ def volumes(a):
     Vslip = Vbm * a["FBS"] * SI["conc_ser_lip"] * 1e-3
     Vw = Vbm - Valb - Vslip
     return dict(Vbm=Vbm, Vcells=Vcells, Valb=Valb, Vslip=Vslip, Vw=Vw,
+                Vw_cell=Vcells * comp["water"],      # Qin Eq. 20, V_cell,w
                 Vprot_cell=Vcells * comp["prot"],
                 Vlip_cell=Vcells * (comp["sl"] + comp["ml"]),
                 sarea=well_sarea(a["diam_mm"], a["v_uL"], a["wells"]),
@@ -188,7 +204,16 @@ def qin_run(name, dose, V, linear=False):
 
     C_cell is reported on a WHOLE-CELL basis (amount in cell protein + cell
     lipid, divided by total cell volume) so it is comparable with Armitage's
-    and with a measured per-cell concentration.
+    and with a measured per-cell concentration.  Note that this is NOT the
+    basis of Qin's own tabulated log D_cell/w, which is per litre of cell
+    protein+lipid; Dcw_effective below is the whole-cell rebasing, and differs
+    from Qin's Table 2 convention by the factor V_prot+lip/V_cell (0.060 for
+    the AREc2 composition, i.e. 1.22 log units).  mbm_qin_internal_check.py
+    does the comparison on Qin's own basis.
+
+    The V_cell,w term of Eq. 20 is included in the denominator.  It is a
+    non-sorbing phase at D = 1 and shifts C_free by under 0.2% at these cell
+    densities, but it is in the published equation.
     """
     ntot = dose * V["Vbm"]
     Cw = dose * 1e-3
@@ -196,7 +221,7 @@ def qin_run(name, dose, V, linear=False):
         Dbsa, Dsp, Dlip, p = qin_D(name, Cw)
         if linear:
             Dbsa = 10 ** p["logKspec"]
-        den = (V["Vw"] + Dbsa * V["Valb"] + Dlip * V["Vslip"]
+        den = (V["Vw"] + V["Vw_cell"] + Dbsa * V["Valb"] + Dlip * V["Vslip"]
                + Dsp * V["Vprot_cell"] + Dlip * V["Vlip_cell"])
         new = ntot / den
         if abs(math.log10(max(new, 1e-30)) - math.log10(max(Cw, 1e-30))) < 1e-12:

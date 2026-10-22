@@ -449,7 +449,10 @@ Now put it on a per-volume-of-albumin basis. The concentration of **sites
 inside pure albumin** is just the molar concentration of albumin times `n`:
 
 ```
-C_max = n · ρ_alb / M_alb = n · 1364 g/L ÷ 66,463 g/mol = n × 20,523 µM
+C_max = n · ρ_alb / M_alb = n · 1360 g/L ÷ 66,463 g/mol = n × 20,462 µM
+(ρ_alb = 1.36 kg/L and M_alb = 66,463 Da are Qin's own stated values, §2.3.4
+of the paper; the 1364 g/L reconstructed here from albumin's 0.733 mL/g
+partial specific volume gives 20,523 µM, the same to 0.3%)
 ```
 
 So bound ligand per litre of albumin is `C_b = C_max·θ`, and the distribution
