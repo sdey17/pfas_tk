@@ -252,6 +252,30 @@ nonetheless agrees to within a factor of ~2.5 in many cases, because albumin
 dominates the denominator in both and masks the difference. Agreement between
 them should not be read as corroboration of either cell representation.
 
+### 3.4 The wider landscape, and why two models
+
+Several equilibrium and kinetic distribution models for in vitro systems have
+been published; Proença et al. [17] review and compare them. They differ along
+three design axes that matter for PFAS:
+
+**Table 1b.** Design axes across published in vitro distribution approaches.
+
+| | source of partitioning | albumin treatment | cell representation |
+|---|---|---|---|
+| Armitage et al. [1,2] | spLFERs from log K<sub>OW</sub> | linear, piecewise | lipid + 3.5%·protein + water |
+| Escher-school balances [12,14,15] | **measured** biopartitioning | linear | lipid + protein, measured |
+| Qin et al. [3] | measured, PFAS-specific | **saturable** | protein + lipid |
+| Stadnicka-Michalak et al. [18] | regressions on log K<sub>OW</sub> | linear | kinetic, not equilibrium |
+| VCBA / PBK-coupled [19] | varies | linear | kinetic, coupled to PBK |
+
+Two of these — the kinetic approaches — answer a different question, since the
+PFAS uptake data here reach steady state within ~1 h against a 24 h exposure
+and an equilibrium treatment is adequate. Of the equilibrium models, the two
+tested here occupy opposite corners of the first two axes, which is why they
+were selected. The third corner — measured biopartitioning with a *linear*
+albumin term, the Escher-school design — can be constructed from published
+PFAS measurements without reimplementing anyone's code, and §6.7 does so.
+
 ---
 
 ## 4. The empirical basis
@@ -490,6 +514,63 @@ changes the residual from 1.42× to 1.11×, and negligible elsewhere (PFNA,
 9.33× to 9.31×). The 30-fold difference in vehicle is, counter-intuitively, of
 almost no consequence for this comparison.
 
+### 6.7 A third parameterisation: measured biopartitioning
+
+The design decision separating the Escher-school balances [12,14,15] from
+IV-MBM EQP v2.0 is the use of measured membrane–water and protein–water
+partitioning in place of single-descriptor regressions, retaining a linear
+albumin term. Armitage et al. report that this substitution substantially
+improves their own model's performance for ionisable organics [1].
+
+That variant can now be built for PFAS from published measurements: albumin
+from Fischer et al. [9] and phospholipid membrane–water coefficients from Chen
+et al. [10], substituted into the Armitage cell composition and plastic term.
+PFBA is excluded (no measured albumin value), so comparisons are over nCF 5–8
+and are directly comparable with the corresponding columns in §6.5.
+
+Both measured series sit below the spLFER predictions — albumin by 2–7× and
+membrane lipid by 8–90×, with the membrane discrepancy growing systematically
+with chain length.
+
+**Table 6.** Performance over nCF 5–8.
+
+| parameterisation | bias | slope (decades/CF₂) |
+|---|---|---|
+| Armitage, as published | 4.35× | +0.316 |
+| + measured albumin only | 10.12× | +0.194 |
+| + measured membrane only | 0.16× | −0.049 |
+| **+ both measured (Escher-school design)** | **0.40×** | **−0.156** |
+| Qin, as published (saturable albumin) | 8.59× | −0.043 |
+
+Two observations follow, and they point in different directions.
+
+First, **this is the only substitution attempted in this work that moves the
+level toward unity** rather than away from it, and it does so decisively —
+from 4.35× over-prediction to 0.40×, i.e. 2.5× under. The term responsible is
+the membrane-lipid spLFER, not albumin and not cell protein. Given that §6.4
+found every other best-available measurement worsening the fit, this deserves
+emphasis: it identifies the membrane-lipid term as a candidate location for
+the level error that the earlier substitutions had not reached.
+
+Second, and more robustly, **the chain-length drift is not removed by measured
+parameters alone**. It falls from +0.316 to −0.156 but does not vanish, and it
+is the *saturable* albumin treatment that flattens it (−0.043), at the cost of
+the worst level of the four.
+
+An important caveat attaches to the first observation. The basis on which Chen
+et al. report K<sub>MW</sub> is defined in a supplementary equation not
+available to us, so the absolute offset between the measured and predicted
+membrane series may include a basis mismatch. The *slope* difference — the
+measured series rising ≈0.44 decades per CF₂ against ≈0.78 for the spLFER — is
+invariant to any constant basis error and is the part we would defend. The
+level shift should be treated as provisional pending that definition.
+
+**The wider implication for the landscape** is that the two failure modes
+documented here map onto two independent design axes. Measured biopartitioning
+addresses the level; a saturable albumin term addresses the chain-length
+behaviour. No published model currently occupies the corner that combines
+both with a protein-realistic cell.
+
 ---
 
 ## 7. The ligand:protein regime
@@ -624,7 +705,15 @@ carries too steep a chain-length dependence.
 
 Qin's parameters exist for four compounds; two of the five modelled here are
 interpolated and one extrapolated. The extrapolated compound, PFNA, is among
-the worst-fitting.
+the worst-fitting. More seriously, **the full text of ref. [3] was not
+available to us**: the model was implemented from its published equation form
+and tabulated parameters. Any qualification the authors place on their own
+parameterisation that is not visible in the tables would not have been
+captured.
+
+The measured-membrane result of §6.7 rests on a coefficient whose published
+basis is defined in a supplementary equation we could not obtain; the level
+shift it produces is provisional for that reason, as stated there.
 
 The uptake datasets are small, mutually inconsistent, and partly not on a
 common normalisation basis. Rosenmai's working volume is assumed. Conclusions
@@ -692,14 +781,19 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
 1. Armitage JM, Sangion A, Parmar R, Looky AB, Arnot JA. Update and evaluation
    of a high-throughput in vitro mass balance distribution model: IV-MBM EQP
    v2.0. *Toxics* 2021;9:315. doi:10.3390/toxics9110315
-2. Armitage JM, et al. *Environ Sci Technol* 2014;48:9770–9779. (Original
-   IV-MBM; cited here as in ref. 1, SI.)
+2. Armitage JM, Wania F, Arnot JA. Application of mass balance models and the
+   chemical activity concept to facilitate the use of in vitro toxicity data
+   for risk assessment. *Environ Sci Technol* 2014;48(16):9770–9779.
+   doi:10.1021/es501955g
 3. Qin W, Henneberger L, Huchthausen J, König M, Escher BI. Role of
    bioavailability and protein binding of four anionic perfluoroalkyl
    substances in cell-based bioassays for quantitative in vitro to in vivo
    extrapolations. *Environ Int* 2023;173:107857.
    doi:10.1016/j.envint.2023.107857
-4. Qin W, et al. *Environ Sci Technol* 2024;58:9954. doi:10.1021/acs.est.3c10824
+4. Qin W, Escher BI, Huchthausen J, Fu Q, Henneberger L. Species difference?
+   Bovine, trout, and human plasma protein binding of per- and polyfluoroalkyl
+   substances. *Environ Sci Technol* 2024;58(23):9954–9966.
+   doi:10.1021/acs.est.3c10824
 5. Rosenmai AK, Ahrens L, le Godec T, Lundqvist J, Oskarsson A. Relationship
    between peroxisome proliferator-activated receptor alpha activity and
    cellular concentration of 14 perfluoroalkyl substances in HepG2 cells.
@@ -716,13 +810,20 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
    potencies of a series of perfluoroalkyl substances (PFASs) based on gene
    expression changes in HepaRG liver cells. *Arch Toxicol* 2023;97:1113–1131.
    doi:10.1007/s00204-023-03450-2
-9. Fischer FC, et al. *Environ Sci Technol* 2024;58:1055–1063.
+9. Fischer FC, et al. *Environ Sci Technol* 2024;58(2):1055–1063.
    doi:10.1021/acs.est.3c07415
-10. Chen Y, et al. *Environ Sci Technol* 2025. doi:10.1021/acs.est.4c06734
-11. Ryu S, et al. *Environ Sci Technol* 2024. doi:10.1021/acs.est.4c04050
+10. Chen R, Muensterman D, Field J, Ng C. Deriving membrane-water and
+    protein-water partition coefficients from in vitro experiments for per- and
+    polyfluoroalkyl substances (PFAS). *Environ Sci Technol* 2025;59(1):82–91.
+    doi:10.1021/acs.est.4c06734
+11. Ryu S, Burchett W, Zhang S, Jia X, Modaresi SMS, Agudelo Areiza J,
+    Rodrigues D, Zhu H, Sunderland EM, Fischer FC, Slitt AL. Unbound fractions
+    of PFAS in human and rodent tissues: rat liver a suitable proxy for
+    evaluating emerging PFAS? *Environ Sci Technol* 2024;58(33):14641–14650.
+    doi:10.1021/acs.est.4c04050
 12. Fischer FC, Henneberger L, König M, Bittermann K, Linden L, Goss K-U,
     Escher BI. Modeling exposure in the Tox21 in vitro bioassays. *Chem Res
-    Toxicol* 2017;30:1197–1208.
+    Toxicol* 2017;30(5):1197–1208. doi:10.1021/acs.chemrestox.7b00023
 13. Fischer FC, Cirpka OA, Goss K-U, Henneberger L, Escher BI. Application of
     experimental polystyrene partition constants and diffusion coefficients to
     predict the sorption of neutral organic chemicals to multiwell plates.
@@ -737,11 +838,25 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     coefficients to organisms and their tissues using the biological
     compositions and polyparameter linear free energy relationships. *Environ
     Sci Technol* 2013;47:6630–6639.
-17. Proença S, et al. Review and comparison of in vitro chemical distribution
-    models. **Secondary citation** — cited by ref. 1; not independently
-    retrieved for this reassessment.
+17. Proença S, Escher BI, Fischer FC, Fisher C, Grégoire S, Hewitt NJ,
+    Nicol B, Paini A, Kramer NI. Effective exposure of chemicals in in vitro
+    cell systems: a review of chemical distribution models. *Toxicol In Vitro*
+    2021;73:105133. doi:10.1016/j.tiv.2021.105133
+18. Stadnicka-Michalak J, Tanneberger K, Schirmer K, Ashauer R. Measured and
+    modeled toxicokinetics in cultured fish cells and application to in
+    vitro–in vivo toxicity extrapolation. *PLoS One* 2014;9(3):e92303.
+    doi:10.1371/journal.pone.0092303
+19. Paini A, Sala Benito JV, Bessems J, Worth AP. From in vitro to in vivo:
+    integration of the virtual cell based assay with physiologically based
+    kinetic modelling. *Toxicol In Vitro* 2017;45(Pt 2):241–248.
+    doi:10.1016/j.tiv.2017.06.015
 
-*References 12–16 are cited as the methodological context of refs. 1 and 3 and
-were taken from the reference list of ref. 1; they were not re-read in full for
-this reassessment. References 1, 3, 5, 6, 7, 8 and 9 were read at source,
-including the supplementary material of ref. 1.*
+**Provenance of references.** Read at source, including supplementary
+material where cited: 1, 5, 6, 7, 8, 9. Bibliographic record and abstract
+verified, full text not retrieved (not open access): 3, 12, 17. Bibliographic
+record verified: 2, 4, 10, 11, 18, 19. Cited as methodological context from the
+reference list of ref. 1, not independently retrieved: 13, 14, 15, 16.
+
+Reference 3 is one of the two models under assessment; its parameterisation was
+taken from tabulated values and its full text has not been read. This is stated
+among the limitations (§9.3).
