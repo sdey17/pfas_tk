@@ -318,9 +318,12 @@ them should not be read as corroboration of either cell representation.
 
 ### 3.4 The wider landscape, and why two models
 
-Several equilibrium and kinetic distribution models for in vitro systems have
-been published; Proença et al. [17] review and compare them. They differ along
-three design axes that matter for PFAS:
+Proença et al. [17] catalogue fourteen published in vitro distribution models
+and classify them by the strategy used to obtain partitioning data:
+experimental values for specific chemicals, experimental values for a specific
+system, or QSPRs. Ten of the fourteen are specific to particular chemicals or
+particular setups; four are generic. The models relevant here are the generic
+ones, and they differ along axes that matter for PFAS:
 
 **Table 1b.** Design axes across published in vitro distribution approaches.
 
@@ -341,8 +344,40 @@ were selected. The third corner — measured biopartitioning with a *linear*
 albumin term — is the Fischer et al. design, and §6.7 reconstructs it from
 published PFAS measurements without reimplementing anyone's code.
 
-Two details in the last column are easy to lose and both caused errors in
-earlier drafts of this work. The three equilibrium balances do not report
+Proença et al. also ran five of the generic models side by side on six test
+chemicals in HepaRG cells at 1 µM, with and without 10% FBS. Two of their
+observations bear directly on the results below. The Fischer et al. model
+predicts the highest cellular concentration of the five, and the Armitage model
+predicts "substantially lower" values, which they attribute to "both the
+cellular compartments added (i.e. just lipid or protein and lipid) and QSPRs
+used (log K<sub>OW</sub>-based QSPRs or PP-LFERs based on other descriptors)".
+That ordering and that attribution are reproduced independently in §6.7.2
+below. They also state the limit of their own exercise: "A comparison of model
+predictive performance is only possible with adequate experimental data, and is
+beyond the scope of this review" — and, in their discussion, that "especially
+for the generic models more extensive experimental validation is long overdue".
+The present work is an attempt at that validation for one chemical class.
+
+Three further statements in that review anticipate findings reported below, and
+are credited here rather than claimed. On albumin: "for anionic chemicals
+sorption to albumin cannot be predicted with a simple partition since
+saturation of albumin binding sites for these chemicals occurs at
+concentrations relevant for toxicity testing", citing Henneberger et al. 2020
+[21] — the argument of §7, which predates Qin et al. and which they sharpen by
+noting that organic acids "appear to only have one binding site, which results
+in the saturation at relatively low concentrations". On lipid: "a bulk solvent
+such as octanol is not a good surrogate for anisotropic lipid bilayer
+membranes, especially for partitioning of ionised chemicals", and membrane
+partitioning "is more similar between neutral and charged species than
+K<sub>OW</sub> based predictions will show" — the mechanism behind §6.7's
+central result. On the applicability domain: "the main limitation remains
+accurate QSPRs to predict partitioning of heavily charged chemicals". PFAS at
+pH 7.4 are heavily charged, so the compounds modelled here sit on the boundary
+of the domain the review identifies, which is the reason for testing rather
+than assuming.
+
+Two details in the last column of Table 1b are easy to lose and both caused
+errors in earlier drafts of this work. The three equilibrium balances do not report
 cell–water distribution on a common basis: Armitage and Fischer normalise by
 total cell volume, Qin by the volume of cell protein plus lipid, and the two
 differ by a factor of ~17 for a hepatic composition. And the treatment of cell
@@ -363,6 +398,13 @@ fraction-of-dose basis: Rosenmai et al. [5] (HepG2, 14 PFAS, three doses),
 Amstutz et al. [6] (HepG2, 13 PFAS, one dose) and Fragki et al. [7]
 (differentiated HepaRG, four PFAS, five doses). Twenty-nine observations
 overlap the five compounds for which both models can be parameterised.
+
+One provenance note on the third dataset. Its biokinetic measurements are in
+Fragki et al. [7]; the companion paper from the same group on the same cell
+system, Louisse et al. [8], reports hepatotoxic potencies and gene-expression
+changes but no biokinetics, and is sometimes cited for the uptake data. All
+uptake values used here are from ref. [7], and the exposure conditions in
+Table 2 are from its methods section, not from ref. [8].
 
 ### 4.2 Exposure conditions, read from source
 
@@ -591,6 +633,13 @@ documented in two of the three studies, and Fragki et al. excluded PFNA at
 100 µM from their own analysis on those grounds. If cell loss were suppressing
 measured uptake, the chain-length trend would be strongest at the highest dose.
 It is strongest at the lowest (+0.194 at 10 µM, +0.099 at 100 µM).
+
+*Albumin secreted by the cells.* Two of the three datasets use hepatic lines,
+which synthesise albumin, so the albumin sink could in principle exceed what
+the serum supplement accounts for. Proença et al. [17] quantify this: albumin
+excreted by cells in such assays is "equivalent to a supplementation of
+0.0003–0.0009%" of FBS, four to five orders of magnitude below the 2–10% used
+here. It cannot contribute.
 
 *Co-solvent.* The three assays differ 30-fold in vehicle strength (Table 2).
 A co-solvent lowers every water-to-phase distribution ratio by approximately
@@ -840,17 +889,24 @@ all (§3.1, §9.3).
 
 ## 7. The ligand:protein regime
 
-Qin et al. [3] hypothesised that concentration-dependent protein binding makes
-the binding regime in bioassays differ substantially from that in plasma, with
-consequences for QIVIVE. The full text states the mechanism directly: the gap
+The argument of this section is not new. Henneberger et al. [21] established
+that for anionic chemicals "sorption to albumin cannot be predicted with a
+simple partition since saturation of albumin binding sites for these chemicals
+occurs at concentrations relevant for toxicity testing", as Proença et al. [17]
+summarise it, and the same review notes that organic acids appear to have only
+one binding site, which makes them saturate at relatively low concentrations.
+Qin et al. [3] carried the argument into QIVIVE: concentration-dependent
+protein binding makes the binding regime in bioassays differ substantially from
+that in plasma. Their full text states the mechanism directly: the gap
 between their nominal and free QIVIVE ratios arises "because protein binding is
 highly concentration-dependent with a high-affinity specific binding at low
 concentrations and lower non-specific binding at higher concentrations. Thus,
 the low concentrations in human plasma are strongly bound to proteins, while
 the high concentration needed to trigger effects in in vitro bioassays have a
-higher fraction unbound." The argument of this section is theirs; what is added
-here is its magnitude for three datasets they did not analyse. Figure 1
-quantifies that gap.
+higher fraction unbound." What is added here is the magnitude of the gap for
+three datasets neither group analysed, and the demonstration that it is large
+enough to invalidate the linearity assumption within a single dose series.
+Figure 1 quantifies it.
 
 Albumin offers approximately one high-affinity site per molecule for these
 compounds (§3.2). The two 10% FBS assays contain 36.1 µM albumin and the 2% FBS
@@ -1000,9 +1056,15 @@ common normalisation basis. Rosenmai's working volume is assumed. Conclusions
 about absolute bias are correspondingly weaker than conclusions about
 *direction* and about *structure*, which is why we have emphasised the latter.
 
-Finally, we have not evaluated the other published in vitro distribution models
-[17, cited via 1], and the comparison here should not be read as a ranking of
-the field.
+Finally, of the fourteen models Proença et al. [17] catalogue, three are
+evaluated here — the two under assessment and a reconstruction of Fischer et
+al. [12]. The remaining eleven are not, and the comparison here should not be
+read as a ranking of the field. The Fischer reconstruction in particular is
+built from that paper's published equations and its Table 2 system parameters,
+not from the authors' own implementation, and substitutes measured PFAS
+coefficients for the PP-LFER, 3D-QSAR and COSMOmic predictions they would use;
+it is the design tested on the best available PFAS data, which is not the same
+thing as the model as its authors would run it.
 
 ---
 
@@ -1146,12 +1208,20 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     — Source of the liposome–water ratios used by ref. [3]; cited here via
     [3], whose Table 2 and Figure A1 regression are the values used.
 
+21. Henneberger L, Mühlenbrink M, Heinrich DJ, Teixeira A, Nicol B,
+    Escher BI. Experimental validation of mass balance models for in vitro
+    cell-based bioassays. *Environ Sci Technol* 2020;54(2):1120–1127.
+    doi:10.1021/acs.est.9b06144
+    — Cited via ref. [17] for the saturation of albumin binding by anionic
+    chemicals at toxicologically relevant concentrations; not independently
+    retrieved.
+
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12. Bibliographic record and
-abstract verified, full text not retrieved: 17. Bibliographic record
+material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 17. Bibliographic record
 verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
-values used: 20. Cited as methodological context from the reference list of
-ref. 1, not independently retrieved: 13, 14, 15, 16.
+values used: 20. Cited via ref. [17] for a statement attributed to it, not
+independently retrieved: 21. Cited as methodological context from the
+reference list of ref. 1, not independently retrieved: 13, 14, 15, 16.
 
 Both models under assessment have now been read at source. For ref. [3] the
 full text supplied the balance equations, the cell composition and the authors'
