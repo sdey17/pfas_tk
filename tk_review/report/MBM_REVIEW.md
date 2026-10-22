@@ -38,7 +38,7 @@ three assays was dosed in 2% rather than 10% serum, a five-fold error in the
 dominant sorptive phase that is not apparent from secondary descriptions;
 correcting it degraded the apparent fit of the dataset that had previously
 looked best. (ii) On corrected media both models over-predict cellular uptake —
-geometric-mean bias 3.9× (Armitage) and 7.5× (Qin) over 29 observations. (iii)
+geometric-mean bias 3.3× (Armitage) and 6.4× (Qin) over 29 observations. (iii)
 Every substitution of a best-available measured parameter made the fit worse,
 in each case because the measurement moved the balance in the direction the
 residual did not need. (iv) The residual separates into a level error and a
@@ -48,7 +48,7 @@ level is a property of the volumes and compositions, each invariant to changes
 in the other. Reconstructing a third published formulation — the
 measured-parameter linear balance of Fischer et al., using measured PFAS
 albumin and membrane coefficients — removes the chain-length drift entirely
-over nCF 5–7 while leaving a 5.6× over-prediction, so no parameterisation
+over nCF 5–7 while leaving a 4.6× over-prediction, so no parameterisation
 tested here corrects the level. The over-steepening of the lipid term that
 causes the drift is corroborated by two independent laboratories, two lipid
 preparations and two analytical routes (+0.36 to +0.48 decades per CF₂
@@ -403,12 +403,29 @@ Amstutz et al. [6] (HepG2, 13 PFAS, one dose) and Fragki et al. [7]
 (differentiated HepaRG, four PFAS, five doses). Twenty-nine observations
 overlap the five compounds for which both models can be parameterised.
 
-One provenance note on the third dataset. Its biokinetic measurements are in
-Fragki et al. [7]; the companion paper from the same group on the same cell
-system, Louisse et al. [8], reports hepatotoxic potencies and gene-expression
-changes but no biokinetics, and is sometimes cited for the uptake data. All
-uptake values used here are from ref. [7], and the exposure conditions in
-Table 2 are from its methods section, not from ref. [8].
+Two provenance notes on the third dataset. First, its biokinetic measurements
+are in Fragki et al. [7]; the companion paper from the same group on the same
+cell system, Louisse et al. [8], reports hepatotoxic potencies and
+gene-expression changes but no biokinetics, and is sometimes cited for the
+uptake data. All uptake values used here are from ref. [7], and the exposure
+conditions in Table 2 are from its methods section, not from ref. [8].
+
+Second, ref. [7] reports its uptake two ways: as a concentration series in
+nmol per mg cell protein, and as the **fraction of the dose taken up** (its
+Table 3). An earlier version of this work used the first and converted it with
+an assumed protein content per well, which is not stated in the paper. The
+paper's own two numbers pin that content instead — protein = uptake fraction
+× n<sub>total</sub> ÷ (nmol/mg) gives 0.30–0.34 mg per well across the PFOA
+series, a coefficient of variation of 6% — and that is 2.1× the assumed value,
+implying roughly 4.8 × 10<sup>5</sup> differentiated cells per 24-well rather
+than the 2.2 × 10<sup>5</sup> assumed. The reported fraction needs no protein
+assumption at all and is exactly the quantity both models predict, so it is
+used here. The correction lowers the Fragki residual from 10.80× to 6.66×
+(Armitage) and 14.92× to 9.19× (Qin), and the pooled bias from 3.87× to
+3.28× and 7.52× to 6.36×. **Every result below uses the directly reported
+fractions.** It is worth stating plainly that this was our error, not the
+source's: the paper reports the quantity needed, and an avoidable conversion
+was interposed in front of it.
 
 ### 4.2 Exposure conditions, read from source
 
@@ -487,8 +504,8 @@ throughout.
 
 Implementing Fragki et al. at the serum fraction stated in their methods rather
 than the growth-medium value changes that dataset's geometric-mean bias from
-1.54× to 14.92× (Qin) and from 2.48× to 10.80× (Armitage). Pooled across all 29
-observations, bias moves from 3.43× to 7.52× (Qin) and 2.33× to 3.87×
+0.95× to 9.20× (Qin) and from 1.53× to 6.66× (Armitage). Pooled across all 29
+observations, bias moves from 2.91× to 6.36× (Qin) and 1.97× to 3.28×
 (Armitage).
 
 The direction is worth stating plainly: the dataset that had appeared to be the
@@ -512,18 +529,18 @@ sides of saturation, and vanishes at the top dose where both are saturated.
 
 | | geometric-mean bias | geometric-mean \|error\| |
 |---|---|---|
-| IV-MBM EQP v2.0 | **3.87×** | **4.02×** |
-| Qin et al. | 7.52× | 7.52× |
+| IV-MBM EQP v2.0 | **3.28×** | **3.41×** |
+| Qin et al. | 6.36× | 6.36× |
 
 | by study | Armitage | Qin |
 |---|---|---|
 | Rosenmai [5] (n=15) | 1.97× | 3.72× |
 | Amstutz [6] (n=4) | 3.77× | 18.95× |
-| Fragki [7] (n=10) | 10.80× | 14.92× |
+| Fragki [7] (n=10) | 6.66× | 9.19× |
 
 Both models over-predict throughout. The error is not uniform across
 compounds: for PFBA–PFHpA, which only the two 10% FBS studies measure, Armitage
-bias is 1.2–1.6×, while PFOA and PFNA — the compounds Fragki contributes —
+bias is 1.2–1.5×, while PFOA and PFNA — the compounds Fragki contributes —
 carry almost the entire residual.
 
 ![**A**, the three uptake datasets on a common axis: measured fraction of dose
@@ -563,12 +580,12 @@ independent measurement. Bias is the geometric mean over 29 observations.
 
 | substitution | direction of the measurement | Armitage | Qin |
 |---|---|---|---|
-| published models | — | 3.87× | 7.52× |
-| albumin partitioning [9] | **below** both models | 8.08× | 7.75× |
-| cell partitioning (measured, [3]) | mixed | 2.15× | 4.61× |
-| cell protein sorption [4] | **above** both models | 9.81× | 12.24× |
-| cell volume alone (measured HepG2 [12]) | — | 1.84× | 3.71× |
-| cell volume **and** composition [12] | — | 9.10× | — |
+| published models | — | 3.28× | 6.36× |
+| albumin partitioning [9] | **below** both models | 6.84× | 6.56× |
+| cell partitioning (measured, [3]) | mixed | 1.82× | 3.90× |
+| cell protein sorption [4] | **above** both models | 8.30× | 10.36× |
+| cell volume alone (measured HepG2 [12]) | — | 1.03× | 2.08× |
+| cell volume **and** composition [12] | — | 6.30× | 4.27× |
 
 Each measurement moves the balance in the direction the residual does not
 require. A weaker albumin reduces competition and sends more chemical into the
@@ -582,13 +599,13 @@ improvement achieved by averaging a large miss at one end of a series against a
 good fit at the other is not evidence of a better parameter.
 
 The cell-volume row requires care, and an earlier version of this work read it
-wrongly. Taken alone it looks like the one substitution that helps: 3.87× to
-1.84×, and it is also the only parameter that rescales every compound by the
+wrongly. Taken alone it looks like much the best fit in the study — 3.28× to
+1.03×, essentially unbiased — and it is also the only parameter that rescales every compound by the
 same factor, which is what a chain-length-independent offset requires. But the
 measured cell volume comes from Fischer et al. [12], who measured the
 *composition* of the same HepG2 cells in the same table. Using the volume while
 retaining Armitage's composition takes half of one measurement. Taking it whole
-moves the bias to 9.10× — the measured hepatic lipid fraction is 6.9× larger
+moves the bias to 6.30× — the measured hepatic lipid fraction is 6.9× larger
 than the published parameterisation's while the cell volume is only 3.3×
 smaller, so the cell sink roughly doubles.
 
@@ -702,22 +719,22 @@ structure intact isolates the leverage of each coefficient.
 
 | parameterisation | bias | slope (decades/CF₂) |
 |---|---|---|
-| Armitage, as published | 4.35× | +0.316 |
-| + measured albumin only | 10.12× | +0.194 |
-| + measured membrane only | 0.16× | −0.049 |
-| + both measured | 0.40× | −0.156 |
-| Qin, as published (saturable albumin) | 8.59× | −0.043 |
+| Armitage, as published | 3.61× | +0.282 |
+| + measured albumin only | 8.40× | +0.160 |
+| + measured membrane only | 0.14× | −0.083 |
+| + both measured | 0.33× | −0.190 |
+| Qin, as published (saturable albumin) | 7.13× | −0.077 |
 
 Read as a sensitivity analysis, this table says that the measured membrane
 coefficient is where the chain-length drift lives: substituting it alone takes
-the slope from +0.316 to −0.049 and no other single substitution comes close.
+the slope from +0.282 to −0.083 and no other single substitution comes close.
 
 It does **not**, however, describe the Escher-school design, and an earlier
 version of this section wrongly presented the last row as such. Within the
 Armitage structure, cell protein sorbs by octanol-equivalence, so it
 contributes almost nothing (§3.1); substituting a membrane coefficient 8–90×
 smaller than the spLFER's therefore collapses the cell sink almost to its water
-term, which is what produces the 0.40×. That is an artefact of mixing one
+term, which is what produces the 0.33×. That is an artefact of mixing one
 model's structure with another's coefficients, not a result about either.
 
 #### 6.7.2 The Escher-school balance as published
@@ -753,23 +770,22 @@ coefficients, nCF 5–8.
 
 | cells | medium protein | bias | slope (decades/CF₂) |
 |---|---|---|---|
-| **measured HepG2 [12]** | **measured total [12]** | **5.56×** | **−0.100** |
-| measured HepG2 [12] | albumin volume only | 17.09× | −0.033 |
-| Armitage AREc2 (MCF7) | measured total [12] | 9.47× | −0.100 |
-| Armitage AREc2 (MCF7) | albumin volume only | 27.64× | −0.044 |
+| **measured HepG2 [12]** | **measured total [12]** | **4.62×** | **−0.134** |
+| measured HepG2 [12] | albumin volume only | 14.19× | −0.067 |
+| Armitage AREc2 (MCF7) | measured total [12] | 7.87× | −0.134 |
+| Armitage AREc2 (MCF7) | albumin volume only | 22.95× | −0.078 |
 
 Three results follow, and the first is a correction.
 
 **The level is not fixed by measured parameters.** The faithful Escher-school
-balance over-predicts by 5.56×, against 4.35× for Armitage as published. The
-0.40× of Table 6 was a structural artefact, and the claim that measured
+balance over-predicts by 4.62×, against 3.61× for Armitage as published. The
+0.33× of Table 6 was a structural artefact, and the claim that measured
 membrane partitioning moves the level toward unity does not survive. As it
 stands, **no parameterisation tested in this work fixes the level**, which
 strengthens rather than weakens the central negative result of §6.4.
 
-**The chain-length drift is removed.** The slope falls from +0.316 to −0.100,
-and over nCF 5–7 — where three of the four compounds sit — it is −0.007, i.e.
-flat. The reason is visible in the coefficients: Fischer's measured albumin
+**The chain-length drift is removed.** The slope falls from +0.282 to −0.134,
+and over nCF 5–7 — where three of the four compounds sit — it is −0.097. The reason is visible in the coefficients: Fischer's measured albumin
 series and Chen's measured membrane series rise with chain length at nearly
 the same rate, so their ratio, which is what the predicted fraction depends
 on (§6.5), is almost constant. Measured biopartitioning does solve the
@@ -777,8 +793,8 @@ chain-length problem; it simply does not solve the level problem.
 
 **The two failures are cleanly separable.** The slope in Table 7 is unchanged
 across a 6.9× change in cell lipid, a 3.3× change in cell volume and a 3×
-change in medium protein — it is −0.100 in both rows with measured medium
-protein and −0.03 to −0.04 in both without. Conversely the level moves by
+change in medium protein — it is −0.134 in both rows with measured medium
+protein and −0.07 to −0.08 in both without. Conversely the level moves by
 5× across those same changes while the coefficients stay fixed. So:
 
 > the chain-length behaviour is a property of the partition coefficients;
@@ -788,7 +804,7 @@ Each error must be diagnosed with the corresponding class of parameter, and
 neither can be diagnosed from the other. Both improvements available from
 measurement work in the expected direction on the level — the measured
 hepatic composition gains 1.7× over the MCF7 one, and the measured medium
-protein gains 3.1× — and together they leave 5.56× standing.
+protein gains 3.1× — and together they leave 4.62× standing.
 
 Figure 2 places every parameterisation tested in this work on those two axes
 alongside the lipid series that drives the horizontal one. The discriminator
@@ -1034,8 +1050,8 @@ system.](../figures/fig19_fischer_serum_mbm.png)
 
 Three findings bear on the use of these assays for reverse dosimetry.
 
-First, the models over-predict cellular uptake by factors of 2–10 on data whose
-own inter-study spread is a factor of 14. Neither model is currently accurate
+First, the models over-predict cellular uptake by factors of 2–9 on data whose
+own inter-study spread is a factor of 17. Neither model is currently accurate
 enough to carry a QIVIVE calculation without an uncertainty statement of
 comparable size.
 
@@ -1128,8 +1144,9 @@ thing as the model as its authors would run it.
 ## 10. Conclusions
 
 1. Both mass-balance models over-predict PFAS cellular uptake in human liver
-   cell lines, by 3.9× (IV-MBM EQP v2.0) and 7.5× (Qin et al.) in geometric
-   mean, once exposure conditions are read from primary sources.
+   cell lines, by 3.3× (IV-MBM EQP v2.0) and 6.4× (Qin et al.) in geometric
+   mean, once exposure conditions and uptake values are read from primary
+   sources.
 2. Exposure media differ between the three available datasets in ways that
    dominate the model comparison and are not recoverable from secondary
    descriptions. One assay was dosed at one-fifth the serum concentration
@@ -1144,7 +1161,7 @@ thing as the model as its authors would run it.
    so neither error can be diagnosed with the wrong class of parameter.
 5. Measured biopartitioning removes the chain-length error and not the level
    error. A faithful reconstruction of the measured-parameter linear design is
-   flat over nCF 5–7 and still over-predicts by 5.6×. The cause of the
+   flat over nCF 5–7 and still over-predicts by 4.6×. The cause of the
    chain-length error is specifically that single-descriptor prediction
    over-steepens the lipid term: three independent measured series place the
    lipid–water chain-length slope at +0.36 to +0.48 decades per CF₂ against

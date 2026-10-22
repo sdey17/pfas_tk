@@ -186,18 +186,40 @@ def cell_substitution_grid():
             ("Fischer", "Fischer 3.04", dict(fi))]:
         b, sl, n = armitage_with(comp)
         print(f"  {lab_c:14s}{lab_v:14s}{b:>8.2f}x{sl:>+9.3f}  {n}")
-    print("""
-  The published parameterisation is the first row and the review's reported
-  improvement is the second.  The second row is Fischer's cell volume with a
-  MCF7-derived composition; the fourth is Fischer's measurement taken whole.
-  Taken whole it worsens the fit, from 3.87x to 9.10x, because the measured
-  hepatic lipid fraction is 6.9x larger while the cell volume is only 3.3x
-  smaller, so the cell sink grows by about 2x.
+    pub = armitage_with(dict(ar))[0]
+    half = armitage_with(dict(ar, ng_cell=3.04))[0]
+    whole = armitage_with(dict(fi))[0]
+    print(f"""
+  The published parameterisation is the first row.  The second is Fischer's
+  cell VOLUME carried over onto a MCF7-derived composition -- half of one
+  measurement -- and it looks like the best fit in this whole study
+  ({pub:.2f}x -> {half:.2f}x).  The fourth row is Fischer's measurement taken whole,
+  and it worsens the fit to {whole:.2f}x, because the measured hepatic lipid
+  fraction is 6.9x larger while the cell volume is only 3.3x smaller, so the
+  cell sink grows by about 2x.
 
-  So the review's statement that cell volume is the one parameter whose
-  best-available measurement improves the fit does not hold: it improved the
-  fit only because half of the measurement was used.  Every best-available
-  measurement worsens the fit, with no exception.""")
+  So the apparent improvement from cell volume is an artefact of importing
+  only the convenient half of its source.  Every best-available measurement
+  worsens the fit, with no exception.""")
+
+
+def qin_reference():
+    """Qin as published over the same nCF 5-8 window, computed not quoted."""
+    per = collections.defaultdict(list)
+    for study, a in P.ASSAYS.items():
+        V = P.volumes(a)
+        for (nm, _nC, nCF, _mw, _ko, _kc, _ks) in Q.COMPOUNDS:
+            if nm not in NCF:
+                continue
+            for d in a["doses"]:
+                m = P.measured_x_cell(study, nm, d, V, a)
+                if m is None:
+                    continue
+                per[nm].append(P.qin_run(nm, d, V)["x_cell"] / m)
+    allr = [v for vs in per.values() for v in vs]
+    xs = [NCF[c] for c in NCF if per.get(c)]
+    ys = [math.log10(gm(per[c])) for c in NCF if per.get(c)]
+    return gm(allr), float(np.polyfit(xs, ys, 1)[0])
 
 
 def main():
@@ -257,11 +279,16 @@ def main():
     print("  " + "-" * 70)
     for lab, b, sl, _ in rows:
         print(f"  {lab:54s}{b:>8.2f}x{sl:>+9.3f}")
-    print(f"""  {'-' * 70}
-  for reference (mbm_measured_parameter_variant.py, Armitage structure):
-  {'Armitage as published':54s}{'4.35x':>9s}{'+0.316':>9s}
-  {'+ measured albumin and membrane, Armitage structure':54s}{'0.40x':>9s}{'-0.156':>9s}
-  {'Qin as published':54s}{'8.59x':>9s}{'-0.043':>9s}""")
+    import mbm_measured_parameter_variant as MV2      # noqa: E402
+    ref = [MV2.run(v, kmw) for v in ("published", "measured_both")]
+    print("  " + "-" * 70)
+    print("  for reference (Armitage structure, same window):")
+    for lab, (_per, b, sl, _rows) in zip(
+            ("Armitage as published",
+             "+ measured albumin and membrane, Armitage structure"), ref):
+        print(f"  {lab:54s}{b:>8.2f}x{sl:>+9.3f}")
+    qb, qs = qin_reference()
+    print(f"  {'Qin as published':54s}{qb:>8.2f}x{qs:>+9.3f}")
 
     print("\n" + "=" * 78)
     print("PER-COMPOUND, THE FAITHFUL FORM")
@@ -275,17 +302,17 @@ def main():
            and NCF[c] <= 7]
     s57 = float(np.polyfit([x for x, _ in sub], [y for _, y in sub], 1)[0])
     print(f"""
-  The series is FLAT over nCF 5-7 ({s57:+.3f} decades per CF2) and the whole of
-  the -0.100 comes from the single PFNA point.  So the measured-parameter form
-  does not merely reduce the chain-length drift, it removes it over the range
-  where three of the four compounds sit.  Both measured series are involved:
+  The slope over nCF 5-7 is {s57:+.3f} decades per CF2 against {_s:+.3f} over the
+  full 5-8 window, so most of the drift that remains sits in the single PFNA
+  point.  Either way the measured-parameter form has removed the positive
+  drift of the published model entirely.  Both measured series are involved:
   Fischer's albumin and Chen's membrane coefficients rise at nearly the same
   rate with chain length, so their ratio -- which is what the predicted
   fraction depends on -- is almost constant.
 
-  Note that the slope is the SAME (-0.100, -0.033, -0.100, -0.044) in all four
-  rows of the table above, across a 6.9x change in cell lipid, a 3.3x change in
-  cell volume and a 3x change in medium protein.  That is the cleanest
+  Note how little the slope moves across the four rows of the table above --
+  a 6.9x change in cell lipid, a 3.3x change in cell volume and a 3x change in
+  medium protein barely touch it, while the level moves 5x.  That is the cleanest
   separation this reassessment has produced:
 
       the CHAIN-LENGTH behaviour is a property of the partition coefficients;

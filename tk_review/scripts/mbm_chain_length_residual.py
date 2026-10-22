@@ -168,9 +168,9 @@ def main():
             sl = row(f"{model} -- {study or 'all 29 points'}", per, 38)
             print(f"  {'':38s}{'':45s}  nCF 5-8 only: {sl5:+.3f}")
     print("""
-  Armitage's rise over nCF 5-8 is +0.345 at Rosenmai and +0.316 pooled -- more
+  Armitage's rise over nCF 5-8 is +0.345 at Rosenmai and +0.282 pooled -- more
   than twice what the five-point fit reports, because PFBA sits ABOVE the line
-  at the short end and drags the slope down.  Qin's is -0.074 and -0.043: no
+  at the short end and drags the slope down.  Qin's is -0.074 and -0.077: no
   trend, or a slight fall.  The contrast between the two models is sharper, not
   weaker, once the leverage point is out.""")
 

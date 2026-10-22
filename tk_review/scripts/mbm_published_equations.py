@@ -267,6 +267,29 @@ FRAGKI_NMOLMG = {                                     # main paper dose series
     "PFOA": {6.25: 0.0562, 12.5: 0.169, 25.0: 0.506, 50.0: 1.24, 100.0: 2.81},
     "PFNA": {6.25: 0.281, 12.5: 0.73, 25.0: 1.63, 50.0: 4.49, 100.0: 15.8},
 }
+# Fragki 2022 Table 3: "Cellular uptake (%) of the four PFASs ... Mean values
+# of three individual experiments (three replicates each)".
+#
+# PREFER THIS over the nmol/mg series above.  Converting nmol/mg protein to a
+# fraction of dose needs the protein per well, which the paper does not state
+# and which this file was estimating as 2.2e5 cells x 694 pg (0.153 mg).  The
+# paper's own two numbers pin it instead: protein = uptake_fraction x n_total
+# / (nmol/mg) gives 0.30-0.34 mg per well from the PFOA series (CV 6%), i.e.
+# about 2.1x the estimate, implying ~4.8e5 differentiated cells per 24-well
+# rather than the 4x-seeding-density guess of 2.2e5.  Table 3 is the fraction
+# of dose directly, so it needs no protein assumption at all and is the
+# quantity both models predict.  Using it drops the Fragki bias from 10.80x
+# to 6.66x (Armitage) and 14.91x to 9.20x (Qin).
+#
+# The PFNA nmol/mg series is not self-consistent with Table 3 to the same
+# precision (it implies 0.14-0.22 mg per well), which is a further reason to
+# take the directly reported percentages.
+FRAGKI_UPTAKE_PCT = {
+    "PFOA":  {6.25: 0.55, 12.5: 0.84, 25.0: 1.23, 50.0: 1.34, 100.0: 1.55},
+    "PFNA":  {6.25: 1.12, 12.5: 2.34, 25.0: 2.65, 50.0: 3.46, 100.0: 5.00},
+    "PFHxS": {6.25: 0.40, 12.5: 1.23, 25.0: 1.33, 50.0: 1.49, 100.0: 1.64},
+    "PFOS":  {6.25: 3.87, 12.5: 4.52, 25.0: 5.91, 50.0: 11.22, 100.0: 10.94},
+}
 # Rosenmai Fig 2A, as plotted (axis says nmol/mg; the Abstract says ng/mg)
 ROSENMAI_FIG2A = {
     "PFBA": {10: 18, 30: 45, 100: 126}, "PFHxA": {10: 26, 30: 69, 100: 164},
@@ -276,15 +299,23 @@ ROSENMAI_FIG2A = {
 
 
 def measured_x_cell(study, cp, dose, V, a):
-    """Fraction of nominal dose in cells -- the axis that does NOT depend on
-    the assumed cell volume, only on protein per cell, which all sources agree
-    on (~675-694 pg/cell)."""
+    """Fraction of nominal dose in cells.
+
+    This axis does not depend on the assumed cell volume.  Where a study
+    reports the fraction directly (Rosenmai, Amstutz, and Fragki Table 3) it
+    is used as reported and no cell parameter enters at all.  Only the
+    nmol/mg fallback needs protein per well, and the Fragki case shows why
+    that route is worth avoiding: it was out by 2.1x.
+    """
     if study == "Rosenmai":
         v = ROSENMAI_UPTAKE_PCT.get(cp, {}).get(int(dose))
         return v / 100.0 if v else None
     if study == "Amstutz":
         v = AMSTUTZ_IF_PCT.get(cp)
         return v / 100.0 if v else None
+    v = FRAGKI_UPTAKE_PCT.get(cp, {}).get(dose)
+    if v is not None:                      # the paper's own fraction of dose
+        return v / 100.0
     v = FRAGKI_NMOLMG.get(cp, {}).get(dose)
     if v is None:
         return None
