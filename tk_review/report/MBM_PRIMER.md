@@ -1,5 +1,10 @@
 # In vitro mass balance for PFAS: a primer from first principles
 
+> **If you are learning this subject, read `MBM_UNDERSTANDING.md` first.** It
+> explains the same material in prose, without equations. This document is the
+> machinery behind it — come here when you want to see why something is true
+> rather than take it on trust.
+
 **What this is.** Everything in `MBM_Qin_vs_Armitage.md` rests on one equation
 and about ten approximations. This document derives the equation, names every
 approximation, shows where each one breaks, and then reads the five papers
