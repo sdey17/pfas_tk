@@ -1017,14 +1017,24 @@ water. A tissue is not.
    ν** (< 0.01) across a wide compound set. Chen's 0.06–2 is the closest.
 4. **The sulfonates do not reconcile as cleanly as the carboxylates** (§11a),
    and nobody has explained why their specific-to-non-specific separation is
-   so much larger.
+   so much larger. A second, independent sign of the same head-group split
+   turned up in the in vitro mass-balance work: within one laboratory and one
+   set of wells, IV-MBM EQP v2.0 is 6.7× high on carboxylate cellular uptake
+   and unbiased on sulfonates (`report/MBM_REVIEW.md` §6.9). Whatever
+   distinguishes the two head groups is showing up on both the albumin axis
+   and the membrane axis.
 5. **Where exactly inside nCF 9–11 is the carboxylate optimum?** §9a puts the
    plateau at 10–11 and rules out 6–8, but the top is flat and no study
    publishes per-compound error bars on that stretch.
 6. **Where is the sulfonate optimum?** No dataset here carries a C12
    sulfonate, so all that can be said is nCF ≥ 9.
 
-*Resolved since the first draft:* the apparent Chen-versus-Fischer conflict,
+*Resolved since the first draft:* the basis of Chen's membrane-water
+coefficients, which SI eq S1 and the TRANSIL kit's stated bilayer volumes
+settle as a dimensionless volume/volume ratio, usable directly as a volumetric
+D_MW to within 0.03 log units (`scripts/update_chen_kmw_basis.py`; the pH 7.0
+reporting remains a 0.4-unit extrapolation for anything run at 7.4); the
+apparent Chen-versus-Fischer conflict,
 which is the specific/non-specific regime difference (§11a); Chen's PFNA
 "inversion", which is not significant and is one symptom of a general
 compression of his chain-length profile (§11b); and the location of the
