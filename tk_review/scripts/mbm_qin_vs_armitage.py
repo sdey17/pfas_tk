@@ -101,6 +101,24 @@ QIN_T2 = {   # name:   (logDlipw, logDcellw, logDplasmaw_exp, logDplasmaw_mbm)
 # Qin Fig A1: log D_lip/w vs number of fluorinated carbons, R2 = 0.95.
 QIN_FIGA1 = (0.476, 0.172)
 
+# Qin et al. 2024 (Environ Sci Technol 58:5727, the baseline-toxicity paper by
+# the same group) Table 1: MEASURED log D_lip/w, pH 7.4, from Droge et al. and
+# Ebert et al.  These cover three compounds this file was interpolating
+# (PFHxA, PFHpA, PFNA) and supply a measured PFBA value where Qin 2023 Table 2
+# carried a predicted one.  They are NOT substituted into the published model
+# by default -- "Qin as published" must stay as published -- but are available
+# as a variant via qin_params(dlipw_2024=True).
+#
+# Their own regression over the wider Droge+Ebert+Endo set is SI eq S9,
+# log D_lip/w = 0.562 N - 0.494 (R2 0.969) for carboxylates and eq S10,
+# 0.535 N + 0.658 (R2 0.977) for sulfonates -- both steeper than the Fig A1
+# regression above, which is fit to a narrower set.
+QIN2024_DLIPW = {"PFBA": 1.00, "PFHxA": 2.32, "PFHpA": 2.91, "PFOA": 3.52,
+                 "PFNA": 4.25, "PFUnA": 4.54, "PFHxS": 4.13, "PFOS": 4.89,
+                 "HFPO-DA": 2.41, "6:2 FTSA": 3.87, "PFOSA": 4.94}
+QIN2024_EQ_S9 = (0.562, -0.494)     # PFCA,  R2 0.969
+QIN2024_EQ_S10 = (0.535, 0.658)     # PFSA,  R2 0.977
+
 # BSA volume basis.  Qin reports Cmax both per litre of BSA and per mole of
 # BSA; the ratio pins the density of pure albumin and must agree with the
 # 0.733 mL/g partial specific volume httk uses -- a shared-basis check that
@@ -115,7 +133,7 @@ def _loglin(nCF, anchors):
 
 # Carboxylate anchors for every Qin parameter that has no published rule.
 _PFBA_nCF, _PFOA_nCF = 3, 7
-def qin_params(name, nCF):
+def qin_params(name, nCF, dlipw_2024=False):
     """Qin's parameters for one compound, with provenance.
 
     Measured -> straight from Table 1/2.
@@ -148,6 +166,8 @@ def qin_params(name, nCF):
         lKFr  = _loglin(nCF, [(_PFBA_nCF, pb[6]), (_PFOA_nCF, po[6])])
         d_cell = _loglin(nCF, [(_PFBA_nCF, QIN_T2["PFBA"][1]), (_PFOA_nCF, QIN_T2["PFOA"][1])])
         src = "extrapolated" if not (_PFBA_nCF <= nCF <= _PFOA_nCF) else "interpolated"
+    if dlipw_2024 and name in QIN2024_DLIPW:
+        d_lip = QIN2024_DLIPW[name]
     return dict(Kd=Kd, Cmax=Cmax, logKspec=lKs, logDnonspec=lDns,
                 nFr_minus1=nFr1, logKFr=lKFr,
                 logDlipw=d_lip, logDcellw=d_cell, source=src)

@@ -50,7 +50,15 @@ NCF = {"PFHxA": 5, "PFHpA": 6, "PFOA": 7, "PFNA": 8}
 # Chen 2025 SI Table S5, perfluoroalkyl carboxylates, log K_MW at pH 7.0.
 CHEN = {3: 1.63, 4: 2.02, 5: 2.42, 6: 2.85, 7: 3.28, 8: 3.75, 9: 4.18,
         10: 4.50, 11: 4.82, 12: 5.11, 13: 5.36, 15: 5.73}
-QIN_LIP = (0.476, 0.172)        # Qin 2023 Fig A1, on Ebert 2020 liposome data
+# Qin et al. 2024 Table 1: MEASURED liposome-water ratios, pH 7.4, from Droge
+# et al. and Ebert et al.  These replace the Qin 2023 Figure A1 regression
+# this panel used to carry: the regression was a stand-in for exactly these
+# points.  The authors' own fit over their wider Droge+Ebert+Endo set is SI
+# eq S9 (+0.562, R2 0.969) for carboxylates and eq S10 (+0.535, R2 0.977) for
+# sulfonates.
+QIN24_PFCA = {3: 1.00, 5: 2.32, 6: 2.91, 7: 3.52, 8: 4.25, 10: 4.54}
+QIN24_PFSA = {6: 4.13, 8: 4.89}
+QIN24_S9 = (0.562, -0.494)
 
 
 def gm(xs):
@@ -78,9 +86,12 @@ def panel_a(ax):
     ax.plot(n, sc * n + ic, color=BLUE, lw=2.0, solid_capstyle="round", zorder=5)
     ax.plot(cx, cy, "o", ms=5.5, mfc=BLUE, mec=SURFACE, mew=1.4, zorder=6)
 
-    sq, iq = QIN_LIP
+    qx = sorted(QIN24_PFCA)
+    qy = [QIN24_PFCA[k] for k in qx]
+    sq, iq = fit(qx, qy)
     ax.plot(n, sq * n + iq, color=AQUA, lw=2.0, ls=(0, (5, 2.2)),
             solid_capstyle="round", zorder=5)
+    ax.plot(qx, qy, "^", ms=6.5, mfc=AQUA, mec=SURFACE, mew=1.4, zorder=6)
 
     ax.annotate(f"IV-MBM EQP v2.0 spLFER\n1.01·log K$_{{OW}}$ + 0.12\n"
                 f"slope {np.polyfit(n, spl, 1)[0]:+.2f} per CF$_2$",
@@ -95,11 +106,13 @@ def panel_a(ax):
                 color=BLUE, fontsize=8, ha="left", va="top", linespacing=1.45,
                 arrowprops=dict(arrowstyle="-", color=BLUE, lw=0.8,
                                 shrinkA=2, shrinkB=2))
-    ax.annotate(f"Ebert 2020 liposomes,\nvia Qin 2023 Fig. A1   slope {sq:+.3f}",
-                xy=(7.3, 7.3 * sq + iq), xytext=(2.9, 7.4),
+    ax.annotate(f"Droge / Ebert liposomes, measured\n"
+                f"Qin 2024 Table 1, n = {len(qx)}   slope {sq:+.3f}\n"
+                f"(authors' own fit, wider set: {QIN24_S9[0]:+.3f})",
+                xy=(8.4, 8.4 * sq + iq), xytext=(2.9, 7.9),
                 color=AQUA, fontsize=8, ha="left", va="top", linespacing=1.45,
                 arrowprops=dict(arrowstyle="-", color=AQUA, lw=0.8,
-                                shrinkA=2, shrinkB=2))
+                                shrinkA=2, shrinkB=3))
 
     ax.set_xlabel("perfluorinated carbons, n$_{CF}$")
     ax.set_ylabel("log lipid–water partition ratio")
@@ -257,9 +270,11 @@ def main():
              fontsize=11.5, color=INK, va="top", fontweight="semibold")
     fig.text(0.008, 0.105,
              "A  log D$_{MW}$ for the anion at pH 7.4 as IV-MBM EQP v2.0 "
-             "evaluates it, against Chen 2025 SI Table S5 (solid-supported "
-             "bilayers, pH 7.0) and the regression Qin 2023 Fig. A1 fits to "
-             "Ebert 2020 liposome data.\n"
+             "evaluates it, against two measured series: Chen 2025 SI Table "
+             "S5 (solid-supported bilayers, pH 7.0) and the liposome-water "
+             "ratios Qin 2024 Table 1 reports\n"
+             "    from Droge et al. and Ebert et al. (pH 7.4). Lines are "
+             "least-squares fits to the plotted points.\n"
              "B  bias and slope recomputed over nCF 5–8 (PFBA excluded: no "
              "measured albumin value) across the three uptake datasets, 24 "
              "observations. Horizontal moves come from coefficients, vertical "

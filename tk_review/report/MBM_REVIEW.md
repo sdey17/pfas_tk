@@ -2,7 +2,7 @@
 
 **Working manuscript**, 22 October 2026. Analysis, figures and tables are
 reproducible from `tk_review/scripts/`; see *Data and code availability* for
-the script behind each section and figure. Four figures and ten tables.
+the script behind each section and figure. Four figures and eleven tables.
 All model parameters and all exposure conditions are verified against primary
 sources; the provenance of every reference is stated after the reference
 list.
@@ -878,19 +878,46 @@ partitioning by a factor of about 2.6 per CF<sub>2</sub> added; compounded over
 Chen's measured range this reaches three orders of magnitude, and the
 predicted-to-measured ratio runs from 0.7 at PFBA to 0.001 at PFDoA.
 
-A third, fully independent series agrees. Qin et al. [3] take their
-lipid–water ratios from liposome measurements [20] and report the regression
-they used to fill in PFBA: slope **+0.476** per fluorinated carbon for the
-carboxylates. Their two sulfonate entries imply **+0.38**, against Chen's
-**+0.374** for the same head group. So two laboratories, two lipid
-preparations — phospholipid vesicles and solid-supported bilayers — and two
-analytical routes place the lipid–water chain-length slope between +0.36 and
-+0.48, while the spLFER inherits +0.77 from the log K<sub>OW</sub> series and
-multiplies it by 1.01. **The over-steepening of the lipid term is not an
-artefact of any one measurement.** It is the single most consistently
-corroborated discrepancy in this reassessment, and it is the term that
-represents almost the whole of the Armitage cell at long chain length
-(Table 1).
+A second measured series, from a different laboratory and a different lipid
+preparation, points the same way. Qin et al. [22] tabulate per-compound
+liposome–water ratios measured by Droge et al. and Ebert et al. [20], and fit
+their own regressions to the wider set those come from.
+
+**Table 8.** Chain-length dependence of the lipid–water ratio, measured
+against predicted. Decades per CF<sub>2</sub>.
+
+| source | preparation | n | carboxylates | sulfonates |
+|---|---|---|---|---|
+| Chen et al. [10] | solid-supported bilayers, pH 7.0 | 12 / 8 | +0.361 (R² 0.983) | +0.374 (R² 0.985) |
+| Qin et al. [22] Table 1, from [20] | liposomes, pH 7.4 | 6 / 2 | +0.528 (R² 0.955) | +0.380 |
+| Qin et al. [22] eqs S9–S10 | liposomes, authors' own fit to the wider set | — | +0.562 (R² 0.969) | +0.535 (R² 0.977) |
+| **IV-MBM EQP v2.0** | **predicted from log K<sub>OW</sub>** | — | **+0.78** | **+0.78** |
+
+An earlier version of this section used the regression Qin et al. [3] fit in
+2023 to fill a single missing value (+0.476), as a stand-in for the Ebert
+data. The per-compound values are now available and replace it; they also
+widen the measured range, and the honest statement is narrower than the one
+made before. **Every measured series is shallower than the spLFER**, by a
+factor of 1.4 against the steepest (the authors' own eq S9) to 2.2 against the
+shallowest (Chen). But the two measured series differ from each other by up to
++0.20 decades per CF<sub>2</sub>, a real inter-method spread that is not
+resolved here: the shortest and longest chains are where they part company
+(Figure 1A), and Chen's profile is the compressed one — which an independent
+analysis on the albumin axis reached for the same dataset.
+
+So the claim that survives is the directional one. The spLFER sits above every
+measurement of this quantity, and it is the term that represents almost the
+whole of the Armitage cell at long chain length (Table 1), which is why that
+model's cell sink over-steepens. The claim that does *not* survive is any
+precise figure for how much: between 1.4× and 2.2×, depending on which
+measurement is believed.
+
+It is worth noting where this does *not* matter. Substituting the measured
+values into Qin's limb moves its bias from 6.36× to 6.33× and its slope from
+−0.077 to −0.073 — nothing. Qin's cell is 95% protein by sorptive volume, so
+its lipid coefficient has almost no leverage, while Armitage's cell is 99.7%
+membrane lipid at nCF 8. The same parameter is decisive in one model and inert
+in the other.
 
 One genuine caveat remains, and it is small. Chen et al. report K<sub>MW</sub>
 at pH 7.0 while the balance is evaluated at pH 7.4, so a 0.4-unit
@@ -915,7 +942,7 @@ line and compared them with the prediction from their Eq. 17. Reconstructing
 that comparison from their published composition and parameters reproduces
 their stated figures exactly:
 
-**Table 8.** Qin's Eq. 17 against Qin's own measured D<sub>cell/w</sub>.
+**Table 9.** Qin's Eq. 17 against Qin's own measured D<sub>cell/w</sub>.
 
 | | predicted | measured | Δ log | predicted/measured | % of log value |
 |---|---|---|---|---|---|
@@ -962,7 +989,7 @@ controlled. Qin et al. [3] measured every parameter for exactly those two
 compounds, so their limb needs no interpolation here — cleaner than for three
 of the five carboxylates.
 
-**Table 9.** Fragki et al. [7] only, by head group. Geometric-mean bias.
+**Table 10.** Fragki et al. [7] only, by head group. Geometric-mean bias.
 
 | | compounds | IV-MBM EQP v2.0 | Qin et al. |
 |---|---|---|---|
@@ -1354,8 +1381,16 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     chemicals at toxicologically relevant concentrations; not independently
     retrieved.
 
+22. Qin W, Henneberger L, Glüge J, König M, Escher BI. Baseline toxicity
+    model to identify the specific and nonspecific effects of per- and
+    polyfluoroalkyl substances in cell-based bioassays. *Environ Sci
+    Technol* 2024;58(13):5727–5738. doi:10.1021/acs.est.3c09950
+    — The successor to ref. [3] by the same group. Supplies the
+    per-compound liposome–water ratios used in §6.7 (its Table 1), the
+    regressions eqs S9–S10, and the measured cell compositions of §6.7.2
+    (its SI Table S8). Read at source with its Supporting Information.
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 17. Bibliographic record
+material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 17, 22. Bibliographic record
 verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
 values used: 20. Cited via ref. [17] for a statement attributed to it, not
 independently retrieved: 21. Cited as methodological context from the
