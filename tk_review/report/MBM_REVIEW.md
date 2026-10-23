@@ -2,7 +2,7 @@
 
 **Working manuscript**, 22 October 2026. Analysis, figures and tables are
 reproducible from `tk_review/scripts/`; see *Data and code availability* for
-the script behind each section and figure. Four figures and eleven tables.
+the script behind each section and figure. Four figures and twelve tables.
 All model parameters and all exposure conditions are verified against primary
 sources; the provenance of every reference is stated after the reference
 list.
@@ -1068,6 +1068,53 @@ This is why the Qin formulation requires its saturable term and why a linear
 spLFER treatment cannot be correct here, whatever its merits for the neutral
 organics it was calibrated on.
 
+### 7.1 The non-linearity, measured rather than modelled
+
+Everything above runs through a model: Qin's saturable albumin term, fitted to
+four compounds. The same group has since published the concentration
+dependence directly [22, SI Table S6], as Freundlich-type fits of the form
+log D = *m*·log C<sub>w</sub> + *b* for eleven PFAS in two matrices. The
+exponent *m* is the entire question, because **a linear sorption model asserts
+m = 0**.
+
+**Table 11.** Measured concentration dependence of albumin binding [22].
+C<sub>w</sub> in µmol/L.
+
+| | *m* (BSA) | fall in D<sub>BSA/w</sub> per decade | across one dose series (1.2 decades) |
+|---|---|---|---|
+| PFBA | −0.298 | 2.0× | 2.3× |
+| PFHxA | −0.271 | 1.9× | 2.1× |
+| PFHpA | −0.305 | 2.0× | 2.3× |
+| PFOA | −0.314 | 2.1× | 2.4× |
+| PFNA | −0.147 | 1.4× | 1.5× |
+| PFUnA | 0 (R² 0.96 on a constant) | flat | flat |
+| HFPO-DA | −0.493 | 3.1× | 3.9× |
+| PFHxS | −0.472 | 3.0× | 3.7× |
+| PFOS | −0.379 | 2.4× | 2.8× |
+| 6:2 FTSA | −0.092 | 1.2× | 1.3× |
+| PFOSA | −0.105 | 1.3× | 1.3× |
+
+Ten of eleven compounds have a negative exponent, spanning −0.49 to −0.09 with
+a mean of −0.29. **The apparent albumin affinity falls about 1.9× per decade
+of free concentration, and about 2.3× across a single assay dose series.**
+Across the three decades separating a bioassay from human serum it falls 8×
+on the mean exponent and 30× for the steepest compound.
+
+Two things follow. First, the argument of §7 no longer rests on a fitted
+saturable model: the quantity a linear spLFER holds constant is measured, in
+eleven compounds and four structural classes, and it is not constant. Second,
+for the four compounds overlapping Qin et al. [3] the exponents reproduce for
+the sulfonates (PFHxS −0.480 → −0.472, PFOS −0.381 → −0.379) and come out
+shallower for the carboxylates (PFBA −0.391 → −0.298, PFOA −0.381 → −0.314),
+so the earlier four-compound figures were if anything the stronger version of
+the claim.
+
+The exception is informative. PFUnA is the one compound whose binding is
+concentration-*independent* over the range tested. It is the longest chain in
+the set and the one dosed at the lowest concentration — the compound furthest
+into the low-occupancy limb where linearity does hold, which is precisely the
+regime this section argues the assays otherwise fail to occupy.
+
 It also bounds what the exercise can deliver. Even an exactly correct model of
 these wells would describe a binding regime that does not occur in vivo.
 Improving the in vitro mass balance improves the description of the experiment;
@@ -1278,6 +1325,9 @@ thing as the model as its authors would run it.
 | the Fischer et al. form (§6.7.2) | `tk_review/scripts/mbm_fischer_escher_balance.py` |
 | Qin's model against Qin's measurement (§6.8) | `tk_review/scripts/mbm_qin_internal_check.py` |
 | IV-MBM v1.0 against v2.0 (§3.1) | `tk_review/scripts/mbm_armitage_v1_vs_v2.py` |
+| measured albumin non-linearity (§7.1) | `tk_review/scripts/qin2024_saturation_measured.py` |
+| Qin 2024 cross-checks (§6.7, §6.7.2) | `tk_review/scripts/qin2024_baseline_check.py` |
+| Fragki scenario-3 propagation | `tk_review/scripts/fragki_scenario3_corrected.py` |
 | serum control (§8) | `tk_review/scripts/mbm_fischer_serum.py` |
 | Figure 1 | `tk_review/scripts/make_mbm_correction_figure.py` |
 | Figure 2 | `tk_review/scripts/make_mbm_separation_figure.py` |
@@ -1387,8 +1437,9 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     Technol* 2024;58(13):5727–5738. doi:10.1021/acs.est.3c09950
     — The successor to ref. [3] by the same group. Supplies the
     per-compound liposome–water ratios used in §6.7 (its Table 1), the
-    regressions eqs S9–S10, and the measured cell compositions of §6.7.2
-    (its SI Table S8). Read at source with its Supporting Information.
+    regressions eqs S9–S10, the measured cell compositions of §6.7.2 (its SI
+    Table S8) and the measured concentration dependence of §7.1 (its SI
+    Table S6). Read at source with its Supporting Information.
 **Provenance of references.** Read at source, including supplementary
 material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 17, 22. Bibliographic record
 verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
