@@ -40,7 +40,9 @@ ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
               "source", "location"]
 
 COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
-               "pfas_conc_uM", "protein_conc_uM", "ligand_protein_ratio_max",
+               "pfas_conc_uM", "pfas_conc_as_stated",
+               "protein_conc_uM", "protein_conc_as_stated",
+               "ligand_protein_ratio_max",
                "ratio_basis", "temperature_C", "temperature_as_stated", "nacl_mM",
                "buffer", "binding_site"]
 
@@ -405,6 +407,20 @@ def conc_range_uM(value, units):
     return min(lo, hi) * factor, max(lo, hi) * factor
 
 
+def as_stated(value, units):
+    """The concentration verbatim, value and units joined.
+
+    conc_uM refuses anything it cannot convert by unit arithmetic alone,
+    which is correct but leaves a blank that cannot be told from a study
+    reporting nothing. This keeps the source text beside it, exactly as
+    temperature_as_stated does for temperature.
+    """
+    v, u = (value or "").strip(), (units or "").strip()
+    if not v:
+        return ""
+    return f"{v} {u}".strip()
+
+
 def conc_uM(value, units):
     """The highest concentration used, in uM -- the one that decides whether
     the protein approached saturation."""
@@ -518,6 +534,8 @@ def build(filter_compounds=True):
                     _prot_lo=conc_range_uM(r["protein_conc"],
                                            r["protein_conc_units"])[0],
                     _prot_raw=r["protein_conc"], _lig_raw=r["ligand_conc_range"],
+                    _prot_units=r["protein_conc_units"],
+                    _lig_units=r["ligand_conc_units"],
                     _temp=r["temperature_c"], _buffer=r["buffer"],
                     _site=r["binding_site_identified"],
                     _n=r["n_binding_sites"],
@@ -613,7 +631,10 @@ def conditions(out):
             "id": r["id"], "pfas": r["pfas"], "species": r["species"],
             "protein": r["protein"], "source": r["source"],
             "mode": r["_mode"],
-            "pfas_conc_uM": r["_lig"], "protein_conc_uM": r["_prot"],
+            "pfas_conc_uM": r["_lig"],
+            "pfas_conc_as_stated": as_stated(r["_lig_raw"], r["_lig_units"]),
+            "protein_conc_uM": r["_prot"],
+            "protein_conc_as_stated": as_stated(r["_prot_raw"], r["_prot_units"]),
             **_ratio_cell(r),
             "temperature_C": t_num, "temperature_as_stated": t_raw,
             "nacl_mM": nacl_mM(r["_buffer"]), "buffer": r["_buffer"],
@@ -660,6 +681,17 @@ NOTES = [
                      "factor, a mol/mol ratio or a mass-per-volume with no "
                      "molar mass -- those are not convertible without a guess."),
     ("protein_conc_uM", "Protein concentration in uM, same rule."),
+    ("pfas_conc_as_stated", "The ligand concentration exactly as the paper "
+                            "states it, with its own units. Present whenever "
+                            "the paper says anything at all, so a blank in "
+                            "pfas_conc_uM can be told apart from a study that "
+                            "reported nothing."),
+    ("protein_conc_as_stated", "The protein concentration as stated, same "
+                               "rule. 93% of rows carry one, against the 27% "
+                               "that are molar and so convertible: most of "
+                               "the rest are dilution factors, mol/mol "
+                               "ratios, an immobilised stationary phase or a "
+                               "percentage of serum."),
     ("ligand_protein_ratio_max", "the highest ratio the assay reached: most ligand "
                              "over least protein. Below ~0.01 a measurement "
                              "sees the specific site; above ~1 it sees "
