@@ -33,6 +33,23 @@ FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
 
 CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
 
+# --- the major-study subset -------------------------------------------
+# "Major" is a count, not a judgement: a study is major here when it supplies
+# at least this many standardised measurements. Five do, and they are the
+# five the review's quantitative sections actually rest on -- Qin and Fischer
+# for the mass-balance limb, Chen and Muensterman for the partition
+# coefficients, Ryu for the free fractions. The threshold is written down so
+# the selection can be re-derived rather than taken on trust, and so it moves
+# on its own as the database grows.
+MAJOR_MIN_ROWS = 100
+
+
+def major_sources(out):
+    """Sources carrying at least MAJOR_MIN_ROWS rows, largest first."""
+    n = collections.Counter(r["source"] for r in out)
+    return [s for s, c in n.most_common() if c >= MAJOR_MIN_ROWS]
+
+
 # The unfiltered table, kept alongside the filtered one so nothing is lost to
 # this workbook's scope. Same columns plus the class that decided the filter.
 ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
@@ -114,6 +131,18 @@ def canon_units(raw, measure):
         return ("log10 K_IAM (basis as published)" if u.startswith("log K_IAM")
                 else "log10 K_MW (basis as published)")
     if measure == "log D":
+        # A Freundlich fit has no single constant: the stored value is the
+        # ratio at one aqueous concentration. That is a different kind of
+        # number from a concentration-independent ratio and must not be
+        # canonicalised into the same string as one.
+        if "Freundlich-type fit" in u:
+            phase = ("L_prot+lip" if "L_prot+lip" in u else
+                     "L_lipid" if "L_lipid" in u else "L_protein")
+            return f"log10 (L_water/{phase}) at Cw = 1 uM, Freundlich fit"
+        if "L_prot+lip" in u:
+            return "log10 (L_water/L_prot+lip)"
+        if "L_lipid" in u or "L_lip)" in u:
+            return "log10 (L_water/L_lipid)"
         if u.startswith("log K_PW (protein-water distribution coefficient), "
                         "L_water per L_albumin"):
             return "log10 (L_water/L_protein)"
@@ -512,6 +541,21 @@ def location(src):
     return src.split("|")[0].strip().rstrip(",").strip()
 
 
+def mark_computed(rec, r):
+    """Say in the `measure` cell when a value was computed, not measured.
+
+    The working file carries that in is_computational, which this table has
+    no column for, and the reason usually sits behind a pipe in source_table
+    where `location` cuts it off. A predicted value reaching a reading copy
+    unlabelled is the one error this table must not make, so the label goes
+    where it cannot be missed. Applied after the conversions, which switch on
+    the bare measure name.
+    """
+    if not r["is_computational"].strip().lower().startswith("no") and \
+            "computational" not in rec["measure"]:
+        rec["measure"] += " (computed)"
+
+
 def build(filter_compounds=True):
     """filter_compounds=False returns every measurement, for the consolidated
     database in db/combined/, which is the full record rather than a reading
@@ -554,6 +598,7 @@ def build(filter_compounds=True):
             rec = dict(base, measure=meas, value=val, units=units)
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
             rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
+            mark_computed(rec, r)
             (out if is_quantitative(val) else qualitative).append(rec)
         if r["unbound_fraction"].strip():
             rec = dict(base, measure="f_unbound",
@@ -561,6 +606,7 @@ def build(filter_compounds=True):
                        units=canon_units("", "f_unbound"))
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
             rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
+            mark_computed(rec, r)
             out.append(rec)
         if not meas and not r["unbound_fraction"].strip():
             skipped.append(r)
@@ -647,6 +693,18 @@ NUMERIC = {"id", "kd_uM", "logK", "rows", "kd_rows", "logK_rows", "pfas_conc_uM"
 
 NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
+    ("Major studies", "The same rows as Affinity, restricted to the "
+                      "studies that supply at least 100 standardised "
+                      "measurements each. Five do. The threshold is a count, "
+                      "not a judgement, and is written into the script "
+                      "(MAJOR_MIN_ROWS) so the selection can be re-derived; "
+                      "it also happens to pick out the five studies the "
+                      "review's quantitative sections rest on -- Qin 2024 "
+                      "and Fischer 2024 for the mass-balance limb, Chen 2025 "
+                      "and Muensterman 2026 for the partition coefficients, "
+                      "Ryu 2024 for the free fractions. Nothing here is "
+                      "absent from Affinity; this tab is a view, not a "
+                      "different dataset."),
     ("Compounds", "Which compounds are in and why, so the filter can be "
                   "audited or overridden."),
     ("All measurements", "Every measurement in db/protein_binding.csv, "
@@ -659,7 +717,11 @@ NOTES = [
     ("protein", "Protein or matrix, as the paper describes it."),
     ("measure", "Which quantity: Kd, Ka, log D (protein-water), "
                 "log K_membrane (phospholipid membrane-water), f_unbound, "
-                "docking dG."),
+                "docking dG. A '(computed)' or '(computational)' suffix "
+                "means the source reports that value as predicted rather "
+                "than measured -- QSAR, COSMO-RS, a chain-length regression "
+                "or docking. Four rows besides the ten docking ones are "
+                "marked; everything unmarked is an experimental value."),
     ("value", "The number as printed, including ranges and bounds."),
     ("units", "Canonicalised unit for that value."),
     ("kd_uM", "Everything that converts EXACTLY to a dissociation constant "
@@ -737,7 +799,7 @@ NOTES = [
 ]
 
 
-def write(out, cond, cmpd, full):
+def write(out, major, cond, cmpd, full):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -749,6 +811,7 @@ def write(out, cond, cmpd, full):
     wb.remove(wb.active)
 
     for title, fields, data in (("Affinity", FIELDS, out),
+                                ("Major studies", FIELDS, major),
                                 ("Conditions", COND_FIELDS, cond),
                                 ("Compounds", CMPD_FIELDS, cmpd),
                                 ("All measurements", ALL_FIELDS, full)):
@@ -879,6 +942,20 @@ def check(rows, out, skipped, qualitative, dropped):
     print("  (Starnes is three orders weaker, which is the known DSF offset:")
     print("   affinity measured at the protein's melting transition, not 37 C)")
     print()
+    majors = major_sources(out)
+    nmaj = sum(1 for r in out if r["source"] in majors)
+    print(f"Major-study subset -- sources with at least {MAJOR_MIN_ROWS} "
+          f"standardised measurements:")
+    for srcname in majors:
+        rs = [r for r in out if r["source"] == srcname]
+        meas = ", ".join(f"{m} {n}" for m, n in
+                         collections.Counter(r["measure"] for r in rs).most_common())
+        print(f"  {len(rs):5d}  {srcname:17s} "
+              f"{len({r['pfas'] for r in rs}):3d} compounds  {meas}")
+    print(f"  {nmaj:5d}  total, {100 * nmaj / len(out):.0f}% of the "
+          f"{len(out)} rows, from {len(majors)} of "
+          f"{len(set(r['source'] for r in out))} studies")
+    print()
     print(f"Sources: {len(set(r['source'] for r in out))} distinct")
     print("  " + ", ".join(sorted(set(r["source"] for r in out))))
     print()
@@ -907,7 +984,9 @@ def main():
     rows, out, skipped, qualitative, dropped = build()
     if not args.check:
         full = build(filter_compounds=False)[1]
-        write(out, conditions(out), compounds(out), full)
+        majors = major_sources(out)
+        major = [r for r in out if r["source"] in majors]
+        write(out, major, conditions(out), compounds(out), full)
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
     check(rows, out, skipped, qualitative, dropped)
