@@ -47,7 +47,7 @@ tenth.  Its affinities are worth treating with care rather than pooling: its
 PFOA value of 103 M-1 is three to four orders below every other measurement
 of PFOA on albumin in this database.
 
-ROWS ARE NOT FILTERED BY MATRIX.  Selection is by source; once a source is
+ROWS ARE NOT FILTERED BY MATRIX, ONLY BY QUANTITY.  Selection is by source; once a source is
 in, all of its rows come with it, mixtures and computed values included,
 because dropping a paper's plasma or serum rows would silently discard
 measurements the user did not ask to lose.  The `protein` column says what
@@ -99,13 +99,19 @@ def is_named_protein(protein):
     return any(w in p for w in PROTEIN_WORDS)
 
 
-def is_measured(rec):
-    """A docking score or a predicted value is not a measurement of binding.
+# This file holds experimental binding constants and partition coefficients
+# and nothing else. Two kinds of row are excluded outright, not merely left
+# out of the ranking:
+#   - anything computed: docking scores, QSAR predictions. Not measurements.
+#   - unbound fractions. Experimental, but neither a Kd nor a K, and not
+#     convertible to either without the binding-site molarity that almost no
+#     paper reports. They remain in db/binding_affinity.xlsx.
+MEASURES = {"Kd", "Ka", "log D", "log K_membrane"}
 
-    Such rows stay in the file where their source qualifies -- the `measure`
-    column marks them -- but they do not earn a source its place.
-    """
-    return "comput" not in rec["measure"]
+
+def is_measured(rec):
+    """An experimental dissociation constant, affinity or partition ratio."""
+    return rec["measure"] in MEASURES
 
 
 def rank(out):
@@ -146,12 +152,15 @@ def select(n, order, top_n=TOP_N):
 def main():
     rows, out, skipped, qualitative, dropped = B.build()
     n, with_comp, cmpds, order = rank(out)
+    excluded = collections.Counter(
+        r["measure"] for r in out
+        if is_named_protein(r["protein"]) and not is_measured(r))
     kept, tied_in = select(n, order)
     tot = collections.Counter(r["source"] for r in out)
 
     print(f"Ranked on MEASURED rows against a named single protein. Top "
           f"{TOP_N}, plus any source tied with the {TOP_N}th.")
-    print(f"  {'':4s}{'source':22s}{'measured':>9s}{'+computed':>10s}"
+    print(f"  {'':4s}{'source':22s}{'Kd/Ka/K':>9s}{'+other':>10s}"
           f"{'all rows':>9s}{'cmpds':>7s}  quantities")
     for i, s in enumerate(order[:TOP_N + 4], 1):
         prot = [r for r in out if r["source"] == s
@@ -164,6 +173,12 @@ def main():
               + ", ".join(f"{k} {v}" for k, v in meas.most_common(3)) + mark)
     cut = n[order[TOP_N - 1]]
     print()
+    if excluded:
+        print("  excluded from both the ranking and the file, as neither an "
+              "experimental Kd nor a K:")
+        for k, v in excluded.most_common():
+            print(f"    {v:4d}  {k}")
+        print()
     print(f"  cut at {cut} measured rows; "
           + (f"{len(tied_in)} further source(s) tied there and kept"
              if tied_in else "nothing tied at the cut this time"))
@@ -172,7 +187,7 @@ def main():
     cond = {c["id"]: c for c in B.conditions(out)}
     sel = []
     for r in out:
-        if r["source"] not in kept:
+        if r["source"] not in kept or not is_measured(r):
             continue
         c = cond[r["id"]]
         sel.append({f: (r.get(f) if f in r else c.get(f, "")) for f in FIELDS})
@@ -209,13 +224,16 @@ NOTES = [
      "database (320 rows) and reports unbound fractions in whole tissue "
      "homogenate -- total protein plus phospholipid, no protein resolved. "
      "A row count is not a ranking of usefulness for this question."),
-    ("Row selection", "By source, not by matrix. Once a source is in, all "
-     "of its rows come with it, mixtures and computed values included; the "
-     "`protein` column says what each row was measured in and `measure` "
-     "marks anything computed."),
+    ("Row selection", "By source, not by matrix: once a source is in, its "
+     "rows come with it and the `protein` column says what each was "
+     "measured in. But only EXPERIMENTAL Kd, Ka, log D and log K_membrane "
+     "rows are here. Docking scores and predicted values are excluded as "
+     "not measurements; unbound fractions are excluded as neither a Kd nor "
+     "a K, and not convertible to either without a binding-site molarity "
+     "almost no paper reports. Both remain in db/binding_affinity.xlsx."),
     ("Treat with care", "Wu 2024's affinities sit three to four orders "
      "below every other measurement of the same compound on albumin (its "
-     "PFOA value is 103 M-1), and half its rows are docking scores. "
+     "PFOA value is 103 M-1); its docking scores are excluded here. "
      "Starnes 2025 measures by differential scanning fluorimetry at the "
      "protein's melting transition, about three orders off the dialysis "
      "values -- a documented offset, not a disagreement to average over. "
