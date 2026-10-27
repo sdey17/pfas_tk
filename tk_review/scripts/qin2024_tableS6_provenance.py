@@ -46,6 +46,27 @@ from mbm_qin_vs_armitage import QIN_BSA_MEASURED   # Qin 2023 Table 1
 
 DB = os.path.join(os.path.dirname(HERE), "db", "protein_binding.csv")
 
+# Qin W, Escher BI, Huchthausen J, Fu Q, Henneberger L. "Species Difference?
+# Bovine, Trout, and Human Plasma Protein Binding of Per- and Polyfluoroalkyl
+# Substances." Environ Sci Technol 2024;58(23):9954-9966.
+# doi:10.1021/acs.est.3c10824, PMID 38804966, PMC11171458 (open access).
+# Table 1, "BSA: log D_BSA/w [L_w/L_prot]" column.  None = the paper reports a
+# concentration-independent constant.  This is the SOURCE of Table S6's BSA
+# column; partA proves the identity cell by cell rather than asserting it.
+COMPANION_T1_BSA = {
+    "PFBA":     (-0.298, 2.91, 0.60),
+    "PFHxA":    (-0.271, 3.43, 0.88),
+    "PFHpA":    (-0.305, 3.95, 0.81),
+    "PFOA":     (-0.314, 4.38, 0.93),
+    "PFNA":     (-0.147, 4.52, 0.61),
+    "PFUnA":    (None,   4.75, 0.96),
+    "HFPO-DA":  (-0.493, 3.44, 0.86),
+    "PFHxS":    (-0.472, 4.28, 0.92),
+    "PFOS":     (-0.379, 4.74, 0.92),
+    "6:2 FTSA": (-0.092, 3.86, 0.54),
+    "PFOSA":    (-0.105, 4.28, 0.50),
+}
+
 # Albumin: 1 L of pure protein is 1.364 kg (partial specific volume
 # 0.733 mL/g), so a mass-basis K converts to a volume basis by +log10(1.364).
 KG_PER_L_ALB = 1.0 / 0.733
@@ -153,7 +174,8 @@ def partA():
     print("  So: the D_medium/w column is measured here (Figure S6). The")
     print("  D_BSA/w column is not, and the paper does not say where it is")
     print("  from; the caption cites ref 2 (Qin 2023) for the MODEL FORM")
-    print("  only. Below are the three candidate sources, tested.")
+    print("  only. A1-A2 rule out two candidate origins, A3 identifies the")
+    print("  real one and A4 gives the derivation.")
     print()
 
     print("  A1. Is Table 1's log D_BSA/w column the Table S6 equation")
@@ -217,17 +239,69 @@ def partA():
     print("      were measured on different material.")
     print()
 
-    print("  A3. The companion paper. Qin et al. 2024, Environ Sci Technol")
-    print("      doi 10.1021/acs.est.3c10824, same group, BioSPME on BSA at")
-    print("      0.1-10 mg/mL, isotherms over ~4 orders of magnitude -- for")
-    print("      exactly these 11 PFAS. In this database it holds BSA rows")
-    print("      for all 11, split into specific and non-specific terms.")
-    print("      It is the only published source of 11-compound BSA")
-    print("      isotherms from this group, so it is the probable origin of")
-    print("      the Table S6 column, but the baseline-toxicity paper does")
-    print("      not cite it and the two report different model forms")
-    print("      (Freundlich vs specific+non-specific), so this is an")
-    print("      inference, not a documented provenance.")
+    print("  A3. SETTLED. The column is Table 1 of the companion paper:")
+    print("      Qin W, Escher BI, Huchthausen J, Fu Q, Henneberger L.")
+    print("      'Species Difference? Bovine, Trout, and Human Plasma")
+    print("      Protein Binding of Per- and Polyfluoroalkyl Substances.'")
+    print("      Environ Sci Technol 2024;58(23):9954-9966,")
+    print("      doi 10.1021/acs.est.3c10824, PMC11171458, open access.")
+    print("      Every cell, slope, intercept and R2, to the last digit:")
+    print()
+    print(f"      {'cmpd':9s} {'S6 slope':>9s} {'T1 slope':>9s} "
+          f"{'S6 b':>6s} {'T1 b':>6s} {'S6 R2':>6s} {'T1 R2':>6s}  match")
+    allok = True
+    for nm, (s_t, b_t, r_t) in COMPANION_T1_BSA.items():
+        s_b, i_b, r_b = s6_bsa(nm)
+        ok = s_b == s_t and i_b == b_t and abs(r_b - r_t) < 1e-9
+        allok &= ok
+        f = lambda v: "const" if v is None else f"{v:.3f}"
+        print(f"      {nm:9s} {f(s_b):>9s} {f(s_t):>9s} {i_b:6.2f} "
+              f"{b_t:6.2f} {r_b:6.2f} {r_t:6.2f}  "
+              f"{'identical' if ok else 'DIFFERS'}")
+    print()
+    print(f"      All 11 cells identical: {allok}. It is a verbatim")
+    print("      reprint, and the baseline-toxicity paper does not cite it")
+    print("      -- the companion appeared in issue 23 of the same volume,")
+    print("      the baseline paper in issue 13, so the data were in hand")
+    print("      but unpublished at submission.")
+    print()
+    print("  A4. So HOW were they derived? The companion paper's Methods")
+    print("      and Data Evaluation give the full chain:")
+    print("      1. BioSPME 96-Pin Device, C18-coated pins of ~80 nL")
+    print("         coating volume, run automated on a Hamilton Star robot.")
+    print("      2. BSA dissolved in PBS. The BSA CONCENTRATION was chosen")
+    print("         per compound to put the bound fraction between 30 and")
+    print("         90% -- the measurable window. That is why Table 2")
+    print("         records 0.1-10 mg/mL rather than one value.")
+    print("      3. A 9-step 2-fold dilution series of PFAS (256x), dosed")
+    print("         against that BSA, incubated overnight at 37 C, 250 rpm.")
+    print("      4. Extraction 10-120 min (t95 was 30 min for hydrophilic")
+    print("         PFAS, 58 min for hydrophobic), desorption 20 min,")
+    print("         LC-MS/MS. Mass balance 92-115%.")
+    print("      5. The isotherm -- bound concentration against free -- was")
+    print("         fitted with an empirical FREUNDLICH isotherm. After log")
+    print("         transformation that is a straight line of log C_bound")
+    print("         against log Cw, giving log K_Fr and the exponent n_Fr.")
+    print("         log D at any Cw then follows from those two.")
+    print("      6. The decision rule for whether a compound gets an")
+    print("         equation or a constant is n_Fr: below 0.9 the isotherm")
+    print("         counts as concentration-dependent and the regression is")
+    print("         reported; at 0.90-1 (weakly dependent) or >=1 the")
+    print("         authors FIX n_Fr = 1 and report the average log D as a")
+    print("         constant. That is exactly why PFUnA is a constant at")
+    print("         4.75 -- the paper says its n_Fr sat in 0.90-1.")
+    print("      7. The fit POOLS two methods. 'BSA binding isotherms of")
+    print("         PFBA, PFOA and PFHxS measured in the present study were")
+    print("         compared with our previous results with C18-SPME using")
+    print("         single fibers... because the data from the two methods")
+    print("         were almost overlapping, all data were fitted together")
+    print("         to derive log K_Fr and n_Fr.'")
+    print()
+    print("      Point 7 is the answer to part B below: the slopes differ")
+    print("      from Qin 2023 because this is a JOINT refit of the 2023")
+    print("      single-fibre data pooled with the new BioSPME data, not a")
+    print("      new measurement and not a reprint. Part B inferred 'refit")
+    print("      or re-measurement'; it is specifically the former.")
     print()
 
 
@@ -256,8 +330,14 @@ def partB():
     print("  The sulfonates barely move (PFHxS -0.480 -> -0.472, PFOS")
     print("  -0.381 -> -0.379) but both carboxylates do (PFBA -0.391 ->")
     print("  -0.298, PFOA -0.381 -> -0.314). A reprint would move nothing.")
-    print("  So Table S6 is a refit or a re-measurement, not a reprint of")
-    print("  Qin 2023 -- which also rules out the simplest provenance.")
+    print()
+    print("  A4 explains the pattern exactly. The companion paper pooled")
+    print("  the 2023 single-fibre C18-SPME points with its new BioSPME")
+    print("  points and refitted, for the three compounds measured twice:")
+    print("  PFBA, PFOA and PFHxS. Two of those three are the carboxylates")
+    print("  whose slopes moved. PFOS moved least because its low-")
+    print("  concentration C18-SPME points were EXCLUDED from the joint fit")
+    print("  (see part E), so its refit is nearly the BioSPME data alone.")
     print()
 
 
@@ -582,8 +662,26 @@ def partE(rows):
     print("  PFOS sits 1.2-2.0 log units above every independent plateau,")
     print("  bovine and human alike, and the cause is its Kd: Qin 2023 fits")
     print("  6.2 nM where Gao measures 693 nM in bovine albumin and Chen")
-    print("  measures 940 nM in human -- 111x and 151x weaker. One of those")
-    print("  is wrong, and the plateau says it is the 6.2 nM.")
+    print("  measures 940 nM in human -- 111x and 151x weaker.")
+    print()
+    print("  The authors reached the same conclusion independently, which")
+    print("  is the strongest confirmation this triangulation could get.")
+    print("  The companion paper says of the 2023 PFOS experiment: 'The")
+    print("  specific binding of PFOS measured with C18-SPME was a bit")
+    print("  higher. However, 5 mg/mL of BSA was used for the C18-SPME,")
+    print("  resulting in a bound fraction of PFOS > 99% in the low")
+    print("  concentration range. The bound fraction reduced to 40-90%")
+    print("  after adjusting BSA to 0.1 mg/mL in this study. log D_BSA/w of")
+    print("  PFOS were also fitted with data from two methods, but several")
+    print("  points in the low concentrations were excluded.'")
+    print()
+    print("  At >99% bound the free concentration is below what the method")
+    print("  can resolve, so the specific term was fitted to the part of")
+    print("  the curve carrying least information. That is exactly the")
+    print("  defect the plateau comparison detects from outside, and the")
+    print("  authors excluded those points when they refitted. The 6.2 nM")
+    print("  should not be used: our mass-balance code carries it in")
+    print("  QIN_BSA_MEASURED and this is a reason to flag it there.")
     print()
     print("  What this exercise can and cannot do:")
     print("    CAN  bound Kd from a measured saturation slope, with no")
