@@ -18,14 +18,14 @@ falls as the assay dose rises.  This is the measured version of the argument
 section 7 of MBM_REVIEW makes from a model, now across eleven compounds and
 both head groups rather than four compounds.
 
-PROVENANCE CAUTION, recorded on every row.  The SI describes assays for the
-medium (BioSPME), the cells and structural protein, but NO dedicated BSA
-binding assay, and its Figure S8b shows D_BSA/w for only four compounds
-(PFHxS, PFOS, 6:2 FTSA, PFOSA).  For the four compounds overlapping Qin 2023
-the parameters are close but not identical (PFHxS -0.480 -> -0.472, PFOS
--0.381 -> -0.379, but PFBA -0.391 -> -0.298 and PFOA -0.381 -> -0.314), so
-these are a refit or a re-measurement rather than a straight reprint.  The
-rows carry the equation verbatim and say so.
+SCOPE.  Only the D_medium/w column is ingested here, because only that
+column was measured in this paper (Figure S6).  The D_BSA/w column of the
+same table is Table 1 of the companion paper, doi 10.1021/acs.est.3c10824,
+reprinted verbatim and uncited -- all 11 slopes, intercepts and R2 agree to
+the last digit, which qin2024_tableS6_provenance.py verifies cell by cell.
+It is ingested by add_qin2024_companion_table1.py instead, so that its
+assay conditions describe the BSA isotherm (BSA in PBS, no cells) rather
+than this paper's cytotoxicity plate.
 
 The stored `ka` is the distribution ratio AT Cw = 1 umol/L, i.e. 10^intercept,
 because a Freundlich fit has no single constant.  The slope, R2 and the full
@@ -72,10 +72,9 @@ NOTE = ("yes - the Freundlich slope IS the saturation: a linear sorption model "
         "assumes slope 0, and every measured slope here is negative, so the "
         "apparent distribution ratio falls as the assay dose rises. Eleven "
         "compounds and both head groups, against the four in Qin 2023")
-CAUTION = ("The SI describes no dedicated BSA binding assay and its Figure S8b "
-           "shows D_BSA/w for only 4 compounds; for the 4 overlapping Qin 2023 "
-           "the parameters are close but not identical, so this is a refit or "
-           "re-measurement, not a reprint")
+CAUTION = ("Measured in this paper: Figure S6 shows the medium binding "
+           "isotherms of all 11 PFAS. The D_BSA/w column of the same table is "
+           "NOT this paper's -- see add_qin2024_companion_table1.py")
 
 
 def eq(slope, intercept):
@@ -92,11 +91,12 @@ def main():
             r["ka_units"][:40]) for r in rows}
     added = 0
     for nm, (ncf, hg, s_b, i_b, r_b, s_m, i_m, r_m, ctot) in S6.items():
+        # The BSA column of Table S6 is NOT this paper's -- it is Table 1 of
+        # the companion paper, doi 10.1021/acs.est.3c10824, reprinted
+        # verbatim, and it was measured in BSA/PBS with no cells present.
+        # It is ingested by add_qin2024_companion_table1.py, under the paper
+        # that measured it. Only the medium column belongs here.
         for matrix, slope, inter, r2, unit, meth in (
-            ("bovine serum albumin (BSA)", s_b, i_b, r_b,
-             "log D_BSA/w at Cw = 1 umol/L (L_water per L_protein); "
-             "Freundlich-type fit, NOT an association constant",
-             "C18-SPME, Freundlich-type fit of log D against log Cw"),
             ("PPARgamma assay medium, 98% OptiMEM + 2% csFBS (protein + lipid)",
              s_m, i_m, r_m,
              "log D_medium/w at Cw = 1 umol/L (L_water per L_prot+lip); "

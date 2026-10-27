@@ -28,16 +28,37 @@ ORDER = ["PFBA", "PFHxA", "PFHpA", "PFOA", "PFNA", "PFUnA", "HFPO-DA",
 QIN23 = {"PFBA": -0.391, "PFOA": -0.381, "PFHxS": -0.480, "PFOS": -0.381}
 
 
+# The database now holds five Qin 2024 matrices -- BSA, the PPARgamma
+# medium, human plasma, trout plasma, and the cell and structural-protein
+# ratios -- across two papers. This script is about the first two only, so
+# the matrix is selected explicitly rather than by "albumin or else".
+# Matching on the protein string alone would sweep the plasma rows into
+# "medium" and silently overwrite it.
+MATRIX_OF = {
+    "bovine serum albumin (BSA)": "BSA",
+    "PPARgamma assay medium, 98% OptiMEM + 2% csFBS (protein + lipid)":
+        "medium",
+}
+# Accepts both the equation wording this file used to write ("log D = ...")
+# and the matrix-tagged wording ("log D_BSA/w = ...").
+EQ = re.compile(r"log D(?:_[^\s]+)? = ([+-]?[\d.]+) x log Cw \+ ([\d.]+)")
+
+
 def load():
     out = {}
     for r in csv.DictReader(open(DB, encoding="utf-8")):
         if r["study"] != "Qin et al." or r["year"] != "2024":
             continue
-        m = re.search(r"log D = ([+-]?[\d.]+) x log Cw \+ ([\d.]+)",
-                      r["source_table"])
-        mat = "BSA" if "albumin" in r["protein"] else "medium"
+        mat = MATRIX_OF.get(r["protein"])
+        if mat is None or "Freundlich-type fit" not in r["ka_units"]:
+            continue
+        m = EQ.search(r["source_table"])
         slope = float(m.group(1)) if m else 0.0
         out.setdefault(r["chemical"], {})[mat] = (slope, float(r["ka"]))
+    missing = [nm for nm in ORDER
+               if nm not in out or set(out[nm]) != {"BSA", "medium"}]
+    if missing:
+        raise SystemExit(f"missing BSA or medium fits for: {missing}")
     return out
 
 

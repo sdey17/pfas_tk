@@ -119,6 +119,78 @@ QIN2024_DLIPW = {"PFBA": 1.00, "PFHxA": 2.32, "PFHpA": 2.91, "PFOA": 3.52,
 QIN2024_EQ_S9 = (0.562, -0.494)     # PFCA,  R2 0.969
 QIN2024_EQ_S10 = (0.535, 0.658)     # PFSA,  R2 0.977
 
+# --------------------------------------------------------------------------
+# Qin et al. 2024, Environ Sci Technol 58(23):9954-9966, doi
+# 10.1021/acs.est.3c10824 ("Species Difference? Bovine, Trout, and Human
+# Plasma Protein Binding..."), PMC11171458.  This paper REFITTED the BSA
+# isotherms of QIN_BSA_MEASURED above, pooling the 2023 single-fibre
+# C18-SPME points with new BioSPME points, and extended the set from 4
+# compounds to 11.  Its Table 1 is reprinted verbatim and uncited as SI
+# Table S6 of the baseline-toxicity paper (10.1021/acs.est.3c09950).
+#
+# WHY THIS MATTERS FOR PFOS.  Qin 2023's PFOS row is the one parameter set in
+# QIN_BSA_MEASURED that should not be used, and the authors say so in the
+# refit: "5 mg/mL of BSA was used for the C18-SPME, resulting in a bound
+# fraction of PFOS > 99% in the low concentration range.  The bound fraction
+# reduced to 40-90% after adjusting BSA to 0.1 mg/mL in this study.  log
+# D_BSA/w of PFOS were also fitted with data from two methods, but several
+# points in the low concentrations were excluded."  At >99% bound the free
+# concentration is below what the method resolves, so the SPECIFIC term --
+# the one that lives at low concentration -- was fitted where there was
+# least information.
+#
+# Two independent checks agree.  Qin 2023's PFOS Kd of 0.00624 uM is 111x
+# tighter than Gao 2025's bovine value (0.693 uM) and 151x tighter than Chen
+# 2025's human one (0.94 uM); and the plateau it implies, log(Cmax/Kd +
+# D_nonspec) = 6.13, sits 1.2-2.0 log units above every independent
+# sub-saturating measurement of BSA partitioning (Allendorf 2019, Bischel
+# 2011, Fischer 2024: 4.10-4.89).  See qin2024_tableS6_provenance.py.
+#
+# The refit does NOT publish a new Kd/Cmax pair, so a corrected Kd is not
+# recoverable from the tables; what it publishes is the specific and
+# non-specific distribution ratios and the Freundlich parameters, below.
+# Holding Cmax fixed would imply Kd = Cmax/(2*10^logKspec) = 0.0215 uM, still
+# 32x tighter than Gao's, so even the refit does not reconcile with the
+# independent affinities.  That assumption is not made anywhere here.
+PFOS_KD_2023_IS_UNRELIABLE = True
+
+# Table 2, BSA columns: (log D specific, log D non-specific).  None for
+# specific means no plateau of K_spec appeared at nu < 1, so the paper could
+# not resolve a specific term and reports an average instead.
+# NOTE the basis: "specific" is Qin Eq. 15, the ratio AT HALF-SATURATION
+# (Cmax/(2 Kd)), which is 0.301 log BELOW the Cw -> 0 plateau of the specific
+# term.  Reading it as a plateau makes it 2x low.
+QIN2024_BSA_SPEC_NONSPEC = {
+    "PFBA":     (2.44, 1.97),
+    "PFHxA":    (3.26, 2.69),
+    "PFHpA":    (4.12, 3.47),
+    "PFOA":     (4.58, 3.88),
+    "PFNA":     (None, 4.61),
+    "PFUnA":    (None, 4.75),
+    "HFPO-DA":  (3.31, 2.17),
+    "PFHxS":    (5.02, 3.58),
+    "PFOS":     (5.27, 4.17),
+    "6:2 FTSA": (None, 3.87),
+    "PFOSA":    (None, 4.32),
+}
+
+# Table 1, BSA column: (nFr - 1, log K_Fr), i.e. slope and intercept of
+# log D_BSA/w against log Cw with Cw in umol/L.  A slope of None is a value
+# the paper reports as concentration-independent, n_Fr having been fixed to 1.
+QIN2024_BSA_FREUNDLICH = {
+    "PFBA":     (-0.298, 2.91),
+    "PFHxA":    (-0.271, 3.43),
+    "PFHpA":    (-0.305, 3.95),
+    "PFOA":     (-0.314, 4.38),
+    "PFNA":     (-0.147, 4.52),
+    "PFUnA":    (None,   4.75),
+    "HFPO-DA":  (-0.493, 3.44),
+    "PFHxS":    (-0.472, 4.28),
+    "PFOS":     (-0.379, 4.74),
+    "6:2 FTSA": (-0.092, 3.86),
+    "PFOSA":    (-0.105, 4.28),
+}
+
 # BSA volume basis.  Qin reports Cmax both per litre of BSA and per mole of
 # BSA; the ratio pins the density of pure albumin and must agree with the
 # 0.733 mL/g partial specific volume httk uses -- a shared-basis check that
@@ -133,7 +205,7 @@ def _loglin(nCF, anchors):
 
 # Carboxylate anchors for every Qin parameter that has no published rule.
 _PFBA_nCF, _PFOA_nCF = 3, 7
-def qin_params(name, nCF, dlipw_2024=False):
+def qin_params(name, nCF, dlipw_2024=False, bsa_2024=False):
     """Qin's parameters for one compound, with provenance.
 
     Measured -> straight from Table 1/2.
@@ -168,6 +240,21 @@ def qin_params(name, nCF, dlipw_2024=False):
         src = "extrapolated" if not (_PFBA_nCF <= nCF <= _PFOA_nCF) else "interpolated"
     if dlipw_2024 and name in QIN2024_DLIPW:
         d_lip = QIN2024_DLIPW[name]
+    if bsa_2024:
+        # The 2024 refit, which supersedes Qin 2023 for the four overlapping
+        # compounds and extends the set to eleven. Kd and Cmax are NOT
+        # refitted by that paper, so they are left as they were and the
+        # source is marked, rather than mixing a 2023 Kd into a 2024 fit
+        # without saying so.
+        if name in QIN2024_BSA_SPEC_NONSPEC:
+            spec, nonspec = QIN2024_BSA_SPEC_NONSPEC[name]
+            lDns = nonspec
+            if spec is not None:
+                lKs = spec
+        if name in QIN2024_BSA_FREUNDLICH:
+            sl, it = QIN2024_BSA_FREUNDLICH[name]
+            nFr1, lKFr = (0.0 if sl is None else sl), it
+        src += " + 2024 BSA refit (Kd/Cmax still 2023)"
     return dict(Kd=Kd, Cmax=Cmax, logKspec=lKs, logDnonspec=lDns,
                 nFr_minus1=nFr1, logKFr=lKFr,
                 logDlipw=d_lip, logDcellw=d_cell, source=src)
@@ -484,6 +571,21 @@ def validate():
         #     is what makes Qin's D_BSA/w and Armitage's K_bsa comparable.
         dens = (Cmax / CmaxM) * 1e-6 * BSA_MW          # g per L of BSA
         ck(f"BSA density from {nm}", dens, 1000.0 / BSA_PARTIAL_SPEC_VOL, 0.01)
+
+    # The 2024 refit moved every compound measured twice by at most 0.34 log
+    # EXCEPT PFOS, which moved 0.54 on the specific term and 0.67 on the
+    # non-specific one. That isolation is the point: it is not a general
+    # recalibration, it is one compound's experiment being corrected.
+    moved = {}
+    for nm, (Kd, Cmax, CmaxM, lKs, lDns, _n, _k) in QIN_BSA_MEASURED.items():
+        spec, nonspec = QIN2024_BSA_SPEC_NONSPEC[nm]
+        moved[nm] = max(abs(spec - lKs) if spec is not None else 0.0,
+                        abs(nonspec - lDns))
+    others = max(v for k, v in moved.items() if k != "PFOS")
+    ck("2024 refit moves PFOS more than any other compound",
+       1.0 if moved["PFOS"] > others else 0.0, 1.0, 0.01)
+    ck("PFOS moves >0.5 log, every other compound <0.4",
+       1.0 if moved["PFOS"] > 0.5 and others < 0.4 else 0.0, 1.0, 0.01)
 
     # Qin Fig A1 reproduces the measured carboxylate log D_lip/w ...
     a, b = QIN_FIGA1
