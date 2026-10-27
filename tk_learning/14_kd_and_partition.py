@@ -110,6 +110,140 @@ def a2_the_bridge():
     print()
 
 
+def a2a_where_theta_comes_from():
+    rule()
+    print("A2a. STEP (1) IN FULL -- where Cw/(Kd+Cw) actually comes from")
+    rule()
+    print("  This step gets quoted so often that it looks like a definition.")
+    print("  It is not; it is three lines of bookkeeping on the PROTEIN.")
+    print()
+    print("  Write down what the albumin can be. Every albumin molecule in")
+    print("  the tube is either empty or has a ligand on it:")
+    print()
+    print("      P_total = [P] + [PL]                                  (i)")
+    print()
+    print("  Now use the definition of Kd to replace [PL]:")
+    print()
+    print("      Kd = [P][L] / [PL]    =>    [PL] = [P][L] / Kd        (ii)")
+    print()
+    print("  Substitute (ii) into (i):")
+    print()
+    print("      P_total = [P] + [P][L]/Kd = [P] (1 + [L]/Kd)          (iii)")
+    print()
+    print("  The occupied fraction is [PL]/P_total, so divide (ii) by (iii):")
+    print()
+    print("      theta = ([P][L]/Kd) / ([P](1 + [L]/Kd))")
+    print("            = ([L]/Kd) / (1 + [L]/Kd)")
+    print("            = [L] / (Kd + [L])                              (iv)")
+    print()
+    print("  *** [P] CANCELLED HERE TOO. *** This is the first of the two")
+    print("  cancellations in this lesson, and it is the more fundamental.")
+    print("  How full the sites are depends on the FREE LIGAND and nothing")
+    print("  else. It does not matter whether there is one albumin in the")
+    print("  tube or a trillion: at Cw = Kd, half of them are occupied.")
+    print()
+    print("  Occupancy is a property of the solution, not of the amount of")
+    print("  protein. Hold on to that, because A3 is the same idea wearing")
+    print("  different clothes.")
+    print()
+
+
+def a2b_units():
+    rule()
+    print("A2b. THE UNITS, STEP BY STEP -- this is where people lose it")
+    rule()
+    print("  The derivation changes what the denominator MEANS twice, and")
+    print("  neither change is announced by the algebra. Track it:")
+    print()
+    print(f"  {'step':6s}{'quantity':34s}{'units'}")
+    print(f"  {'-'*6:6s}{'-'*34:34s}{'-'*30}")
+    for step, q, u in (
+        ("(1)", "theta, occupied fraction", "dimensionless"),
+        ("(2)", "C_bound = n P theta", "mol per L of SOLUTION"),
+        ("(3)", "protein mass = P x M_alb / 1000", "kg per L of SOLUTION"),
+        ("(3)", "C_bound / protein mass", "mol per kg of PROTEIN"),
+        ("(4)", "divide by Cw", "(mol/kg) / (mol/L_water)"),
+        ("", "= K", "L_water per kg PROTEIN"),
+    ):
+        print(f"  {step:6s}{q:34s}{u}")
+    print()
+    print("  Read the third column downwards. In step (2) everything is")
+    print("  'per litre of solution' -- that is the tube. In step (3) the")
+    print("  denominator becomes 'per kg of protein' -- that is the")
+    print("  MATERIAL. Both the bound amount and the protein mass were")
+    print("  per-litre-of-solution quantities, so dividing one by the")
+    print("  other leaves the tube behind entirely.")
+    print()
+    print("  That is why K is a property of albumin rather than of your")
+    print("  experiment, and it is the single idea the whole bridge rests")
+    print("  on.")
+    print()
+
+
+def a2c_one_tube():
+    rule()
+    print("A2c. THE SAME FIVE STEPS WITH NUMBERS IN THEM")
+    rule()
+    Kd, n, P, cw = 2.57, 1.0, 10.0, 0.5      # uM, sites, uM, uM
+    print(f"  One tube. Kd = {Kd} uM (PFOA on human albumin), n = {n:.0f}")
+    print(f"  site, albumin P = {P} uM, and the free concentration has")
+    print(f"  settled at Cw = {cw} uM. Work it through:")
+    print()
+    theta = cw / (Kd + cw)
+    print(f"  (1) theta = Cw/(Kd+Cw) = {cw}/({Kd}+{cw}) = {theta:.5f}")
+    print(f"      -> {100 * theta:.1f}% of the sites are occupied.")
+    print()
+    bound = n * P * theta
+    print(f"  (2) C_bound = n x P x theta = {n:.0f} x {P} x {theta:.5f}")
+    print(f"              = {bound:.4f} uM        per litre of SOLUTION")
+    print()
+    g_per_L = P * 1e-6 * M_ALB
+    kg_per_L = g_per_L / 1000.0
+    print(f"  (3) protein mass = P x M_alb")
+    print(f"                   = {P}e-6 mol/L x {M_ALB:.0f} g/mol = "
+          f"{g_per_L:.5f} g/L")
+    print(f"                   = {kg_per_L:.3e} kg per litre of SOLUTION")
+    print()
+    per_kg = bound / kg_per_L
+    print(f"      amount per kg protein = {bound:.4f} umol/L / "
+          f"{kg_per_L:.3e} kg/L")
+    print(f"                            = {per_kg:,.1f} umol per kg protein")
+    print()
+    K = per_kg / cw
+    print(f"  (4) K = {per_kg:,.1f} umol/kg / {cw} umol/L_water")
+    print(f"        = {K:,.1f} L_water per kg protein     log K = "
+          f"{math.log10(K):.2f}")
+    print()
+    K_formula = 1e9 * n / (M_ALB * (Kd + cw))
+    print(f"      check against 1e9 n / [M_alb (Kd+Cw)] = {K_formula:,.1f}"
+          f"   match: {abs(K - K_formula) < 1e-6}")
+    print()
+    K0 = 1e9 * n / (M_ALB * Kd)
+    print(f"  (5) trace limit, Cw -> 0:  K0 = 1e9 x {n:.0f} / "
+          f"({M_ALB:.0f} x {Kd}) = {K0:,.1f}")
+    print(f"      log K0 = {math.log10(K0):.2f}")
+    print(f"      This tube reads {K / K0:.3f} of K0 because Cw was not")
+    print(f"      negligible: Cw/Kd = {cw / Kd:.3f}.")
+    print()
+    print("  NOW DOUBLE THE ALBUMIN, holding Cw where it is:")
+    P2 = 2 * P
+    bound2 = n * P2 * theta
+    kg2 = P2 * 1e-6 * M_ALB / 1000.0
+    print(f"      theta          unchanged at {theta:.5f}   "
+          f"(it only knows Cw)")
+    print(f"      C_bound        {bound:.4f} -> {bound2:.4f} uM        "
+          f"doubled")
+    print(f"      protein mass   {kg_per_L:.3e} -> {kg2:.3e} kg/L   doubled")
+    print(f"      K              {bound / kg_per_L / cw:,.1f} -> "
+          f"{bound2 / kg2 / cw:,.1f}        unchanged")
+    print()
+    print("  There is the cancellation, as arithmetic. Twice the albumin")
+    print("  holds twice the chemical, and weighs twice as much, so the")
+    print("  amount PER KILOGRAM is identical. K is a function of Cw and")
+    print("  not of P -- which is the precise version of 'P cancels'.")
+    print()
+
+
 def a3_p_cancels():
     rule()
     print("A3. CHECKING THAT P CANCELS, BY SIMULATING THE TUBE")
@@ -347,6 +481,9 @@ if __name__ == "__main__":
     print()
     a1_two_definitions()
     a2_the_bridge()
+    a2a_where_theta_comes_from()
+    a2b_units()
+    a2c_one_tube()
     a3_p_cancels()
     a4_the_constant()
     a5_trace_limit()
