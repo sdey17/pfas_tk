@@ -1,17 +1,33 @@
 #!/usr/bin/env python3
 """Converting between a PFAS-albumin Kd and an albumin-water partition
-coefficient: the formula, what it costs you, and when you may extrapolate.
+coefficient: the formula, the procedure, and how many rows can take it.
 
 kd_to_partition.py derives the bridge and validates it inside Qin 2023.
-This file answers the practical question -- can I take a Kd from one paper
-and a partition coefficient from another and move between them? -- and the
-short answer is: the algebra is exact, the application is not, and the
-reason is diagnosable rather than mysterious.
+This file is the operating manual: the two directions, the three inputs
+each needs, a worked seven-step conversion on a real row, and an inventory
+of how much of the database can actually be converted.
+
+THE RULE THIS FILE ENFORCES: convert only within one paper, which must
+supply the affinity AND the stoichiometry. Part 5 shows what happens when
+you take a Kd from one study and a partition coefficient from another --
+the reconciling n spans 752-fold and is ordered by chain length -- so that
+is a diagnosis of why the rule exists, not a method to use.
+
+Part 6 keeps the alternative that avoids the conversion entirely:
+regressing log K on chain length within a single study.
+
+THE COUNT, for the impatient: 82 of 532 albumin rows can be converted
+forward, all of them because one paper reported n. Nought can be converted
+in reverse, and that zero is structural rather than a gap in extraction --
+a trace-regime partition coefficient constrains only the ratio n/Kd and
+cannot separate them in principle.
 
 Run:  python3 tk_review/scripts/kd_k_interconversion.py
 """
+import collections
 import csv
 import math
+import re
 import os
 import sys
 
@@ -50,7 +66,7 @@ def load():
     fis = {r["chemical"]: float(r["ka"]) for r in rows
            if r["study"] == "Fischer et al." and r["year"] == "2024"
            and r["protein"] == "human serum albumin (HSA)" and r["ka"].strip()}
-    return ncf, chen, fis
+    return ncf, chen, fis, rows
 
 
 def fit(xs, ys):
@@ -139,19 +155,192 @@ def part2():
     print()
 
 
-def part3(ncf, chen, fis):
+# ---------------------------------------------------------------------
+# Which rows carry a usable stoichiometry, and how it is stated.
+# ---------------------------------------------------------------------
+NUMERIC_N = re.compile(r"^\s*\d+(?:\.\d+)?\s*$")
+
+
+def stated_n(row):
+    """(n, how it was stated) for one database row, or (None, None).
+
+    Three ways a paper can give you n, in descending order of strength:
+      - a fitted number in the row;
+      - a model statement that fixes it ("one site assumed"), which is the
+        paper's own assumption and may be carried as such;
+      - a per-compound figure in prose. Gao 2025 states Hill coefficients
+        and reads sites off them, which is weaker: a Hill coefficient is a
+        cooperativity, and equating it with a site count is the paper's
+        interpretation, not a measurement. Kept separate for that reason.
+    """
+    v = row["n_binding_sites"].strip()
+    if NUMERIC_N.match(v):
+        return float(v), "fitted"
+    if "one site assumed" in v:
+        return 1.0, "model"
+    if "site for" in v:
+        return None, "prose"
+    return None, None
+
+
+def is_affinity(row):
+    return (bool(row["kd"].strip() or row["ka"].strip())
+            and not row["ka_units"].startswith("log"))
+
+
+def is_partition(row):
+    return row["ka_units"].startswith("log") and bool(row["ka"].strip())
+
+
+def part3():
     rule()
-    print("3. THE TEST: does it work between two independent studies?")
+    print("3. THE PROCEDURE, STEP BY STEP, ON ONE ROW")
     rule()
-    print("  Both measured HUMAN serum albumin, so no species is mixed.")
-    print("  Chen et al. 2025 gives Kd by equilibrium dialysis; Fischer et")
-    print("  al. 2024 gives log D by SPME at a PFAS:protein ratio below")
-    print("  0.004 mol/mol, which IS the trace regime the formula wants.")
-    print("  So assumption (b) is satisfied by construction. Solve for the n")
-    print("  that would reconcile them:")
+    print("  Worked on Chen et al. 2025, PFOA on human serum albumin,")
+    print("  Kd = 2.57 uM, equilibrium dialysis, 0.0625-2 uM ligand against")
+    print("  1.0 uM HSA. Every step is a check you can fail; failing one")
+    print("  means stop, not adjust.")
     print()
-    print(f"  {'cmpd':10s}{'nCF':>4s}{'Kd uM':>9s}{'logD meas':>10s}"
-          f"{'logD n=1':>9s}{'n implied':>10s}")
+    kd, n, cw_max, prot = 2.57, 1.0, 2.0, 1.0
+
+    print("  STEP 1  Fix the material and the species.")
+    print("          Human serum albumin. The output is a coefficient for")
+    print("          HUMAN albumin and for nothing else. Do not carry it to")
+    print("          bovine, to plasma, or to 'protein'.")
+    print()
+    print("  STEP 2  Put Kd in uM.")
+    print(f"          Kd = {kd} uM. If the paper gives Ka in M^-1, "
+          f"Kd(uM) = 1e6/Ka.")
+    print("          If it gives Kd in mM, multiply by 1000. This is where")
+    print("          most of the published disagreement actually comes from.")
+    print()
+    print("  STEP 3  Get n FROM THE SAME PAPER. Do not supply it yourself.")
+    print(f"          Chen fits B_max per compound with one site assumed, so")
+    print(f"          n = {n:.0f} is the paper's own model. log n = "
+          f"{math.log10(n):+.2f}.")
+    print("          No n in the paper -> the conversion cannot be done. It")
+    print("          is not optional and it is not 1 by default.")
+    print()
+    print("  STEP 4  Check the regime. The formula is a trace-limit result.")
+    ratio = cw_max / kd
+    print(f"          Highest Cw dosed {cw_max} uM, Kd {kd} uM, so "
+          f"Cw/Kd = {ratio:.2f}.")
+    print(f"          Correction factor 1 + Cw/Kd = {1 + ratio:.2f}.")
+    print(f"          At the top of Chen's series the apparent coefficient")
+    print(f"          is {1 / (1 + ratio):.2f} of its trace value. Below "
+          f"Cw/Kd ~ 0.1 you")
+    print("          may ignore this; here you may not.")
+    print()
+    print("  STEP 5  Apply the conversion.")
+    lk = C_MASS + math.log10(n) - math.log10(kd)
+    print(f"          log K = {C_MASS:.4f} + {math.log10(n):.2f} - "
+          f"log10({kd}) = {lk:.2f}  [L_w/kg protein]")
+    print(f"          log D = {C_VOL:.4f} + {math.log10(n):.2f} - "
+          f"log10({kd}) = {lk + 0.1349:.2f}  [L_w/L protein]")
+    print()
+    print("  STEP 6  State the basis on the output, always.")
+    print("          Per KILOGRAM and per LITRE of protein differ by 0.135")
+    print("          log. Fischer and Allendorf report per kg; Qin reports")
+    print("          per L. A number without its basis is unusable.")
+    print()
+    print("  STEP 7  Sanity-check against a direct measurement of the SAME")
+    print("          compound in the SAME species -- and if they disagree,")
+    print("          report the disagreement. Do not tune n until they")
+    print("          agree; n is a measurement, not a free parameter.")
+    print(f"          converted   {lk:.2f}")
+    print(f"          Fischer 2024 measured, human HSA, per kg   4.48")
+    print(f"          -> {10 ** (4.48 - lk):.1f}x apart. That gap is real "
+          f"and is diagnosed")
+    print("             in part 5; it is not an error in the arithmetic.")
+    print()
+    print("  THE REVERSE DIRECTION, K -> Kd, is the same formula rearranged")
+    print("  and needs the same n from the same paper. Part 4 shows that no")
+    print("  row in this database can take it.")
+    print()
+
+
+def part4(rows):
+    rule()
+    print("4. HOW MANY ROWS CAN ACTUALLY BE CONVERTED")
+    rule()
+    alb = [r for r in rows if "albumin" in r["protein"].lower()]
+    fwd = collections.defaultdict(list)
+    rev = collections.defaultdict(list)
+    no_n_aff = no_n_part = 0
+    prose = 0
+    for r in alb:
+        n, how = stated_n(r)
+        src = f"{r['study']} {r['year']}"
+        if is_affinity(r):
+            if n is not None:
+                fwd[(src, how)].append(r)
+            elif how == "prose":
+                prose += 1
+            else:
+                no_n_aff += 1
+        elif is_partition(r):
+            if n is not None:
+                rev[(src, how)].append(r)
+            else:
+                no_n_part += 1
+    nfwd = sum(len(v) for v in fwd.values())
+    nrev = sum(len(v) for v in rev.values())
+    print(f"  {len(alb)} albumin rows in db/protein_binding.csv.")
+    print()
+    print(f"  FORWARD, Kd or Ka -> partition coefficient: {nfwd} rows")
+    for (src, how), v in sorted(fwd.items(), key=lambda kv: -len(kv[1])):
+        print(f"    {len(v):4d}  {src:24s} n {how}")
+    print(f"    ---- not counted in the {nfwd}, decide for yourself ----")
+    print(f"    {prose:4d}  Gao et al. 2025          n from prose Hill "
+          f"coefficients -- weaker,")
+    print(f"          counted separately: a Hill coefficient is a "
+          f"cooperativity,")
+    print(f"          and reading a site count off it is the paper's "
+          f"interpretation")
+    print(f"    {no_n_aff:4d}  affinity rows with NO n anywhere -- cannot be "
+          f"converted")
+    print()
+    print(f"  REVERSE, partition coefficient -> Kd: {nrev} rows")
+    print(f"    {no_n_part:4d}  partition rows, and not one of them carries "
+          f"an n.")
+    print()
+    print("  The reverse zero is STRUCTURAL, not a gap in our extraction.")
+    print("  In the trace limit the measurement is")
+    print()
+    print("      D0 = n x M_alb / Kd")
+    print()
+    print("  so a partition coefficient determines only the RATIO n/Kd. It")
+    print("  cannot separate them, in principle, however well it is made. A")
+    print("  paper that works in the trace regime -- which is what makes its")
+    print("  coefficient a constant at all -- has thrown away the")
+    print("  information needed to recover a Kd. You need an experiment that")
+    print("  reaches saturation, and then you are measuring a Kd directly")
+    print("  and do not need the conversion.")
+    print()
+    print("  Restricted to the ten sources in db/binding_major_sources.xlsx:")
+    keep = {"Chen et al. 2025", "Wu et al. 2024", "Gao et al. 2025"}
+    infile = sum(len(v) for (src, how), v in fwd.items() if src in keep)
+    print(f"    {infile} rows convertible forward, {prose} more on the "
+          f"weaker prose route,")
+    print(f"    0 convertible in reverse.")
+    print()
+
+
+def part5(ncf, chen, fis):
+    rule()
+    print("5. WHY THE CONVERSION MUST STAY INSIDE ONE PAPER")
+    rule()
+    print("  Step 7 left a gap: Chen's Kd converts to 3.77 where Fischer")
+    print("  measured 4.48 on the same protein and species, 5.2x apart. It")
+    print("  is worth knowing why, because the reason says when the")
+    print("  conversion is safe at all.")
+    print()
+    print("  Solve for the n that would reconcile the two, compound by")
+    print("  compound. If the conversion were transferable it would come")
+    print("  out constant.")
+    print()
+    print(f"  {'cmpd':10s}{'nCF':>4s}{'Kd uM':>9s}{'logK meas':>10s}"
+          f"{'logK n=1':>9s}{'n implied':>10s}")
     ns = []
     for c in PFCA + PFSA:
         if c not in chen or c not in fis:
@@ -163,123 +352,82 @@ def part3(ncf, chen, fis):
               f"{pred:>9.2f}{n:>10.2f}")
     lo = min(ns, key=lambda t: t[1])
     hi = max(ns, key=lambda t: t[1])
-    print()
-    print(f"  n runs from {lo[1]:.2f} ({lo[2]}) to {hi[1]:.1f} ({hi[2]}) -- a "
-          f"{hi[1] / lo[1]:.0f}-fold span.")
-    print("  No protein has between 0.2 and 120 sites. The conversion has")
-    print("  failed, and n is absorbing something that is not stoichiometry.")
     sl, r = fit([t[0] for t in ns], [math.log10(t[1]) for t in ns])
-    print(f"  And the failure is ORDERED: implied n rises {sl:+.3f} log per")
-    print(f"  CF2 (r {r:+.2f}). Ordered residuals are a missing mechanism,")
-    print("  not measurement scatter.")
     print()
-
-
-def part4(ncf, chen, fis):
-    rule()
-    print("4. THE DIAGNOSIS: the two quantities have different chain-length")
-    print("   slopes, so no single n can reconcile them")
-    rule()
-    print("  The formula says log K and -log Kd differ by the constant")
-    print("  log n. Differentiate along the chain-length series: if n does")
-    print("  not depend on chain length, the two slopes must be EQUAL.")
+    print(f"  It is not constant: {lo[1]:.2f} ({lo[2]}) to {hi[1]:.1f} "
+          f"({hi[2]}), a {hi[1] / lo[1]:.0f}-fold span,")
+    print(f"  and it rises {sl:+.3f} log per CF2 (r {r:+.2f}). An ordered")
+    print("  residual is a missing mechanism, not scatter. The mechanism:")
     print()
     for lab, ser in (("carboxylates", PFCA), ("sulfonates", PFSA)):
         xk = [(ncf[c], -math.log10(chen[c])) for c in ser if c in chen]
         xd = [(ncf[c], fis[c]) for c in ser if c in fis]
         sk, rk = fit([a for a, _ in xk], [b for _, b in xk])
         sd, rd = fit([a for a, _ in xd], [b for _, b in xd])
-        print(f"  {lab}")
-        print(f"    -log Kd vs nCF  {sk:+.3f} per CF2  (r {rk:+.2f}, "
-              f"n={len(xk)})   affinity")
-        print(f"     log D  vs nCF  {sd:+.3f} per CF2  (r {rd:+.2f}, "
-              f"n={len(xd)})   capacity")
-        print(f"    gap             {sd - sk:+.3f} per CF2  -> "
-              f"{10 ** (sd - sk):.2f}x per CF2 of unexplained capacity")
+        print(f"    {lab:14s} -log Kd {sk:+.3f}/CF2 (r {rk:+.2f})   "
+              f"log K {sd:+.3f}/CF2 (r {rd:+.2f})   gap {sd - sk:+.3f}")
     print()
-    print("  Read the affinity row first. Chen's Kd is nearly FLAT in chain")
-    print("  length for the carboxylates, and it is not monotone: it falls")
-    print("  to an optimum near PFOA-PFDA and rises again for the longest")
-    print("  chains (PFDoDA 15.8 uM, PFTrDA 31.4 uM, against PFOA 2.6 uM).")
-    print("  Affinity peaks and then weakens. Partitioning does not -- it")
-    print("  climbs steadily across the whole series.")
+    print("  The formula says the two must have the SAME chain-length slope")
+    print("  if n does not depend on chain length. They do not. Affinity is")
+    print("  nearly flat and not even monotone -- Chen's Kd reaches an")
+    print("  optimum near PFOA-PFDA and weakens again (PFDoDA 15.8 uM")
+    print("  against PFOA 2.6 uM) -- while partitioning climbs steadily.")
     print()
-    print("  Those two facts are only compatible if what the partition")
-    print("  coefficient measures is not only the saturable site. It is")
-    print("  the sum in part 2(c), and the non-specific term grows with")
-    print("  hydrophobicity while the specific site does not. That is the")
-    print("  gap above, and it is exactly the split Qin 2023 and Qin 2024")
-    print("  fit explicitly as D_specific and D_nonspecific.")
+    print("  Those are compatible only if the partition coefficient includes")
+    print("  something the Kd does not: a non-saturating term that grows")
+    print("  with hydrophobicity. So the implied n is not a site count, it")
+    print("  is (total capacity)/(one-site capacity), and it is near 1 only")
+    print("  for the short carboxylates where the specific site dominates.")
     print()
-    print("  So the implied n of part 3 is not a count of sites. It is")
-    print()
-    print("      n_implied = (total capacity) / (one-site capacity)")
-    print()
-    print("  which is near 1 only where the specific site dominates -- the")
-    print("  short carboxylates -- and grows without bound as the")
-    print("  non-specific term takes over.")
+    print("  CONCLUSION. Convert only where one paper gives you the affinity")
+    print("  and the stoichiometry together, and label the output what it")
+    print("  is: the SPECIFIC term, not the albumin-water partition")
+    print("  coefficient. Above about C8 the specific term is the smaller")
+    print("  of the two contributions.")
     print()
 
 
-def part5():
+def part6(ncf, fis):
     rule()
-    print("5. SO WHAT CAN YOU ACTUALLY DO")
+    print("6. THE OTHER OPTION: REGRESS log K ON CHAIN LENGTH DIRECTLY")
     rule()
-    print("  WORKS -- converting within one study that reports both.")
-    print("    Qin 2023 reports Kd AND Cmax, so n is known and the")
-    print("    conversion is exact; kd_to_partition.py part 2 recovers the")
-    print("    albumin molarity to within 1% for all four compounds. If a")
-    print("    paper gives you an affinity and a capacity, use them.")
+    print("  This never touches a Kd, so none of the above applies. Fit")
+    print("  within ONE study, ONE head-group class and ONE basis, and")
+    print("  interpolate inside the measured range.")
     print()
-    print("  WORKS -- converting a Kd into the SPECIFIC term only.")
-    print("    log D_specific = C + log n - log Kd is sound. Just do not")
-    print("    call the result the albumin-water partition coefficient: it")
-    print("    is one of two terms, and for anything above about C8 it is")
-    print("    the smaller one.")
+    print("  Fischer et al. 2024, human serum albumin, L_w per kg protein:")
+    for lab, ser in (("carboxylates", PFCA), ("sulfonates", PFSA)):
+        pts = [(ncf[c], fis[c], c) for c in ser if c in fis]
+        sl, r = fit([p[0] for p in pts], [p[1] for p in pts])
+        xs = [p[0] for p in pts]
+        inter = (sum(p[1] for p in pts) / len(pts)
+                 - sl * sum(xs) / len(xs))
+        print(f"    {lab:14s} log K = {sl:+.3f} x nCF {inter:+.2f}   "
+              f"r {r:+.2f}, n = {len(pts)}, nCF {min(xs)}-{max(xs)}")
     print()
-    print("  WORKS -- correcting a coefficient for its measurement regime.")
-    print("    Multiply by (1 + Cw/Kd) to reach the trace limit. You need")
-    print("    the Cw the constant was measured at, which is why the")
-    print("    concentration columns were added to db/binding_major_"
-          "sources.xlsx.")
-    print()
-    print("  DOES NOT WORK -- a Kd from study A into a total partition")
-    print("    coefficient in study B. Part 3 is that experiment, done")
-    print("    under the best conditions available in this database -- one")
-    print("    species, both in the trace regime -- and it fails by up to")
-    print("    120x with a chain-length-ordered residual.")
-    print()
-    print("  DOES NOT WORK -- extrapolating a Kd along chain length to get")
-    print("    a partition coefficient. The two have different slopes")
-    print("    (part 4), so the error grows about 1.4x per CF2. Over PFBA")
-    print("    to PFDoDA that is two orders of magnitude.")
-    print()
-    print("  WHAT TO DO INSTEAD, if you need a partition coefficient for a")
-    print("  compound nobody has measured one for:")
-    print("    1. Regress log D on chain length DIRECTLY, within a head-")
-    print("       group class and within one study's basis. The slopes are")
-    print("       +0.21 (carboxylates) and +0.26 (sulfonates) per CF2 in")
-    print("       Fischer's human albumin series, and the same measurement")
-    print("       exists in Allendorf 2019 (bovine) and Qin 2024 (bovine).")
-    print("    2. Interpolate, do not extrapolate past the measured range.")
-    print("       Affinity turns over near C10 and capacity may too; the")
-    print("       Fischer series itself drops from 5.18 at PFUnDA to 3.87")
-    print("       at PFTeDA.")
-    print("    3. Use the Kd only for what it is good for -- telling you")
-    print("       WHERE the saturable site runs out, which is what decides")
-    print("       whether any of this is in the linear regime at all.")
+    print("  Two cautions that the r values hide.")
+    print("    - The series TURNS OVER. Fischer's own carboxylates run 5.18")
+    print("      at PFUnDA down to 3.87 at PFTeDA, so a line fitted across")
+    print("      the whole range understates the middle and overstates both")
+    print("      ends. Interpolate; do not extrapolate past the last")
+    print("      measured chain length.")
+    print("    - The slope is a property of the study's basis. Allendorf")
+    print("      2019 (bovine) and Qin 2024 (bovine) measure the same")
+    print("      quantity and would give their own intercepts; do not mix")
+    print("      an intercept from one with a slope from another.")
     print()
 
 
 def main():
     print(__doc__.split("Run:")[0].rstrip())
     print()
-    ncf, chen, fis = load()
+    ncf, chen, fis, rows = load()
     part1()
     part2()
-    part3(ncf, chen, fis)
-    part4(ncf, chen, fis)
-    part5()
+    part3()
+    part4(rows)
+    part5(ncf, chen, fis)
+    part6(ncf, fis)
     return 0
 
 
