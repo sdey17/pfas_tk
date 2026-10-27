@@ -481,15 +481,20 @@ def conc_uM(value, units):
 # serum and plasma are mixtures, and an immobilised stationary phase has no
 # concentration at all. Those stay blank.
 ALBUMIN_G_PER_MOL = 66463.0
+# Numbers in this column are written in several styles, scientific notation
+# included ("3e0 g/L", "2.5e-2 g/L"), so the number pattern has to admit it.
+_NUM = r"\d+(?:\.\d+)?(?:[eE][+-]?\d+)?"
 MASS_CONC = re.compile(
-    r"(\d+(?:\.\d+)?)\s*(?:-|to|\u2013)\s*(\d+(?:\.\d+)?)\s*(mg/mL|g/L)"
-    r"|(\d+(?:\.\d+)?)\s*(mg/mL|g/L)", re.I)
+    rf"({_NUM})\s*(?:-|to|\u2013)\s*({_NUM})\s*(mg/mL|g/L)"
+    rf"|({_NUM})\s*(mg/mL|g/L)", re.I)
 
 
 def albumin_conc_uM(protein, raw):
     """Highest albumin concentration in uM, from a mass concentration.
 
-    mg/mL and g/L are the same number, both being grams per litre.
+    mg/mL and g/L are the same number, both being grams per litre. `raw` is
+    the value and its unit already joined, because the database keeps them
+    in separate columns and neither alone is interpretable.
     """
     p = protein.lower()
     if "albumin" not in p or "stationary phase" in p:
@@ -723,8 +728,8 @@ def conditions(out):
             "mode": r["_mode"],
             "pfas_conc_uM": r["_lig"],
             "pfas_conc_as_stated": as_stated(r["_lig_raw"], r["_lig_units"]),
-            "protein_conc_uM": (r["_prot"] or
-                                albumin_conc_uM(r["protein"], r["_prot_raw"])),
+            "protein_conc_uM": (r["_prot"] or albumin_conc_uM(
+                r["protein"], as_stated(r["_prot_raw"], r["_prot_units"]))),
             "protein_conc_as_stated": as_stated(r["_prot_raw"], r["_prot_units"]),
             **_ratio_cell(r),
             "temperature_C": t_num, "temperature_as_stated": t_raw,
@@ -749,8 +754,9 @@ NOTES = [
                       "usefulness: Ryu 2024 is the largest contributor here "
                       "and reports unbound fractions in whole tissue "
                       "homogenate, which says nothing about any individual "
-                      "protein. db/binding_major5.xlsx is the companion "
-                      "selection made on that stricter basis. Nothing in "
+                      "protein. db/binding_major_sources.xlsx is the "
+                      "companion selection made on that stricter basis, "
+                      "over measured named-protein rows. Nothing in "
                       "either is absent from Affinity; both are views, not "
                       "different datasets."),
     ("", "`source` disambiguates the two Qin et al. 2024 papers, which share "
