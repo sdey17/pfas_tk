@@ -47,9 +47,13 @@ chain-length behaviour is a property of the partition coefficients and the
 level is a property of the volumes and compositions, each invariant to changes
 in the other. Reconstructing a third published formulation — the
 measured-parameter linear balance of Fischer et al., using measured PFAS
-albumin and membrane coefficients — removes the chain-length drift entirely
-over nCF 5–7 while leaving a 4.6× over-prediction, so no parameterisation
-tested here corrects the level. The over-steepening of the lipid term that
+albumin and membrane coefficients — flattens the chain-length drift over
+nCF 5–7 while leaving a 4.6× over-prediction, so no parameterisation tested
+here corrects the level. Tested limb by limb against eleven measured
+cell–water ratios rather than whole-balance uptake, the flattening proves to
+be a four-compound result: a drift of +0.12 to +0.14 decades per CF₂ remains
+in the cell term, and the cell term alone *under*-predicts by 2×, which
+localises the 4.6× over-prediction away from it. The over-steepening of the lipid term that
 causes the drift is corroborated by two independent laboratories, two lipid
 preparations and two analytical routes (+0.36 to +0.48 decades per CF₂
 measured, against +0.78 predicted). (v) The same formalism applied to human serum reproduces measured
@@ -752,7 +756,10 @@ Fischer et al.'s own form differs from the Armitage structure in four ways
 so (i) **one protein surrogate is used everywhere** — cell protein receives
 D<sub>BSA/w</sub>, not an octanol equivalence, which is the difference that
 invalidates the reconstruction above; (ii) cell water is a phase of
-D<sub>cell/w</sub>, unlike Qin's formulation; (iii) the normalising volume is
+D<sub>cell/w</sub>, unlike Qin's formulation — a difference of *basis* with no
+predictive content, since converting one form to the other cancels the water
+term exactly and the two then give identical predictions from identical
+coefficients (§6.7.3); (iii) the normalising volume is
 V<sub>cell</sub>, so the basis matches Armitage's and not Qin's; and (iv) there
 is no plastic term. The medium protein volume is also different in kind: it is
 total measured protein, not albumin. Fischer et al. measured 0.520% at 10%
@@ -788,12 +795,23 @@ membrane partitioning moves the level toward unity does not survive. As it
 stands, **no parameterisation tested in this work fixes the level**, which
 strengthens rather than weakens the central negative result of §6.4.
 
-**The chain-length drift is removed.** The slope falls from +0.282 to −0.134,
-and over nCF 5–7 — where three of the four compounds sit — it is −0.097. The reason is visible in the coefficients: Fischer's measured albumin
-series and Chen's measured membrane series rise with chain length at nearly
-the same rate, so their ratio, which is what the predicted fraction depends
-on (§6.5), is almost constant. Measured biopartitioning does solve the
-chain-length problem; it simply does not solve the level problem.
+**The chain-length drift is removed in this test.** The slope falls from
++0.282 to −0.134, and over nCF 5–7 — where three of the four compounds sit —
+it is −0.097. The reason is visible in the coefficients: Fischer's measured
+albumin series and Chen's measured membrane series rise with chain length at
+nearly the same rate, so their ratio, which is what the predicted fraction
+depends on (§6.5), is almost constant.
+
+That result does not generalise, and §6.7.3 shows why. It is obtained on
+four compounds, and on a whole-balance quantity in which the cell and medium
+limbs can offset each other. Taking the cell limb on its own against eleven
+measured cell–water ratios leaves a positive drift of +0.12 to +0.14 decades
+per CF₂ — consistent with the +0.34 per CF₂ §6.8 finds in the same term from
+the authors' own four-compound comparison. What survives is the weaker and
+more useful statement: predicting the lipid term from a single descriptor is
+where most of the drift comes from (§6.7.3, a 22-fold difference in slope on
+matched compounds). Measured biopartitioning reduces the chain-length
+problem; it does not remove it, and it does not solve the level problem.
 
 **The two failures are cleanly separable.** The slope in Table 7 is unchanged
 across a 6.9× change in cell lipid, a 3.3× change in cell volume and a 3×
@@ -930,6 +948,113 @@ documented here map onto two independent design axes. Measured biopartitioning
 addresses the level; a saturable albumin term addresses the chain-length
 behaviour. No published model currently occupies the corner that combines
 both with a protein-realistic cell.
+
+#### 6.7.3 The cell limb alone, against eleven measured ratios
+
+Everything above is tested on cellular uptake in three assay datasets, which
+is a whole-balance quantity: a residual in it can originate in the cell term,
+the medium term, the volumes, or any combination, and errors in opposite
+directions cancel. Qin et al. [22] remove that ambiguity for the cell term.
+They report measured log D<sub>cell/w</sub> for eleven PFAS spanning five head
+groups, in one cell line — HEK293H — whose composition the same group
+measured (33.9 mL/L protein, 5.3 mL/L lipid, 96.1% water). Holding the
+composition at that measured value leaves the partition coefficients as the
+only free parameters, so this test does by construction what §6.7.2 could
+only do by inference.
+
+The first result needs no model. Qin's Eq. 5 is a weighted mean of
+D<sub>SP/w</sub> and D<sub>lip/w</sub> over the sorptive volume, and a weighted
+mean must lie between its two inputs whatever the weights. Both inputs and the
+answer are measured, so the question is decidable:
+
+**Table 7b.** Whether the measured D<sub>cell/w</sub> is reachable by Eq. 5
+under *any* composition. Ranges are [D<sub>SP/w</sub>, D<sub>lip/w</sub>], both
+from [22] Table 1.
+
+| | nCF | D<sub>SP/w</sub> | D<sub>lip/w</sub> | achievable range | measured | verdict |
+|---|---|---|---|---|---|---|
+| PFBA | 3 | 2.11 | 1.00 | 1.00–2.11 | 2.40 | outside by +0.29 |
+| PFHxA | 5 | 2.45 | 2.32 | 2.32–2.45 | 3.45 | outside by +1.00 |
+| PFHpA | 6 | 2.65 | 2.91 | 2.65–2.91 | 3.69 | outside by +0.78 |
+| PFOA | 7 | 3.14 | 3.52 | 3.14–3.52 | 3.94 | outside by +0.42 |
+| PFNA | 8 | 3.39 | 4.25 | 3.39–4.25 | 3.74 | reachable |
+| PFUnA | 10 | 3.97 | 4.54 | 3.97–4.54 | 3.78 | outside by +0.19 |
+| HFPO-DA | 5 | 2.77 | 2.41 | 2.41–2.77 | 3.09 | outside by +0.32 |
+| PFHxS | 6 | 2.95 | 4.13 | 2.95–4.13 | 3.56 | reachable |
+| PFOS | 8 | 3.94 | 4.89 | 3.94–4.89 | 4.32 | reachable |
+| 6:2 FTSA | 6 | 3.39 | 3.87 | 3.39–3.87 | 3.90 | outside by +0.03 |
+| PFOSA | 8 | 3.52 | 4.94 | 3.52–4.94 | 3.81 | reachable |
+
+Seven of eleven are unreachable, by 0.03 to 1.00 log units, and **all seven
+fail on the same side**: the cell sorbs more than either of the two pure
+phases the model offers it. That is not a mixing problem and no retuning of
+volume fractions can address it. Either a sorptive phase is missing, or
+D<sub>SP/w</sub> measured on isolated structural protein understates protein
+*in situ*; Eq. 5 cannot express either possibility. The §6.7.1 finding is
+therefore not an artefact of four compounds, and it holds in the form that
+needs no parameterisation at all.
+
+With the composition fixed, the remaining variants differ only in which
+coefficient stands in for cell protein. Both published choices are tested as
+their authors made them — [22] predicts D<sub>cell/w</sub> from the measured
+D<sub>SP/w</sub>, [3] from the albumin non-specific term as a surrogate.
+
+**Table 7c.** Cell-limb variants, measured HEK293H composition throughout.
+Slope is the residual against nCF, decades per CF₂.
+
+| variant | n | bias | slope | r |
+|---|---|---|---|---|
+| measured D<sub>SP/w</sub> + measured D<sub>lip/w</sub> [22] | 11 | 0.49× | +0.144 | +0.60 |
+| — the 9 with D<sub>lip/w</sub> measured, not predicted | 9 | 0.42× | +0.123 | +0.56 |
+| albumin non-specific surrogate [3] | 11 | 1.02× | +0.269 | +0.84 |
+| albumin specific term instead | 7 | 2.84× | +0.224 | +0.63 |
+| IV-MBM EQP v2.0 cell term, rebased | 4 | 0.17× | +0.299 | +0.75 |
+| measured coefficients, same 4 compounds | 4 | 0.48× | +0.014 | +0.10 |
+
+Four things follow.
+
+**The discriminator survives.** On the four compounds for which a
+log K<sub>OW</sub> is sourced per compound, the spLFER lipid coefficient leaves
+a residual slope of +0.299 against +0.014 for measured coefficients — a
+22-fold difference, the same direction as the +0.282 against −0.134 of
+Tables 6 and 7. Predicting the lipid term from one descriptor is where most of
+the chain-length drift originates. The Armitage limb is restricted to those
+four rather than interpolating a log K<sub>OW</sub> across five head groups,
+and its input is in any case not settled: the OPERA/COSMOtherm disagreement on
+PFHxS alone (3.69 against 5.29) moves its predicted D<sub>cell/w</sub> by 1.63
+log units, more than most of the residuals being compared.
+
+**Chain-length neutrality does not survive.** Across eleven compounds the
+measured-coefficient residual is +0.144 decades per CF₂, +0.123 over the nine
+whose D<sub>lip/w</sub> is measured rather than predicted, and +0.119 within
+the seven carboxylates alone — so it is not an artefact of pooling head
+groups. The −0.134 of Table 7 is a four-compound, whole-balance result; on the
+same four compounds this test also gives a flat +0.014. Both are right about
+their own quantity, and the eleven-compound figure is the one that
+generalises. It agrees in sign and approximate magnitude with the +0.34 per
+CF₂ that §6.8 obtains for the same term from the authors' own comparison.
+
+**The level error is localised away from the cell term.** The cell limb, with
+measured composition and both coefficients measured, *under*-predicts by about
+2× (0.49× over eleven, 0.42× over the nine). The whole-balance test
+over-predicts by 4.62×. The two have opposite sign, so the 4.62× cannot be
+coming from the cell coefficient, and by §6.7.2's own separation argument it
+sits in the volumes. It also means the cell and medium errors partially cancel
+in the whole-balance residual — which is precisely why a whole-balance
+residual is a weak diagnostic, and why this limb-by-limb test was worth
+running.
+
+**The surrogate outperforms the measurement, on level.** Using albumin's
+non-specific coefficient for cell protein gives a bias of 1.02×, against 0.49×
+for the directly measured structural-protein coefficient. Cell protein behaves
+more like albumin in the saturated regime than like isolated structural
+protein. The albumin route pays for that level agreement with a steeper drift
+(+0.269 against +0.144), so neither choice dominates; and the albumin
+*specific* term is worst of the three at 2.84×, as expected where assays dose
+at ν > 1. Note that Qin's specific constant is the ratio at half-saturation
+(Eq. 15, C<sub>max</sub>/2K<sub>d</sub>), 0.301 log below the plateau of the
+specific term, so read as a plateau that row understates by 2× and the true
+sub-saturating variant is 5.7×.
 
 ### 6.8 How much agreement did the source models claim?
 
@@ -1072,13 +1197,30 @@ organics it was calibrated on.
 
 Everything above runs through a model: Qin's saturable albumin term, fitted to
 four compounds. The same group has since published the concentration
-dependence directly [22, SI Table S6], as Freundlich-type fits of the form
+dependence directly, as Freundlich-type fits of the form
 log D = *m*·log C<sub>w</sub> + *b* for eleven PFAS in two matrices. The
 exponent *m* is the entire question, because **a linear sorption model asserts
 m = 0**.
 
-**Table 11.** Measured concentration dependence of albumin binding [22].
-C<sub>w</sub> in µmol/L.
+The albumin column is ref. [4] Table 1; it also appears as SI Table S6 of
+ref. [22], reprinted verbatim and uncited, and the two agree in every slope,
+intercept and R². Attribution matters here because it determines what the
+numbers were measured in: BSA in PBS at a concentration set per compound to
+hold the bound fraction between 30 and 90%, dosed over a 9-step two-fold
+series and fitted with a Freundlich isotherm — not the assay medium or the
+cytotoxicity plate of ref. [22], which has a different protein content and
+contains cells. The medium column of SI Table S6 *is* ref. [22]'s own
+measurement (its Figure S6).
+
+One feature of the table is a stated convention rather than a result: whether
+a compound receives an exponent or a flat constant is decided by a threshold.
+Ref. [4] fits the exponent, and where it comes out at or above 0.9 — weakly
+concentration-dependent or independent — the exponent is forced to 1 and the
+average log D reported instead. PFUnA is a constant for that reason, not
+because its isotherm is flat.
+
+**Table 11.** Measured concentration dependence of albumin binding [4, Table
+1]. C<sub>w</sub> in µmol/L.
 
 | | *m* (BSA) | fall in D<sub>BSA/w</sub> per decade | across one dose series (1.2 decades) |
 |---|---|---|---|
@@ -1107,7 +1249,18 @@ for the four compounds overlapping Qin et al. [3] the exponents reproduce for
 the sulfonates (PFHxS −0.480 → −0.472, PFOS −0.381 → −0.379) and come out
 shallower for the carboxylates (PFBA −0.391 → −0.298, PFOA −0.381 → −0.314),
 so the earlier four-compound figures were if anything the stronger version of
-the claim.
+the claim. The pattern has a stated cause rather than being a discrepancy:
+ref. [4] pooled the single-fibre C18-SPME data of ref. [3] with its own
+BioSPME data for the compounds measured by both and refitted them together,
+so these are the same measurements re-analysed, not a disagreement between
+two of them. PFOS moved least because its low-concentration points were
+excluded from the joint fit — they were taken at 5 mg/mL albumin, where the
+compound was >99% bound and the free concentration was below what the method
+resolves. That exclusion also supersedes ref. [3]'s PFOS dissociation
+constant of 6.2 nM, which this work does not use: it is 111× tighter than an
+independent bovine measurement and 151× tighter than an independent human
+one, and the trace-limit partition coefficient it implies sits 1.2–2.0 log
+units above every sub-saturating measurement of albumin partitioning.
 
 The exception is informative. PFUnA is the one compound whose binding is
 concentration-*independent* over the range tested. It is the longest chain in
@@ -1324,6 +1477,8 @@ thing as the model as its authors would run it.
 | coefficient substitutions, Armitage structure (§6.7.1) | `tk_review/scripts/mbm_measured_parameter_variant.py` |
 | the Fischer et al. form (§6.7.2) | `tk_review/scripts/mbm_fischer_escher_balance.py` |
 | Qin's model against Qin's measurement (§6.8) | `tk_review/scripts/mbm_qin_internal_check.py` |
+| the cell limb against eleven measured ratios (§6.7.3) | `tk_review/scripts/mbm_cellwater_eleven.py` |
+| provenance of the albumin coefficients (§7.1) | `tk_review/scripts/qin2024_tableS6_provenance.py` |
 | IV-MBM v1.0 against v2.0 (§3.1) | `tk_review/scripts/mbm_armitage_v1_vs_v2.py` |
 | measured albumin non-linearity (§7.1) | `tk_review/scripts/qin2024_saturation_measured.py` |
 | Qin 2024 cross-checks (§6.7, §6.7.2) | `tk_review/scripts/qin2024_baseline_check.py` |
@@ -1360,6 +1515,16 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
    Bovine, trout, and human plasma protein binding of per- and polyfluoroalkyl
    substances. *Environ Sci Technol* 2024;58(23):9954–9966.
    doi:10.1021/acs.est.3c10824
+   — Read at source (PMC11171458, open access). The origin of the
+   concentration-dependent albumin coefficients used in §6.7.3 and §7.1: its
+   Table 1 is reprinted verbatim and uncited as SI Table S6 of ref. [22],
+   agreeing in every slope, intercept and R² (§7.1). Its Methods supply the
+   derivation — BioSPME on BSA in PBS at a concentration set per compound for
+   30–90% bound, a Freundlich fit to bound against free, and the rule that a
+   fitted exponent at or above 0.9 is forced to 1 and reported as a
+   concentration-independent constant. Its refit also supersedes ref. [3]'s
+   PFOS parameters, whose specific term was fitted where the compound was
+   >99% bound and the free concentration unresolvable.
 5. Rosenmai AK, Ahrens L, le Godec T, Lundqvist J, Oskarsson A. Relationship
    between peroxisome proliferator-activated receptor alpha activity and
    cellular concentration of 14 perfluoroalkyl substances in HepG2 cells.
@@ -1439,10 +1604,14 @@ not carried into this manuscript, is `report/MBM_Qin_vs_Armitage.md`.
     per-compound liposome–water ratios used in §6.7 (its Table 1), the
     regressions eqs S9–S10, the measured cell compositions of §6.7.2 (its SI
     Table S8) and the measured concentration dependence of §7.1 (its SI
-    Table S6). Read at source with its Supporting Information.
+    Table S6). Also the eleven measured cell–water and structural
+    protein–water ratios of §6.7.3, which are its own measurements (Table 1,
+    at concentrations near IC₁₀,nom). Its SI Table S6 BSA column is not its
+    own: it is ref. [4] Table 1, reprinted verbatim and uncited. Read at
+    source with its Supporting Information.
 **Provenance of references.** Read at source, including supplementary
-material where cited: 1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 17, 22. Bibliographic record
-verified: 4, 11, 18, 19. Cited via ref. [3], which is the source of the
+material where cited: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 17, 22. Bibliographic
+record verified: 11, 18, 19. Cited via ref. [3], which is the source of the
 values used: 20. Cited via ref. [17] for a statement attributed to it, not
 independently retrieved: 21. Cited as methodological context from the
 reference list of ref. 1, not independently retrieved: 13, 14, 15, 16.
