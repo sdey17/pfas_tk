@@ -116,7 +116,21 @@ def first_author(study):
     return s
 
 
-def source_label(study, year):
+# One (study, year) pair in the database spans two different papers: Qin et
+# al. 2024 published the plasma-binding paper (ES&T 58:9954, 3c10824) and the
+# baseline-toxicity paper (ES&T 58:5727, 3c09950) in the same volume. A
+# reading copy whose `source` column maps both to "Qin 2024" is ambiguous
+# exactly where this project needs it not to be, since one measured albumin
+# and plasma and the other measured cells and assay medium.
+DISAMBIGUATE = {
+    "10.1021/acs.est.3c10824": "Qin 2024 (plasma)",
+    "10.1021/acs.est.3c09950": "Qin 2024 (bioassay)",
+}
+
+
+def source_label(study, year, doi=""):
+    if doi in DISAMBIGUATE:
+        return DISAMBIGUATE[doi]
     return f"{first_author(study)} {year}".strip()
 
 
@@ -457,6 +471,36 @@ def conc_uM(value, units):
     return "" if hi is None else "%.6g" % hi
 
 
+# Albumin is the one protein here whose molar mass is a published constant
+# rather than a property of the preparation, so a mass concentration of it
+# converts to a molarity exactly. Serum albumin is 66.5 kDa (BSA 66,463
+# g/mol, HSA 66,472 -- the difference is 0.01% and far below the precision
+# of any concentration stated in these papers). This is unit arithmetic with
+# one constant, not an inference about the sample, and it is applied ONLY to
+# albumin: gamma-globulin is a heterogeneous fraction with no single mass,
+# serum and plasma are mixtures, and an immobilised stationary phase has no
+# concentration at all. Those stay blank.
+ALBUMIN_G_PER_MOL = 66463.0
+MASS_CONC = re.compile(
+    r"(\d+(?:\.\d+)?)\s*(?:-|to|\u2013)\s*(\d+(?:\.\d+)?)\s*(mg/mL|g/L)"
+    r"|(\d+(?:\.\d+)?)\s*(mg/mL|g/L)", re.I)
+
+
+def albumin_conc_uM(protein, raw):
+    """Highest albumin concentration in uM, from a mass concentration.
+
+    mg/mL and g/L are the same number, both being grams per litre.
+    """
+    p = protein.lower()
+    if "albumin" not in p or "stationary phase" in p:
+        return ""
+    m = MASS_CONC.search(raw)
+    if not m:
+        return ""
+    hi = float(m.group(2) or m.group(4))          # g/L
+    return "%.6g" % (hi / ALBUMIN_G_PER_MOL * 1e6)
+
+
 TEMP_NUM = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*$")
 # Only an NaCl concentration the buffer states outright. Full ionic strength
 # is not computed: most of these buffer descriptions name the salt but not
@@ -564,7 +608,7 @@ def build(filter_compounds=True):
         rows = list(csv.DictReader(fh))
     out, skipped, qualitative = [], [], []
     for r in rows:
-        src = source_label(r["study"], r["year"])
+        src = source_label(r["study"], r["year"], r["doi"])
         loc = location(r["source_table"])
         base = dict(pfas=r["chemical"], species=r["protein_species"],
                     protein=r["protein"], source=src, location=loc,
@@ -679,7 +723,8 @@ def conditions(out):
             "mode": r["_mode"],
             "pfas_conc_uM": r["_lig"],
             "pfas_conc_as_stated": as_stated(r["_lig_raw"], r["_lig_units"]),
-            "protein_conc_uM": r["_prot"],
+            "protein_conc_uM": (r["_prot"] or
+                                albumin_conc_uM(r["protein"], r["_prot_raw"])),
             "protein_conc_as_stated": as_stated(r["_prot_raw"], r["_prot_units"]),
             **_ratio_cell(r),
             "temperature_C": t_num, "temperature_as_stated": t_raw,
@@ -695,16 +740,24 @@ NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
     ("Major studies", "The same rows as Affinity, restricted to the "
                       "studies that supply at least 100 standardised "
-                      "measurements each. Five do. The threshold is a count, "
-                      "not a judgement, and is written into the script "
-                      "(MAJOR_MIN_ROWS) so the selection can be re-derived; "
-                      "it also happens to pick out the five studies the "
-                      "review's quantitative sections rest on -- Qin 2024 "
-                      "and Fischer 2024 for the mass-balance limb, Chen 2025 "
-                      "and Muensterman 2026 for the partition coefficients, "
-                      "Ryu 2024 for the free fractions. Nothing here is "
-                      "absent from Affinity; this tab is a view, not a "
-                      "different dataset."),
+                      "measurements each. The threshold is a count, not a "
+                      "judgement, and is written into the script "
+                      "(MAJOR_MIN_ROWS) so the selection can be re-derived "
+                      "and moves on its own as the database grows; the "
+                      "--check output lists who qualifies and with what. "
+                      "Note that counting rows is not the same as ranking "
+                      "usefulness: Ryu 2024 is the largest contributor here "
+                      "and reports unbound fractions in whole tissue "
+                      "homogenate, which says nothing about any individual "
+                      "protein. db/binding_major5.xlsx is the companion "
+                      "selection made on that stricter basis. Nothing in "
+                      "either is absent from Affinity; both are views, not "
+                      "different datasets."),
+    ("", "`source` disambiguates the two Qin et al. 2024 papers, which share "
+         "a study name and year but are different work: 'Qin 2024 (plasma)' "
+         "is the albumin and plasma binding paper (doi 10.1021/acs.est."
+         "3c10824) and 'Qin 2024 (bioassay)' the baseline-toxicity paper "
+         "(10.1021/acs.est.3c09950), which measured cells and assay medium."),
     ("Compounds", "Which compounds are in and why, so the filter can be "
                   "audited or overridden."),
     ("All measurements", "Every measurement in db/protein_binding.csv, "
@@ -742,7 +795,13 @@ NOTES = [
                      "one is given. Blank where the paper gives a dilution "
                      "factor, a mol/mol ratio or a mass-per-volume with no "
                      "molar mass -- those are not convertible without a guess."),
-    ("protein_conc_uM", "Protein concentration in uM, same rule."),
+    ("protein_conc_uM", "Where the paper states a molarity, that. Where it "
+                        "states a MASS concentration of albumin, converted "
+                        "at 66,463 g/mol -- unit arithmetic with one "
+                        "published constant, applied to albumin only. "
+                        "Gamma-globulin (no single molar mass), serum, "
+                        "plasma and immobilised stationary phases stay "
+                        "blank, and the verbatim string sits beside it."),
     ("pfas_conc_as_stated", "The ligand concentration exactly as the paper "
                             "states it, with its own units. Present whenever "
                             "the paper says anything at all, so a blank in "
@@ -912,35 +971,70 @@ def check(rows, out, skipped, qualitative, dropped):
     for s, n in collections.Counter(r["species"] for r in out).most_common():
         print(f"  {n:5d}  {s}")
     print()
-    print("Conversion cross-check -- PFOA on serum albumin, standardised.")
-    print("These four reach a Kd by four different routes; agreement between")
-    print("pairs that REPORT.md 6.1b/11a predicts should agree is the test")
-    print("that the log D bridge is being applied correctly:")
+    print("Cross-check -- every PFOA measurement on serum albumin.")
+    print("An earlier version of this block claimed to compare four routes")
+    print("to a Kd. It could not: two of the four report a partition")
+    print("coefficient, and this table deliberately refuses to convert one")
+    print("to a Kd without a stoichiometry the paper states. Those two rows")
+    print("never printed and the two ratio lines beneath them never ran.")
+    print("What follows instead is every PFOA-on-albumin row, in whichever")
+    print("currency its source reports, so the split is visible rather than")
+    print("silently filtered:")
     print()
-    want = {("Fischer 2024", "human", "log D"): "specific site, SPME depletion",
-            ("Qin 2024", "bovine", "log D"): "specific term, BioSPME isotherm",
-            ("Chen 2025", "human", "Kd"): "equilibrium dialysis",
-            ("Starnes 2025", "human", "Ka"): "DSF, at the melting transition"}
-    got = {}
-    for r in out:
-        k = (r["source"], r["species"], r["measure"])
-        if r["pfas"] == "PFOA" and "albumin" in r["protein"].lower() \
-                and k in want and k not in got and r["kd_uM"]:
-            got[k] = float(r["kd_uM"])
-            print(f"  {r['source']:14s} {r['value']:>8s} "
-                  f"{r['units'][:26]:26s} -> {r['kd_uM']:>8s} uM   {want[k]}")
-    f = got.get(("Fischer 2024", "human", "log D"))
-    q = got.get(("Qin 2024", "bovine", "log D"))
-    c = got.get(("Chen 2025", "human", "Kd"))
+    pfoa = [r for r in out if r["pfas"] == "PFOA"
+            and "albumin" in r["protein"].lower()
+            and "computational" not in r["measure"]]
+    print(f"  {'source':20s}{'species':9s}{'measure':11s}{'value':>10s}  "
+          f"{'kd_uM':>9s}{'logK':>8s}")
+    for r in sorted(pfoa, key=lambda x: (x["measure"], x["source"])):
+        print(f"  {r['source']:20s}{r['species']:9s}{r['measure']:11s}"
+              f"{r['value'][:10]:>10s}  {r['kd_uM'] or '-':>9s}"
+              f"{r['logK'] or '-':>8s}")
     print()
-    if f and q:
-        print(f"  Fischer / Qin specific  {max(f, q) / min(f, q):5.2f}x apart "
-              f"-- 11a predicts these two match")
-    if c and q:
-        print(f"  Chen / Qin specific     {max(c, q) / min(c, q):5.2f}x apart "
-              f"-- 11a predicts Chen sits with the NONSPECIFIC term instead")
-    print("  (Starnes is three orders weaker, which is the known DSF offset:")
-    print("   affinity measured at the protein's melting transition, not 37 C)")
+    kd_rows = [r for r in pfoa if r["kd_uM"]]
+    lk_rows = [r for r in pfoa if r["logK"]]
+    both = [r for r in pfoa if r["kd_uM"] and r["logK"]]
+    print(f"  {len(kd_rows)} rows reach a Kd and {len(lk_rows)} reach a logK, "
+          f"of {len(pfoa)} in all.")
+    print(f"  Exactly {len(both)} reach BOTH, and only by the one exact route "
+          f"there is:")
+    print("  the paper reported an affinity AND a stoichiometry, so the")
+    print("  conversion needs nothing assumed --")
+    print("    " + ", ".join(f"{r['source']} ({r['species']})"
+                             for r in both) + ".")
+    print("  Every other row sits in one currency or the other. That is the")
+    print("  constraint this project keeps running into: almost no study")
+    print("  measures both on the same material, so the two halves of the")
+    print("  table cannot be compared directly. The bridge in")
+    print("  qin2024_tableS6_provenance.py goes around it, through the")
+    print("  saturation slope, rather than through a conversion.")
+    print()
+    # Wu 2024's "binding constant KA" of 103 M^-1 is three to four orders
+    # below every other affinity for PFOA on albumin and comes from a
+    # docking-led study; it is reported, not excluded, but it would set the
+    # range on its own, so the spread is given both ways.
+    if lk_rows:
+        vals = sorted((float(r["logK"]), r["source"], r["species"])
+                      for r in lk_rows)
+        for v, src, sp in vals:
+            print(f"    {v:5.2f}   {src} ({sp})")
+        main = [v for v in vals if v[0] > 1.0]
+        print(f"  Spread over all {len(vals)}: {vals[0][0]:.2f} to "
+              f"{vals[-1][0]:.2f} log units "
+              f"({10 ** (vals[-1][0] - vals[0][0]):.0f}x), but that is set by")
+        print(f"  {vals[0][1]} alone. Over the other {len(main)}, which agree "
+              f"on the order of magnitude:")
+        print(f"  {main[0][0]:.2f} to {main[-1][0]:.2f}, a spread of "
+              f"{10 ** (main[-1][0] - main[0][0]):.1f}x across "
+              f"{len({m[1] for m in main})} laboratories.")
+    print()
+    if kd_rows:
+        vals = sorted(float(r["kd_uM"]) for r in kd_rows)
+        print(f"  The {len(kd_rows)} dissociation constants span {vals[0]:.3g} "
+              f"to {vals[-1]:.4g} uM ({vals[-1] / vals[0]:.0f}x),")
+        print("  which is dominated by method rather than by chemistry --")
+        print("  DSF at the melting transition against equilibrium dialysis")
+        print("  at 37 C. Those are not replicates and must not be pooled.")
     print()
     majors = major_sources(out)
     nmaj = sum(1 for r in out if r["source"] in majors)
