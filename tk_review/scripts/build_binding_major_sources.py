@@ -22,11 +22,25 @@ docking scores and predicted values, because neither is a measurement.
        6  Starnes 2024              32          8  Kd -- albumin, 4 species
        7  Starnes 2025              28         28  Ka -- HSA, DSF
        8  Allendorf 2019            24         14  log D -- BSA, dialysis
-       9  Bischel 2011              22         11  log D + f_unbound -- BSA
-      10  Wu 2024                   10         10  Ka -- HSA
-    ---- cut at 10 measured rows ----
-      11  Moro 2022                  8          4  Kd -- HSA
-      12  Peng 2024                  8          4  Ka -- HSA
+       9  Jia 2022                  13          9  Kd -- hL-FABP + HSA, MST
+      10  Bischel 2011              11         11  log D -- BSA
+    ---- cut at 11 measured rows ----
+      11  Wu 2024                   10         10  Ka -- HSA
+      12  Khazaee 2021              10          6  Kd -- L-FABP, I-FABP, PPARs
+      13  Moro 2022                  8          4  Kd -- HSA
+
+Two things about the bottom of that list are worth stating plainly rather
+than leaving in the numbers.  Wu 2024 and Khazaee 2021 both supply 10 rows
+and both fall ONE row short of the cut.  They tie with each other, not with
+the tenth source, so the tie rule below does not fire -- but a one-row
+margin is not a judgement about quality, and Khazaee is the only source in
+the database measuring PFAS against the PPAR receptors and against
+intestinal FABP.  Khazaee's rank also understates its content: 7 of its 17
+reported pairs are non-detections ("ND", no binding up to the highest
+concentration tested).  Those carry no number, so they are filed as
+qualitative rows and cannot count here, yet a clean non-detection against a
+named receptor is a real result.  Read it from the full database, not from
+this file.
 
 TWO RULES DECIDE THE SELECTION, both stated so neither is left to accident.
 
@@ -88,13 +102,30 @@ FIELDS = ["pfas", "species", "protein", "measure", "value", "units",
 # A named single protein. Albumin, globulin and the named binding proteins
 # count; a matrix that merely CONTAINS protein does not.
 PROTEIN_WORDS = ("albumin", "globulin", "transthyretin", "fabp",
-                 "fatty acid-binding", "glycoprotein")
+                 "fatty acid-binding", "glycoprotein",
+                 # Nuclear receptors are named single proteins too. They
+                 # were missing from this list, so Khazaee 2021's ten PPAR
+                 # rows did not count towards its rank on first ingestion.
+                 "ppar", "peroxisome proliferator")
+
+
+# A matrix can CONTAIN a named protein, or be named after an assay that
+# uses one, without being that protein. "PPARgamma assay medium" and
+# "HEK293H (PPARgamma-GeneBLAzer) whole cell" both carry the string "ppar";
+# neither is a purified receptor. Matrix wins over the protein word.
+# NOT in this list: "stationary phase". Muensterman 2026's albumin is
+# immobilised on a column, which changes the METHOD (biomimetic, a
+# surrogate) but not the material -- it is still human serum albumin. Its
+# IAM rows are excluded by "membrane" instead, which is what they are.
+MATRIX_WORDS = ("plasma", "whole cell", "cells", "medium", "homogenate",
+                "lysate", "tissue", "liposome", "bilayer", "membrane",
+                "milk", "whole human serum")
 
 
 def is_named_protein(protein):
+    """One purified, named protein -- not a matrix that contains proteins."""
     p = protein.lower()
-    if any(w in p for w in ("plasma", "serum albumin")) and \
-            "serum albumin" not in p:
+    if any(w in p for w in MATRIX_WORDS):
         return False
     return any(w in p for w in PROTEIN_WORDS)
 
@@ -216,7 +247,15 @@ NOTES = [
     ("How many", "The top TOP_N sources (currently 10), plus any source "
      "tied with the last of them. A rank boundary that splits two sources "
      "with identical counts is an arbitrary decision dressed as a ranking. "
-     "At 10 nothing ties at the boundary, so the rule does not bind here."),
+     "At 10 nothing ties AT the boundary, so the rule does not bind here "
+     "-- but Wu 2024 and Khazaee 2021 tie with each other at 10 rows, one "
+     "row below the cut of 11. A one-row margin is not a judgement about "
+     "quality."),
+    ("Missing by one row", "Khazaee 2021 is the only source in the "
+     "database measuring PFAS against PPAR-alpha, -gamma and -delta and "
+     "against intestinal FABP, and its rank understates it: 7 of its 17 "
+     "reported pairs are non-detections, which carry no number and so are "
+     "filed as qualitative rows. Read those from db/protein_binding.csv."),
     ("Ties inside the list", "Broken on distinct compounds. Starnes 2024 "
      "and Qin 2024 (plasma) both supply 32 rows; Qin covers 16 compounds "
      "against 8 and so is listed first. Both are kept either way."),
@@ -239,7 +278,11 @@ NOTES = [
      "values -- a documented offset, not a disagreement to average over. "
      "Muensterman 2026 is biomimetic chromatography calibrated against "
      "pharmaceuticals, a surrogate rather than an equilibrium measurement, "
-     "and the paper does not state its basis."),
+     "and the paper does not state its basis. Jia 2022 measures by "
+     "microscale thermophoresis; on hL-FABP its PFOA Kd is 181x the "
+     "equilibrium-dialysis value of Khazaee 2021 and the fluorescence "
+     "value is 509x it, so a liver-FABP affinity is only comparable "
+     "within one method."),
     ("", ""),
     ("", ""),
     ("pfas", "Chemical as the paper names it."),
