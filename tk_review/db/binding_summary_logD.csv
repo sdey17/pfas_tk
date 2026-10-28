@@ -23,11 +23,9 @@ PFNA,bovine serum albumin (BSA),2,2,4.54,4.61,4.57,1.02,"solid-phase microextrac
 10:2 FtS,bovine serum albumin (BSA),1,1,4.88,4.88,4.88,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 10:2 FtS,gamma-globulin,1,1,4.56,4.56,4.56,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 10:2 FtS,human serum albumin (HSA),1,1,4.68,4.68,4.68,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-10:2 FtS,whole human serum (surrogate),1,1,3.41,3.41,3.41,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 5:3 FTCA,bovine serum albumin (BSA),1,1,2.90,2.90,2.90,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 5:3 FTCA,gamma-globulin,1,1,2.30,2.30,2.30,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 5:3 FTCA,human serum albumin (HSA),1,1,3.48,3.48,3.48,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-5:3 FTCA,whole human serum (surrogate),1,1,2.62,2.62,2.62,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 6:2 FTOH,bovine serum albumin (BSA),1,1,2.67,2.67,2.67,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 6:2 FTOH,human plasma (protein + lipid),1,1,2.73,2.73,2.73,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 6:2 FTOH,trout plasma (protein + lipid),1,1,2.77,2.77,2.77,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
@@ -37,44 +35,34 @@ PFNA,bovine serum albumin (BSA),2,2,4.54,4.61,4.57,1.02,"solid-phase microextrac
 6:2 FtS,bovine serum albumin (BSA),1,1,3.44,3.44,3.44,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 6:2 FtS,gamma-globulin,1,1,2.43,2.43,2.43,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 6:2 FtS,human serum albumin (HSA),1,1,3.35,3.35,3.35,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-6:2 FtS,whole human serum (surrogate),1,1,2.55,2.55,2.55,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 7:3 FTCA,bovine serum albumin (BSA),1,1,3.79,3.79,3.79,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 7:3 FTCA,gamma-globulin,1,1,2.49,2.49,2.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 7:3 FTCA,human serum albumin (HSA),1,1,3.59,3.59,3.59,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-7:3 FTCA,whole human serum (surrogate),1,1,2.74,2.74,2.74,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 8:2 FTOH,bovine serum albumin (BSA),1,1,4.61,4.61,4.61,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 8:2 FTOH,human plasma (protein + lipid),1,1,4.55,4.55,4.55,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 8:2 FTOH,trout plasma (protein + lipid),1,1,5.01,5.01,5.01,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 8:2 FtS,bovine serum albumin (BSA),1,1,4.49,4.49,4.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 8:2 FtS,gamma-globulin,1,1,3.52,3.52,3.52,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 8:2 FtS,human serum albumin (HSA),1,1,4.39,4.39,4.39,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-8:2 FtS,whole human serum (surrogate),1,1,3.08,3.08,3.08,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 ADONA,bovine serum albumin (BSA),1,1,3.84,3.84,3.84,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 ADONA,gamma-globulin,1,1,2.34,2.34,2.34,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 ADONA,human serum albumin (HSA),1,1,3.98,3.98,3.98,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-ADONA,whole human serum (surrogate),1,1,2.75,2.75,2.75,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FDSA,bovine serum albumin (BSA),1,1,4.69,4.69,4.69,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FDSA,gamma-globulin,1,1,4.95,4.95,4.95,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FDSA,human serum albumin (HSA),1,1,4.64,4.64,4.64,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-FDSA,whole human serum (surrogate),1,1,3.65,3.65,3.65,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FHxSA,gamma-globulin,1,1,2.21,2.21,2.21,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-FHxSA,whole human serum (surrogate),1,1,3.01,3.01,3.01,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSA,bovine serum albumin (BSA),1,1,4.33,4.33,4.33,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSA,gamma-globulin,1,1,3.03,3.03,3.03,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSA,human serum albumin (HSA),1,1,4.34,4.34,4.34,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-FOSA,whole human serum (surrogate),1,1,2.79,2.79,2.79,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSAA,bovine serum albumin (BSA),1,1,4.30,4.30,4.30,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSAA,gamma-globulin,1,1,2.96,2.96,2.96,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 FOSAA,human serum albumin (HSA),1,1,4.31,4.31,4.31,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-FOSAA,whole human serum (surrogate),1,1,3.01,3.01,3.01,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-EtFOSAA,bovine serum albumin (BSA),1,1,4.29,4.29,4.29,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-EtFOSAA,gamma-globulin,1,1,3.76,3.76,3.76,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-EtFOSAA,human serum albumin (HSA),1,1,4.23,4.23,4.23,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-N-EtFOSAA,whole human serum (surrogate),1,1,3.06,3.06,3.06,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-MeFOSAA,bovine serum albumin (BSA),1,1,4.29,4.29,4.29,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-MeFOSAA,gamma-globulin,1,1,3.45,3.45,3.45,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 N-MeFOSAA,human serum albumin (HSA),1,1,4.27,4.27,4.27,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-N-MeFOSAA,whole human serum (surrogate),1,1,3.02,3.02,3.02,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFBA,trout plasma (protein + lipid),1,1,1.43,1.43,1.43,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFBS,bovine serum albumin (BSA),1,1,2.28,2.28,2.28,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFBS,gamma-globulin,1,1,2.03,2.03,2.03,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
@@ -82,69 +70,53 @@ PFBS,human serum albumin (HSA),1,1,3.26,3.26,3.26,1,solid-phase microextraction 
 PFDA,bovine serum albumin (BSA),1,1,4.81,4.81,4.81,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDA,gamma-globulin,1,1,3.67,3.67,3.67,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDA,human serum albumin (HSA),1,1,4.73,4.73,4.73,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFDA,whole human serum (surrogate),1,1,3.40,3.40,3.40,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDS,bovine serum albumin (BSA),1,1,5.13,5.13,5.13,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDS,gamma-globulin,1,1,4.96,4.96,4.96,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDS,human serum albumin (HSA),1,1,5.05,5.05,5.05,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFDS,whole human serum (surrogate),1,1,3.90,3.90,3.90,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDoDA,bovine serum albumin (BSA),1,1,5.12,5.12,5.12,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDoDA,gamma-globulin,1,1,4.81,4.81,4.81,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFDoDA,human serum albumin (HSA),1,1,5.05,5.05,5.05,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFDoDA,whole human serum (surrogate),1,1,3.62,3.62,3.62,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpA,gamma-globulin,1,1,1.81,1.81,1.81,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpA,human serum albumin (HSA),1,1,4.10,4.10,4.10,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpA,trout plasma (protein + lipid),1,1,3.32,3.32,3.32,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFHpA,whole human serum (surrogate),1,1,2.49,2.49,2.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpS,bovine serum albumin (BSA),1,1,4.88,4.88,4.88,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpS,gamma-globulin,1,1,2.47,2.47,2.47,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHpS,human serum albumin (HSA),1,1,5.49,5.49,5.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFHpS,whole human serum (surrogate),1,1,3.38,3.38,3.38,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxA,gamma-globulin,1,1,1.73,1.73,1.73,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxA,human serum albumin (HSA),1,1,3.20,3.20,3.20,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxA,trout plasma (protein + lipid),1,1,2.49,2.49,2.49,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFHxA,whole human serum (surrogate),1,1,1.99,1.99,1.99,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxS,gamma-globulin,1,1,1.95,1.95,1.95,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxS,human serum albumin (HSA),1,1,4.77,4.77,4.77,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFHxS,trout plasma (protein + lipid),1,1,4.00,4.00,4.00,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFHxS,whole human serum (surrogate),1,1,3.30,3.30,3.30,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNA,gamma-globulin,1,1,2.81,2.81,2.81,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNA,human plasma (protein + lipid),1,1,4.19,4.19,4.19,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFNA,human serum albumin (HSA),1,1,4.49,4.49,4.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNA,trout plasma (protein + lipid),1,1,4.71,4.71,4.71,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFNA,whole human serum (surrogate),1,1,2.99,2.99,2.99,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNS,bovine serum albumin (BSA),1,1,5.14,5.14,5.14,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNS,gamma-globulin,1,1,4.49,4.49,4.49,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFNS,human serum albumin (HSA),1,1,4.99,4.99,4.99,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFNS,whole human serum (surrogate),1,1,3.74,3.74,3.74,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOA,gamma-globulin,1,1,2.16,2.16,2.16,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOA,human serum albumin (HSA),1,1,4.48,4.48,4.48,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOA,trout plasma (protein + lipid),1,1,4.18,4.18,4.18,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFOA,whole human serum (surrogate),1,1,2.85,2.85,2.85,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOS,gamma-globulin,1,1,3.33,3.33,3.33,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOS,human serum albumin (HSA),1,1,4.62,4.62,4.62,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFOS,whole human serum (surrogate),1,1,3.09,3.09,3.09,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFOSA,bovine serum albumin (BSA),1,1,4.32,4.32,4.32,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFOSA,human plasma (protein + lipid),1,1,3.90,3.90,3.90,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFOSA,trout plasma (protein + lipid),1,1,4.33,4.33,4.33,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFPeA,human serum albumin (HSA),1,1,2.16,2.16,2.16,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFPeA,whole human serum (surrogate),1,1,2.21,2.21,2.21,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFPeS,bovine serum albumin (BSA),1,1,4.00,4.00,4.00,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFPeS,gamma-globulin,1,1,1.85,1.85,1.85,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFPeS,human serum albumin (HSA),1,1,3.98,3.98,3.98,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFPeS,whole human serum (surrogate),1,1,2.40,2.40,2.40,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTeDA,bovine serum albumin (BSA),1,1,3.87,3.87,3.87,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTeDA,gamma-globulin,1,1,4.00,4.00,4.00,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTeDA,human serum albumin (HSA),1,1,3.87,3.87,3.87,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFTeDA,whole human serum (surrogate),1,1,3.00,3.00,3.00,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTriDA,bovine serum albumin (BSA),1,1,4.47,4.47,4.47,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTriDA,gamma-globulin,1,1,4.33,4.33,4.33,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFTriDA,human serum albumin (HSA),1,1,4.54,4.54,4.54,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
-PFTriDA,whole human serum (surrogate),1,1,3.08,3.08,3.08,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFUnDA,gamma-globulin,1,1,4.64,4.64,4.64,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFUnDA,human plasma (protein + lipid),1,1,4.54,4.54,4.54,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 PFUnDA,human serum albumin (HSA),1,1,5.18,5.18,5.18,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 PFUnDA,trout plasma (protein + lipid),1,1,4.99,4.99,4.99,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
-PFUnDA,whole human serum (surrogate),1,1,3.87,3.87,3.87,1,solid-phase microextraction (C18 fiber depleti,Fischer et al. 2024
 flubendiamide,bovine serum albumin (BSA),1,1,3.98,3.98,3.98,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 flubendiamide,human plasma (protein + lipid),1,1,3.88,3.88,3.88,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024
 flubendiamide,trout plasma (protein + lipid),1,1,4.46,4.46,4.46,1,"solid-phase microextraction (BioSPME 96-pin, C",Qin et al. 2024

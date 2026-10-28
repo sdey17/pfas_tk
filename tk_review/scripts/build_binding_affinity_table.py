@@ -372,8 +372,38 @@ def to_kd_uM(rec):
 # There is no third route. Turning a Kd into a K without a stoichiometry is
 # the n = 1 assumption that was removed earlier, and it stays removed.
 VOL_TO_MASS = math.log10(1.364)
-MW_ALBUMIN = 66500.0
-N_NUM = re.compile(r"^\s*(\d*\.?\d+)\s*$")
+MW_ALBUMIN = 66463.0      # was 66500 here and 66463 everywhere else in the
+                          # project; 0.00024 log apart, but one number only
+N_NUM = re.compile(r"^\s*(\d*\.?\d+)\s*(?:\(.*\))?\s*$")
+
+# The bridge constant is log10(1e9/M) and it is NOT universal. Albumin and
+# L-FABP are 0.670 log apart -- a factor of 4.7 -- so dividing an L-FABP Kd
+# by albumin's mass is a silent, one-directional error. Masses are the
+# mature chain computed from the UniProt sequence (average residue masses,
+# water added, 2 H per disulfide removed), which is what a purified
+# preparation weighs.
+PROTEIN_MW = [
+    # (matcher, species or None for any, M g/mol, label for the basis cell)
+    (lambda p: "serum albumin" in p and "globulin" not in p, None,
+     MW_ALBUMIN, "albumin 66.5 kDa"),
+    (lambda p: "l-fabp" in p or "liver fatty acid" in p, "human",
+     14208.0, "human L-FABP 14.2 kDa, UniProt P07148"),
+    (lambda p: "l-fabp" in p or "liver fatty acid" in p, "rat",
+     14272.0, "rat L-FABP 14.3 kDa, UniProt P02692"),
+    (lambda p: "i-fabp" in p or "intestinal fatty acid" in p, "human",
+     15106.0, "human I-FABP 15.1 kDa, UniProt P12104 mature chain"),
+]
+
+# Species difference inside albumin: HSA 66,437 and BSA 66,398 by sequence,
+# 0.00025 log apart. One mass is used for both; the distinction is below
+# every other uncertainty in this table by three orders.
+
+PPAR_REFUSAL = (
+    "stoichiometry given, but the construct mass is not: Khazaee et al. "
+    "2021 names only the supplier and never says whether the material is "
+    "the full-length receptor (52.2, 57.6 and 49.9 kDa for alpha, gamma "
+    "and delta) or the ligand-binding domain alone, about a third of "
+    "that. A factor of 3 in M is 0.48 log in K")
 
 
 def is_serum_albumin(protein):
@@ -381,7 +411,71 @@ def is_serum_albumin(protein):
     return "serum albumin" in p and "globulin" not in p
 
 
-def to_logK(rec, n_sites):
+def protein_mw(protein, species):
+    """(M, label) for a protein this table may divide by, or (None, reason).
+
+    A refusal here is a statement that the molar mass of the material in
+    the assay is not known, which is a different failure from a missing
+    stoichiometry and is reported as such.
+    """
+    p, sp = protein.lower(), (species or "").strip().lower()
+    if "peroxisome" in p or "ppar" in p:
+        return None, PPAR_REFUSAL
+    for match, want_sp, m, label in PROTEIN_MW:
+        if match(p) and (want_sp is None or want_sp == sp):
+            return m, label
+    return None, ("stoichiometry given, but this protein has no "
+                  "unambiguous molar mass to divide by")
+
+
+SITE_PAREN = re.compile(r"^\s*(\d*\.?\d+)\s*(?:\(.*\))?\s*$")
+
+
+def site_count(n_sites):
+    """(n, how it was stated) from the n_binding_sites cell, or (None, None).
+
+    Three wordings occur. A bare number is a fit. A number with the method
+    in brackets -- Woodcroft's "2 (by displacement)" -- is the same thing.
+    A single-site model statement fixes n at 1 as the paper's own
+    assumption, which is weaker than a fit and is labelled so.
+    """
+    v = (n_sites or "").strip()
+    m = SITE_PAREN.match(v)
+    if m:
+        return float(m.group(1)), "fitted"
+    if "one site assumed" in v or "single-site model assumed" in v:
+        return 1.0, "single-site model assumed by the paper"
+    return None, None
+
+
+def kd_list_uM(rec, row=None):
+    """Every dissociation constant on the row, in uM.
+
+    Usually one, already parsed into kd_uM. A paper that fits several
+    classes of site writes them into one cell -- Woodcroft et al. 2010
+    gives "3.1e-6, 26.2e-6, 52.6e-6" in molar -- which parse_value
+    rightly refuses as a single number and which is read here instead.
+    """
+    if rec["kd_uM"]:
+        return [float(rec["kd_uM"])]
+    if row is None or rec["measure"] != "Kd":
+        return []
+    txt = row.get("kd", "").strip()
+    if "," not in txt:
+        return []
+    out = []
+    for part in txt.split(","):
+        tok = part.split()[0] if part.split() else ""
+        try:
+            out.append(float(tok))
+        except ValueError:
+            return []
+    u = row.get("kd_units", "").strip().lower().split()
+    scale = {"m": 1e6, "mm": 1e3, "um": 1.0, "nm": 1e-3}.get(u[0] if u else "")
+    return [v * scale for v in out] if scale else []
+
+
+def to_logK(rec, n_sites, row=None):
     """log10 K in L_water per kg protein, or blank with the reason."""
     meas, units, raw = rec["measure"], rec["units"], rec["value"]
 
@@ -407,21 +501,35 @@ def to_logK(rec, n_sites):
                     "reported per L protein; density conversion to per kg")
         return "", "no exact conversion from " + units
 
-    if not rec["kd_uM"]:
+    kds = kd_list_uM(rec, row)
+    if not kds:
         return "", "no Kd, and the paper reports no partition coefficient"
-    m = N_NUM.match(n_sites or "")
-    if not m:
+    n, how = site_count(n_sites)
+    if n is None:
         return "", ("the paper reports an affinity but no stoichiometry, and "
                     "K cannot be had from one without the other")
-    if not is_serum_albumin(rec["protein"]):
-        return "", ("stoichiometry given, but this protein has no "
-                    "unambiguous molar mass to divide by")
-    n = float(m.group(1))
-    kd_M = float(rec["kd_uM"]) * 1e-6
-    if n <= 0 or kd_M <= 0:
+    mw, label = protein_mw(rec["protein"], rec["species"])
+    if mw is None:
+        return "", label
+    if n <= 0 or min(kds) <= 0:
         return "", "conversion out of range"
-    return ("%.3f" % math.log10(1000.0 * n / (MW_ALBUMIN * kd_M)),
-            "from the paper's own Kd and n, albumin 66.5 kDa")
+
+    # Several classes of site add: K0 = (1e9/M) x SUM_i n_i/Kd_i. A paper
+    # that fits k classes and reports k constants has already told us
+    # n_i = 1 for each of them, which is what "n = 3 (by ITC)" means --
+    # three classes, one site apiece -- so the count must match the list.
+    if len(kds) > 1:
+        if abs(n - len(kds)) > 1e-9:
+            return "", (f"{len(kds)} dissociation constants but n = {n:g}; "
+                        "the site count and the constants do not correspond, "
+                        "so the sum cannot be formed")
+        total = sum(1.0 / k for k in kds)
+        detail = f"summed over {len(kds)} classes of site"
+    else:
+        total = n / kds[0]
+        detail = "one class of site" if n == 1 else f"n = {n:g}"
+    return ("%.3f" % math.log10(1e9 * total / mw),
+            f"from the paper's own Kd and n, {label}, {detail}")
 
 
 CONC_NUM = re.compile(
@@ -646,7 +754,7 @@ def build(filter_compounds=True):
                 val, units = "not detected", "not applicable"
             rec = dict(base, measure=meas, value=val, units=units)
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
-            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
+            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"], r)
             mark_computed(rec, r)
             (out if is_quantitative(val) else qualitative).append(rec)
         if r["unbound_fraction"].strip():
@@ -654,7 +762,7 @@ def build(filter_compounds=True):
                        value=r["unbound_fraction"].strip(),
                        units=canon_units("", "f_unbound"))
             rec["kd_uM"], rec["kd_basis"] = to_kd_uM(rec)
-            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"])
+            rec["logK"], rec["logK_basis"] = to_logK(rec, r["n_binding_sites"], r)
             mark_computed(rec, r)
             out.append(rec)
         if not meas and not r["unbound_fraction"].strip():
