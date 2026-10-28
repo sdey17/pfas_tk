@@ -55,10 +55,11 @@ LABEL = {"assumed": "n assumed = 1", "double-log": "n from a double-log slope",
          "isotherm": "n fitted from an isotherm"}
 SHAPE = {"carboxylate": "o", "sulfonate": "s", "other": "^"}
 
-# From scripts/logk_converted_vs_measured.py, parts 2, 3 and 6.
+# From scripts/logk_converted_vs_measured.py, parts 2, 3, 6 and 8.
 WITHIN_LAB = 0.19
 BETWEEN_LAB = 0.59
 LOO_REGRESSION = 0.44
+KD_INPUT = 1.45        # part 8: the same albumin Kd, two dialysis labs
 
 
 def load():
@@ -175,8 +176,10 @@ def panelC(ax, rows):
     bars = [
         ("one lab, two albumin batches", WITHIN_LAB, MUTED),
         ("chain-length line, leave-one-out", LOO_REGRESSION, AQUA),
-        ("two labs, same measurement", BETWEEN_LAB, MUTED),
+        ("two labs, same measured log K", BETWEEN_LAB, MUTED),
         ("Kd → K, n assumed = 1", chen, BLUE),
+        ("the SAME albumin Kd, two\ndialysis labs, the INPUT", KD_INPUT,
+         ORANGE),
     ]
     ys = range(len(bars))
     for y, (lab, v, col) in zip(ys, bars):
@@ -185,10 +188,18 @@ def panelC(ax, rows):
                 fontsize=7.8, color=INK)
     ax.set_yticks(list(ys))
     ax.set_yticklabels([b[0] for b in bars], fontsize=7.6)
-    ax.set_xlim(0, 1.18)
+    ax.set_xlim(0, 2.06)
     ax.set_xlabel("typical disagreement   (log units)")
-    ax.set_title("C   Is 0.80 log large? Four error scales from this database",
+    ax.set_title("C   Is 0.80 log large? Five error scales from this "
+                 "database -- the last is what feeds the conversion",
                  loc="left", fontsize=9.5, color=INK, pad=8)
+    ax.annotate("", xy=(KD_INPUT, 3.50), xytext=(chen, 3.50),
+                arrowprops=dict(arrowstyle="<->", color=MUTED, lw=0.9))
+    ax.text((chen + KD_INPUT) / 2, 3.50,
+            f"the input is {KD_INPUT / chen:.1f}\u00d7 noisier than the "
+            f"effect it is asked to explain",
+            bbox=dict(fc=SURFACE, ec="none", pad=1.5), va="center",
+            ha="center", fontsize=7.4, color=INK2)
     ax.grid(True, axis="x", lw=0.6, zorder=0)
     ax.set_axisbelow(True)
     ax.invert_yaxis()
@@ -201,8 +212,8 @@ def main():
     fig = plt.figure(figsize=(11.6, 8.8))
     top = fig.add_gridspec(1, 2, width_ratios=[1.0, 1.08], wspace=0.24,
                            left=0.065, right=0.975, top=0.845, bottom=0.40)
-    bot = fig.add_gridspec(1, 1, left=0.215, right=0.86,
-                           top=0.285, bottom=0.075)
+    bot = fig.add_gridspec(1, 1, left=0.215, right=0.90,
+                           top=0.300, bottom=0.075)
     panelA(fig.add_subplot(top[0, 0]), rows)
     panelB(fig.add_subplot(top[0, 1]), rows)
     panelC(fig.add_subplot(bot[0, 0]), rows)
@@ -212,10 +223,11 @@ def main():
              "coefficient; the two do not agree",
              ha="left", va="top", fontsize=13, color=INK)
     fig.text(0.065, 0.925,
-             "33 pairs, same compound, protein and species. The gap is a "
-             "missing site count, not non-specific binding: at the trace "
-             "limit\nQin 2024's non-specific term is 1\u201314% of the total "
-             "\u2014 0.07 log, where the gap is 0.80.",
+             "33 pairs, same compound, protein and species. Non-specific "
+             "binding is not the explanation: at the trace limit Qin 2024's "
+             "non-specific\nterm is 1\u201314% of the total, 0.07 log. But panel C "
+             "is the point \u2014 the Kd the conversion is built from is "
+             "noisier still.",
              ha="left", va="top", fontsize=8.6, color=INK2, linespacing=1.5)
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     fig.savefig(OUT, dpi=200)

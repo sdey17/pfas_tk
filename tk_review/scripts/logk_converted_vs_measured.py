@@ -41,8 +41,24 @@ already flags.
 Note what CANNOT be separated here: Chen 2025 is the only assumed-n
 source in the comparison, so "assumed n" and "Chen 2025" are the same
 column of numbers. The 0.80 log is solid; attributing it to the
-assumption rather than to the laboratory needs a second assumed-n paper
-measured against the same set, and there is none.
+assumption rather than to the laboratory would need a second assumed-n
+paper measured against the same set.
+
+PART 8 WENT LOOKING FOR THAT PAPER AND FOUND SOMETHING THAT MAKES THE
+QUESTION SMALLER. Gao et al. 2019 measures PFAS on human serum albumin
+by equilibrium dialysis, the same technique Chen uses, and the two
+laboratories differ on the SAME dissociation constants by a median 1.45
+log -- 45x on PFOA. Since log K = log10(1e9/M) + log n - log Kd, the
+converted value inherits that error one for one, so the Kd input is
+1.8x noisier than the 0.80 log effect being attributed. A stoichiometry
+wrong by six-fold is second-order next to an input reproducible to 28x.
+
+That does not rescue the conversion -- a one-sided offset across 22
+compounds is not what noise produces -- but it does say the offset is
+not worth attributing to any single cause while a larger, unattributed
+error sits underneath it. It is also a finding in its own right: PFOA on
+human serum albumin is the most-measured pair in PFAS toxicokinetics,
+and two dialysis measurements of it differ by 45x.
 
 I TESTED THE OBVIOUS ALTERNATIVE AND IT FAILS. The natural story is that
 a Kd describes one saturable site while a measured partition coefficient
@@ -88,6 +104,7 @@ import importlib.util
 import itertools
 import math
 import os
+import re
 import statistics
 import sys
 
@@ -697,6 +714,95 @@ def part7(out):
     print()
 
 
+def part8(out):
+    """How reproducible is the Kd that goes INTO the conversion?"""
+    rule()
+    print("8. THE INPUT'S OWN REPRODUCIBILITY, WHICH SETTLES PART 3")
+    rule()
+    print("  Part 3 could not separate 'assumed n' from 'Chen 2025'")
+    print("  because Chen was the only assumed-n source. The way to")
+    print("  break that is a second albumin paper fitting a single site.")
+    print("  Gao et al. 2019 is one: human serum albumin, equilibrium")
+    print("  dialysis, the same technique Chen uses. It is in this")
+    print("  database because Jia et al. 2022 transcribes six of its")
+    print("  values.")
+    print()
+    print("  Before comparing the two conversions, compare the two INPUTS.")
+    print()
+    rows = [r for r in csv.DictReader(
+        open(os.path.join(os.path.dirname(HERE), "db",
+                          "protein_binding.csv"), encoding="utf-8"))]
+    ed = collections.defaultdict(list)
+    for r in rows:
+        p = r["protein"].lower()
+        if "serum albumin" not in p or "globulin" in p:
+            continue
+        if "dialysis" not in r["method"].lower():
+            continue
+        m = re.match(r"^\s*([\d.]+(?:[eE][-+]?\d+)?)", r["kd"].strip())
+        if not m:
+            continue
+        u = (r["kd_units"].strip().lower().split() or [""])[0]
+        sc = {"m": 1e6, "mm": 1e3, "um": 1.0, "nm": 1e-3}.get(u)
+        if not sc:
+            continue
+        ed[(r["chemical"], r["protein_species"])].append(
+            (f"{r['study'].split()[0]} {r['year']}", float(m.group(1)) * sc))
+
+    print("  ALBUMIN Kd BY EQUILIBRIUM DIALYSIS -- one method, two labs,")
+    print("  same protein, same species:")
+    print()
+    print(f"  {'compound':12s}{'Chen 2025':>12s}{'Gao 2019':>11s}"
+          f"{'gap':>9s}{'':>5s}")
+    gaps = []
+    for (c, sp), v in sorted(ed.items()):
+        if len(v) < 2:
+            continue
+        d = dict(v)
+        lo, hi = min(x for _, x in v), max(x for _, x in v)
+        g = math.log10(hi / lo)
+        gaps.append(g)
+        print(f"  {c:12s}{d.get('Chen 2025', float('nan')):>11.2f} "
+              f"{d.get('Gao 2019', float('nan')):>10.0f} "
+              f"{g:>8.2f} log  ({hi / lo:.0f}x)")
+    if not gaps:
+        print("    no compound has two dialysis values")
+        return
+    med = statistics.median(gaps)
+    print()
+    print(f"  Median {med:.2f} log, worst {max(gaps):.2f} log, over "
+          f"{len(gaps)} compounds.")
+    print()
+    print("  THAT SETTLES IT, AND NOT THE WAY PART 3 EXPECTED.")
+    print()
+    print(f"  log K = log10(1e9/M) + log n - log Kd, so the converted")
+    print("  value inherits the Kd's error ONE FOR ONE. Two laboratories")
+    print(f"  measuring the same constant by the same method differ by")
+    print(f"  {med:.2f} log. The gap part 3 set out to explain is 0.80.")
+    print()
+    print(f"  The input is {med / 0.80:.1f}x noisier than the effect.")
+    print()
+    print("  So the confound cannot be broken, and more to the point it")
+    print("  does not need to be. Whatever stoichiometry anyone assumes,")
+    print("  a converted log K cannot be better than the Kd it is built")
+    print("  from, and on this evidence that Kd is reproducible between")
+    print(f"  laboratories to about {10 ** med:.0f}x. An n assumed wrong by a")
+    print("  factor of six is a second-order problem next to that.")
+    print()
+    print("  Note which way this cuts. It does NOT rescue the conversion:")
+    print("  part 3's offset is still one-sided across 22 compounds,")
+    print("  which noise alone does not produce. It says the offset is")
+    print("  not worth attributing to any one cause, because a larger,")
+    print("  unattributed error sits underneath it.")
+    print()
+    print("  AND IT IS A FINDING IN ITS OWN RIGHT. Two equilibrium-")
+    print("  dialysis measurements of PFOA on human serum albumin, the")
+    print("  single most-measured pair in PFAS toxicokinetics, differ by")
+    print(f"  {10 ** max(gaps):.0f}x. Any model that takes one of them as 'the' value")
+    print("  inherits that, and most models take one.")
+    print()
+
+
 def write(rows):
     if not rows:
         return
@@ -720,6 +826,7 @@ def main():
     part5(out, ncf)
     part6(out, ncf)
     part7(out)
+    part8(out)
     write(pairs)
     return 0
 
