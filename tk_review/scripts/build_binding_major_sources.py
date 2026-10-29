@@ -68,7 +68,8 @@ measurements the user did not ask to lose.  The `protein` column says what
 each row was measured in and `measure` marks anything computed.
 
 COLUMNS.  The nine requested, plus the ligand-to-protein ratio the assay
-reached and a `condition_id` key.  The concentrations, temperature and buffer used to
+reached, the stoichiometry each converted partition coefficient used, and a
+`condition_id` key.  The concentrations, temperature and buffer used to
 sit on every row; they are properties of the EXPERIMENT rather than of the
 individual number, so they moved to a Conditions sheet that holds one row per
 assay and the measurement rows carry the key instead.  That is mostly, but not
@@ -103,17 +104,32 @@ _spec = importlib.util.spec_from_file_location(
 B = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(B)
 
-# The nine columns asked for, then the regime ratio and the key into
-# Conditions. This is the reading copy, so it stays narrow: `binding_site`
-# came out again (16 of 578 rows carried one, and it is in
-# db/binding_affinity.xlsx and db/combined/binding.csv), and in its place
-# sits the one derived number worth scanning down a column --
-# ligand_protein_ratio_max, which says whether a constant was measured in
-# the specific-site regime or the partitioning one. A near-empty column
-# traded for the one that decides whether two numbers are comparable.
+# The nine columns asked for, then the two derived numbers worth scanning
+# down a column and the key into Conditions. This is the reading copy, so it
+# stays narrow: `binding_site` came out (16 of 578 rows carried one, and it
+# is in db/binding_affinity.xlsx and db/combined/binding.csv), and in its
+# place sit:
+#
+#   ligand_protein_ratio_max -- whether a constant was measured in the
+#   specific-site regime or the partitioning one, which is what decides
+#   whether two numbers are comparable at all;
+#
+#   n_used -- the stoichiometry each converted logK actually used. Sparse
+#   here on purpose, and the sparsity is the point: of the ten sources in
+#   this file only Chen 2025 reaches a logK through the Kd-and-n route, and
+#   it does so at n = 1 for every one of its rows. That single assumption is
+#   what the -0.86 log median offset in the converted-against-measured
+#   comparison rests on, so a reader of THIS file should be able to see it
+#   without opening another one. A blank means the row's logK was read off
+#   the paper directly and no stoichiometry entered it -- not that one is
+#   missing.
+#
+# The per-row conversion basis is still left out: it is prose, it is the
+# widest text in the database, and binding_affinity.xlsx carries it through
+# a basis_id lookup for anyone who needs the full reason.
 FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
-          "value", "units", "kd_uM", "logK", "ligand_protein_ratio_max",
-          "condition_id", "source"]
+          "value", "units", "kd_uM", "logK", "n_used",
+          "ligand_protein_ratio_max", "condition_id", "source"]
 
 # One name per compound, decided for the whole project in pfas_names.py.
 # `pfas` is the source's own spelling and stays untouched; group and
@@ -208,8 +224,13 @@ def main():
     rows, out, skipped, qualitative, dropped = B.build()
     # Numbered over the unfiltered table so a condition_id means the same
     # assay here as in db/binding_affinity.xlsx.
-    blocks = B.condition_index(B.build(filter_compounds=False)[1])
+    unfiltered = B.build(filter_compounds=False)[1]
+    blocks = B.condition_index(unfiltered)
     B.stamp_conditions(out, blocks)
+    # n_used rides with the basis stamp, which also sets a basis_id this
+    # file does not print; the index is built over the unfiltered set for
+    # the same reason the condition blocks are.
+    B.stamp_basis(out, B.basis_index(unfiltered))
     n, with_comp, cmpds, order = rank(out)
     excluded = collections.Counter(
         r["measure"] for r in out
@@ -257,7 +278,8 @@ def main():
     for s in kept:
         print(f"  {by[s]:5d}  {s}")
     print()
-    for f in ("kd_uM", "logK", "ligand_protein_ratio_max", "condition_id"):
+    for f in ("kd_uM", "logK", "n_used", "ligand_protein_ratio_max",
+              "condition_id"):
         got = sum(1 for r in sel if str(r[f]).strip())
         print(f"  {f:24s} populated {got:4d} / {len(sel)}")
     used = {r["condition_id"] for r in sel}
@@ -342,6 +364,16 @@ NOTES = [
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
      "kg protein. Two exact routes only: the paper measured it, or reported "
      "BOTH an affinity and a stoichiometry."),
+    ("n_used", "The stoichiometry that this row's converted logK actually "
+     "used, as a number. Blank means no stoichiometry entered the value -- "
+     "the paper reported a partition coefficient directly, or no logK was "
+     "reached at all -- NOT that one is missing. Of the ten sources here "
+     "only Chen 2025 converts through the Kd-and-n route, and it assumes "
+     "n = 1 throughout: log K fixes only the ratio n/Kd, so every one of "
+     "those values moves one-for-one with that assumption, and the "
+     "-0.86 log median gap between converted and measured coefficients is "
+     "measured against it. Read the Chen rows knowing that; the other nine "
+     "sources' coefficients carry no such assumption."),
     ("ligand_protein_ratio_max", "The highest ratio this assay reached: "
      "most ligand over least protein. Below about 0.01 a measurement sees "
      "the specific site; above about 1 it sees non-specific partitioning, "
@@ -396,11 +428,14 @@ NOTES = [
      "from, on Conditions, and on every measurement row, where it is "
      "actually used."),
     ("What is NOT here", "The binding site, and the per-row basis for each "
-     "converted value. This file is the reading copy and stays narrow. "
-     "Both are in db/binding_affinity.xlsx and in "
-     "db/combined/binding.csv: the site in its own column, the basis "
-     "through a `basis_id` key into a Conversion basis table that says how "
-     "every kd_uM and logK was reached, or why either is blank."),
+     "converted value -- the latter being prose, and the widest text in "
+     "the database. This file is the reading copy and stays narrow. Both "
+     "are in db/binding_affinity.xlsx and in db/combined/binding.csv: the "
+     "site in its own column, the basis through a `basis_id` key into a "
+     "Conversion basis table that says how every kd_uM and logK was "
+     "reached, or why either is blank. `n_used` is the one part of that "
+     "basis lifted out into this file, because it is a number and because "
+     "it is the assumption the converted values turn on."),
 ]
 
 
