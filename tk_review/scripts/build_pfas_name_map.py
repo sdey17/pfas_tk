@@ -26,18 +26,22 @@ FIELDS = ["chemical_raw", "chemical_canonical", "merged", "rows",
 
 
 def main():
-    rows = list(csv.DictReader(open(DB, encoding="utf-8")))
+    # Every file the canonical name is applied to, not just the binding
+    # database: the map must cover what the column covers.
+    rows = N.all_rows()
     agg = collections.defaultdict(
         lambda: {"rows": 0, "ncf": set(), "head": set(), "src": set()})
     for r in rows:
-        n = r["chemical"].strip()
+        n = r.get("chemical", "").strip()
+        if not n:
+            continue
         a = agg[n]
         a["rows"] += 1
         if r["n_perfluorinated_carbons"].strip():
             a["ncf"].add(r["n_perfluorinated_carbons"].strip())
         if r["head_group"].strip():
             a["head"].add(r["head_group"].strip())
-        a["src"].add(f"{r['study']} {r['year']}")
+        a["src"].add(f"{r.get('study', '')} {r.get('year', '')}".strip())
 
     unres = {}
     for pair, why in N.UNRESOLVED.items():

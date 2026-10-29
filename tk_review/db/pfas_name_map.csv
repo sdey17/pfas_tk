@@ -1,210 +1,257 @@
 chemical_raw,chemical_canonical,merged,rows,n_perfluorinated_carbons,head_group,sources,note
-"1,1,1,3,3,3-hexafluoroisopropylamine","1,1,1,3,3,3-hexafluoroisopropylamine",,1,,amine,Starnes et al. 2025,"prose list or range, not one compound"
-"1,1,2,3,3,3-hexafluoropropyl 1H,1H-heptafluorobutyl ether","1,1,2,3,3,3-hexafluoropropyl 1H,1H-heptafluorobutyl ether",,1,,ether (neutral),Starnes et al. 2025,"prose list or range, not one compound"
-10:2 FTCA,10:2 FTCA,,4,10,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026,
-10:2 FTOH,10:2 FTOH,,5,10,"alcohol (fluorotelomer, neutral)",Muensterman et al. 2026; Qin et al. 2024,
-10:2 FTS,10:2 FTSA,yes,2,10,sulfonate (fluorotelomer),Chen et al. 2025,
-10:2 FtS,10:2 FTSA,yes,6,10,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026,
-11Cl-PF3OUdS,8:2 Cl-PFESA,yes,5,10,chlorinated ether sulfonate; ether sulfonate (chlorinated),Chen et al. 2025; Muensterman et al. 2026; Wu et al. 2024,
-11Cl-PF3OUdS (8:2 Cl-PFESA),8:2 Cl-PFESA,yes,1,10,chlorinated ether sulfonate,Wu et al. 2024,
+(endogenous organic anions),(endogenous organic anions),,7,,,Cheng et al. 2005,"prose list or range, not one compound"
+"1,1,1,3,3,3-hexafluoroisopropylamine","1,1,1,3,3,3-hexafluoroisopropylamine",,2,,amine,Starnes et al. 2025,"prose list or range, not one compound"
+"1,1,2,3,3,3-hexafluoropropyl 1H,1H-heptafluorobutyl ether","1,1,2,3,3,3-hexafluoropropyl 1H,1H-heptafluorobutyl ether",,2,,ether (neutral),Starnes et al. 2025,"prose list or range, not one compound"
+10:2 FTCA,10:2 FTCA,,8,10,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026,
+10:2 FTOH,10:2 FTOH,,10,10,"alcohol (fluorotelomer, neutral)",Muensterman et al. 2026; Qin et al. 2024,
+10:2 FTS,10:2 FTSA,yes,4,10,sulfonate (fluorotelomer),Chen et al. 2025,
+10:2 FtS,10:2 FTSA,yes,12,10,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026,
+11Cl-PF3OUdS,8:2 Cl-PFESA,yes,10,10,chlorinated ether sulfonate; ether sulfonate (chlorinated),Chen et al. 2025; Muensterman et al. 2026; Wu et al. 2024,
+11Cl-PF3OUdS (8:2 Cl-PFESA),8:2 Cl-PFESA,yes,2,10,chlorinated ether sulfonate,Wu et al. 2024,
 16 PFASs (most bound TTR; fluorotelomer alcohols did not),16 PFASs (most bound TTR; fluorotelomer alcohols did not),,1,range,"carboxylate, sulfonate, fluorotelomer alcohol",Ren et al. 2016,
 "16 structurally diverse perfluoroalkyl compounds (incl. PFOS, perfluorohexadecanoic acid, perfluorooctadecanoic acid)","16 structurally diverse perfluoroalkyl compounds (incl. PFOS, perfluorohexadecanoic acid, perfluorooctadecanoic acid)",,1,"range, up to C18",carboxylate and sulfonate,Ren et al. 2015,"prose list or range, not one compound"
 "17 structurally diverse PFCs: 12 PFCAs (C4-C14+), 3 PFSAs, 2 fluorotelomer alcohols","17 structurally diverse PFCs: 12 PFCAs (C4-C14+), 3 PFSAs, 2 fluorotelomer alcohols",,1,3-13,"carboxylate, sulfonate, fluorotelomer alcohol",Zhang et al. 2013,"prose list or range, not one compound"
-"1H,1H,2H,2H-perfluorooctyl methacrylate","1H,1H,2H,2H-perfluorooctyl methacrylate",,1,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,"prose list or range, not one compound"
-"1H,1H,2H,2H-tridecafluoro-n-octyl acrylate","1H,1H,2H,2H-tridecafluoro-n-octyl acrylate",,1,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,"prose list or range, not one compound"
-"1H,1H,2H,3H,3H- perfluoroheptane- 1,2- diol","1H,1H,2H,3H,3H- perfluoroheptane- 1,2- diol",,1,,diol,Starnes et al. 2025,"prose list or range, not one compound"
-"1H,1H,8H,8H- octafluoro- 3,6- dioxaoctane- 1,8- diol","1H,1H,8H,8H- octafluoro- 3,6- dioxaoctane- 1,8- diol",,1,,diol,Starnes et al. 2025,"prose list or range, not one compound"
-"1H,1H-perfluoropentylamine","1H,1H-perfluoropentylamine",,1,,amine,Starnes et al. 2025,"prose list or range, not one compound"
-"2,2,3,3,4,4- hexfluoro- 1,5- pentanediol","2,2,3,3,4,4- hexfluoro- 1,5- pentanediol",,1,,diol,Starnes et al. 2025,"prose list or range, not one compound"
-"2,2,3,3,4,4-hexafluorobutyric acid","2,2,3,3,4,4-hexafluorobutyric acid",,1,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,"prose list or range, not one compound"
-"2,2,3,3-tetrafluoropropyl trifluoromethanesulfonate","2,2,3,3-tetrafluoropropyl trifluoromethanesulfonate",,1,,trifluoromethanesulfonate ester,Starnes et al. 2025,"prose list or range, not one compound"
-"2,2-difluoroethyl trifluoromethanesulfonate","2,2-difluoroethyl trifluoromethanesulfonate",,1,,trifluoromethanesulfonate ester,Starnes et al. 2025,"prose list or range, not one compound"
-2-(perfluorobutyl)ethyl acrylate,2-(perfluorobutyl)ethyl acrylate,,1,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,
+"1H,1H,2H,2H-perfluorooctyl methacrylate","1H,1H,2H,2H-perfluorooctyl methacrylate",,2,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,"prose list or range, not one compound"
+"1H,1H,2H,2H-tridecafluoro-n-octyl acrylate","1H,1H,2H,2H-tridecafluoro-n-octyl acrylate",,2,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,"prose list or range, not one compound"
+"1H,1H,2H,3H,3H- perfluoroheptane- 1,2- diol","1H,1H,2H,3H,3H- perfluoroheptane- 1,2- diol",,2,,diol,Starnes et al. 2025,"prose list or range, not one compound"
+"1H,1H,8H,8H- octafluoro- 3,6- dioxaoctane- 1,8- diol","1H,1H,8H,8H- octafluoro- 3,6- dioxaoctane- 1,8- diol",,2,,diol,Starnes et al. 2025,"prose list or range, not one compound"
+"1H,1H-perfluoropentylamine","1H,1H-perfluoropentylamine",,2,,amine,Starnes et al. 2025,"prose list or range, not one compound"
+"2,2,3,3,4,4- hexfluoro- 1,5- pentanediol","2,2,3,3,4,4- hexfluoro- 1,5- pentanediol",,2,,diol,Starnes et al. 2025,"prose list or range, not one compound"
+"2,2,3,3,4,4-hexafluorobutyric acid","2,2,3,3,4,4-hexafluorobutyric acid",,2,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,"prose list or range, not one compound"
+"2,2,3,3-tetrafluoropropyl trifluoromethanesulfonate","2,2,3,3-tetrafluoropropyl trifluoromethanesulfonate",,2,,trifluoromethanesulfonate ester,Starnes et al. 2025,"prose list or range, not one compound"
+"2,2-difluoroethyl trifluoromethanesulfonate","2,2-difluoroethyl trifluoromethanesulfonate",,2,,trifluoromethanesulfonate ester,Starnes et al. 2025,"prose list or range, not one compound"
+2-(perfluorobutyl)ethyl acrylate,2-(perfluorobutyl)ethyl acrylate,,2,,acrylate / methacrylate (fluorotelomer),Starnes et al. 2025,
 "24 PFAS (PFSA C4-C8, PFCA C4-C12, mono- and polyether perfluoroalkyl ether acids, fluorotelomers)","24 PFAS (PFSA C4-C8, PFCA C4-C12, mono- and polyether perfluoroalkyl ether acids, fluorotelomers)",,1,3-12,mixed,Gallagher et al. 2023,
-"24 PFAS from 6 chemical classes (PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFBS, PFHxS, PFOS, E1, GenX, Nafion byproduct 2, PFO3DoDA, 4:2 FTOH, 6:2 FTOH, 3:3/5:3/6:3/8:3 FTCA, 4:2/6:2 FTSA)","24 PFAS from 6 chemical classes (PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFBS, PFHxS, PFOS, E1, GenX, Nafion byproduct 2, PFO3DoDA, 4:2 FTOH, 6:2 FTOH, 3:3/5:3/6:3/8:3 FTCA, 4:2/6:2 FTSA)",,1,3-11 and ether/telomer analogues,"carboxylate, sulfonate, ether carboxylate, fluorotelomer alcohol, fluorotelomer ",Jackson et al. 2021,
+"24 PFAS from 6 chemical classes (PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFBS, PFHxS, PFOS, E1, GenX, Nafion byproduct 2, PFO3DoDA, 4:2 FTOH, 6:2 FTOH, 3:3/5:3/6:3/8:3 FTCA, 4:2/6:2 FTSA)","24 PFAS from 6 chemical classes (PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFBS, PFHxS, PFOS, E1, GenX, Nafion byproduct 2, PFO3DoDA, 4:2 FTOH, 6:2 FTOH, 3:3/5:3/6:3/8:3 FTCA, 4:2/6:2 FTSA)",,2,3-11 and ether/telomer analogues,"carboxylate, sulfonate, ether carboxylate, fluorotelomer alcohol, fluorotelomer ",Jackson et al. 2021,
 24 poly- and perfluorinated compounds; most potent were PFHxS > PFOS = PFOA > PFHpA > sodium perfluoro-1-octanesulfinate > PFNA,24 poly- and perfluorinated compounds; most potent were PFHxS > PFOS = PFOA > PFHpA > sodium perfluoro-1-octanesulfinate > PFNA,,1,range,"sulfonate, carboxylate, sulfinate",Weiss et al. 2009,"prose list or range, not one compound"
-26 PFAS standards from a 1999 3M AFFF (range across congeners),26 PFAS standards from a 1999 3M AFFF (range across congeners),,1,range,"mixed (carboxylate, sulfonate, sulfonamide, hydrocarbon surfactants)",Li et al. 2021,"prose list or range, not one compound"
-3:2 FTOH,3:2 FTOH,,1,,alcohol (fluorotelomer),Starnes et al. 2025,
-3:3 FTCA,3:3 FTCA,,5,3,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026; Starnes et al. 2025,
-"3h-heptafluoro-2,2,4,4-tetrahydroxypentane","3h-heptafluoro-2,2,4,4-tetrahydroxypentane",,1,,tetrol,Starnes et al. 2025,"prose list or range, not one compound"
-"4,4,4-trifluoro-3-(trifluoromethyl)crotonic acid","4,4,4-trifluoro-3-(trifluoromethyl)crotonic acid",,1,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
-"4,4,4-trifluorocrotonic acid","4,4,4-trifluorocrotonic acid",,1,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
-"4,4,5,5,6,6,6-heptafluoro-2-hexene","4,4,5,5,6,6,6-heptafluoro-2-hexene",,1,,olefin (neutral),Starnes et al. 2025,"prose list or range, not one compound"
-4:2 FTOH,4:2 FTOH,,1,,alcohol (fluorotelomer),Starnes et al. 2025,
-4:2 FTS,4:2 FTSA,yes,4,4,fluorotelomer sulfonate; sulfonate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026,
-4:2 FTSA,4:2 FTSA,,1,,sulfonate (fluorotelomer),Starnes et al. 2025,
-4:4 FTOH,4:4 FTOH,,1,,alcohol (fluorotelomer),Starnes et al. 2025,
-5:1:2 FTB,5:1:2 FTB,,4,5,betaine,Chen et al. 2025; Muensterman et al. 2026,
-5:2 sFTOH,5:2 sFTOH,,2,,,Muensterman et al. 2026,
-5:3 FTB,5:3 FTB,,4,5,betaine,Chen et al. 2025; Muensterman et al. 2026,
-5:3 FTCA,5:3 FTCA,,9,5,carboxylate (fluorotelomer); fluorotelomer carboxylate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Starnes et al. 2025,
-5H- perfluoropentanoic,5H- perfluoropentanoic,,1,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,
-5H-octafluoropentanal,5H-octafluoropentanal,,1,,aldehyde,Starnes et al. 2025,
+26 PFAS standards from a 1999 3M AFFF (range across congeners),26 PFAS standards from a 1999 3M AFFF (range across congeners),,2,range,"mixed (carboxylate, sulfonate, sulfonamide, hydrocarbon surfactants)",Li et al. 2021,"prose list or range, not one compound"
+3:2 FTOH,3:2 FTOH,,2,,alcohol (fluorotelomer),Starnes et al. 2025,
+3:3 FTCA,3:3 FTCA,,11,3,carboxylate (fluorotelomer),"Chen et al. 2025; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026; Starnes et al. 2025",
+"3h-heptafluoro-2,2,4,4-tetrahydroxypentane","3h-heptafluoro-2,2,4,4-tetrahydroxypentane",,2,,tetrol,Starnes et al. 2025,"prose list or range, not one compound"
+"4,4,4-trifluoro-3-(trifluoromethyl)crotonic acid","4,4,4-trifluoro-3-(trifluoromethyl)crotonic acid",,2,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
+"4,4,4-trifluorocrotonic acid","4,4,4-trifluorocrotonic acid",,2,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
+"4,4,5,5,6,6,6-heptafluoro-2-hexene","4,4,5,5,6,6,6-heptafluoro-2-hexene",,2,,olefin (neutral),Starnes et al. 2025,"prose list or range, not one compound"
+4:2 FTOH,4:2 FTOH,,2,,alcohol (fluorotelomer),Starnes et al. 2025,
+4:2 FTS,4:2 FTSA,yes,9,4,fluorotelomer sulfonate; sulfonate (fluorotelomer),"Chen et al. 2025; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026",
+4:2 FTSA,4:2 FTSA,,2,,sulfonate (fluorotelomer),Starnes et al. 2025,
+4:4 FTOH,4:4 FTOH,,2,,alcohol (fluorotelomer),Starnes et al. 2025,
+4H-PFBA,4H-PFBA,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+5:1:2 FTB,5:1:2 FTB,,8,5,betaine,Chen et al. 2025; Muensterman et al. 2026,
+5:2 sFTOH,5:2 sFTOH,,4,,,Muensterman et al. 2026,
+5:3 FTB,5:3 FTB,,8,5,betaine,Chen et al. 2025; Muensterman et al. 2026,
+5:3 FTCA,5:3 FTCA,,19,5,carboxylate (fluorotelomer); fluorotelomer carboxylate,"Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026; Sta",
+5H- perfluoropentanoic,5H- perfluoropentanoic,,2,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,
+5H-octafluoropentanal,5H-octafluoropentanal,,2,,aldehyde,Starnes et al. 2025,
+"6 PFCAs, 3 PFSAs and 4 fluorinated alternatives","6 PFCAs, 3 PFSAs and 4 fluorinated alternatives",,1,,,"Ebert A, Allendorf F, Berger U, Goss KU, Ulrich N 2020","prose list or range, not one compound"
 "6 PFCAs, 3 PFSAs, 4 alternatives","6 PFCAs, 3 PFSAs, 4 alternatives",,1,range across 13 congeners,"carboxylate, sulfonate, alternatives",Ebert et al. 2020,"prose list or range, not one compound"
 62 ligands (26 PFAS targets + 18 qualified AFFF PFAS + 18 hydrocarbon surfactants),62 ligands (26 PFAS targets + 18 qualified AFFF PFAS + 18 hydrocarbon surfactants),,1,range,mixed,Li et al. 2021,
-6:2 Cl-PFESA,6:2 Cl-PFESA,,2,8,chlorinated ether sulfonate,Gao et al. 2019; Jia et al. 2022,
-6:2 FTCA,6:2 FTCA,,5,6,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026; Starnes et al. 2025,
+6:2 Cl-PFESA,6:2 Cl-PFESA,,6,8,chlorinated ether sulfonate,Gao et al. 2019; Jia et al. 2022; Shi et al. 2016,
+6:2 Cl-PFESA (F-53B major component),6:2 Cl-PFESA,yes,1,,,2024,
+6:2 FTCA,6:2 FTCA,,10,6,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026; Starnes et al. 2025,
 "6:2 FTCA, 6:2 FTSA, HFPO-DA (GenX), PFOA, PFOS, 6:2 Cl-PFESA (F-53B), HFPO-TA","6:2 FTCA, 6:2 FTSA, HFPO-DA (GenX), PFOA, PFOS, 6:2 Cl-PFESA (F-53B), HFPO-TA",,1,4-8,"fluorotelomer carboxylate, fluorotelomer sulfonate, ether carboxylate, carboxyla",Sheng et al. 2018,"prose list or range, not one compound"
-6:2 FTOH,6:2 FTOH,,10,6,"alcohol (fluorotelomer); alcohol (fluorotelomer, neutral); fluorotelomer alcohol",Muensterman et al. 2026; Qin et al. 2024; Starnes et al. 2024; Starnes et al. 2025,
-6:2 FTS,6:2 FTSA,yes,2,6,sulfonate (fluorotelomer),Chen et al. 2025,
-6:2 FTSA,6:2 FTSA,,15,6,fluorotelomer sulfonate; sulfonate (fluorotelomer),Qin et al. 2024; Starnes et al. 2024; Starnes et al. 2025,
-6:2 FTUCA,6:2 FTUCA,,2,6,carboxylate (unsaturated fluorotelomer),Chen et al. 2025,
-6:2 FtS,6:2 FTSA,yes,26,6,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024,
-6:2 FtSaB,6:2 FtSaB,,4,6,betaine,Chen et al. 2025; Muensterman et al. 2026,
-6:2 UFTCA,6:2 FTUCA,yes,2,,,Muensterman et al. 2026,
-6:2 diPAP,6:2 diPAP,,4,6,phosphate diester,Chen et al. 2025; Muensterman et al. 2026,
-6:3 FTCA,6:3 FTCA,,1,,carboxylate (fluorotelomer),Starnes et al. 2025,
-7:2 sFTOH,7:2 sFTOH,,2,,,Muensterman et al. 2026,
-7:3 FTCA,7:3 FTCA,,8,7,carboxylate (fluorotelomer); fluorotelomer carboxylate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-8:2 Cl-PFESA,8:2 Cl-PFESA,,2,10,chlorinated ether sulfonate,Jia et al. 2022,
-8:2 FTCA,8:2 FTCA,,4,8,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026,
-8:2 FTOH,8:2 FTOH,,5,8,"alcohol (fluorotelomer, neutral)",Muensterman et al. 2026; Qin et al. 2024,
-8:2 FTS,8:2 FTSA,yes,2,8,sulfonate (fluorotelomer),Chen et al. 2025,
-8:2 FTUCA,8:2 FTUCA,,2,8,carboxylate (unsaturated fluorotelomer),Chen et al. 2025,
-8:2 FtS,8:2 FTSA,yes,6,8,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026,
-8:2 UFTCA,8:2 FTUCA,yes,2,,,Muensterman et al. 2026,
-8:2 diPAP,8:2 diPAP,,4,8,phosphate diester,Chen et al. 2025; Muensterman et al. 2026,
-8:3 FTCA,8:3 FTCA,,1,,carboxylate (fluorotelomer),Starnes et al. 2025,
-8Cl-PFOS,8Cl-PFOS,,2,8,sulfonate (chlorinated),Chen et al. 2025,NOT merged with Cl-PFOS: Muensterman gives no nCF or head group; the chlorine position cannot be confirmed
+6:2 FTOH,6:2 FTOH,,20,6,"alcohol (fluorotelomer); alcohol (fluorotelomer, neutral); fluorotelomer alcohol",Muensterman et al. 2026; Qin et al. 2024; Starnes et al. 2024; Starnes et al. 2025,
+6:2 FTS,6:2 FTSA,yes,13,6,sulfonate (fluorotelomer),"Abraham et al. 2024; Chen et al. 2025; Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024; Sakolish C, Lin HC",
+6:2 FTSA,6:2 FTSA,,30,6,fluorotelomer sulfonate; sulfonate (fluorotelomer),Qin et al. 2024; Starnes et al. 2024; Starnes et al. 2025,
+6:2 FTUCA,6:2 FTUCA,,4,6,carboxylate (unsaturated fluorotelomer),Chen et al. 2025,
+6:2 FtS,6:2 FTSA,yes,52,6,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024,
+6:2 FtSaB,6:2 FtSaB,,8,6,betaine,Chen et al. 2025; Muensterman et al. 2026,
+6:2 UFTCA,6:2 FTUCA,yes,4,,,Muensterman et al. 2026,
+6:2 diPAP,6:2 diPAP,,8,6,phosphate diester,Chen et al. 2025; Muensterman et al. 2026,
+6:3 FTCA,6:3 FTCA,,2,,carboxylate (fluorotelomer),Starnes et al. 2025,
+7:2 sFTOH,7:2 sFTOH,,4,,,Muensterman et al. 2026,
+7:3 FTCA,7:3 FTCA,,16,7,carboxylate (fluorotelomer); fluorotelomer carboxylate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+8:2 Cl-PFESA,8:2 Cl-PFESA,,4,10,chlorinated ether sulfonate,Jia et al. 2022,
+8:2 FTCA,8:2 FTCA,,8,8,carboxylate (fluorotelomer),Chen et al. 2025; Muensterman et al. 2026,
+8:2 FTOH,8:2 FTOH,,10,8,"alcohol (fluorotelomer, neutral)",Muensterman et al. 2026; Qin et al. 2024,
+8:2 FTS,8:2 FTSA,yes,5,8,sulfonate (fluorotelomer),"Chen et al. 2025; Sakolish C, Lin HC, Moyer HL, et al. 2026",
+8:2 FTUCA,8:2 FTUCA,,4,8,carboxylate (unsaturated fluorotelomer),Chen et al. 2025,
+8:2 FtS,8:2 FTSA,yes,12,8,fluorotelomer sulfonate,Fischer et al. 2024; Muensterman et al. 2026,
+8:2 UFTCA,8:2 FTUCA,yes,4,,,Muensterman et al. 2026,
+8:2 diPAP,8:2 diPAP,,8,8,phosphate diester,Chen et al. 2025; Muensterman et al. 2026,
+8:3 FTCA,8:3 FTCA,,2,,carboxylate (fluorotelomer),Starnes et al. 2025,
+8Cl-PFOS,8Cl-PFOS,,4,8,sulfonate (chlorinated),Chen et al. 2025,NOT merged with Cl-PFOS: Muensterman gives no nCF or head group; the chlorine position cannot be confirmed
 9 PFAA with 4-10 perfluorinated carbons (incl. PFOS in knockout mice),9 PFAA with 4-10 perfluorinated carbons (incl. PFOS in knockout mice),,1,4-10,carboxylate and sulfonate,Fischer et al. 2025,"prose list or range, not one compound"
-9Cl-PF3ONS,6:2 Cl-PFESA,yes,5,8,ether sulfonate; ether sulfonate (chlorinated),Allendorf et al. 2019; Chen et al. 2025; Muensterman et al. 2026,
-9Cl-PF3ONS (F-53B),6:2 Cl-PFESA,yes,1,8,chlorinated ether sulfonate,Wu et al. 2024,
-"9Cl-PF3ONS (F-53B, 6:2 Cl-PFESA)",6:2 Cl-PFESA,yes,1,8,chlorinated ether sulfonate,Wu et al. 2024,
-9H-perfluorononanoic acid,9H-perfluorononanoic acid,,1,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,
-ADONA,ADONA,,10,6,ether carboxylate; ether carboxylate (polyfluoroether),Allendorf et al. 2019; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-"Bis(2,2,3,3,3-pentafluoropropyl)amine","Bis(2,2,3,3,3-pentafluoropropyl)amine",,1,,amine,Starnes et al. 2025,
-C6O4,C6O4,,2,3,branched ether carboxylate,Moro et al. 2022,
+9Cl-PF3ONS,6:2 Cl-PFESA,yes,10,8,ether sulfonate; ether sulfonate (chlorinated),Allendorf et al. 2019; Chen et al. 2025; Muensterman et al. 2026,
+9Cl-PF3ONS (F-53B),6:2 Cl-PFESA,yes,2,8,chlorinated ether sulfonate,Wu et al. 2024,
+"9Cl-PF3ONS (F-53B, 6:2 Cl-PFESA)",6:2 Cl-PFESA,yes,2,8,chlorinated ether sulfonate,Wu et al. 2024,
+9H-PFNA,9H-PFNA,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+9H-perfluorononanoic acid,9H-perfluorononanoic acid,,2,,"carboxylate (H-substituted, not fully fluorinated)",Starnes et al. 2025,
+ADONA,ADONA,,20,6,ether carboxylate; ether carboxylate (polyfluoroether),Allendorf et al. 2019; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+"Bis(2,2,3,3,3-pentafluoropropyl)amine","Bis(2,2,3,3,3-pentafluoropropyl)amine",,2,,amine,Starnes et al. 2025,
+C6O4,C6O4,,4,3,branched ether carboxylate,Moro et al. 2022,
 C8-C11 PFCAs,C8-C11 PFCAs,,1,7-10,carboxylate,MacManus-Spencer et al. 2010,"prose list or range, not one compound"
-"C8-C11 PFCAs (PFOA, PFNA, PFDA, PFUnDA)","C8-C11 PFCAs (PFOA, PFNA, PFDA, PFUnDA)",,2,7-10,carboxylate,MacManus-Spencer et al. 2010,
-Cl-PFOS,Cl-PFOS,,2,,,Muensterman et al. 2026,NOT merged with 8Cl-PFOS: Muensterman gives no nCF or head group; the chlorine position cannot be confirmed
-"DAUDA (11-(dansylamino)undecanoic acid, reference ligand)","DAUDA (11-(dansylamino)undecanoic acid, reference ligand)",,1,,fluorescent fatty acid probe,Luebker et al. 2002,"prose list or range, not one compound"
-DFSA (dodecafluorosuberic acid),DFSA (dodecafluorosuberic acid),,2,6,di-carboxylate,Peng et al. 2024,
-Decanoic Acid,Decanoic acid,yes,2,,,Muensterman et al. 2026,
-Decanoic acid,Decanoic acid,,1,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
-Dodecanoic Acid,Dodecanoic Acid,,1,,,Muensterman et al. 2026,
-E1,E1,,1,,ether (neutral),Starnes et al. 2025,
-EtFBSA,EtFBSA,,2,,,Muensterman et al. 2026,
-EtFOSA,N-EtFOSA,yes,3,,sulfonamide / sulfonamidoethanol,Muensterman et al. 2026; Starnes et al. 2025,
-EtFOSAA,N-EtFOSAA,yes,2,,,Muensterman et al. 2026,
-EtFOSE,N-EtFOSE,yes,3,,sulfonamide / sulfonamidoethanol,Muensterman et al. 2026; Starnes et al. 2025,
-"Ethyl 4,4,4-trifluoro-3-(trifluoromethyl)-2-butenoate","Ethyl 4,4,4-trifluoro-3-(trifluoromethyl)-2-butenoate",,1,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
-Ethyl trifluoromethanesulfonate,Ethyl trifluoromethanesulfonate,,1,,trifluoromethanesulfonate ester,Starnes et al. 2025,
-FBSA,FBSA,,4,4,sulfonamide,Chen et al. 2025; Muensterman et al. 2026,
-FDSA,FDSA,,6,10,sulfonamide,Fischer et al. 2024; Muensterman et al. 2026,
-FHpSA,FHpSA,,2,,,Muensterman et al. 2026,
-FHxSA,FHxSA,,6,6,sulfonamide,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-FOSA,PFOSA,yes,6,8,sulfonamide,Fischer et al. 2024; Muensterman et al. 2026,
-FOSAA,FOSAA,,8,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-FPeSA,FPeSA,,2,,,Muensterman et al. 2026,
-HFPO-DA,HFPO-DA,,9,5,ether carboxylate,Ebert et al. 2020; Jia et al. 2022; Qin et al. 2024,
-HFPO-DA (GenX),HFPO-DA,yes,26,4; 5,ether carboxylate; ether carboxylate (polyfluoroether),Alesio & Bothun 2024; Allendorf et al. 2019; Chen et al. 2025; Gao et al. 2025; Moro et al. 2022; Muensterman ,
-"HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2 Cl-PFESA","HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2 Cl-PFESA",,1,4-10,"ether carboxylate, ether sulfonate, chlorinated ether sulfonate",Jia et al. 2022,"prose list or range, not one compound"
-HFPO-TA,HFPO-TA,,4,8,ether carboxylate,Jia et al. 2022; Peng et al. 2024,
-HFPO-TeA,HFPO-TeA,,2,11,ether carboxylate,Jia et al. 2022,
-"Heptafluorobutyraldehyde hydrate (diol), tech","Heptafluorobutyraldehyde hydrate (diol), tech",,1,,diol,Starnes et al. 2025,"prose list or range, not one compound"
-Heptafluoropropionamide,Heptafluoropropionamide,,1,,amide,Starnes et al. 2025,
-Hexadecanoic acid,Hexadecanoic acid,,1,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
-M3-Cl-PFECA,M3-Cl-PFECA,,2,,,Muensterman et al. 2026,
-M4-Cl-PFECA,M4-Cl-PFECA,,2,,,Muensterman et al. 2026,
-MeFBSA,MeFBSA,,2,,,Muensterman et al. 2026,
-MeFOSA,N-MeFOSA,yes,2,,,Muensterman et al. 2026,
-MeFOSAA,N-MeFOSAA,yes,2,,,Muensterman et al. 2026,
-MeFOSE,N-MeFOSE,yes,2,,,Muensterman et al. 2026,
-"Methyl 4,4,5,5,6,6,7,7,7-nonafluoroheptanoate","Methyl 4,4,5,5,6,6,7,7,7-nonafluoroheptanoate",,1,,methyl ester,Starnes et al. 2025,"prose list or range, not one compound"
-Methyl perfluoro-n-hexanoate,Methyl perfluoro-n-hexanoate,,1,,methyl ester,Starnes et al. 2025,
-Methyl perfluorobutyrate,Methyl perfluorobutyrate,,1,,methyl ester,Starnes et al. 2025,
-N-EtFBSE,N-EtFBSE,,2,,,Muensterman et al. 2026,
-N-EtFOSAA,N-EtFOSAA,,6,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024,
-N-MeFBSE,N-MeFBSE,,2,,,Muensterman et al. 2026,
-N-MeFOSAA,N-MeFOSAA,,6,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024,
-N-TAmP-FHxSA,N-TAmP-FHxSA,,2,6,polyfluoroalkyl amine,Chen et al. 2025,"NOT merged with PFHxSaAm: one source reports both, with different constants"
-N2-Cl-PFECA,N2-Cl-PFECA,,2,,,Muensterman et al. 2026,
-N3-Cl-PFECA,N3-Cl-PFECA,,2,,,Muensterman et al. 2026,
-N4-Cl-PFECA,N4-Cl-PFECA,,2,,,Muensterman et al. 2026,
-N5-Cl-PFECA,N5-Cl-PFECA,,2,,,Muensterman et al. 2026,
-NEtFOSA,N-EtFOSA,yes,2,8,sulfonamide (N-alkyl),Chen et al. 2025,
-NEtFOSE,N-EtFOSE,yes,2,8,sulfonamidoethanol,Chen et al. 2025,
-NFDHA,NFDHA,,4,4,ether carboxylate,Chen et al. 2025; Muensterman et al. 2026,
-NMeFOSA,N-MeFOSA,yes,2,8,sulfonamide (N-alkyl),Chen et al. 2025,
-NMeFOSE,N-MeFOSE,yes,2,8,sulfonamidoethanol,Chen et al. 2025,
-NaDONA (ADONA),ADONA,yes,2,6,ether carboxylate,Wu et al. 2024,
-Nafion byproduct 2,Nafion byproduct 2,,1,,ether sulfonate,Starnes et al. 2025,
-Nonafluoropentanamide,Nonafluoropentanamide,,1,,amide,Starnes et al. 2025,
-Octanoic Acid,Octanoic acid,yes,2,,,Muensterman et al. 2026,
-Octanoic acid,Octanoic acid,,1,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
-PFBA,PFBA,,53,3,carboxylate,Allendorf et al. 2019; Chen & Guo 2009; Chen et al. 2025; Droge 2019; Gao et al. 2025; Han et al. 2021; Khazae,
-"PFBA, PFHxA, PFHpA, PFOA, HFPO-DA (GenX)","PFBA, PFHxA, PFHpA, PFOA, HFPO-DA (GenX)",,1,"3-7, 4",carboxylate and ether carboxylate,Crisalli et al. 2023,"prose list or range, not one compound"
-"PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFTrDA, PFBS, PFHxS, PFOS, 6:2 Cl-PFESA (F-53B)","PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFTrDA, PFBS, PFHxS, PFOS, 6:2 Cl-PFESA (F-53B)",,1,3-12,"carboxylate, sulfonate, chlorinated ether sulfonate",Gao et al. 2019,"prose list or range, not one compound"
-PFBS,PFBS,,46,4,sulfonate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2011; Chen & Guo 2009; Chen et al. 2025; Fischer e,
-PFDA,PFDA,,39,9,carboxylate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2010; Bischel et al. 2011; Chen et al. 2025; Fisch,
-PFDS,PFDS,,8,10,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-PFDoA,PFDoDA,yes,6,11,carboxylate,Chen & Guo 2009; Gao et al. 2019; Jia et al. 2022; Starnes et al. 2025,
-PFDoDA,PFDoDA,,29,11,carboxylate,Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024,
-PFDoS,PFDoS,,4,12,sulfonate,Chen et al. 2025; Muensterman et al. 2026,
-PFECHS,PFECHS,,1,8,cyclic sulfonate,Allendorf et al. 2019,
-PFEESA,PFEESA,,7,4,ether sulfonate,Chen et al. 2025; Jia et al. 2022; Muensterman et al. 2026; Starnes et al. 2025,
-PFEtCHxS,PFECHS,yes,4,8,sulfonate (cyclic),Chen et al. 2025; Muensterman et al. 2026,
-PFHpA,PFHpA,,55,6,carboxylate,Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Ebert et al. 2020; Fischer et al. 2024; Gao et a,
-"PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFHxS, PFOS (medium/long chain); PFHxA, PFBS (short chain)","PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFHxS, PFOS (medium/long chain); PFHxA, PFBS (short chain)",,1,5-10,carboxylate and sulfonate,Hebert & MacManus-Spencer 2010,"prose list or range, not one compound"
-PFHpS,PFHpS,,8,7,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-PFHxA,PFHxA,,59,5,carboxylate,Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Ebert et al. 2020; Fischer et al. 2024; Gao et a,
-"PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)","PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)",,1,"5-9, 4","carboxylate, sulfonate, ether carboxylate",Peng et al. 2025,"prose list or range, not one compound"
-PFHxDA,PFHxDA,,4,15,carboxylate,Chen et al. 2025; Muensterman et al. 2026,
-PFHxS,PFHxS,,54,6,sulfonate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Ebert et al. 2020; Fischer,
-PFHxSaAm,PFHxSaAm,,4,6,polyfluoroalkyl amine,Chen et al. 2025; Muensterman et al. 2026,"NOT merged with N-TAmP-FHxSA: one source reports both, with different constants"
-PFMBA,PFMBA,,5,4,ether carboxylate,Chen et al. 2025; Muensterman et al. 2026; Starnes et al. 2025,
-PFMOAA,PFMOAA,,1,,ether carboxylate,Starnes et al. 2025,
-PFMPA,PFMPA,,4,3,ether carboxylate,Chen et al. 2025; Muensterman et al. 2026,
-PFNA,PFNA,,56,8,carboxylate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2010; Bischel et al. 2011; Chen et al. 2025; Ebert,
-PFNS,PFNS,,8,9,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)","PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",,2,6,ether carboxylate,Peng et al. 2024,
-PFO3DoDA,PFO3DoDA,,1,,ether carboxylate,Starnes et al. 2025,
-PFOA,PFOA,,89,7,carboxylate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2010; Bischel et al. 2011; Chen & Guo 2009; Chen e,
-PFOA and PFDA,PFOA and PFDA,,1,"7, 9",carboxylate,Chen et al. 2020,"prose list or range, not one compound"
-"PFOA and PFDA (PFPeA tested, little effect)","PFOA and PFDA (PFPeA tested, little effect)",,1,"7, 9 (and 4)",carboxylate,Qin et al. 2010,"prose list or range, not one compound"
-PFOA and PFOS,PFOA and PFOS,,1,7-8,carboxylate and sulfonate,Chi et al. 2018,"prose list or range, not one compound"
+"C8-C11 PFCAs (PFOA, PFNA, PFDA, PFUnDA)","C8-C11 PFCAs (PFOA, PFNA, PFDA, PFUnDA)",,4,7-10,carboxylate,MacManus-Spencer et al. 2010,
+Cl-PFOS,Cl-PFOS,,4,,,Muensterman et al. 2026,NOT merged with 8Cl-PFOS: Muensterman gives no nCF or head group; the chlorine position cannot be confirmed
+"DAUDA (11-(dansylamino)undecanoic acid, reference ligand)","DAUDA (11-(dansylamino)undecanoic acid, reference ligand)",,2,,fluorescent fatty acid probe,Luebker et al. 2002,"prose list or range, not one compound"
+DFSA (dodecafluorosuberic acid),DFSA (dodecafluorosuberic acid),,4,6,di-carboxylate,Peng et al. 2024,
+DONA,ADONA,yes,2,,,Abraham et al. 2024,
+DTXSID1037303,PFHpA,yes,2,,,EPA CPHEA Ohmori_3858670,
+Decanoic Acid,Decanoic acid,yes,4,,,Muensterman et al. 2026,
+Decanoic acid,Decanoic acid,,2,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
+Dodecanoic Acid,Dodecanoic Acid,,2,,,Muensterman et al. 2026,
+E1,E1,,2,,ether (neutral),Starnes et al. 2025,
+EtFBSA,EtFBSA,,4,,,Muensterman et al. 2026,
+EtFOSA,N-EtFOSA,yes,6,,sulfonamide / sulfonamidoethanol,Muensterman et al. 2026; Starnes et al. 2025,
+EtFOSAA,N-EtFOSAA,yes,4,,,Muensterman et al. 2026,
+EtFOSE,N-EtFOSE,yes,6,,sulfonamide / sulfonamidoethanol,Muensterman et al. 2026; Starnes et al. 2025,
+"Ethyl 4,4,4-trifluoro-3-(trifluoromethyl)-2-butenoate","Ethyl 4,4,4-trifluoro-3-(trifluoromethyl)-2-butenoate",,2,,unsaturated carboxylate / ester,Starnes et al. 2025,"prose list or range, not one compound"
+Ethyl trifluoromethanesulfonate,Ethyl trifluoromethanesulfonate,,2,,trifluoromethanesulfonate ester,Starnes et al. 2025,
+FBSA,FBSA,,8,4,sulfonamide,Chen et al. 2025; Muensterman et al. 2026,
+FDSA,FDSA,,12,10,sulfonamide,Fischer et al. 2024; Muensterman et al. 2026,
+FHpSA,FHpSA,,4,,,Muensterman et al. 2026,
+FHxSA,FHxSA,,12,6,sulfonamide,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+FOSA,PFOSA,yes,12,8,sulfonamide,Fischer et al. 2024; Muensterman et al. 2026,
+FOSAA,FOSAA,,16,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+FPeSA,FPeSA,,4,,,Muensterman et al. 2026,
+GenX,HFPO-DA,yes,5,,,Argoul et al. 2026,
+HFPO-DA,HFPO-DA,,18,5,ether carboxylate,Ebert et al. 2020; Jia et al. 2022; Qin et al. 2024,
+HFPO-DA (GenX),HFPO-DA,yes,55,4; 5,ether carboxylate; ether carboxylate (polyfluoroether),Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et al. 2019; Chen et al. 2025; Gao et al. 2025; Moro et a,
+"HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2 Cl-PFESA","HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2 Cl-PFESA",,2,4-10,"ether carboxylate, ether sulfonate, chlorinated ether sulfonate",Jia et al. 2022,"prose list or range, not one compound"
+HFPO-TA,HFPO-TA,,10,8,ether carboxylate,"Jia et al. 2022; Niu S, Ma Y, Tewari A, Ng C 2026; Peng et al. 2024",
+HFPO-TeA,HFPO-TeA,,4,11,ether carboxylate,Jia et al. 2022,
+"Heptafluorobutyraldehyde hydrate (diol), tech","Heptafluorobutyraldehyde hydrate (diol), tech",,2,,diol,Starnes et al. 2025,"prose list or range, not one compound"
+Heptafluoropropionamide,Heptafluoropropionamide,,2,,amide,Starnes et al. 2025,
+Hexadecanoic acid,Hexadecanoic acid,,2,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
+M3-Cl-PFECA,M3-Cl-PFECA,,4,,,Muensterman et al. 2026,
+M4-Cl-PFECA,M4-Cl-PFECA,,4,,,Muensterman et al. 2026,
+MeFBSA,MeFBSA,,4,,,Muensterman et al. 2026,
+MeFOSA,N-MeFOSA,yes,4,,,Muensterman et al. 2026,
+MeFOSAA,N-MeFOSAA,yes,4,,,Muensterman et al. 2026,
+MeFOSE,N-MeFOSE,yes,4,,,Muensterman et al. 2026,
+"Methyl 4,4,5,5,6,6,7,7,7-nonafluoroheptanoate","Methyl 4,4,5,5,6,6,7,7,7-nonafluoroheptanoate",,2,,methyl ester,Starnes et al. 2025,"prose list or range, not one compound"
+Methyl perfluoro-n-hexanoate,Methyl perfluoro-n-hexanoate,,2,,methyl ester,Starnes et al. 2025,
+Methyl perfluorobutyrate,Methyl perfluorobutyrate,,2,,methyl ester,Starnes et al. 2025,
+N-EtFBSE,N-EtFBSE,,4,,,Muensterman et al. 2026,
+N-EtFOSAA,N-EtFOSAA,,12,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024,
+N-MeFBSE,N-MeFBSE,,4,,,Muensterman et al. 2026,
+N-MeFOSAA,N-MeFOSAA,,12,8,sulfonamide; sulfonamidoacetic acid,Chen et al. 2025; Fischer et al. 2024,
+N-TAmP-FHxSA,N-TAmP-FHxSA,,4,6,polyfluoroalkyl amine,Chen et al. 2025,"NOT merged with PFHxSaAm: one source reports both, with different constants"
+N2-Cl-PFECA,N2-Cl-PFECA,,4,,,Muensterman et al. 2026,
+N3-Cl-PFECA,N3-Cl-PFECA,,4,,,Muensterman et al. 2026,
+N4-Cl-PFECA,N4-Cl-PFECA,,4,,,Muensterman et al. 2026,
+N5-Cl-PFECA,N5-Cl-PFECA,,4,,,Muensterman et al. 2026,
+NEtFOSA,N-EtFOSA,yes,4,8,sulfonamide (N-alkyl),Chen et al. 2025,
+NEtFOSE,N-EtFOSE,yes,4,8,sulfonamidoethanol,Chen et al. 2025,
+NFDHA,NFDHA,,9,4,ether carboxylate,"Chen et al. 2025; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026",
+NH4PFOA,NH4PFOA,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+NMeFOSA,N-MeFOSA,yes,4,8,sulfonamide (N-alkyl),Chen et al. 2025,
+NMeFOSE,N-MeFOSE,yes,4,8,sulfonamidoethanol,Chen et al. 2025,
+NaDONA (ADONA),ADONA,yes,4,6,ether carboxylate,Wu et al. 2024,
+Nafion byproduct 2,Nafion byproduct 2,,2,,ether sulfonate,Starnes et al. 2025,
+Nonafluoropentanamide,Nonafluoropentanamide,,2,,amide,Starnes et al. 2025,
+Octanoic Acid,Octanoic acid,yes,4,,,Muensterman et al. 2026,
+Octanoic acid,Octanoic acid,,2,0,carboxylate (non-fluorinated fatty acid; reference compound),Starnes et al. 2025,
+PFBA,PFBA,,162,3,carboxylate,2020; 2021; 2022; Abraham et al. 2024; Allendorf et al. 2019; Argoul et al. 2026; Chang et al. 2008; Chang et ,
+"PFBA, PFDA, PFOS","PFBA, PFDA, PFOS",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+"PFBA, PFHxA, PFHpA, PFOA, HFPO-DA (GenX)","PFBA, PFHxA, PFHpA, PFOA, HFPO-DA (GenX)",,2,"3-7, 4",carboxylate and ether carboxylate,Crisalli et al. 2023,"prose list or range, not one compound"
+"PFBA, PFPeA (C4, C5)","PFBA, PFPeA (C4, C5)",,1,,,"Yang CH, Glover KP, Han X 2009","prose list or range, not one compound"
+"PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFTrDA, PFBS, PFHxS, PFOS, 6:2 Cl-PFESA (F-53B)","PFBA, PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFDoA, PFTrDA, PFBS, PFHxS, PFOS, 6:2 Cl-PFESA (F-53B)",,2,3-12,"carboxylate, sulfonate, chlorinated ether sulfonate",Gao et al. 2019,"prose list or range, not one compound"
+PFBA; PFBS; PFHxA; PFHxS; PFOA; PFOS; PFNA; PFDA,PFBA; PFBS; PFHxA; PFHxS; PFOA; PFOS; PFNA; PFDA,,1,,,2025,"prose list or range, not one compound"
+PFBS,PFBS,,182,4,sulfonate,2020; 2021; Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et al. 2019; Argoul et al. 2026; Bischel et a,
+"PFBS, PFHxS, PFOS","PFBS, PFHxS, PFOS",,4,,,"Zhao W, Zitzow JD, Ehresman DJ, Chang SC, Butenhoff JL, Forster J, Hagenbuch B 2015; Zhao W, Zitzow JD, Weaver","prose list or range, not one compound"
+PFDA,PFDA,,124,9,carboxylate,Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et al. 2019; Argoul et al. 2026; Bischel et al. 2010; Bis,
+PFDS,PFDS,,20,10,sulfonate,Argoul et al. 2026; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+PFDoA,PFDoDA,yes,14,11,carboxylate,"Abraham et al. 2024; Chen & Guo 2009; Gao et al. 2019; Jia et al. 2022; Liu YZ, Pan LH, Bai Y, Yang K, Dong PP",
+PFDoDA,PFDoDA,,64,11,carboxylate,"Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu S, Yamaguchi E, Sadeg",
+"PFDoDA, PFOSA","PFDoDA, PFOSA",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+PFDoS,PFDoS,,8,12,sulfonate,Chen et al. 2025; Muensterman et al. 2026,
+PFECHS,PFECHS,,2,8,cyclic sulfonate,Allendorf et al. 2019,
+PFEESA,PFEESA,,15,4,ether sulfonate,"Chen et al. 2025; Jia et al. 2022; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026; Starnes",
+PFEtCHxS,PFECHS,yes,8,8,sulfonate (cyclic),Chen et al. 2025; Muensterman et al. 2026,
+PFHpA,PFHpA,,133,6,carboxylate,Abraham et al. 2024; Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Ebert et al. 2020; Fischer ,
+"PFHpA, PFOA, PFBS, PFPeA","PFHpA, PFOA, PFBS, PFPeA",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+"PFHpA, PFOA, PFNA, PFDA (C7-C10)","PFHpA, PFOA, PFNA, PFDA (C7-C10)",,1,,,"Weaver YM, Ehresman DJ, Butenhoff JL, Hagenbuch B 2010","prose list or range, not one compound"
+"PFHpA, PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS","PFHpA, PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS",,1,,,"Louisse J, Dellafiora L, van den Heuvel JJMW, Rijkers D, Leenders L, Dorne JCM, Punt A, Russel FGM, Koenderink","prose list or range, not one compound"
+"PFHpA, PFOA, PFNA, PFDA, PFUnDA (C7-C11)","PFHpA, PFOA, PFNA, PFDA, PFUnDA (C7-C11)",,1,,,"Kimura O, Fujii Y, Haraguchi K, Kato Y, Ohta C, Koga N, Endo T 2020","prose list or range, not one compound"
+"PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFHxS, PFOS (medium/long chain); PFHxA, PFBS (short chain)","PFHpA, PFOA, PFNA, PFDA, PFUnDA, PFHxS, PFOS (medium/long chain); PFHxA, PFBS (short chain)",,2,5-10,carboxylate and sulfonate,Hebert & MacManus-Spencer 2010,"prose list or range, not one compound"
+PFHpS,PFHpS,,18,7,sulfonate,"Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFHxA,PFHxA,,211,5,carboxylate,2020; 2023; Abraham et al. 2024; Allendorf et al. 2019; Argoul et al. 2026; Bischel et al. 2011; Chen et al. 2,
+"PFHxA, PFHpA, PFOA (C6, C7, C8)","PFHxA, PFHpA, PFOA (C6, C7, C8)",,1,,,"Weaver YM, Ehresman DJ, Butenhoff JL, Hagenbuch B 2010","prose list or range, not one compound"
+"PFHxA, PFHpA, PFOS","PFHxA, PFHpA, PFOS",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+"PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)","PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)",,2,"5-9, 4","carboxylate, sulfonate, ether carboxylate",Peng et al. 2025,"prose list or range, not one compound"
+PFHxDA,PFHxDA,,8,15,carboxylate,Chen et al. 2025; Muensterman et al. 2026,
+PFHxS,PFHxS,,295,6,sulfonate,2019; 2020; 2021; 2022; 2023; 2025; ATSDR 2021; Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et al. 20,
+PFHxS-K,PFHxS-K,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFHxSaAm,PFHxSaAm,,8,6,polyfluoroalkyl amine,Chen et al. 2025; Muensterman et al. 2026,"NOT merged with N-TAmP-FHxSA: one source reports both, with different constants"
+PFMBA,PFMBA,,11,4,ether carboxylate,"Chen et al. 2025; Muensterman et al. 2026; Sakolish C, Lin HC, Moyer HL, et al. 2026; Starnes et al. 2025",
+PFMOAA,PFMOAA,,2,,ether carboxylate,Starnes et al. 2025,
+PFMPA,PFMPA,,8,3,ether carboxylate,Chen et al. 2025; Muensterman et al. 2026,
+PFNA,PFNA,,201,8,carboxylate,2019; 2020; 2021; 2022; ATSDR 2021; Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et al. 2019; Argoul e,
+"PFNA, PFDA, PFUnDA (C9, C10, C11)","PFNA, PFDA, PFUnDA (C9, C10, C11)",,1,,,"Weaver YM, Ehresman DJ, Butenhoff JL, Hagenbuch B 2010","prose list or range, not one compound"
+"PFNA, PFDA, PFUnDA, PFDoDA, PFHxS, PFOS, PFOSA","PFNA, PFDA, PFUnDA, PFDoDA, PFHxS, PFOS, PFOSA",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+PFNS,PFNS,,16,9,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+PFO2OA,PFO2OA,,5,,,Argoul et al. 2026,
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)","PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",,4,6,ether carboxylate,Peng et al. 2024,
+PFO3DoDA,PFO3DoDA,,2,,ether carboxylate,Starnes et al. 2025,
+PFOA,PFOA,,535,7,carboxylate,2017; 2019; 2020; 2021; 2022; 2024; 2025; ATSDR 2021; Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et ,
+PFOA (C8) and PFNA (C9) transported; PFHpA (C7) not,PFOA (C8) and PFNA (C9) transported; PFHpA (C7) not,,1,,,US EPA (2024) PFOA assessment citing Zhao W et al. 2017 2017,"prose list or range, not one compound"
+PFOA (as 8:2-FTOH metabolite),PFOA (as 8:2-FTOH metabolite),,2,,,Huang et al. (NTP) 2019,
+PFOA and PFDA,PFOA and PFDA,,2,"7, 9",carboxylate,Chen et al. 2020,"prose list or range, not one compound"
+"PFOA and PFDA (PFPeA tested, little effect)","PFOA and PFDA (PFPeA tested, little effect)",,2,"7, 9 (and 4)",carboxylate,Qin et al. 2010,"prose list or range, not one compound"
+PFOA and PFOS,PFOA and PFOS,,3,7-8,carboxylate and sulfonate,"Chi et al. 2018; Kummu M, Sieppi E, Koponen J, Laatio L, Vahakangas K, Kiviranta H, Rautio A, Myllynen P 2015","prose list or range, not one compound"
 "PFOA, PFNA","PFOA, PFNA",,1,7-8,carboxylate,Sheng et al. 2016,"prose list or range, not one compound"
-"PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)","PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)",,1,3-9,"carboxylate, sulfonate, ether carboxylate",Alesio et al. 2022,"prose list or range, not one compound"
-"PFOA, PFNA, PFHxS, PFOS","PFOA, PFNA, PFHxS, PFOS",,1,7-8,carboxylate and sulfonate,Fedorenko et al. 2021,"prose list or range, not one compound"
-PFODA,PFODA,,2,17,carboxylate,Muensterman et al. 2026,
-PFOS,PFOS,,84,8,sulfonate,Alesio & Bothun 2024; Allendorf et al. 2019; Bischel et al. 2010; Bischel et al. 2011; Chen & Guo 2009; Chen e,
+"PFOA, PFNA, PFBS, PFHxS, 6:2 FTS","PFOA, PFNA, PFBS, PFHxS, 6:2 FTS",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+"PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)","PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)",,2,3-9,"carboxylate, sulfonate, ether carboxylate",Alesio et al. 2022,"prose list or range, not one compound"
+"PFOA, PFNA, PFHxS, PFOS","PFOA, PFNA, PFHxS, PFOS",,2,7-8,carboxylate and sulfonate,Fedorenko et al. 2021,"prose list or range, not one compound"
+"PFOA, PFOS, HFPO-TA, F53B (6:2 Cl-PFESA)","PFOA, PFOS, HFPO-TA, F53B (6:2 Cl-PFESA)",,1,,,"Niu S, Ma Y, Tewari A, Ng C 2026","prose list or range, not one compound"
+PFOA-K,PFOA-K,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFODA,PFODA,,4,17,carboxylate,Muensterman et al. 2026,
+PFOS,PFOS,,339,8,sulfonate,2018; 2019; 2020; 2021; 2022; 2024; 2025; ATSDR 2021; Abraham et al. 2024; Alesio & Bothun 2024; Allendorf et ,
 "PFOS > PFDA > PFNA > PFUnDA > PFOA > PFHxS > PFHpA > PFHxA (6 PFCAs, 2 PFSAs)","PFOS > PFDA > PFNA > PFUnDA > PFOA > PFHxS > PFHpA > PFHxA (6 PFCAs, 2 PFSAs)",,1,5-10,carboxylate and sulfonate,Ishibashi et al. 2019,"prose list or range, not one compound"
-PFOS and 6:2 Cl-PFESA (F-53B),PFOS and 6:2 Cl-PFESA (F-53B),,1,8,"sulfonate, chlorinated ether sulfonate",Sheng et al. 2020,"prose list or range, not one compound"
+PFOS and 6:2 Cl-PFESA (F-53B),PFOS and 6:2 Cl-PFESA (F-53B),,2,8,"sulfonate, chlorinated ether sulfonate",Sheng et al. 2020,"prose list or range, not one compound"
 PFOS and PFOA technical mixtures,PFOS and PFOA technical mixtures,,1,7-8,carboxylate and sulfonate,Beesoon & Martin 2015,"prose list or range, not one compound"
 "PFOS, N-EtFOSA, Wyeth-14643, N-EtFOSE, PFOA","PFOS, N-EtFOSA, Wyeth-14643, N-EtFOSE, PFOA",,1,8,"sulfonate, sulfonamide, sulfonamido ethanol, carboxylate",Luebker et al. 2002,"prose list or range, not one compound"
+"PFOS, PFHxA, PFBS","PFOS, PFHxA, PFBS",,1,,,"Lin HC, Sakolish C, Moyer HL, Carmichael PL, Baltazar MT, Ferguson SS, Stanko JP, Hewitt P, Rusyn I, Chiu WA 2","prose list or range, not one compound"
 "PFOS, PFOA, PFHxA, PFBS","PFOS, PFOA, PFHxA, PFBS",,1,3-8,carboxylate and sulfonate,Sanchez Garcia et al. 2018,"prose list or range, not one compound"
 "PFOS, PFOA, PFHxS, PFNA, PFDA (11 PFAS measured)","PFOS, PFOA, PFHxS, PFNA, PFDA (11 PFAS measured)",,1,6-9,carboxylate and sulfonate,Forsthuber et al. 2020,"prose list or range, not one compound"
-PFOSA,PFOSA,,32,8,sulfonamide,Chen et al. 2025; Qin et al. 2024; Ryu et al. 2024,
-PFPeA,PFPeA,,28,4,carboxylate,Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024; Starnes ,
-PFPeS,PFPeS,,8,5,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
-PFPrS,PFPrS,,4,3,sulfonate,Muensterman et al. 2026; Wu et al. 2024,
-PFPrS (perfluoropropane sulfonate),PFPrS,yes,1,3,sulfonate,Li et al. 2021,
-PFTeDA,PFTeDA,,28,13,carboxylate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024,
-PFTrDA,PFTrDA,,24,12,carboxylate,Chen et al. 2025; Muensterman et al. 2026; Ryu et al. 2024,
+PFOS-K,PFOS-K,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFOSA,PFOSA,,69,8,sulfonamide,"Chen et al. 2025; Qin et al. 2024; Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024; Ryu et al. 2024",
+PFOcDA,PFODA,yes,2,,,"Liu YZ, Pan LH, Bai Y, Yang K, Dong PP, Fang ZZ 2020",
+PFPE-1,PFPE-1,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFPE-5,PFPE-5,,1,,,"Sakolish C, Lin HC, Moyer HL, et al. 2026",
+PFPeA,PFPeA,,65,4,carboxylate,Abraham et al. 2024; Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu ,
+"PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFBS, PFHxS, 6:2 FTS","PFPeA, PFHxA, PFHpA, PFOA, PFNA, PFBS, PFHxS, 6:2 FTS",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+PFPeS,PFPeS,,16,5,sulfonate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026,
+PFPrS,PFPrS,,8,3,sulfonate,Muensterman et al. 2026; Wu et al. 2024,
+PFPrS (perfluoropropane sulfonate),PFPrS,yes,2,3,sulfonate,Li et al. 2021,
+PFTA,PFTeDA,yes,2,,,"Liu YZ, Pan LH, Bai Y, Yang K, Dong PP, Fang ZZ 2020",
+PFTeDA,PFTeDA,,56,13,carboxylate,Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Ryu et al. 2024,
+PFTrDA,PFTrDA,,48,12,carboxylate,Chen et al. 2025; Muensterman et al. 2026; Ryu et al. 2024,
 PFTrDA and PFTeDA (only these two of 16 bound TBG),PFTrDA and PFTeDA (only these two of 16 bound TBG),,1,12-13,carboxylate,Ren et al. 2016,"prose list or range, not one compound"
-PFTrDS,PFTrDS,,2,13,sulfonate,Muensterman et al. 2026,
-PFTriDA,PFTrDA,yes,4,12,carboxylate,Fischer et al. 2024,
-PFUnA,PFUnDA,yes,7,10,carboxylate,Ebert et al. 2020; Qin et al. 2024,
-PFUnDA,PFUnDA,,35,10,carboxylate,Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Qi,
-Pentafluoropropionamide,Pentafluoropropionamide,,1,,amide,Starnes et al. 2025,
-"Perfluoro-3,6,9-trioxatridecanoic acid","Perfluoro-3,6,9-trioxatridecanoic acid",,1,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
-"Perfluoro-3,6-dioxaheptanoic acid","Perfluoro-3,6-dioxaheptanoic acid",,1,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
-"Perfluoro-3,6-dioxaoctane-1,8-dioic acid","Perfluoro-3,6-dioxaoctane-1,8-dioic acid",,1,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
-"Potassium perfluoro(4-methyl-3,6-dioxaoctane)sulfonate","Potassium perfluoro(4-methyl-3,6-dioxaoctane)sulfonate",,1,,ether sulfonate,Starnes et al. 2025,
-branched PFOA isomers (range),branched PFOA isomers (range),,1,7,carboxylate,Beesoon & Martin 2015,NOT merged with PFOA: an isomer fraction is not the technical mixture
-branched PFOS isomers (range),branched PFOS isomers (range),,1,8,sulfonate,Beesoon & Martin 2015,NOT merged with PFOS: an isomer fraction is not the technical mixture
-butyric acid (C4),butyric acid (C4),,2,0,carboxylate (non-fluorinated fatty acid; reference compound),Chen & Guo 2009,
-decanoic acid (reference ligand),Decanoic acid,yes,1,,carboxylate,Alesio & Bothun 2024,
-diSAmPAP,diSAmPAP,,4,8,phosphate diester (sulfonamido),Chen et al. 2025; Muensterman et al. 2026,
-flubendiamide,flubendiamide,,5,3,fluorinated pesticide (98% neutral at pH 7.4); phthalamide pesticide (98% neutra,Qin et al. 2024,
-hexaflumuron,hexaflumuron,,5,2,benzoylurea pesticide (98% neutral at pH 7.4); fluorinated pesticide (98% neutra,Qin et al. 2024,
+PFTrDS,PFTrDS,,4,13,sulfonate,Muensterman et al. 2026,
+PFTriDA,PFTrDA,yes,8,12,carboxylate,Fischer et al. 2024,
+PFUdA,PFUnDA,yes,2,,,Abraham et al. 2024,
+PFUnA,PFUnDA,yes,14,10,carboxylate,Ebert et al. 2020; Qin et al. 2024,
+PFUnDA,PFUnDA,,77,10,carboxylate,Allendorf et al. 2019; Bischel et al. 2011; Chen et al. 2025; Fischer et al. 2024; Muensterman et al. 2026; Qi,
+"PFUnDA, PFDoDA, PFOSA","PFUnDA, PFDoDA, PFOSA",,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+Pentafluoropropionamide,Pentafluoropropionamide,,2,,amide,Starnes et al. 2025,
+"Perfluoro-3,6,9-trioxatridecanoic acid","Perfluoro-3,6,9-trioxatridecanoic acid",,2,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
+"Perfluoro-3,6-dioxaheptanoic acid","Perfluoro-3,6-dioxaheptanoic acid",,2,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
+"Perfluoro-3,6-dioxaoctane-1,8-dioic acid","Perfluoro-3,6-dioxaoctane-1,8-dioic acid",,2,,ether carboxylate,Starnes et al. 2025,"prose list or range, not one compound"
+"Potassium perfluoro(4-methyl-3,6-dioxaoctane)sulfonate","Potassium perfluoro(4-methyl-3,6-dioxaoctane)sulfonate",,2,,ether sulfonate,Starnes et al. 2025,
+all 14 PFAS,all 14 PFAS,,1,,,"Ryu S, Yamaguchi E, Sadegh Modaresi SM, et al. 2024","prose list or range, not one compound"
+any,any,,1,,,Louisse et al. 2024,"prose list or range, not one compound"
+branched PFOA isomers (range),branched PFOA isomers (range),,2,7,carboxylate,Beesoon & Martin 2015,NOT merged with PFOA: an isomer fraction is not the technical mixture
+branched PFOS isomers (range),branched PFOS isomers (range),,2,8,sulfonate,Beesoon & Martin 2015,NOT merged with PFOS: an isomer fraction is not the technical mixture
+butyric acid (C4),butyric acid (C4),,4,0,carboxylate (non-fluorinated fatty acid; reference compound),Chen & Guo 2009,
+decanoic acid (reference ligand),Decanoic acid,yes,2,,carboxylate,Alesio & Bothun 2024,
+diSAmPAP,diSAmPAP,,8,8,phosphate diester (sulfonamido),Chen et al. 2025; Muensterman et al. 2026,
+flubendiamide,flubendiamide,,10,3,fluorinated pesticide (98% neutral at pH 7.4); phthalamide pesticide (98% neutra,Qin et al. 2024,
+hexaflumuron,hexaflumuron,,10,2,benzoylurea pesticide (98% neutral at pH 7.4); fluorinated pesticide (98% neutra,Qin et al. 2024,
 legacy PFAS and alternatives (review),legacy PFAS and alternatives (review),,1,,mixed,Zhao et al. 2023,"prose list or range, not one compound"
-linear PFOA (n-PFOA),linear PFOA (n-PFOA),,1,7,carboxylate,Beesoon & Martin 2015,NOT merged with PFOA: an isomer fraction is not the technical mixture
-linear PFOS (n-PFOS),linear PFOS (n-PFOS),,1,8,sulfonate,Beesoon & Martin 2015,NOT merged with PFOS: an isomer fraction is not the technical mixture
-nonanoic acid (reference ligand),nonanoic acid (reference ligand),,1,,carboxylate,Alesio & Bothun 2024,
-octanoic acid (C8),Octanoic acid,yes,3,0,carboxylate (non-fluorinated fatty acid; reference compound),Chen & Guo 2009,
-octanoic acid (reference ligand),Octanoic acid,yes,1,,carboxylate,Alesio & Bothun 2024,
-palmitic acid (C16:0),palmitic acid (C16:0),,1,0,carboxylate (endogenous fatty acid; reference compound),Han et al. 2021,
+linear PFCAs C4-C12,linear PFCAs C4-C12,,1,,,"Yang CH, Glover KP, Han X 2010","prose list or range, not one compound"
+linear PFOA (n-PFOA),linear PFOA (n-PFOA),,2,7,carboxylate,Beesoon & Martin 2015,NOT merged with PFOA: an isomer fraction is not the technical mixture
+linear PFOS (n-PFOS),linear PFOS (n-PFOS),,2,8,sulfonate,Beesoon & Martin 2015,NOT merged with PFOS: an isomer fraction is not the technical mixture
+n/a,n/a,,2,,,"Buist SCN, Cherrington NJ, Choudhuri S, Hartley DP, Klaassen CD 2002; Buist SCN, Cherrington NJ, Klaassen CD 2","prose list or range, not one compound"
+n/a (constitutive mRNA expression),n/a (constitutive mRNA expression),,2,,,"Buist SCN, Klaassen CD 2004; Cheng X, Maher J, Chen C, Klaassen CD 2005","prose list or range, not one compound"
+n/a (hormone manipulation),n/a (hormone manipulation),,1,,,"Cheng X, Maher J, Lu H, Klaassen CD 2006","prose list or range, not one compound"
+nonanoic acid (reference ligand),nonanoic acid (reference ligand),,2,,carboxylate,Alesio & Bothun 2024,
+octanoic acid (C8),Octanoic acid,yes,6,0,carboxylate (non-fluorinated fatty acid; reference compound),Chen & Guo 2009,
+octanoic acid (reference ligand),Octanoic acid,yes,2,,carboxylate,Alesio & Bothun 2024,
+palmitic acid (C16:0),palmitic acid (C16:0),,2,0,carboxylate (endogenous fatty acid; reference compound),Han et al. 2021,
 perfluoroalkyl acids,perfluoroalkyl acids,,1,range,carboxylate and sulfonate,Ng & Hungerbuhler 2014,"prose list or range, not one compound"
 perfluoroalkyl acids (model compounds),perfluoroalkyl acids (model compounds),,1,range,carboxylate and sulfonate,Ng & Hungerbuhler 2013,"prose list or range, not one compound"
-warfarin (Sudlow site I control),warfarin (Sudlow site I control),,1,,,Alesio & Bothun 2024,
+"substrates: PFHpA, PFOA | non-substrates: PFNA, PFBS, PFHxS, PFOS","substrates: PFHpA, PFOA | non-substrates: PFNA, PFBS, PFHxS, PFOS",,1,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al. 2024","prose list or range, not one compound"
+"substrates: PFHpA, PFOA, PFNA, PFHxS | non-substrates: PFBS, PFOS","substrates: PFHpA, PFOA, PFNA, PFHxS | non-substrates: PFBS, PFOS",,1,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al. 2024","prose list or range, not one compound"
+"substrates: none | non-substrates: PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS","substrates: none | non-substrates: PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS",,1,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al. 2024","prose list or range, not one compound"
+warfarin (Sudlow site I control),warfarin (Sudlow site I control),,2,,,Alesio & Bothun 2024,
