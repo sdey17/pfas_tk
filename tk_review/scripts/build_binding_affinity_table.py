@@ -29,7 +29,8 @@ SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
 OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
 FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "kd_basis", "logK", "logK_basis", "source", "location"]
+          "kd_uM", "kd_basis", "logK", "logK_basis", "binding_site",
+          "condition_id", "source", "location"]
 
 CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
 
@@ -54,14 +55,29 @@ def major_sources(out):
 # this workbook's scope. Same columns plus the class that decided the filter.
 ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
               "units", "kd_uM", "kd_basis", "logK", "logK_basis",
-              "source", "location"]
+              "binding_site", "condition_id", "source", "location"]
 
-COND_FIELDS = ["id", "pfas", "species", "protein", "source", "mode",
-               "pfas_conc_uM", "pfas_conc_as_stated",
-               "protein_conc_uM", "protein_conc_as_stated",
-               "ligand_protein_ratio_max",
-               "ratio_basis", "temperature_C", "temperature_as_stated", "nacl_mM",
-               "buffer", "binding_site"]
+# The per-measurement form, kept because the block table is derived from it.
+COND_FIELDS_BY_ROW = ["id", "pfas", "species", "protein", "source", "mode",
+                      "pfas_conc_uM", "pfas_conc_as_stated",
+                      "protein_conc_uM", "protein_conc_as_stated",
+                      "ligand_protein_ratio_max",
+                      "ratio_basis", "temperature_C", "temperature_as_stated",
+                      "nacl_mM", "buffer", "binding_site"]
+
+# What makes two measurements the SAME ASSAY. `pfas` is not in it -- a block
+# is one assay run over however many compounds -- and neither is
+# binding_site, which is a property of the compound-protein pair rather than
+# of the assay, and which moved to the measurement sheets for that reason.
+COND_BLOCK_KEY = ("source", "species", "protein", "mode",
+                  "pfas_conc_uM", "pfas_conc_as_stated",
+                  "protein_conc_uM", "protein_conc_as_stated",
+                  "ligand_protein_ratio_max", "ratio_basis",
+                  "temperature_C", "temperature_as_stated",
+                  "nacl_mM", "buffer")
+
+COND_FIELDS = ["condition_id"] + list(COND_BLOCK_KEY) + [
+    "rows", "compounds", "assays_in_source"]
 
 # Kd in micromolar is the common currency. Only exact routes are used to get
 # there -- see to_kd_uM. Concentrations are converted the same way: unit
@@ -825,29 +841,105 @@ def _ratio_cell(r):
             "ratio_basis": "neither both concentrations nor a stated ratio"}
 
 
+def condition_row(r):
+    """The assay one measurement was made under."""
+    t_num, t_raw = temperature(r["_temp"])
+    return {
+        "id": r["id"], "pfas": r["pfas"], "species": r["species"],
+        "protein": r["protein"], "source": r["source"],
+        "mode": r["_mode"],
+        "pfas_conc_uM": r["_lig"],
+        "pfas_conc_as_stated": as_stated(r["_lig_raw"], r["_lig_units"]),
+        "protein_conc_uM": (r["_prot"] or albumin_conc_uM(
+            r["protein"], as_stated(r["_prot_raw"], r["_prot_units"]))),
+        "protein_conc_as_stated": as_stated(r["_prot_raw"], r["_prot_units"]),
+        **_ratio_cell(r),
+        "temperature_C": t_num, "temperature_as_stated": t_raw,
+        "nacl_mM": nacl_mM(r["_buffer"]), "buffer": r["_buffer"],
+        "binding_site": r["_site"]}
+
+
 def conditions(out):
     """The assay conditions, one row per measurement, joined by `id`."""
-    cond = []
-    for r in out:
-        t_num, t_raw = temperature(r["_temp"])
-        cond.append({
-            "id": r["id"], "pfas": r["pfas"], "species": r["species"],
-            "protein": r["protein"], "source": r["source"],
-            "mode": r["_mode"],
-            "pfas_conc_uM": r["_lig"],
-            "pfas_conc_as_stated": as_stated(r["_lig_raw"], r["_lig_units"]),
-            "protein_conc_uM": (r["_prot"] or albumin_conc_uM(
-                r["protein"], as_stated(r["_prot_raw"], r["_prot_units"]))),
-            "protein_conc_as_stated": as_stated(r["_prot_raw"], r["_prot_units"]),
-            **_ratio_cell(r),
-            "temperature_C": t_num, "temperature_as_stated": t_raw,
-            "nacl_mM": nacl_mM(r["_buffer"]), "buffer": r["_buffer"],
-            "binding_site": r["_site"]})
-    return cond
+    return [condition_row(r) for r in out]
+
+
+# The conditions proper: what the assay was run AT. The rest of
+# COND_BLOCK_KEY -- protein, species, mode -- is what it was run ON, and a
+# source that measures three proteins at one concentration and one
+# temperature has three blocks and one setting. The distinction matters
+# because the claim being tested is about concentrations, not materials.
+COND_SETTING = ("pfas_conc_uM", "pfas_conc_as_stated",
+                "protein_conc_uM", "protein_conc_as_stated",
+                "temperature_as_stated", "nacl_mM", "buffer")
+
+
+def block_key(c):
+    return tuple(str(c[f]).strip() for f in COND_BLOCK_KEY)
+
+
+def condition_index(recs):
+    """Collapse the per-measurement conditions onto one row per ASSAY.
+
+    The concentrations, temperature and buffer are properties of the
+    experiment, not of the measurement, so repeating them on every row makes
+    a wide sheet out of a narrow fact: 1,060 measurements come from 94
+    distinct assays. This returns the blocks, keyed by COND_BLOCK_KEY, and
+    `stamp_conditions` writes the resulting condition_id back onto the
+    measurement rows, which then carry a four-character key instead of
+    fourteen repeated columns.
+
+    "Constant for a given study" is true of most sources and NOT of all.
+    Twenty-five of thirty-six supply one or two blocks; eleven supply more,
+    and for some of them that is the experiment rather than untidiness --
+    Qin 2024 measures the same compounds across a concentration series and
+    Gao 2025 across a NaCl series, so collapsing either onto a single
+    per-study row would destroy the result. Hence a key into a block table
+    rather than a per-study table: it narrows the measurement sheets without
+    asserting a constancy the data does not have.
+
+    Numbering is established over whatever is passed in, so the UNFILTERED
+    set goes in first and the filtered views reuse the index. A condition_id
+    that moved when the compound filter changed would mean something other
+    than an assay.
+    """
+    blocks = {}
+    for r in recs:
+        c = condition_row(r)
+        k = block_key(c)
+        b = blocks.get(k)
+        if b is None:
+            b = blocks[k] = {f: c[f] for f in COND_BLOCK_KEY}
+            b["_pfas"], b["rows"] = set(), 0
+        b["rows"] += 1
+        b["_pfas"].add(c["pfas"])
+    per_source = collections.Counter(b["source"] for b in blocks.values())
+    ordered = sorted(blocks.values(),
+                     key=lambda b: (-per_source[b["source"]], b["source"],
+                                    b["protein"], b["mode"]))
+    for i, b in enumerate(ordered, start=1):
+        b["condition_id"] = "C%03d" % i
+        b["compounds"] = len(b["_pfas"])
+        b["assays_in_source"] = per_source[b["source"]]
+    return blocks
+
+
+def condition_table(blocks):
+    """The Conditions sheet: one row per assay, in condition_id order."""
+    return [{f: b[f] for f in COND_FIELDS}
+            for b in sorted(blocks.values(), key=lambda b: b["condition_id"])]
+
+
+def stamp_conditions(recs, blocks):
+    """Write the lookup key, and the site, onto the measurement rows."""
+    for r in recs:
+        r["condition_id"] = blocks[block_key(condition_row(r))]["condition_id"]
+        r["binding_site"] = r["_site"]
 
 
 NUMERIC = {"id", "kd_uM", "logK", "rows", "kd_rows", "logK_rows", "pfas_conc_uM", "protein_conc_uM",
-           "ligand_protein_ratio_max", "temperature_C", "nacl_mM"}
+           "ligand_protein_ratio_max", "temperature_C", "nacl_mM",
+           "compounds", "assays_in_source"}
 
 NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
@@ -899,10 +991,49 @@ NOTES = [
              "only: the paper measured it, or the paper reported BOTH an "
              "affinity and a stoichiometry. Never inferred from a Kd alone."),
     ("logK_basis", "Which route, or why the cell is blank. Never empty."),
+    ("binding_site", "Site, where the paper identifies one -- 46 of the "
+                     "1,060 rows here, 48 of the 1,208 unfiltered. It sits "
+                     "with the measurement rather than in Conditions "
+                     "because it is a property of the compound-protein "
+                     "pair, not of the assay."),
     ("source", "First Author Year."),
     ("location", "Where the number sits in the paper."),
     ("", ""),
-    ("Conditions", "The assay each measurement was made under."),
+    ("Conditions", "One row per ASSAY, not per measurement. The "
+                   "concentrations, temperature and buffer belong to the "
+                   "experiment rather than to the individual number, so "
+                   "they live here once and the measurement sheets carry a "
+                   "`condition_id` key instead of fourteen repeated "
+                   "columns. 1,208 measurements come from 145 assays; "
+                   "the 1,060 rows on Affinity touch 125 of them."),
+    ("", "Mostly, but not always, a study constant -- which is why this is "
+         "a block table keyed per assay and not a table keyed per study. "
+         "Taking the SETTING to be the concentrations, temperature and "
+         "buffer, 37 of the 50 sources use exactly one. Thirteen do not, "
+         "and for Qin 2024 (12 and 6 settings for its two papers), Bischel "
+         "2011 (11) and Gao 2025 (7) the variation IS the experiment: a "
+         "concentration series, a dilution series, a NaCl series. "
+         "Collapsing those onto one row per study would delete the result "
+         "rather than tidy it. Run the script with --check for the list."),
+    ("", "A source can also hold several blocks without varying anything: "
+         "Fischer 2024 has four, because it measured HSA, BSA and "
+         "gamma-globulin, at one concentration and one temperature. The "
+         "block key includes what was measured ON as well as what it was "
+         "measured AT, so `assays_in_source` counts both; the --check "
+         "report separates them."),
+    ("", ""),
+    ("condition_id", "The key. Join the measurement sheets to Conditions on "
+                     "this, not on `id` -- the join is many measurements to "
+                     "one assay. Numbered over the unfiltered table, so the "
+                     "same id means the same assay in every sheet and in "
+                     "db/binding_major_sources.xlsx and "
+                     "db/combined/binding_conditions.csv."),
+    ("rows", "How many measurements were made under this assay."),
+    ("compounds", "How many distinct compounds that assay covered."),
+    ("assays_in_source", "How many distinct assays the source reports in "
+                         "all. 1 or 2 means the conditions really are a "
+                         "property of the study; a larger number means the "
+                         "study varied them on purpose."),
     ("", ""),
     ("mode", "Experimental method, verbatim."),
     ("pfas_conc_uM", "Ligand concentration in uM; the top of the range where "
@@ -946,7 +1077,6 @@ NOTES = [
                 "every ionic species, and a phosphate buffer's contribution "
                 "depends on protonation at that pH."),
     ("buffer", "Buffer verbatim."),
-    ("binding_site", "Site, where the paper identifies one (84 of 865 rows do)."),
     ("", ""),
     ("Compound filter", "Common PFAS are kept wherever they appear. Common "
                         "means the chemical strings this repository's own "
@@ -1039,7 +1169,8 @@ def check(rows, out, skipped, qualitative, dropped):
     # Columns that must never be blank, against the three where a blank is a
     # legitimate state the row explains for itself.
     REQUIRED = ["id", "pfas", "species", "protein", "measure", "value",
-                "units", "kd_basis", "logK_basis", "source", "location"]
+                "units", "kd_basis", "logK_basis", "condition_id", "source",
+                "location"]
     print(f"Completeness of the {len(FIELDS)} columns:")
     for f in FIELDS:
         blank = sum(1 for r in out if not str(r[f]).strip())
@@ -1150,6 +1281,38 @@ def check(rows, out, skipped, qualitative, dropped):
         print("  DSF at the melting transition against equilibrium dialysis")
         print("  at 37 C. Those are not replicates and must not be pooled.")
     print()
+    unfiltered = build(filter_compounds=False)[1]
+    blocks = condition_index(unfiltered)
+    setting = collections.defaultdict(set)
+    for b in blocks.values():
+        setting[b["source"]].add(tuple(str(b[f]) for f in COND_SETTING))
+    print("Assay conditions, collapsed out of the measurement rows.")
+    print(f"  {len(unfiltered)} measurements come from {len(blocks)} assays "
+          f"across {len(setting)} sources;")
+    print(f"  the {len(out)} rows on the Affinity sheet touch "
+          f"{len({r['condition_id'] for r in out})} of them.")
+    print()
+    print("  Is the setting -- concentrations, temperature, buffer -- "
+          "constant for a given study?")
+    varies = sorted(((len(v), srcname) for srcname, v in setting.items()
+                     if len(v) > 1), reverse=True)
+    print(f"  YES for {len(setting) - len(varies)} of {len(setting)} "
+          f"sources. For those the setting really is a study constant, and")
+    print("  the block table repeats it only because they measured more "
+          "than one protein or method.")
+    print(f"  NO for {len(varies)}, so a per-STUDY conditions table would "
+          f"lose data. What each one varies:")
+    for k, srcname in varies:
+        covered = [b for b in blocks.values() if b["source"] == srcname]
+        what = sorted({f.replace("_as_stated", "") for f in COND_SETTING
+                       if len({str(b[f]) for b in covered}) > 1}
+                      - {"pfas_conc_uM", "protein_conc_uM"})
+        print(f"    {k:4d}  {srcname:22s} varies: " + ", ".join(what))
+    print("  For Qin, Gao and Bischel that variation IS the experiment -- a "
+          "concentration series, a")
+    print("  NaCl series, a dilution series -- so collapsing it would "
+          "delete the result, not tidy it.")
+    print()
     majors = major_sources(out)
     nmaj = sum(1 for r in out if r["source"] in majors)
     print(f"Major-study subset -- sources with at least {MAJOR_MIN_ROWS} "
@@ -1190,11 +1353,16 @@ def main():
                     help="report only, do not write")
     args = ap.parse_args()
     rows, out, skipped, qualitative, dropped = build()
+    # The condition blocks are numbered over the unfiltered set so a
+    # condition_id means the same assay in every view of the table.
+    full = build(filter_compounds=False)[1]
+    blocks = condition_index(full)
+    stamp_conditions(full, blocks)
+    stamp_conditions(out, blocks)
     if not args.check:
-        full = build(filter_compounds=False)[1]
         majors = major_sources(out)
         major = [r for r in out if r["source"] in majors]
-        write(out, major, conditions(out), compounds(out), full)
+        write(out, major, condition_table(blocks), compounds(out), full)
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
     check(rows, out, skipped, qualitative, dropped)

@@ -67,8 +67,18 @@ because dropping a paper's plasma or serum rows would silently discard
 measurements the user did not ask to lose.  The `protein` column says what
 each row was measured in and `measure` marks anything computed.
 
-COLUMNS.  The nine requested, plus the PFAS and protein concentrations each
-measurement was made at.  Each concentration appears twice: a micromolar
+COLUMNS.  The nine requested, plus the binding site where a paper names one
+and a `condition_id` key.  The concentrations, temperature and buffer used to
+sit on every row; they are properties of the EXPERIMENT rather than of the
+individual number, so they moved to a Conditions sheet that holds one row per
+assay and the measurement rows carry the key instead.  That is mostly, but not
+always, one row per study: 37 of the 50 sources in the full database use a
+single setting, while Qin 2024, Bischel 2011 and Gao 2025 deliberately vary
+concentration, dilution and ionic strength within the paper, which is the
+result rather than untidiness.  A key into a block table keeps both cases
+honest where a per-study table would flatten the second.
+
+On the Conditions sheet each concentration still appears twice: a micromolar
 number where unit arithmetic alone reaches one, and the paper's own wording
 beside it.  A blank number next to a populated "as stated" cell means the
 source gave a dilution factor, a stationary phase or a molar ratio --
@@ -93,11 +103,10 @@ _spec = importlib.util.spec_from_file_location(
 B = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(B)
 
-# The nine columns asked for, then the concentrations.
+# The nine columns asked for, then the site and the key into Conditions.
 FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
-          "value", "units", "kd_uM", "logK", "source",
-          "pfas_conc_uM", "pfas_conc_as_stated",
-          "protein_conc_uM", "protein_conc_as_stated"]
+          "value", "units", "kd_uM", "logK", "binding_site",
+          "condition_id", "source"]
 
 # One name per compound, decided for the whole project in pfas_names.py.
 # `pfas` is the source's own spelling and stays untouched; group and
@@ -190,6 +199,10 @@ def select(n, order, top_n=TOP_N):
 
 def main():
     rows, out, skipped, qualitative, dropped = B.build()
+    # Numbered over the unfiltered table so a condition_id means the same
+    # assay here as in db/binding_affinity.xlsx.
+    blocks = B.condition_index(B.build(filter_compounds=False)[1])
+    B.stamp_conditions(out, blocks)
     n, with_comp, cmpds, order = rank(out)
     excluded = collections.Counter(
         r["measure"] for r in out
@@ -223,13 +236,11 @@ def main():
              if tied_in else "nothing tied at the cut this time"))
     print()
 
-    cond = {c["id"]: c for c in B.conditions(out)}
     sel = []
     for r in out:
         if r["source"] not in kept or not is_measured(r):
             continue
-        c = cond[r["id"]]
-        row = {f: (r.get(f) if f in r else c.get(f, "")) for f in FIELDS}
+        row = {f: r.get(f, "") for f in FIELDS}
         row["pfas_canonical"] = N.canon(r["pfas"])
         sel.append(row)
     sel.sort(key=lambda r: (kept.index(r["source"]), r["protein"], r["pfas"]))
@@ -239,11 +250,18 @@ def main():
     for s in kept:
         print(f"  {by[s]:5d}  {s}")
     print()
-    for f in ("pfas_conc_uM", "protein_conc_uM", "pfas_conc_as_stated",
-              "protein_conc_as_stated", "kd_uM", "logK"):
+    for f in ("kd_uM", "logK", "binding_site", "condition_id"):
         got = sum(1 for r in sel if str(r[f]).strip())
         print(f"  {f:24s} populated {got:4d} / {len(sel)}")
-    write(sel, kept, n, tot)
+    used = {r["condition_id"] for r in sel}
+    cond_rows = [c for c in B.condition_table(blocks)
+                 if c["condition_id"] in used]
+    print(f"  {'assays behind them':24s}           {len(cond_rows)}")
+    for f in ("pfas_conc_uM", "protein_conc_uM", "pfas_conc_as_stated",
+              "protein_conc_as_stated"):
+        got = sum(1 for c in cond_rows if str(c[f]).strip())
+        print(f"    Conditions.{f:22s} {got:3d} / {len(cond_rows)}")
+    write(sel, cond_rows, kept, n, tot)
     print(f"\nwrote {os.path.abspath(OUT)}")
     return 0
 
@@ -317,10 +335,33 @@ NOTES = [
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
      "kg protein. Two exact routes only: the paper measured it, or reported "
      "BOTH an affinity and a stoichiometry."),
+    ("binding_site", "The site, where the paper identifies one. A "
+     "property of the compound-protein pair, so it sits with the "
+     "measurement and not with the assay."),
+    ("condition_id", "Key into the Conditions sheet. The join is MANY "
+     "measurements to ONE assay, so use a lookup, not a row-for-row "
+     "alignment. The ids are numbered over the whole database, so the same "
+     "id means the same assay in db/binding_affinity.xlsx and "
+     "db/combined/binding_conditions.csv."),
     ("source", "First author and year. 'Qin 2024 (plasma)' is doi "
      "10.1021/acs.est.3c10824; the other Qin 2024 paper, the baseline-"
      "toxicity one, is a different study and is labelled separately."),
     ("", ""),
+    ("Conditions", "One row per ASSAY. These columns used to repeat on "
+     "every measurement row; they describe the experiment, not the "
+     "number, so they live here once. For 37 of the 50 sources in the full "
+     "database the setting -- concentrations, temperature, buffer -- is a "
+     "single study constant and the sheet repeats it only where the study "
+     "measured more than one protein or method. For 13 it is not: Qin 2024 "
+     "runs a concentration series, Bischel 2011 a dilution series, Gao "
+     "2025 a NaCl series. That is why the key points at an assay and not "
+     "at a study."),
+    ("rows / compounds", "How many measurements that assay produced, and "
+     "over how many distinct compounds."),
+    ("assays_in_source", "How many distinct assays the source reports in "
+     "all, counting a change of protein or method as well as a change of "
+     "setting. 1 or 2 means the conditions are effectively a study "
+     "constant."),
     ("pfas_conc_uM", "Dosed PFAS concentration in micromolar where unit "
      "arithmetic alone reaches one. A range is carried as its midpoint only "
      "where the source states a range in molar units."),
@@ -337,10 +378,14 @@ NOTES = [
      "(Qin 2024 Table 1), so two constants measured at different "
      "ligand:protein ratios are not comparable even for the same compound "
      "and protein. These columns are what makes that check possible."),
+    ("", "Moving them to their own sheet does not weaken that check -- the "
+     "ratio is a property of the assay, so it belongs with the assay, and "
+     "`ligand_protein_ratio_max` now sits beside the concentrations it is "
+     "computed from instead of being repeated down 578 rows."),
 ]
 
 
-def write(sel, kept, n, tot):
+def write(sel, cond_rows, kept, n, tot):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -369,6 +414,30 @@ def write(sel, kept, n, tot):
         ws.column_dimensions[get_column_letter(c)].width = \
             min(max(width + 2, 10), 44)
     ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+
+    ws = wb.create_sheet("Conditions")
+    ws.append(B.COND_FIELDS)
+    for c in cond_rows:
+        row = []
+        for f in B.COND_FIELDS:
+            v = c[f]
+            if f in B.NUMERIC and str(v).strip():
+                try:
+                    v = float(v)
+                except ValueError:
+                    pass
+            row.append(v)
+        ws.append(row)
+    for c, f in enumerate(B.COND_FIELDS, start=1):
+        cell = ws.cell(row=1, column=c)
+        cell.fill = PatternFill("solid", fgColor="2A78D6")
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(vertical="center")
+        width = max([len(f)] + [len(str(r[f])) for r in cond_rows])
+        ws.column_dimensions[get_column_letter(c)].width = \
+            min(max(width + 2, 10), 44)
+    ws.freeze_panes = "B2"
     ws.auto_filter.ref = ws.dimensions
 
     ws = wb.create_sheet("Sources")

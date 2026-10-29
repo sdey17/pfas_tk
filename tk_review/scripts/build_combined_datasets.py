@@ -294,16 +294,41 @@ def build_tk():
 
 
 def binding_rows():
-    """The measurement rows that db/binding_affinity.csv is written from."""
+    """The measurement rows that db/binding_affinity.csv is written from.
+
+    Returned with the assay key stamped on, and with the assay table itself,
+    so the conditions can be written once to binding_conditions.csv instead
+    of repeating down every measurement row.
+    """
     sys.path.insert(0, HERE)
-    from build_binding_affinity_table import build as _build
+    import build_binding_affinity_table as BAF
     # unfiltered: combined/ is the full record, not the reading copy
-    return _build(filter_compounds=False)[1]
+    recs = BAF.build(filter_compounds=False)[1]
+    blocks = BAF.condition_index(recs)
+    BAF.stamp_conditions(recs, blocks)
+    return recs, BAF.COND_FIELDS, BAF.condition_table(blocks)
 
 
 # ------------------------------------------------------------- binding table
-BIND_FIELDS = ["chemical", "chemical_canonical", "species", "protein", "measure", "value", "units",
+# The standardised currencies (kd_uM, logK) were computed on these rows all
+# along, in build_binding_affinity_table.py, and were reaching
+# db/binding_affinity.xlsx but not this file -- so the consolidated workbook
+# showed every paper's own unit and no converted value anywhere. They are
+# columns here now, with the basis string beside each, which is the only way
+# a reader can tell a blank that means "not reported" from one that means
+# "this project refuses that conversion".
+BIND_FIELDS = ["chemical", "chemical_canonical", "species", "protein",
+               "measure", "value", "units", "kd_uM", "kd_basis",
+               "logK", "logK_basis", "binding_site", "condition_id",
                "method", "study", "year", "pmid_or_doi", "provenance", "notes"]
+
+# The per-paper extractions in primary_2026/ have their own schemas and do
+# not pass through the converter, so their conversion cells are blank for a
+# reason that is not "the paper did not report it". Say which.
+NOT_ROUTED = ("not converted here: row comes from a per-paper extraction "
+              "with its own schema, not from protein_binding.csv, so it "
+              "does not pass through the converter in "
+              "build_binding_affinity_table.py")
 
 
 def build_binding():
@@ -317,11 +342,16 @@ def build_binding():
     db/binding_affinity.csv so the two cannot drift apart.
     """
     out = []
-    for r in binding_rows():
+    recs, cond_fields, cond_rows = binding_rows()
+    for r in recs:
         out.append({
             "chemical": r["pfas"], "species": r["species"],
             "protein": r["protein"], "measure": r["measure"],
             "value": r["value"], "units": r["units"],
+            "kd_uM": r["kd_uM"], "kd_basis": r["kd_basis"],
+            "logK": r["logK"], "logK_basis": r["logK_basis"],
+            "binding_site": r["binding_site"],
+            "condition_id": r["condition_id"],
             "method": r["_method"], "study": r["_study"], "year": r["_year"],
             "pmid_or_doi": r["_id"], "provenance": "protein_binding.csv",
             "notes": r["location"]})
@@ -330,6 +360,7 @@ def build_binding():
             "chemical": "PFOA", "species": "rat and human",
             "protein": r["protein"], "measure": r["parameter"],
             "value": r["value"], "units": r["units"], "method": r["method"],
+            "kd_basis": NOT_ROUTED, "logK_basis": NOT_ROUTED,
             "study": "Han et al.", "year": "2003",
             "pmid_or_doi": "12807361 / 10.1021/tx034005w",
             "provenance": "primary_2026/han2003_pfoa_albumin_binding.csv",
@@ -341,6 +372,7 @@ def build_binding():
                 "chemical": r["chemical"], "species": "mouse (CD-1, female)",
                 "protein": "plasma (whole)", "measure": "unbound fraction fu",
                 "value": r["fu_pct"], "units": "%", "method": "equilibrium dialysis",
+                "kd_basis": NOT_ROUTED, "logK_basis": NOT_ROUTED,
                 "study": "Argoul et al.", "year": "2026",
                 "pmid_or_doi": "42162713 / 10.1016/j.envres.2026.124802",
                 "provenance": "primary_2026/argoul2026_mouse_tk.csv",
@@ -349,7 +381,12 @@ def build_binding():
         w = csv.DictWriter(fh, fieldnames=BIND_FIELDS, restval="")
         w.writeheader()
         w.writerows(add_canonical(out))
-    return out
+    with open(os.path.join(OUT, "binding_conditions.csv"), "w",
+              newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cond_fields, restval="")
+        w.writeheader()
+        w.writerows(cond_rows)
+    return out, cond_rows
 
 
 # --------------------------------------------------------- transporter table
@@ -471,11 +508,17 @@ def build_regulatory():
 
 if __name__ == "__main__":
     tk = build_tk()
-    bd = build_binding()
+    bd, bc = build_binding()
     tr = build_transporters()
     rg = build_regulatory()
     print(f"combined/tk_parameters.csv   {len(tk):5d} rows")
     print(f"combined/binding.csv         {len(bd):5d} rows")
+    print(f"combined/binding_conditions.csv {len(bc):3d} rows "
+          f"(one per assay, keyed by condition_id)")
+    conv = sum(1 for r in bd if str(r.get("kd_uM", "")).strip()
+               or str(r.get("logK", "")).strip())
+    print(f"  of which {conv} carry a converted kd_uM or logK; "
+          f"every blank is explained in kd_basis / logK_basis")
     print(f"combined/transporters.csv    {len(tr):5d} rows")
     print(f"combined/regulatory.csv      {len(rg):5d} rows")
     print(f"{'':29}{len(tk) + len(bd) + len(tr) + len(rg):5d} rows total")
