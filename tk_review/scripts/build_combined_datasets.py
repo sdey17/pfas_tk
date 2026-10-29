@@ -329,7 +329,8 @@ def binding_rows():
 # comparable at all.
 BIND_FIELDS = ["chemical", "chemical_canonical", "species", "protein",
                "measure", "value", "units", "kd_uM", "logK", "n_used",
-               "ligand_protein_ratio_max", "basis_id", "binding_site",
+               "n_basis", "ligand_protein_ratio_max", "basis_id",
+               "binding_site",
                "condition_id", "method", "study", "year", "pmid_or_doi",
                "provenance", "notes"]
 
@@ -363,7 +364,7 @@ def build_binding():
             "protein": r["protein"], "measure": r["measure"],
             "value": r["value"], "units": r["units"],
             "kd_uM": r["kd_uM"], "logK": r["logK"],
-            "n_used": r["n_used"],
+            "n_used": r["n_used"], "n_basis": r["n_basis"],
             "ligand_protein_ratio_max": r["ligand_protein_ratio_max"],
             "basis_id": r["basis_id"],
             "binding_site": r["binding_site"],

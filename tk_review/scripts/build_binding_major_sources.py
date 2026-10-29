@@ -114,7 +114,10 @@ _spec.loader.exec_module(B)
 #   specific-site regime or the partitioning one, which is what decides
 #   whether two numbers are comparable at all;
 #
-#   n_used -- the stoichiometry each converted logK actually used. Sparse
+#   n_used and n_basis -- the stoichiometry each converted logK used, and
+#   whether the paper FITTED it or ASSUMED it. The pair is inseparable:
+#   an assumed 1 and a fitted 1.10 look like the same kind of number in a
+#   column and are not. Sparse
 #   here on purpose, and the sparsity is the point: of the ten sources in
 #   this file only Chen 2025 reaches a logK through the Kd-and-n route, and
 #   it does so at n = 1 for every one of its rows. That single assumption is
@@ -128,7 +131,7 @@ _spec.loader.exec_module(B)
 # widest text in the database, and binding_affinity.xlsx carries it through
 # a basis_id lookup for anyone who needs the full reason.
 FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
-          "value", "units", "kd_uM", "logK", "n_used",
+          "value", "units", "kd_uM", "logK", "n_used", "n_basis",
           "ligand_protein_ratio_max", "condition_id", "source"]
 
 # One name per compound, decided for the whole project in pfas_names.py.
@@ -278,8 +281,8 @@ def main():
     for s in kept:
         print(f"  {by[s]:5d}  {s}")
     print()
-    for f in ("kd_uM", "logK", "n_used", "ligand_protein_ratio_max",
-              "condition_id"):
+    for f in ("kd_uM", "logK", "n_used", "n_basis",
+              "ligand_protein_ratio_max", "condition_id"):
         got = sum(1 for r in sel if str(r[f]).strip())
         print(f"  {f:24s} populated {got:4d} / {len(sel)}")
     used = {r["condition_id"] for r in sel}
@@ -364,6 +367,13 @@ NOTES = [
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
      "kg protein. Two exact routes only: the paper measured it, or reported "
      "BOTH an affinity and a stoichiometry."),
+    ("n_basis", "Whether that n was FITTED by the paper or ASSUMED by it. "
+     "Every n_used in this file reads `assumed`, because Chen 2025 fitted "
+     "a single-site model, which fixes n = 1 by construction rather than "
+     "measuring it. Elsewhere in the database the fitted values are not "
+     "all near 1 -- Wu 2024 reports 0.469 to 0.869 and Chen & Guo 2009 "
+     "reaches 14 -- so the word matters even where this file only shows "
+     "one of them."),
     ("n_used", "The stoichiometry that this row's converted logK actually "
      "used, as a number. Blank means no stoichiometry entered the value -- "
      "the paper reported a partition coefficient directly, or no logK was "

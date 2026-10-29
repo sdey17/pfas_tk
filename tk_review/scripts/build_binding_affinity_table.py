@@ -29,7 +29,8 @@ SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
 OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
 FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "logK", "n_used", "ligand_protein_ratio_max",
+          "kd_uM", "logK", "n_used", "n_basis",
+          "ligand_protein_ratio_max",
           "basis_id", "binding_site", "condition_id", "source", "location"]
 
 CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
@@ -54,7 +55,7 @@ def major_sources(out):
 # The unfiltered table, kept alongside the filtered one so nothing is lost to
 # this workbook's scope. Same columns plus the class that decided the filter.
 ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
-              "units", "kd_uM", "logK", "n_used",
+              "units", "kd_uM", "logK", "n_used", "n_basis",
               "ligand_protein_ratio_max", "basis_id", "binding_site",
               "condition_id", "source", "location"]
 
@@ -952,17 +953,30 @@ def basis_route(text):
 
 
 def n_used(rec):
-    """The stoichiometry this row's conversion actually used, as a number.
+    """(stoichiometry, how the paper arrived at it) for this row's logK.
 
     Only the Kd-and-n route uses one; a log D read straight off the paper
     does not, and a blank logK used nothing. Lifted out of the basis prose
     so the single most important input to the conversion is a column.
+
+    It comes back as a PAIR because the number on its own cannot be read.
+    Of the 87 rows that carry one, 63 are the paper's own single-site
+    modelling assumption -- Chen 2025's 60 and Khazaee 2021's 3, all n = 1
+    by construction rather than by fit -- and 24 are fitted, Wu 2024's
+    running from 0.469 to 0.869 and Chen & Guo 2009's reaching 14. A
+    fitted 1.10 and an assumed 1 look like the same kind of number in a
+    column and are not: log K fixes only the ratio n/Kd, so an assumed n
+    propagates one-for-one into every value derived with it, and the
+    reader has to be able to see which is which without opening the basis
+    text. `n_basis` says so in one word.
     """
     if not rec["logK"] or not rec["logK_basis"].startswith(
             "from the paper's own Kd and n"):
-        return ""
-    n, _ = site_count(rec.get("_n", ""))
-    return "" if n is None else "%g" % n
+        return "", ""
+    n, how = site_count(rec.get("_n", ""))
+    if n is None:
+        return "", ""
+    return "%g" % n, ("fitted" if how == "fitted" else "assumed")
 
 
 def basis_index(recs):
@@ -998,7 +1012,7 @@ def stamp_basis(recs, blocks):
     for r in recs:
         r["basis_id"] = blocks[(basis_route(r["kd_basis"]),
                                 basis_route(r["logK_basis"]))]["basis_id"]
-        r["n_used"] = n_used(r)
+        r["n_used"], r["n_basis"] = n_used(r)
 
 
 def condition_table(blocks):
@@ -1079,7 +1093,17 @@ NOTES = [
                "Kd-and-n route uses one; a log D read straight off the paper "
                "does not, and a blank logK used nothing. It is the single "
                "most important input to the bridge -- log K fixes only the "
-               "ratio n/Kd -- so it gets a column of its own."),
+               "ratio n/Kd -- so it gets a column of its own. Always read "
+               "it with n_basis."),
+    ("n_basis", "Whether that n was FITTED by the paper or ASSUMED by it. "
+                "63 of the 87 are assumed: Chen 2025's 60 and Khazaee "
+                "2021's 3 are n = 1 because each fitted a single-site "
+                "model, which fixes the stoichiometry by construction "
+                "rather than measuring it. The other 24 are fitted, and "
+                "they are not all near 1 -- Wu 2024 reports 0.469 to "
+                "0.869, Chen & Guo 2009 reaches 14. An assumed 1 beside a "
+                "fitted 1.10 is not the same number, and without this "
+                "column they look alike."),
     ("ligand_protein_ratio_max", "The highest ratio the assay reached: most "
                                  "ligand over least protein. Below about "
                                  "0.01 a measurement sees the specific site; "
@@ -1303,6 +1327,7 @@ def check(rows, out, skipped, qualitative, dropped):
                 "kd_uM": "every blank is explained by its basis_id",
                 "logK": "every blank is explained by its basis_id",
                 "n_used": "only the Kd-and-n route uses one",
+                "n_basis": "fitted or assumed, beside every n_used",
                 "ligand_protein_ratio_max":
                     "blank where the paper gives no convertible pair of "
                     "concentrations",
