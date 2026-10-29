@@ -111,7 +111,15 @@ for _canon, _extra in (
         ("HFPO-DA", "GenX"),                   # Argoul 2026's spelling
         ("PFUnDA", "PFUdA"),                   # Abraham 2024
         ("PFTeDA", "PFTA"),                    # Liu 2020
-        ("ADONA", "DONA"),                     # Abraham 2024; the acid
+        # DONA is the free acid, ADONA the ammonium salt. Merged
+        # because no source uses both and it matches the existing
+        # NaDONA (ADONA) treatment, and because what Abraham et al.
+        # 2024 measures in serum is the anion either way. Raised as a
+        # judgement call and CONFIRMED by the user on 2026-10-29, so it
+        # is a decision now rather than an open question. The contrast
+        # is Sakolish et al. 2026, where salts and acids ARE kept apart
+        # because that one study doses them side by side.
+        ("ADONA", "DONA"),
         ("6:2 Cl-PFESA", "6:2 Cl-PFESA (F-53B major component)")):
     ALIASES[_canon] = tuple(dict.fromkeys(
         ALIASES.get(_canon, (_canon,)) + (_extra,)))
