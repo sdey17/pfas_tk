@@ -25,6 +25,7 @@ SHEETS = [
     ("tk_parameters.csv", "TK parameters", SRC),
     ("binding.csv", "Protein binding", SRC),
     ("binding_conditions.csv", "Binding conditions", SRC),
+    ("binding_basis.csv", "Conversion basis", SRC),
     ("logk_converted_vs_measured.csv", "Converted vs measured", DB),
     ("transporters.csv", "Transporters", SRC),
     ("regulatory.csv", "Regulatory", SRC),
@@ -42,10 +43,14 @@ def binding_stats():
         b = list(csv.DictReader(fh))
     with open(os.path.join(SRC, "binding_conditions.csv")) as fh:
         c = list(csv.DictReader(fh))
+    with open(os.path.join(SRC, "binding_basis.csv")) as fh:
+        bas = list(csv.DictReader(fh))
     keyed = [r for r in b if r["condition_id"].strip()]
     return {
         "rows": len(b), "keyed": len(keyed), "keyless": len(b) - len(keyed),
-        "assays": len(c),
+        "assays": len(c), "routes": len(bas),
+        "ratio": sum(1 for r in b if r["ligand_protein_ratio_max"].strip()),
+        "nused": sum(1 for r in b if r["n_used"].strip()),
         "kd": sum(1 for r in b if r["kd_uM"].strip()),
         "logk": sum(1 for r in b if r["logK"].strip()),
         "pairs": sum(1 for _ in open(
@@ -93,10 +98,32 @@ def main():
         ["stoichiometry, through log K = log10(1e9/M_protein) + log n -"],
         ["log Kd(uM); it is never derived from an affinity alone, because"],
         ["K fixes only the ratio n/Kd and an assumed n = 1 would be a"],
-        ["guess dressed as a number. `kd_basis` and `logK_basis` are never"],
-        ["blank: where the value is blank they say why, which is the only"],
-        ["way to tell a quantity the paper did not report from one this"],
-        [f"project refuses to infer. `Converted vs measured` holds the "
+        [f"guess dressed as a number. `n_used` ({st['nused']} rows) is the"],
+        ["stoichiometry each conversion actually used, as a number rather"],
+        ["than a digit buried in a sentence."],
+        [],
+        ["HOW EACH ONE WAS REACHED. `basis_id` keys into `Conversion"],
+        [f"basis`, {st['routes']} rows covering every measurement in the"],
+        ["sheet. Neither route there is ever blank: where a converted value"],
+        ["is blank, the route says why. That is the only way to tell a"],
+        ["quantity the paper did not report from one this"],
+        [f"project refuses to infer. It is keyed on the ROUTE and not on"],
+        ["the study, because the basis is not a study constant: only 28 of"],
+        ["the 50 sources use a single route pair, since the route follows"],
+        ["what each individual ROW reports, not what the paper is."],
+        [],
+        [f"WHICH REGIME. `ligand_protein_ratio_max` ({st['ratio']} rows) is"],
+        ["the highest ratio the assay reached, most ligand over least"],
+        ["protein. Below about 0.01 a measurement sees the specific site;"],
+        ["above about 1 it sees non-specific partitioning, and the two"],
+        ["differ by orders of magnitude, so two constants measured at"],
+        ["different ratios are not comparable even for the same compound"],
+        ["and protein. It is a property of the assay, so it is also on"],
+        ["`Binding conditions`; it is repeated on every measurement row"],
+        ["because it is the column you filter on, and a lookup to learn"],
+        ["which regime a number came from is a lookup too many."],
+        [],
+        [f"`Converted vs measured` holds the "
          f"{st['pairs']}"],
         ["cases where a converted value and an independently measured one"],
         ["exist for the same compound, protein and species, with the"],

@@ -67,8 +67,8 @@ because dropping a paper's plasma or serum rows would silently discard
 measurements the user did not ask to lose.  The `protein` column says what
 each row was measured in and `measure` marks anything computed.
 
-COLUMNS.  The nine requested, plus the binding site where a paper names one
-and a `condition_id` key.  The concentrations, temperature and buffer used to
+COLUMNS.  The nine requested, plus the ligand-to-protein ratio the assay
+reached and a `condition_id` key.  The concentrations, temperature and buffer used to
 sit on every row; they are properties of the EXPERIMENT rather than of the
 individual number, so they moved to a Conditions sheet that holds one row per
 assay and the measurement rows carry the key instead.  That is mostly, but not
@@ -103,9 +103,16 @@ _spec = importlib.util.spec_from_file_location(
 B = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(B)
 
-# The nine columns asked for, then the site and the key into Conditions.
+# The nine columns asked for, then the regime ratio and the key into
+# Conditions. This is the reading copy, so it stays narrow: `binding_site`
+# came out again (16 of 578 rows carried one, and it is in
+# db/binding_affinity.xlsx and db/combined/binding.csv), and in its place
+# sits the one derived number worth scanning down a column --
+# ligand_protein_ratio_max, which says whether a constant was measured in
+# the specific-site regime or the partitioning one. A near-empty column
+# traded for the one that decides whether two numbers are comparable.
 FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
-          "value", "units", "kd_uM", "logK", "binding_site",
+          "value", "units", "kd_uM", "logK", "ligand_protein_ratio_max",
           "condition_id", "source"]
 
 # One name per compound, decided for the whole project in pfas_names.py.
@@ -250,7 +257,7 @@ def main():
     for s in kept:
         print(f"  {by[s]:5d}  {s}")
     print()
-    for f in ("kd_uM", "logK", "binding_site", "condition_id"):
+    for f in ("kd_uM", "logK", "ligand_protein_ratio_max", "condition_id"):
         got = sum(1 for r in sel if str(r[f]).strip())
         print(f"  {f:24s} populated {got:4d} / {len(sel)}")
     used = {r["condition_id"] for r in sel}
@@ -335,9 +342,15 @@ NOTES = [
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
      "kg protein. Two exact routes only: the paper measured it, or reported "
      "BOTH an affinity and a stoichiometry."),
-    ("binding_site", "The site, where the paper identifies one. A "
-     "property of the compound-protein pair, so it sits with the "
-     "measurement and not with the assay."),
+    ("ligand_protein_ratio_max", "The highest ratio this assay reached: "
+     "most ligand over least protein. Below about 0.01 a measurement sees "
+     "the specific site; above about 1 it sees non-specific partitioning, "
+     "and the two differ by orders of magnitude, so two constants measured "
+     "at different ratios are not comparable even for the same compound "
+     "and protein. It is a property of the assay and also sits on the "
+     "Conditions sheet; it is repeated here because it is the column you "
+     "filter on, and having to do a lookup to learn which regime a number "
+     "came from is a lookup too many."),
     ("condition_id", "Key into the Conditions sheet. The join is MANY "
      "measurements to ONE assay, so use a lookup, not a row-for-row "
      "alignment. The ids are numbered over the whole database, so the same "
@@ -379,9 +392,15 @@ NOTES = [
      "ligand:protein ratios are not comparable even for the same compound "
      "and protein. These columns are what makes that check possible."),
     ("", "Moving them to their own sheet does not weaken that check -- the "
-     "ratio is a property of the assay, so it belongs with the assay, and "
-     "`ligand_protein_ratio_max` now sits beside the concentrations it is "
-     "computed from instead of being repeated down 578 rows."),
+     "ratio sits in both places: beside the concentrations it is computed "
+     "from, on Conditions, and on every measurement row, where it is "
+     "actually used."),
+    ("What is NOT here", "The binding site, and the per-row basis for each "
+     "converted value. This file is the reading copy and stays narrow. "
+     "Both are in db/binding_affinity.xlsx and in "
+     "db/combined/binding.csv: the site in its own column, the basis "
+     "through a `basis_id` key into a Conversion basis table that says how "
+     "every kd_uM and logK was reached, or why either is blank."),
 ]
 
 

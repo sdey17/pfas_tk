@@ -29,8 +29,8 @@ SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
 OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
 FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "kd_basis", "logK", "logK_basis", "binding_site",
-          "condition_id", "source", "location"]
+          "kd_uM", "logK", "n_used", "ligand_protein_ratio_max",
+          "basis_id", "binding_site", "condition_id", "source", "location"]
 
 CMPD_FIELDS = ["pfas", "class", "rows", "kd_rows", "logK_rows", "studies"]
 
@@ -54,8 +54,9 @@ def major_sources(out):
 # The unfiltered table, kept alongside the filtered one so nothing is lost to
 # this workbook's scope. Same columns plus the class that decided the filter.
 ALL_FIELDS = ["pfas", "class", "species", "protein", "measure", "value",
-              "units", "kd_uM", "kd_basis", "logK", "logK_basis",
-              "binding_site", "condition_id", "source", "location"]
+              "units", "kd_uM", "logK", "n_used",
+              "ligand_protein_ratio_max", "basis_id", "binding_site",
+              "condition_id", "source", "location"]
 
 # The per-measurement form, kept because the block table is derived from it.
 COND_FIELDS_BY_ROW = ["id", "pfas", "species", "protein", "source", "mode",
@@ -924,6 +925,82 @@ def condition_index(recs):
     return blocks
 
 
+# How a converted value was reached, or why it could not be. These two
+# strings were columns on every measurement row and they are the widest
+# prose in the table, so they move to a lookup of their own and the rows
+# carry a four-character `basis_id`.
+#
+# They are NOT constant per paper, which is the reason this is keyed on the
+# route and not on the source: only 28 of the 50 sources use a single route
+# pair, because the route follows what each individual ROW reports -- a
+# paper that gives a Ka for one compound and a log D for another reaches its
+# two values by two different roads. Keying this on the study would have
+# merged routes that are not the same.
+#
+# One thing in those strings is genuinely per-row and does not belong in a
+# lookup at all: the stoichiometry n that the conversion used. It is pulled
+# out into `n_used`, a number, which is both more useful than the same digit
+# buried in a sentence and what makes the rest of the string factorable.
+BASIS_FIELDS = ["basis_id", "kd_route", "logK_route", "rows", "sources"]
+
+_N_IN_BASIS = re.compile(r"(?<=n = )[0-9.]+")
+
+
+def basis_route(text):
+    """The basis with the row's own stoichiometry blanked out."""
+    return _N_IN_BASIS.sub("n", text)
+
+
+def n_used(rec):
+    """The stoichiometry this row's conversion actually used, as a number.
+
+    Only the Kd-and-n route uses one; a log D read straight off the paper
+    does not, and a blank logK used nothing. Lifted out of the basis prose
+    so the single most important input to the conversion is a column.
+    """
+    if not rec["logK"] or not rec["logK_basis"].startswith(
+            "from the paper's own Kd and n"):
+        return ""
+    n, _ = site_count(rec.get("_n", ""))
+    return "" if n is None else "%g" % n
+
+
+def basis_index(recs):
+    """One row per distinct (kd route, logK route) pair.
+
+    Numbered over whatever is passed in, so the unfiltered set goes first
+    and the filtered views reuse the index -- the same rule the condition
+    blocks follow, for the same reason.
+    """
+    blocks = {}
+    for r in recs:
+        k = (basis_route(r["kd_basis"]), basis_route(r["logK_basis"]))
+        b = blocks.get(k)
+        if b is None:
+            b = blocks[k] = {"kd_route": k[0], "logK_route": k[1],
+                             "rows": 0, "_src": set()}
+        b["rows"] += 1
+        b["_src"].add(r["source"])
+    for i, b in enumerate(sorted(blocks.values(),
+                                 key=lambda b: (-b["rows"], b["kd_route"])),
+                          start=1):
+        b["basis_id"] = "B%02d" % i
+        b["sources"] = len(b["_src"])
+    return blocks
+
+
+def basis_table(blocks):
+    return [{f: b[f] for f in BASIS_FIELDS}
+            for b in sorted(blocks.values(), key=lambda b: b["basis_id"])]
+
+
+def stamp_basis(recs, blocks):
+    for r in recs:
+        r["basis_id"] = blocks[(basis_route(r["kd_basis"]),
+                                basis_route(r["logK_basis"]))]["basis_id"]
+        r["n_used"] = n_used(r)
+
+
 def condition_table(blocks):
     """The Conditions sheet: one row per assay, in condition_id order."""
     return [{f: b[f] for f in COND_FIELDS}
@@ -931,15 +1008,27 @@ def condition_table(blocks):
 
 
 def stamp_conditions(recs, blocks):
-    """Write the lookup key, and the site, onto the measurement rows."""
+    """Write the lookup key, the site and the ratio onto the measurement rows.
+
+    `ligand_protein_ratio_max` is deliberately kept in BOTH places. It is a
+    property of the assay, so it belongs in the block table; it is also the
+    single best predictor of where a constant lands -- below about 0.01 a
+    measurement sees the specific site, above about 1 it sees non-specific
+    partitioning, and the two differ by orders of magnitude -- so a reader
+    scanning the measurements should not have to do a lookup to know which
+    regime a number came from. Duplication that saves a join on the column
+    people filter on is worth its one column.
+    """
     for r in recs:
-        r["condition_id"] = blocks[block_key(condition_row(r))]["condition_id"]
+        b = blocks[block_key(condition_row(r))]
+        r["condition_id"] = b["condition_id"]
+        r["ligand_protein_ratio_max"] = b["ligand_protein_ratio_max"]
         r["binding_site"] = r["_site"]
 
 
 NUMERIC = {"id", "kd_uM", "logK", "rows", "kd_rows", "logK_rows", "pfas_conc_uM", "protein_conc_uM",
            "ligand_protein_ratio_max", "temperature_C", "nacl_mM",
-           "compounds", "assays_in_source"}
+           "compounds", "assays_in_source", "n_used", "sources"}
 
 NOTES = [
     ("Affinity", "One row per binding measurement, joined to Conditions by id."),
@@ -985,12 +1074,31 @@ NOTES = [
     ("units", "Canonicalised unit for that value."),
     ("kd_uM", "Everything that converts EXACTLY to a dissociation constant "
               "in micromolar. Blank is a deliberate state, never a gap."),
-    ("kd_basis", "How the kd_uM was reached, or why it is blank. Never empty."),
+    ("n_used", "The stoichiometry this row's conversion actually used, as "
+               "a NUMBER rather than a digit inside a sentence. Only the "
+               "Kd-and-n route uses one; a log D read straight off the paper "
+               "does not, and a blank logK used nothing. It is the single "
+               "most important input to the bridge -- log K fixes only the "
+               "ratio n/Kd -- so it gets a column of its own."),
+    ("ligand_protein_ratio_max", "The highest ratio the assay reached: most "
+                                 "ligand over least protein. Below about "
+                                 "0.01 a measurement sees the specific site; "
+                                 "above about 1 it sees non-specific "
+                                 "partitioning, and the two differ by orders "
+                                 "of magnitude. Deliberately in BOTH places: "
+                                 "it is a property of the assay and so "
+                                 "belongs in Conditions, but it is also the "
+                                 "column readers filter on, and a lookup to "
+                                 "learn which regime a number came from is a "
+                                 "lookup too many."),
+    ("basis_id", "Key into the Conversion basis sheet: how the kd_uM and the "
+                 "logK on this row were reached, or why either is blank. "
+                 "These were two prose columns on every row and were the "
+                 "widest text in the table."),
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
              "kg protein -- what a mass-balance model needs. Two exact routes "
              "only: the paper measured it, or the paper reported BOTH an "
              "affinity and a stoichiometry. Never inferred from a Kd alone."),
-    ("logK_basis", "Which route, or why the cell is blank. Never empty."),
     ("binding_site", "Site, where the paper identifies one -- 46 of the "
                      "1,060 rows here, 48 of the 1,208 unfiltered. It sits "
                      "with the measurement rather than in Conditions "
@@ -998,6 +1106,23 @@ NOTES = [
                      "pair, not of the assay."),
     ("source", "First Author Year."),
     ("location", "Where the number sits in the paper."),
+    ("", ""),
+    ("Conversion basis", "One row per distinct (kd route, logK route) "
+                         "pair -- 38 of them behind the whole database. "
+                         "Neither route is ever empty: where a value is "
+                         "blank the route says why, which is the only way "
+                         "to tell a quantity the paper did not report from "
+                         "one this project refuses to infer."),
+    ("", "Keyed on the ROUTE and not on the study, because the basis is NOT "
+         "a study constant: only 28 of the 50 sources use a single route "
+         "pair. The route follows what each individual ROW reports, so a "
+         "paper giving a Ka for one compound and a log D for another "
+         "reaches its two values by two different roads, and keying this on "
+         "the source would have merged routes that are not the same."),
+    ("", "The one genuinely per-row part of those strings, the "
+         "stoichiometry n, was lifted out into the `n_used` column instead "
+         "-- which is what makes the rest factorable, and makes the "
+         "conversion's key input a number."),
     ("", ""),
     ("Conditions", "One row per ASSAY, not per measurement. The "
                    "concentrations, temperature and buffer belong to the "
@@ -1058,13 +1183,10 @@ NOTES = [
                                "the rest are dilution factors, mol/mol "
                                "ratios, an immobilised stationary phase or a "
                                "percentage of serum."),
-    ("ligand_protein_ratio_max", "the highest ratio the assay reached: most ligand "
-                             "over least protein. Below ~0.01 a measurement "
-                             "sees the specific site; above ~1 it sees "
-                             "non-specific partitioning, and the two differ "
-                             "by orders of magnitude. This column is the "
-                             "single best predictor of where a constant will "
-                             "land. 239 of 828 rows support one."),
+    ("ligand_protein_ratio_max", "Here as a property of the assay; also "
+                             "denormalised onto the measurement rows, for "
+                             "the reason given above. 248 of the 1,060 rows "
+                             "support one."),
     ("ratio_basis", "Whether the ratio was computed from the two "
                     "concentrations or read off a bound the paper states in "
                     "words. A computed value and a stated upper bound are "
@@ -1102,7 +1224,7 @@ NOTES = [
 ]
 
 
-def write(out, major, cond, cmpd, full):
+def write(out, major, cond, cmpd, full, bases):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -1116,6 +1238,7 @@ def write(out, major, cond, cmpd, full):
     for title, fields, data in (("Affinity", FIELDS, out),
                                 ("Major studies", FIELDS, major),
                                 ("Conditions", COND_FIELDS, cond),
+                                ("Conversion basis", BASIS_FIELDS, bases),
                                 ("Compounds", CMPD_FIELDS, cmpd),
                                 ("All measurements", ALL_FIELDS, full)):
         ws = wb.create_sheet(title)
@@ -1169,20 +1292,32 @@ def check(rows, out, skipped, qualitative, dropped):
     # Columns that must never be blank, against the three where a blank is a
     # legitimate state the row explains for itself.
     REQUIRED = ["id", "pfas", "species", "protein", "measure", "value",
-                "units", "kd_basis", "logK_basis", "condition_id", "source",
-                "location"]
+                "units", "basis_id", "condition_id", "source", "location"]
     print(f"Completeness of the {len(FIELDS)} columns:")
     for f in FIELDS:
         blank = sum(1 for r in out if not str(r[f]).strip())
         if f in REQUIRED:
             flag = "" if blank == 0 else "   <-- MUST NOT BE BLANK"
         else:
-            where = {"kd_uM": "kd_basis", "logK": "logK_basis"}.get(f)
-            flag = (f"   ({len(out) - blank} populated; every blank is "
-                    f"explained in {where})" if where else
-                    f"   ({len(out) - blank} populated; not reported by "
-                    f"the paper)")
+            why = {
+                "kd_uM": "every blank is explained by its basis_id",
+                "logK": "every blank is explained by its basis_id",
+                "n_used": "only the Kd-and-n route uses one",
+                "ligand_protein_ratio_max":
+                    "blank where the paper gives no convertible pair of "
+                    "concentrations",
+            }.get(f, "not reported by the paper")
+            flag = f"   ({len(out) - blank} populated; {why})"
         print(f"  {f:13s} blank {blank:4d} / {len(out)}{flag}")
+    print()
+    # The basis strings left the sheet for a lookup; the guarantee that
+    # they are never empty did not leave with them.
+    bad = [r for r in out if not str(r["kd_basis"]).strip()
+           or not str(r["logK_basis"]).strip()]
+    print(f"Conversion basis: {len(basis_index(out))} distinct route pairs "
+          f"behind {len(out)} rows; "
+          + (f"{len(bad)} ROWS WITH AN EMPTY BASIS <-- MUST BE 0"
+             if bad else "no row has an empty basis."))
     print()
     print("Why kd_uM is blank, where it is:")
     for b, n in collections.Counter(
@@ -1357,12 +1492,15 @@ def main():
     # condition_id means the same assay in every view of the table.
     full = build(filter_compounds=False)[1]
     blocks = condition_index(full)
-    stamp_conditions(full, blocks)
-    stamp_conditions(out, blocks)
+    bases = basis_index(full)
+    for view in (full, out):
+        stamp_conditions(view, blocks)
+        stamp_basis(view, bases)
     if not args.check:
         majors = major_sources(out)
         major = [r for r in out if r["source"] in majors]
-        write(out, major, condition_table(blocks), compounds(out), full)
+        write(out, major, condition_table(blocks), compounds(out), full,
+              basis_table(bases))
         print(f"wrote {os.path.abspath(OUT)}  ({len(out)} rows)")
         print()
     check(rows, out, skipped, qualitative, dropped)

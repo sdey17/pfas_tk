@@ -1,0 +1,39 @@
+basis_id,kd_route,logK_route,rows,sources
+B01,"an unbound fraction, not an affinity; converting needs the binding-site molarity, which this paper does not give","no Kd, and the paper reports no partition coefficient",341,7
+B02,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","a membrane-water coefficient, not protein-water; it is the lipid limb and belongs in its own column",143,2
+B03,1/Ka,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",120,7
+B04,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report",as reported (mass basis),107,2
+B05,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report",reported per L protein; density conversion to per kg,86,3
+B06,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","as reported, biomimetic surrogate; basis not stated by the paper, so not placed on the mass basis",82,1
+B07,as reported,"from the paper's own Kd and n, albumin 66.5 kDa, one class of site",60,1
+B08,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","no exact conversion from log10 (L_water/L_prot+lip) at Cw = 1 uM, Freundlich fit",37,2
+B09,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","a whole-matrix coefficient, per L of serum rather than per kg of one protein; it is what a mass balance has to PREDICT, not an input to one",28,1
+B10,as reported,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",28,3
+B11,unit conversion from mM,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",28,1
+B12,no binding detected,"no Kd, and the paper reports no partition coefficient",24,3
+B13,1/Ka,"from the paper's own Kd and n, albumin 66.5 kDa, n = n",18,3
+B14,1/Ka; geometric midpoint of the reported range,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",11,11
+B15,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","no exact conversion from log10 (L_water/L_protein) at Cw = 1 uM, Freundlich fit",11,1
+B16,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report",no exact conversion from log10 (L_water/L_lipid),11,3
+B17,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report",no exact conversion from log10 (L_water/L_prot+lip),11,1
+B18,"a computed docking score, not a measured constant","no Kd, and the paper reports no partition coefficient",10,1
+B19,1/Ka; approximate as printed,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",7,2
+B20,as reported,"stoichiometry given, but the construct mass is not: Khazaee et al. 2021 names only the supplier and never says whether the material is the full-length receptor (52.2, 57.6 and 49.9 kDa for alpha, gamma and delta) or the ligand-binding domain alone, about a third of that. A factor of 3 in M is 0.48 log in K",7,1
+B21,"two distinct sites reported, not one value","no Kd, and the paper reports no partition coefficient",5,2
+B22,unit conversion from M,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",5,3
+B23,as reported,"from the paper's own Kd and n, albumin 66.5 kDa, n = n",4,1
+B24,as reported,"from the paper's own Kd and n, human L-FABP 14.2 kDa, UniProt P07148, one class of site",3,1
+B25,unit conversion from M; leading value; qualifier dropped,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",3,1
+B26,value is not reducible to one number,"no Kd, and the paper reports no partition coefficient",3,2
+B27,1/Ka; leading value; qualifier dropped,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",2,2
+B28,unit conversion from M; approximate as printed,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",2,1
+B29,unit conversion from M; geometric midpoint of the reported range,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",2,1
+B30,unit conversion from mM; geometric midpoint of the reported range,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",2,1
+B31,"1/Ka, from log10 Ka; leading value; qualifier dropped","the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",1,1
+B32,"as reported; a bound, not a point estimate","the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",1,1
+B33,as reported; leading value; qualifier dropped,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",1,1
+B34,unit conversion from mM; approximate as printed,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",1,1
+B35,unit conversion from nM,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",1,1
+B36,value is not reducible to one number,"from the paper's own Kd and n, rat L-FABP 14.3 kDa, UniProt P02692, summed over 2 classes of site",1,1
+B37,value is not reducible to one number,"from the paper's own Kd and n, rat L-FABP 14.3 kDa, UniProt P02692, summed over 3 classes of site",1,1
+B00,"not converted here: row comes from a per-paper extraction with its own schema, not from protein_binding.csv, so it does not pass through the converter in build_binding_affinity_table.py","not converted here: row comes from a per-paper extraction with its own schema, not from protein_binding.csv, so it does not pass through the converter in build_binding_affinity_table.py",16,2
