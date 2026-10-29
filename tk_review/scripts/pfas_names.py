@@ -35,7 +35,30 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DB = os.path.join(os.path.dirname(HERE), "db", "protein_binding.csv")
+_DBDIR = os.path.join(os.path.dirname(HERE), "db")
+DB = os.path.join(_DBDIR, "protein_binding.csv")
+# Every file whose rows carry a `chemical`. The alias table was first
+# built and audited against protein_binding.csv alone, which left the
+# other three unchecked -- and they held seven more merges, including a
+# bare DSSTox identifier standing in for a compound name.
+SOURCES = [DB] + [os.path.join(_DBDIR, "combined", f + ".csv")
+                  for f in ("tk_parameters", "binding", "transporters",
+                            "regulatory")]
+
+
+def all_rows():
+    out = []
+    for path in SOURCES:
+        if not os.path.exists(path):
+            continue
+        for r in csv.DictReader(open(path, encoding="utf-8")):
+            if "chemical" in r:
+                r.setdefault("n_perfluorinated_carbons", "")
+                r.setdefault("head_group", "")
+                r.setdefault("study", "")
+                r.setdefault("year", "")
+                out.append(r)
+    return out
 
 # canonical -> the spellings that mean it. The canonical form is the one
 # this project already uses most, so existing output does not shift.
@@ -73,7 +96,25 @@ ALIASES = {
                       "decanoic acid (reference ligand)"),
     # --- the systematic name spelled out in brackets -------------------
     "PFPrS":        ("PFPrS", "PFPrS (perfluoropropane sulfonate)"),
+    # --- found only once the other three datasets were audited --------
+    "PFODA":        ("PFODA", "PFOcDA"),      # perfluorooctadecanoate
+    # PFHpA: EPA's httk pfas.clearance table carries the name and the
+    # DSSTox id on the same rows (db/compiled_tk_parameters.csv), both
+    # Ohmori 2003, rat, female, and the half-lives agree -- 1.2332 h in
+    # the CPHEA refit against httk's 1.2 h. Resolved from this project's
+    # own files, not guessed.
+    "PFHpA":        ("PFHpA", "DTXSID1037303"),
 }
+# Added to groups already defined above, now that the other datasets are
+# in scope. Kept separate so the provenance of each late addition shows.
+for _canon, _extra in (
+        ("HFPO-DA", "GenX"),                   # Argoul 2026's spelling
+        ("PFUnDA", "PFUdA"),                   # Abraham 2024
+        ("PFTeDA", "PFTA"),                    # Liu 2020
+        ("ADONA", "DONA"),                     # Abraham 2024; the acid
+        ("6:2 Cl-PFESA", "6:2 Cl-PFESA (F-53B major component)")):
+    ALIASES[_canon] = tuple(dict.fromkeys(
+        ALIASES.get(_canon, (_canon,)) + (_extra,)))
 _CANON = {v: k for k, vs in ALIASES.items() for v in vs}
 
 # The fluorotelomer sulfonates need a pattern, not a list: FTS, FtS and
@@ -94,8 +135,15 @@ ISOMER_VARIANTS = {
 NOT_A_COMPOUND = (
     "perfluoroalkyl acids",
     "perfluoroalkyl acids (model compounds)",
-    "perfluoroalkyl acids (model compounds)",
     "C8-C11 PFCAs",
+    # the transporter dataset uses these where no single compound applies
+    "(endogenous organic anions)",
+    "all 14 PFAS",
+    "any",
+    "n/a",
+    "n/a (constitutive mRNA expression)",
+    "n/a (hormone manipulation)",
+    "linear PFCAs C4-C12",
 )
 
 # Pairs the audit keeps proposing that are DIFFERENT compounds, each with
@@ -119,6 +167,42 @@ NOT_MERGED = {
         "a butane- against an octane-sulfonamidoethanol",
     ("N-MeFBSE", "NMeFOSE"):
         "a butane- against an octane-sulfonamidoethanol",
+    ("PFOA", "PFOA (as 8:2-FTOH metabolite)"):
+        "the same compound, but the parameter is PFOA formed from an "
+        "8:2 FTOH dose, which is not a direct-dosing parameter and must "
+        "not be pooled with one",
+    # Sakolish et al. 2026 dose the salts and the acids side by side, so
+    # rule 1 already separates these; recorded because the rule only
+    # fires while that one source is in scope.
+    ("NH4PFOA", "PFOA"): "one source doses both the ammonium salt and "
+                         "the acid",
+    ("PFOA", "PFOA-K"): "one source doses both the potassium salt and "
+                        "the acid",
+    ("PFOS", "PFOS-K"): "one source doses both the potassium salt and "
+                        "the acid",
+    ("PFHxS", "PFHxS-K"): "one source doses both the potassium salt and "
+                          "the acid",
+    ("PFDoDA", "PFODA"): "perfluorododecanoate against "
+                         "perfluorooctadecanoate -- six CF2 apart, and "
+                         "PFOcDA/PFDoDA look alike only as strings",
+}
+
+# Merges no audit can discover, because the two strings share nothing
+# and the evidence is external to the name. The self-test excludes these
+# rather than failing on them: an audit built on spelling and annotation
+# cannot be blamed for missing a registry identifier. They are listed so
+# the exclusion is visible, not silent.
+UNDISCOVERABLE = {
+    ("DTXSID1037303", "PFHpA"):
+        "a DSSTox identifier used in place of a name; resolved from "
+        "db/compiled_tk_parameters.csv, where EPA's httk pfas.clearance "
+        "table carries both on the same Ohmori 2003 rat rows and the "
+        "half-lives agree (1.2332 h refitted against httk's 1.2 h)",
+    ("PFTA", "PFTeDA"):
+        "perfluorotetradecanoate written two ways that share only three "
+        "letters; chemistry, not spelling",
+    ("PFOcDA", "PFODA"):
+        "perfluorooctadecanoate, likewise",
 }
 
 UNRESOLVED = {
@@ -239,7 +323,24 @@ def candidates(rows):
             return False
         return True
 
-    names = sorted({r["chemical"].strip() for r in singles})
+    # Generator 4: a synonym carried in brackets. "HFPO-DA (GenX)" is
+    # the database telling us GenX and HFPO-DA are one compound, and no
+    # amount of string similarity between "GENX" and "HFPODA" would ever
+    # say so. Splitting such a name links the bare form to each synonym
+    # inside the brackets.
+    allnames = {r["chemical"].strip() for r in singles}
+    bysyn = collections.defaultdict(set)
+    for n in sorted(allnames):
+        m = re.match(r"^(.*?)\s*\(([^)]*)\)\s*$", n)
+        if not m:
+            continue
+        bare = m.group(1).strip()
+        parts = [bare] + [x.strip() for x in m.group(2).split(",")]
+        hit = {p for p in parts if p in allnames}
+        if len(hit) > 1 or (hit and bare in allnames):
+            bysyn[n] = hit | {n}
+
+    names = sorted(allnames)
     bysim = collections.defaultdict(set)
     for i, a in enumerate(names):
         fa = _flat(a)
@@ -259,7 +360,7 @@ def candidates(rows):
 
     out = []
     for how, groups in (("spelling", byname), ("nCF+head", bykey),
-                        ("lookalike", bysim)):
+                        ("lookalike", bysim), ("synonym", bysyn)):
         for k, v in groups.items():
             if len(v) < 2 or len({canon(x) for x in v}) == 1:
                 continue
@@ -282,10 +383,11 @@ def candidates(rows):
 
 
 def main():
-    rows = list(csv.DictReader(open(DB, encoding="utf-8")))
+    rows = all_rows()
     names = {r["chemical"].strip() for r in rows}
     singles = {n for n in names if is_single_compound(n)}
-    print(f"{len(rows)} rows, {len(names)} distinct chemical strings, "
+    print(f"{len(SOURCES)} source files, {len(rows)} rows, "
+          f"{len(names)} distinct chemical strings, "
           f"{len(singles)} single compounds")
     print(f"after reconciliation: {len({canon(n) for n in singles})} "
           f"compounds "
@@ -343,7 +445,7 @@ def selftest():
     still surfaces as a candidate.
     """
     global ALIASES, _CANON, _FTS
-    rows = list(csv.DictReader(open(DB, encoding="utf-8")))
+    rows = all_rows()
     names = {r["chemical"].strip() for r in rows}
     truth = {v: k for k, vs in ALIASES.items() for v in vs if v in names}
     fts = {n for n in names if _FTS.match(n)}
@@ -353,11 +455,19 @@ def selftest():
     for _, _, v, _ in candidates(rows):
         seen |= set(v)
     ALIASES, _CANON, _FTS = keep
-    missed = sorted((r for r in set(truth) | fts if r not in seen))
-    print(f"SELF-TEST: {len(set(truth) | fts)} known merges, "
+    skip = {x for pair in UNDISCOVERABLE for x in pair}
+    known = (set(truth) | fts) - skip
+    missed = sorted(r for r in known if r not in seen)
+    print(f"SELF-TEST: {len(known)} discoverable merges, "
           f"{len(missed)} not surfaced by the audit.")
     for m in missed:
         print(f"    MISSED  {m}")
+    print(f"  {len(UNDISCOVERABLE)} further merges are excluded as "
+          f"undiscoverable by any")
+    print("  spelling or annotation rule, each with its evidence:")
+    for pair, why in UNDISCOVERABLE.items():
+        print(f"    {' = '.join(pair)}")
+        print(f"        {why}")
     print("PASS" if not missed else "FAIL -- the audit has a blind spot")
     return 1 if missed else 0
 

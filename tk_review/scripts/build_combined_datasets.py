@@ -20,6 +20,7 @@ value and unit are preserved alongside.
 Run:  python3 scripts/build_combined_datasets.py
 """
 import csv
+import importlib.util
 import os
 import sys
 import re
@@ -29,8 +30,24 @@ DB = os.path.join(HERE, "..", "db")
 PRIM = os.path.join(DB, "primary_2026")
 OUT = os.path.join(DB, "combined")
 
+# One name per compound, project-wide. `chemical` keeps the source's own
+# spelling (that is provenance); `chemical_canonical` is what to group
+# and count on. The mapping and its evidence are db/pfas_name_map.csv.
+_ns = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(HERE, "pfas_names.py"))
+N = importlib.util.module_from_spec(_ns)
+_ns.loader.exec_module(N)
+
+
+def add_canonical(out):
+    """Fill chemical_canonical on every row that has a chemical."""
+    for r in out:
+        if r.get("chemical"):
+            r["chemical_canonical"] = N.canon(r["chemical"])
+    return out
+
 TK_FIELDS = [
-    "chemical", "species", "strain", "sex", "parameter", "value", "value_low",
+    "chemical", "chemical_canonical", "species", "strain", "sex", "parameter", "value", "value_low",
     "value_high", "units", "dose", "dose_units", "route", "method",
     "n_animals", "study", "year", "pmid_or_doi", "source_table", "provenance",
     "notes",
@@ -270,9 +287,9 @@ def build_tk():
     os.makedirs(OUT, exist_ok=True)
     out = [r for r in out if r["value"] != "" or r["value_low"] != ""]
     with open(os.path.join(OUT, "tk_parameters.csv"), "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=TK_FIELDS)
+        w = csv.DictWriter(fh, fieldnames=TK_FIELDS, restval="")
         w.writeheader()
-        w.writerows(out)
+        w.writerows(add_canonical(out))
     return out
 
 
@@ -285,7 +302,7 @@ def binding_rows():
 
 
 # ------------------------------------------------------------- binding table
-BIND_FIELDS = ["chemical", "species", "protein", "measure", "value", "units",
+BIND_FIELDS = ["chemical", "chemical_canonical", "species", "protein", "measure", "value", "units",
                "method", "study", "year", "pmid_or_doi", "provenance", "notes"]
 
 
@@ -329,14 +346,14 @@ def build_binding():
                 "provenance": "primary_2026/argoul2026_mouse_tk.csv",
                 "notes": "Table 4; PFBA value from Ryu 2024"})
     with open(os.path.join(OUT, "binding.csv"), "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=BIND_FIELDS)
+        w = csv.DictWriter(fh, fieldnames=BIND_FIELDS, restval="")
         w.writeheader()
-        w.writerows(out)
+        w.writerows(add_canonical(out))
     return out
 
 
 # --------------------------------------------------------- transporter table
-TR_FIELDS = ["transporter", "species", "chemical", "measure", "value", "units",
+TR_FIELDS = ["transporter", "species", "chemical", "chemical_canonical", "measure", "value", "units",
              "direction", "condition", "study", "year", "pmid_or_doi",
              "provenance", "notes"]
 
@@ -428,9 +445,9 @@ def build_transporters():
                 "provenance": "primary_2026/han2012_table7_pbpk_tm_kt.csv",
                 "notes": f"{r['tmc_unit_note']} {r['kt_note']}".strip()})
     with open(os.path.join(OUT, "transporters.csv"), "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=TR_FIELDS)
+        w = csv.DictWriter(fh, fieldnames=TR_FIELDS, restval="")
         w.writeheader()
-        w.writerows(out)
+        w.writerows(add_canonical(out))
     return out
 
 
@@ -438,7 +455,8 @@ def build_transporters():
 def build_regulatory():
     src = rows(os.path.join(DB, "regulatory_values.csv"))
     agency = rows(os.path.join(DB, "all_agency_clearance.csv"))
-    fields = sorted({k for r in src + agency for k in r} | {"provenance"})
+    fields = sorted({k for r in src + agency for k in r}
+                    | {"provenance", "chemical_canonical"})
     out = []
     for r in src:
         r = dict(r); r["provenance"] = "regulatory_values.csv"; out.append(r)
@@ -447,7 +465,7 @@ def build_regulatory():
     with open(os.path.join(OUT, "regulatory.csv"), "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=fields, restval="")
         w.writeheader()
-        w.writerows(out)
+        w.writerows(add_canonical(out))
     return out
 
 
