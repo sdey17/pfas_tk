@@ -14,8 +14,8 @@ routes, and the column does not distinguish them:
 This file asks whether the two agree. They do not, and the answer is
 more specific than "the conversion is unreliable".
 
-THE ANSWER: 39 pairs are available, Chen et al. 2025 supplies 27 of
-them, and that one well-powered comparison sits 0.86 log LOW with a
+THE ANSWER: 29 admissible pairs are available, Chen et al. 2025 supplies
+27 of them, and that one well-powered comparison sits 0.86 log LOW with a
 consistent sign, outside the 0.59 log between-laboratory baseline. The
 size of that gap is the size of a missing site count: 10^0.86 = 7.2, so
 closing it needs about seven sites where Chen's single-site Langmuir fit
@@ -23,20 +23,37 @@ allowed one. Maso et al. 2021 co-crystallised four PFOA molecules per
 human serum albumin and found one high-affinity and three low-affinity
 sites in solution -- independent, structural, and of the right order.
 
-    source        pairs   median   where its n came from
-    Chen 2025        27    -0.86   single-site Langmuir, n fixed at 1
-    Wu 2024           5    -4.01   fluorescence double-log slope
-    Chen 2009         2    -0.53   fluorescence double-log slope
-    Peng 2024         3    +0.13   fluorescence double-log slope
-    Moro 2022         2    +0.28   ITC, n fitted from the isotherm
+    source        pairs   median   where its n came from     admitted?
+    Chen 2025        27    -0.86   single-site Langmuir, n = 1      yes
+    Moro 2022         2    +0.28   ITC, n fitted from the isotherm  yes
+    ---
+    Wu 2024           5    -4.01   fluorescence double-log slope     no
+    Peng 2024         3    +0.13   fluorescence double-log slope     no
+    Chen 2009         2    -0.53   fluorescence double-log slope     no
 
-The remaining 12 pairs are too few to characterise and should not be
-read as a trend. They do establish one negative: three papers that take
-n off a fluorescence double-logarithmic slope land at -4.01, -0.53 and
-+0.13, so that slope is not a site count. Wu 2024's problem is not even
-its n -- its association constants sit three to four orders below every
-other measurement of the same compound on albumin, which this database
-already flags.
+THE EXCLUSION, AND WHY IT IS NOT CIRCULAR. The three papers below the
+line take n off a fluorescence double-logarithmic or Scatchard plot,
+where n is a fitted SLOPE and not a counted site, and they scatter
+across -4.01 to +0.13 log. A quantity that behaves like that is not a
+stoichiometry, so build_binding_affinity_table.py refuses to convert on
+it -- and this script is the evidence for that refusal, which is why it
+recomputes those ten pairs itself, prints them, and holds them out of
+every statistic and out of the figure. The rule is applied on the
+METHOD, not on the answer: Peng 2024's n of 1.1 to 1.5 look like
+perfectly reasonable site counts and are excluded with the rest.
+
+WHAT THE EXCLUSION COSTS, SAID PLAINLY. It leaves the comparison 27/29
+Chen 2025. Before it, the four other sources looked like independent
+corroboration; they were not, because three of them shared the same
+unreliable route to n. The only genuinely independent converted source
+left is Moro 2022, with two ITC pairs. So the central finding is
+unchanged -- the median moves from -0.87 to -0.81, and the share
+agreeing within the between-laboratory floor stays at 31% -- but its
+evidential base is narrower and more honestly described than it was.
+
+Wu 2024's problem is not even its n: its association constants sit three
+to four orders below every other measurement of the same compound on
+albumin, which this database already flags.
 
 Note what CANNOT be separated here: Chen 2025 is the only assumed-n
 source in the comparison, so "assumed n" and "Chen 2025" are the same
@@ -362,6 +379,47 @@ def n_how_long(rec):
     return N_PROVENANCE.get(rec["source"], ("unstated", "unstated"))[1]
 
 
+# The master table now REFUSES to convert a stoichiometry taken off an
+# optical quenching plot, because such an n is a fitted slope and not a
+# counted site. That refusal is correct and this script is the reason for
+# it -- the three papers whose n comes from a double-logarithmic fit land
+# at -4.01, -0.53 and +0.13, which is what establishes that the slope is
+# not a site count.
+#
+# So the evidence cannot be allowed to disappear with the rows. Those
+# conversions are recomputed HERE, from the same Kd and the same n, kept
+# in the output marked `excluded`, printed in a block of their own, and
+# held out of every headline statistic and out of the figure. The
+# published table refuses them; the analysis that justifies the refusal
+# still shows them.
+REFUSED = "the stoichiometry n = "
+
+
+def revived(out):
+    """Recompute the conversions the master table declines, so the case
+    against them stays visible in the file that makes it."""
+    rows = []
+    for r in out:
+        b = r["logK_basis"]
+        if not (b.startswith(REFUSED) and "quenching plot" in b):
+            continue
+        if not r["kd_uM"]:
+            continue
+        n = float(b.split("n = ")[1].split()[0])
+        mw, _ = B.protein_mw(r["protein"], r["species"])
+        if mw is None:
+            continue
+        lk = (math.log10(1e9 / mw) + math.log10(n)
+              - math.log10(float(r["kd_uM"])))
+        rows.append(dict(r, logK="%.3f" % lk, _excluded=True,
+                         logK_basis=("from the paper's own Kd and n, "
+                                     f"n = {n:g}, RECOMPUTED IN THIS SCRIPT "
+                                     "ONLY; the master table refuses this "
+                                     "conversion because the n is a "
+                                     "quenching-plot slope")))
+    return rows
+
+
 def part3(out, ncf, bar):
     """Converted against measured, same compound, protein and species."""
     rule()
@@ -369,7 +427,7 @@ def part3(out, ncf, bar):
     rule()
     conv = collections.defaultdict(list)
     meas = collections.defaultdict(list)
-    for r in out:
+    for r in list(out) + revived(out):
         if route(r) == "converted":
             conv[key(r)].append(r)
         elif route(r) == "measured":
@@ -385,17 +443,50 @@ def part3(out, ncf, bar):
                 "n_used": n_used(c), "n_how": n_how(c), "n_long": n_how_long(c),
                 "measured_source": m["source"], "measured_logK": float(m["logK"]),
                 "residual": float(c["logK"]) - float(m["logK"]),
+                "excluded": ("quenching-slope n; not converted in the "
+                             "published table"
+                             if c.get("_excluded") else ""),
             })
     if not rows:
         print("  no pairs")
         return rows
-    print(f"  {len(rows)} pairs over "
-          f"{len({(r['pfas'], r['protein'], r['species']) for r in rows})} "
+    dropped = [r for r in rows if r["excluded"]]
+    rows = [r for r in rows if not r["excluded"]] + dropped
+    kept = [r for r in rows if not r["excluded"]]
+    print(f"  {len(kept)} pairs over "
+          f"{len({(r['pfas'], r['protein'], r['species']) for r in kept})} "
           f"(compound, protein, species) keys.")
     print(f"  Converted from: "
-          f"{', '.join(sorted({r['converted_source'] for r in rows}))}")
+          f"{', '.join(sorted({r['converted_source'] for r in kept}))}")
     print(f"  Measured by:    "
-          f"{', '.join(sorted({r['measured_source'] for r in rows}))}")
+          f"{', '.join(sorted({r['measured_source'] for r in kept}))}")
+    if dropped:
+        print()
+        print(f"  A further {len(dropped)} pairs are EXCLUDED from "
+              f"everything below and from the figure, and are written to")
+        print("  the CSV with the reason in an `excluded` column. Their n "
+              "comes from a fluorescence")
+        print("  double-logarithmic or Scatchard plot, where n is a fitted "
+              "slope and not a counted site,")
+        print("  so the published table does not convert them. They are "
+              "recomputed here because they")
+        print("  ARE the evidence for that rule:")
+        for s2 in sorted({r["converted_source"] for r in dropped}):
+            sub_ = [r for r in dropped if r["converted_source"] == s2]
+            print(f"    {s2:16s}{len(sub_):3d} pairs   median residual "
+                  f"{statistics.median([r['residual'] for r in sub_]):+6.2f}"
+                  f"   n = "
+                  + "..".join(f"{v:g}" for v in
+                              (min(r["n_used"] for r in sub_),
+                               max(r["n_used"] for r in sub_))))
+        print("    Three independent papers using the same kind of fit "
+              "scatter across "
+              f"{min(statistics.median([r['residual'] for r in dropped if r['converted_source']==s2]) for s2 in {r['converted_source'] for r in dropped}):+.2f}"
+              " to "
+              f"{max(statistics.median([r['residual'] for r in dropped if r['converted_source']==s2]) for s2 in {r['converted_source'] for r in dropped}):+.2f}"
+              " log.")
+        print("    A quantity that behaves like that is not a site count.")
+    rows = kept
     print()
     res = [r["residual"] for r in rows]
     neg = sum(1 for x in res if x < 0)
@@ -446,10 +537,21 @@ def part3(out, ncf, bar):
         print(f"  WHAT CAN BE SAID. Chen 2025, {len(chen)} pairs against one")
         print(f"  measured set, sits at {statistics.median(chen):+.2f} log, "
               f"outside the {bar:.2f} log")
-        print("  between-laboratory baseline, with a consistent sign. The")
-        print("  other four sources contribute 11 pairs between them and")
-        print("  span +0.28 to -4.18; nothing can be concluded from them")
-        print("  except that a double-log n is not to be trusted.")
+        other = [r for r in rows if r["converted_source"] != "Chen 2025"]
+        print("  between-laboratory baseline, with a consistent sign.")
+        if other:
+            print(f"  Every other admitted source contributes "
+                  f"{len(other)} pair(s) between them, from "
+                  + ", ".join(sorted({r["converted_source"]
+                                      for r in other})) + ",")
+            print("  which is too few to weigh against it. The quenching-n "
+                  "papers that used to")
+            print("  supply the rest are excluded above, so this comparison "
+                  "is now almost")
+            print("  entirely one laboratory's assumed-n conversions against "
+                  "one laboratory's")
+            print("  measurements. That is the honest description of its "
+                  "evidential base.")
     print()
     print("  THE GAP IS A SITE COUNT. Rearranging, the stoichiometry that")
     print("  would reconcile each pair is n_implied = n_used x 10^(-residual).")
@@ -485,7 +587,10 @@ def part3(out, ncf, bar):
     print("  no chain-length story here to tell. An earlier draft of this")
     print("  file claimed one off the pooled slope; the split kills it.")
     print()
-    return rows
+    # Everything above ran on the admitted pairs. The file gets both, with
+    # the reason in the `excluded` column, so a reader can reproduce the
+    # exclusion rather than take it on trust.
+    return rows + dropped
 
 
 def qin_split(out):
@@ -823,7 +928,10 @@ def write(rows):
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
         w.writerows(rows)
-    print(f"wrote {os.path.abspath(OUT)}  ({len(rows)} pairs)")
+    ex = sum(1 for r in rows if r.get("excluded"))
+    print(f"wrote {os.path.abspath(OUT)}  ({len(rows) - ex} admitted pairs"
+          + (f" + {ex} excluded, marked in the `excluded` column)" if ex
+             else ")"))
 
 
 def main():

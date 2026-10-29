@@ -11,7 +11,7 @@ B09,"a partition coefficient; converting to Kd needs the stoichiometry, which th
 B10,as reported,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",28,3
 B11,unit conversion from mM,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",28,1
 B12,no binding detected,"no Kd, and the paper reports no partition coefficient",24,3
-B13,1/Ka,"from the paper's own Kd and n, albumin 66.5 kDa, n = n",18,3
+B13,1/Ka,"the stoichiometry n = n is the fitted slope of an optical quenching plot (double-logarithmic, Scatchard or modified Stern-Volmer), not a counted site; the same quantity is refused where a paper names it a Hill coefficient, so it is refused here too",18,3
 B14,1/Ka; geometric midpoint of the reported range,"the paper reports an affinity but no stoichiometry, and K cannot be had from one without the other",11,11
 B15,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report","no exact conversion from log10 (L_water/L_protein) at Cw = 1 uM, Freundlich fit",11,1
 B16,"a partition coefficient; converting to Kd needs the stoichiometry, which this paper does not report",no exact conversion from log10 (L_water/L_lipid),11,3

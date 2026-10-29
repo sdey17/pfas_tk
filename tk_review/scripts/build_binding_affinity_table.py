@@ -466,6 +466,48 @@ def site_count(n_sites):
     return None, None
 
 
+# WHERE AN n CAME FROM. site_count reads the cell; this reads the assay
+# that produced it, because the two are not the same question and only the
+# second decides whether the number is admissible.
+#
+# A stoichiometry measured by isothermal titration calorimetry or by a
+# displacement assay is a counted site: ITC integrates heat per injection
+# and n falls out of the binding isotherm directly.
+#
+# A stoichiometry read off an OPTICAL QUENCHING fit is not. In the
+# double-logarithmic form log[(F0-F)/F] = log Ka + n log[Q], and in a
+# Scatchard or modified Stern-Volmer plot, n is a fitted SLOPE. The
+# literature calls it "the number of binding sites" and under the model's
+# assumptions it approximates one, but it is an exponent, and when the
+# model is stretched it returns values no site count can take -- 0.469 for
+# Wu 2024, 14 for Chen & Guo 2009, against the 6 to 9 sites Han 2003
+# counts on the same protein.
+#
+# This project already refuses that quantity when a paper is explicit
+# about it: Gao 2025 writes "n_Hill" and the parser rejects the cell, so
+# none of its rows convert. Wu writes a bare "0.681" and the same kind of
+# number was being accepted. The wording of a spreadsheet cell is not a
+# reason to treat two identical quantities differently, so the test moved
+# to the method.
+QUENCH_WORDS = ("quench", "scatchard", "stern-volmer", "stern volmer",
+                "double-log", "double logarithmic")
+ITC_WORDS = ("isothermal titration", "(itc)")
+
+
+def n_provenance(rec, how):
+    """Which kind of experiment produced this row's n."""
+    if how != "fitted":
+        return "assumed"
+    m = (rec.get("_method") or "").lower()
+    if any(w in m for w in QUENCH_WORDS):
+        return "quenching fit"
+    if any(w in m for w in ITC_WORDS):
+        return "ITC"
+    if "displacement" in m:
+        return "displacement"
+    return "fitted"
+
+
 def kd_list_uM(rec, row=None):
     """Every dissociation constant on the row, in uM.
 
@@ -526,6 +568,13 @@ def to_logK(rec, n_sites, row=None):
     if n is None:
         return "", ("the paper reports an affinity but no stoichiometry, and "
                     "K cannot be had from one without the other")
+    if n_provenance({"_method": (row or {}).get("method", "")},
+                    how) == "quenching fit":
+        return "", (f"the stoichiometry n = {n:g} is the fitted slope of an "
+                    "optical quenching plot (double-logarithmic, Scatchard "
+                    "or modified Stern-Volmer), not a counted site; the "
+                    "same quantity is refused where a paper names it a "
+                    "Hill coefficient, so it is refused here too")
     mw, label = protein_mw(rec["protein"], rec["species"])
     if mw is None:
         return "", label
@@ -953,30 +1002,24 @@ def basis_route(text):
 
 
 def n_used(rec):
-    """(stoichiometry, how the paper arrived at it) for this row's logK.
+    """(stoichiometry the paper reports, the experiment that produced it).
 
-    Only the Kd-and-n route uses one; a log D read straight off the paper
-    does not, and a blank logK used nothing. Lifted out of the basis prose
-    so the single most important input to the conversion is a column.
+    It is the paper's number, populated wherever one can be read, not only
+    where the conversion consumed it -- a reported n that this table
+    declines to convert on is exactly the case a reader most needs to see,
+    and hiding it would leave the refusal unexplained in the data.
 
-    It comes back as a PAIR because the number on its own cannot be read.
-    Of the 87 rows that carry one, 63 are the paper's own single-site
-    modelling assumption -- Chen 2025's 60 and Khazaee 2021's 3, all n = 1
-    by construction rather than by fit -- and 24 are fitted, Wu 2024's
-    running from 0.469 to 0.869 and Chen & Guo 2009's reaching 14. A
-    fitted 1.10 and an assumed 1 look like the same kind of number in a
-    column and are not: log K fixes only the ratio n/Kd, so an assumed n
-    propagates one-for-one into every value derived with it, and the
-    reader has to be able to see which is which without opening the basis
-    text. `n_basis` says so in one word.
+    It comes back as a PAIR because the number alone cannot be read. An
+    assumed 1 and an ITC-measured 1.02 are not the same kind of quantity,
+    and neither is a 0.681 that is really the slope of a quenching plot.
+    log K fixes only the ratio n/Kd, so whatever enters here propagates
+    one-for-one into every value derived with it; `n_basis` says in one
+    word what kind of thing entered.
     """
-    if not rec["logK"] or not rec["logK_basis"].startswith(
-            "from the paper's own Kd and n"):
-        return "", ""
     n, how = site_count(rec.get("_n", ""))
     if n is None:
         return "", ""
-    return "%g" % n, ("fitted" if how == "fitted" else "assumed")
+    return "%g" % n, n_provenance(rec, how)
 
 
 def basis_index(recs):
@@ -1093,17 +1136,39 @@ NOTES = [
                "Kd-and-n route uses one; a log D read straight off the paper "
                "does not, and a blank logK used nothing. It is the single "
                "most important input to the bridge -- log K fixes only the "
-               "ratio n/Kd -- so it gets a column of its own. Always read "
-               "it with n_basis."),
-    ("n_basis", "Whether that n was FITTED by the paper or ASSUMED by it. "
-                "63 of the 87 are assumed: Chen 2025's 60 and Khazaee "
-                "2021's 3 are n = 1 because each fitted a single-site "
-                "model, which fixes the stoichiometry by construction "
-                "rather than measuring it. The other 24 are fitted, and "
-                "they are not all near 1 -- Wu 2024 reports 0.469 to "
-                "0.869, Chen & Guo 2009 reaches 14. An assumed 1 beside a "
-                "fitted 1.10 is not the same number, and without this "
-                "column they look alike."),
+               "ratio n/Kd -- so it gets a column of its own. It is the "
+               "paper's reported n, populated wherever one can be read, "
+               "NOT only where the conversion consumed it: a reported n "
+               "this table declines to convert on is the case a reader "
+               "most needs to see. Always read it with n_basis."),
+    ("n_basis", "WHICH EXPERIMENT produced that n, in one word. Four "
+                "values, and they are not interchangeable:"),
+    ("", "ITC / displacement -- a counted site. Isothermal titration "
+         "calorimetry integrates heat per injection and n falls out of "
+         "the isotherm directly. 7 rows, Moro 2022 and Woodcroft 2010. "
+         "These convert."),
+    ("", "assumed -- n = 1 because the paper fitted a SINGLE-SITE model, "
+         "which fixes the stoichiometry by construction rather than "
+         "measuring it. 70 rows, Chen 2025 and Khazaee 2021. These "
+         "convert, and every value derived from them moves one-for-one "
+         "with that assumption."),
+    ("", "quenching fit -- NOT a counted site, and these DO NOT convert. "
+         "In the double-logarithmic form log[(F0-F)/F] = log Ka + n "
+         "log[Q], and in a Scatchard or modified Stern-Volmer plot, n is "
+         "a fitted SLOPE. The literature calls it the number of binding "
+         "sites and under the model's assumptions it approximates one, "
+         "but stretch the model and it returns values no site count can "
+         "take: 0.469 for Wu 2024, 14 for Chen & Guo 2009, against the 6 "
+         "to 9 sites Han 2003 counts on the same protein. 18 rows across "
+         "Wu 2024, Peng 2024 and Chen & Guo 2009."),
+    ("", "The test is on the METHOD, not on the wording of the cell. Gao "
+         "2025 writes 'n_Hill' and has always been refused; Wu writes a "
+         "bare '0.681' and the identical quantity was being accepted. How "
+         "a spreadsheet cell is phrased is not a reason to treat two "
+         "identical quantities differently. Nor is plausibility: Peng "
+         "2024's 1.10 to 2.09 look like reasonable site counts and are "
+         "refused with the rest, because judging a method by whether its "
+         "answer looks right is the error this table exists to avoid."),
     ("ligand_protein_ratio_max", "The highest ratio the assay reached: most "
                                  "ligand over least protein. Below about "
                                  "0.01 a measurement sees the specific site; "

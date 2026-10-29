@@ -63,7 +63,8 @@ KD_INPUT = 1.45        # part 8: the same albumin Kd, two dialysis labs
 
 
 def load():
-    rows = list(csv.DictReader(open(SRC, encoding="utf-8")))
+    rows = [r for r in csv.DictReader(open(SRC, encoding="utf-8"))
+            if not r.get("excluded", "").strip()]
     for r in rows:
         r["converted_logK"] = float(r["converted_logK"])
         r["measured_logK"] = float(r["measured_logK"])
@@ -119,9 +120,14 @@ def panelA(ax, rows):
     ax.grid(True, lw=0.6, zorder=0)
     ax.set_axisbelow(True)
 
+    # Only the categories actually on the panel. The quenching-slope
+    # pairs are excluded upstream, and a legend key with nothing behind it
+    # invites a reader to hunt for points that are not there.
+    present = {r["n_how"] for r in rows}
     handles = [Line2D([], [], marker="o", ls="", ms=6.5, mfc=COLOUR[k],
                       mec=SURFACE, mew=1.2, label=LABEL[k])
-               for k in ("assumed", "double-log", "isotherm")]
+               for k in ("assumed", "double-log", "isotherm")
+               if k in present]
     handles += [Line2D([], [], marker=SHAPE[h], ls="", ms=6, mfc=MUTED,
                        mec=SURFACE, mew=1.0, label=h)
                 for h in ("carboxylate", "sulfonate", "other")]

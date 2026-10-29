@@ -367,13 +367,16 @@ NOTES = [
     ("logK", "log10 of the protein-water partition coefficient, L_water per "
      "kg protein. Two exact routes only: the paper measured it, or reported "
      "BOTH an affinity and a stoichiometry."),
-    ("n_basis", "Whether that n was FITTED by the paper or ASSUMED by it. "
-     "Every n_used in this file reads `assumed`, because Chen 2025 fitted "
-     "a single-site model, which fixes n = 1 by construction rather than "
-     "measuring it. Elsewhere in the database the fitted values are not "
-     "all near 1 -- Wu 2024 reports 0.469 to 0.869 and Chen & Guo 2009 "
-     "reaches 14 -- so the word matters even where this file only shows "
-     "one of them."),
+    ("n_basis", "WHICH EXPERIMENT produced that n: `ITC` or "
+     "`displacement` (a counted site), `assumed` (n = 1 because the paper "
+     "fitted a single-site model, which fixes it by construction), or "
+     "`quenching fit` (the slope of a double-logarithmic, Scatchard or "
+     "modified Stern-Volmer plot, which is a fitted exponent and not a "
+     "site count -- those rows are NOT converted to a logK anywhere in "
+     "this database). Every n_used in this file reads `assumed`, because "
+     "Chen 2025 is its only Kd-and-n source and it fitted a single-site "
+     "model. The word still matters here: it says the 57 converted "
+     "coefficients below rest on a modelling choice, not a measurement."),
     ("n_used", "The stoichiometry that this row's converted logK actually "
      "used, as a number. Blank means no stoichiometry entered the value -- "
      "the paper reported a partition coefficient directly, or no logK was "

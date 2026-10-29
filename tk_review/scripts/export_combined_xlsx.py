@@ -33,6 +33,13 @@ SHEETS = [
 HEAD_FILL = PatternFill("solid", fgColor="2A78D6")
 
 
+def _pairs():
+    with open(os.path.join(DB, "logk_converted_vs_measured.csv")) as fh:
+        p = list(csv.DictReader(fh))
+    ex = sum(1 for r in p if r.get("excluded", "").strip())
+    return {"pairs": len(p) - ex, "pairs_excluded": ex}
+
+
 def binding_stats():
     """Counts for the README, read off the files rather than typed in.
 
@@ -53,8 +60,7 @@ def binding_stats():
         "nused": sum(1 for r in b if r["n_used"].strip()),
         "kd": sum(1 for r in b if r["kd_uM"].strip()),
         "logk": sum(1 for r in b if r["logK"].strip()),
-        "pairs": sum(1 for _ in open(
-            os.path.join(DB, "logk_converted_vs_measured.csv"))) - 1,
+        **_pairs(),
     }
 
 
@@ -123,11 +129,16 @@ def main():
         ["because it is the column you filter on, and a lookup to learn"],
         ["which regime a number came from is a lookup too many."],
         [],
-        [f"`Converted vs measured` holds the "
-         f"{st['pairs']}"],
+        [f"`Converted vs measured` holds the {st['pairs']} admitted"],
         ["cases where a converted value and an independently measured one"],
         ["exist for the same compound, protein and species, with the"],
-        ["residual between them."],
+        [f"residual between them, plus {st['pairs_excluded']} marked in an"],
+        ["`excluded` column. Those are conversions this database refuses:"],
+        ["their stoichiometry is the slope of a fluorescence"],
+        ["double-logarithmic or Scatchard plot, not a counted site, and"],
+        ["three such papers scatter across -4.01 to +0.13 log. They are"],
+        ["computed and kept because they are the evidence for the rule,"],
+        ["and they are in no statistic and in no figure."],
         [],
         ["ASSAY CONDITIONS. The concentrations, temperature and buffer are"],
         ["properties of the experiment, not of the individual number, so"],
