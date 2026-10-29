@@ -14,25 +14,25 @@ routes, and the column does not distinguish them:
 This file asks whether the two agree. They do not, and the answer is
 more specific than "the conversion is unreliable".
 
-THE ANSWER: 33 pairs are available, Chen et al. 2025 supplies 22 of
-them, and that one well-powered comparison sits 0.80 log LOW with a
+THE ANSWER: 39 pairs are available, Chen et al. 2025 supplies 27 of
+them, and that one well-powered comparison sits 0.86 log LOW with a
 consistent sign, outside the 0.59 log between-laboratory baseline. The
-size of that gap is the size of a missing site count: 10^0.80 = 6.3, so
-closing it needs about six sites where Chen's single-site Langmuir fit
+size of that gap is the size of a missing site count: 10^0.86 = 7.2, so
+closing it needs about seven sites where Chen's single-site Langmuir fit
 allowed one. Maso et al. 2021 co-crystallised four PFOA molecules per
 human serum albumin and found one high-affinity and three low-affinity
 sites in solution -- independent, structural, and of the right order.
 
     source        pairs   median   where its n came from
-    Chen 2025        22    -0.80   single-site Langmuir, n fixed at 1
-    Wu 2024           4    -4.18   fluorescence double-log slope
+    Chen 2025        27    -0.86   single-site Langmuir, n fixed at 1
+    Wu 2024           5    -4.01   fluorescence double-log slope
     Chen 2009         2    -0.53   fluorescence double-log slope
     Peng 2024         3    +0.13   fluorescence double-log slope
     Moro 2022         2    +0.28   ITC, n fitted from the isotherm
 
-The remaining 11 pairs are too few to characterise and should not be
+The remaining 12 pairs are too few to characterise and should not be
 read as a trend. They do establish one negative: three papers that take
-n off a fluorescence double-logarithmic slope land at -4.18, -0.53 and
+n off a fluorescence double-logarithmic slope land at -4.01, -0.53 and
 +0.13, so that slope is not a site count. Wu 2024's problem is not even
 its n -- its association constants sit three to four orders below every
 other measurement of the same compound on albumin, which this database
@@ -50,10 +50,10 @@ by equilibrium dialysis, the same technique Chen uses, and the two
 laboratories differ on the SAME dissociation constants by a median 1.45
 log -- 45x on PFOA. Since log K = log10(1e9/M) + log n - log Kd, the
 converted value inherits that error one for one, so the Kd input is
-1.8x noisier than the 0.80 log effect being attributed. A stoichiometry
+1.7x noisier than the 0.86 log effect being attributed. A stoichiometry
 wrong by six-fold is second-order next to an input reproducible to 28x.
 
-That does not rescue the conversion -- a one-sided offset across 22
+That does not rescue the conversion -- a one-sided offset across 27
 compounds is not what noise produces -- but it does say the offset is
 not worth attributing to any single cause while a larger, unattributed
 error sits underneath it. It is also a finding in its own right: PFOA on
@@ -209,8 +209,20 @@ def part1(out):
     print()
 
 
+_ns = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(HERE, "pfas_names.py"))
+N = importlib.util.module_from_spec(_ns)
+_ns.loader.exec_module(N)
+
+
 def key(r):
-    return (r["pfas"], protein_class(r), r["species"])
+    """Match on the CANONICAL compound name.
+
+    Before this, a converted "PFDoA" and a measured "PFDoDA" were two
+    compounds and never paired. scripts/pfas_names.py decides identity
+    for the whole project.
+    """
+    return (N.canon(r["pfas"]), protein_class(r), r["species"])
 
 
 def totals(out):

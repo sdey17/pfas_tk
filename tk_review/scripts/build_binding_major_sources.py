@@ -94,10 +94,18 @@ B = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(B)
 
 # The nine columns asked for, then the concentrations.
-FIELDS = ["pfas", "species", "protein", "measure", "value", "units",
-          "kd_uM", "logK", "source",
+FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
+          "value", "units", "kd_uM", "logK", "source",
           "pfas_conc_uM", "pfas_conc_as_stated",
           "protein_conc_uM", "protein_conc_as_stated"]
+
+# One name per compound, decided for the whole project in pfas_names.py.
+# `pfas` is the source's own spelling and stays untouched; group and
+# count on `pfas_canonical`.
+_ns = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(HERE, "pfas_names.py"))
+N = importlib.util.module_from_spec(_ns)
+_ns.loader.exec_module(N)
 
 # A named single protein. Albumin, globulin and the named binding proteins
 # count; a matrix that merely CONTAINS protein does not.
@@ -158,7 +166,7 @@ def rank(out):
                             and is_measured(r))
     with_comp = collections.Counter(r["source"] for r in out
                                     if is_named_protein(r["protein"]))
-    cmpds = {s: len({r["pfas"] for r in out if r["source"] == s
+    cmpds = {s: len({N.canon(r["pfas"]) for r in out if r["source"] == s
                      and is_named_protein(r["protein"]) and is_measured(r)})
              for s in n}
     order = sorted(n, key=lambda s: (-n[s], -cmpds[s], s))
@@ -221,7 +229,9 @@ def main():
         if r["source"] not in kept or not is_measured(r):
             continue
         c = cond[r["id"]]
-        sel.append({f: (r.get(f) if f in r else c.get(f, "")) for f in FIELDS})
+        row = {f: (r.get(f) if f in r else c.get(f, "")) for f in FIELDS}
+        row["pfas_canonical"] = N.canon(r["pfas"])
+        sel.append(row)
     sel.sort(key=lambda r: (kept.index(r["source"]), r["protein"], r["pfas"]))
 
     by = collections.Counter(r["source"] for r in sel)
@@ -285,7 +295,14 @@ NOTES = [
      "within one method."),
     ("", ""),
     ("", ""),
-    ("pfas", "Chemical as the paper names it."),
+    ("pfas", "Chemical as the paper names it, untouched."),
+    ("pfas_canonical", "One name per compound across the whole database. "
+     "The same PFAS is spelled differently by different groups -- PFUnA "
+     "and PFUnDA, 6:2 FtS and 6:2 FTSA, FOSA and PFOSA, PFECHS and "
+     "PFEtCHxS -- and counting raw names inflates every compound total. "
+     "GROUP AND COUNT ON THIS COLUMN, not on `pfas`. The full mapping, "
+     "with the evidence for each merge and the groups deliberately left "
+     "apart, is db/pfas_name_map.csv."),
     ("species", "Species the protein came from."),
     ("protein", "Protein or matrix, as the paper describes it."),
     ("measure", "Kd, Ka, log D (protein-water), log K_membrane, f_unbound. "
@@ -361,7 +378,7 @@ def write(sel, kept, n, tot):
     for s in kept:
         sub = [r for r in sel if r["source"] == s]
         meas = collections.Counter(r["measure"] for r in sub)
-        ws.append([s, n[s], by[s], len({r["pfas"] for r in sub}),
+        ws.append([s, n[s], by[s], len({N.canon(r["pfas"]) for r in sub}),
                    ", ".join(f"{k} {v}" for k, v in meas.most_common())])
     for c in range(1, 6):
         ws.cell(row=1, column=c).fill = PatternFill("solid", fgColor="2A78D6")

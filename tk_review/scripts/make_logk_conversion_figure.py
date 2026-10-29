@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Does a Kd-derived protein-water coefficient agree with a measured one?
 
-A: the 33 pairs, converted against measured, with the 1:1 line and a band
+A: the pairs, converted against measured, with the 1:1 line and a band
    of +/-0.59 log around it -- the median disagreement between two DIRECT
    measurements of the same compound, protein and species in different
    laboratories. A point inside that band is as close as two measurements
@@ -114,7 +114,7 @@ def panelA(ax, rows):
     ax.set_aspect("equal")
     ax.set_xlabel("measured log K   (Fischer 2024, L$_{water}$/kg protein)")
     ax.set_ylabel("converted from Kd and n   (log K)")
-    ax.set_title("A   Converted against measured, 33 pairs",
+    ax.set_title(f"A   Converted against measured, {len(rows)} pairs",
                  loc="left", fontsize=9.5, color=INK, pad=8)
     ax.grid(True, lw=0.6, zorder=0)
     ax.set_axisbelow(True)
@@ -223,7 +223,7 @@ def main():
              "coefficient; the two do not agree",
              ha="left", va="top", fontsize=13, color=INK)
     fig.text(0.065, 0.925,
-             "33 pairs, same compound, protein and species. Non-specific "
+             f"{len(rows)} pairs, same compound, protein and species. Non-specific "
              "binding is not the explanation: at the trace limit Qin 2024's "
              "non-specific\nterm is 1\u201314% of the total, 0.07 log. But panel C "
              "is the point \u2014 the Kd the conversion is built from is "

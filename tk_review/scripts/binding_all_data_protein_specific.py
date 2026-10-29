@@ -47,6 +47,7 @@ Run:  python3 tk_review/scripts/binding_all_data_protein_specific.py
 """
 import collections
 import csv
+import importlib.util
 import math
 import os
 import re
@@ -60,10 +61,9 @@ TOP10 = {"Fischer 2024", "Chen 2025", "Muensterman 2026", "Gao 2025",
          "Qin 2024 (plasma)", "Starnes 2024", "Starnes 2025",
          "Allendorf 2019", "Jia 2022", "Bischel 2011"}
 
-# Both spellings of the C11 and C13 acids occur across sources.
+# Canonical spellings only; pfas_names.canon() maps the rest onto these.
 PFCA = ["PFBA", "PFPeA", "PFHxA", "PFHpA", "PFOA", "PFNA", "PFDA",
-        "PFUnDA", "PFUnA", "PFDoDA", "PFDoA", "PFTrDA", "PFTriDA",
-        "PFTeDA"]
+        "PFUnDA", "PFDoDA", "PFTrDA", "PFTeDA"]
 PFSA = ["PFBS", "PFPeS", "PFHxS", "PFHpS", "PFOS", "PFNS", "PFDS"]
 NUM = re.compile(r"^\s*([\d.]+(?:[eE][-+]?\d+)?)")
 
@@ -77,13 +77,26 @@ def rule(ch="=", n=78):
     print(ch * n)
 
 
+_ns = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(HERE, "pfas_names.py"))
+N = importlib.util.module_from_spec(_ns)
+_ns.loader.exec_module(N)
+
+
 def load():
+    """Rows, and chain length keyed on the CANONICAL compound name.
+
+    The alias list that used to live in this file (PFDoA/PFDoDA,
+    PFUnA/PFUnDA, PFTrDA/PFTriDA) is now scripts/pfas_names.py, which
+    covers the whole database rather than this script's carboxylate
+    series.
+    """
     rows = list(csv.DictReader(open(DB, encoding="utf-8")))
     ncf = {}
     for r in rows:
         v = r["n_perfluorinated_carbons"].strip()
         if v.isdigit():
-            ncf.setdefault(r["chemical"], int(v))
+            ncf.setdefault(N.canon(r["chemical"]), int(v))
     return rows, ncf
 
 
@@ -145,7 +158,7 @@ def part1(rows):
         sub = [r for r in rows if pclass(r["protein"]) == k]
         share = (f"{100 * v / tot_named:.1f}%" if k in named else "-")
         print(f"  {k:26s}{v:>6d}"
-              f"{len({r['chemical'] for r in sub}):>7d}"
+              f"{len(set(map(N.canon, (r['chemical'] for r in sub)))):>7d}"
               f"{len({(r['study'], r['year']) for r in sub}):>9d}{share:>16s}")
     print()
     print(f"  Of the {tot_named} rows against a NAMED SINGLE PROTEIN, "
@@ -164,7 +177,6 @@ def part2():
     rule()
     print("2. WHAT EXTENDING THE SCOPE COSTS AND BUYS")
     rule()
-    import importlib.util
     spec = importlib.util.spec_from_file_location(
         "cmp", os.path.join(HERE, "logk_converted_vs_measured.py"))
     M = importlib.util.module_from_spec(spec)
@@ -215,7 +227,7 @@ def series(rows, ncf, doi, want, value, label, species=None):
             continue
         if species and r["protein_species"] != species:
             continue
-        c = r["chemical"]
+        c = N.canon(r["chemical"])
         if c not in ncf:
             continue
         y = value(r)
@@ -310,9 +322,9 @@ def part4(rows, ncf):
         except ValueError:
             continue
         if pclass(r["protein"]) == "albumin" and r["protein_species"] == "human":
-            alb[r["chemical"]] = v
+            alb[N.canon(r["chemical"])] = v
         elif pclass(r["protein"]) == "globulin":
-            glob[r["chemical"]] = v
+            glob[N.canon(r["chemical"])] = v
     shared = [c for c in alb if c in glob and c in ncf]
     shared.sort(key=lambda c: (ncf[c], c))
     print(f"  {'compound':12s}{'nCF':>4s}{'albumin':>9s}{'globulin':>10s}"

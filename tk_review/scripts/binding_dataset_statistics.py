@@ -5,9 +5,9 @@ Descriptive statistics for db/protein_binding.csv, plus the one result
 that turns the Kd -> K conversion from a caveat into a usable rule.
 
 THE RULE, for the impatient: the conversion works below nine
-perfluorinated carbons and fails above it. All eleven converted values
+perfluorinated carbons and fails above it. All twelve converted values
 that land within the between-laboratory floor are nCF <= 8, and not one
-of the six pairs at nCF >= 9 does. That is exactly what the flat
+of the seven pairs at nCF >= 9 does. That is exactly what the flat
 specific site predicts -- at short chain lengths the saturable site IS
 the binding, so a single-site Kd describes the whole of it; by C9 the
 non-specific term has overtaken it and a single-site Kd describes a
@@ -29,52 +29,12 @@ PAIRS = os.path.join(os.path.dirname(HERE), "db",
 
 BETWEEN_LAB, WITHIN_LAB = 0.59, 0.19
 
-# ---------------------------------------------------------------- aliases
-# The same compound is spelled differently by different groups, and an
-# un-normalised compound count is inflated by it. Worse, a COVERAGE count
-# is wrong in a way that invents gaps: PFUnA and PFUnDA are one compound,
-# so a paper reporting a partition coefficient for "PFUnA" looks like a
-# compound with no affinity data when PFUnDA has plenty.
-#
-# Every pair below was checked against the database's own
-# n_perfluorinated_carbons and head_group before being merged.
-ALIASES = {
-    # fluorotelomer sulfonate: sulfonate / sulfonic acid naming
-    "n:2 FTS":      ("4:2 FTS", "4:2 FTSA", "6:2 FTS", "6:2 FtS", "6:2 FTSA",
-                     "8:2 FTS", "8:2 FtS", "8:2 FTSA",
-                     "10:2 FTS", "10:2 FtS", "10:2 FTSA"),
-    # perfluoroalkyl carboxylates with two accepted abbreviations
-    "PFUnDA":       ("PFUnA", "PFUnDA"),
-    "PFDoDA":       ("PFDoA", "PFDoDA"),
-    "PFTrDA":       ("PFTrDA", "PFTriDA"),
-    # perfluorooctane sulfonamide
-    "PFOSA":        ("FOSA", "PFOSA"),
-    # perfluoro(4-ethylcyclohexane)sulfonate: nCF 8, cyclic sulfonate in both
-    "PFECHS":       ("PFECHS", "PFEtCHxS"),
-    # trade / systematic name pairs
-    "ADONA":        ("ADONA", "NaDONA (ADONA)"),
-    "HFPO-DA":      ("HFPO-DA", "HFPO-DA (GenX)"),
-    "6:2 Cl-PFESA": ("6:2 Cl-PFESA", "9Cl-PF3ONS",
-                     "9Cl-PF3ONS (F-53B, 6:2 Cl-PFESA)"),
-    "8:2 Cl-PFESA": ("8:2 Cl-PFESA", "11Cl-PF3OUdS",
-                     "11Cl-PF3OUdS (8:2 Cl-PFESA)"),
-}
-_CANON = {v: k for k, vs in ALIASES.items() for v in vs}
-
-# The n:2 FTS family collapses to ONE key above, which would merge four
-# different chain lengths. Keep the chain length and drop only the
-# spelling difference.
-import re as _re
-
-
-def canon(name):
-    """One name per compound, spelling variants merged."""
-    n = name.strip()
-    m = _re.match(r"^(\d+):2 ?F[Tt]S(A)?$", n)
-    if m:
-        return f"{m.group(1)}:2 FTSA"
-    return _CANON.get(n, n)
-
+# Compound identity is decided in one place for the whole project.
+_s = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(HERE, "pfas_names.py"))
+N = importlib.util.module_from_spec(_s)
+_s.loader.exec_module(N)
+canon = N.canon
 
 
 def rule(ch="=", n=78):

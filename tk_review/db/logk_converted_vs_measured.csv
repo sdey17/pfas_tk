@@ -1,6 +1,10 @@
 pfas,protein,species,nCF,head,converted_source,converted_logK,converted_Kd_uM,n_used,n_how,n_long,measured_source,measured_logK,residual
+10:2 FTSA,albumin,human,,other,Chen 2025,3.814,2.31,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.68,-0.8659999999999997
 5:3 FTCA,albumin,human,5,other,Chen 2025,3.146,10.75,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.48,-0.3340000000000001
+6:2 FTSA,albumin,human,6,other,Chen 2025,3.794,2.42,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.35,0.44399999999999995
 7:3 FTCA,albumin,human,7,other,Chen 2025,3.917,1.82,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.59,0.32699999999999996
+8:2 FTSA,albumin,human,,other,Chen 2025,3.525,4.49,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.39,-0.8649999999999998
+ADONA,albumin,human,6,other,Wu 2024,-0.026,1.074e+04,0.672,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,3.98,-4.006
 ADONA,albumin,human,6,other,Chen 2025,3.423,5.68,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-0.5569999999999999
 FOSAA,albumin,human,8,other,Chen 2025,3.308,7.4,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.31,-1.0019999999999998
 N-EtFOSAA,albumin,human,8,other,Chen 2025,3.442,5.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.23,-0.7880000000000003
@@ -28,7 +32,9 @@ PFOA,albumin,human,7,carboxylate,Chen 2025,3.767,2.57,1.0,assumed,single-site La
 PFOS,albumin,human,8,sulfonate,Wu 2024,0.713,2534,0.869,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.62,-3.907
 PFOS,albumin,human,8,sulfonate,Chen 2009,3.666,45.45,14.0,double-log,fluorescence quenching double-log slope,Fischer 2024,4.62,-0.9540000000000002
 PFOS,albumin,human,8,sulfonate,Chen 2025,4.204,0.94,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.62,-0.41600000000000037
+PFOSA,albumin,human,8,other,Chen 2025,3.129,11.18,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.34,-1.2109999999999999
 PFPeA,albumin,human,4,carboxylate,Chen 2025,2.966,16.27,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,2.16,0.806
 PFPeS,albumin,human,5,sulfonate,Chen 2025,2.943,17.15,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-1.037
 PFTeDA,albumin,human,13,carboxylate,Chen 2025,3.06,13.09,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.87,-0.81
+PFTrDA,albumin,human,12,carboxylate,Chen 2025,2.68,31.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.54,-1.8599999999999999
 PFUnDA,albumin,human,10,carboxylate,Chen 2025,3.503,4.73,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.18,-1.6769999999999996
