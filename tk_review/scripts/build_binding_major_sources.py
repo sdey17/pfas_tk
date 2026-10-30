@@ -142,6 +142,13 @@ _ns = importlib.util.spec_from_file_location(
 N = importlib.util.module_from_spec(_ns)
 _ns.loader.exec_module(N)
 
+# The flat albumin list, built here rather than read from its CSV so the
+# sheet cannot fall out of step with the table beside it.
+_as = importlib.util.spec_from_file_location(
+    "albumin_kd_to_k", os.path.join(HERE, "albumin_kd_to_k.py"))
+A = importlib.util.module_from_spec(_as)
+_as.loader.exec_module(A)
+
 # A named single protein. Albumin, globulin and the named binding proteins
 # count; a matrix that merely CONTAINS protein does not.
 PROTEIN_WORDS = ("albumin", "globulin", "transthyretin", "fabp",
@@ -293,7 +300,13 @@ def main():
               "protein_conc_as_stated"):
         got = sum(1 for c in cond_rows if str(c[f]).strip())
         print(f"    Conditions.{f:22s} {got:3d} / {len(cond_rows)}")
-    write(sel, cond_rows, kept, n, tot)
+    alb = A.collect()
+    counts = collections.Counter(r["convertible"] for r in alb)
+    print()
+    print(f"  Albumin Kd to K sheet: {len(alb)} rows, "
+          f"{len({r['source'] for r in alb})} sources -- "
+          + ", ".join(f"{v} {k!r}" for k, v in counts.most_common()))
+    write(sel, cond_rows, kept, n, tot, alb)
     print(f"\nwrote {os.path.abspath(OUT)}")
     return 0
 
@@ -440,6 +453,78 @@ NOTES = [
      "ratio sits in both places: beside the concentrations it is computed "
      "from, on Conditions, and on every measurement row, where it is "
      "actually used."),
+    ("", ""),
+    ("Albumin Kd to K", "A FLAT LIST, and the only sheet here that needs "
+     "no lookup. Every serum-albumin affinity in the database -- 302 rows "
+     "from 31 sources, HSA and BSA and the other mammalian albumins -- "
+     "with the protein concentration, the PFAS concentration, the "
+     "stoichiometry -- as a number and as the paper worded it -- and the "
+     "verdict all on the same row. It is NOT a "
+     "subset of the Binding sheet: it spans the whole database, the ten "
+     "sources in this file and twenty-one more, and it is restricted to "
+     "albumin, so the FABPs, the PPAR receptors, globulin, plasma, serum "
+     "and whole cells are absent. Scope is albumin because that was the "
+     "question; the rest is in db/binding_affinity.xlsx."),
+    ("convertible", "THREE verdicts, because the albumin literature does "
+     "not divide in two. `yes` (64 rows) -- the paper gives a dissociation "
+     "constant AND a stoichiometry, and `logK` is filled. `assume n = 1` "
+     "(207 rows) -- the paper gives a constant and no usable site count, "
+     "so it is one assumption short, and `logK_if_n_assumed_1` is filled "
+     "instead. `no` (31 rows) -- there is no single constant to start "
+     "from, and no assumption rescues it."),
+    ("yes vs assume n = 1", "The arithmetic is identical; the difference "
+     "is who owns the assumption. Chen 2025 reads `yes` at n = 1 for all "
+     "60 of its rows because it FITTED a single-site model, which fixes n "
+     "at 1 by construction -- the paper's own modelling choice, stated in "
+     "the paper. The 207 rows below read `assume n = 1` because their "
+     "papers make no such claim, so the 1 would be the reader's. Moro "
+     "2022's 4 rows are the only ones in the database where n is a "
+     "COUNTED site, from isothermal titration calorimetry, at 1.02, 1.03, "
+     "1.5 and 1.6."),
+    ("logK vs logK_if_n_assumed_1", "TWO COLUMNS AND NEVER ONE, so the "
+     "two kinds of number cannot be averaged together by accident. Each "
+     "row fills exactly one of them, or neither. The main database still "
+     "refuses the n = 1 route outright and `logK` there is unchanged; "
+     "this column exists to show what the refusal costs and where, not to "
+     "reverse it. Because log K fixes only the ratio n/Kd, an error in n "
+     "is a log error of the same size: n = 2 rather than 1 moves every "
+     "value by +0.30. The papers that count sites on albumin put the "
+     "number between 1 and 9 -- 1 to 3 primary sites (Bischel 2010), up "
+     "to 8 occupied at a 4:1 ratio (Bischel 2010, Chi 2018), 4 PFOA in "
+     "the crystal and one high- plus three low-affinity sites in solution "
+     "(Maso 2021), 6 to 9 (Han 2003) -- which spans 0.95 log. Read "
+     "`n_sites_as_stated` for what each paper claimed; it is populated "
+     "where `n_sites_used` is blank, because a range and a prose "
+     "statement are not one number and so convert nowhere."),
+    ("why_not_as_reported", "What the row is short of, in a few words. "
+     "`no stoichiometry reported` (189 rows) is the common case. `only n "
+     "is a quenching-plot slope` (18 rows, Wu 2024, Peng 2024, Chen 2009) "
+     "means the paper DOES print an n and this database refuses it: the "
+     "slope of a double-logarithmic, Scatchard or modified Stern-Volmer "
+     "plot is a fitted exponent, not a counted site. `no measurable "
+     "binding` (23 rows, Starnes 2024 and 2025) is a NEGATIVE RESULT and "
+     "not a gap -- the paper looked and found nothing -- and the "
+     "remaining 8 report a range or two classes of site in one cell, "
+     "which is a value that is not one number rather than a missing one."),
+    ("the largest recoverable block", "Gao 2025 is 42 of the 207 `assume "
+     "n = 1` rows and it is the one source that states a per-compound site "
+     "count: `n_sites_as_stated` reads \"n_Hill 0.69-2.5 overall; ~1 site "
+     "for PFHxA, PFHpA, PFOA, PFHxS and GenX, ~2 for PFNA and PFDA; 1.5-2 "
+     "for PFBA and the PFSAs\" on every one of them. It stays unconverted "
+     "for two reasons, not one: a Hill coefficient is refused here by the "
+     "same rule that refuses a quenching slope, and the site counts beside "
+     "it are approximations (`~1`, `1.5-2`) rather than values. Parsing "
+     "that sentence into 42 numbers would be reading a judgement into the "
+     "paper's hedging. It is named here because it is the biggest single "
+     "block a careful re-reading of one paper could move."),
+    ("the conditions on this sheet", "protein_conc_uM, pfas_conc_uM and "
+     "ligand_protein_ratio_max are repeated here from Conditions rather "
+     "than keyed, which is the point of the sheet. Of the 271 rows that "
+     "reach a number, 229 carry a protein concentration, 133 a PFAS "
+     "concentration and 137 a ratio; the `_as_stated` columns beside them "
+     "carry the paper's own wording and are fuller, because a mass "
+     "concentration or a molar ratio cannot be made molar without "
+     "assuming something, and nothing is assumed."),
     ("What is NOT here", "The binding site, and the per-row basis for each "
      "converted value -- the latter being prose, and the widest text in "
      "the database. This file is the reading copy and stays narrow. Both "
@@ -452,60 +537,59 @@ NOTES = [
 ]
 
 
-def write(sel, cond_rows, kept, n, tot):
-    from openpyxl import Workbook
+# Columns that hold a number but are not in the main table's NUMERIC set,
+# because they exist only on the albumin sheet.
+EXTRA_NUMERIC = ("logK_if_n_assumed_1", "n_sites_used")
+
+
+def sheet(wb, title, fields, rows, freeze="A2"):
+    """One table, written and formatted the way all of them are.
+
+    Numeric-looking columns are written as numbers and not as text, which
+    is the whole reason a reader opens the xlsx rather than the CSV: a
+    column of strings does not sort and does not chart.
+    """
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
 
+    ws = wb.create_sheet(title)
+    ws.append(list(fields))
+    numeric = set(B.NUMERIC) | set(EXTRA_NUMERIC)
+    for r in rows:
+        line = []
+        for f in fields:
+            v = r[f]
+            if f in numeric and str(v).strip():
+                try:
+                    v = float(v)
+                except ValueError:
+                    pass
+            line.append(v)
+        ws.append(line)
+    for c, f in enumerate(fields, start=1):
+        cell = ws.cell(row=1, column=c)
+        cell.fill = PatternFill("solid", fgColor="2A78D6")
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(vertical="center")
+        width = max([len(f)] + [len(str(r[f])) for r in rows[:500]])
+        ws.column_dimensions[get_column_letter(c)].width = \
+            min(max(width + 2, 10), 44)
+    ws.freeze_panes = freeze
+    ws.auto_filter.ref = ws.dimensions
+    return ws
+
+
+def write(sel, cond_rows, kept, n, tot, alb):
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+
     wb = Workbook()
     wb.remove(wb.active)
-    ws = wb.create_sheet("Binding")
-    ws.append(FIELDS)
-    for r in sel:
-        row = []
-        for f in FIELDS:
-            v = r[f]
-            if f in B.NUMERIC and str(v).strip():
-                try:
-                    v = float(v)
-                except ValueError:
-                    pass
-            row.append(v)
-        ws.append(row)
-    for c, f in enumerate(FIELDS, start=1):
-        cell = ws.cell(row=1, column=c)
-        cell.fill = PatternFill("solid", fgColor="2A78D6")
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.alignment = Alignment(vertical="center")
-        width = max([len(f)] + [len(str(r[f])) for r in sel[:500]])
-        ws.column_dimensions[get_column_letter(c)].width = \
-            min(max(width + 2, 10), 44)
-    ws.freeze_panes = "A2"
-    ws.auto_filter.ref = ws.dimensions
-
-    ws = wb.create_sheet("Conditions")
-    ws.append(B.COND_FIELDS)
-    for c in cond_rows:
-        row = []
-        for f in B.COND_FIELDS:
-            v = c[f]
-            if f in B.NUMERIC and str(v).strip():
-                try:
-                    v = float(v)
-                except ValueError:
-                    pass
-            row.append(v)
-        ws.append(row)
-    for c, f in enumerate(B.COND_FIELDS, start=1):
-        cell = ws.cell(row=1, column=c)
-        cell.fill = PatternFill("solid", fgColor="2A78D6")
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.alignment = Alignment(vertical="center")
-        width = max([len(f)] + [len(str(r[f])) for r in cond_rows])
-        ws.column_dimensions[get_column_letter(c)].width = \
-            min(max(width + 2, 10), 44)
-    ws.freeze_panes = "B2"
-    ws.auto_filter.ref = ws.dimensions
+    sheet(wb, "Binding", FIELDS, sel)
+    sheet(wb, "Conditions", B.COND_FIELDS, cond_rows, freeze="B2")
+    # Not a subset of Binding: it spans every source in the database that
+    # measured albumin, the ten in this file included and twenty-one more.
+    sheet(wb, "Albumin Kd to K", A.FIELDS, alb, freeze="C2")
 
     ws = wb.create_sheet("Sources")
     ws.append(["source", "named-protein rows", "rows in this file",

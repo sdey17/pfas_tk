@@ -6,6 +6,7 @@ export for opening alongside the original PFAS_TK.xlsx.
 
 Run:  python3 scripts/export_combined_xlsx.py
 """
+import collections
 import csv
 import os
 
@@ -19,13 +20,15 @@ DB = os.path.join(HERE, "..", "db")
 DEST = os.path.join(HERE, "..", "db", "combined", "PFAS_TK_combined.xlsx")
 
 # (file, sheet title, directory). Everything lives in db/combined/ except
-# the converted-against-measured comparison, which is an analysis output of
-# scripts/logk_converted_vs_measured.py and sits in db/.
+# the two analysis outputs -- the converted-against-measured comparison
+# (scripts/logk_converted_vs_measured.py) and the flat albumin list
+# (scripts/albumin_kd_to_k.py) -- which sit in db/.
 SHEETS = [
     ("tk_parameters.csv", "TK parameters", SRC),
     ("binding.csv", "Protein binding", SRC),
     ("binding_conditions.csv", "Binding conditions", SRC),
     ("binding_basis.csv", "Conversion basis", SRC),
+    ("albumin_kd_to_k.csv", "Albumin Kd to K", DB),
     ("logk_converted_vs_measured.csv", "Converted vs measured", DB),
     ("transporters.csv", "Transporters", SRC),
     ("regulatory.csv", "Regulatory", SRC),
@@ -38,6 +41,17 @@ def _pairs():
         p = list(csv.DictReader(fh))
     ex = sum(1 for r in p if r.get("excluded", "").strip())
     return {"pairs": len(p) - ex, "pairs_excluded": ex}
+
+
+def _albumin():
+    with open(os.path.join(DB, "albumin_kd_to_k.csv")) as fh:
+        a = list(csv.DictReader(fh))
+    c = collections.Counter(r["convertible"] for r in a)
+    return {"alb": len(a), "alb_src": len({r["source"] for r in a}),
+            "alb_yes": c["yes"], "alb_assume": c["assume n = 1"],
+            "alb_no": c["no"],
+            "alb_stated": sum(1 for r in a
+                              if r["n_sites_as_stated"].strip())}
 
 
 def binding_stats():
@@ -60,7 +74,7 @@ def binding_stats():
         "nused": sum(1 for r in b if r["n_used"].strip()),
         "kd": sum(1 for r in b if r["kd_uM"].strip()),
         "logk": sum(1 for r in b if r["logK"].strip()),
-        **_pairs(),
+        **_pairs(), **_albumin(),
     }
 
 
@@ -153,11 +167,48 @@ def main():
         ["Gao 2025 varying it IS the experiment, which is why the key"],
         ["points at an assay rather than at a study."],
         [],
+        ["ALBUMIN, FLAT. `Albumin Kd to K` is the one sheet here that"],
+        ["needs no lookup, and it exists because the normalisation above"],
+        ["costs two of them to answer the question people actually arrive"],
+        [f"with: can I convert THIS number. All {st['alb']} serum-albumin"],
+        [f"affinities from {st['alb_src']} sources sit on one flat row"],
+        ["each, with the protein concentration, the PFAS concentration,"],
+        ["the ligand:protein ratio and the stoichiometry repeated inline."],
+        ["It is not a subset of `Protein binding`: it is restricted to"],
+        ["albumin -- HSA, BSA and the other mammalian albumins -- so the"],
+        ["FABPs, the PPAR receptors, globulin, plasma, serum and whole"],
+        ["cells are absent, and it spans every albumin source rather than"],
+        ["the top ten."],
+        [],
+        [f"Its verdict column reads three ways. {st['alb_yes']} rows are"],
+        ["`yes`: the paper gives a dissociation constant AND a"],
+        [f"stoichiometry, and `logK` is filled. {st['alb_assume']} read"],
+        ["`assume n = 1`: a constant and no usable site count, so one"],
+        ["assumption short. Those carry the number in a SEPARATE column,"],
+        ["`logK_if_n_assumed_1`, and `logK` stays blank, so the two kinds"],
+        ["cannot be averaged together by accident. This does not reverse"],
+        ["the refusal stated above -- `Protein binding` is unchanged and"],
+        ["still derives no K from an affinity alone. The column measures"],
+        [f"what the refusal costs and where. The last {st['alb_no']} read"],
+        ["`no`: no single constant to start from, and 23 of those are"],
+        ["negative results, where the paper looked and found no measurable"],
+        ["binding, rather than gaps in reporting."],
+        [],
+        [f"`n_sites_as_stated` ({st['alb_stated']} rows) is the paper's own"],
+        ["wording where a number could not be read from it -- `6-9`, `1-3"],
+        ["primary sites`, `up to 8 occupied sites at 4:1`, `n_Hill"],
+        ["0.69-2.5`. None of those is one number, so none converts; they"],
+        ["are carried because a reader choosing what n to assume should"],
+        ["see what the authors claimed."],
+        [],
         ["Sheet", "Rows", "What it holds"],
     ], 1):
         readme.append(line)
     readme["A1"].font = Font(bold=True, size=14)
-    readme["A10"].font = readme["B10"].font = readme["C10"].font = Font(bold=True)
+    # The index header is the last line appended, wherever that lands.
+    head = readme.max_row
+    for col in "ABC":
+        readme[f"{col}{head}"].font = Font(bold=True)
 
     for fn, title, where in SHEETS:
         path = os.path.join(where, fn)
