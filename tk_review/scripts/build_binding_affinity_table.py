@@ -20,12 +20,23 @@ Run:  python3 scripts/build_binding_affinity_table.py
 import argparse
 import collections
 import csv
+import importlib.util
 import math
 import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "protein_binding.csv")
+
+# Molar masses, computed from formulae that follow from the database's own
+# n_perfluorinated_carbons and head_group. Without them a ligand
+# concentration stated in ug/L could not be made commensurate with a Kd in
+# uM, and 128 rows -- Fischer's 111 and Khazaee's 17 -- carried no
+# pfas_conc_uM at all.
+_mm = importlib.util.spec_from_file_location(
+    "pfas_molar_mass", os.path.join(HERE, "pfas_molar_mass.py"))
+MM = importlib.util.module_from_spec(_mm)
+_mm.loader.exec_module(MM)
 OUT = os.path.join(HERE, "..", "db", "binding_affinity.xlsx")
 
 FIELDS = ["id", "pfas", "species", "protein", "measure", "value", "units",
@@ -599,26 +610,52 @@ def to_logK(rec, n_sites, row=None):
             f"from the paper's own Kd and n, {label}, {detail}")
 
 
+# A number, optionally a range, optionally the unit repeated inline, and
+# optionally one trailing parenthetical -- and NOTHING else. The last part
+# is what keeps this honest: Khazaee writes
+#   "0.33-153.5 ng/mL (ligand:protein mole ratio 0.05-5)"
+# which is one range for one assay and parses; Fischer writes
+#   "0.2-42 (C18-water step); 32-PFAS mixture at sub-saturating levels in
+#    protein steps"
+# which does NOT parse, and must not. Those 0.2-42 ug/L belong to the
+# C18-water calibration step, not to the protein measurements, and the
+# protein steps are given as "sub-saturating levels" with no number at all.
+# Converting that range and attaching it to Fischer's binding rows would
+# take one step's concentration and label it another's.
 CONC_NUM = re.compile(
     r"^\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
     r"\s*(?:(?:-|to)\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?))?"
-    r"\s*(?:\(.*\))?\s*$")
+    r"\s*([A-Za-z]+(?:/[A-Za-z]+)?)?"
+    r"\s*(?:\([^()]*\))?\s*$")
 
 
-def conc_range_uM(value, units):
+def conc_range_uM(value, units, mw=None):
     """(low, high) in micromolar, or (None, None).
 
-    Unit arithmetic only. A dilution factor, a mol/mol ratio and a
-    mass-per-volume with no molar mass all return nothing rather than a guess.
+    Unit arithmetic only. A dilution factor and a mol/mol ratio still return
+    nothing rather than a guess. A MASS per volume now converts when a molar
+    mass is supplied -- uM = (ug/L) / (g/mol) -- and still returns nothing
+    when it is not, so the refusal stays exactly where the missing input is.
     """
     v, u = value.strip(), units.strip()
     if not v or not u:
         return None, None
-    factor = TO_UM.get(u.split()[0])
+    head = u.split()[0]
+    factor = TO_UM.get(head)
+    if factor is None and mw:
+        per_ugL = MM.MASS_UNITS.get(head)
+        if per_ugL is not None:
+            factor = per_ugL / float(mw)
     if factor is None:
         return None, None
     m = CONC_NUM.match(v)
     if not m:
+        return None, None
+    # If the string repeats its own unit, it must be the unit the row
+    # claims. A disagreement there is a transcription error, and guessing
+    # which side is right would be worse than returning nothing.
+    inline = m.group(3)
+    if inline and inline.lower() != head.lower():
         return None, None
     lo = float(m.group(1))
     hi = float(m.group(2)) if m.group(2) else lo
@@ -639,10 +676,10 @@ def as_stated(value, units):
     return f"{v} {u}".strip()
 
 
-def conc_uM(value, units):
+def conc_uM(value, units, mw=None):
     """The highest concentration used, in uM -- the one that decides whether
     the protein approached saturation."""
-    _, hi = conc_range_uM(value, units)
+    _, hi = conc_range_uM(value, units, mw)
     return "" if hi is None else "%.6g" % hi
 
 
@@ -790,18 +827,22 @@ def build(filter_compounds=True):
     for r in rows:
         src = source_label(r["study"], r["year"], r["doi"])
         loc = location(r["source_table"])
+        lig_mw = MM.molar_mass(r["chemical"], r["n_perfluorinated_carbons"],
+                               r["head_group"])[0]
         base = dict(pfas=r["chemical"], species=r["protein_species"],
                     protein=r["protein"], source=src, location=loc,
                     _id=(r["doi"] or r["pmid"]),
                     _study=r["study"], _year=r["year"],
                     _mode=r["method"],
-                    _lig=conc_uM(r["ligand_conc_range"], r["ligand_conc_units"]),
+                    _lig=conc_uM(r["ligand_conc_range"],
+                                 r["ligand_conc_units"], lig_mw),
                     _prot=conc_uM(r["protein_conc"], r["protein_conc_units"]),
                     _lig_hi=conc_range_uM(r["ligand_conc_range"],
-                                          r["ligand_conc_units"])[1],
+                                          r["ligand_conc_units"], lig_mw)[1],
                     _prot_lo=conc_range_uM(r["protein_conc"],
                                            r["protein_conc_units"])[0],
                     _prot_raw=r["protein_conc"], _lig_raw=r["ligand_conc_range"],
+                    _lp_max=r["ligand_over_protein_max"],
                     _prot_units=r["protein_conc_units"],
                     _lig_units=r["ligand_conc_units"],
                     _temp=r["temperature_c"], _buffer=r["buffer"],
@@ -879,14 +920,53 @@ def compounds(out):
     return out_rows
 
 
+# How far a computed ratio may fall below one the paper states before the
+# two are treated as irreconcilable rather than as a refinement.
+#
+# A paper that states one ceiling for a whole series and reports
+# concentrations per compound SHOULD give computed values at or below it:
+# Bischel states 0.0034 for every row and the per-compound arithmetic gives
+# 0.0013 to 0.0034, which is the same experiment described twice, once
+# coarsely. Khazaee is different in kind -- it states 5 and its recorded
+# concentrations give 0.31 to 1.49, so the two differ by seven to
+# seventeen fold and land on OPPOSITE SIDES of the regime line that makes
+# this column worth having. An order of magnitude is the line between the
+# two cases; it is a judgement, and it is written here rather than left in
+# whichever number happened to win.
+RATIO_CONFLICT = 10.0
+
+
 def _ratio_cell(r):
     computed = ratio_max(r["_lig_hi"], r["_prot_lo"])
+    stated_num = None
+    try:
+        stated_num = float(str(r.get("_lp_max", "")).strip())
+    except (TypeError, ValueError):
+        pass
+    if computed and stated_num and stated_num > 0:
+        if float(computed) * RATIO_CONFLICT < stated_num:
+            # The paper's own statement about its own design wins, and the
+            # arithmetic that contradicts it is reported rather than
+            # dropped. Silently publishing the computed value here would
+            # move Khazaee's rows out of the partitioning regime on the
+            # strength of concentrations that cannot reproduce the paper's
+            # own number.
+            return {"ligand_protein_ratio_max": "%.4g" % stated_num,
+                    "ratio_basis": (
+                        f"stated by the paper; the recorded concentrations "
+                        f"give {computed} instead, which is lower by more "
+                        f"than {RATIO_CONFLICT:g}x and cannot be "
+                        f"reconciled with it -- the two numbers disagree "
+                        f"about which binding regime this assay was in")}
     if computed:
         return {"ligand_protein_ratio_max": computed,
                 "ratio_basis": "computed from the two concentrations"}
     stated = stated_ratio(r["_prot_raw"], r["_lig_raw"], r["protein"])
     if stated:
         return {"ligand_protein_ratio_max": stated,
+                "ratio_basis": "upper bound stated by the paper"}
+    if stated_num:
+        return {"ligand_protein_ratio_max": "%.4g" % stated_num,
                 "ratio_basis": "upper bound stated by the paper"}
     return {"ligand_protein_ratio_max": "",
             "ratio_basis": "neither both concentrations nor a stated ratio"}
