@@ -1,40 +1,40 @@
-pfas,protein,species,nCF,head,converted_source,converted_logK,converted_Kd_uM,n_used,n_how,n_long,measured_source,measured_logK,residual,excluded
-10:2 FTSA,albumin,human,,other,Chen 2025,3.814,2.31,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.68,-0.8659999999999997,
-5:3 FTCA,albumin,human,5,other,Chen 2025,3.146,10.75,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.48,-0.3340000000000001,
-6:2 FTSA,albumin,human,6,other,Chen 2025,3.794,2.42,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.35,0.44399999999999995,
-7:3 FTCA,albumin,human,7,other,Chen 2025,3.917,1.82,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.59,0.32699999999999996,
-8:2 FTSA,albumin,human,,other,Chen 2025,3.525,4.49,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.39,-0.8649999999999998,
-ADONA,albumin,human,6,other,Chen 2025,3.423,5.68,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-0.5569999999999999,
-FOSAA,albumin,human,8,other,Chen 2025,3.308,7.4,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.31,-1.0019999999999998,
-N-EtFOSAA,albumin,human,8,other,Chen 2025,3.442,5.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.23,-0.7880000000000003,
-N-MeFOSAA,albumin,human,8,other,Chen 2025,3.356,6.63,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.27,-0.9139999999999997,
-PFBS,albumin,human,4,sulfonate,Chen 2025,2.984,15.6,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.26,-0.2759999999999998,
-PFDA,albumin,human,9,carboxylate,Chen 2025,3.616,3.64,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.73,-1.1140000000000003,
-PFDS,albumin,human,10,sulfonate,Chen 2025,3.903,1.88,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.05,-1.1469999999999998,
-PFDoDA,albumin,human,11,carboxylate,Chen 2025,2.98,15.76,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.05,-2.07,
-PFHpA,albumin,human,6,carboxylate,Chen 2025,3.385,6.2,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.1,-0.7149999999999999,
-PFHpS,albumin,human,7,sulfonate,Chen 2025,3.952,1.68,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.49,-1.5380000000000003,
-PFHxA,albumin,human,5,carboxylate,Moro 2022,3.533,4.5,1.02,isotherm,"ITC, n fitted from the isotherm",Fischer 2024,3.2,0.33299999999999974,
-PFHxA,albumin,human,5,carboxylate,Moro 2022,3.419,5.9,1.03,isotherm,"ITC, n fitted from the isotherm",Fischer 2024,3.2,0.21899999999999986,
-PFHxA,albumin,human,5,carboxylate,Chen 2025,3.032,13.98,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.2,-0.16800000000000015,
-PFHxS,albumin,human,6,sulfonate,Chen 2025,4.06,1.31,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.77,-0.71,
-PFNA,albumin,human,8,carboxylate,Chen 2025,3.603,3.75,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.49,-0.887,
-PFNS,albumin,human,9,sulfonate,Chen 2025,3.361,6.56,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.99,-1.629,
-PFOA,albumin,human,7,carboxylate,Chen 2025,3.767,2.57,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.48,-0.7130000000000005,
-PFOS,albumin,human,8,sulfonate,Chen 2025,4.204,0.94,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.62,-0.41600000000000037,
-PFOSA,albumin,human,8,other,Chen 2025,3.129,11.18,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.34,-1.2109999999999999,
-PFPeA,albumin,human,4,carboxylate,Chen 2025,2.966,16.27,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,2.16,0.806,
-PFPeS,albumin,human,5,sulfonate,Chen 2025,2.943,17.15,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-1.037,
-PFTeDA,albumin,human,13,carboxylate,Chen 2025,3.06,13.09,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.87,-0.81,
-PFTrDA,albumin,human,12,carboxylate,Chen 2025,2.68,31.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.54,-1.8599999999999999,
-PFUnDA,albumin,human,10,carboxylate,Chen 2025,3.503,4.73,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.18,-1.6769999999999996,
-ADONA,albumin,human,6,other,Wu 2024,-0.026,1.074e+04,0.672,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,3.98,-4.006,quenching-slope n; not converted in the published table
-PFBS,albumin,human,4,sulfonate,Wu 2024,0.088,8584,0.699,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,3.26,-3.1719999999999997,quenching-slope n; not converted in the published table
-PFHpA,albumin,human,6,carboxylate,Peng 2024,4.227,1.339,1.5,double-log,fluorescence double-log slope,Fischer 2024,4.1,0.12700000000000067,quenching-slope n; not converted in the published table
-PFHxS,albumin,human,6,sulfonate,Wu 2024,0.241,6333,0.733,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.77,-4.529,quenching-slope n; not converted in the published table
-PFNA,albumin,human,8,carboxylate,Peng 2024,3.214,10.1,1.1,double-log,fluorescence double-log slope,Fischer 2024,4.49,-1.2760000000000002,quenching-slope n; not converted in the published table
-PFOA,albumin,human,7,carboxylate,Peng 2024,4.641,0.5051,1.47,double-log,fluorescence double-log slope,Fischer 2024,4.48,0.1609999999999996,quenching-slope n; not converted in the published table
-PFOA,albumin,human,7,carboxylate,Wu 2024,0.025,9681,0.681,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.48,-4.455,quenching-slope n; not converted in the published table
-PFOA,albumin,human,7,carboxylate,Chen 2009,4.372,3.704,5.8,double-log,fluorescence quenching double-log slope,Fischer 2024,4.48,-0.10800000000000054,quenching-slope n; not converted in the published table
-PFOS,albumin,human,8,sulfonate,Wu 2024,0.713,2534,0.869,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.62,-3.907,quenching-slope n; not converted in the published table
-PFOS,albumin,human,8,sulfonate,Chen 2009,3.666,45.45,14.0,double-log,fluorescence quenching double-log slope,Fischer 2024,4.62,-0.9540000000000002,quenching-slope n; not converted in the published table
+pfas,protein,species,nCF,head,converted_source,converted_logK,converted_Kd_uM,n_used,n_how,n_long,measured_source,measured_logK,residual,measured_loading_max_log,measured_loading_how,residual_at_zero_loading,converted_isotherm_at_top,excluded
+10:2 FTSA,albumin,human,,other,Chen 2025,3.814,2.31,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.68,-0.8659999999999997,0.0017,linear to the top (upper bound) from the ratio,-0.868,curving,
+5:3 FTCA,albumin,human,5,other,Chen 2025,3.146,10.75,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.48,-0.3340000000000001,0.0017,linear to the top (upper bound) from the ratio,-0.336,curving,
+6:2 FTSA,albumin,human,6,other,Chen 2025,3.794,2.42,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.35,0.44399999999999995,0.0017,linear to the top (upper bound) from the ratio,0.442,curving,
+7:3 FTCA,albumin,human,7,other,Chen 2025,3.917,1.82,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.59,0.32699999999999996,0.0017,linear to the top (upper bound) from the ratio,0.325,curving,
+8:2 FTSA,albumin,human,,other,Chen 2025,3.525,4.49,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.39,-0.8649999999999998,0.0017,linear to the top (upper bound) from the ratio,-0.867,curving,
+ADONA,albumin,human,6,other,Chen 2025,3.423,5.68,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-0.5569999999999999,0.0017,linear to the top (upper bound) from the ratio,-0.559,curving,
+FOSAA,albumin,human,8,other,Chen 2025,3.308,7.4,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.31,-1.0019999999999998,0.0017,linear to the top (upper bound) from the ratio,-1.004,curving,
+N-EtFOSAA,albumin,human,8,other,Chen 2025,3.442,5.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.23,-0.7880000000000003,0.0017,linear to the top (upper bound) from the ratio,-0.79,curving,
+N-MeFOSAA,albumin,human,8,other,Chen 2025,3.356,6.63,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.27,-0.9139999999999997,0.0017,linear to the top (upper bound) from the ratio,-0.916,curving,
+PFBS,albumin,human,4,sulfonate,Chen 2025,2.984,15.6,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.26,-0.2759999999999998,0.0017,linear to the top (upper bound) from the ratio,-0.278,curving,
+PFDA,albumin,human,9,carboxylate,Chen 2025,3.616,3.64,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.73,-1.1140000000000003,0.0017,linear to the top (upper bound) from the ratio,-1.116,curving,
+PFDS,albumin,human,10,sulfonate,Chen 2025,3.903,1.88,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.05,-1.1469999999999998,0.0017,linear to the top (upper bound) from the ratio,-1.149,curving,
+PFDoDA,albumin,human,11,carboxylate,Chen 2025,2.98,15.76,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.05,-2.07,0.0017,linear to the top (upper bound) from the ratio,-2.072,curving,
+PFHpA,albumin,human,6,carboxylate,Chen 2025,3.385,6.2,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.1,-0.7149999999999999,0.0017,linear to the top (upper bound) from the ratio,-0.717,curving,
+PFHpS,albumin,human,7,sulfonate,Chen 2025,3.952,1.68,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.49,-1.5380000000000003,0.0017,linear to the top (upper bound) from the ratio,-1.54,curving,
+PFHxA,albumin,human,5,carboxylate,Moro 2022,3.533,4.5,1.02,isotherm,"ITC, n fitted from the isotherm",Fischer 2024,3.2,0.33299999999999974,0.0017,linear to the top (upper bound) from the ratio,0.331,unknown (ITC),
+PFHxA,albumin,human,5,carboxylate,Moro 2022,3.419,5.9,1.03,isotherm,"ITC, n fitted from the isotherm",Fischer 2024,3.2,0.21899999999999986,0.0017,linear to the top (upper bound) from the ratio,0.217,unknown (ITC),
+PFHxA,albumin,human,5,carboxylate,Chen 2025,3.032,13.98,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.2,-0.16800000000000015,0.0017,linear to the top (upper bound) from the ratio,-0.17,curving,
+PFHxS,albumin,human,6,sulfonate,Chen 2025,4.06,1.31,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.77,-0.71,0.0017,linear to the top (upper bound) from the ratio,-0.712,saturating,
+PFNA,albumin,human,8,carboxylate,Chen 2025,3.603,3.75,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.49,-0.887,0.0017,linear to the top (upper bound) from the ratio,-0.889,curving,
+PFNS,albumin,human,9,sulfonate,Chen 2025,3.361,6.56,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.99,-1.629,0.0017,linear to the top (upper bound) from the ratio,-1.631,curving,
+PFOA,albumin,human,7,carboxylate,Chen 2025,3.767,2.57,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.48,-0.7130000000000005,0.0017,linear to the top (upper bound) from the ratio,-0.715,curving,
+PFOS,albumin,human,8,sulfonate,Chen 2025,4.204,0.94,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.62,-0.41600000000000037,0.0017,linear to the top (upper bound) from the ratio,-0.418,saturating,
+PFOSA,albumin,human,8,other,Chen 2025,3.129,11.18,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.34,-1.2109999999999999,0.0017,linear to the top (upper bound) from the ratio,-1.213,curving,
+PFPeA,albumin,human,4,carboxylate,Chen 2025,2.966,16.27,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,2.16,0.806,0.0017,linear to the top (upper bound) from the ratio,0.804,curving,
+PFPeS,albumin,human,5,sulfonate,Chen 2025,2.943,17.15,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.98,-1.037,0.0017,linear to the top (upper bound) from the ratio,-1.039,curving,
+PFTeDA,albumin,human,13,carboxylate,Chen 2025,3.06,13.09,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,3.87,-0.81,0.0017,linear to the top (upper bound) from the ratio,-0.812,curving,
+PFTrDA,albumin,human,12,carboxylate,Chen 2025,2.68,31.44,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,4.54,-1.8599999999999999,0.0017,linear to the top (upper bound) from the ratio,-1.862,curving,
+PFUnDA,albumin,human,10,carboxylate,Chen 2025,3.503,4.73,1.0,assumed,single-site Langmuir; n fixed at 1,Fischer 2024,5.18,-1.6769999999999996,0.0017,linear to the top (upper bound) from the ratio,-1.679,curving,
+ADONA,albumin,human,6,other,Wu 2024,-0.026,1.074e+04,0.672,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,3.98,-4.006,0.0017,linear to the top (upper bound) from the ratio,-4.008,curving,quenching-slope n; not converted in the published table
+PFBS,albumin,human,4,sulfonate,Wu 2024,0.088,8584,0.699,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,3.26,-3.1719999999999997,0.0017,linear to the top (upper bound) from the ratio,-3.174,curving,quenching-slope n; not converted in the published table
+PFHpA,albumin,human,6,carboxylate,Peng 2024,4.227,1.339,1.5,double-log,fluorescence double-log slope,Fischer 2024,4.1,0.12700000000000067,0.0017,linear to the top (upper bound) from the ratio,0.125,saturating,quenching-slope n; not converted in the published table
+PFHxS,albumin,human,6,sulfonate,Wu 2024,0.241,6333,0.733,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.77,-4.529,0.0017,linear to the top (upper bound) from the ratio,-4.531,curving,quenching-slope n; not converted in the published table
+PFNA,albumin,human,8,carboxylate,Peng 2024,3.214,10.1,1.1,double-log,fluorescence double-log slope,Fischer 2024,4.49,-1.2760000000000002,0.0017,linear to the top (upper bound) from the ratio,-1.278,saturating,quenching-slope n; not converted in the published table
+PFOA,albumin,human,7,carboxylate,Peng 2024,4.641,0.5051,1.47,double-log,fluorescence double-log slope,Fischer 2024,4.48,0.1609999999999996,0.0017,linear to the top (upper bound) from the ratio,0.159,saturating,quenching-slope n; not converted in the published table
+PFOA,albumin,human,7,carboxylate,Wu 2024,0.025,9681,0.681,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.48,-4.455,0.0017,linear to the top (upper bound) from the ratio,-4.457,curving,quenching-slope n; not converted in the published table
+PFOA,albumin,human,7,carboxylate,Chen 2009,4.372,3.704,5.8,double-log,fluorescence quenching double-log slope,Fischer 2024,4.48,-0.10800000000000054,0.0017,linear to the top (upper bound) from the ratio,-0.11,saturating,quenching-slope n; not converted in the published table
+PFOS,albumin,human,8,sulfonate,Wu 2024,0.713,2534,0.869,double-log,"fluorescence double-log, no inner-filter correction",Fischer 2024,4.62,-3.907,0.0017,linear to the top (upper bound) from the ratio,-3.909,curving,quenching-slope n; not converted in the published table
+PFOS,albumin,human,8,sulfonate,Chen 2009,3.666,45.45,14.0,double-log,fluorescence quenching double-log slope,Fischer 2024,4.62,-0.9540000000000002,0.0017,linear to the top (upper bound) from the ratio,-0.956,saturating,quenching-slope n; not converted in the published table

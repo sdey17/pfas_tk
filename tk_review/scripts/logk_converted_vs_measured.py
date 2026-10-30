@@ -133,6 +133,11 @@ _spec = importlib.util.spec_from_file_location(
 B = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(B)
 
+_ts = importlib.util.spec_from_file_location(
+    "trace_limit", os.path.join(HERE, "trace_limit.py"))
+T = importlib.util.module_from_spec(_ts)
+_ts.loader.exec_module(T)
+
 HALF_SAT = math.log10(2.0)      # Qin Eq. 15 is at half-saturation
 
 PFCA = ["PFBA", "PFPeA", "PFHxA", "PFHpA", "PFOA", "PFNA", "PFDA",
@@ -420,7 +425,31 @@ def revived(out):
     return rows
 
 
-def part3(out, ncf, bar):
+def loading(rec, blocks):
+    """(upper bound in log, how it was reached) for one measurement row.
+
+    A CONVERTED value is already at zero loading -- a fitted K_d defines
+    it there -- so this is a diagnostic on it, not a correction. A
+    MEASURED value is the opposite: it was determined AT its own loading,
+    so it sits this far BELOW its own zero-loading limit, and comparing
+    it against a converted number without knowing that is comparing two
+    different quantities.
+    """
+    b = blocks[B.block_key(B.condition_row(rec))]
+    _cw, _r, cost, basis, tag = T.assess(
+        float(rec["kd_uM"]) if rec["kd_uM"] else None,
+        n_used(rec) or 1.0,
+        float(b["protein_conc_uM"]) if str(b["protein_conc_uM"]).strip()
+        else None,
+        float(b["pfas_conc_uM"]) if str(b["pfas_conc_uM"]).strip()
+        else None,
+        b["pfas_conc_as_stated"],
+        float(b["ligand_protein_ratio_max"])
+        if str(b["ligand_protein_ratio_max"]).strip() else None)
+    return ("" if cost is None else round(cost, 4)), tag
+
+
+def part3(out, ncf, bar, blocks):
     """Converted against measured, same compound, protein and species."""
     rule()
     print("3. CONVERTED AGAINST MEASURED")
@@ -435,6 +464,8 @@ def part3(out, ncf, bar):
     rows = []
     for k in sorted(set(conv) & set(meas)):
         for c, m in itertools.product(conv[k], meas[k]):
+            m_load, m_how = loading(m, blocks)
+            _c_load, c_how = loading(c, blocks)
             rows.append({
                 "pfas": k[0], "protein": k[1], "species": k[2],
                 "nCF": ncf.get(k[0], ""), "head": head(k[0]),
@@ -443,6 +474,16 @@ def part3(out, ncf, bar):
                 "n_used": n_used(c), "n_how": n_how(c), "n_long": n_how_long(c),
                 "measured_source": m["source"], "measured_logK": float(m["logK"]),
                 "residual": float(c["logK"]) - float(m["logK"]),
+                # The loading question, per side. Only the measured side
+                # carries a correction: lifting it to zero loading makes
+                # it LARGER, so it can only push the residual further
+                # negative, never close it.
+                "measured_loading_max_log": m_load,
+                "measured_loading_how": m_how,
+                "residual_at_zero_loading": (
+                    round(float(c["logK"]) - float(m["logK"]) - m_load, 3)
+                    if m_load != "" else ""),
+                "converted_isotherm_at_top": c_how,
                 "excluded": ("quenching-slope n; not converted in the "
                              "published table"
                              if c.get("_excluded") else ""),
@@ -941,7 +982,10 @@ def main():
     ncf = ncf_map()
     part1(out)
     bar = part2(out)
-    pairs = part3(out, ncf, bar)
+    unfiltered = B.build(filter_compounds=False)[1]
+    blocks = B.condition_index(unfiltered)
+    B.stamp_conditions(out, blocks)
+    pairs = part3(out, ncf, bar, blocks)
     part4(out, ncf)
     part5(out, ncf)
     part6(out, ncf)

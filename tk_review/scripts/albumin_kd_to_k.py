@@ -72,6 +72,15 @@ which is the one concentration the papers state:
                           where no protein concentration was reported so
                           the total stood in for the free.
 
+A paper that states no concentration at all but does state a molar
+LIGAND:PROTEIN RATIO is still answerable, and several do. While the
+loading is low, C_w/K_d = L/(K_d + nP) = ratio/n with the protein
+cancelling out, so the ratio alone bounds the answer from above whatever
+P was -- those rows read `... from the ratio`. The shortcut assumes the
+very thing it computes, so it is refused above a ratio of 0.1, which is
+why Bischel's 4:1 and MacManus-Spencer's 5:1 stay unknown: there the
+sites saturate and only the protein concentration will do.
+
 BOTH TAILS ARE FLAGS. `saturating` means the fit saw curvature, so K_d
 is constrained, but the coefficient at that loading is far below the
 reported K0. `linear to the top` is not reassurance: it means the
@@ -241,7 +250,8 @@ def collect():
         kd, top = _num(r["kd_uM"]), _num(cond["pfas_conc_uM"])
         cw, ratio, cost, _basis, tag = T.assess(
             kd, _num(r["n_used"]) or 1.0, _num(cond["protein_conc_uM"]),
-            top, cond["pfas_conc_as_stated"])
+            top, cond["pfas_conc_as_stated"],
+            _num(cond["ligand_protein_ratio_max"]))
         row["kd_over_top_conc"] = (
             "" if tag.startswith("unknown") or not (kd and top)
             else "%.3g" % (kd / top))
