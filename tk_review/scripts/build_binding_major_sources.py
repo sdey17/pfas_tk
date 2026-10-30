@@ -132,7 +132,20 @@ _spec.loader.exec_module(B)
 # a basis_id lookup for anyone who needs the full reason.
 FIELDS = ["pfas", "pfas_canonical", "species", "protein", "measure",
           "value", "units", "kd_uM", "logK", "n_used", "n_basis",
-          "ligand_protein_ratio_max", "condition_id", "source"]
+          "ligand_protein_ratio_max",
+          "protein_conc_uM", "protein_conc_as_stated",
+          "pfas_conc_uM", "pfas_conc_as_stated",
+          "condition_id", "source"]
+
+# Copied onto every measurement row from its condition block. They were
+# moved out to Conditions to stop the sheet repeating them; they are back
+# because a key is only an improvement when the thing it points at is not
+# what you were reading for. These four are, so the lookup was a lookup
+# too many -- the same judgement already made for the ratio. The rest of
+# the block (temperature, buffer, NaCl, the ratio's basis, the per-assay
+# row and compound counts) stays behind the key.
+INLINE_FROM_CONDITIONS = ("protein_conc_uM", "protein_conc_as_stated",
+                          "pfas_conc_uM", "pfas_conc_as_stated")
 
 # One name per compound, decided for the whole project in pfas_names.py.
 # `pfas` is the source's own spelling and stays untouched; group and
@@ -280,6 +293,9 @@ def main():
             continue
         row = {f: r.get(f, "") for f in FIELDS}
         row["pfas_canonical"] = N.canon(r["pfas"])
+        block = blocks[B.block_key(B.condition_row(r))]
+        for f in INLINE_FROM_CONDITIONS:
+            row[f] = block[f]
         sel.append(row)
     sel.sort(key=lambda r: (kept.index(r["source"]), r["protein"], r["pfas"]))
 
@@ -289,7 +305,8 @@ def main():
         print(f"  {by[s]:5d}  {s}")
     print()
     for f in ("kd_uM", "logK", "n_used", "n_basis",
-              "ligand_protein_ratio_max", "condition_id"):
+              "ligand_protein_ratio_max") + INLINE_FROM_CONDITIONS + (
+              "condition_id",):
         got = sum(1 for r in sel if str(r[f]).strip())
         print(f"  {f:24s} populated {got:4d} / {len(sel)}")
     used = {r["condition_id"] for r in sel}
@@ -409,6 +426,20 @@ NOTES = [
      "Conditions sheet; it is repeated here because it is the column you "
      "filter on, and having to do a lookup to learn which regime a number "
      "came from is a lookup too many."),
+    ("protein_conc_uM / pfas_conc_uM", "The assay's concentrations, "
+     "copied onto every measurement row from its condition block. They "
+     "are a property of the EXPERIMENT and not of the number, which is "
+     "why Conditions exists -- but a key only helps when the thing it "
+     "points at is not what you were reading for, and these are. Blank "
+     "numbers beside a populated `_as_stated` cell are the cases unit "
+     "arithmetic alone cannot reach: a mass concentration (mg/mL), a "
+     "stationary phase, a molar ratio. None is inferred, so the wording "
+     "column is the fuller of the two and is the one to read when the "
+     "number is empty."),
+    ("what stayed behind the key", "Temperature, buffer, NaCl, the "
+     "ratio's basis and the per-assay row and compound counts. Those are "
+     "read once when you want to know what an assay was; the "
+     "concentrations are read on every row."),
     ("condition_id", "Key into the Conditions sheet. The join is MANY "
      "measurements to ONE assay, so use a lookup, not a row-for-row "
      "alignment. The ids are numbered over the whole database, so the same "
@@ -449,10 +480,10 @@ NOTES = [
      "(Qin 2024 Table 1), so two constants measured at different "
      "ligand:protein ratios are not comparable even for the same compound "
      "and protein. These columns are what makes that check possible."),
-    ("", "Moving them to their own sheet does not weaken that check -- the "
-     "ratio sits in both places: beside the concentrations it is computed "
-     "from, on Conditions, and on every measurement row, where it is "
-     "actually used."),
+    ("", "The ratio and the two concentrations it is computed from now "
+     "sit in both places: on Conditions, which is where an assay is "
+     "described once, and on every measurement row, which is where the "
+     "check is actually made."),
     ("", ""),
     ("Albumin Kd to K", "A FLAT LIST, and the only sheet here that needs "
      "no lookup. Every serum-albumin affinity in the database -- 302 rows "
@@ -539,7 +570,9 @@ NOTES = [
 
 # Columns that hold a number but are not in the main table's NUMERIC set,
 # because they exist only on the albumin sheet.
-EXTRA_NUMERIC = ("logK_if_n_assumed_1", "n_sites_used")
+EXTRA_NUMERIC = ("logK_if_n_assumed_1", "n_sites_used",
+                 "kd_over_top_conc", "cw_free_at_top_uM",
+                 "cw_over_kd_at_top", "saturation_at_top_log")
 
 
 def sheet(wb, title, fields, rows, freeze="A2"):

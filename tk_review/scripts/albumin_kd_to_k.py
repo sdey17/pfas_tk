@@ -43,6 +43,41 @@ in two. `convertible` reads:
 
 `why_not_as_reported` names, in a few words, what the row is short of.
 
+WHERE THE ASSAY SAT ON THE ISOTHERM. The conversion reports
+K0 = 1000 n/(M K_d), the coefficient at zero loading. Every row here
+that states a molar PFAS concentration states a titration SERIES
+starting at or near zero, so the fitted K_d is already the limiting
+constant and K0 is the right number to report -- the trace limit is the
+paper's own model evaluated where it is defined, not an extra
+approximation laid on top of it.
+
+What is worth knowing instead is where the experiment actually operated,
+because a coefficient measured at real loading is log10(1 + C_w/K_d)
+BELOW K0, and that is the gap the moment a converted K0 meets someone
+else's measured value. Five columns, all at the top of the titration,
+which is the one concentration the papers state:
+
+  kd_over_top_conc        K_d over the highest concentration tested.
+                          Above 1 means the series never reached K_d.
+  cw_free_at_top_uM       free ligand there, by mass balance on the
+                          paper's own protein and PFAS concentrations --
+                          not the dosed total, which is free plus bound.
+  cw_over_kd_at_top       the test itself.
+  saturation_at_top_log   log10(1 + C_w/K_d): how far below K0 the
+                          apparent coefficient had fallen.
+  isotherm_at_top         `linear to the top` under 0.01 log, `curving`
+                          to 0.30, `saturating` above, `unknown` where
+                          the concentrations are not molar or are an ITC
+                          syringe concentration, and `(upper bound)`
+                          where no protein concentration was reported so
+                          the total stood in for the free.
+
+BOTH TAILS ARE FLAGS. `saturating` means the fit saw curvature, so K_d
+is constrained, but the coefficient at that loading is far below the
+reported K0. `linear to the top` is not reassurance: it means the
+isotherm never curved and K_d was fitted beyond the data. The arithmetic
+and its self-test are in scripts/trace_limit.py.
+
 TWO STOICHIOMETRY COLUMNS. `n_sites_used` is the number that entered a
 conversion, or blank. `n_sites_as_stated` is the paper's own wording,
 which is populated far more often -- "6-9", "1-3 primary sites", "up to 8
@@ -74,6 +109,7 @@ def _load(name, fn):
 
 B = _load("baf", "build_binding_affinity_table.py")
 N = _load("pfas_names", "pfas_names.py")
+T = _load("trace_limit", "trace_limit.py")
 
 # log10(1e9 / 66463) -- albumin's bridge constant, per kg of protein.
 BRIDGE = math.log10(1e9 / B.MW_ALBUMIN)
@@ -82,7 +118,10 @@ FIELDS = ["pfas", "pfas_canonical", "protein", "species", "source",
           "method", "measure", "value_as_reported", "units_as_reported",
           "kd_uM", "n_sites_used", "n_sites_as_stated", "n_basis",
           "convertible",
-          "logK", "logK_if_n_assumed_1", "why_not_as_reported",
+          "logK", "logK_if_n_assumed_1",
+          "kd_over_top_conc", "cw_free_at_top_uM", "cw_over_kd_at_top",
+          "saturation_at_top_log", "isotherm_at_top",
+          "why_not_as_reported",
           "protein_conc_uM", "protein_conc_as_stated",
           "pfas_conc_uM", "pfas_conc_as_stated",
           "ligand_protein_ratio_max", "location"]
@@ -139,6 +178,14 @@ def short_reason(basis, rec):
     return basis[:70]
 
 
+def _num(v):
+    """float, or None. A blank is an unknown and must not become a zero."""
+    try:
+        return float(str(v).strip())
+    except (TypeError, ValueError):
+        return None
+
+
 def is_serum_albumin(protein):
     """Albumin as the sorbent, not a matrix that happens to contain it."""
     p = protein.lower()
@@ -183,6 +230,25 @@ def collect():
             "pfas_conc_as_stated": cond["pfas_conc_as_stated"],
             "ligand_protein_ratio_max": cond["ligand_protein_ratio_max"],
             "location": r["location"]}
+
+        # Where the assay's TOP point sat on the isotherm. Not an error
+        # in the conversion -- every one of these rows comes from a
+        # titration series starting at or near zero, so the fitted Kd is
+        # already the limiting constant and K0 is the right number. This
+        # says how far that K0 sits from the apparent coefficient at the
+        # loading the experiment actually reached, which is what decides
+        # whether it is comparable to someone's measured value.
+        kd, top = _num(r["kd_uM"]), _num(cond["pfas_conc_uM"])
+        cw, ratio, cost, _basis, tag = T.assess(
+            kd, _num(r["n_used"]) or 1.0, _num(cond["protein_conc_uM"]),
+            top, cond["pfas_conc_as_stated"])
+        row["kd_over_top_conc"] = (
+            "" if tag.startswith("unknown") or not (kd and top)
+            else "%.3g" % (kd / top))
+        row["cw_free_at_top_uM"] = "" if cw is None else "%.4g" % cw
+        row["cw_over_kd_at_top"] = "" if ratio is None else "%.4g" % ratio
+        row["saturation_at_top_log"] = "" if cost is None else "%.3f" % cost
+        row["isotherm_at_top"] = tag
 
         if r["logK"] and r["logK_basis"].startswith(
                 "from the paper's own Kd and n"):
@@ -240,6 +306,34 @@ def main():
                 print(f"     {n:4d}  {why}")
                 print(f"           {', '.join(srcs)[:92]}")
         print()
+
+    conv = [r for r in rows if r["convertible"] != "no"]
+    print(f"WHERE THE ASSAY SAT ON THE ISOTHERM, over the {len(conv)} rows "
+          "that reach a number:")
+    for tag, n in collections.Counter(
+            r["isotherm_at_top"] for r in conv).most_common():
+        sub = [r for r in conv if r["isotherm_at_top"] == tag]
+        c = sorted(float(r["saturation_at_top_log"]) for r in sub
+                   if r["saturation_at_top_log"])
+        span = (f"  K0 above the coefficient at that loading by "
+                f"{c[0]:.3f} to {c[-1]:.3f} log, median "
+                f"{c[len(c) // 2]:.3f}" if c else "")
+        print(f"  {n:4d}  {tag:26s}{span}")
+        print(f"        {', '.join(sorted({r['source'] for r in sub}))[:86]}")
+    print()
+    beyond = [r for r in conv if r["kd_over_top_conc"]
+              and float(r["kd_over_top_conc"]) > 1.0]
+    print(f"  Kd FITTED ABOVE THE HIGHEST CONCENTRATION TESTED: "
+          f"{len(beyond)} rows")
+    for s_, n in collections.Counter(
+            r["source"] for r in beyond).most_common():
+        sub = [r for r in beyond if r["source"] == s_]
+        rs = sorted(float(r["kd_over_top_conc"]) for r in sub)
+        tot = sum(1 for r in conv if r["source"] == s_
+                  and r["kd_over_top_conc"])
+        print(f"     {n:3d} of {tot:3d}  {s_:16s} Kd is {rs[0]:.2g}x to "
+              f"{rs[-1]:.3g}x the top of the series")
+    print()
 
     usable = [r for r in rows if r["convertible"] != "no"]
     print("CONDITIONS, on the rows that reach a number "
