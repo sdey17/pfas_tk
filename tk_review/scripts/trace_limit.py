@@ -235,6 +235,12 @@ def assess(kd_uM, n, protein_uM, total_uM, stated="", ratio=None):
                 f"stated only as a ligand:protein ratio of {r:g}, too "
                 f"high for the low-loading shortcut; the protein "
                 f"concentration in molar units is needed", "unknown")
+    if "not reported" in (stated or "").lower():
+        # Distinct from a unit this parser cannot read: the primary
+        # source does not carry the number, so no extraction fixes it.
+        return (None, None, None,
+                "the paper does not report the concentrations it tested",
+                "unknown (not reported)")
     if not kd_uM or kd_uM <= 0:
         return None, None, None, "no Kd and no stated ratio", "unknown"
     return (None, None, None,
