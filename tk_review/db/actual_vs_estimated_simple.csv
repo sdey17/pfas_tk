@@ -1,0 +1,34 @@
+pfas,protein,species,source,estimate_kind,estimated_logK,measured_logK,residual,n_values,note
+10:2 FTSA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.814,4.68,-0.866,1,single-site Langmuir fixes n at 1
+5:3 FTCA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.146,3.48,-0.334,1,single-site Langmuir fixes n at 1
+6:2 FTSA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.794,3.35,0.444,1,single-site Langmuir fixes n at 1
+7:3 FTCA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.917,3.59,0.327,1,single-site Langmuir fixes n at 1
+8:2 FTSA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.525,4.39,-0.865,1,single-site Langmuir fixes n at 1
+ADONA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.423,3.98,-0.557,1,single-site Langmuir fixes n at 1
+FOSAA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.308,4.31,-1.002,1,single-site Langmuir fixes n at 1
+N-EtFOSAA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.442,4.23,-0.788,1,single-site Langmuir fixes n at 1
+N-MeFOSAA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.356,4.27,-0.914,1,single-site Langmuir fixes n at 1
+PFBS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",2.984,3.26,-0.276,1,single-site Langmuir fixes n at 1
+PFDA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.616,4.73,-1.114,1,single-site Langmuir fixes n at 1
+PFDS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.903,5.05,-1.147,1,single-site Langmuir fixes n at 1
+PFDoDA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",2.98,5.05,-2.07,1,single-site Langmuir fixes n at 1
+PFHpA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.385,4.1,-0.715,1,single-site Langmuir fixes n at 1
+PFHpS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.952,5.49,-1.538,1,single-site Langmuir fixes n at 1
+PFHxA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.032,3.2,-0.168,1,single-site Langmuir fixes n at 1
+PFHxS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",4.06,4.77,-0.71,1,single-site Langmuir fixes n at 1
+PFNA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.603,4.49,-0.887,1,single-site Langmuir fixes n at 1
+PFNS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.361,4.99,-1.629,1,single-site Langmuir fixes n at 1
+PFOA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.767,4.48,-0.713,1,single-site Langmuir fixes n at 1
+PFOS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",4.204,4.62,-0.416,1,single-site Langmuir fixes n at 1
+PFOSA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.129,4.34,-1.211,1,single-site Langmuir fixes n at 1
+PFPeA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",2.966,2.16,0.806,1,single-site Langmuir fixes n at 1
+PFPeS,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",2.943,3.98,-1.037,1,single-site Langmuir fixes n at 1
+PFTeDA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.06,3.87,-0.81,1,single-site Langmuir fixes n at 1
+PFTrDA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",2.68,4.54,-1.86,1,single-site Langmuir fixes n at 1
+PFUnDA,albumin,human,Chen 2025,"converted from Kd, n assumed = 1",3.503,5.18,-1.677,1,single-site Langmuir fixes n at 1
+PFHxA,albumin,human,Moro 2022,"converted from Kd, n measured by ITC",3.476,3.2,0.276,2,n fitted from the titration isotherm
+PFHpA,albumin,bovine,Qin 2024 (plasma),"measured, +0.301 correction applied",4.332,3.93,0.402,1,Eq. 15 is at half-saturation; specific + non-specific summed
+PFHxA,albumin,bovine,Qin 2024 (plasma),"measured, +0.301 correction applied",3.481,2.83,0.651,1,Eq. 15 is at half-saturation; specific + non-specific summed
+PFHxS,albumin,bovine,Qin 2024 (plasma),"measured, +0.301 correction applied",5.194,4.61,0.584,1,Eq. 15 is at half-saturation; specific + non-specific summed
+PFOA,albumin,bovine,Qin 2024 (plasma),"measured, +0.301 correction applied",4.787,4.2,0.587,1,Eq. 15 is at half-saturation; specific + non-specific summed
+PFOS,albumin,bovine,Qin 2024 (plasma),"measured, +0.301 correction applied",5.453,4.76,0.693,1,Eq. 15 is at half-saturation; specific + non-specific summed
