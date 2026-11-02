@@ -140,6 +140,51 @@ NOTES = [
 ]
 
 
+# (group, rows, compounds, sources, why). Counted by hand from the full
+# table and printed by main(), so a drift between the two shows up.
+LEFT_OUT = [
+    ("Thermal shift (DSF)", 77, 69,
+     "Starnes 2025, Starnes 2024, Jackson 2021",
+     "Measures how far a ligand raises albumin's melting temperature. Its "
+     "constants sit about three orders of magnitude off equilibrium-"
+     "dialysis values - a documented method offset, not a disagreement to "
+     "average over."),
+    ("Fluorescence quenching", 36, 20,
+     "Chen 2009, Peng 2024, Wu 2024, Chen 2020, Hebert 2010",
+     "The constant comes from an optical model - a double-logarithmic, "
+     "Scatchard or modified Stern-Volmer plot - whose fitted slope is an "
+     "exponent, not a counted site. That slope is refused as a "
+     "stoichiometry, so these are not converted."),
+    ("Separative methods, no published n", 16, 14,
+     "Gao 2019, Beesoon 2015, Li 2021, Han 2003, Sheng 2020, Wu 2009",
+     "Sound methods - equilibrium dialysis, ultrafiltration, size "
+     "exclusion - that report no stoichiometry. Converted at an assumed "
+     "n = 1 they land 1 to 3 log BELOW the measured values for the same "
+     "compounds: PFOA would read 1.64, 2.12 and 2.67 beside a measured "
+     "4.48. That disagreement is real and cannot be adjudicated in a "
+     "summary table, so they are not mixed in."),
+    ("Thermophoresis (MST)", 6, 6, "Jia 2022",
+     "One method, one laboratory. On liver FABP its PFOA constant is 181x "
+     "the equilibrium-dialysis value, so its scale is not interchangeable "
+     "with the rest."),
+    ("Immobilised HSA, biomimetic", 82, 83, "Muensterman 2026",
+     "The largest single human-albumin dataset here, and on a basis the "
+     "paper does not state: a retention-derived surrogate calibrated "
+     "against pharmaceuticals, not litres of water per kg of protein. Not "
+     "comparable with the values in this file."),
+    ("Bovine albumin", 62, 32,
+     "Fischer 2024, Allendorf 2019, Bischel 2011",
+     "Every compound they cover is also measured on human albumin, so "
+     "they add no coverage - they are a cross-check, and this file is "
+     "human only."),
+    ("Qin 2024", 23, 16, "Qin 2024",
+     "Bovine, and reported in two components with the specific one quoted "
+     "at half-saturation. Using it means summing the two and lifting one "
+     "by log10(2); the stored value travels about 0.3 log low."),
+    ("Method unstated", 3, 2, "Messina 2005, Li 2009", ""),
+]
+
+
 def tier(r):
     if r["n_basis"] not in ("assumed", ""):
         return BOTH
@@ -248,6 +293,36 @@ def main():
             min(max(width + 2, 11), 64)
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = ws.dimensions
+
+    ws = wb.create_sheet("Not included")
+    ws["A1"] = "What was left out of this file, and why"
+    ws["A1"].font = Font(bold=True, size=13)
+    ws["A2"] = ("Three sources survive because they are the three that put a "
+                "number on one comparable scale - litres of water per kg of "
+                "protein, at zero loading. The rest measure a different "
+                "quantity, or a constant on a basis that cannot be "
+                "converted, or disagree by more than a summary table can "
+                "resolve. This sheet exists so the file's thinness reads as "
+                "a decision rather than an oversight.")
+    ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells("A2:E2")
+    ws.row_dimensions[2].height = 58
+    head = ["Group", "Rows", "Compounds", "Sources", "Why not"]
+    ws.append([])
+    ws.append(head)
+    hrow = ws.max_row
+    for g, n, c, srcs, why in LEFT_OUT:
+        ws.append([g, n, c, srcs, why])
+    for i, _ in enumerate(head, start=1):
+        cell = ws.cell(row=hrow, column=i)
+        cell.fill = PatternFill("solid", fgColor="2A78D6")
+        cell.font = Font(bold=True, color="FFFFFF")
+    for col, w in zip("ABCDE", (32, 7, 11, 44, 86)):
+        ws.column_dimensions[col].width = w
+    for r in range(hrow + 1, ws.max_row + 1):
+        for col in ("D", "E"):
+            ws[f"{col}{r}"].alignment = Alignment(wrap_text=True,
+                                                  vertical="top")
     wb.save(OUT)
 
     print(f"{len(rows)} rows, {len(FIELDS)} columns, species = {want} -> "
@@ -256,6 +331,8 @@ def main():
         srcs = sorted({r["source"] for r in rows if r["how_solid"] == t})
         print(f"  {n:3d}  {t[:62]:64s} {', '.join(srcs)}")
     print(f"  {len({r['pfas_canonical'] for r in rows})} distinct compounds")
+    print(f"  left out, on the 'Not included' sheet: "
+          f"{sum(x[1] for x in LEFT_OUT)} rows over {len(LEFT_OUT)} groups")
     if dropped:
         print(f"  left out by the species filter:")
         for (sp, src), n in sorted(dropped.items()):
