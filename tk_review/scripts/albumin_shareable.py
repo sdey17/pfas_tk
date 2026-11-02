@@ -61,24 +61,27 @@ SPECIES = ("human", "bovine", "human; bovine")
 ANCHOR = "Qin 2024 (plasma)"
 
 FIELDS = [("pfas_canonical", "PFAS"), ("species", "Species"),
-          ("protein", "Protein"), ("method_short", "Method"),
           ("kd_uM", "Kd (uM)"), ("n_used", "n used"),
-          ("at_cw_uM", "Evaluated at Cw (uM)"),
           ("logK", "log K (L water / kg protein)"),
           ("route", "Route"), ("source", "Source")]
 
 MEASURED = "measured directly"
-QIN = "measured; Qin's two terms summed, specific term lifted off half-saturation"
-QIN_RAW = "measured; Qin's specific column AS PUBLISHED, at half-saturation, uncorrected"
-QIN_BASE = ("measured; Qin's baseline-toxicity paper Table 1 - the same "
-            "Freundlich fit evaluated at THAT COMPOUND'S IC10,free")
+QIN = "measured; Qin Table S6 equation at"
 ITC = "converted; n counted by ITC"
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
 QUENCH = "converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-ORDER = [MEASURED, QIN, QIN_RAW, QIN_BASE, ITC, PAPER_OK, PAPER_EX,
-         READER, QUENCH]
+ORDER = [MEASURED, QIN, ITC, PAPER_OK, PAPER_EX, READER, QUENCH]
+
+
+def rank(route):
+    """Sort key. A route may carry its own suffix, e.g. the Cw it was
+    evaluated at, so match on the stem rather than the whole string."""
+    for i, stem in enumerate(ORDER):
+        if route.startswith(stem):
+            return i
+    return len(ORDER)
 
 # Qin W, Henneberger L, Gluge J, Konig M, Escher BI. "Baseline Toxicity
 # Model to Identify the Specific and Nonspecific Effects of PFAS in
@@ -89,7 +92,26 @@ ORDER = [MEASURED, QIN, QIN_RAW, QIN_BASE, ITC, PAPER_OK, PAPER_EX,
 # eleven, and those equations are identical to the plasma paper's Table
 # 1 - slope, intercept and R2 to the last digit.
 # (compound, IC10,free in mol/L, log D_BSA/w per L of protein)
-BASELINE_T1 = [
+OPERATING = (
+    "10 uM nominal, 10% FBS medium"
+)
+# log D_BSA/w per kg of protein, and the free concentration it was
+# evaluated at, from Qin's SI Table S6 equations solved against his eq 6
+# mass balance for the generic 10% FBS medium (Table S7: 3.0 mL/L protein,
+# 0.07 mL/L lipid) plus the HEK293H cell term (Table S8). The same
+# calculation run on Qin's own 2% csFBS composition reproduces his
+# measured IC10,free with a median of +0.03 log and |median| 0.22 log,
+# worst -0.67 (PFOS) -- so read these as good to a few tenths, not better.
+# (compound, free Cw in uM at 10 uM nominal, log D_BSA/w per kg)
+QIN_AT_OP = [
+    ("PFBA", 3.79, 2.60), ("PFHxA", 1.134, 3.28),
+    ("PFHpA", 0.2344, 4.01), ("PFOA", 0.05577, 4.64),
+    ("PFNA", 0.06658, 4.56), ("PFUnA", 0.05805, 4.62),
+    ("HFPO-DA", 1.141, 3.28), ("PFHxS", 0.03635, 4.82),
+    ("PFOS", 0.01085, 5.35), ("6:2 FTSA", 0.3965, 3.76),
+    ("PFOSA", 0.1278, 4.24),
+]
+_UNUSED_BASELINE_T1 = [
     ("PFBA", 1.78e-3, 1.94), ("PFHxA", 4.72e-4, 2.70),
     ("PFHpA", 6.76e-5, 3.40), ("PFOA", 1.84e-5, 3.98),
     ("PFNA", 7.72e-6, 4.39), ("PFUnA", 3.83e-7, 4.75),
@@ -155,39 +177,17 @@ def collect():
         if not is_serum_albumin(r["protein"]):
             continue
         if r["source"] == ANCHOR:
-            continue                       # folded below instead
+            continue             # replaced by the operating-point row
         rr = dict(r, pfas_canonical=N.canon(r["pfas"]), method=r["_method"])
         out.append(row(rr, MEASURED, float(r["logK"])))
-    for r in L.totals(recs):
-        if r["source"] == ANCHOR and is_serum_albumin(r["protein"]):
-            rr = dict(r, pfas_canonical=N.canon(r["pfas"]),
-                      method=r.get("_method", ""), kd_uM="")
-            out.append(row(rr, QIN, float(r["logK"])))
-    # The same values as Qin printed them, so the correction can be seen
-    # rather than taken on trust. It moves 3 of the 7 compounds from
-    # inside the measured range to above all of it.
-    spec, _nons = L.qin_split(recs)
-    for r in recs:
-        if r["source"] != ANCHOR or not is_serum_albumin(r["protein"]):
-            continue
-        if "specific column" not in r["location"] or \
-                "nonspecific" in r["location"]:
-            continue
-        rr = dict(r, pfas_canonical=N.canon(r["pfas"]), method=r["_method"],
-                  kd_uM="")
-        out.append(row(rr, QIN_RAW, round(float(r["logK"]), 3)))
-
-    # 2b. the baseline-toxicity paper: a DIFFERENT paper quoting the
-    # same fits at a different place on each compound's isotherm
-    vol = math.log10(1.364)
-    for name, ic10_free, logD_L in BASELINE_T1:
+    for name, cw, logk in QIN_AT_OP:
         rr = {"pfas": name, "pfas_canonical": N.canon(name),
               "species": "bovine",
               "protein": "bovine serum albumin (BSA)",
               "method": "BioSPME 96-pin, Freundlich isotherm",
-              "kd_uM": "", "source": "Qin 2024 (baseline toxicity)"}
-        out.append(row(rr, QIN_BASE, round(logD_L - vol, 3),
-                       at_cw=round(ic10_free * 1e6, 4)))
+              "kd_uM": "", "source": "Qin 2024"}
+        out.append(row(rr, f"{QIN} Cw = {cw:.3g} uM ({OPERATING})",
+                       logk))
 
     # 6. the quenching conversions, using each paper's own exponent
     quenched = set()
@@ -219,7 +219,7 @@ def collect():
             out.append(row(r, READER, float(r["logK_if_n_assumed_1"]), "1"))
 
     out = [r for r in out if r["species"] in SPECIES]
-    out.sort(key=lambda r: (ORDER.index(r["route"]), r["pfas_canonical"],
+    out.sort(key=lambda r: (rank(r["route"]), r["pfas_canonical"],
                             r["source"]))
     return out
 
@@ -227,72 +227,38 @@ def collect():
 NOTES = [
     ("What this is",
      "Protein-water partition coefficients for PFAS on serum albumin, "
-     "human and bovine, assembled so they can be compared against Qin "
-     "2024. log K is log10 of litres of water per kg of protein, at zero "
-     "loading."),
-    ("Read the Route column first",
-     "Rows reach their number by seven different routes, from a direct "
+     "human and bovine. log K is log10 of litres of water per kg of "
+     "protein."),
+    ("Qin 2024 is at ONE operating point",
+     "Its rows are the SI Table S6 Freundlich equations evaluated at 10 "
+     "uM nominal in a 10% FBS medium. D_BSA/w is not a constant - it "
+     "falls roughly 0.3 log per decade of free concentration - so each "
+     "Qin row names the free Cw it was evaluated at, in its Route cell. "
+     "At another nominal dose or another medium these values change; "
+     "re-evaluate the equations rather than reusing the numbers."),
+    ("How good is that Cw",
+     "Free concentrations come from Qin's own mass balance (his eq 6) "
+     "with the generic 10% FBS composition of his Table S7 and the "
+     "HEK293H cell term of Table S8. Run on his own 2% csFBS medium the "
+     "same calculation reproduces his measured IC10,free with a median "
+     "of +0.03 log and a typical error of 0.22 log, worst 0.67. Treat "
+     "the Qin rows as good to a few tenths of a log, not better."),
+    ("Read the Route column",
+     "Rows reach their number by seven routes, from a direct "
      "measurement to a conversion resting on an assumed stoichiometry. "
-     "The column says which, on every row, and the sheet is sorted "
-     "best-route first. Two values in the same column are not "
-     "necessarily the same kind of number."),
+     "The sheet is sorted best-route first. Two values in the same "
+     "column are not necessarily the same kind of number."),
     ("The spread is real",
-     "PFOA on human albumin appears here at 1.64, 2.12, 2.67, 3.77, 4.48 "
-     "and 4.70. Two laboratories measuring the same albumin Kd by the "
-     "same method differ by 1.45 log, and Gao et al. 2019 puts the "
-     "published range for that constant at two orders of magnitude. The "
-     "spread is the finding. Do not take a mean down a column."),
-    ("The conversion",
-     "log K = log10(1e9 / M) + log n - log Kd(uM), with M = 66,463 g/mol "
-     "for albumin. Exact algebra from the Langmuir isotherm. Because log "
-     "K moves one for one with log n, every converted row turns on the "
-     "stoichiometry its route names."),
-    ("Two Qin papers, three sets of numbers",
-     "The 'Species Difference?' paper (ES&T 58:9954) and the baseline-"
-     "toxicity paper (ES&T 58:5727) share one set of BSA measurements. "
-     "The baseline paper's SI Table S6 IS the plasma paper's Table 1, "
-     "reprinted - identical slopes, intercepts and R2, uncited. What "
-     "differs is where each paper EVALUATES those fits. The equations "
-     "agree; the numbers do not, and that is not a discrepancy."),
-    ("If the baseline paper is your source",
-     "Its main-text Table 1 log D_BSA/w is not a constant. Footnote b "
-     "says each value is the Table S6 Freundlich fit evaluated at THAT "
-     "COMPOUND'S IC10,free, and that concentration spans 0.33 to 1780 "
-     "uM across the eleven - a factor of 5,400. PFOA reads 3.98 there "
-     "because its IC10,free is 18.4 uM; the same fit at 1 uM gives 4.38. "
-     "Those rows are here with the concentration in the 'Evaluated at "
-     "Cw' column, so they are not mistaken for constants."),
-    ("Qin 2024, twice",
-     "Bovine, and the reason this file exists. It reports albumin in two "
-     "components and quotes the specific one at half-saturation (its Eq. "
-     "15, K = C_max / 2 K_d). It appears on TWO rows per compound: as "
-     "published, and corrected - the two terms summed in linear space "
-     "after the specific one is lifted by log10(2). Decide which you "
-     "want rather than inheriting the choice."),
-    ("What the correction does",
-     "It is worth 0.30 to 0.34 log and it changes where Qin sits. As "
-     "published, Qin falls inside the range other laboratories measured "
-     "for 6 of its 7 compounds. Corrected, it sits ABOVE every measured "
-     "value for PFOA, PFOS and PFHxS - the three that matter most - and "
-     "inside for GenX, PFBA, PFHpA and PFHxA. PFOS is the one compound "
-     "where Qin disagrees with the others either way."),
-    ("Quenching rows",
-     "The n used is the slope of a double-logarithmic, Scatchard or "
-     "modified Stern-Volmer plot. That is a fitted exponent, not a "
-     "counted site, and the project's main database refuses to convert "
-     "on it. These rows are included because the comparison was asked "
-     "for; weigh them accordingly."),
-    ("Species",
-     "Human and bovine. Albumin itself barely differs - HSA and BSA are "
-     "66,437 and 66,398 g/mol by sequence, 0.00025 log apart - so a "
-     "human-bovine gap in this file is a laboratory and method "
-     "difference, not a species one."),
-    ("Still out, available on request",
-     "Differential scanning fluorimetry (82 rows; its constants sit "
-     "about three orders off dialysis values), microscale thermophoresis "
-     "(6 rows), and Muensterman 2026's immobilised-albumin "
-     "chromatography (82 rows over 83 compounds, on a basis the paper "
-     "never states). Rat and porcine rows are also out."),
+     "Two laboratories measuring the same albumin Kd by the same method "
+     "differ by 1.45 log, and Gao et al. 2019 puts the published range "
+     "for that constant at two orders of magnitude. Do not take a mean "
+     "down a column."),
+    ("The conversion, where one was needed",
+     "log K = log10(1e9 / M) + log n - log Kd(uM), M = 66,463 g/mol. "
+     "Exact algebra from the Langmuir isotherm. log K moves one for one "
+     "with log n, so every converted row turns on the stoichiometry its "
+     "route names. Quenching rows use the paper's own fitted exponent, "
+     "which is not a counted site."),
 ]
 
 
@@ -343,10 +309,12 @@ def write(rows):
 
     table("Coefficients", rows, FIELDS)
 
-    anchor = {r["pfas_canonical"] for r in rows if r["route"] == QIN}
+    anchor = {r["pfas_canonical"] for r in rows
+              if r["route"].startswith(QIN)}
     beside = [r for r in rows if r["pfas_canonical"] in anchor]
-    beside.sort(key=lambda r: (r["pfas_canonical"], r["route"] != QIN,
-                               ORDER.index(r["route"]), r["source"]))
+    beside.sort(key=lambda r: (r["pfas_canonical"],
+                               not r["route"].startswith(QIN),
+                               rank(r["route"]), r["source"]))
     table("vs Qin 2024", beside, FIELDS)
     wb.save(OUT)
 
@@ -365,12 +333,13 @@ def main():
           f"{dict(collections.Counter(r['species'] for r in rows))}")
     print()
     for route in ORDER:
-        sub = [r for r in rows if r["route"] == route]
+        sub = [r for r in rows if r["route"].startswith(route)]
         if not sub:
             continue
         print(f"  {len(sub):4d}  {route[:58]:60s} "
               f"{', '.join(sorted({r['source'] for r in sub}))[:58]}")
-    anchor = sorted({r["pfas_canonical"] for r in rows if r["route"] == QIN})
+    anchor = sorted({r["pfas_canonical"] for r in rows
+                     if r["route"].startswith(QIN)})
     print()
     print(f"  'vs Qin 2024' sheet: {len(anchor)} compounds Qin covers "
           f"({', '.join(anchor)})")
@@ -378,7 +347,8 @@ def main():
         v = sorted(float(r["logK"]) for r in rows
                    if r["pfas_canonical"] == c)
         q = [float(r["logK"]) for r in rows
-             if r["pfas_canonical"] == c and r["route"] == QIN][0]
+             if r["pfas_canonical"] == c
+             and r["route"].startswith(QIN)][0]
         print(f"     {c:14s} Qin {q:5.2f} | {len(v)} values, "
               f"{min(v):.2f} to {max(v):.2f}  (spread {max(v)-min(v):.2f} log)")
     return 0
