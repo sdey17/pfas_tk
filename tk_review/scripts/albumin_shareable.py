@@ -54,13 +54,25 @@ import collections
 import csv
 import importlib.util
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "albumin_kd_to_k.csv")
 OUT = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
 
+# Human only by default. Albumin's own species difference is tiny -- HSA
+# and BSA are 66,437 and 66,398 g/mol by sequence, 0.00025 log apart --
+# but the SOURCES are not interchangeable, and mixing them puts bovine
+# equilibrium dialysis beside human single-site fits in one column with
+# nothing but a species cell to separate them. Pass a species to change
+# it, or "all" to keep every row.
+SPECIES = "human"
+
+# No Species column: the species filter leaves one, and `protein` names
+# it on every row ("human serum albumin (HSA)"), so a Species column
+# would be 92 identical cells.
 FIELDS = [("pfas_canonical", "PFAS"), ("protein", "Protein"),
-          ("species", "Species"), ("kd_uM", "Kd (uM)"),
+          ("kd_uM", "Kd (uM)"),
           ("n_sites_used", "Sites per protein (n)"),
           ("logK", "log K (L water / kg protein)"),
           ("how_solid", "How solid"), ("source", "Source")]
@@ -80,10 +92,16 @@ NOTES = [
      "says which, for every row."),
     ("Measured or converted",
      "Prefer a measured row where one exists for your compound. Fischer "
-     "2024, Allendorf 2019 and Bischel 2011 measured the coefficient "
-     "itself and needed no stoichiometry, so none of the assumptions "
-     "below apply to them. Fischer held PFAS:protein under 0.004, which "
-     "puts its values within 0.002 log of zero loading."),
+     "2024 measured the coefficient itself and needed no stoichiometry, "
+     "so none of the assumptions below apply to its rows. It held "
+     "PFAS:protein under 0.004, which puts those values within 0.002 log "
+     "of zero loading."),
+    ("Species",
+     "Human serum albumin only, so there is no species column. 62 bovine "
+     "rows exist (Allendorf 2019, Bischel 2011, and Fischer again) and "
+     "are left out: every compound they cover is also measured in human, "
+     "so they add no coverage at all. They are a cross-check on the "
+     "human values, not extra data - ask if you want them."),
     ("The conversion",
      "log K = log10(1e9 / M) + log n - log Kd(uM), with M = 66,463 g/mol "
      "for albumin. It is exact algebra from the Langmuir isotherm, not a "
@@ -183,6 +201,13 @@ def main():
     for r in rows:
         r["how_solid"] = tier(r)
     rows = measured() + rows
+    want = (sys.argv[1] if len(sys.argv) > 1 else SPECIES).lower()
+    dropped = collections.Counter()
+    if want != "all":
+        for r in rows:
+            if r["species"].lower() != want:
+                dropped[(r["species"], r["source"])] += 1
+        rows = [r for r in rows if r["species"].lower() == want]
     order = {MEASURED: 0, BOTH: 1, OK: 2, EXTRAP: 3}
     rows.sort(key=lambda r: (order[r["how_solid"]], r["pfas_canonical"]))
 
@@ -225,12 +250,16 @@ def main():
     ws.auto_filter.ref = ws.dimensions
     wb.save(OUT)
 
-    print(f"{len(rows)} rows, {len(FIELDS)} columns -> "
+    print(f"{len(rows)} rows, {len(FIELDS)} columns, species = {want} -> "
           f"{os.path.relpath(OUT, os.path.join(HERE, '..'))}")
     for t, n in collections.Counter(r["how_solid"] for r in rows).most_common():
         srcs = sorted({r["source"] for r in rows if r["how_solid"] == t})
         print(f"  {n:3d}  {t[:62]:64s} {', '.join(srcs)}")
     print(f"  {len({r['pfas_canonical'] for r in rows})} distinct compounds")
+    if dropped:
+        print(f"  left out by the species filter:")
+        for (sp, src), n in sorted(dropped.items()):
+            print(f"     {n:3d}  {sp:8s} {src}")
     return 0
 
 
