@@ -1,0 +1,124 @@
+row_order,pfas,category,log_k,source,cw_uM,route
+10,PFOS,converted,2.598,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,3.943,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,3.944,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,4.142,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,4.148,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,4.204,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
+10,PFOS,converted,4.221,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,4.334,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted,4.336,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+10,PFOS,converted_quenching,0.713,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+10,PFOS,converted_quenching,3.666,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+10,PFOS,measured,3.965,Bischel 2011,,measured directly
+10,PFOS,measured,4.62,Fischer 2024,,measured directly
+10,PFOS,measured,4.67,Allendorf 2019,,measured directly
+10,PFOS,measured,4.76,Fischer 2024,,measured directly
+10,PFOS,qin,5.35,Qin 2024,0.0109,"measured; Qin Table S6 equation at Cw = 0.0109 uM (10 uM nominal, 10% FBS medium)"
+9,PFHxS,converted,3.146,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+9,PFHxS,converted,3.267,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+9,PFHxS,converted,3.298,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+9,PFHxS,converted,3.458,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+9,PFHxS,converted,4.06,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
+9,PFHxS,converted_quenching,0.241,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+9,PFHxS,measured,4.165,Bischel 2011,,measured directly
+9,PFHxS,measured,4.61,Fischer 2024,,measured directly
+9,PFHxS,measured,4.77,Fischer 2024,,measured directly
+9,PFHxS,measured,4.81,Allendorf 2019,,measured directly
+9,PFHxS,qin,4.82,Qin 2024,0.0364,"measured; Qin Table S6 equation at Cw = 0.0364 uM (10 uM nominal, 10% FBS medium)"
+8,PFOA,converted,0.685,Klevens 1954,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,1.638,Han 2003,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,2.117,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,2.672,Wu 2009,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.327,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.486,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.533,Peng 2024,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.543,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.668,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted,3.767,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+8,PFOA,converted,4.177,Bischel 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
+8,PFOA,converted_quenching,0.025,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFOA,converted_quenching,4.372,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFOA,converted_quenching,4.641,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFOA,measured,4.005,Bischel 2011,,measured directly
+8,PFOA,measured,4.17,Allendorf 2019,,measured directly
+8,PFOA,measured,4.2,Allendorf 2019,,measured directly
+8,PFOA,measured,4.2,Fischer 2024,,measured directly
+8,PFOA,measured,4.48,Fischer 2024,,measured directly
+8,PFOA,qin,4.64,Qin 2024,0.0558,"measured; Qin Table S6 equation at Cw = 0.0558 uM (10 uM nominal, 10% FBS medium)"
+7,PFUnDA,converted,3.503,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+7,PFUnDA,measured,3.565,Bischel 2011,,measured directly
+7,PFUnDA,measured,4.6,Allendorf 2019,,measured directly
+7,PFUnDA,measured,4.72,Allendorf 2019,,measured directly
+7,PFUnDA,measured,5.17,Fischer 2024,,measured directly
+7,PFUnDA,measured,5.18,Fischer 2024,,measured directly
+7,PFUnDA,qin,4.62,Qin 2024,0.058,"measured; Qin Table S6 equation at Cw = 0.058 uM (10 uM nominal, 10% FBS medium)"
+6,PFNA,converted,2.314,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,3.603,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+6,PFNA,converted,3.935,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,4.033,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,4.106,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,4.175,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,4.177,Bischel 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted,5.07,Peng 2024,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFNA,converted_quenching,3.214,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+6,PFNA,measured,3.915,Bischel 2011,,measured directly
+6,PFNA,measured,4.32,Allendorf 2019,,measured directly
+6,PFNA,measured,4.48,Allendorf 2019,,measured directly
+6,PFNA,measured,4.49,Fischer 2024,,measured directly
+6,PFNA,measured,4.54,Fischer 2024,,measured directly
+6,PFNA,qin,4.56,Qin 2024,0.0666,"measured; Qin Table S6 equation at Cw = 0.0666 uM (10 uM nominal, 10% FBS medium)"
+5,PFOSA,converted,3.129,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+5,PFOSA,measured,4.33,Fischer 2024,,measured directly
+5,PFOSA,measured,4.34,Fischer 2024,,measured directly
+5,PFOSA,qin,4.24,Qin 2024,0.128,"measured; Qin Table S6 equation at Cw = 0.128 uM (10 uM nominal, 10% FBS medium)"
+4,PFHpA,converted,1.833,Peng 2024,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.029,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.122,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.264,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.339,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.461,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.47,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,2.563,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHpA,converted,3.385,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+4,PFHpA,converted_quenching,4.227,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+4,PFHpA,measured,3.79,Allendorf 2019,,measured directly
+4,PFHpA,measured,3.93,Fischer 2024,,measured directly
+4,PFHpA,measured,4.02,Allendorf 2019,,measured directly
+4,PFHpA,measured,4.095,Bischel 2011,,measured directly
+4,PFHpA,measured,4.1,Fischer 2024,,measured directly
+4,PFHpA,qin,4.01,Qin 2024,0.234,"measured; Qin Table S6 equation at Cw = 0.234 uM (10 uM nominal, 10% FBS medium)"
+3,6:2 FTSA,converted,3.794,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+3,6:2 FTSA,measured,3.35,Fischer 2024,,measured directly
+3,6:2 FTSA,measured,3.44,Fischer 2024,,measured directly
+3,6:2 FTSA,qin,3.76,Qin 2024,0.397,"measured; Qin Table S6 equation at Cw = 0.397 uM (10 uM nominal, 10% FBS medium)"
+2,PFHxA,converted,1.291,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,1.408,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,1.433,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,1.52,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,1.887,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,3.032,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+2,PFHxA,converted,3.419,Moro 2022,,converted; n counted by ITC
+2,PFHxA,converted,3.533,Moro 2022,,converted; n counted by ITC
+2,PFHxA,measured,2.83,Fischer 2024,,measured directly
+2,PFHxA,measured,3.02,Allendorf 2019,,measured directly
+2,PFHxA,measured,3.2,Fischer 2024,,measured directly
+2,PFHxA,measured,3.43,Allendorf 2019,,measured directly
+2,PFHxA,measured,3.915,Bischel 2011,,measured directly
+2,PFHxA,qin,3.28,Qin 2024,1.13,"measured; Qin Table S6 equation at Cw = 1.13 uM (10 uM nominal, 10% FBS medium)"
+1,HFPO-DA,converted,1.324,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+1,HFPO-DA,converted,1.5,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+1,HFPO-DA,converted,1.52,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+1,HFPO-DA,converted,1.558,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+1,HFPO-DA,converted,3.36,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+1,HFPO-DA,converted_quenching,-0.259,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+1,HFPO-DA,measured,2.71,Allendorf 2019,,measured directly
+1,HFPO-DA,measured,3.06,Allendorf 2019,,measured directly
+1,HFPO-DA,qin,3.28,Qin 2024,1.14,"measured; Qin Table S6 equation at Cw = 1.14 uM (10 uM nominal, 10% FBS medium)"
+0,PFBA,converted,0.478,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+0,PFBA,converted,0.655,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+0,PFBA,converted,2.249,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+0,PFBA,converted_quenching,-0.842,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+0,PFBA,measured,1.9,Allendorf 2019,,measured directly
+0,PFBA,measured,2.52,Allendorf 2019,,measured directly
+0,PFBA,qin,2.6,Qin 2024,3.79,"measured; Qin Table S6 equation at Cw = 3.79 uM (10 uM nominal, 10% FBS medium)"

@@ -24,11 +24,30 @@ the other two. Quenching-derived conversions are the same grey as an
 OPEN marker: a secondary channel, so the least trustworthy route is
 flagged without spending a colour on it.
 
-Writes figures/qin2024_albumin_comparison.png.
+EDITING IT. The chart is drawn from a CSV, not from the workbook, so
+every mark can be changed without touching this file:
 
-Run:  python3 tk_review/scripts/make_qin_comparison_figure.py
+    python3 .../make_qin_comparison_figure.py
+        reads db/albumin_logK_shareable.xlsx, writes the CSV AND the PNG
+
+    python3 .../make_qin_comparison_figure.py mine.csv
+        reads mine.csv, writes the PNG only -- the workbook is not opened
+
+So: run it once, edit
+figures/qin2024_albumin_comparison_data.csv, run it again with that file
+as the argument. Drop rows to remove marks, change `category` to recolour
+one, change `row_order` to reorder or drop a compound from the chart
+(every row of a compound shares its number). Colours, marker sizes and the
+title live in the constants at the top of this file.
+
+Writes figures/qin2024_albumin_comparison.png and
+figures/qin2024_albumin_comparison_data.csv.
+
+Run:  python3 tk_review/scripts/make_qin_comparison_figure.py [data.csv]
 """
+import csv
 import os
+import sys
 
 import matplotlib
 matplotlib.use("Agg")
@@ -39,6 +58,14 @@ from matplotlib.patches import Rectangle
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
 OUT = os.path.join(HERE, "..", "figures", "qin2024_albumin_comparison.png")
+OUT_CSV = os.path.join(HERE, "..", "figures",
+                       "qin2024_albumin_comparison_data.csv")
+
+# category -> how it is drawn. Change `category` in the CSV to move a mark
+# between these; add a key here to invent one.
+CATEGORIES = ("qin", "measured", "converted", "converted_quenching")
+FIELDS = ["row_order", "pfas", "category", "log_k", "source", "cw_uM",
+          "route"]
 
 SURFACE = "#fcfcfb"
 INK, INK2, MUTED = "#0b0b0b", "#52514e", "#898781"
@@ -58,29 +85,85 @@ plt.rcParams.update({
 })
 
 
-def read():
+def category_of(route):
+    if route.startswith("measured; Qin"):
+        return "qin"
+    if route == "measured directly":
+        return "measured"
+    return "converted_quenching" if "quenching" in route else "converted"
+
+
+def from_workbook():
+    """The plotted data, derived once from the shareable workbook."""
     from openpyxl import load_workbook
     ws = load_workbook(SRC)["Coefficients"]
     head = [c.value for c in ws[1]]
     ix = {h: i for i, h in enumerate(head)}
     rows = []
     for r in ws.iter_rows(min_row=2, values_only=True):
-        rows.append({"pfas": r[ix["PFAS"]], "logK": r[ix["log K (L water / kg protein)"]],
-                     "route": str(r[ix["Route"]]), "source": str(r[ix["Source"]])})
-    return [r for r in rows if r["logK"] is not None]
+        v = r[ix["log K (L water / kg protein)"]]
+        if v is None:
+            continue
+        route = str(r[ix["Route"]])
+        cw = ""
+        if "Cw = " in route:
+            cw = route.split("Cw = ")[1].split(" uM")[0]
+        rows.append({"pfas": str(r[ix["PFAS"]]), "log_k": float(v),
+                     "category": category_of(route),
+                     "source": str(r[ix["Source"]]), "cw_uM": cw,
+                     "route": route})
+    # only the compounds the anchor covers, ordered by the anchor's value
+    qin = {r["pfas"]: r["log_k"] for r in rows if r["category"] == "qin"}
+    rows = [r for r in rows if r["pfas"] in qin]
+    order = {c: i for i, c in enumerate(sorted(qin, key=qin.get))}
+    for r in rows:
+        r["row_order"] = order[r["pfas"]]
+    return rows
 
 
-def dodge(xs, width=0.085, step=0.115):
+def write_csv(rows, path):
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=FIELDS)
+        w.writeheader()
+        for r in sorted(rows, key=lambda r: (-r["row_order"], r["category"],
+                                             r["log_k"])):
+            w.writerow({k: r.get(k, "") for k in FIELDS})
+
+
+def read_csv(path):
+    out = []
+    for r in csv.DictReader(open(path, encoding="utf-8")):
+        if not str(r.get("log_k", "")).strip():
+            continue
+        r["log_k"] = float(r["log_k"])
+        r["row_order"] = int(float(r["row_order"]))
+        if r["category"] not in CATEGORIES:
+            raise SystemExit(f"unknown category {r['category']!r} on "
+                             f"{r['pfas']}; expected one of "
+                             f"{', '.join(CATEGORIES)}")
+        out.append(r)
+    return out
+
+
+def dodge(marks, width=0.085, step=0.115):
     """Vertical offsets so near-coincident dots stop hiding each other.
 
     A plain dot plot stacks every value within a few hundredths of a log
     on one pixel, which turns the densest rows -- the ones carrying the
-    most evidence -- into a single blob. Points are swept left to right
-    and anything inside `width` of its predecessor is pushed onto the
-    next lane, alternating above and below the row.
+    most evidence -- into a single blob. Marks are swept left to right and
+    anything inside `width` of the last mark in a lane is pushed onto the
+    next one, alternating above and below the row.
+
+    Lanes are assigned over the marks SORTED, not in the order they were
+    read, so the same data draws the same picture whether it came from the
+    workbook or from an edited CSV. Keying on the x value alone was not
+    enough: two marks at the same x took lanes in call order, and the
+    round trip through the CSV reorders them.
     """
-    out, lanes = {}, []
-    for x in sorted(xs):
+    out = []
+    lanes = []
+    for i, m in sorted(enumerate(marks), key=lambda t: (t[1][0], t[1][1])):
+        x = m[0]
         lane = 0
         while lane < len(lanes) and abs(lanes[lane] - x) < width:
             lane += 1
@@ -88,66 +171,84 @@ def dodge(xs, width=0.085, step=0.115):
             lanes.append(x)
         else:
             lanes[lane] = x
-        out.setdefault(x, []).append(
-            0.0 if lane == 0 else ((lane + 1) // 2) * step *
-            (1 if lane % 2 else -1))
-    return out
+        out.append((i, 0.0 if lane == 0 else
+                    ((lane + 1) // 2) * step * (1 if lane % 2 else -1)))
+    return [o for _, o in sorted(out)]
 
 
 def main():
-    rows = read()
-    qin = {r["pfas"]: (float(r["logK"]), r["route"]) for r in rows
-           if r["route"].startswith("measured; Qin")}
-    order = sorted(qin, key=lambda c: qin[c][0])          # low to high, up the page
+    if len(sys.argv) > 1:
+        rows = read_csv(sys.argv[1])
+        src = sys.argv[1]
+    else:
+        rows = from_workbook()
+        write_csv(rows, OUT_CSV)
+        src = os.path.relpath(SRC, os.path.join(HERE, ".."))
+
+    order = sorted({r["row_order"] for r in rows})
+    names = {}
+    for r in rows:
+        names.setdefault(r["row_order"], r["pfas"])
+    qin = {r["row_order"]: r["log_k"] for r in rows
+           if r["category"] == "qin"}
 
     fig, ax = plt.subplots(figsize=(10.4, 7.6))
-    lo = min(float(r["logK"]) for r in rows if r["pfas"] in qin) - 0.4
-    hi = max(float(r["logK"]) for r in rows if r["pfas"] in qin) + 0.25
+    lo = min(r["log_k"] for r in rows) - 0.4
+    hi = max(r["log_k"] for r in rows) + 0.25
     above = 0
 
-    for y, c in enumerate(order):
-        here = [r for r in rows if r["pfas"] == c]
-        meas = [float(r["logK"]) for r in here
-                if r["route"] == "measured directly"]
-        conv = [(float(r["logK"]), "quenching" in r["route"]) for r in here
-                if r["route"].startswith("converted")]
-        vals = [v for v, _ in conv] + meas + [qin[c][0]]
+    for y, key in enumerate(order):
+        here = [r for r in rows if r["row_order"] == key]
+        meas = [r["log_k"] for r in here if r["category"] == "measured"]
+        conv = [(r["log_k"], r["category"] == "converted_quenching")
+                for r in here if r["category"].startswith("converted")]
+        vals = [v for v, _ in conv] + meas + (
+            [qin[key]] if key in qin else [])
+        if not vals:
+            continue
 
         ax.plot([min(vals), max(vals)], [y, y], color=GRID, lw=1.4,
                 zorder=1, solid_capstyle="round")
         if meas:
             ax.add_patch(Rectangle((min(meas), y - 0.26),
                                    max(meas) - min(meas) or 0.012, 0.52,
-                                   facecolor=BAND, edgecolor="none", zorder=2))
-        off = dodge([v for v, _ in conv] + meas)
-        used = {}
-        def lane(v):
-            i = used.get(v, 0)
-            used[v] = i + 1
-            return off[v][min(i, len(off[v]) - 1)]
-        for v, is_q in conv:
-            ax.plot([v], [y + lane(v)], "o", ms=5.5, zorder=3,
-                    mfc="none" if is_q else MUTED,
-                    mec=MUTED, mew=1.2 if is_q else 0.9)
-        for v in meas:
-            ax.plot([v], [y + lane(v)], "o", ms=7.0, mfc=MEAS_C,
-                    mec=SURFACE, mew=1.4, zorder=4)
-        qv = qin[c][0]
-        ax.plot([qv], [y], "D", ms=10.0, mfc=QIN_C, mec=SURFACE, mew=1.8,
-                zorder=6)
-        # The value sits in a column at the right edge, not beside the
-        # marker: offset labels collided with the dots on seven of eleven
-        # rows, and "4.62" overlaid by an orange dot read as "1.62".
-        ax.annotate(f"{qv:.2f}", xy=(1.0, y),
-                    xycoords=("axes fraction", "data"), xytext=(10, 0),
-                    textcoords="offset points", va="center", ha="left",
-                    fontsize=9, color=QIN_C, fontweight="bold",
-                    annotation_clip=False)
-        if meas and qv > max(meas):
-            above += 1
+                                   facecolor=BAND, edgecolor="none",
+                                   zorder=2))
+        # (x, sort-tiebreak, kind) -- the tiebreak keeps lane assignment
+        # independent of the order the marks were read in
+        # Sorted before drawing, not only before lane assignment: marks
+        # share a zorder, so the one drawn last wins the overlap, and an
+        # unsorted draw made the workbook and the CSV render differently
+        # from identical data.
+        marks = sorted([(v, "a_quench" if q else "b_conv",
+                         "quench" if q else "conv") for v, q in conv]
+                       + [(v, "c_meas", "meas") for v in meas])
+        offs = dodge(marks)
+        for (v, _t, kind), dy in zip(marks, offs):
+            if kind == "meas":
+                ax.plot([v], [y + dy], "o", ms=7.0, mfc=MEAS_C,
+                        mec=SURFACE, mew=1.4, zorder=4)
+            else:
+                ax.plot([v], [y + dy], "o", ms=5.5, zorder=3,
+                        mfc="none" if kind == "quench" else MUTED,
+                        mec=MUTED, mew=1.2 if kind == "quench" else 0.9)
+        if key in qin:
+            qv = qin[key]
+            ax.plot([qv], [y], "D", ms=10.0, mfc=QIN_C, mec=SURFACE,
+                    mew=1.8, zorder=6)
+            # The value sits in a column at the right edge, not beside the
+            # marker: offset labels collided with the dots on seven of
+            # eleven rows, and "4.62" overlaid by a dot read as "1.62".
+            ax.annotate(f"{qv:.2f}", xy=(1.0, y),
+                        xycoords=("axes fraction", "data"), xytext=(10, 0),
+                        textcoords="offset points", va="center", ha="left",
+                        fontsize=9, color=QIN_C, fontweight="bold",
+                        annotation_clip=False)
+            if meas and qv > max(meas):
+                above += 1
 
     ax.set_yticks(range(len(order)))
-    ax.set_yticklabels(order, fontsize=9.5)
+    ax.set_yticklabels([names[k] for k in order], fontsize=9.5)
     ax.set_xlim(lo, hi)
     ax.set_ylim(-0.6, len(order) - 0.4)
     ax.set_xlabel("log K   (litres of water per kg of protein)")
@@ -168,20 +269,22 @@ def main():
                mew=1.2, label="converted on a fluorescence-quenching "
                               "exponent"),
     ]
-    ax.legend(handles=handles, loc="upper left", bbox_to_anchor=(0.0, -0.085),
-              ncol=2, fontsize=8.4, frameon=False, labelspacing=0.7,
-              handletextpad=0.6, columnspacing=1.6, borderaxespad=0.0)
+    ax.legend(handles=handles, loc="upper left",
+              bbox_to_anchor=(0.0, -0.085), ncol=2, fontsize=8.4,
+              frameon=False, labelspacing=0.7, handletextpad=0.6,
+              columnspacing=1.6, borderaxespad=0.0)
 
     fig.text(0.052, 0.975,
              "Qin 2024 against every other albumin coefficient",
              ha="left", va="top", fontsize=14.5, color=INK)
     fig.text(0.052, 0.940,
-             f"At 10 µM nominal in 10% FBS, Qin sits above every "
-             f"directly measured value for {above} of {len(order)} compounds. "
-             "Free concentrations\n(0.011–3.8 µM) are 2–3 orders "
-             "below where Qin measured, so these are the Table S6 fits "
-             "extrapolated,\nnot read off data. The grey cloud is the "
-             "literature's own spread, up to 4.6 log on one compound.",
+             f"At 10 \u00b5M nominal in 10% FBS, Qin sits above every "
+             f"directly measured value for {above} of {len(order)} "
+             "compounds. Free concentrations\n(0.011\u20133.8 \u00b5M) are "
+             "2\u20133 orders below where Qin measured, so these are the "
+             "Table S6 fits extrapolated,\nnot read off data. The grey "
+             "cloud is the literature's own spread, up to 4.6 log on one "
+             "compound.",
              ha="left", va="top", fontsize=8.8, color=INK2, linespacing=1.6)
     ax.annotate("Qin", xy=(1.0, len(order) - 0.4),
                 xycoords=("axes fraction", "data"), xytext=(10, 6),
@@ -190,7 +293,12 @@ def main():
     fig.tight_layout(rect=(0.0, 0.085, 0.955, 0.878))
     fig.savefig(OUT, dpi=200)
     plt.close(fig)
-    print(f"{len(order)} compounds; Qin above all measured on {above}")
+
+    print(f"read {len(rows)} marks from {src}")
+    print(f"  {len(order)} compounds; Qin above all measured on {above}")
+    if len(sys.argv) == 1:
+        print(f"wrote {os.path.abspath(OUT_CSV)}  <- edit this, then pass "
+              f"it back as an argument")
     print(f"wrote {os.path.abspath(OUT)}")
     return 0
 
