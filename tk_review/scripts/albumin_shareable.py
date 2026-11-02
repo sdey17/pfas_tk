@@ -49,6 +49,7 @@ Run:  python3 -I tk_review/scripts/albumin_shareable.py [species ...]
 import collections
 import csv
 import importlib.util
+import math
 import os
 import sys
 
@@ -62,18 +63,40 @@ ANCHOR = "Qin 2024 (plasma)"
 FIELDS = [("pfas_canonical", "PFAS"), ("species", "Species"),
           ("protein", "Protein"), ("method_short", "Method"),
           ("kd_uM", "Kd (uM)"), ("n_used", "n used"),
+          ("at_cw_uM", "Evaluated at Cw (uM)"),
           ("logK", "log K (L water / kg protein)"),
           ("route", "Route"), ("source", "Source")]
 
 MEASURED = "measured directly"
 QIN = "measured; Qin's two terms summed, specific term lifted off half-saturation"
 QIN_RAW = "measured; Qin's specific column AS PUBLISHED, at half-saturation, uncorrected"
+QIN_BASE = ("measured; Qin's baseline-toxicity paper Table 1 - the same "
+            "Freundlich fit evaluated at THAT COMPOUND'S IC10,free")
 ITC = "converted; n counted by ITC"
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
 QUENCH = "converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-ORDER = [MEASURED, QIN, QIN_RAW, ITC, PAPER_OK, PAPER_EX, READER, QUENCH]
+ORDER = [MEASURED, QIN, QIN_RAW, QIN_BASE, ITC, PAPER_OK, PAPER_EX,
+         READER, QUENCH]
+
+# Qin W, Henneberger L, Gluge J, Konig M, Escher BI. "Baseline Toxicity
+# Model to Identify the Specific and Nonspecific Effects of PFAS in
+# Cell-Based Bioassays." Environ Sci Technol 2024;58:5727-5738,
+# doi 10.1021/acs.est.3c09950. Main-text Table 1, log D_BSA/w column.
+# Its footnote b says each value is the Freundlich equation of SI Table
+# S6 evaluated at IC10,free; that reproduces to within 0.008 log for all
+# eleven, and those equations are identical to the plasma paper's Table
+# 1 - slope, intercept and R2 to the last digit.
+# (compound, IC10,free in mol/L, log D_BSA/w per L of protein)
+BASELINE_T1 = [
+    ("PFBA", 1.78e-3, 1.94), ("PFHxA", 4.72e-4, 2.70),
+    ("PFHpA", 6.76e-5, 3.40), ("PFOA", 1.84e-5, 3.98),
+    ("PFNA", 7.72e-6, 4.39), ("PFUnA", 3.83e-7, 4.75),
+    ("HFPO-DA", 2.20e-4, 2.28), ("PFHxS", 4.22e-5, 3.52),
+    ("PFOS", 3.89e-6, 4.52), ("6:2 FTSA", 4.25e-5, 3.71),
+    ("PFOSA", 3.28e-7, 4.33),
+]
 
 FAMILIES = [
     (("scanning fluorimetry", "(dsf)"), "thermal shift (DSF)"),
@@ -109,8 +132,9 @@ def is_serum_albumin(protein):
                                     "serum)", "immobilis", "immobiliz"))
 
 
-def row(r, route, logK, n_used=""):
-    return {"pfas_canonical": r.get("pfas_canonical") or r["pfas"],
+def row(r, route, logK, n_used="", at_cw=""):
+    return {"at_cw_uM": at_cw,
+            "pfas_canonical": r.get("pfas_canonical") or r["pfas"],
             "species": r["species"], "protein": r["protein"],
             "method_short": family(r.get("method") or r.get("_method")),
             "kd_uM": r.get("kd_uM", ""), "n_used": n_used,
@@ -152,6 +176,18 @@ def collect():
         rr = dict(r, pfas_canonical=N.canon(r["pfas"]), method=r["_method"],
                   kd_uM="")
         out.append(row(rr, QIN_RAW, round(float(r["logK"]), 3)))
+
+    # 2b. the baseline-toxicity paper: a DIFFERENT paper quoting the
+    # same fits at a different place on each compound's isotherm
+    vol = math.log10(1.364)
+    for name, ic10_free, logD_L in BASELINE_T1:
+        rr = {"pfas": name, "pfas_canonical": N.canon(name),
+              "species": "bovine",
+              "protein": "bovine serum albumin (BSA)",
+              "method": "BioSPME 96-pin, Freundlich isotherm",
+              "kd_uM": "", "source": "Qin 2024 (baseline toxicity)"}
+        out.append(row(rr, QIN_BASE, round(logD_L - vol, 3),
+                       at_cw=round(ic10_free * 1e6, 4)))
 
     # 6. the quenching conversions, using each paper's own exponent
     quenched = set()
@@ -211,6 +247,21 @@ NOTES = [
      "for albumin. Exact algebra from the Langmuir isotherm. Because log "
      "K moves one for one with log n, every converted row turns on the "
      "stoichiometry its route names."),
+    ("Two Qin papers, three sets of numbers",
+     "The 'Species Difference?' paper (ES&T 58:9954) and the baseline-"
+     "toxicity paper (ES&T 58:5727) share one set of BSA measurements. "
+     "The baseline paper's SI Table S6 IS the plasma paper's Table 1, "
+     "reprinted - identical slopes, intercepts and R2, uncited. What "
+     "differs is where each paper EVALUATES those fits. The equations "
+     "agree; the numbers do not, and that is not a discrepancy."),
+    ("If the baseline paper is your source",
+     "Its main-text Table 1 log D_BSA/w is not a constant. Footnote b "
+     "says each value is the Table S6 Freundlich fit evaluated at THAT "
+     "COMPOUND'S IC10,free, and that concentration spans 0.33 to 1780 "
+     "uM across the eleven - a factor of 5,400. PFOA reads 3.98 there "
+     "because its IC10,free is 18.4 uM; the same fit at 1 uM gives 4.38. "
+     "Those rows are here with the concentration in the 'Evaluated at "
+     "Cw' column, so they are not mistaken for constants."),
     ("Qin 2024, twice",
      "Bovine, and the reason this file exists. It reports albumin in two "
      "components and quotes the specific one at half-saturation (its Eq. "
