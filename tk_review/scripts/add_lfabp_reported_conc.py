@@ -307,6 +307,8 @@ def main():
     hdr = [c.value for c in ws[1]]
     ws.cell(row=1, column=len(hdr) + 1, value="Note")
     hdr = [c.value for c in ws[1]]
+    ws.cell(row=1, column=len(hdr) + 1, value="concentrations reported")
+    hdr = [c.value for c in ws[1]]
 
     n_alb = ws.max_row - 1
     rows = lfabp_rows()
@@ -326,6 +328,22 @@ def main():
                 row[j].alignment = wrap
     ws.freeze_panes = "A2"
 
+    # A concentration cell can carry the paper's own words and still
+    # report no number ("see Text S7", "not quantified in molar
+    # terms", "molar ratio held below 0.1"). This column says, per
+    # row, which of the two are actually NUMBERS, so the file can be
+    # filtered to rows whose concentrations the paper really gives.
+    ci = hdr.index("concentrations reported")
+    pi = hdr.index("PFAS conc (as reported)")
+    qi = hdr.index("Protein conc (as reported)")
+    tally = {}
+    for row in ws.iter_rows(min_row=2):
+        a, b = has_conc(row[pi].value), has_conc(row[qi].value)
+        verdict = ("both" if a and b else "PFAS only" if a
+                   else "protein only" if b else "neither")
+        row[ci].value = verdict
+        tally[verdict] = tally.get(verdict, 0) + 1
+
     all_rows = list(ws.iter_rows(min_row=2, values_only=True))
     sh = focus_sheet(wb, hdr, all_rows)
 
@@ -340,6 +358,10 @@ def main():
                and has_conc(r["Protein conc (as reported)"]))
     kd = sum(1 for r in rows if r["Kd (uM)"] is not None)
     print(f"wrote {OUT}")
+    print("  concentrations reported as NUMBERS, over every row:")
+    for k in ("both", "PFAS only", "protein only", "neither"):
+        if k in tally:
+            print(f"     {k:<14}{tally[k]:>4}")
     print(f'  "Five compounds" sheet: {sh.max_row - 1} rows')
     print(f"  {n_alb} albumin rows + {len(rows)} L-FABP rows "
           f"= {ws.max_row - 1}\n")
