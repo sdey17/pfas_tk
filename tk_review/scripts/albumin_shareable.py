@@ -163,7 +163,7 @@ def row(r, route, logK, n_used="", at_cw=""):
             "logK": logK, "route": route, "source": r["source"]}
 
 
-def collect():
+def collect(keep=None):
     B = _load("baf", "build_binding_affinity_table.py")
     L = _load("lkc", "logk_converted_vs_measured.py")
     N = _load("pfas_names", "pfas_names.py")
@@ -218,7 +218,7 @@ def collect():
                 continue               # already in, with its own exponent
             out.append(row(r, READER, float(r["logK_if_n_assumed_1"]), "1"))
 
-    out = [r for r in out if r["species"] in SPECIES]
+    out = [r for r in out if r["species"] in (keep or SPECIES)]
     out.sort(key=lambda r: (rank(r["route"]), r["pfas_canonical"],
                             r["source"]))
     return out
@@ -320,10 +320,16 @@ def write(rows):
 
 
 def main():
-    rows = collect()
+    # An argument REPLACES the default species set rather than narrowing
+    # it, so a species outside SPECIES (rat, mouse) can be asked for.
+    # "all" keeps every species the database holds.
+    keep = None
     if len(sys.argv) > 1:
         want = {a.lower() for a in sys.argv[1:]}
-        rows = [r for r in rows if r["species"].lower() in want]
+        keep = None if "all" in want else want
+    rows = collect(keep=keep)
+    if keep:
+        rows = [r for r in rows if r["species"].lower() in keep]
     write(rows)
 
     print(f"{len(rows)} rows, {len(FIELDS)} columns -> "
