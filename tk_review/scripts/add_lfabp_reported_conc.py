@@ -22,6 +22,7 @@ here reports a partition coefficient to use instead.
 Run:  python3 scripts/add_lfabp_reported_conc.py [workbook.xlsx]
 """
 import csv
+import math
 import os
 import re
 import sys
@@ -62,6 +63,65 @@ _HAS_UNIT = re.compile(rf"(?<![a-zA-Z/]){_UNIT}(?![a-zA-Z/])")
 def has_conc(text):
     t = str(text or "")
     return bool(_HAS_NUM.search(t) and _HAS_UNIT.search(t))
+
+
+# ---------------------------------------------------------------------
+# Molar masses, from UniProt, for the Kd -> partition conversion.
+# Each is the mature chain of the sequence the papers name, read from
+# the UniProt record rather than quoted from memory:
+#   P07148  FABPL_HUMAN   127 aa   14,208 Da
+#   P02692  FABPL_RAT     127 aa   14,273 Da
+#   P12710  FABPL_MOUSE   127 aa   14,246 Da
+#   P12104  FABP2_HUMAN   132 aa   15,237 Da  (intestinal)
+# Zebrafish L-FABP is deliberately absent: no zebrafish row carries a
+# Kd, so no mass is needed and none is guessed.
+FABP_MASS = {
+    ("human", "liver"): (14208.0, "UniProt P07148"),
+    ("rat", "liver"): (14273.0, "UniProt P02692"),
+    ("mouse", "liver"): (14246.0, "UniProt P12710"),
+    ("human", "intestinal"): (15237.0, "UniProt P12104"),
+}
+
+
+def fabp_mass(species, protein):
+    kind = "intestinal" if "intestinal" in protein.lower() else "liver"
+    return FABP_MASS.get((species.strip().lower(), kind), (None, ""))
+
+
+# The same bridge the albumin table uses, written so it also covers a
+# multi-site fit:  K = (1e9 / M) * sum(1 / Kd_i),  Kd_i in uM.
+# One site with n copies collapses to log10(1e9/M) + log n - log Kd, and
+# a list of per-site Kd sums the reciprocals instead of assuming they
+# are equal.
+def log_k(kds_uM, mass):
+    if not kds_uM or not mass:
+        return None
+    return math.log10(1e9 / mass) + math.log10(sum(1.0 / k for k in kds_uM))
+
+
+_KD_LIST = re.compile(r"\d+(?:\.\d+)?(?:[eE][+-]?\d+)?")
+
+
+def kd_values_uM(raw, units):
+    """Every Kd the cell reports, in uM, or [] if it reports none.
+
+    A unit conversion inside a derived column is not the same as putting
+    a converted number in a column labelled 'as reported', so M and nM
+    are accepted here and scaled.
+    """
+    u = (units or "").strip().lower()
+    if raw.strip().startswith(">") or raw.strip().startswith("<"):
+        return []                      # a bound, not a value
+    nums = [float(x) for x in _KD_LIST.findall(raw or "")]
+    if not nums:
+        return []
+    if u.startswith("um"):
+        return nums
+    if u.startswith("nm"):
+        return [n / 1e3 for n in nums]
+    if u.startswith("m") and not u.startswith("mol/mol"):
+        return [n * 1e6 for n in nums]
+    return []
 
 
 def tidy(text):
@@ -122,13 +182,34 @@ def lfabp_rows():
             note.append("value quoted from another study, not measured here")
         lig = as_stated(r["ligand_conc_range"], r["ligand_conc_units"])
         prot = as_stated(r["protein_conc"], r["protein_conc_units"])
+
+        # --- the conversion -------------------------------------------
+        mass, mass_src = fabp_mass(r["protein_species"], r["protein"])
+        kds = kd_values_uM(kd_raw, kd_units)
+        lk = log_k(kds, mass)
+        n_used = None
+        if lk is not None:
+            n_used = len(kds)
+            note.append(f"log K from {len(kds)} Kd value"
+                        f"{'s' if len(kds) > 1 else ''} "
+                        f"({', '.join(f'{k:g}' for k in kds)} uM) at "
+                        f"M = {mass:,.0f} g/mol, {mass_src}")
+            if len(kds) == 1 and "single-site" not in r["n_binding_sites"]:
+                note.append("stoichiometry not reported; n = 1 assumed")
+            elif len(kds) > 1:
+                note.append("multi-site fit; reciprocal Kd summed over "
+                            "sites, not assumed equal")
+        elif kd_raw and mass is None:
+            note.append("no molar mass resolved for this species")
+
         out.append({
             "PFAS": r["chemical"],
             "Protein": r["protein"],
             "Species": r["protein_species"],
             "Kd (uM)": kd,
-            "n used": None,
-            "log K (L water / kg protein)": None,
+            "n used": n_used,
+            "log K (L water / kg protein)":
+                round(lk, 2) if lk is not None else None,
             "Route": route_for(r["method"]),
             "Source": f"{r['study'].replace(' et al.', '')} {r['year']}",
             "PFAS conc (as reported)": lig or None,
@@ -141,12 +222,16 @@ def lfabp_rows():
 
 
 NOTES = [
-    ("L-FABP rows carry no log K",
-     "The Kd-to-partition bridge in this project uses albumin's molar "
-     "mass, 66,463 g/mol. L-FABP is about a fifth of that, so the same "
-     "arithmetic applied to an L-FABP Kd would be wrong by roughly 0.7 "
-     "log. No L-FABP source here reports a partition coefficient, so the "
-     "column is left empty rather than filled with the wrong constant."),
+    ("L-FABP log K uses L-FABP's own molar mass",
+     "The albumin rows convert at 66,463 g/mol. The L-FABP rows convert "
+     "at the mature chain mass of the protein each paper names, read "
+     "from UniProt: human P07148 14,208 Da, rat P02692 14,273 Da, mouse "
+     "P12710 14,246 Da, human intestinal P12104 15,237 Da. Because "
+     "L-FABP is about a fifth of albumin's mass, its bridge constant "
+     "log10(1e9/M) is 4.85 against albumin's 4.18 -- an L-FABP Kd and "
+     "an albumin Kd of the same value give partition coefficients 0.67 "
+     "log apart. No zebrafish mass is included and no zebrafish row "
+     "carries a Kd, so none is guessed."),
     ("Only one L-FABP study reports both concentrations",
      "Khazaee 2021 states 1 uM protein, 0.33-153.5 ng/mL ligand and a "
      "ligand:protein mole ratio of 0.05-5. Han 2021 states 100 uM ligand "
@@ -158,6 +243,50 @@ NOTES = [
      "measured in that paper. Those rows are flagged in the Note column "
      "and should not be counted as an independent measurement."),
 ]
+
+
+# The five compounds under active comparison. A dedicated sheet puts
+# albumin and L-FABP side by side for these, because the combined sheet
+# is 301 rows and the question is a per-compound one.
+FOCUS = ["PFBA", "PFHxA", "PFHpA", "PFOA", "PFNA"]
+
+
+def focus_sheet(wb, hdr, rows_all):
+    from openpyxl.styles import Alignment, Font
+    from openpyxl.utils import get_column_letter
+
+    if "Five compounds" in wb.sheetnames:
+        del wb["Five compounds"]
+    sh = wb.create_sheet("Five compounds")
+    cols = ["PFAS", "Protein", "Species", "Kd (uM)", "n used",
+            "log K (L water / kg protein)", "Route", "Source",
+            "PFAS conc (as reported)", "Protein conc (as reported)",
+            "ligand:protein ratio (as reported)", "Note"]
+    sh.append(cols)
+    idx = {c: hdr.index(c) for c in cols if c in hdr}
+    picked = []
+    for name in FOCUS:
+        for r in rows_all:
+            if (r[hdr.index("PFAS")] or "") != name:
+                continue
+            picked.append([r[idx[c]] if c in idx else None for c in cols])
+    for row in sorted(picked, key=lambda x: (FOCUS.index(x[0]),
+                                             "FABP" in str(x[1]),
+                                             str(x[7]))):
+        sh.append(row)
+
+    bold, wrap = Font(bold=True), Alignment(vertical="top", wrap_text=True)
+    for j, name in enumerate(cols):
+        sh.cell(row=1, column=j + 1).font = bold
+        wide = ("as reported" in name
+                or name in ("Protein", "Note", "Route", "Source"))
+        sh.column_dimensions[get_column_letter(j + 1)].width = (
+            46 if "as reported" in name else 34 if wide else 16)
+        if wide:
+            for row in sh.iter_rows(min_row=2):
+                row[j].alignment = wrap
+    sh.freeze_panes = "A2"
+    return sh
 
 
 def main():
@@ -197,6 +326,9 @@ def main():
                 row[j].alignment = wrap
     ws.freeze_panes = "A2"
 
+    all_rows = list(ws.iter_rows(min_row=2, values_only=True))
+    sh = focus_sheet(wb, hdr, all_rows)
+
     if "Notes" in wb.sheetnames:
         nt = wb["Notes"]
         for head, body in NOTES:
@@ -208,6 +340,7 @@ def main():
                and has_conc(r["Protein conc (as reported)"]))
     kd = sum(1 for r in rows if r["Kd (uM)"] is not None)
     print(f"wrote {OUT}")
+    print(f'  "Five compounds" sheet: {sh.max_row - 1} rows')
     print(f"  {n_alb} albumin rows + {len(rows)} L-FABP rows "
           f"= {ws.max_row - 1}\n")
     print(f"  L-FABP rows with a numeric Kd in uM      {kd:>3} / {len(rows)}")
