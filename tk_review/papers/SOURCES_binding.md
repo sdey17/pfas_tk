@@ -51,10 +51,10 @@ in `protein_binding.csv`; full text and tables were NOT obtained.
 | Citation | PMID | DOI | Result |
 |---|---|---|---|
 | Bischel HN, MacManus-Spencer LA, Luthy RG. Noncovalent interactions of long-chain perfluoroalkyl acids with serum albumin. Environ Sci Technol. 2010;44:5263–5269. | 20540534 | 10.1021/es101334s | ABSTRACT ONLY |
-| Bischel HN, MacManus-Spencer LA, Zhang C, Luthy RG. Strong associations of short-chain perfluoroalkyl acids with serum albumin and investigation of binding mechanisms. Environ Toxicol Chem. 2011;30:2423–2430. | 21842491 | 10.1002/etc.647 | ABSTRACT ONLY |
+| Bischel HN, MacManus-Spencer LA, Zhang C, Luthy RG. Strong associations of short-chain perfluoroalkyl acids with serum albumin and investigation of binding mechanisms. Environ Toxicol Chem. 2011;30:2423–2430. | 21842491 | 10.1002/etc.647 | **PDF OBTAINED 2026-11-03** (`literature/fulltext/Bischel 2011 Environ Toxicol Chem short-chain PFAA serum albumin.pdf`). Table 1 read at source: 11 log K_PW with SE, reservoir ranges and fraction bound; every value already in the database confirmed. NOTE the pdftotext extract renders uM as mM throughout (it drops the mu, as it drops the plus-minus) -- read the PDF, not the .txt |
 | MacManus-Spencer LA, Tse ML, Hebert PC, Bischel HN, Luthy RG. Binding of perfluorocarboxylates to serum albumin: a comparison of analytical methods. Anal Chem. 2010;82:974–981. | 20039637 | 10.1021/ac902238u | ABSTRACT ONLY |
 | Hebert PC, MacManus-Spencer LA. Development of a fluorescence model for the binding of medium- to long-chain perfluoroalkyl acids to human serum albumin. Anal Chem. 2010;82. [page range not verified] | 20590160 | 10.1021/ac100721e | ABSTRACT ONLY |
-| Allendorf F, Berger U, Goss KU, Ulrich N. Partition coefficients of four perfluoroalkyl acid alternatives between bovine serum albumin (BSA) and water in comparison to ten classical perfluoroalkyl acids. Environ Sci Process Impacts. 2019;21:1852–1863. | 31475719 | 10.1039/C9EM00290A | ABSTRACT ONLY (per-congener log K_BSA/w not obtained; range only) |
+| Allendorf F, Berger U, Goss KU, Ulrich N. Partition coefficients of four perfluoroalkyl acid alternatives between bovine serum albumin (BSA) and water in comparison to ten classical perfluoroalkyl acids. Environ Sci Process Impacts. 2019;21:1852–1863. | 31475719 | 10.1039/C9EM00290A | **PDF + SI OBTAINED 2026-11-03**. Table 1 and SI confirm the 24 ingested rows. Three findings: the ABSTRACT's range 2.8-4.8 is a typo (body and Table 1 give 2.5-4.8, PFBA 2.52); the duplicated Ka cells for HFPO-DA and DONA are the PAPER's error, not a transcription slip (11 of 14 reproduce from their own log K within 5%, those two sit 3.3x off); and SI-2.4 says BOTH batches are heat-shock fraction, A3803 differing only by charcoal defatting. SI Table SI-2.3 adds the measured analyte:BSA ratios, 4e-4 to 3.8e-2 |
 | Ebert A, Allendorf F, Berger U, Goss KU, Ulrich N. Membrane/Water Partitioning and Permeabilities of Perfluoroalkyl Acids and Four of their Alternatives. Environ Sci Technol. 2020;54. [page range not verified] | 32212724 | 10.1021/acs.est.0c00175 | ABSTRACT ONLY |
 | Forsthuber M, Kaiser AM, Granitzer S, et al. Albumin is the major carrier protein for PFOS, PFOA, PFHxS, PFNA and PFDA in human plasma. Environ Int. 2020;art. 105324. [volume not verified] | 32109724 | 10.1016/j.envint.2019.105324 | ABSTRACT ONLY |
 | Han X, Snow TA, Kemper RA, Jepson GW. Binding of perfluorooctanoic acid to rat and human plasma proteins. Chem Res Toxicol. 2003;16:775–781. | 12807361 | 10.1021/tx034005w | ABSTRACT ONLY |
@@ -75,12 +75,12 @@ in `protein_binding.csv`; full text and tables were NOT obtained.
 | Ren XM, Zhang YF, Guo LH, Qin ZF, Lv QY, Zhang LY. Structure–activity relations in binding of perfluoroalkyl compounds to human thyroid hormone T3 receptor. Arch Toxicol. 2015;89. [page range not verified] | 24819616 | 10.1007/s00204-014-1258-y | ABSTRACT ONLY |
 | Ren XM, Qin WP, Cao LY, et al. Binding interactions of perfluoroalkyl substances with thyroid hormone transport proteins and potential toxicological implications. Toxicology. 2016. [volume/pages not verified] | 27528273 | 10.1016/j.tox.2016.08.011 | ABSTRACT ONLY |
 | Luebker DJ, Hansen KJ, Bass NM, Butenhoff JL, Seacat AM. Interactions of fluorochemicals with rat liver fatty acid-binding protein. Toxicology. 2002;176. [page range not verified] | 12093614 | 10.1016/s0300-483x(02)00081-1 | ABSTRACT ONLY |
-| Zhang L, Ren XM, Guo LH. Structure-based investigation on the interaction of perfluorinated compounds with human liver fatty acid binding protein. Environ Sci Technol. 2013;47. [page range not verified] | 24006842 | 10.1021/es4026722 | ABSTRACT ONLY (per-congener Ka not obtained) |
+| Zhang L, Ren XM, Guo LH. Structure-based investigation on the interaction of perfluorinated compounds with human liver fatty acid binding protein. Environ Sci Technol. 2013;47. [page range not verified] | 24006842 | 10.1021/es4026722 | **PDF OBTAINED 2026-11-03**. Table 1 read at source and ingested as primary by `scripts/add_zhang2013_hlfabp.py`: 19 rows, IC50 and Kd for 17 PFCs plus oleic and palmitic acid, probe constants and the 400 nM / 50 nM assay concentrations. Supersedes the transcription from Fan 2025 Table 1, which it reproduces exactly on all 10 shared values |
 | Sheng N, Li J, Liu H, Zhang A, Dai J. Interaction of perfluoroalkyl acids with human liver fatty acid-binding protein. Arch Toxicol. 2016;90. [page range not verified] | 25370009 | 10.1007/s00204-014-1391-7 | ABSTRACT ONLY |
 | Sheng N, Cui R, Wang J, Guo Y, Wang J, Dai J. Cytotoxicity of novel fluorinated alternatives to long-chain PFAS to human liver cell line and their binding capacity to human liver fatty acid binding protein. Arch Toxicol. 2018;92. [page range not verified] | 28864880 | 10.1007/s00204-017-2055-1 | ABSTRACT ONLY |
 | Sheng N, Wang J, Guo Y, Wang J, Dai J. Interactions of PFOS and 6:2 chlorinated polyfluorinated ether sulfonate with human serum albumin: a comparative study. Chem Res Toxicol. 2020;33:1478–1486. | 32423201 | 10.1021/acs.chemrestox.0c00075 | ABSTRACT ONLY |
 | Ishibashi H, Hirano M, Kim EY, Iwata H. In vitro and in silico evaluations of binding affinities of PFAS to Baikal seal and human PPARα. Environ Sci Technol. 2019;53. [page range not verified] | 30649875 | 10.1021/acs.est.8b07273 | ABSTRACT ONLY |
-| Jia Y, Zhu Y, Xu D, et al. Insights into the competitive mechanisms of PFAS partition in liver and blood. Environ Sci Technol. 2022;56:6192–6200. | 35436088 | 10.1021/acs.est.1c08493 | ABSTRACT ONLY. `WebFetch` of https://pubs.acs.org/doi/10.1021/acs.est.1c08493 → **HTTP 403** (ACS blocks). Per-compound Kd for hL-FABP/HSA NOT obtained |
+| Jia Y, Zhu Y, Xu D, et al. Insights into the competitive mechanisms of PFAS partition in liver and blood. Environ Sci Technol. 2022;56:6192–6200. | 35436088 | 10.1021/acs.est.1c08493 | ABSTRACT ONLY. `WebFetch` of https://pubs.acs.org/doi/10.1021/acs.est.1c08493 → **HTTP 403** (ACS blocks). **PDF OBTAINED 2026-11-03**, which supersedes that 403. Table 1 read at source: 11 hL-FABP Kd with dS, dH and dG, confirming every ingested value, and an HSA column that is Gao 2019 quoted by reference -- matching the Gao rows this database already held from Jia. STILL MISSING: Text S7, which holds the MST protein and ligand concentrations |
 | Weiss-Errico MJ, Miksovska J, O'Shea KE. β-Cyclodextrin reverses binding of perfluorooctanoic acid to human serum albumin. Chem Res Toxicol. 2018;31. [page range not verified] | 29589912 | 10.1021/acs.chemrestox.8b00002 | ABSTRACT ONLY (qualitative site counts only; no Ka in abstract) |
 | Wang Y, Zhang H, Kang Y, Cao J. Effects of perfluorooctane sulfonate on the conformation and activity of bovine serum albumin. J Photochem Photobiol B. 2016;159. [page range not verified] | 27031195 | 10.1016/j.jphotobiol.2016.03.024 | ABSTRACT ONLY (no Ka in abstract) |
 | Sanchez Garcia D, Sjödin M, Hellstrandh M, et al. Cellular accumulation and lipid binding of perfluorinated alkylated substances (PFASs) — a comparison with lysosomotropic drugs. Chem Biol Interact. 2018;281. [page range not verified] | 29248446 | 10.1016/j.cbi.2017.12.021 | ABSTRACT ONLY |
@@ -151,3 +151,20 @@ congeners**, not per-congener values, and I did **not** reach the primary paper.
 - Per-congener tables in Supporting Information were not reachable for
   Li et al. 2021, Starnes et al. 2025, Allendorf et al. 2019, Zhang et al. 2013,
   Weiss et al. 2009, and Jia et al. 2022.
+  **Superseded 2026-11-03 for Allendorf (PDF + SI) and Zhang (PDF); Jia's
+  main text is in hand but its Text S7 is not.** Li 2021, Starnes 2025 and
+  Weiss 2009 remain open.
+- **Why this sweep missed Fan et al. 2025** (Environ Int 201:109591), which
+  measures rat albumin AND rat L-FABP in one laboratory and reports the
+  stoichiometry: every query in section E was anchored on "serum albumin"
+  or on a named protein or author, and Fan's title says only "liver and
+  serum proteins". Nothing already held cites it. A title-anchored search
+  cannot find a paper that names neither protein.
+- **Khazaee et al. 2021 is five compounds on L-FABP, not seven.** PFHxA,
+  PFOA, PFBS, PFHxS and PFOS are the L-FABP set; PFHpA and PFNA were run
+  against I-FABP, a different protein. The database has always had this
+  right; an analysis query that filtered on "fabp" swept both proteins
+  into one comparison and produced a spurious chain-length inversion.
+  Khazaee's L-FABP values are the lowest in the literature on all three
+  compounds it reports (24x, 45x and 6.6x below the next), but there is
+  no inversion and no basis for calling them unusable.
