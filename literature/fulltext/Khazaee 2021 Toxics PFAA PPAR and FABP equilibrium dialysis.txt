@@ -1,0 +1,1402 @@
+               toxics
+Article
+Perfluoroalkyl Acid Binding with Peroxisome Proliferator-
+Activated Receptors α, γ, and δ, and Fatty Acid Binding
+Proteins by Equilibrium Dialysis with a Comparison
+of Methods
+Manoochehr Khazaee 1,† , Emerson Christie 2,† , Weixiao Cheng 1 , Mandy Michalsen 3 , Jennifer Field 2
+and Carla Ng 1,4, *
+
+                                          1   Department of Civil & Environmental Engineering, University of Pittsburgh, Pittsburgh, PA 15261, USA;
+                                              MAK382@pitt.edu (M.K.); cheng_wx@pitt.edu (W.C.)
+                                          2   Department of Molecular and Environmental Toxicology, Oregon State University, Corvallis, OR 97330, USA;
+                                              chriseme@oregonstate.edu (E.C.); jennifer.field@oregonstate.edu (J.F.)
+                                          3   U.S. Army Engineer Research Development Center—Environmental Lab, Vicksburg, MS 39180, USA;
+                                              Mandy.M.Michalsen@usace.army.mil
+                                          4   Secondary Appointment, Department of Environmental and Occupational Health, Graduate School of Public
+                                              Health, University of Pittsburgh, Pittsburgh, PA 15261, USA
+                                          *   Correspondence: carla.ng@pitt.edu
+                                          †   These authors share the first co-authorship.
+
+         
+                                   Abstract: The biological impacts of per- and polyfluorinated alkyl substances (PFAS) are linked
+                                          to their protein interactions. Existing research has largely focused on serum albumin and liver
+Citation: Khazaee, M.; Christie, E.;
+Cheng, W.; Michalsen, M.; Field, J.;
+                                          fatty acid binding protein, and binding affinities determined with a variety of methods show high
+Ng, C. Perfluoroalkyl Acid Binding        variability. Moreover, few data exist for short-chain PFAS, though their prevalence in the environment
+with Peroxisome Proliferator-             is increasing. We used molecular dynamics (MD) to screen PFAS binding to liver and intestinal
+Activated Receptors α, γ, and δ, and      fatty acid binding proteins (L- and I-FABPs) and peroxisome proliferator activated nuclear receptors
+Fatty Acid Binding Proteins by            (PPAR-α, -δ and -γ) with six perfluoroalkyl carboxylates (PFCAs) and three perfluoroalkyl sulfonates
+Equilibrium Dialysis with a               (PFSAs). Equilibrium dissociation constants, KD s, were experimentally determined via equilibrium
+Comparison of Methods. Toxics 2021,       dialysis (EqD) with liquid chromatography tandem mass spectrometry for protein-PFAS pairs. A
+9, 45. https://doi.org/10.3390/           comparison was made between KD s derived from EqD, both here and in literature, and other in vitro
+toxics9030045
+                                          approaches (e.g., fluorescence) from literature. EqD indicated strong binding between PPAR-δ and
+                                          perfluorobutanoate (0.044 ± 0.013 µM) and perfluorohexane sulfonate (0.035 ± 0.0020 µM), and
+Academic Editor: Joëlle Rüegg
+                                          between PPAR-α and perfluorohexanoate (0.097 ± 0.070 µM). Unlike binding affinities for L-FABP,
+                                          which increase with chain length, KD s for PPARs showed little chain length dependence by either
+Received: 26 January 2021
+Accepted: 19 February 2021
+                                          MD simulation or EqD. Compared with other in vitro approaches, EqD-based KD s consistently
+Published: 26 February 2021               indicated higher affinity across different proteins. This is the first study to report PPARs binding with
+                                          short-chain PFAS with KD s in the sub-micromolar range.
+Publisher’s Note: MDPI stays neutral
+with regard to jurisdictional claims in   Keywords: equilibrium dialysis; peroxisome proliferator-activated receptors; fatty acid-binding
+published maps and institutional affil-   proteins; per- and polyfluorinated alkyl substances; equilibrium dissociation constants
+iations.
+
+
+
+
+                                          1. Introduction
+Copyright: © 2021 by the authors.              Per- and polyfluoroalkyl substances (PFAS) are widely used in a variety of industrial
+Licensee MDPI, Basel, Switzerland.        and consumer applications such as stain and water repellents, processing fluids, building
+This article is an open access article    blocks for fluoropolymers, and aqueous film-forming foams (AFFF) [1,2]. Various formu-
+distributed under the terms and           lations of AFFFs containing short-chain PFAS continue to be used at military sites and
+conditions of the Creative Commons        airports to combat hydrocarbon-fueled fires, and their usage has resulted in persistent and
+Attribution (CC BY) license (https://     widespread groundwater contamination [3–5]. AFFFs are complex mixtures containing
+creativecommons.org/licenses/by/
+                                          high concentrations (g/L) of PFAS [6,7]. Polyfluorinated precursors in AFFF can degrade to
+4.0/).
+
+
+
+
+Toxics 2021, 9, 45. https://doi.org/10.3390/toxics9030045                                                     https://www.mdpi.com/journal/toxics
+Toxics 2021, 9, 45                                                                                            2 of 15
+
+
+
+
+                     form perfluorooctane sulfonate (PFOS), perfluorooctanoic acid (PFOA) and shorter-chain
+                     perfluoroalkyl carboxylates (PFCAs) [8,9], and perfluoroalkyl sulfonates (PFSAs) [10,11].
+                     It is now recognized that many of the anionic forms (e.g., PFSAs and PFCAs) are highly
+                     persistent and mobile in the environment [12–15].
+                           Biomonitoring has indicated these perfluorinated acids are generally found in highest
+                     concentrations in the blood plasma and liver [16–18], and are bound to proteins, as evi-
+                     denced by both tissue distributions observed in laboratory and field studies and by targeted
+                     in vitro studies with isolated proteins or serum [19–23]. Relevant to these compartments are
+                     liver- and intestinal-fatty acid binding proteins (L-FABP and I-FABP), lipid-binding proteins
+                     highly expressed in the liver and intestine that play critical roles in binding, uptake, and
+                     transport of fatty acids [24]; and several subtypes (α, δ and γ) of peroxisome proliferator-
+                     activated receptors (PPARs), which serve as main transcriptional sensors of fatty acids and
+                     can control the expression of FABPs involved in fatty acid metabolism [25,26].
+                           To date, only PPAR-α and -γ have been tested for binding with PFAS, and studies
+                     with FABPs have focused solely on the liver type [19,27,28]. Binding affinities for PFCAs
+                     (C4–C18) and PFSAs (C4–C8) were previously determined by fluorescence displacement
+                     methods with L-FABP [23,29,30] and PPAR-α [31]. There are no previously reported
+                     experimental data for PFAS binding to I-FABP or PPAR-δ, and only one for the ligand-
+                     binding domain (not the entire protein) of PPAR-γ [32]. Such studies show that long-chain
+                     PFAS, such as PFOS, and PFCAs with chain lengths between 9 and 12, bioaccumulate and
+                     bind with high affinity to serum proteins and liver fatty acid binding proteins (L-FABP).
+                     Less is known about PFAS binding to PPARs and how shorter-chain PFAS interact with
+                     biologically relevant proteins.
+                           Because of the growing interest in the biological fate and effects of PFAS, experimental
+                     and modeling studies of PFAS-protein binding have proliferated. However, large dif-
+                     ferences persist across studies and across in vitro methods to assess binding, as well as
+                     between in vitro and modeling results. To date, the majority of PFAS-protein binding stud-
+                     ies have focused on serum proteins, particularly human and bovine serum albumin [22].
+                     In vitro studies with albumin [33] used a variety of methods including equilibrium dialy-
+                     sis [22,34–37], circular dichroism [38], NMR spectroscopy [22,32], ultrafiltration [39], surface
+                     tension [40], and electrophoresis [41]. Each technique has advantages and limitations, and
+                     lead to substantial differences in the binding affinities estimated. While ranking PFAS by
+                     chain length for relative protein binding affinity is well supported by both in vitro and in
+                     silico approaches for proteins such as serum albumin and L-FABP, there is little guidance on
+                     how to interpret the actual values obtained from the different approaches, which can differ
+                     by orders of magnitude [18,42,43]. It is, therefore, challenging to compare existing data for
+                     PFAS-protein binding or place modeling predictions into the context of experimental data.
+                           Here, we employed a model-guided framework as an initial screen for the potential of
+                     both previously studied and of relevant but untested proteins (L-FABP, I-FABP, and PPARs
+                     α, δ, and γ) to bind with PFAS, followed by in vitro evaluation of predicted high-affinity
+                     PFAS–protein pairs. Model simulations, using molecular docking followed by molecular
+                     dynamics (hereafter referred to as MD), predicted the free energies of binding. The ap-
+                     proach was based on our previous study, which demonstrated that MD can successfully
+                     predict relative protein binding affinity for L-FABP and PFCAs (C4–C9) and PFSAs (C4, C6,
+                     and C8) [42]. Here, our MD framework was used with new proteins to target potential high
+                     affinity binding to short-chain PFAS. Selected MD predictions were experimentally evalu-
+                     ated using equilibrium dialysis (EqD), which has been used previously to evaluate PFAS
+                     interactions with serum albumin [22,34], and is considered the gold standard for quantify-
+                     ing binding affinities [44]. Our EqD results were then compared with both MD predictions
+                     and with other available experimental data for protein binding with short-chain PFAS. We
+                     discuss similarities and differences among the different approaches for quantifying protein
+                     binding affinity, how results might be interpreted, and needs for further cross-validation.
+Toxics 2021, 9, 45                                                                                                          3 of 15
+
+
+
+
+                     2. Materials and Methods
+                     2.1. Model-Based PFAS-Protein Affinity Screening
+                           Initial selection of proteins for model-based screening was based on their known inter-
+                     actions with lipids and/or fatty acids, given the similarity between PFAS and these endoge-
+                     nous ligands [45–47]. The binding affinities between selected proteins and a total of five
+                     short-chain PFAS including perfluorobutanoic acid (PFBA), perfluoropentanoic acid (PF-
+                     PeA), perfluorohexanoic acid (PFHxA), perfluoroheptanoic acid (PFHpA), and perfluorobu-
+                     tane sulfonate (PFBS) as well as four long-chain PFAS including PFOA, perfluorononanoic
+                     acid (PFNA), perfluorohexane sulfonate (PFHxS), and PFOS were estimated using the MD
+                     workflow developed by Cheng and Ng [42] with a goal to identify proteins that could have
+                     substantial binding affinity with short-chain PFAS. Briefly, three-dimensional (3D) struc-
+                     tures were obtained from the Protein Data Bank (PDB, http://www.rcsb.org (accessed on
+                     4 March 2020)) for L-FABP (PDB code: 3STM) [46], I-FABP (PDB code: 3AKM) [45], PPAR-α
+                     (PDB code: 4CI4) [48], PPAR-γ (PDB code: 3U9Q) [47], and PPAR-δ (PDB code: 3TKM) [49].
+                     These proteins and nuclear receptors (Table 1) were selected because of their high struc-
+                     tural resolution (<3Å) and their completeness, which is indicated by the inclusion of all
+                     amino acid residues that could be important to the protein binding sites in the structural
+                     model. The 3D structures for the PFCAs and PFSAs were either extracted from PDB
+                     (if available) or constructed from scratch using the Avogadro molecular editor [50], as
+                     previously described [42].
+
+                     Table 1. Summary of 3-dimensional structure information for selected proteins.
+
+                         Protein *       PDB Code         Resolution       Chain Length                Known Ligands
+                          L-FABP           3STM             2.22 Å               132                    palmitic acid
+                          I-FABP           3AKM             1.9 Å                131          11-(Dansylamino) undecanoic acid
+                          PPAR-α            4CI4            2.3 Å                274                   propanoic acid
+                          PPAR-γ           3U9Q             1.5 Å                269                    decanoic acid
+                          PPAR-δ           3TKM             1.95 Å               275                      GW0742
+                     * Liver and intestinal fatty acid binding proteins (L-FABP, I-FABP); peroxisome proliferator-activated nuclear
+                     receptors, isoforms α, γ and δ (PPAR- α, γ, and δ).
+
+
+                     2.2. Experimental Assessment of Binding Affinity
+                     2.2.1. Materials
+                          Linear PFBS, PFHxS, PFOS, PFBA, PFHpA, PFHxA, PFOA, and PFNA (all > 98%
+                     purity) were purchased from Wellington Laboratories (Guelph, Ontario, Canada). Purified
+                     human proteins L-FABP, I-FABP, PPAR-α, PPAR-γ, and PPAR-δ were obtained from Novus
+                     Biologicals (Littleton, CO, USA). Slide-A-Lyzer mini dialysis devices (10K MWCO, 0.1 mL)
+                     were purchased from Fisher Scientific (Hanover Park, IL, USA). Solvents (Fisher Scientific,
+                     Hanover Park, IL, USA) and other reagents were of analytical grade. All buffers were
+                     prepared from 10X phosphate-buffered saline from GIBCO Invitrogen (Grand Island, NY,
+                     USA). Dialysis materials were screened for PFCA and PFSA background and sorption
+                     prior to the onset of dialysis experiments. Material extraction analyses showed no concen-
+                     trations of PFAS above the LOD (Table 2) within the dialysis cups or the dialysis tubes.
+                     Additionally, spiked water and equilibration experiments (24-h shake test) resulted in the
+                     recovery (75–235%) of PFAS analytes within the water, which indicated there was no level
+                     of detectable sorption of PFAS onto the dialysis cups or tubes. All other materials used in
+                     the processes were previously verified to have PFAS levels <LOD.
+Toxics 2021, 9, 45                                                                                                         4 of 15
+
+
+
+
+                                      Table 2. Dialysis material extraction and sorption results.
+
+                                                                                                                   Surrogate
+     Material Extracts     PFBA       PFHxA       PFHpA       PFOA        PFNA        PFBS          PFHxS   PFOS
+                                                                                                                   Recovery
+      Collection tube      <LOD        <LOD       <LOD        <LOD        <LOD        <LOD          <LOD    <LOD     89%
+       Recover tube        <LOD        <LOD       <LOD        <LOD        <LOD        <LOD          <LOD    <LOD     90%
+    Dialysis membrane      <LOD        <LOD       <LOD        <LOD        <LOD        <LOD          <LOD    <LOD     89%
+       Dialysis cap        <LOD        <LOD       <LOD        <LOD        <LOD        <LOD          <LOD    <LOD     91%
+   Sorption to Materials
+     2000 ng/L Spike 1     5700        2700        3200       3300        2600        2600          2030    2700
+     2000 ng/L Spike 2     2500        1500        2100       2600        1900        1700          2600    2400
+       % Recovery 1        285%        135%        160%       165%        130%        130%          101%    135%
+       % Recovery 2        125%         75%        105%       130%         95%         85%          130%    120%
+
+
+                                  2.2.2. Equilibrium Dialysis (EqD)
+                                       PFAS-protein binding affinities were evaluated by EqD. Experiments were conducted
+                                  over a range of ligand: protein mole ratios (0.05, 0.1, 0.5, 1, and 5). These mole ratios
+                                  represent concentrations ranging from 0.33 to 153.5 ng/mL, depending on the PFAS. In
+                                  general, the average levels of PFSA and PFCA in plasma of people living in urban areas are
+                                  about 20 ng/mL and 10 ng/mL, respectively (e.g., [51–58]). It should be mentioned some
+                                  studies report higher concentrations of PFAS (between ~60 and 100 ng/mL) in the plasma
+                                  of people living near fluorochemical plants, airports, and/or military sites [59,60]. The
+                                  selected mole ratio ranges therefore encompass the expected concentrations found in human
+                                  plasma. For all PFAS, 10 µM stock solutions were prepared by dissolving each chemical in
+                                  18.1 mS/cm phosphate-buffered saline, which was achieved by diluting the stock buffer
+                                  tenfold with deionized water to give a solution that was pH 7.4. Stock solutions of different
+                                  proteins were prepared fresh daily in phosphate buffered saline. Specific PFAS and protein
+                                  concentrations were selected to achieve a 1:1 PFAS to protein molar ratio at the midpoint
+                                  of the range of selected PFAS concentrations. Protein concentrations in prepared solutions
+                                  were verified using the Qubit Protein assay kit (Thermo Fisher, Waltham, MA, USA).
+                                       EqD experiments were performed at room temperature by first adding 1.2 mL of the
+                                  18.1 mS/cm phosphate buffered saline (pH 7.4) spiked with PFAS to a 1.5 mL polypropy-
+                                  lene microcentrifuge tube (Supplemental Figure S1). A Slide-a-Lyzer mini dialysis cup
+                                  containing a semi-permeable membrane (molecular weight cutoff: 10kDa) was then in-
+                                  serted into the tube, through which PFAS could freely pass but which was impermeable to
+                                  the proteins used (MW range 15.1–54.1 kDa). A known volume of protein in buffer (20 to
+                                  50 µL) was added to reach a 1 µM concentration for L-FABP, I-FABP, and PPAR-γ, and
+                                  0.48 µM for PPAR-δ and PPAR-α. The lower concentration of PPAR-δ and PPAR-α was
+                                  necessary due to the larger size of these proteins. Finally, the total volume in the dialysis
+                                  cup was brought to 100 µL by adding the buffer spiked with PFAS.
+                                       Blanks were prepared using a protein solution with no PFAS. Non-binding controls
+                                  (containing PFAS but no protein) were prepared with the buffer spiked with different
+                                  concentrations of PFAS. Finally, samples were placed on a rocker (Open-Air Rocker, Fisher
+                                  Scientific, Waltham, MA, USA) for 36 h to reach equilibrium at room temperature. All
+                                  dialysis tests were performed in duplicate.
+
+                                  2.3. Analysis by LC-MS/MS
+                                       All dialysate samples were analyzed without dilution or first diluted into water to
+                                  reach concentrations of 100–2000 ng/L prior to analysis. Final sample volumes (1.5 mL)
+                                  were spiked with 24 µL of isotopically labeled internal standards for quantification prior
+                                  to injection. A modified Agilent 1100 series HPLC (Santa Clara, CA, USA) was used for
+                                  large volume (900 µL) injection of aqueous samples. A C18 (4.6 × 50 mm × 5 µm Zorbax
+                                  Eclipse, Agilent, Santa Clara, CA, USA) delay column was used between the LC pump and
+                                  autosampler to separate out instrumental background. Retention of analytes was achieved
+                                  with a C18 analytical column (Eclipse 4.6 × 100 mm × 3.5 µm, Agilent, Santa Clara, CA,
+                                  USA) and mobile phases were 20 mM ammonium acetate in HPLC-grade water (A) and
+                      Eclipse, Agilent, Santa Clara, CA, USA) delay column was used between the LC pump
+                      and autosampler to separate out instrumental background. Retention of analytes was
+Toxics 2021, 9, 45                                                                                                                          5 of 15
+                      achieved with a C18 analytical column (Eclipse 4.6 × 100 mm × 3.5 µm, Agilent, Santa
+                      Clara, CA, USA) and mobile phases were 20 mM ammonium acetate in HPLC-grade water
+                      (A) and HPLC-grade methanol (B). A ten min LC gradient was used as follows: mobile
+                      phase A at 0.5
+                     HPLC-grade           mL/min(B).
+                                       methanol         forA3.5tenmin,
+                                                                    minmobile     phasewas
+                                                                          LC gradient       B atused
+                                                                                                   1 mL/min        for 1.5
+                                                                                                         as follows:          min, and
+                                                                                                                          mobile    phase  mobile
+                                                                                                                                             A at
+                      phase
+                     0.5      A at 1.0
+                          mL/min      formL/min
+                                            3.5 min,for     4.5 min
+                                                         mobile        reduced
+                                                                   phase   B at 1to   0.5 mL/min
+                                                                                   mL/min              formin,
+                                                                                                 for 1.5     the remaining
+                                                                                                                   and mobile0.5      min.A at
+                                                                                                                                    phase
+                            Identification
+                     1.0 mL/min       for 4.5 minand reduced
+                                                        quantification     of analytes
+                                                                   to 0.5 mL/min        forwere     previously
+                                                                                             the remaining        0.5described
+                                                                                                                        min.       in Allred et
+                      al. [61]. The analytical
+                           Identification              sequence consisted
+                                              and quantification                 of were
+                                                                       of analytes    a minimum
+                                                                                             previously 5-point
+                                                                                                            describedcalibration
+                                                                                                                           in Allredcurve      over
+                                                                                                                                      et al. [61].
+                      the analytical
+                     The   range of 20–10,000
+                                         sequenceng/L         for allofanalytes.
+                                                        consisted        a minimum  Accuracy
+                                                                                          5-pointwas     determined
+                                                                                                     calibration      curve from
+                                                                                                                               overthe
+                                                                                                                                     theanalysis
+                                                                                                                                           range
+                      of20–10,000
+                     of   a secondng/L source forofallstandards       and werewas
+                                                        analytes. Accuracy         required       to be from
+                                                                                         determined       70–130%        of the target
+                                                                                                                  the analysis              value.
+                                                                                                                                   of a second
+                      Wholeof
+                     source    method
+                                 standards precision,
+                                                  and wereas indicated
+                                                                requiredby  to relative
+                                                                               be 70–130%  standard
+                                                                                                 of thedeviation,
+                                                                                                          target value. was Whole
+                                                                                                                               calculated
+                                                                                                                                       method from
+                      four replicate
+                     precision,          samples,byand
+                                  as indicated                ranged
+                                                          relative       from 4 deviation,
+                                                                     standard     to 18%. The     waslimit    of detection
+                                                                                                        calculated              (LOD,
+                                                                                                                         from four        6 ng/L)
+                                                                                                                                      replicate
+                      was calculated
+                     samples,    and rangedby normalized-weighted
+                                                   from 4 to 18%. The limit   regression       (1/X), from
+                                                                                     of detection      (LOD,which 6 ng/L) the was
+                                                                                                                               limitcalculated
+                                                                                                                                      of quanti-
+                     by  normalized-weighted
+                      fication  (LOQ) (20 ng/L) regressionwas calculated (1/X),asfrom
+                                                                                   3.3 ×which
+                                                                                            the LOD the limit     of quantification
+                                                                                                          [7]. Each                       (LOQ)
+                                                                                                                         analytical sequence
+                     (20  ng/L) of
+                      consisted    was    calculated
+                                       solvent     blanksasthat     × thespiked
+                                                               3.3 were      LOD with
+                                                                                    [7]. Each
+                                                                                            24 µLanalytical
+                                                                                                     of isotopicallysequence
+                                                                                                                           labeledconsisted
+                                                                                                                                     standards;  of
+                     solvent   blanks     that   were    spiked     with
+                      all blanks gave responses that fell below the LOQ.   24 µL   of  isotopically      labeled      standards;     all  blanks
+                     gave responses       that fell below
+                            Binding coefficients                 the LOQ.
+                                                          for protein-PFAS         pairs were calculated from the difference in
+                      PFAS Binding     coefficients
+                              concentrations            for protein-PFAS
+                                                     (mole    ratio) between  pairs
+                                                                                 thewere      calculatedcontrol
+                                                                                        non-binding          from the  anddifference   in PFAS
+                                                                                                                              equilibrium      dia-
+                     concentrations
+                      lysates. Data for   (mole     ratio) between
+                                             all dialysis    experiments the non-binding
+                                                                              were analyzed      control    and equilibrium
+                                                                                                   by nonlinear        regression,dialysates.
+                                                                                                                                      assuming
+                     Data   for all dialysis
+                      a single-site   binding    experiments
+                                                   model using     were   analyzed
+                                                                     GraphPad         by nonlinear
+                                                                                   Prism                 regression,
+                                                                                             V8.1.2 (GraphPad             assuming
+                                                                                                                        software,      a single-
+                                                                                                                                     San   Diego,
+                     site
+                      CA, USA) to determine KD [62–65]. Some EqD concentrations, when subtracted fromCA,
+                           binding    model      using    GraphPad        Prism   V8.1.2     (GraphPad        software,       San  Diego,       the
+                     USA)    to determine
+                      non-binding       control,KD produced
+                                                      [62–65]. Some       EqD concentrations,
+                                                                    a negative     binding coefficientwhen subtracted
+                                                                                                                 indicating from       theequili-
+                                                                                                                                 a final     non-
+                     binding    control, produced
+                      brated concentration           greatera negative     binding
+                                                               than the initial        coefficient
+                                                                                   dialysate           indicating aAsfinal
+                                                                                                  concentration.             bothequilibrated
+                                                                                                                                   the EqD ex-
+                     concentration      greater     than   the  initial  dialysate   concentration.
+                      periment and non-binding control come from the same stock, the EqD concentration     As  both    the   EqD   experiment
+                     and   non-binding
+                      should,   at most, equalcontrol     come
+                                                       that  of thefrom   the same control.
+                                                                      non-binding       stock, the     EqD
+                                                                                                    This   may concentration
+                                                                                                                   have been anshould,artifactat  of
+                     most,   equal   that   of  the   non-binding       control.  This    may    have   been
+                      dilution; at high initial concentrations, 15 to 3000-fold dilutions were required to bring an   artifact  of dilution;     at
+                     high
+                      PFASinitial   concentrations,
+                              on-scale     for detection.   15 to
+                                                                In 3000-fold
+                                                                    cases where dilutions     were required
+                                                                                    large dilution        factorstowerebringrequired,
+                                                                                                                                PFAS on-scale
+                                                                                                                                           uncer-
+                     for  detection.    In   cases    where    large   dilution   factors    were    required,
+                      tainty about the calculated final concentrations in the dialysate may be magnified.            uncertainty     about     the
+                                                                                                                                         In order
+                     calculated   final   concentrations        in the  dialysate   may     be  magnified.      In
+                      to better address this, a decision tree was created to determine the handling of these inci-  order    to better  address
+                     this,
+                      dentsa decision
+                              (Figure 1). tree was created to determine the handling of these incidents (Figure 1).
+
+
+
+
+                      Figure1.1.Decision
+                     Figure     Decision tree
+                                          tree for
+                                                for the
+                                                    the inclusion
+                                                        inclusion of
+                                                                  of the
+                                                                     the equilibrium
+                                                                         equilibrium dialysate
+                                                                                     dialysate concentrations
+                                                                                               concentrationsfor
+                                                                                                              forthe
+                                                                                                                  theregres-
+                                                                                                                      regres-
+                      sion analysis.
+                     sion analysis.
+
+                     2.4.
+                      2.4.Comparison
+                           Comparisonto toExisting
+                                           ExistingPFAS-Protein
+                                                    PFAS-ProteinKKDDssand
+                                                                        andMethods
+                                                                            Methods
+                           In
+                            Inorder
+                               ordertotoplace
+                                         placeour
+                                                ourresults
+                                                     resultsinincontext
+                                                                 contextwith
+                                                                         withexisting
+                                                                               existingliterature
+                                                                                         literatureand
+                                                                                                     andprovide
+                                                                                                           provideinsight
+                                                                                                                     insight
+                     into
+                      into in vitro and modeling choices, we conducted a literature search for all available PFAS-
+                          in  vitro and modeling    choices,  we  conducted  a literature  search  for all available  PFAS-
+                     protein
+                      proteinbinding
+                                bindingdata
+                                          datathat
+                                               thatused
+                                                     usedthe
+                                                           thesame
+                                                                sameproteins
+                                                                      proteinsasasinvestigated
+                                                                                    investigatedhere.
+                                                                                                    here.InInaddition,
+                                                                                                              addition,wewe
+                     screened
+                      screenedexisting
+                                 existingserum
+                                           serumalbumin
+                                                  albuminstudies
+                                                            studiesthat
+                                                                     thatused
+                                                                          usedequilibrium
+                                                                                equilibriumdialysis,
+                                                                                               dialysis,where
+                                                                                                         wherethetheresults
+                                                                                                                     results
+                     could
+                      could bebe compared
+                                  compared across
+                                              across different
+                                                      differentmethods
+                                                                 methods asasdone
+                                                                               donehere
+                                                                                     hereforforFABPs
+                                                                                                FABPsand andPPARs.
+                                                                                                               PPARs.TheThe
+                     search
+                      searchspanned
+                              spannedpublication
+                                         publicationyears
+                                                      yearsbetween
+                                                             between1954
+                                                                       1954and
+                                                                            and2020,
+                                                                                  2020,and
+                                                                                        andresulted
+                                                                                              resultedinin3737studies
+                                                                                                               studiesused
+                                                                                                                       used
+                     for
+                      forcomparison
+                          comparisonof  ofmethods.
+                                            methods.
+                     3. Results and Discussion
+                     3.1. Screening Protein–PFAS Pairs by Molecular Dynamics
+                          Molecular dynamics modeling predicted free energies of binding which, when con-
+                     verted to equilibrium dissociation constants (KD values), ranged between approximately
+                     10−5 and 106 µM, corresponding to femtomolar to molar dissociation constants. Relevant
+                     interactions with and between biomolecules occur at a range of dissociation constants from
+                     low millimolar (the weakest) to femtomolar (the strongest) [66]. It is generally accepted that
+Toxics 2021, 9, 45                                                                                                                      6 of 15
+
+
+
+
+                                     the most biologically relevant (moderate to strong) interactions correspond to KD values
+                                     at micromolar levels and lower [67]. This suggests that predicted binding affinities, if
+                                     assumed to be similar to in vivo binding affinities, are unlikely to be biologically relevant
+                                     if the KD values are substantially larger than 103 µM.
+                                           Based on the MD predictions, we selected fifteen PFAS–protein pairs to experimentally
+                                     determine KD values using equilibrium dialysis (Supplemental Table S1). We selected
+                                     the short-chain PFCA PFBA for EqD testing with PPAR-α because of its strong predicted
+                                     affinity (Figure 2A); PFHxA, PFHpA, and the long-chain PFNA were selected for EqD
+                                     testing with PPAR-α as well. This range allowed us to evaluate both the surprising
+                                     prediction of strong affinity for PFBA and the predicted lack of chain length dependence
+                                     for the PFCAs experimentally, particularly given the lack of other experimental data. For
+                                     PPAR-γ, since no short-chain PFAS were predicted to bind strongly, we selected only PFOA
+                                     and PFOS for EqD testing. For PPAR-δ/β, we selected the three sulfonates, PFBS, PFHxS,
+    Toxics 2021, 9, x FOR PEER REVIEWand PFOS. This allowed us to verify, first, the strong predicted binding with7 of  PFBS
+                                                                                                                          16 and,
+                                     second, the counterintuitive chain length dependence predicted by MD for the sulfonates.
+
+
+                                                      A                                               B                   PPAR-α
+                                                 6                                               6
+                                  log (KD, µM)
+
+
+
+
+                                                 3                                               3
+
+                                                 0                                               0
+
+                                                 −3                                             −3
+
+                                                 −6                                             −6
+
+                                                      PFBA PFPeA PFHxA PFHpA PFOA       PFNA          PFBS       PFHxS        PFOS
+
+                                                      C                                               D                    PPAR-γ
+                                                 6                                               6
+                                  log (KD, µM)
+
+
+
+
+                                                 3                                               3
+
+                                                 0                                               0
+
+                                                 −3                                             −3
+
+                                                 −6                                             −6
+
+                                                      PFBA PFPeA PFHxA PFHpA PFOA       PFNA          PFBS       PFHxS         PFOS
+                                                      E                                               F                   PPAR-δ
+                                                 6                                                6
+                                  log (KD, µM)
+
+
+
+
+                                                 3                                                3
+
+                                                 0                                                0
+
+                                                 −3                                              −3
+
+                                                 −6                                              −6
+
+                                                      PFBA PFPeA PFHxA PFHpA PFOA       PFNA          PFBS         PFHxS       PFOS
+
+                                 Figure   2. Predicted dissociation constant (K ) values (geometric mean ± 1 standard error) for different
+                                 Figure 2. Predicted dissociation constant (KD)Dvalues (geometric mean ± 1 standard error) for dif-
+                                 peroxisome     proliferator-activated
+                                 ferent peroxisome                      receptors
+                                                      proliferator-activated      (PPAR)–per-
+                                                                             receptors           andand
+                                                                                       (PPAR)–per-   polyfluorinated  alkyl
+                                                                                                        polyfluorinated     substances
+                                                                                                                         alkyl sub-      (PFAS)
+                                 complexes.
+                                 stances (PFAS) (A)complexes.
+                                                     PPAR-α and     perfluoroalkyl
+                                                               (A) PPAR-α           carboxylates
+                                                                            and perfluoroalkyl     (PFCAs) (PFCAs)
+                                                                                                carboxylates (B) PPAR-α    and perfluoroalkyl
+                                                                                                                     (B) PPAR-α   and
+                                 perfluoroalkyl
+                                 sulfonates       sulfonates
+                                              (PFSAs)         (PFSAs)and
+                                                       (C) PPAR-γ      (C)PFCAs
+                                                                           PPAR-γ(D)
+                                                                                   and  PFCAs and
+                                                                                     PPAR-γ    (D) PPAR-γ   andPPAR-δ
+                                                                                                    PFSAs (E)   PFSAs and
+                                                                                                                       (E) PPAR-δ
+                                                                                                                            PFCAs and
+                                                                                                                                    (F) PPAR-δ
+                                 PFCAs (F) PPAR-δ and PFSAs. Values of log KD > 3 correspond to millimolar or weaker binding,
+                                 and PFSAs. Values of log KD > 3 correspond to millimolar or weaker binding, between −3 and 3 are
+                                 between −3 and 3 are moderate (in the micromolar range) and < −3 correspond to strong, nanomo-
+                                 moderate        the micromolar range) and < −3 correspond to strong, nanomolar, or lower binding.
+                                             (inbinding.
+                                 lar, or lower
+
+                                      The relatively well studied L-FABP provides an opportunity to compare with multi-
+                                 ple other studies, both modeling and in vitro. For L-FABP, PFOS was selected for EqD
+                                 testing because it was predicted to have the strongest binding affinity (Figure 3B); PFOA
+Toxics 2021, 9, 45                                                                                                               7 of 15
+
+
+
+
+                                       The relatively well studied L-FABP provides an opportunity to compare with mul-
+                                  tiple other studies, both modeling and in vitro. For L-FABP, PFOS was selected for EqD
+                                  testing because it was predicted to have the strongest binding affinity (Figure 3B); PFOA
+                                  and PFHxS were selected as well to compare the effect of the head group (carboxylate vs.
+                                  sulfonate). For evaluating potential binding with short-chain PFAS, only PFBS has moder-
+                                  ately strong predicted binding affinity (compared to carboxylates). For I-FABP, PFHpA,
+                                  and PFNA showed the strongest binding and were therefore selected. Further discussion
+                                  regarding MD results can be found in the SI. Mean serum levels of PFBA, PFHxA, PFOA,
+                                  PFNA, PFBS, and PFOS have been documented in humans living near industrial and urban
+ Toxics 2021, 9, x FOR PEER REVIEWareas at about 0.9 ng/mL, 0.1 ng/mL, 4 ng/mL, 0.8 ng/mL, 0.1 ng/mL, and 23 ng/mL,     8 of 16
+
+                                  respectively (e.g., [68–73]).
+
+
+
+
+                                                                                                                                   .
+                               Figure 3. Predicted dissociation constant (KD ) values (geometric mean ± 1 standard error) for (A)
+                                Figure
+                               liver     3. acid
+                                     fatty  Predicted  dissociation
+                                                 binding             constantand
+                                                          proteins (L-FABP)   (KDPFCAs,
+                                                                                 ) values(B)
+                                                                                          (geometric mean
+                                                                                             L-FABP and   ± 1 standard
+                                                                                                        PFSAs,          error)fatty
+                                                                                                                (C) intestinal for (A)
+                                                                                                                                    acid
+                                liver fatty acid binding proteins (L-FABP) and PFCAs, (B) L-FABP and PFSAs, (C) intestinal fatty
+                               binding proteins (I-FABP) and PFCAs, and (D) I-FABP and PFSAs. Values of log KD > 3 correspond
+                                acid binding proteins (I-FABP) and PFCAs, and (D) I-FABP and PFSAs. Values of log KD > 3 corre-
+                               to millimolar or weaker binding, between −3 and 3 are moderate (in the micromolar range) and <−3
+                                spond to millimolar or weaker binding, between −3 and 3 are moderate (in the micromolar range)
+                               correspond     to strong, to
+                                and < −3 correspond      nanomolar   or lower binding.
+                                                            strong, nanomolar  or lower binding.
+                               3.2. EqD-Based Dissociation Constant (KD ) Estimates
+                                3.2. EqD-Based
+                               3.2.1.  PPAR-α Dissociation Constant (KD) Estimates
+                                3.2.1.Strong
+                                       PPAR-αbinding for PFHxA (Figure 4A) and PFNA (Figure 4B) were observed via
+                                       Strong binding
+                               EqD experiments,        for PFHxA
+                                                    whereas         (Figureoccurred
+                                                              no binding     4A) andforPFNA
+                                                                                          PFBA(Figure   4B) were observed
+                                                                                                 (Supplemental              via and
+                                                                                                                  Figure S2A)   EqD
+                                 experiments,
+                               PFHpA             whereasFigure
+                                          (Supplemental   no binding    occurred
+                                                                 S2B). The  lack of for  PFBA
+                                                                                     chain      (Supplemental
+                                                                                           length                 Figure S2A)
+                                                                                                   dependence suggested          and
+                                                                                                                             by this
+                               isPFHpA     (Supplemental
+                                   in agreement            Figure
+                                                  with the MD      S2B). TheHowever,
+                                                                predictions.   lack of chain   length dependence
+                                                                                          MD simulations     suggested suggested
+                                                                                                                         only PFBAby
+                                 this is have
+                               would     in agreement   with the
+                                              strong binding  for MD   predictions.
+                                                                  PPAR-α,   which wasHowever,    MD
+                                                                                         not borne  outsimulations
+                                                                                                         by dialysis.suggested  only
+                                                                                                                      The relatively
+                                 PFBA binding
+                               strong    would have   strong by
+                                                  suggested   binding
+                                                                 the KDfor
+                                                                         ofPPAR-α,
+                                                                            0.097 µMwhich     was not
+                                                                                        for PFHxA        borne
+                                                                                                     could     outimplications
+                                                                                                            have    by dialysis. The
+                                                                                                                                 for
+                                 relatively strong
+                               short-chain          binding suggested by the KD of 0.097 µM for PFHxA could have impli-
+                                              PFAS safety.
+                                 cations for short-chain PFAS safety.
+                                          Strong binding for PFHxA (Figure 4A) and PFNA (Figure 4B) were observed via EqD
+                                    experiments, whereas no binding occurred for PFBA (Supplemental Figure S2A) and
+                                    PFHpA (Supplemental Figure S2B). The lack of chain length dependence suggested by
+                                    this is in agreement with the MD predictions. However, MD simulations suggested only
+Toxics 2021, 9, 45                  PFBA would have strong binding for PPAR-α, which was not borne out by dialysis. The8 of 15
+                                    relatively strong binding suggested by the KD of 0.097 µM for PFHxA could have impli-
+                                    cations for short-chain PFAS safety.
+
+
+
+
+Toxics 2021, 9, x FOR PEER REVIEW                                                                                                               9 of 16
+
+
+
+
+                                    Figure 4. Specific binding (µmol PFAS/µmol protein) vs free concentration of PFAS (µmol/L), used
+                                    for nonlinear
+                                     Figure       fit ofbinding
+                                            4. Specific  KD (in µM, ± S.E.)
+                                                                 (µmol      for (A) PFHxA
+                                                                       PFAS/µmol           and
+                                                                                     protein) vs (B)
+                                                                                                  freePFNA  with PPAR-α.
+                                                                                                       concentration of PFAS (µmol/L), used
+                                    for nonlinear fit of KD (in µM, ± S.E.) for (A) PFHxA and (B) PFNA with PPAR-α.
+                                    3.2.2. PPAR-γ
+                                    3.2.2.Strong
+                                           PPAR-γ binding was found between PFOA and PPAR-γ (Supplemental Figure S3)
+                                    whichStrong
+                                            agreesbinding
+                                                    with previous
+                                                           was foundexperimental
+                                                                      between PFOAevidence  that PFOA
+                                                                                       and PPAR-γ       is a PPAR-γ
+                                                                                                   (Supplemental     activator
+                                                                                                                   Figure       [74].
+                                                                                                                          S3) which
+                                    Additionally,   PFOS binds
+                                    agrees with previous          to PPAR-γ,
+                                                              experimental    albeit with
+                                                                            evidence  thatsubstantially lower affinity.
+                                                                                           PFOA is a PPAR-γ    activatorThese  EqD-
+                                                                                                                         [74]. Addi-
+                                    derived   KD values are the first reported for PPAR-γ with PFOA and PFOS. MD binding
+                                    tionally, PFOS binds to PPAR-γ, albeit with substantially lower affinity. These EqD-derived
+                                    predictions
+                                    KD values arewere
+                                                    thein agreement
+                                                        first reportedwith  observed
+                                                                       for PPAR-γ  withKDPFOA
+                                                                                          valuesand
+                                                                                                 for PFOS.
+                                                                                                     both PFOA   and PFOS
+                                                                                                            MD binding      (Figure
+                                                                                                                         predictions
+                                    2C,D).
+                                    were in agreement with observed KD values for both PFOA and PFOS (Figure 2C,D).
+
+                                    3.2.3.
+                                    3.2.3. PPAR-δ
+                                           PPAR-δ
+                                          Strong   binding to
+                                          Strong binding      toPFBA,
+                                                                  PFBA,PFHxS,
+                                                                            PFHxS,and  andPFOS
+                                                                                             PFOS    (Figure
+                                                                                                  (Figure      5 and
+                                                                                                           5 and        Supplemental
+                                                                                                                   Supplemental            Figure
+                                                                                                                                      Figure         S4)
+                                                                                                                                               S4) was
+                                    was  observed
+                                     observed         for first
+                                                for the   the first
+                                                                timetime
+                                                                       withwiththisthis   protein.
+                                                                                     protein.   LikeLike  PPAR-α,
+                                                                                                      PPAR-α,          PPAR-δ
+                                                                                                                  PPAR-δ      alsoalso
+                                                                                                                                    hadhad   measur-
+                                                                                                                                         measurable
+                                    able  binding
+                                     binding        to a short
+                                              to a short   chainchain
+                                                                    PFCAPFCA(PFBA)  (PFBA)
+                                                                                       and didandnotdid  not adhere
+                                                                                                      adhere            to the increased
+                                                                                                               to the increased      bindingbinding
+                                                                                                                                                affinity
+                                    with increasing
+                                    affinity            chain length
+                                             with increasing              trend observed
+                                                                  chain length                 for L-FABP.
+                                                                                    trend observed             Again,Again,
+                                                                                                        for L-FABP.      this indicates    that short-
+                                                                                                                                  this indicates    that
+                                     chain PFAS PFAS
+                                    short-chain    safety safety
+                                                            based based
+                                                                     on body  onclearance     alone may
+                                                                                   body clearance      alonenotmay
+                                                                                                                 be reliable,    and more
+                                                                                                                      not be reliable,     andresearch
+                                                                                                                                                  more
+                                     into the interactions
+                                    research                   that may
+                                              into the interactions          occur
+                                                                          that   mayduring     clearance
+                                                                                       occur during         is warranted.
+                                                                                                        clearance               Additionally,
+                                                                                                                     is warranted.               chain
+                                                                                                                                       Additionally,
+                                     length, while    generally     a  good    indicator    of PFAS    retention    in  a  system,
+                                    chain length, while generally a good indicator of PFAS retention in a system, may not be         may    not  be   an
+                                     indicator  of binding    affinity   to any   given    protein.  Detectable    binding
+                                    an indicator of binding affinity to any given protein. Detectable binding affinities for   affinities for  PPAR-δ
+                                    were in the
+                                    PPAR-δ    were range      10−2 of
+                                                     in theofrange       10−2−1toµM.
+                                                                      to 10       10−1 MD
+                                                                                       µM.simulations
+                                                                                             MD simulations werewere
+                                                                                                                   in agreement      for PFHxS
+                                                                                                                          in agreement     for PFHxSand
+                                     PFOS.
+                                    and      However,
+                                          PFOS.            predicted
+                                                    However,             binding
+                                                                   predicted         to PFBS
+                                                                                  binding    to was
+                                                                                                 PFBS notwas
+                                                                                                           detected     experimentally,
+                                                                                                                not detected                 whereas
+                                                                                                                                    experimentally,
+                                     experimental
+                                    whereas           binding binding
+                                               experimental       to PFBAto     was
+                                                                                  PFBAobserved    but not predicted
+                                                                                           was observed                     (Figure 2E,F).
+                                                                                                              but not predicted       (Figure  Overall,
+                                                                                                                                                 2E,F).
+                                     PPAR   MD   simulations     were    effective   in identifying   relative  binding     affinities
+                                    Overall, PPAR MD simulations were effective in identifying relative binding affinities and         and   provided
+                                     confidence
+                                    provided      in selection
+                                                confidence     in of  PFAS-protein
+                                                                   selection             combinations
+                                                                                of PFAS-protein           but are notbut
+                                                                                                     combinations         currently
+                                                                                                                             are not able   to predict
+                                                                                                                                      currently    able
+                                     absolute  affinity.
+                                    to predict absolute affinity.
+
+
+
+
+                                     Figure 5. Specific binding (µmol PFAS/µmol protein) vs free concentration of PFAS (µmol/L), used
+                                    Figure  5. Specific
+                                     for nonlinear fit ofbinding (µmol
+                                                          KD (in µM, ± PFAS/µmol     protein)
+                                                                        S.E.) for binding     vs free
+                                                                                          affinity     concentration
+                                                                                                   of (A)            of PFAS
+                                                                                                          PFBA and (B)  PFHxS(µmol/L), used
+                                                                                                                               with PPAR-δ.
+                                    for nonlinear fit of KD (in µM, ± S.E.) for binding affinity of (A) PFBA and (B) PFHxS with PPAR-δ.
+
+                                    3.2.4. L-FABP
+                                         Our EqD results for L-FABP generally agreed with previous observations in terms of
+                                    relative affinities. That is, binding was strongest for the long-chain PFAS tested, PFOA
+   Toxics 2021, 9, 45                                                                                                                         9 of 15
+
+
+
+
+                                          3.2.4. L-FABP
+                                                Our EqD results for L-FABP generally agreed with previous observations in terms
+                                          of relative affinities. That is, binding was strongest for the long-chain PFAS tested, PFOA and
+                                          PFOS (0.099 and 0.18 µM, respectively, see Figure 6A for PFOS and Supplemental Figure S5A
+                                          for PFOA), weaker for PFHxS (1.7 µM, Supplemental Figure S5D), and not detected for
+Toxics 2021, 9, x FOR PEER REVIEW                                                                                          10 of 16
+                                          the shortest PFAS tested, PFHxA and PFBS. Experimentally derived KD values                for PFOS,
+                                          PFHxS, and PFOA fell within the range of model predictions (Figure 3A,B).
+
+
+
+
+                                    FigureFigure  6. Specific
+                                           6. Specific bindingbinding   (µmol PFAS/µmol
+                                                                 (µmol PFAS/µmol   protein) protein)    vs free concentration
+                                                                                              vs free concentration           of PFAS (µmol/L),
+                                                                                                                     of PFAS (µmol/L), used      used
+                                          for nonlinear
+                                    for nonlinear fit of Kfit ofµM,
+                                                          D (in KD (in       ±binding
+                                                                        µM,for
+                                                                    ± S.E.)    S.E.) foraffinity
+                                                                                         binding of affinity
+                                                                                                    (A) PFOS ofwith
+                                                                                                                (A) PFOS
+                                                                                                                    L-FABPwith
+                                                                                                                            andL-FABP
+                                                                                                                                (B) PFNAand (B) PFNA
+                                          with I-FABP.
+                                    with I-FABP.
+
+                                         TheseThese
+                                                 are thearefirst
+                                                             the experimental
+                                                                 first experimental
+                                                                               data data for PFCAs
+                                                                                    for PFCAs       binding
+                                                                                                binding      to I-FABP.
+                                                                                                        to I-FABP.      Molecular
+                                                                                                                     Molecular    dy-dynamics
+                                    namicsresults forfor
+                                             results   I-FABP
+                                                           I-FABPindicated   PFHpA
+                                                                     indicated PFHpAand  PFNA
+                                                                                       and  PFNAshould  both
+                                                                                                   should     demonstrate
+                                                                                                           both             relatively
+                                                                                                                  demonstrate   rela- strong
+                                    tivelybinding    (Figure(Figure
+                                           strong binding       3C). However,    no binding
+                                                                        3C). However,         was was
+                                                                                      no binding   detected  by EqD
+                                                                                                       detected        forfor
+                                                                                                                  by EqD   either   PFHpA or
+                                                                                                                               either
+                                    PFHpA PFNAor PFNA
+                                                  (Figure (Figure
+                                                              6B and6B and   Supplemental
+                                                                        Supplemental       Figure
+                                                                                       Figure  S6)S6)
+                                                                                                   andand  therefore
+                                                                                                        therefore   nonoKDKDvalues
+                                                                                                                              values could be
+                                    coulddetermined
+                                           be determined      (Table
+                                                         (Table   3). 3).
+
+                                    TableTable
+                                         3. Dissociation constant
+                                               3. Dissociation    (KD) values
+                                                               constant  (KD )±values
+                                                                               SE measured by equilibrium
+                                                                                      ± SE measured       dialysis. dialysis.
+                                                                                                     by equilibrium
+                                            Protein
+                                                 Protein                PFAS PFAS                           KD (µM) K (µM)
+                                                                                                                           D
+                                                                       PFHxA                                   ND
+                                                                             PFHxA                                          ND
+                                                                        PFOA PFOA                         0.099 ± 0.0150.099 ± 0.015
+                                            L-FABP
+                                                L-FABP                  PFBS  PFBS                             ND           ND
+                                                                       PFHxS PFHxS                         1.7 ± 0.031 1.7 ± 0.031
+                                                                        PFOS  PFOS                        0.18 ± 0.0320.18 ± 0.032
+                                                                       PFHpA PFHpA                             ND           ND
+                                             I-FABP
+                                                  I-FABP
+                                                                       PFNA PFNA                               ND           ND
+                                                                        PFBA PFBA                              ND           ND
+                                                                       PFHxA PFHxA                        0.097 ± 0.0700.097 ± 0.070
+                                            PPAR-α
+                                                PPAR-α
+                                                                       PFHpA PFHpA                             ND           ND
+                                                                       PFNA PFNA                          0.083 ± 0.0280.083 ± 0.028
+
+                                                PPAR-γ
+                                                                        PFOA PFOA                         0.057 ± 0.0270.057 ± 0.027
+                                            PPAR-γ
+                                                                        PFOS  PFOS                          8.5 ± 0.46 8.5 ± 0.46
+                                                                        PFBA PFBA                        0.044 ± 0.0130.044 ± 0.013
+                                                                        PFBS  PFBS                            ND            ND
+                                                PPAR-δ
+                                            PPAR-δ                           PFHxS                                    0.035 ± 0.0020
+                                                                       PFHxS                             0.035 ± 0.0020
+                                                                              PFOS                                      0.69 ± 0.33
+                                                                        PFOS                               0.69 ± 0.33
+                                         “ND”: no dissociation constant could be determined, indicating low to no binding.
+                                    “ND”: no dissociation constant could be determined, indicating low to no binding.
+                                               Since these are the first experimentally determined KD s for I-FABP, there are no other
+                                         Since these
+                                         studies   to are
+                                                       aidthe
+                                                           in first experimentally
+                                                               evaluating  whether determined KDs for I-FABP,
+                                                                                     the MD simulations      or there are no
+                                                                                                                 dialysis    other are more
+                                                                                                                          results
+                                    studies to aid in evaluating   whether the MD  simulations or dialysis results are more
+                                         problematic. The MD results of PFSAs indicated very weak interactions for all chain prob-
+                                    lematic. The MD results of PFSAs indicated very weak interactions for all chain lengths,
+                                         lengths, which is more in line with the dialysis observations for the PFCAs tested.
+                                    which is more in line with the dialysis observations for the PFCAs tested.
+
+                                    3.3. Comparison Across in vitro Methods to Evaluate Binding
+                                         Comparison of experimentally derived KD values from this and previous studies sug-
+                                    gest that EqD consistently generates lower KD values (stronger binding affinities) than
+Toxics 2021, 9, 45                                                                                                                           10 of 15
+
+
+
+
+                     3.3. Comparison Across In Vitro Methods to Evaluate Binding
+                           Comparison of experimentally derived KD values from this and previous studies
+                     suggest that EqD consistently generates lower KD values (stronger binding affinities) than
+                     other approaches. Fluorescence displacement has recently emerged as a widely applied
+                     method to measure protein binding affinity [75]. Fluorescence displacement is a convenient
+                     and relatively high-throughput approach but, as shown here, will consistently indicate
+                     lower affinity binding that EqD (Figure 7 and Supplemental Figure S1; Tables S2 and S3).
+                     For L-FABP, observed KD values from this study were substantially lower than previously
+                     published values (Figure 7A) [23,76]. Experimentally derived KD values for PFOA and
+                     PFOS with PPAR-γ were lower than those reported by Zhang et al. [32], three to four
+                     orders of magnitude in the case of PFOA and one order of magnitude for PFOS (Figure 7B).
+                     KD values for PFHxA and PFNA with PPAR-α measured by equilibrium dialysis are lower
+                     than those reported by Ishibashi et al. [31] by several orders of magnitude (Figure 7C).
+                     Although Ishibashi et al. [31] report 50% inhibitory concentrations (IC50 ) rather than KD ,
+                     the magnitude of the differences between results is unlikely to be attributable to this.
+                     The IC50 in the case of the Ishibashi et al. [31] study describes the concentration of the
+                     competitor (i.e., PFAS) at which 50% of the fluorescent molecule was displaced, and is thus
+                     an indirect measure of binding affinity. IC50 may vary according to the competition regime
+                     and experimental conditions, but for competitive inhibition (i.e., displacement by PFAS
+                     from the same binding site) should be of similar magnitude, as these values are linked by
+                     ligand and substrate concentrations. Similar to results for PPAR-α, Li et al. [77] reported
+                     competitive binding based IC50 for PPAR-δ with PFBA, PFHxS, and PFOS, wherein only
+                     PFOS showed detectable binding (Figure 7D). EqD-determined binding coefficients in
+                     this study for PFBA, PFHxS, and PFOS with PPAR-δ were lower than those reported IC50
+                     values, with PFBA and PFHxS in particular showing strong binding.
+                           Similar observations have been made before, for example between EqD and 19 F-NMR
+                     and micro-size exclusion chromatography for serum albumins [22]. A literature search
+                     comparing methods to determine binding for human serum albumin (HSA) and bovine
+                     serum albumin (BSA) also showed EqD to consistently produce lower KD values than other
+                     methods (Supplemental Figures S7 and S8 and Table S3). This indicates that the low KD
+                     values measured here are not an artifact of this study but rather a consistent outcome of
+                     the EqD approach.
+
+                                     4                                                                  4
+                                         A) L-FABP                                                          B) PPAR-γ                EqD
+                                                                                                                                     ITC
+                                     3                                                                  3                            FD
+                     log10 KD (µM)
+
+
+
+
+                                                                                        log10 KD (µM)
+
+
+
+
+                                     2                                                                  2
+
+
+                                     1                                                                  1
+
+
+                                     0                                                                  0
+
+
+                                −1                                                                  −1
+
+
+                                                                                                    −2
+                                −2         PF                                                               PF      PF    PF        PF
+                                                     PF       PF     PF        PF
+                                                                                                              H
+                                             H
+                                                pA     O
+                                                          A     BS     H
+                                                                          xS
+                                                                                 O
+                                                                                    S                             pA OA     H
+                                                                                                                               xS
+                                                                                                                                      O
+                                                                                                                                         S
+
+
+                     Figure 7. Cont.
+Toxics 2021, 9, 45                                                                                                                                                        11 of 15
+
+
+
+
+                                             4                                                                                     4
+                                                 C) PPAR-α                                                                              D) PPAR-δ              KD, EqD
+                                                                                                                                                               IC50, FD
+                                             3                                                                                     3
+
+
+
+
+                     log10 KD or IC50 (µM)
+
+
+
+
+                                                                                                           log10 KD or IC50 (µM)
+                                             2                                                                                     2
+
+
+                                             1                                                                                     1
+
+
+                                             0                                                                                     0
+
+
+                                        −1                                                                                         −1
+
+
+                                        −2                                                                                         −2
+                                                   PF     PF       PF        PF        PF     PF PF PF                                   PF         PF          PF
+                                                     BA     Pe       H         H         O      BS H O                                     BA            H        O
+                                                               A        xA        pA      A         xS S                                                  xS         S
+
+
+                     Figure 7. Comparison of KD s for PFAS with eight or fewer fluorinated carbons measured by equilib-
+                     rium dialysis (EqD) in this study (red symbols) compared with (A) KD measured by fluorescence
+                     displacement (FD) and isothermal titration calorimetry (ITC) for L-FABP, (B) KD measured by FD for
+                     PPAR-γ, and (C) IC50 (right axis) measured by FD for PPAR-α and (D) PPAR-δ.
+
+                     4. Conclusions
+                           This is the first study to report short chain PFAS-PPAR binding with KD s in the sub-
+                     micromolar range, raising the possibility that short-chain replacements for long-chain
+                     PFAS may still be bioactive, despite the assumed “safety” of short-chain PFAS on the
+                     basis of rapid serum clearance [67]. PPARs are nuclear receptors that play critical roles
+                     in the regulation of many biological processes, including cell growth, lipid metabolism,
+                     differentiation, and inflammation [78]. Previous in vitro and in vivo studies have reported
+                     that both PFCAs and PFSAs can activate PPAR-α and PPAR-γ [15,32,79], but have not
+                     found activation of PPAR-δ [28]. This is the first study to report strong interactions with
+                     PPAR-δ and PFCAs having fewer than seven perfluorinated carbons. The lack of chain
+                     length dependence we observed with PPAR-α and PPAR-δ by both MD simulations and
+                     EqD indicates that PFAS binding affinity to proteins should not be inferred by PFAS carbon
+                     chain length for all proteins, but is rather specific to the protein being considered.
+                           Despite the accumulating data, there is a persistent lack of clarity on how either mod-
+                     eling or in vitro studies relate to the behavior of PFAS in vivo, within natural biological and
+                     environmental contexts—that is, in competition with native ligands and other environmen-
+                     tal contaminants. EqD may indicate higher binding affinity because it measures binding in
+                     a highly controlled system independent of other factors. In vivo, competitive interactions
+                     are more likely to be the dominant mode. That being said, it is still unclear whether typi-
+                     cally used fluorophores are at all representative of native ligands and other xenobiotics that
+                     make up the real-world competitors of PFAS for protein sites. Thus, a competitor-agnostic
+                     approach, such as equilibrium dialysis, may still be preferable. Moreover, consistently
+                     lower KD values across many different proteins raises an important question that is yet to
+                     be answered and will be key for making reliable in vitro to in vivo extrapolations: do the
+                     lower KD s indicate the EqD approach is capable of quantify binding that other approaches
+                     do not? If so, this could suggest that binding affinities of PFAS to proteins considered
+                     here, and possibly other proteins, have been historically underestimated, and subsequent
+                     research using data from different approaches should recognize that EqD generates lower
+                     KD values.
+                           In some cases, it is possible that MD simulations could be improved by longer sim-
+                     ulation times. However, increasing the simulation time from 24 ns to 45 ns for all of the
+                     PPAR-PFAS combinations presented here would require months of additional computa-
+Toxics 2021, 9, 45                                                                                                                 12 of 15
+
+
+
+
+                                   tion time. Therefore, when undertaking and interpreting these modeling approaches it
+                                   is important to acknowledge the time resource component. The comparison of modeled
+                                   and experimentally determined values in this study further confirms our previous ob-
+                                   servation [42] that MD simulations are best for predicting relative rather than absolute
+                                   KD values. The extent of agreement between measured and modeled values varied sub-
+                                   stantially among proteins, but chain length dependencies or lack thereof were generally
+                                   consistent. Additionally, MD simulations predict stronger binding than is experimentally
+                                   observed through fluorescence displacement but weaker binding than may be observed via
+                                   equilibrium dialysis. Future research is needed to understand how different binding values
+                                   relate to in vivo consequences and if any particular method should be used for in vitro to
+                                   in vivo extrapolation.
+
+                                  Supplementary Materials: The following are available online at https://www.mdpi.com/2305-630
+                                  4/9/3/45/s1, Figure S1. Equilibrium dialysis setup with materials used (dialysis filters and vials)
+                                  shown. Figure S2. Equilibrium dialysis results for binding affinity of PFBA (A) and PFHpA (B) with
+                                  PPAR α with pH = 7.4 and ionic strength = 18.1 mS/cm. Figure S3. Equilibrium dialysis results
+                                  for binding affinity of PFOA (A) and PFOS (B) with PPAR-γ with pH = 7.4 and ionic strength =
+                                  18.1 mS/cm. Figure S4. Equilibrium dialysis results for binding affinity of PFOS (A) and PFBS (B)
+                                  with PPAR-δ with pH = 7.4 and ionic strength = 18.1 mS/cm. Figure S5. Equilibrium dialysis results
+                                  for binding affinity of PFOA (A), PFBS (B), PFHxA (C), and PFHxS (D) with L-FABP with pH = 7.4
+                                  and ionic strength = 18.1 mS/cm. Figure S6. Equilibrium dialysis results for binding affinity of
+                                  PFHpA with I-FABP with pH = 7.4 and ionic strength = 18.1 mS/cm. Figure S7. Comparison of
+                                  reported KD (± SE) values from literature for human serum albumin [15–24]. Figure S8. Comparison
+                                  of reported KD (± SE) values from literature for bovine serum albumin [15,20,24–27]. Table S1.
+                                  Matrix of selected protein-PFAS combinations for batch analysis. Table S2. Comparison of methods
+                                  L- and I-FABP and PPAR α, γ, δ [8,9,28–32]. Table S3. Comparison of methods HSA, BSA, RSA, and
+                                  fish serum protein [15–20,22–27,33–35].
+                                   Author Contributions: Conceptualization, M.M., J.F. and C.N.; methodology, J.F. and C.N.; simula-
+                                   tions, W.C.; experiments, M.K. and E.C.; formal analysis, M.K., E.C. and W.C.; data curation, M.K.,
+                                   E.C. and W.C.; writing—original draft preparation, M.K. and E.C.; writing—review and editing, M.M.,
+                                   J.F. and C.N.; visualization, M.K., E.C. and W.C.; supervision, J.F. and C.N.; project administration,
+                                   M.M.; funding acquisition, M.M., J.F. and C.N. All authors have read and agreed to the published
+                                   version of the manuscript.
+                                   Funding: This research was funded by the Strategic Environmental Research and Defense Program
+                                   (SERDP), grant number ER-181417.
+                                   Institutional Review Board Statement: Not applicable.
+                                   Informed Consent Statement: Not applicable.
+                                   Data Availability Statement: The data presented in this study are available in the article and in the
+                                   supplementary material here or were extracted from published studies (for method comparisons).
+                                   Conflicts of Interest: There are no conflicts of interest to declare.
+
+References
+1.    Buck, R.C.; Franklin, J.; Berger, U.; Conder, J.M.; Cousins, I.T.; de Voogt, P.; Jensen, A.A.; Kannan, K.; Mabury, S.A.; van Leeuwen,
+      S.P.J. Perfluoroalkyl and Polyfluoroalkyl Substances in the Environment: Terminology, Classification, and Origins. Integr. Environ.
+      Assess. Manag. 2011, 7, 513–541. [CrossRef]
+2.    Prevedouros, K.; Cousins, I.T.; Buck, R.C.; Korzeniowski, S.H. Sources, Fate and Transport of Perfluorocarboxylates. Environ. Sci.
+      Technol. 2006, 40, 32–44. [CrossRef]
+3.    Kärrman, A.; Elgh-Dalgren, K.; Lafossas, C.; Møskeland, T. Environmental Levels and Distribution of Structural Isomers of
+      Perfluoroalkyl Acids after Aqueous Fire-Fighting Foam (AFFF) Contamination. Environ. Chem. 2011, 8, 372–380. [CrossRef]
+4.    Guelfo, J.L.; Higgins, C.P. Subsurface Transport Potential of Perfluoroalkyl Acids at Aqueous Film-Forming Foam (AFFF)-
+      Impacted Sites. Environ. Sci. Technol. 2013, 47, 4164–4171. [CrossRef]
+5.    Houtz, E.F.; Higgins, C.P.; Field, J.A.; Sedlak, D.L. Persistence of Perfluoroalkyl Acid Precursors in AFFF-Impacted Groundwater
+      and Soil. Environ. Sci. Technol. 2013, 47, 8187–8195. [CrossRef]
+Toxics 2021, 9, 45                                                                                                                  13 of 15
+
+
+
+
+6.    Place, B.J.; Field, J.A. Identification of Novel Fluorochemicals in Aqueous Film-Forming Foams Used by the US Military. Available
+      online: https://pubs.acs.org/doi/pdf/10.1021/es301465n (accessed on 18 June 2020).
+7.    Backe, W.J.; Day, T.C.; Field, J.A. Zwitterionic, Cationic, and Anionic Fluorinated Chemicals in Aqueous Film Forming Foam
+      Formulations and Groundwater from U.S. Military Bases by Nonaqueous Large-Volume Injection HPLC-MS/MS. Environ. Sci.
+      Technol. 2013, 47, 5226–5234. [CrossRef]
+8.    Weiner, B.; Yeung, L.W.Y.; Marchington, E.B.; D’Agostino, L.A.; Mabury, S.A. Organic Fluorine Content in Aqueous Film Forming
+      Foams (AFFFs) and Biodegradation of the Foam Component 6: 2 Fluorotelomermercaptoalkylamido Sulfonate (6: 2 FTSAS).
+      Environ. Chem. 2013, 10, 486–493. [CrossRef]
+9.    Harding-Marjanovic, K.C.; Yi, S.; Weathers, T.S.; Sharp, J.O.; Sedlak, D.L.; Alvarez-Cohen, L. Effects of Aqueous Film-Forming
+      Foams (AFFFs) on Trichloroethene (TCE) Dechlorination by a Dehalococcoides Mccartyi-Containing Microbial Community. Environ.
+      Sci. Technol. 2016, 50, 3352–3361. [CrossRef] [PubMed]
+10.   Wang, N.; Liu, J.; Buck, R.C.; Korzeniowski, S.H.; Wolstenholme, B.W.; Folsom, P.W.; Sulecki, L.M. 6:2 Fluorotelomer Sulfonate
+      Aerobic Biotransformation in Activated Sludge of Waste Water Treatment Plants. Chemosphere 2011, 82, 853–858. [CrossRef]
+11.   Liu, J.; Zhong, G.; Li, W.; Mejia Avendaño, S. Isomer-Specific Biotransformation of Perfluoroalkyl Sulfonamide Compounds in
+      Aerobic Soil. Sci. Total Environ. 2019, 651, 766–774. [CrossRef] [PubMed]
+12.   Sanderson, H.; Boudreau, T.M.; Mabury, S.A.; Solomon, K.R. Effects of Perfluorooctane Sulfonate and Perfluorooctanoic Acid on
+      the Zooplanktonic Community. Ecotoxicol. Environ. Saf. 2004, 58, 68–76. [CrossRef]
+13.   Newsted, J.L.; Jones, P.D.; Coady, K.; Giesy, J.P. Avian Toxicity Reference Values for Perfluorooctane Sulfonate. Environ. Sci.
+      Technol. 2005, 39, 9357–9362. [CrossRef]
+14.   Naile, J.E.; Khim, J.S.; Wang, T.; Chen, C.; Luo, W.; Kwon, B.-O.; Park, J.; Koh, C.-H.; Jones, P.D.; Lu, Y.; et al. Perfluorinated
+      Compounds in Water, Sediment, Soil and Biota from Estuarine and Coastal Areas of Korea. Environ. Pollut. 2010, 158, 1237–1244.
+      [CrossRef] [PubMed]
+15.   Butenhoff, J.L.; Kennedy, G.L.; Frame, S.R.; O’Connor, J.C.; York, R.G. The Reproductive Toxicology of Ammonium Perfluorooc-
+      tanoate (APFO) in the Rat. Toxicology 2004, 196, 95–116. [CrossRef] [PubMed]
+16.   Conder, J.M.; Hoke, R.A.; de Wolf, W.; Russell, M.H.; Buck, R.C. Are PFCAs Bioaccumulative? A Critical Review and Comparison
+      with Regulatory Criteria and Persistent Lipophilic Compounds. Environ. Sci. Technol. 2008, 42, 995–1003. [CrossRef]
+17.   Houde, M.; De Silva, A.O.; Muir, D.C.G.; Letcher, R.J. Monitoring of Perfluorinated Compounds in Aquatic Biota: An Updated
+      Review: PFCs in Aquatic Biota. Environ. Sci. Technol. 2011, 45, 7962–7973. [CrossRef]
+18.   Ng, C.A.; Hungerbühler, K. Bioaccumulation of Perfluorinated Alkyl Acids: Observations and Models. Environ. Sci. Technol. 2014,
+      48, 4637–4648. [CrossRef] [PubMed]
+19.   Luebker, D.J.; Hansen, K.J.; Bass, N.M.; Butenhoff, J.L.; Seacat, A.M. Interactions of Flurochemicals with Rat Liver Fatty
+      Acid-Binding Protein. Toxicology 2002, 176, 175–185. [CrossRef]
+20.   Han, X.; Snow, T.A.; Kemper, R.A.; Jepson, G.W. Binding of Perfluorooctanoic Acid to Rat and Human Plasma Proteins. Chem.
+      Res. Toxicol. 2003, 16, 775–781. [CrossRef]
+21.   Kärrman, A.; Langlois, I.; van Bavel, B.; Lindström, G.; Oehme, M. Identification and Pattern of Perfluorooctane Sulfonate (PFOS)
+      Isomers in Human Serum and Plasma. Environ. Int. 2007, 33, 782–788. [CrossRef] [PubMed]
+22.   Bischel, H.N.; MacManus-Spencer, L.A.; Luthy, R.G. Noncovalent Interactions of Long-Chain Perfluoroalkyl Acids with Serum
+      Albumin. Environ. Sci. Technol. 2010, 44, 5263–5269. [CrossRef] [PubMed]
+23.   Zhang, L.; Ren, X.-M.; Guo, L.-H. Structure-Based Investigation on the Interaction of Perfluorinated Compounds with Human
+      Liver Fatty Acid Binding Protein. Environ. Sci. Technol. 2013, 47, 11293–11301. [CrossRef] [PubMed]
+24.   Furuhashi, M.; Hotamisligil, G.S. Fatty Acid-Binding Proteins: Role in Metabolic Diseases and Potential as Drug Targets. Nat. Rev.
+      Drug Discov. 2008, 7, 489–503. [CrossRef] [PubMed]
+25.   Lemberger, T.; Desvergne, B.; Wahli, W. PEROXISOME PROLIFERATOR-ACTIVATED RECEPTORS: A Nuclear Receptor
+      Signaling Pathway in Lipid Physiology. Annu. Rev. Cell Dev. Biol. 1996, 12, 335–363. [CrossRef]
+26.   Berger, J.; Wagner, J.A. Physiological and Therapeutic Roles of Peroxisome Proliferator-Activated Receptors. Diabetes Technol. Ther.
+      2002, 4, 163–174. [CrossRef]
+27.   Elcombe, C.R.; Elcombe, B.M.; Foster, J.R.; Chang, S.-C.; Ehresman, D.J.; Butenhoff, J.L. Hepatocellular Hypertrophy and Cell
+      Proliferation in Sprague–Dawley Rats from Dietary Exposure to Potassium Perfluorooctanesulfonate Results from Increased
+      Expression of Xenosensor Nuclear Receptors PPARα and CAR/PXR. Toxicology 2012, 293, 16–29. [CrossRef] [PubMed]
+28.   Behr, A.-C.; Plinsch, C.; Braeuning, A.; Buhrke, T. Activation of Human Nuclear Receptors by Perfluoroalkylated Substances
+      (PFAS). Toxicol. In Vitro 2020, 62, 104700. [CrossRef] [PubMed]
+29.   Woodcroft, M.W.; Ellis, D.A.; Rafferty, S.P.; Burns, D.C.; March, R.E.; Stock, N.L.; Trumpour, K.S.; Yee, J.; Munro, K. Experimental
+      Characterization of the Mechanism of Perfluorocarboxylic Acids’ Liver Protein Bioaccumulation: The Key Role of the Neutral
+      Species. Environ. Toxicol. Chem. 2010, 29, 1669–1677. [CrossRef]
+30.   Sheng, N.; Li, J.; Liu, H.; Zhang, A.; Dai, J. Interaction of Perfluoroalkyl Acids with Human Liver Fatty Acid-Binding Protein.
+      Arch. Toxicol. 2016, 90, 217–227. [CrossRef] [PubMed]
+31.   Ishibashi, H.; Hirano, M.; Kim, E.-Y.; Iwata, H. In vitro and In Silico Evaluations of Binding Affinities of Perfluoroalkyl Substances
+      to Baikal Seal and Human Peroxisome Proliferator-Activated Receptor α. Environ. Sci. Technol. 2019, 53, 2181–2188. [CrossRef]
+Toxics 2021, 9, 45                                                                                                                       14 of 15
+
+
+
+
+32.   Zhang, L.; Ren, X.-M.; Wan, B.; Guo, L.-H. Structure-Dependent Binding and Activation of Perfluorinated Compounds on Human
+      Peroxisome Proliferator-Activated Receptor γ. Toxicol. Appl. Pharmacol. 2014, 279, 275–283. [CrossRef]
+33.   Li, L.; Song, G.W.; Xu, Z.S. Study on the Interaction between Bovine Serum Albumin and Potassium Perfluoro Octane Sulfonate.
+      J. Dispers. Sci. Technol. 2010, 31, 1547–1551. [CrossRef]
+34.   Bischel, H.N.; Macmanus-Spencer, L.A.; Zhang, C.; Luthy, R.G. Strong Associations of Short-Chain Perfluoroalkyl Acids with
+      Serum Albumin and Investigation of Binding Mechanisms. Environ. Toxicol. Chem. 2011, 30, 2423–2430. [CrossRef]
+35.   Ulrich, J. A Systematic Investigation of the Effects of Chain Length and Ionic Head Group on Perfluoroalkyl Acid Binding to
+      Human Serum Albumin. Honors Thesis, Union College, Schenectady, NY, USA, 2017. Available online: https://digitalworks.
+      union.edu/cgi/viewcontent.cgi?article=1258&context=theses (accessed on 22 February 2021).
+36.   Wu, L.-L.; Gao, H.-W.; Gao, N.-Y.; Chen, F.-F.; Chen, L. Interaction of Perfluorooctanoic Acid with Human Serum Albumin. BMC
+      Struct. Biol. 2009, 9, 31. [CrossRef] [PubMed]
+37.   Morris, M. Investigation of the Mechanism of Binding of Perfluoroalkyl Acids with Human Serum Albumin Using an Improved
+      Approach to Equilibrium Dialysis. Honors Thesis, Union College, Schenectady, NY, USA, 2014; 68p. Available online: https:
+      //digitalworks.union.edu/cgi/viewcontent.cgi?article=1561&context=theses (accessed on 22 February 2021).
+38.   Chi, Q.; Li, Z.; Huang, J.; Ma, J.; Wang, X. Interactions of Perfluorooctanoic Acid and Perfluorooctanesulfonic Acid with Serum
+      Albumins by Native Mass Spectrometry, Fluorescence and Molecular Docking. Chemosphere 2018, 198, 442–449. [CrossRef]
+      [PubMed]
+39.   Beesoon, S.; Martin, J.W. Isomer-Specific Binding Affinity of Perfluorooctanesulfonate (PFOS) and Perfluorooctanoate (PFOA) to
+      Serum Proteins. Environ. Sci. Technol. 2015, 49, 5722–5731. [CrossRef]
+40.   Messina, P.; Prieto, G.; Dodero, V.; Cabrerizo-Vílchez, M.A.; Maldonado-Valderrama, J.; Ruso, J.M.; Sarmiento, F. Surface
+      Characterization of Human Serum Albumin and Sodium Perfluorooctanoate Mixed Solutions by Pendant Drop Tensiometry and
+      Circular Dichroism. Biopolymers 2006, 82, 261–271. [CrossRef]
+41.   Messina, P.V.; Prieto, G.; Ruso, J.M.; Sarmiento, F. Conformational Changes in Human Serum Albumin Induced by Sodium
+      Perfluorooctanoate in Aqueous Solutions. J. Phys. Chem. B 2005, 109, 15566–15573. [CrossRef]
+42.   Cheng, W.; Ng, C.A. Predicting Relative Protein Affinity of Novel Per- and Polyfluoroalkyl Substances (PFASs) by An Efficient
+      Molecular Dynamics Approach. Environ. Sci. Technol. 2018, 52, 7972–7980. [CrossRef] [PubMed]
+43.   MacManus-Spencer, L.A.; Tse, M.L.; Hebert, P.C.; Bischel, H.N.; Luthy, R.G. Binding of Perfluorocarboxylates to Serum Albumin:
+      A Comparison of Analytical Methods. Anal. Chem. 2010, 82, 974–981. [CrossRef] [PubMed]
+44.   Flanagan, R.J.; Taylor, A.A.; Watson, I.D.; Whelpton, R. Fundamentals of Analytical Toxicology; John Wiley & Sons: Hoboken, NJ, USA,
+      2008; ISBN 978-0-470-31934-5.
+45.   Laguerre, A.; Wielens, J.; Parker, M.W.; Porter, C.J.H.; Scanlon, M.J. Preparation, Crystallization and Preliminary X-Ray Diffraction
+      Analysis of Two Intestinal Fatty-Acid Binding Proteins in the Presence of 11-(Dansylamino)Undecanoic Acid. Acta Cryst. F 2011,
+      67, 291–295. [CrossRef]
+46.   Sharma, A.; Sharma, A. Fatty Acid Induced Remodeling within the Human Liver Fatty Acid-Binding Protein. J. Biol. Chem. 2011,
+      286, 31924–31928. [CrossRef] [PubMed]
+47.   Malapaka, R.R.V.; Khoo, S.; Zhang, J.; Choi, J.H.; Zhou, X.E.; Xu, Y.; Gong, Y.; Li, J.; Yong, E.-L.; Chalmers, M.J.; et al. Identification
+      and Mechanism of 10-Carbon Fatty Acid as Modulating Ligand of Peroxisome Proliferator-Activated Receptors. J. Biol. Chem.
+      2012, 287, 183–195. [CrossRef]
+48.   Dos Santos, J.C.; Bernardes, A.; Giampietro, L.; Ammazzalorso, A.; De Filippis, B.; Amoroso, R.; Polikarpov, I. Different Binding
+      and Recognition Modes of GL479, a Dual Agonist of Peroxisome Proliferator-Activated Receptor α/γ. J. Struct. Biol. 2015, 191,
+      332–340. [CrossRef] [PubMed]
+49.   Batista, F.A.H.; Trivella, D.B.B.; Bernardes, A.; Gratieri, J.; Oliveira, P.S.L.; Figueira, A.C.M.; Webb, P.; Polikarpov, I. Structural
+      Insights into Human Peroxisome Proliferator Activated Receptor Delta (PPAR-Delta) Selective Ligand Binding. PLoS ONE 2012,
+      7. [CrossRef] [PubMed]
+50.   Hanwell, M.D.; Curtis, D.E.; Lonie, D.C.; Vandermeersch, T.; Zurek, E.; Hutchison, G.R. Avogadro: An Advanced Semantic
+      Chemical Editor, Visualization, and Analysis Platform. J. Cheminform. 2012, 4, 17. [CrossRef]
+51.   Webster, G.M.; Venners, S.A.; Mattman, A.; Martin, J.W. Associations between Perfluoroalkyl Acids (PFASs) and Maternal Thyroid
+      Hormones in Early Pregnancy: A Population-Based Cohort Study. Environ. Res. 2014, 133, 338–347. [CrossRef] [PubMed]
+52.   Schröter-Kermani, C.; Müller, J.; Jürling, H.; Conrad, A.; Schulte, C. Retrospective Monitoring of Perfluorocarboxylates and
+      Perfluorosulfonates in Human Plasma Archived by the German Environmental Specimen Bank. Int. J. Hyg. Environ. Health 2013,
+      216, 633–640. [CrossRef] [PubMed]
+53.   Yeung, L.W.Y.; Robinson, S.J.; Koschorreck, J.; Mabury, S.A. Part I. A Temporal Study of PFCAs and Their Precursors in Human
+      Plasma from Two German Cities 1982–2009. Environ. Sci. Technol. 2013, 47, 3865–3874. [CrossRef]
+54.   Yeung, L.W.Y.; Robinson, S.J.; Koschorreck, J.; Mabury, S.A. Part II. A Temporal Study of PFOS and Its Precursors in Human
+      Plasma from Two German Cities in 1982–2009. Environ. Sci. Technol. 2013, 47, 3875–3882. [CrossRef]
+55.   So, M.K.; Yamashita, N.; Taniyasu, S.; Jiang, Q.; Giesy, J.P.; Chen, K.; Lam, P.K.S. Health Risks in Infants Associated with Exposure
+      to Perfluorinated Compounds in Human Breast Milk from Zhoushan, China. Environ. Sci. Technol. 2006, 40, 2924–2929. [CrossRef]
+      [PubMed]
+Toxics 2021, 9, 45                                                                                                                   15 of 15
+
+
+
+
+56.   Joensen, U.N.; Bossi, R.; Leffers, H.; Jensen, A.A.; Skakkebaek, N.E.; Jørgensen, N. Do Perfluoroalkyl Compounds Impair Human
+      Semen Quality? Environ. Health Perspect. 2009, 117, 923–927. [CrossRef] [PubMed]
+57.   Calafat, A.M.; Kuklenyik, Z.; Caudill, S.P.; Reidy, J.A.; Needham, L.L. Perfluorochemicals in Pooled Serum Samples from United
+      States Residents in 2001 and 2002. Environ. Sci. Technol. 2006, 40, 2128–2134. [CrossRef]
+58.   Fromme, H.; Wöckner, M.; Roscher, E.; Völkel, W. ADONA and Perfluoroalkylated Substances in Plasma Samples of German
+      Blood Donors Living in South Germany. Int. J. Hyg. Environ. Health 2017, 220, 455–460. [CrossRef]
+59.   Steenland, K.; Tinker, S.; Frisbee, S.; Ducatman, A.; Vaccarino, V. Association of Perfluorooctanoic Acid and Perfluorooctane
+      Sulfonate with Serum Lipids among Adults Living near a Chemical Plant. Am. J. Epidemiol. 2009, 170, 1268–1278. [CrossRef]
+60.   Weiss, O.; Wiesmüller, G.A.; Bunte, A.; Göen, T.; Schmidt, C.K.; Wilhelm, M.; Hölzer, J. Perfluorinated Compounds in the Vicinity
+      of a Fire Training Area–Human Biomonitoring among 10 Persons Drinking Water from Contaminated Private Wells in Cologne,
+      Germany. Int. J. Hyg. Environ. Health 2012, 215, 212–215. [CrossRef]
+61.   Allred, B.M.; Lang, J.R.; Barlaz, M.A.; Field, J.A. Physical and Biological Release of Poly- and Perfluoroalkyl Substances (PFASs)
+      from Municipal Solid Waste in Anaerobic Model Landfill Reactors. Environ. Sci. Technol. 2015, 49, 7648–7656. [CrossRef] [PubMed]
+62.   Dhein, S.; Mohr, F.W.; Delmar, M. (Eds.) Practical Methods in Cardiovascular Research; Springer: Berlin/Heidelberg, Germany, 2005;
+      ISBN 978-3-540-40763-8.
+63.   Reddick, L.E.; Vaughn, M.D.; Wright, S.J.; Campbell, I.M.; Bruce, B.D. In vitro Comparative Kinetic Analysis of the Chloroplast
+      Toc GTPases. J. Biol. Chem. 2007, 282, 11410–11426. [CrossRef]
+64.   Motulsky, H.J.; Neubig, R.R. Analyzing Binding Data. Curr. Protoc. Neurosci. 2018, 52, 7.5.1–7.5.65. [CrossRef]
+65.   D’Agostino, V.G.; Adami, V.; Provenzani, A. A Novel High Throughput Biochemical Assay to Evaluate the HuR Protein-RNA
+      Complex Formation. PLoS ONE 2013, 8, e72426. [CrossRef]
+66.   Schreiber, G.; Keating, A.E. Protein Binding Specificity versus Promiscuity. Curr. Opin. Struct. Biol. 2011, 21, 50–61. [CrossRef]
+      [PubMed]
+67.   Pollard, T.D. A Guide to Simple and Informative Binding Assays. Mol. Biol. Cell 2010, 21, 4061–4067. [CrossRef] [PubMed]
+68.   Kim, S.-K.; Lee, K.T.; Kang, C.S.; Tao, L.; Kannan, K.; Kim, K.-R.; Kim, C.-K.; Lee, J.S.; Park, P.S.; Yoo, Y.W.; et al. Distribution
+      of Perfluorochemicals between Sera and Milk from the Same Mothers and Implications for Prenatal and Postnatal Exposures.
+      Environ. Pollut. 2011, 159, 169–174. [CrossRef] [PubMed]
+69.   Darrow, L.A.; Stein, C.R.; Steenland, K. Serum Perfluorooctanoic Acid and Perfluorooctane Sulfonate Concentrations in Relation
+      to Birth Outcomes in the Mid-Ohio Valley, 2005–2010. Environ. Health Perspect. 2013, 121, 1207–1213. [CrossRef] [PubMed]
+70.   Frisbee, S.J.; Shankar, A.; Knox, S.S.; Steenland, K.; Savitz, D.A.; Fletcher, T.; Ducatman, A.M. Perfluorooctanoic Acid, Perfluorooc-
+      tanesulfonate, and Serum Lipids in Children and Adolescents: Results from the C8 Health Project. Arch. Pediatr. Adolesc. Med.
+      2010, 164, 860–869. [CrossRef] [PubMed]
+71.   Yeung, L.W.Y.; Guruge, K.S.; Taniyasu, S.; Yamashita, N.; Angus, P.W.; Herath, C.B. Profiles of Perfluoroalkyl Substances in the
+      Liver and Serum of Patients with Liver Cancer and Cirrhosis in Australia. Ecotoxicol. Environ. Saf. 2013, 96, 139–146. [CrossRef]
+      [PubMed]
+72.   Worley, R.R.; Moore, S.M.; Tierney, B.C.; Ye, X.; Calafat, A.M.; Campbell, S.; Woudneh, M.B.; Fisher, J. Per- and Polyfluoroalkyl
+      Substances in Human Serum and Urine Samples from a Residentially Exposed Community. Environ. Int. 2017, 106, 135–143.
+      [CrossRef]
+73.   Weihe, P.; Kato, K.; Calafat, A.M.; Nielsen, F.; Wanigatunga, A.A.; Needham, L.L.; Grandjean, P. Serum Concentrations of
+      Polyfluoroalkyl Compounds in Faroese Whale Meat Consumers. Environ. Sci. Technol. 2008, 42, 6291–6295. [CrossRef] [PubMed]
+74.   Riu, A.; Grimaldi, M.; Le Maire, A.; Bey, G.; Phillips, K.; Boulahtouf, A.; Perdu, E.; Zalko, D.; Bourguet, W.; Balaguer, P.
+      Peroxisome Proliferator-Activated Receptor γ Is a Target for Halogenated Analogs of Bisphenol A. Environ. Health Perspect. 2011,
+      119, 1227–1232. [CrossRef]
+75.   Hall, M.D.; Yasgar, A.; Peryea, T.; Braisted, J.C.; Jadhav, A.; Simeonov, A.; Coussens, N.P. Fluorescence Polarization Assays in
+      High-Throughput Screening and Drug Discovery: A Review. Methods Appl. Fluoresc. 2016, 4, 022001. [CrossRef]
+76.   Sheng, N.; Cui, R.; Wang, J.; Guo, Y.; Wang, J.; Dai, J. Cytotoxicity of Novel Fluorinated Alternatives to Long-Chain Perfluoroalkyl
+      Substances to Human Liver Cell Line and Their Binding Capacity to Human Liver Fatty Acid Binding Protein. Arch. Toxicol. 2018,
+      92, 359–369. [CrossRef] [PubMed]
+77.   Li, C.-H.; Ren, X.-M.; Cao, L.-Y.; Qin, W.-P.; Guo, L.-H. Investigation of Binding and Activity of Perfluoroalkyl Substances to the
+      Human Peroxisome Proliferator-Activated Receptor β/δ. Environ. Sci. Processes Impacts 2019, 21, 1908–1914. [CrossRef] [PubMed]
+78.   Lau, C.; Anitole, K.; Hodes, C.; Lai, D.; Pfahles-Hutchens, A.; Seed, J. Perfluoroalkyl Acids: A Review of Monitoring and
+      Toxicological Findings. Toxicol. Sci. 2007, 99, 366–394. [CrossRef] [PubMed]
+79.   Lee, S.S.; Pineau, T.; Drago, J.; Lee, E.J.; Owens, J.W.; Kroetz, D.L.; Fernandez-Salguero, P.M.; Westphal, H.; Gonzalez, F.J. Targeted
+      Disruption of the Alpha Isoform of the Peroxisome Proliferator-Activated Receptor Gene in Mice Results in Abolishment of the
+      Pleiotropic Effects of Peroxisome Proliferators. Mol. Cell. Biol. 1995, 15, 3012–3022. [CrossRef] [PubMed]
+

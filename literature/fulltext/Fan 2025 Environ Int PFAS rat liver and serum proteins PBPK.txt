@@ -1,0 +1,754 @@
+                                                                     Environment International 201 (2025) 109591
+
+
+                                                                       Contents lists available at ScienceDirect
+
+
+                                                                  Environment International
+                                                             journal homepage: www.elsevier.com/locate/envint
+
+
+Full length article
+
+Binding of per- and polyfluoroalkyl substances with liver and serum
+proteins in rats: implications for physiologically based
+pharmacokinetic modelling
+Xiarui Fan a , Xiaomin Li a , Tong Li b, Bing Shao c , Shan Niu d , Wenhong Fan a , Qi Wang e,
+Lv Zhong f, Xiangrui Wang a , Ziwei Wang a , Fujun Ma g , Guomao Zheng f, Hui Peng h,i,j ,
+Lili Chen k,*, Zhaomin Dong k,a,**
+a
+  School of Materials Science and Engineering, Beihang University, Beijing 100191, China
+b
+  Institute of Quality Standards and Testing Technology for Agro-Products, Chinese Academy of Agricultural Sciences, Beijing 100081, China
+c
+  Beijing Key Laboratory of Detection Technology for Animal-Derived Food Safety, College of Veterinary Medicine, China Agricultural University, Beijing 100193, China
+d
+  Advanced Interdisciplinary Institute of Environment and Ecology, Guangdong Provincial Key Laboratory of Wastewater Information Analysis and Early Warning, Beijing
+Normal University, Zhuhai 519087, China
+e
+  Beijing Key Lab for Source Control Technology of Water Pollution, College of Environmental Sciences & Engineering, Beijing Forestry University, Beijing 100083, China
+f
+  Southern Univ Sci & Technol, Sch Environm Sci & Engn, Shenzhen 518055, China
+g
+  State Key Laboratory of Environmental Criteria and Risk Assessment, Chinese Research Academy of Environmental Sciences, Beijing 100012, China
+h
+  Department of Chemistry, University of Toronto, Toronto, ON M5S 3H6, Canada
+i
+  School of the Environment, University of Toronto, Toronto, ON M5S 3H6, Canada
+j
+  Structural Genomics Consortium, Toronto, ON M5S 3H6, Canada
+k
+  School of Public Health, Southeast University, Nanjing, China
+
+
+
+
+A R T I C L E I N F O                                        A B S T R A C T
+
+Handling Editor: Adrian Covaci                               Understanding the binding between per- and polyfluoroalkyl substances (PFAS) and proteins is essential for
+                                                             elucidating their toxicokinetics and tissue distribution. Here, we quantified the binding affinities of 14 PFAS to
+Keywords:                                                    rat liver fatty acid-binding protein (rL-FABP) and rat serum albumin (RSA). Results showed that PFAS exhibit
+PFAS                                                         strong binding affinities (Ka) to the rL-FABP (103 ~ 105 M− 1), particularly among medium- to long-chain per­
+Protein binding
+                                                             fluorinated carboxylic acids (PFCAs). The binding affinity of PFAS to RSA ranged from approximately 104 to 105
+PBPK model
+                                                             M− 1, with 1 to 4 binding sites. Molecular docking results supported that PFAS binding to proteins is an
+Liver-blood partition
+Toxicokinetics                                               exothermic process driven by van der Waals forces, hydrogen bonding, and electrostatic interactions. Addi­
+                                                             tionally, long-chain PFCAs were shown to adopt a “U”-shaped conformation within the ligand-binding cavities of
+                                                             rL-FABP and RSA. The newly developed physiologically based pharmacokinetic model using measured binding
+                                                             data demonstrates a substantial improvement in the goodness of fit to experimental observations, reducing the
+                                                             prediction error by 20 %~216 %. Finally, we found that the PFAS liver-blood partition could be mainly
+                                                             explained by the binding affinity ratios of PFAS to liver and blood proteins, which could be further extrapolated
+                                                             from rats to humans, providing useful insights to understand the tissue distribution of PFAS.
+
+
+
+
+1. Introduction                                                                                     et al., 2022; Hopkins et al., 2023; Li et al., 2024). In biological systems,
+                                                                                                    their amphiphilic nature drives associated toxicokinetics (such as ab­
+   Per- and polyfluoroalkyl substances (PFAS) are synthetic organic                                 sorption, distribution) (Jia et al., 2022; Smeltz et al., 2023; Vujic et al.,
+compounds that vary from one fully fluorinated carbon to three con­                                 2024), and both free and protein-bound PFAS are widely distributed
+nected carbons, each with two or more fluorine bonds, known for their                               throughout the body via systemic circulation (Ryu et al., 2024). In
+persistence, bioaccumulation and toxicity (Evich et al., 2022; Hammel                               particular, these compounds are able to cross critical biological barriers,
+
+
+
+    * Corresponding author at: School of Public Health, Southeast University, Nanjing, China.
+    ** Corresponding author at: School of Materials Science and Engineering, Beihang University, Beijing 100191, China
+      E-mail addresses: chenlili_2408@seu.edu.cn (L. Chen), dongzm@seu.edu.cn, dongzm@buaa.edu.cn (Z. Dong).
+
+https://doi.org/10.1016/j.envint.2025.109591
+Received 17 December 2024; Received in revised form 8 May 2025; Accepted 4 June 2025
+Available online 6 June 2025
+0160-4120/© 2025 The Author(s). Published by Elsevier Ltd. This is an open access article under the CC BY-NC license (http://creativecommons.org/licenses/by-
+nc/4.0/).
+X. Fan et al.                                                                                                            Environment International 201 (2025) 109591
+
+
+including the placental and blood–brain barriers, and to compete with               in rats remain critically underexplored, particularly binding stoichi­
+endogenous molecules within tissues (Ebert et al., 2020). Understanding             ometry, and their quantitative linkages to tissue-specific partitioning. To
+the mechanisms of PFAS toxicokinetics is essential for assessing their              investigate whether the binding of PFAS to proteins influences their
+toxicity and health implications.                                                   pharmacokinetics, organ distribution patterns, and interspecies varia­
+    The toxicokinetics of PFAS in biological systems is governed by a               tions in biological systems, we conducted the following exploration:
+complex array of cellular and molecular mechanisms, including protein               firstly, this study investigated the binding affinities of 14 PFAS to rL-
+binding, polar lipids, transmembrane transport, nuclear receptor in­                FABP and RSA through a series of in vitro experiments and computa­
+teractions, and hormonal regulation (Chen et al., 2023; Søderstrøm                  tional modeling. Secondly, the results were then utilized to develop a
+et al., 2022; Zhao et al., 2023). Of these, protein binding is one of the           physiologically based pharmacokinetic (PBPK) model of PFAS for male
+important processes (Fischer et al., 2024; Jia et al. 2022; Ryu et al. 2024;        rats to understand the toxicokinetics of PFAS. In addition, we explored
+Zhao et al. 2023), with binding proteins such as liver fatty acid-binding           the association between protein binding of PFAS and liver-blood parti­
+protein (L-FABP) and serum albumin playing integral roles in the                    tion. These findings may highlight the critical role of rL-FABP and RSA
+transport and storage of PFAS within the body (Zhao et al. 2023). L-                in modulating the toxicokinetics and tissue distribution of PFAS, offer­
+FABP, highly expressed in the liver, has a strong affinity for long-chain           ing some new insights in understanding the bioaccumulation of PFAS in
+fatty acids, making it a significant determinant of PFAS accumulation in            biological systems.
+hepatic tissue, due to the structural similarities between PFAS and fatty
+acids (Han et al., 2021; Zhang et al., 2013). Meanwhile, serum albumin,             2. Materials and methods
+the predominant protein in plasma in mammals, modulates the distri­
+bution and transport of PFAS in the bloodstream through its binding                     This study employed integrated experimental and computational
+(Fischer et al. 2024). Proteins in the liver and blood have been shown to           approaches to determine the binding affinities and stoichiometry of
+compete for binding with PFAS compounds, potentially altering their                 PFAS with rat liver fatty acid-binding protein (rL-FABP) and rat serum
+toxicokinetics and tissue distribution, as well as toxicity (Fischer et al.         albumin (RSA), refined a PBPK model incorporating protein–ligand
+2024; Jia et al. 2022). While previous research that has reported the               binding and active transport mechanisms, and analyzed the mechanistic
+PFAS binding with proteins has predominantly focused on human pro­                  association between PFAS liver-to-blood partition coefficients and pro­
+teins, only two studies concerning PFAS binding to rat proteins (Han                tein interaction dynamics (Fig. S1).
+et al., 2003; Woodcroft et al., 2010), limiting our understanding in the
+toxicokinetics across species. Among the two studies, one study has                 2.1. Quantification of PFAS-Protein binding affinity constants
+quantified the binding affinity of rat L-FABP (rL-FABP) for a couple of
+perfluoroalkyl carboxylic acids (PFCAs), with a particular focus on                     The binding constants of PFAS to rL-FABP were quantified via fluo­
+short-chain PFCAs (Woodcroft et al. 2010). Regarding rat serum albu­                rescence displacement assays, while the interaction parameters between
+min (RSA), there is only one study that measured the binding affinity of            PFAS and RSA were determined using integrated ultrafiltration and
+perfluorooctanoic acid (PFOA) (Han et al. 2003). The shortage in the                isothermal titration calorimetry (ITC) techniques. Molecular docking
+systematic examinations on PFAS binding to protein in rats has con­                 simulations were further employed to validate the experimentally
+strained further toxicokinetic analyses, as well as constrains the                  identified binding sites and energetically characterize the ligand–pro­
+extrapolation of specific toxicological mechanisms, particularly those              tein interaction affinities.
+relevant to human populations (Ryu et al. 2024).
+    In addition, the liver plays a central role in the toxicokinetics of PFAS       2.1.1. Chemicals and proteins
+due to its direct connection to systemic circulation. Understanding the                 The PFAS selected in this study included ten perfluoroalkyl carbox­
+accumulation of PFAS in the liver is critical for elucidating their                 ylic acids (PFCAs) with chain lengths ranging from C4 to C14, three
+behavior in biological systems (Vujic et al. 2024; Zhu et al., 2023b). The          perfluoroalkyl sulfonic acids (PFSAs) with chain lengths ranging from
+liver-blood partition of PFAS is one of the important parameters,                   C4 to C8, and one alternative perfluorinated compound (GenX). Details
+reflecting the equilibrium of pollutant distribution between the liver and          regarding the chemical names are provided in Supplementary Materials
+blood (Baumert et al., 2023; Nielsen et al., 2024). While previous studies          (SM Table S1). Internal standards and native PFAS were purchased from
+have mapped PFAS concentrations across human organs through post­                   Wellington Laboratories (Ontario, Canada), and 1-anilinonaphthalene-
+mortem analyses(Baumert et al. 2023; Pérez et al., 2013), these mea­               8-sulfonic acid (1,8-ANS) was acquired from Thermo Fisher Scientific.
+surements primarily reflect terminal accumulation states rather than                RSA free of saturated fatty acids, was purified through the centrifugation
+dynamic partitioning mechanisms. Physiologically, the liver-blood                   of rat serum, which was purchased from Cusabio Technology LLC. rL-
+partition coefficient of individual PFAS is influenced by the com­                  FABP was expressed in prokaryotic systems and obtained from Novo­
+pound’s chemical properties, its binding affinity to liver and blood                protein Scientific (Shanghai) Inc. The SDS-PAGE results of rL-FABP and
+proteins, liver metabolic activity, and other factors (Baumert et al. 2023;         RSA are shown in Fig. S2.
+Jia et al. 2022; Vujic et al. 2024). However, the mechanisms governing
+the liver-blood partitioning of PFAS remain poorly characterized. Given             2.1.2. Binding affinity of PFAS to rL-FABP
+the strong affinity of PFAS for liver and blood proteins, protein binding               L-FABP is a small molecular protein with a single binding cavity,
+affinity could be the critical influencing factor for determining liver-            where fluorescent probes bind to the active site, exhibiting fluorescence
+blood partition coefficients for PFAS. Crucially, elucidating protein-              properties (Yang et al., 2020; Zhang et al. 2013). This study employed an
+driven liver-blood partitioning dynamics allows interspecies extrapola­             efficient fluorescence displacement method to investigate the binding
+tion of PFAS distribution patterns, generating vital toxicokinetic pa­              affinity of PFAS to recombinant rL-FABP, refer to the method of Yang
+rameters for human health risk assessment. To the best of our                       et al. (2020). The binding affinity of PFAS to rL-FABP was evaluated by
+knowledge, only Jia et al. (2022) has explored a negative correlation               assessing the displacement of the fluorescent probe 1,8-ANS from the
+between the PFAS liver-blood partition coefficient in mice and the                  1,8-ANS-rL-FABP complex. The experiment was conducted in two parts:
+dissociation constants of human proteins. Nonetheless, such association             direct ligand measurement and competitive ligand measurement.
+remains unclear for other species, for example rats studied here.                       For the direct ligand measurement, 1 µL of 1,8-ANS at varying con­
+    Given the strong binding affinities of PFAS with RSA and L-FABP, we             centrations was injected into 100 µL of the rL-FABP buffer system (1
+hypothesize that protein-mediated interactions drive organ-specific                 µM). Fluorescence changes were monitored at an excitation wavelength
+accumulation patterns and interspecies toxicokinetic variations. How­               of 350 nm and an emission range of 420–600 nm to determine the
+ever, systematic investigations into PFAS-protein binding mechanisms                number of binding sites, saturation concentration, and binding affinity
+
+                                                                                2
+X. Fan et al.                                                                                                          Environment International 201 (2025) 109591
+
+
+of 1,8-ANS to rL-FABP. In the competitive ligand measurement, 1 µL of             while rL-FABP encompassed the entire protein molecule. Redocking was
+PFAS solution at different concentrations was added to 100 µL of the 1,8-         performed using the crystal structures of HSA and perfluorooctane sul­
+ANS-rL-FABP complex (with 1,8-ANS at saturation). The decrease in                 fonate (PFOS), following the methodology described by Ng and Hun­
+fluorescence at the same excitation and emission wavelengths were                 gerbuehler (2015). These redocking tests simulated the ability to
+recorded to calculate the binding affinity of PFAS to rL-FABP. Oleic acid         reproduce results from experimental binding studies. For each com­
+(OA) served as a positive control to validate the method’s feasibility, and       pound, ten independent docking runs were executed, with the lowest
+all experiments were conducted in triplicate. Detailed experimental               energy conformation being chosen for further analysis.
+methods are provided in the SM Text S1.
+
+2.1.3. Binding affinity of PFAS to RSA                                            2.2. PBPK modeling of PFAS in male rats
+    Given the larger molecular size of RSA and its multiple drug-binding
+sites, ITC (Wu et al., 2009) and ultrafiltration (Beesoon and Martin                  Following the previously published PBPK model framework (Cheng
+2015) were utilized in this study to determine the binding constants of           and Ng 2017; 2021), we developed a PBPK model for PFOS, per­
+PFAS with RSA. In the ITC experiment, the PFAS solution was incre­                fluorohexane sulfonate (PFHxS) and perfluorooctanoic acid (PFOA). In
+mentally injected into the protein solution at a controlled rate and              contrast to the original model, our approach utilized independently
+temperature, allowing for the measurement of thermodynamic param­                 obtained protein binding data as fixed parameters. The physiological
+eters such as enthalpy changes. The use of Nano-ITC (TA Instruments)              compartments for rats included seven interconnected tissues: blood,
+increased the sensitivity of heat change detection. Both RSA and PFAS             liver, kidneys, intestines, muscle, fat, and the remaining body parts, all
+were dissolved in the same buffer containing 1 % (v/v) Dimethyl sulf­             linked through blood circulation (Fig. 1) (Cheng and Ng 2017; 2021).
+oxide (DMSO) to improve solubility, and all working solutions were                Each tissue was divided into two sub-compartments: interstitial fluid
+properly degassed. The sample cell was loaded with RSA (0.02 mM,                  and tissue. Following oral administration, PFAS were absorbed by the
+effective volume 170 µL), while the injection syringe contained the PFAS          intestinal tissues, entered the bloodstream, and were subsequently
+solution (0.6 mM, effective volume 50 µL). The injection volume is set to         transported to other tissues through cell membranes. Membrane trans­
+1.96 µL, with a 150-second interval between injections. Titration was             port was modeled as a combination of passive diffusion and transporter-
+performed at 37 ◦ C and 350 rpm to ensure equilibrium at each titration           facilitated transport, both of which were essential for cellular uptake. In
+point, involving 25 independent injections per experiment. The initial            the liver and kidneys, membrane protein transport is predominant,
+injection volume (1.96 µL) was excluded from the analysis. All experi­            whereas passive diffusion is more significant in other tissues. The prin­
+ments were conducted in triplicate. Prior to the experiments, pure water          cipal pathways of elimination and metabolism were through the kidneys
+was titrated against itself to verify the stability of the instrument and         and intestines, with renal elimination involving glomerular filtration,
+methodology. The heat of ligand dilution was subtracted in all experi­            renal reabsorption, and renal clearance, while intestinal elimination
+ments. Data analysis was conducted using Nano-analyze software, fitting           mainly occured via fecal excretion.
+the integrated heat signal to the Independent model. The dissociation                 Transporter-facilitated PFAS transport mechanisms were also incor­
+constant (Kd, Ka = K-1  d ), enthalpy change (ΔH), and the number of              porated into our PBPK model. Given the limited data on PFAS and
+binding sites (n) were determined through curve fitting (Lima Cavalcanti          transporter binding, we have included organic anion transporters
+et al., 2023; Moro et al., 2022; Woodcroft et al. 2010).                          (OATs), na/taurocholate co-transporting polypeptide (NTCP), and api­
+    The ultrafiltration method was adapted based on improvements re­              cal sodium-dependent bile salt transporter (ASBT) as representative
+ported by Gao et al., (2019) and Sheng et al., (2016). Briefly, 1 µL of           transporters in our models. These transporters are essential for renal
+PFAS stock solution (0.2–15 mM) was added to 100 µL of RSA solution               tubular excretion, reabsorption, and enterohepatic circulation (Weaver
+(1 µM, dissolved in 0.1 M PBS, pH 7.4) and incubated for 1 h in a 37 ◦ C          et al., 2010; Zhao et al., 2015; Zhao et al., 2017), and had been reported
+circulating water bath. Subsequently, 700 µL of the mixed solution was            to have PFOA, PFOS, and PFHxS transport capabilities. The model was
+transferred to an ultrafiltration centrifuge tube (30 kD, Millipore) and          subsequently evaluated by comparing model predictions with multiple
+centrifuged at 37 ◦ C at 1500 g for 30 min (Thermo Fisher Scientific,             datasets from rat oral and IV experiments, with data sourced from the
+USA) to obtain the filtrate. To evaluate the adsorption effect of the ul­         study by Kemper and Jepson (2003), Huang et al., (2019), Kim et al.,
+trafiltration membrane on PFAS, 700 µL of PFAS solution (2 µM, without            (2016) and Kim et al., (2018). The model was implemented in R version
+protein) was processed under identical conditions. Each concentration             4.0, and parameter information are provided in the SM Table S3. Briefly,
+was tested in triplicate. The filtrate and the incubated mixture were             the physical parameters and partition parameters were obtained from
+diluted 20- to 1000-fold with methanol, and following the addition of an          previous studies (detailed in SM table S3), the protein binding data was
+internal standard, samples were stored at − 20 ◦ C for subsequent anal­           available from this study, and other parameters were fitted using R
+ysis. The quantification of PFAS was conducted using an ultra-high-               package FME.
+performance liquid chromatography system (Waters, ACQUITY, USA)                       Regarding the model performance, we conducted a comparative
+coupled with a triple quadrupole mass spectrometer (Waters, TQ-S,                 analysis between the PBPK model for PFOA in male rats from prior
+USA), as detailed in the SM Text S2 and Table S2.                                 studies and the root mean square error (RMSE) values derived from our
+                                                                                  current model. Pharmacokinetic parameters calculated from the model
+2.1.4. Molecular docking prediction of PFAS to rL-FABP and RSA                    outputs were then systematically compared with experimentally
+    Furthermore, the docking program AutoDock Vina (v1.1.2) was                   observed reference values to assess whether the model’s predictive
+employed to predict the binding between 14 PFAS and both rL-FABP and              performance aligned with empirical data. It should be noted that the
+RSA. The molecular structures of rL-FABP and RSA proteins were                    primary objective of our PBPK model was to compare model perfor­
+retrieved from the AlphaFold Protein Structure Database, while the 3D             mance with and without protein binding data. Therefore, additional
+structures of PFAS compounds were acquired from PubChem. AutoDock                 validation datasets were not utilized.
+Vina, AutoDock Tools 1.5.6, PyMOL(v2.4), and other tools were used to
+optimize the small molecules and proteins. Briefly, the AutoDock Tools
+were used to define the binding site boundaries for each protein struc­           2.3. Statistical analysis
+ture individually. The output files were employed for docking with
+AutoDock Vina. The protein–ligand complexes were visualized and                       Regression analyses and graphical representations were performed
+analyzed using PyMOL and Discovery Studio 2021. For RSA, six binding              using R version 4.0 and Origin 2021, with p < 0.05 considered statisti­
+sites analogous to those in human serum albumin (HSA) were included,              cally significant.
+
+                                                                              3
+X. Fan et al.                                                                                                               Environment International 201 (2025) 109591
+
+
+
+
+Fig. 1. The schematic representation of the rat PBPK model, includes seven tissue compartments: blood (B), liver (L), gut (G), muscle (M), adipose tissue (A), kidney
+(K), and the remaining body tissues (R). All compartments, except for blood, are divided into vascular (e.g., LB for liver) and tissue compartments. The tissue
+compartments are further subdivided into interstitial fluid (e.g., LF for liver interstitial fluid) and cellular tissue (e.g., LT for liver cellular tissue).
+
+
+3. Results                                                                            Ebert et al. (2020).
+
+3.1. Assessment of PFAS binding affinity with rL-FABP                                 3.2. The PFAS binding affinity with RSA
+
+    This study has systematically investigated the binding affinities of 14               We employed ITC and ultrafiltration to evaluate the binding affinity
+PFAS to L-FABP in rats (Table 1 and Fig. S3), with Kd values ranging                  and binding sites of PFAS to the macromolecular protein RSA. ITC
+from 5.36 to 132.16 µM (corresponds to Ka from 103 to 105 M− 1),                      analysis showed that the Kd of the tested PFAS ranged from 31.18 to
+revealing a single binding site. Among the PFAS tested, medium- and                   303.08 µM (corresponds to Ka from 104 to 105 M− 1), with approximately
+long-chain PFCAs (C > 6) exhibited higher binding affinities compared                 1–4 binding sites. Among these, PFHxS exhibited the strongest binding
+to short-chain PFCAs (C ≤ 6), with perfluorodecanoic acid (PFDA, C10)                 with RSA (Kd = 26.87 μM, n = 2.15), and PFOA (Kd = 26.77 μM, n =
+showing the strongest affinity (Kd = 5.36 μM). The binding constant of                3.11) and its alternative GenX (Kd = 17.87 μM, n = 2.47) demonstrated
+perfluorobutanoic acid (PFBA, C4) to rL-FABP was undetectable,                        slightly lower binding affinities compared to PFHxS (Fig. S4). The af­
+possibly due to the fluorescence method’s insensitivity or PFBA’s low                 finity of PFCAs for RSA was slightly higher than that of PFSAs, with
+binding affinity. This finding is in agreement with the findings of Yang              medium- and long-chain PFCAs showing stronger affinity compared to
+et al.(2020) on human L-FABP protein. Of the 3 PFAS regulated under                   short-chain PFAS, consistent with results observed for rL-FABP
+the Stockholm Convention, PFOA displayed the highest affinity for rL-                 (Table 1).
+FABP (Kd = 12.30 μM), followed by PFHxS (Kd = 13.02 μM) and PFOS                          Compared to the ITC approach, ultrafiltration indicated relatively
+(Kd = 20.73 μM). Compared to PFSAs, PFCAs demonstrated a stronger                     higher binding affinities and a greater number of binding sites for PFAS
+affinity for rL-FABP, particularly for medium- and long-chain PFCAs.                  and RSA, with affinities around 104 M− 1 and 3–5 binding sites. Notably,
+The dissociation constants (Kd) for the target PFAS binding to rL-FABP                PFBS exhibited particularly strong affinity for RSA, with a Kd of
+displayed a “U”-shaped trend relative to the number of carbon atoms                   approximately 2.78 μM (Table 1). The only reported measurement of
+(Table 1, Fig. 2a). Our results showed that the binding affinities of target          PFOA’s binding affinity to RSA (Kd = 360 μM, n = 7.8) (Han et al. 2003)
+short-chain PFAS to rL-FABP (Kd = 6.55 ~ 132.16 μM) were stronger                     is lower than the values obtained in this study (Kd = 26.77 μM, n =
+than previously reported values (Kd = 6.07 ~ 608.40 μM) (Woodcroft                    3.11), but it indicates a greater number of binding sites. Our study
+et al. 2010).                                                                         demonstrated that the binding affinity of PFAS to RSA was stronger than
+    Additionally, this study is the first to report the binding affinities of         that to HSA, as previously reported by Gao et al. (2019) based on human
+long-chain PFCAs, PFSAs, and GenX substances to the rL-FABP protein.                  protein, which identified a single binding site using equilibrium dialysis.
+On another aspect, the affinities of PFAS to rL-FABP were comparable to                   The binding affinities and site numbers determined by ITC were
+those measured for PFAS binding to human L-FABP using the same                        lower than those derived from ultrafiltration, likely due to PFAS
+method (Zhang et al. 2013), though slightly lower than those obtained                 adsorption on the regenerated cellulose membrane within the ultrafil­
+through equilibrium dialysis (Gao et al. 2019) (Table 1, Fig. 2a).                    tration tubes (Liu et al., 2019). Overall, most of the binding affinities of
+Furthermore, the logarithm of the binding constants (Ka, 1/Kd) for                    tested short-chain PFAS to RSA yielded a good fit between using the
+PFCAs tested in our study showed a strong correlation with both                       ultrafiltration and ITC method, while long-chain PFCAs showed opposite
+experimental membrane permeability (log Kmem/w, R2 = 0.94, Fig. 2b)                   appearance (Fig. S5). The reason for the poor fits for long-chain PFCAs
+and predicted membrane permeability (R2 = 0.72, Fig. 2c)) reported by                 could be explained by excessive adsorption. Our results revealed that the
+
+                                                                                  4
+X. Fan et al.                                                                                                                             Environment International 201 (2025) 109591
+
+
+Table 1
+The summary on measured and reported dissociation constants (Kd, μM) of PFAS binding to FABP and serum proteins in different species.
+                rL-FABP                          hL-FABP                      RSA                                                                                   HSA           BSA
+
+                Kd-FABPa           Kd-FABP   b
+                                                 Kd-FABP   c
+                                                                Kd-FABP   d
+                                                                                  Ultrafiltration Method       ITC                            n   e
+                                                                                                                                                          Kd-RSAe       Kd-HSAd       Kd-
+                                                                                                                                                                                            f
+                                                                                                                                                                                      BSA
+                                                                                  n                Kd-RSA      n          Kd-RSA
+
+                (this study)   (previous         (previous studies)           (this study)                                                (previous studies)        (previous studies)
+                               studies)
+
+  Perfluorocarboxylic acids
+  PFBA       − -            ​                    ND             879 ±         4.46 ±           16.21 ±         2.84 ±     168.40 ±        ​           ​             419 ±         ​
+                                                                51            0.21             2.95            0.35       33.08                                     37
+  PFPeA         27.57 ±        608.40 ±          ND             685 ±         3.92 ±           13.9 ±          3.33 ±     303.08 ±        ​           ​             286 ±         ​
+                3.68           16.06                            23            0.16             1.86            0.21       111.38                                    17
+  PFHxA         132.16 ±       261.70 ± 7.00     ND             443 ±         3.36 ±           31.36 ±         1.93 ±     166.70 ±        ​           ​             195 ±         ​
+                6.16                                            25            0.14             2.86            0.65       33.24                                     14
+  PFHpA         44.54 ±        61.17 ± 1.95      336.0 ±        358 ±         3.02 ±           10.15 ±         2.79 ±     79.96 ± 8.83    ​           ​             172 ±         ​
+                1.12                             40.3           16            0.62             1.37            0.15                                                 23
+  PFOA          12.30 ±        13.14 ± 0.27      50.4 ± 4.0     197 ±         4.24 ±           26.77 ±         3.11 ±     94.54 ± 8.16    7.8 ±       360 ±         115 ±         2.65
+                3.60           23.81 ± 0.89                     13            0.52             2.77            0.33                       1.5         80            16
+                               (n = 2)
+  PFNA          6.55 ± 0.19    6.07 ± 2.70       16.2 ± 0.6     90 ± 8        4.21 ±           13.27 ±         1.06 ±     31.18 ± 2.45    ​           ​             73 ± 21       0.23
+                               9.84 ± 3.95                                    0.49             1.20            0.05
+                               (n = 2)
+  PFDA          5.36 ± 0.73    ​                 12.9 ± 0.6     77 ± 14       3.70 ±           10.33 ±         1.91 ±     161.20 ± 9.41   ​           ​             65 ± 8        0.16
+                                                                              0.32             0.85            0.49
+  PFUnDA        6.95 ± 0.19    ​                 10.6 ± 1.2     54 ± 5        ​                ​               1.42 ±     59.18 ± 9.79    ​           ​             79 ± 13       ​
+                                                                                                               0.3
+  PFDoDA        13.46 ±        ​                 12.3 ± 0.7     95 ± 11       ​                ​               1.17 ±     32.78 ± 21.41   ​           ​             103 ±         ​
+                4.18                                                                                           0.95                                                 12
+  PFTeDA        6.32 ± 1.09    ​                 60.5 ± 6.7     317 ±         ​                ​               1.02 ±     195.30 ± 8.54   ​           ​             265 ±         ​
+                                                                20                                             0.09                                                 21
+  Perfluorosulfonic acid
+  PFBS       110.82 ±          ​                 1034 ±         436 ±         3.68 ±           2.78 ±          1.59 ±     176.30 ±        ​           ​             169 ±         10.75
+             4.80                                110            33            0.14             0.58            0.59       39.11                                     15
+  PFHxS      13.02 ±           ​                 85.7 ±         210 ±         4.24 ±           78.87 ±         2.15 ±     26.87 ± 1.18    ​           ​             79 ± 12       1.54
+             0.11                                11.8           14            0.53             2.74            0.18
+  PFOS       20.73 ±           ​                 18.5 ± 0.6     81 ± 7        4.61 ±           13.77 ±         2.79 ±     129.80 ±        ​           ​             38 ± 5        0.56
+             0.90                                                             0.32             2.65            0.40       17.54
+
+
+  Perfluorinated alternatives
+  GenX       108.23 ±         ​                  − -            − -           3.26 ±           17.87 ±         2.47 ±     67.57 ± 20.34   ​           ​             ​             15.38
+             6.47                                                             0.23             5.2             0.4
+  a
+    In this study, Kd for PFAS binding to rL-FABP expressed in prokaryotic cells was determined using the 1.8-ANS fluorescence displacement method.
+  b
+    Woodcroft et al.(Woodcroft et al. 2010) measured the Kd for PFAS binding to rL-FABP expressed in Escherichia coli (E. coli) using the 1.8-ANS fluorescence
+displacement method.
+  c
+    Zhang et al.(Zhang et al. 2013) determined the Kd for PFAS binding to hL-FABP expressed in E. coli using the nitrobenzoxadiazole-labeled lauric acid (NBD-lauric
+acid) fluorescence displacement method.
+  d
+    Gao et al,(Gao et al. 2019) calculated the Kd for PFAS binding to hL-FABP expressed in E. coli and commercially sourced human serum albumin using equilibrium
+dialysis.
+  e
+    Han et al.(Han et al. 2003) determined the Kd for PFAS binding to rat plasma proteins using size-exclusion chromatography (SEC) and 19F nuclear magnetic
+resonance (NMR).
+  f
+    Alesio et al.(Alesio et al. 2022) calculated the Kd for PFAS binding to bovine serum albumin (BSA) using equilibrium dialysis.
+
+
+ultrafiltration tubes can adsorb 20–95 % of PFAS at lower concentra­                                 S9–S11).
+tions (2 μM), with adsorption loss being significantly correlated with log                              All tested PFAS were observed to bind within the fatty acid-binding
+Kow (as predicted by EPI) (p < 0.001) (Fig. S5). Hence, considering the                              cavity of rL-FABP, with some also interacting with a secondary hydro­
+removed membrane adsorption interference and lower background                                        phobic site through hydrophobic interactions. For medium- and short-
+noise associated with the ITC method, ITC-derived results were used in                               chain PFCAs (chain length < 8), the charged head groups interact
+subsequent analysis.                                                                                 with methionine (Met), valine (Val), and threonine (Thr) residues upon
+                                                                                                     entering the rL-FABP cavity, while the hydrophobic tails contact
+                                                                                                     nonpolar residues within the cavity (Table S4). For short-chain PFCAs,
+3.3. Molecular docking prediction of PFAS binding to proteins                                        the carboxylate tail fully extends into the cavity, maximizing hydro­
+                                                                                                     phobic interactions with surrounding amino acid residues. However,
+    To elucidate the binding conformation and binding energy (ΔG)                                    when the carbon chain exceeds nine, the carboxylate tail must bend to fit
+between the tested PFAS and both rL-FABP & RSA, molecular docking                                    within the cavity, and these longer chains do not enter the secondary
+simulations were further employed to model the ligand–protein com­                                   hydrophobic binding region. For PFCAs with chain lengths > 9, the
+plexes. The results demonstrated that all tested PFAS spontaneously                                  charged head group and the mid- and tail-sections of the molecule form
+bind to both rL-FABP and RSA (ΔG < 0), indicating favorable                                          hydrogen bonds with amino acid residues, leading to a U-shaped
+exothermic processes, potentially driven by increased entropy due to                                 conformation as it enters the cavity (Figs. 3, 4, and S6, S7).
+desolvation of the hydrophobic fluorinated tails. Notably, several long-                                Molecular docking results demonstrated that PFHpA had the highest
+chain PFAS (C > 11) adopt a “U”-shaped conformation within the                                       number of binding pockets with RSA, identifying six distinct docking
+ligand-binding cavities of both rL-FABP and RSA (Figs. 3, 4, S5–S6, and
+
+                                                                                               5
+X. Fan et al.                                                                                                             Environment International 201 (2025) 109591
+
+
+
+
+Fig. 2. The binding capacity of tested PFAS to rL-FABP: (a) the relationship between PFAS binding affinity to rL-FABP and carbon chain length; (b) the correlation
+between PFCAs binding affinity to rL-FABP and the experimentally determined membrane/water partition coefficient (Kmem/w); and (c) the relationship between
+PFCAs binding affinity to rL-FABP and the predicted membrane/water partition coefficient (Kmem/w).
+
+
+sites (Fig. S9). Conversely, PFCAs with C > 11 only bind to RSA within               (Table S6), with the prediction error reduced by 20 %~216 %. The
+the cleft between IIB and IIA in a bent U-shaped conformation, in                    clearance is approximately 24.54 mL/kg/day, aligning closely with the
+reference to the conformation of HSA (Fig. S8, S9). Among the targeted               experimental value of 20.9 ± 3.79 mL/kg/day and providing a more
+PFAS, ten compounds bind in this region, with their polar head groups                accurate estimate than the original PBPK model’s prediction of 69.64
+(carboxyl or sulfonic acids) forming stable hydrogen bonds and polar                 mL/kg/day. Our modeling results show that the shortest half-life for oral
+interactions with ionizable residues, thereby achieving stability. Leucine           exposure to PFOA at 1 mg/kg/day is approximately 4.67 days, closer to
+(Leu), lysine (Lys), and glycine (Gly) play critical roles, as at least one of       the experimental value of 5.76 ± 1.33 days. Predicted half-lives for oral
+these residues is present in the PFAS binding pockets within the cleft               exposure to PFOA at 0.1 mg/kg/day and intravenous exposure at 1 mg/
+between IIB and IIA (Table S5). The polarizability of organic fluorine               kg/day are 7.04 and 7.81 days, respectively, which is also close to the
+enables participation in short hydrogen bond interactions(Hathwar                    experimental values of 8.41 ± 1.56 days and 7.73 ± 0.82 days,
+et al., 2014), facilitating polar interactions between carbon–fluorine               respectively.
+tails and the side chains and backbones of RSA residues (Maso et al.,                    The model also achieves sound fits for PFOS and PFHxS at low to
+2021). Similar to the binding behavior observed with HSA and GenX                    moderate concentrations regarding Cmax, Tmax (time to maximum con­
+(Crisalli et al., 2023), the ether oxygen in GenX is not involved in any             centration), T1/2, and CL. Nonetheless, at high concentrations, the model
+significant side-chain interactions that would notably enhance binding               overestimates the clearance of PFHxS by approximately 3.5-fold
+(Fig. S11).                                                                          compared to the experimental results, potentially due to variations in
+                                                                                     protein uptake rates or binding capacities under high exposure condi­
+                                                                                     tions (Table S6). Overall, in contrast to previous models lacking binding
+3.4. PBPK modeling of PFOA, PFOS and PFHxS
+                                                                                     data, this study quantified the binding affinities and their substitutes to
+                                                                                     RSA and rL-FABP proteins, triggering a better fitness on the tox­
+    Based on the protein data obtained in 3.1 and 3.2, we have estab­
+                                                                                     icokinetics of PFAS.
+lished the PBPK model for PFOA, PFOS and PFHxS, by incorporating
+                                                                                         It should be noted that the primary objective of our PBPK model was
+PFAS with protein binding and transporter data (Fig. 5), and effectively
+                                                                                     to compare model performance with and without protein binding data.
+predicted the concentration of PFAS. Notably, the model demonstrated a
+                                                                                     Therefore, additional validation datasets were not utilized. Also,
+generally superior fit for PFOA when independent protein binding pa­
+                                                                                     numerous existing studies have constructed PBPK models without in­
+rameters reported in our study were used, particularly in the case of oral
+                                                                                     dependent validation due to limited availability of experimental animal
+exposure at 1 mg/kg/day, where RMSE decreased by approximately 38
+                                                                                     data. For instance, the works of Chen et al., (2024), Zhu et al., (2023a)
+%, reducing from 1184.10 to 741.60 (Fig. S12). Specifically, our model
+                                                                                     and Zhu et al., (2025) developed PBPK models based solely on their own
+closely aligns with experimental values for the maximum plasma con­
+                                                                                     experimental results, where model predictions were deemed compliant
+centration (Cmax), half-life (T1/2), and clearance (CL) of PFOA
+
+                                                                                 6
+X. Fan et al.                                                                                                      Environment International 201 (2025) 109591
+
+
+
+
+                                          Fig. 3. Conformational analysis of PFOA and PFOS binding to rL-FABP.
+
+
+with the WHO-recommended model accuracy criteria (i.e., predictions             in biological systems vastly exceed multiple PFAS exposure levels
+within a two-fold margin of error relative to measured values).                 (serum PFAS: 0.1–50 nM vs. albumin: 500–700 μM) (Wallis et al., 2024),
+                                                                                saturation of protein binding sites does not occur. Consequently,
+4. Discussion                                                                   competitive binding between different PFAS congeners was not incor­
+                                                                                porated into our current framework, as their molar ratios (<0.01 %)
+    To the best of our knowledge, this study represents the first               render inter-PFAS competition negligible compared to dominant
+comprehensive investigation of the binding affinities (Ka = 103 ~ 105           endogenous ligand displacement effects.
+M− 1) of 14 PFAS and their substitutes to rL-FABP and RSA. The results
+indicated that most tested PFAS exhibited slightly higher affinities for
+rL-FABP compared to RSA, while RSA possesses a greater number of                4.1. Measurement and computational approaches for PFAS-Protein
+binding sites. Molecular docking was utilized to confirm the binding of         binding
+PFAS with these proteins, identifying specific binding sites, key amino
+acid residues, and involved molecular interactions. Moreover, experi­              In this study, when measuring the binding affinity between the
+mentally determined protein binding and transport parameters were               macromolecular protein RSA and PFAS, the ITC method demonstrated
+utilized to construct permeability-limited PBPK models for male rats,           reduced background interference compared to the ultrafiltration
+accurately predicting the toxicokinetics of PFAS in blood and tissues. It       method, since the ultrafiltration method may be influenced by non-
+is noteworthy that our experimental and molecular docking analyses              specific adsorption of PFAS to the regenerated cellulose membrane.
+specifically quantified the binding constants of individual PFAS-protein.       The selection of appropriate experimental methods for measuring PFAS-
+However, under physiological conditions where protein concentrations            protein binding requires careful consideration of both the protein and
+                                                                                chemical properties. Methods are generally classified into indirect and
+
+                                                                            7
+X. Fan et al.                                                                                                        Environment International 201 (2025) 109591
+
+
+
+
+                                           Fig. 4. Conformational Analysis of PFOA and PFOS binding to RSA.
+
+
+direct approaches. For small proteins such as L-FABP, which are known           sites, direct methods for determining binding constants are preferred
+to have only 1–2 binding sites and produce specific fluorescence effects        (Mishra and Heath 2021; Sheng et al., 2020; Tiburtini et al., 2024).
+when interacting with fluorescent probes, fluorescence-based methods                The ITC method provided comprehensive thermodynamic data,
+can efficiently measure the binding capacity and number of binding sites        including ΔH, Ka, and n. It requires both the protein and small molecule
+(Gao et al. 2019; Woodcroft et al. 2010; Zhang et al. 2013). However, for       ligand to be dissolved in identical solutions, with strict requirements for
+large proteins such as RSA, which possess 4–9 potential drug-binding            ligand solubility and concentration ratios to minimize the impact of
+
+                                                                            8
+X. Fan et al.                                                                                                                     Environment International 201 (2025) 109591
+
+
+
+
+Fig. 5. The pharmacokinetics of PFAS in blood and half-life predictions across varying exposure concentrations: (a), (b) & (c): blood concentration–time profiles of
+PFOA, with data sourced from Kemper et al. (2003)(Kemper and Jepson 2003); (d): blood concentration–time profile of PFOS, using data from Huang et al. (2019)
+(Huang et al. 2019), (e) & (f) blood concentration–time profile of PFOS, utilizing data from Kim et al. (2016)(Kim et al. 2016); (g) & (i): blood concentration–time
+profile of PFHxS sourced from Kim et al. (2016)(Kim et al. 2016), (h): PFHxS data from Kim et al. (2018)(Kim et al. 2018). The gray points represent experimental
+measurements, while the red lines represent the fitted values from this study. (For interpretation of the references to colour in this figure legend, the reader is referred
+to the web version of this article.)
+
+
+background dilution heat. Ultrafiltration, which rapidly separates small                 Table S7, we have summarized the advantages and disadvantages of
+molecule ligands from complexes using a semipermeable membrane,                          these measurement approaches. Discrepancies may arise when deter­
+encounters challenges due to the substantial adsorption of PFAS ligands                  mining the binding affinity between proteins and PFAS using different
+onto the regenerated cellulose membrane. This adsorption mediates                        methodologies, which can be attributed to systematic differences among
+affects the formation of PFAS-protein complexes and is related to the                    the methodologies (Alesio et al., 2022; Li et al., 2021; Peng et al., 2024).
+ligand’s Kow (Fig. S5). For long-chain PFAS, the adsorption rate on the                      AutoDock Vina is a widely recognized computational tool for pre­
+ultrafiltration membrane can exceed 90 % under some scenarios. Simi­                     dicting the conformations and binding energies of PFAS and proteins,
+larly, although equilibrium dialysis is frequently referred to as the “gold              providing detailed insights into the key binding forces and critical amino
+standard,” it is also influenced by the regenerated cellulose membrane,                  acid residues. In our study, discrepancies between the predictions and
+making it suboptimal for measuring PFAS-protein binding. Also, some                      experimental data were observed, suggesting that molecular docking
+other methods, surface plasmon resonance (SPR), X-ray crystallography,                   alone may not fully capture the complexities of PFAS-protein binding.
+and nuclear magnetic resonance (NMR) enable precise determination of                     For most PFAS-RSA docking results, the number of binding sites deter­
+binding constants (Ka) and stoichiometric parameters (n), yet remain                     mined by ITC experiments correlated with those predicted by molecular
+constrained by technical complexity in protein immobilization (SPR),                     docking (p < 0.05); however, discrepancies were also observed. Theo­
+substantial sample requirements (NMR), and prolonged experimental                        retically, the binding affinity, Ka, can be estimated using binding (Ng
+timelines (X-ray crystallography). UV–Vis spectroscopy, microscale                       and Hungerbuehler 2015) energy ΔG (Ka = e− ΔG/RT ), while our findings
+thermophoresis (MST), and dynamic light scattering (DLS) exhibit                         demonstrate discrepancies between the Ka values predicted by molec­
+compromised measurement accuracy due to inherent methodological                          ular docking and those determined experimentally (Table S8). These
+limitations − environmental sensitivity in MST, particle polydispersity                  inconsistencies may arise from the influence of pH, buffer composition,
+interference in DLS, and spectral overlap artifacts in UV–Vis analyses. In               and solubility at different concentrations on PFAS-protein binding under
+
+                                                                                     9
+X. Fan et al.                                                                                                                  Environment International 201 (2025) 109591
+
+
+physiologically relevant conditions.                                                       Similar observations were noted when the association was extended
+                                                                                       to human. A positive correlation was also found when analyzing the
+4.2. Interspecies variations in PFAS binding affinities to L-FABP and                  liver-blood partition coefficients in humans (RL/P, without gender
+serum albumin                                                                          distinction) in relation to the binding affinities of human proteins (Ka
+                                                                                       (hL-FABP)/Ka (HSA), Table 1) for PFAS (R2 = 0.67, Fig. 6(c)). This
+    Understanding the binding affinities of proteins to PFAS across                    finding confirms that the high affinity of PFAS for L-FABP and serum
+different species is essential for elucidating the kinetic disparities be­             albumin results in elevated concentrations in both the liver and blood,
+tween animals and humans. Although rL-FABP and RSA exhibit struc­                      with PFAS competitively binding to both. This finding provides an
+tural similarities with human L-FABP (hL-FABP) and HSA, differences in                 effective and feasible method for estimating the concentration of PFAS
+amino acid sequences, structural conformations, and ligand-binding                     in human liver. For instance, the known blood PFHxS concentration in
+characteristics result in variations in PFAS binding affinities. We                    the Danish population is 0.153 ng/g, the ratio Ka (hL-FABP)/Ka (HSA) =
+compared the binding affinities of tested PFAS for rat proteins in this                0.38, corresponding to an estimated liver concentration of approxi­
+study to those reported for humans and found that most tested PFAS                     mately 0.084 ng/g, which is close to forensic autopsy results of 0.074 ±
+exhibited higher binding affinities to rat proteins compared to human                  0.052 ng/g (Nielsen et al. 2024).
+proteins (Table 1), particularly for L-FABP. Among them, per­                              Jia et al. (2022) reported that the liver-blood partition coefficients in
+fluorotetradecanoic acid (PFTeDA) demonstrated the most significant                    mice, along with the population liver-blood partition coefficients (RL/S)
+difference, exhibiting a binding affinity to rL-FABP that was 9.6 times                estimated from the liver-blood volume ratios of mice and humans, are
+stronger than to hL-FABP (Zhang et al. 2013). Due to the structural                    negatively correlated with the binding affinities of human L-FABP and
+similarities between these proteins, the dissociation constant (Kd) values             HSA (log Kd (hL-FABP µM)/log Kd (HSA µM)). The positive rather than
+for PFAS binding to rL-FABP obtained in our study showed a strong                      negative association found in our study can be attributed to unit con­
+correlation with those measured for hL-FABP using fluorescence (R2 =                   versions. Moreover, our findings extend previous research to rats, and a
+0.97, p < 0.001) or equilibrium dialysis (R2 = 0.55, p < 0.1).                         recent study suggest that rat liver (comparing to mouse) serves as a more
+                                                                                       suitable model for predicting PFAS distribution in human tissues than
+                                                                                       mouse liver (Ryu et al. 2024).
+4.3. The association between PFAS Liver-Blood partition coefficients and
+protein binding
+                                                                                       5. Conclusion
+
+    To investigate the liver-blood partition and PFAS binding to proteins,
+                                                                                           In conclusion, this study measured the binding affinities of 14 PFAS
+we collected liver-blood partition coefficients for both rats and humans
+                                                                                       compounds to rL-FABP and RSA. These values are essential for under­
+(Table S9). In male rats, the liver-blood distribution ratios for PFHxA
+                                                                                       standing PFAS bioaccumulation and serve as key inputs for modeling
+(Dzierlenga et al., 2020), PFBS (Huang et al. 2019), and PFHxS (Olsen
+                                                                                       studies. Utilizing these binding affinities, PBPK model were developed
+et al., 2009) were less than 1, whereas those for PFOA (Dzierlenga et al.
+                                                                                       for various PFAS, achieving precise fitness of their toxicokinetics. The
+2020), PFDA (Dzierlenga et al. 2020), PFOS (Kim et al. 2016), and GenX
+                                                                                       results also reveal that competitive binding of certain PFAS to L-FABP
+(Huang et al. 2019) exceeded 1, with PFDA presenting the highest ratio,
+                                                                                       and serum albumin partially drivers their partition between the liver
+approximately 5.86. In female rats, only PFDA (Dzierlenga et al. 2020)
+                                                                                       and blood in rats, as well as in humans. This study establishes mecha­
+and PFOS (Kim et al. 2016) exhibited liver-blood distribution ratios
+                                                                                       nistic linkages between PFAS-protein binding dynamics and tox­
+greater than 1, with PFHxS (Olsen et al. 2009) showing the lowest ratio,
+                                                                                       icokinetic models, enabling cross-species organ-specific concentration
+around 0.24. This study gathered the liver-blood partitioning (RL/P) of
+                                                                                       predictions. By proposing a QIVIVE (Quantitative In Vitro-to-In Vivo
+PFAS in rats and identified a positive correlation with the Ka (rL-FABP)/
+                                                                                       Extrapolation) workflow that translates binding affinities into tissue-
+Ka (RSA) ratio (Fig. 6(a)&(b)), suggesting a competitive distribution
+                                                                                       specific distribution coefficients, we bridge molecular interaction data
+mechanism of PFAS between the liver and blood. Notably, the correla­
+                                                                                       with organism-level toxicokinetic profiling. These advances provide
+tion between RL/P and Ka (rL-FABP)/Ka (RSA) was weaker in female rats
+                                                                                       critical insights for future investigations into PFAS toxicokinetic mech­
+(R2 = 0.67) compared to male rats (R2 = 0.93). This discrepancy may be
+                                                                                       anisms, offering a predictive framework to refine chemical prioritization
+attributed to sex-based differences in liver-blood partition coefficients in
+                                                                                       strategies in ecological and human health risk assessments.
+rats, potentially influenced by sex-dependent markers in the liver and
+kidneys following PFAS exposure (Roth et al., 2021). The steeper slope
+of the linear correlation observed in male rats compared to female rats
+may be caused by elimination variations.
+
+
+
+
+Fig. 6. The association between binding affinity ratio FABP: RSA proteins and the liver-plasma partition coefficient. (a): male rats (b): female rats RL/P; (c): humans;
+(RSA) with human RL/P for PFAS(Baumert et al. 2023). The red shaded area indicates the 95% confidence and prediction intervals. (For interpretation of the ref­
+erences to colour in this figure legend, the reader is referred to the web version of this article.)
+
+                                                                                  10
+X. Fan et al.                                                                                                                                     Environment International 201 (2025) 109591
+
+
+CRediT authorship contribution statement                                                                 following intravenous or gavage administration. Xenobiotica 50 (6), 722–732.
+                                                                                                         https://doi.org/10.1080/00498254.2019.1683776.
+                                                                                                    Ebert, A., Allendorf, F., Berger, U., Goss, K.-U., Ulrich, N., 2020. Membrane/Water
+   Xiarui Fan: Writing – original draft, Resources, Methodology,                                         Partitioning and permeabilities of perfluoroalkyl acids and four of their alternatives
+Investigation, Formal analysis, Data curation. Xiaomin Li: Methodol­                                     and the effects on toxicokinetic behavior. Environ. Sci. Tech. 54 (8), 5051–5061.
+ogy, Investigation. Tong Li: Resources, Methodology. Bing Shao: Re­                                      https://doi.org/10.1021/acs.est.0c00175.
+                                                                                                    Evich, M.G., Davis, M.J.B., McCord, J.P., Acrey, B., Awkerman, J.A., et al., 2022. Per-
+sources, Methodology. Shan Niu: Writing – review & editing,                                              and polyfluoroalkyl substances in the environment. Science 375 (6580), 512-+.
+Methodology, Investigation. Wenhong Fan: Resources, Methodology.                                         https://doi.org/10.1126/science.abg9065.
+Qi Wang: Methodology, Investigation. Lv Zhong: Methodology. Xian­                                   Fischer, F.C., Ludtke, S., Thackray, C., Pickard, H.M., Haque, F., et al., 2024. Binding of
+                                                                                                         per- and Polyfluoroalkyl substances (PFAS) to serum proteins: implications for
+grui Wang: Methodology, Investigation. Ziwei Wang: Investigation,                                        toxicokinetics in humans. Environ. Sci. Tech. 58 (2), 1055–1063. https://doi.org/
+Data curation. Fujun Ma: Methodology, Investigation, Formal analysis.                                    10.1021/acs.est.3c07415.
+Guomao Zheng: Supervision, Methodology. Hui Peng: Writing – re­                                     Gao, K.e., Zhuang, T., Liu, X., Jianjie, Fu., Zhang, J., et al., 2019. Prenatal exposure to
+                                                                                                         per-and polyfluoroalkyl substances (PFASs) and association between the placental
+view & editing, Supervision, Methodology, Investigation. Lili Chen:                                      transfer efficiencies and dissociation constant of serum proteins–PFAS complexes.
+Software, Conceptualization. Zhaomin Dong: Writing – review &                                            Environ. Sci. Tech. 53 (11), 6529–6538. https://doi.org/10.1021/acs.est.9b00715.
+editing, Methodology, Investigation, Funding acquisition, Formal                                    Hammel, E., Webster, T.F., Gurney, R., Heiger-Bernays, W., 2022. Implications of PFAS
+                                                                                                         definitions using fluorinated pharmaceuticals. iScience 25 (4). https://doi.org/
+analysis.                                                                                                10.1016/j.isci.2022.104020.
+                                                                                                    Han, J., Jesse, Fu., Sun, J., Hall, D.R., Yang, D., et al., 2021. Quantitative chemical
+                                                                                                         proteomics reveals interspecies Variations on binding schemes of L-FABP with
+Declaration of competing interest                                                                        perfluorooctanesulfonate. Environ. Sci. Tech. 55 (13), 9012–9023. https://doi.org/
+                                                                                                         10.1021/acs.est.1c00509.
+                                                                                                    Han, X., Snow, T.A., Kemper, R.A., Jepson, G.W., 2003. Binding of perfluorooctanoic
+    The authors declare that they have no known competing financial
+                                                                                                         acid to rat and human plasma proteins. Chem. Res. Toxicol. 16 (6), 775–781.
+interests or personal relationships that could have appeared to influence                                https://doi.org/10.1021/tx034005w.
+the work reported in this paper.                                                                    Hathwar, V.R., Chopra, D., Piyush Panini, T.N., Row, G., 2014. Revealing the
+                                                                                                         Polarizability of organic fluorine in the trifluoromethyl group: implications in
+                                                                                                         Supramolecular chemistry. Cryst. Growth Des. 14 (11), 5366–5369. https://doi.org/
+Acknowledgements                                                                                         10.1021/cg501240r.
+                                                                                                    Hopkins, K.E., McKinney, M.A., Saini, A., Letcher, R.J., Karouna-Renier, N.K., et al.,
+                                                                                                         2023. Characterizing the movement of per- and Polyfluoroalkyl substances in an
+   The authors would like to acknowledge the financial support by the                                    avian aquatic-Terrestrial food web. Environ. Sci. Tech. 57 (48), 20249–20260.
+National Key Research and Development Program of China                                                   https://doi.org/10.1021/acs.est.3c06944.
+(2023YFC3905204), National Natural Science Foundation of China (No.                                 Huang, M.C., Dzierlenga, A.L., Robinson, V.G., Waidyanatha, S., DeVito, M.J., et al.,
+                                                                                                         2019. Toxicokinetics of perfluorobutane sulfonate (PFBS), perfluorohexane-1-
+42222710; No. 42377431) and Global Environment Facility (CS44-2).
+                                                                                                         sulphonic acid (PFHxS), and perfluorooctane sulfonic acid (PFOS) in male and
+                                                                                                         female hsd:Sprague dawley SD rats after intravenous and gavage administration.
+Appendix A. Supplementary material                                                                       Toxicol. Rep. 6, 645–655. https://doi.org/10.1016/j.toxrep.2019.06.016.
+                                                                                                    Jia, Y., Zhu, Y., Dashan, Xu., Feng, X., Xiaoyong, Yu., et al., 2022. Insights into the
+                                                                                                         competitive mechanisms of per- and Polyfluoroalkyl substances Partition in liver and
+   Supplementary data to this article can be found online at https://doi.                                blood. Environ. Sci. Tech. 56 (10), 6192–6200. https://doi.org/10.1021/acs.
+org/10.1016/j.envint.2025.109591.                                                                        est.1c08493.
+                                                                                                    Kemper R.A., Jepson G.W., 2003. Perfluorooctanoic acid: toxicokinetics in the rat.
+                                                                                                         Project ID: DuPont 7473.
+Data availability                                                                                   Kim, S.-J., Shin, H., Lee, Y.-B., Cho, H.-Y., 2018. Sex-specific risk assessment of PFHxS
+                                                                                                         using a physiologically based pharmacokinetic model. Arch. Toxicol. 92 (3),
+                                                                                                         1113–1131. https://doi.org/10.1007/s00204-017-2116-5.
+    Data will be made available on request.
+                                                                                                    Kim, S.J., Heo, S.H., Lee, D.S., Hwang, I.G., Lee, Y.B., et al., 2016. Gender differences in
+                                                                                                         pharmacokinetics and tissue distribution of 3 perfluoroalkyl and polyfluoroalkyl
+References                                                                                               substances in rats. Food Chem. Toxicol. 97, 243–255. https://doi.org/10.1016/j.
+                                                                                                         fct.2016.09.017.
+                                                                                                    Li, L., Han, T., Li, B.o., Bai, P., Tang, X., et al., 2024. Distribution control and
+Alesio, J.L., Slitt, A., Bothun, G.D., 2022. Critical new insights into the binding of poly-
+                                                                                                         environmental fate of PFAS in the offshore region adjacent to the Yangtze River
+    and perfluoroalkyl substances (PFAS) to albumin protein. Chemosphere 287,
+                                                                                                         Estuary─A study combining multiple phases analysis. Environ. Sci. Tech. 58 (35),
+    131979. https://doi.org/10.1016/j.chemosphere.2021.131979.
+                                                                                                         15779–15789. https://doi.org/10.1021/acs.est.4c03985.
+Baumert, B.O., Fischer, F.C., Nielsen, F., Grandjean, P., Bartell, S., et al., 2023. Paired
+                                                                                                    Li, W., Yuhong, Hu., Bischel, H.N., 2021. In-vitro and in-silico assessment of per-and
+    liver:Plasma PFAS concentration ratios from adolescents in the teen-LABS study and
+                                                                                                         polyfluoroalkyl substances (PFAS) in aqueous film-forming foam (AFFF) binding to
+    derivation of empirical and mass balance models to predict and explain liver PFAS
+                                                                                                         human serum albumin. Toxics 9 (3), 63. https://doi.org/10.3390/toxics9030063.
+    accumulation. Environ. Sci. Tech. 57 (40), 14817–14826. https://doi.org/10.1021/
+                                                                                                    Cavalcanti, I.D.L., Junior, F.H.X., Magalhães, N.S.S., Cajubá de Britto Lira Nogueira, M.,
+    acs.est.3c02765.
+                                                                                                         2023. Isothermal titration calorimetry (ITC) as a promising tool in pharmaceutical
+Beesoon, S., Martin, J.W., 2015. Isomer-specific binding affinity of
+                                                                                                         nanotechnology. Int. J. Pharm. 641, 123063. https://doi.org/10.1016/j.
+    perfluorooctanesulfonate (PFOS) and perfluorooctanoate (PFOA) to serum proteins.
+                                                                                                         ijpharm.2023.123063.
+    Environ. Sci. Tech. 49 (9), 5722–5731. https://doi.org/10.1021/es505399w.
+                                                                                                    Liu, X., Fang, M., Fangping, Xu., Chen, Da., 2019. Characterization of the binding of per-
+Chen, Lu., Xie, Y., Li, M., Mortimer, M., Li, F., et al., 2023. Toxicological mechanisms of
+                                                                                                         and poly-fluorinated substances to proteins: a methodological review. Trac-Trends in
+    emerging per-/poly-fluoroalkyl substances: focusing on transcriptional activity and
+                                                                                                         Analytical Chemistry 98 (9), 177–185. https://doi.org/10.1016/j.trac.2019.05.017.
+    gene expression disruption. Toxicology 494, 153566. https://doi.org/10.1016/j.
+                                                                                                    Maso, L., Trande, M., Liberi, S., Moro, G., Daems, E., et al., 2021. Unveiling the binding
+    tox.2023.153566.
+                                                                                                         mode of perfluorooctanoic acid to human serum albumin. Protein Sci. 30 (4),
+Chen, Q., Yi, S., Sun, Y., Zhu, Y., Ma, K., et al., 2024. Contribution of continued dermal
+                                                                                                         830–841. https://doi.org/10.1002/pro.4036.
+    exposure of PFAS-containing Sunscreens to internal exposure: extrapolation from in
+                                                                                                    Mishra, V., Heath, R.J., 2021. Structural and biochemical features of human serum
+    vitro and in vivo tests to physiologically based toxicokinetic models. Environ. Sci.
+                                                                                                         albumin essential for Eukaryotic cell culture. Int. J. Mol. Sci. 22 (16). https://doi.
+    Tech. 58 (34), 15005–15016. https://doi.org/10.1021/acs.est.4c03541.
+                                                                                                         org/10.3390/ijms22168411.
+Cheng, W., Ng, C.A., 2017. A permeability-limited physiologically based
+                                                                                                    Moro, G., Liberi, S., Vascon, F., Linciano, S., De Felice, S., et al., 2022. Investigation of
+    Pharmacokinetic (PBPK) model for perfluorooctanoic acid (PFOA) in male rats.
+                                                                                                         the Interaction between human serum albumin and branched short-chain
+    Environ. Sci. Tech. 51 (17), 9930–9939. https://doi.org/10.1021/acs.est.7b02602.
+                                                                                                         perfluoroalkyl compounds. Chem. Res. Toxicol. 35 (11), 2049–2058. https://doi.
+Cheng, W., Ng, C.A., 2021. Bayesian refinement of the permeability-limited
+                                                                                                         org/10.1021/acs.chemrestox.2c00211.
+    physiologically based Pharmacokinetic model for perfluorooctanoic acid in male
+                                                                                                    Ng, C.A., Hungerbuehler, K., 2015. Exploring the use of Molecular docking to identify
+    rats. Chem. Res. Toxicol. 34 (11), 2298–2308. https://doi.org/10.1021/acs.
+                                                                                                         bioaccumulative perfluorinated alkyl acids (PFAAs). Environ. Sci. Tech. 49 (20),
+    chemrestox.1c00193.
+                                                                                                         12306–12314. https://doi.org/10.1021/acs.est.5b03000.
+Crisalli, A.M., Cai, A., Cho, B.P., 2023. Probing the Interactions of Perfluorocarboxylic
+                                                                                                    Nielsen, F., Fischer, F.C., Leth, P.M., Grandjean, P., 2024. Occurrence of major
+    acids of Various chain lengths with human serum albumin: calorimetric and
+                                                                                                         perfluorinated alkylate substances in human blood and Target organs. Environ. Sci.
+    spectroscopic investigations. Chem. Res. Toxicol. 36 (4), 703–713. https://doi.org/
+                                                                                                         Tech. 58 (1), 143–149. https://doi.org/10.1021/acs.est.3c06499.
+    10.1021/acs.chemrestox.3c00011.
+                                                                                                    Olsen, G.W., Chang, S.-C., Noker, P.E., Gorman, G.S., Ehresman, D.J., et al., 2009.
+Dzierlenga, A.L., Robinson, V.G., Waidyanatha, S., DeVito, M.J., Eifrid, M.A., et al., 2020.
+                                                                                                         A comparison of the pharmacokinetics of perfluorobutanesulfonate (PFBS) in rats,
+    Toxicokinetics of perfluorohexanoic acid (PFHxA), perfluorooctanoic acid (PFOA)
+    and perfluorodecanoic acid (PFDA) in male and female hsd:Sprague dawley SD rats
+
+
+                                                                                               11
+X. Fan et al.                                                                                                                                          Environment International 201 (2025) 109591
+
+     monkeys, and humans. Toxicology 256 (1–2), 65–74. https://doi.org/10.1016/j.                       Wallis, D.J., Miller, K.E., Deluca, N.M., Thomas, K., Fuller, C., et al., 2024. Understanding
+     tox.2008.11.008.                                                                                       prenatal household exposures to per- and polyfluorylalkyl substances using paired
+Peng, M., Yang, Xu., Yao, Wu., Cai, X., Zhang, W., et al., 2024. Binding affinity and                       biological and dust measurements with sociodemographic and housing variables.
+     mechanism of six PFAS with human serum albumin: insights from multi-                                   Environ. Int. 194. https://doi.org/10.1016/j.envint.2024.109157.
+     spectroscopy, DFT and Molecular dynamics approaches. Toxics 12 (1). https://doi.                   Weaver, Y.M., Ehresman, D.J., Butenhoff, J.L., Hagenbuch, B., 2010. Roles of rat renal
+     org/10.3390/toxics12010043.                                                                            organic anion transporters in transporting perfluorinated Carboxylates with different
+Pérez, F., Nadal, M., Navarro-Ortega, A., Fàbrega, F., Domingo, J.L., et al., 2013.                       chain lengths. Toxicol. Sci. 113 (2), 305–314. https://doi.org/10.1093/toxsci/
+     Accumulation of perfluoroalkyl substances in human tissues. Environ. Int. 59,                          kfp275.
+     354–362. https://doi.org/10.1016/j.envint.2013.06.004.                                             Woodcroft, M.W., Ellis, D.A., Rafferty, S.P., Burns, D.C., March, R.E., et al., 2010.
+Roth, K., Yang, Z., Agarwal, M., Liu, W., Peng, Z., et al., 2021. Exposure to a mixture of                  Experimental characterization of the mechanism of perfluorocarboxylic acids’ liver
+     legacy, alternative, and replacement per- and polyfluoroalkyl substances (PFAS)                        protein bioaccumulation: the key role of the neutral species. Environ. Toxicol. Chem.
+     results in sex-dependent modulation of cholesterol metabolism and liver injury.                        29 (8), 1669–1677. https://doi.org/10.1002/etc.199.
+     Environ. Int. 157, 106843. https://doi.org/10.1016/j.envint.2021.106843.                           Yang, D., Han, J., Hall, D.R., Sun, J., Jesse, Fu., et al., 2020. Nontarget screening of per-
+Ryu, S., Burchett, W., Zhang, S., Jia, X., Modaresi, S.M.S., et al., 2024. Unbound Fractions                and polyfluoroalkyl substances binding to human liver fatty acid binding protein.
+     of PFAS in human and rodent tissues: rat liver a suitable proxy for evaluating                         Environ. Sci. Tech. 54 (9), 5676–5686. https://doi.org/10.1021/acs.est.0c00049.
+     Emerging PFAS? Environ. Sci. Tech. 58 (33), 14641–14650. https://doi.org/                          Zhang, L., Ren, X.M., Guo, L.H., 2013. Structure-based investigation on the interaction of
+     10.1021/acs.est.4c04050.                                                                               perfluorinated compounds with human liver fatty acid binding protein. Environ. Sci.
+Sheng, N., Li, J., Liu, H., Zhang, A., Dai, J., 2016. Interaction of perfluoroalkyl acids with              Tech. 47 (19), 11293–11301. https://doi.org/10.1021/es4026722.
+     human liver fatty acid-binding protein. Arch. Toxicol. 90 (1), 217–227. https://doi.               Zhao, L., Teng, M., Zhao, X., Li, Y., Sun, J., et al., 2023. Insight into the binding model of
+     org/10.1007/s00204-014-1391-7.                                                                         per- and polyfluoroalkyl substances to proteins and membranes. Environ. Int. 175,
+Sheng, N., Wang, J., Guo, Y., Wang, J., Dai, J., 2020. Interactions of                                      107951. https://doi.org/10.1016/j.envint.2023.107951.
+     perfluorooctanesulfonate and 6:2 chlorinated polyfluorinated ether sulfonate with                  Zhao, W., Zitzow, J.D., Ehresman, D.J., Chang, S.-C., Butenhoff, J.L., et al., 2015. Na+/
+     human serum albumin: a Comparative study. Chem. Res. Toxicol. 33 (6),                                  taurocholate cotransporting polypeptide and apical sodium-dependent bile acid
+     1478–1486. https://doi.org/10.1021/acs.chemrestox.0c00075.                                             transporter are involved in the disposition of perfluoroalkyl sulfonates in humans
+Smeltz, M., Wambaugh, J.F., Wetmore, B.A., 2023. Plasma protein binding evaluations of                      and rats. Toxicol. Sci. 146 (2), 363–373. https://doi.org/10.1093/toxsci/kfv102.
+     per- and Polyfluoroalkyl substances for category-based toxicokinetic assessment.                   Zhao, W., Zitzow, J.D., Weaver, Y.i., Ehresman, D.J., Chang, S.-C., et al., 2017. Organic
+     Chem. Res. Toxicol. 36 (6), 870–881. https://doi.org/10.1021/acs.                                      anion transporting polypeptides contribute to the disposition of perfluoroalkyl acids
+     chemrestox.3c00003.                                                                                    in humans and rats. Toxicol. Sci. 156 (1), 84–95. https://doi.org/10.1093/toxsci/
+Søderstrøm, S., Lille-Langøy, R., Yadetie, F., Rauch, M., Milinski, A., et al., 2022.                       kfw236.
+     Agonistic and potentiating effects of perfluoroalkyl substances (PFAS) on the                      Zhu, Y., Pan, X., Jia, Y., Yang, X., Song, X., et al., 2023a. Exploring route-specific
+     Atlantic cod (Gadus morhua) peroxisome proliferator-activated receptors (Ppars).                       Pharmacokinetics of PFAS in mice by coupling in Vivo tests and physiologically based
+     Environ. Int. 163, 107203. https://doi.org/10.1016/j.envint.2022.107203.                               toxicokinetic models. Environ. Health Perspect. 131 (12), 127012. https://doi.org/
+Tiburtini, G.A., Bertarini, L., Bersani, M., Dragani, T.A., Rolando, B., et al., 2024. In silico            10.1289/EHP11969.
+     prediction of the interaction of legacy and novel per- and poly-fluoroalkyl substances             Zhu, Y., Pan, X., Jia, Y., Yang, X., Song, X., et al., 2023b. Exploring route-specific
+     (PFAS) with selected human transporters and of their possible accumulation in the                      pharmacokinetics of PFAS in mice by coupling in vivo tests and physiologically
+     human body. Arch. Toxicol. 98 (9), 3035–3047. https://doi.org/10.1007/s00204-                          based toxicokinetic models. Environm. Health Perspect. 131 (12). https://doi.org/
+     024-03797-0.                                                                                           10.1289/ehp11969.
+Vujic, E., Ferguson, S.S., Brouwer, K.L.R., 2024. Effects of PFAS on human liver                        Zhu, Y., Zhiqian, Qu., Yang, L., Jia, Y., Zhang, Y., et al., 2025. Hexafluoropropylene oxide
+     transporters: implications for health outcomes. Toxicol. Sci. 200 (2), 213–227.                        Trimer acid is an unsafe substitute to perfluorooctanoic acid due to its Remarkable
+     https://doi.org/10.1093/toxsci/kfae061.                                                                liver accumulation in mice disclosed by comprehensive toxicokinetic models.
+                                                                                                            Environ. Sci. Tech. 59 (1), 245–255. https://doi.org/10.1021/acs.est.4c10349.
+
+
+
+
+                                                                                                   12
+

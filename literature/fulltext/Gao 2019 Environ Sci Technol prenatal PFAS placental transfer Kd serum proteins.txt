@@ -1,0 +1,653 @@
+                                                                                                                                                  Article
+
+                                                        Cite This: Environ. Sci. Technol. 2019, 53, 6529−6538                           pubs.acs.org/est
+
+
+
+
+Prenatal Exposure to Per- and Polyﬂuoroalkyl Substances (PFASs)
+and Association between the Placental Transfer Eﬃciencies and
+Dissociation Constant of Serum Proteins−PFAS Complexes
+Ke Gao,†,‡,⊥ Taifeng Zhuang,§,⊥ Xian Liu,† Jianjie Fu,*,† Jingxing Zhang,†,∥ Jie Fu,†,‡ Liguo Wang,†,‡
+Aiqian Zhang,†,‡,∥ Yong Liang,∥ Maoyong Song,† and Guibin Jiang†,‡
+†
+
+
+
+
+                                                                                                                                                                 Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+ State Key Laboratory of Environmental Chemistry and Ecotoxicology, Research Center for Eco-Environmental Sciences, Chinese
+ Academy of Sciences, Beijing, China
+‡
+ College of Resources and Environment, University of Chinese Academy of Sciences, Beijing, China
+§
+ Department of Pediatrics, Beijing Obstetrics and Gynecology Hospital, Capital Medical University, Beijing, China
+∥
+  Institute of Environment and Health, Jianghan University, Wuhan, Hubei, China
+    *
+    S Supporting Information
+
+
+
+    ABSTRACT: Information on placental transfer and adverse
+    outcomes of short-chain per- and polyﬂuoroalkyl substance
+    (PFASs) is limited, and factors responsible for PFAS placental
+    transfer are still unclear. In the present study, concentrations
+    of 21 PFASs were analyzed in 132 paired maternal and cord
+    serum samples collected from residents in Beijing, China, and
+    the placental transfer eﬃciency (PTE) of each PFAS was
+    calculated. PTEs of short-chain perﬂuoroalkyl acids (PFAAs),
+    including PFBA (146%), PFBS (97%), PFPeA (118%), and
+    PFHxA (110%), were ﬁrst reported, and a complete U-shaped
+    trend of PTEs from C4 to C13 of perﬂuoroalkyl carboxylic
+    acids (PFCAs) was obtained. Positive association between
+    maternal weight and PTE of perﬂuorooctanesulfonate
+    (PFOS) (p < 0.05) and negative association between maternal PFBA concentration and birth length (p < 0.01) were
+    observed. Using in vitro experiments, we further determined equilibrium dissociation constants (Kds) of human serum albumin
+    (HSA)−PFAS complexes (Kd‑HP), serum proteins−PFAS complexes (Kd‑SP), and liver-fatty acid binding protein (L-FABP)−
+    PFAS complexes (Kd‑LP) and found that they were all signiﬁcantly correlated with PTEs of PFASs. The correlation coeﬃcient
+    was 0.92, 0.89, and 0.86, respectively (p < 0.01 in all three tests), suggesting that Kds of protein (serum)−PFAS complexes can
+    play an important role in trans-placental transfer of PFASs in human and Kd‑HP plays a pivotal role.
+
+
+■    INTRODUCTION
+Per- and polyﬂuoroalkyl substances (PFASs) are a broad class
+                                                                                 PFASs could transfer from the mother to the fetus during
+                                                                                 pregnancy.15−17 The potential adverse health eﬀects associated
+of synthetic substances consisting of a ﬂuorinated carbon chain                  with PFAS, such asneurobehavioral problems,18,19 immune
+and one or more functional groups, and they are extensively                      suppression,20,21 and increased adiposity,22,23 are currently
+used in industrial,1 commercial,2 and consumer products.3                        focused on children. Studies also suggested that PFASs could
+Perﬂuorooctanesulfonic acid (PFOS) and perﬂuorooctanoic                          result in lower birth weight,24−26 and prenatal PFAS exposure
+acid (PFOA) are two representative perﬂuoroalkyl acids                           was associated with changes in circulating lipid proﬁle and
+(PFAAs) that are ubiquitously detected in the environment                        alanine aminotransferase (ALT) levels in children.27 Placental
+and in humans due to their large historical usage, high stability,               transfer eﬃciency (PTE) is the ratio of PFAS concentration in
+and bioaccumulative behavior.4−6 Since PFOS and PFOA have                        cord blood to that in maternal blood, which is an important
+been under environmental scrutiny and global regulation,7,8                      marker in assessing fetal PFAS burden, and PTE is considered
+their alternatives, compounds with similar ﬂuorinated chain                      to be aﬀected by the functional group and the ﬂuorinated chain
+structures, such as short-chain PFAAs9 and polyﬂuorinated                        length of PFASs.15,16 It has been observed that the PTEs of
+ethers,10,11are being produced. These alternative PFASs have
+been found in human tissues, some even with increasing                           Received: February 1, 2019
+trends, suggesting ongoing exposure to emerging PFASs.12                         Revised: May 9, 2019
+   PFASs are proteinophilic compounds, and they are mostly                       Accepted: May 17, 2019
+distributed in serum.13,14 Previous studies have shown that                      Published: May 17, 2019
+
+                             © 2019 American Chemical Society             6529                                                    DOI: 10.1021/acs.est.9b00715
+                                                                                                                   Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                           Article
+
+PFASs showed a U-shaped trend with increasing perﬂuoroalkyl                complexes (Kd‑LP), and Kd of serum proteins−PFAS complexes
+chain lengths,16,17,28 and this has been attributed to the                 (Kd‑SP) to ﬁnd out the key factor in maternal-fetus PFAS
+diﬀerent binding aﬃnities of PFASs to proteins. However, to                transfer.
+our knolwedge, no observational study has examined the
+correlation between placental transfer and experimental
+measurements of dissociation constant (Kd). Moreover, some
+                                                                           ■    MATERIALS AND METHODS
+                                                                              Study Design and Sample Collection. The study was
+researchers have expressed concern on the potential toxicity of            approved by the ethics committee of the Aﬃliated Hospital of
+short-chain PFAAs,9,29 but studies investigating short-chain               Capital Medical University and carried out in accordance with
+PFAAs in paired maternal and cord serum are scarce due to                  the approved guidelines. The participants were fully informed
+limitations in analytical methods (e.g., high method limits of             of the nature and purpose of the study, and consent forms were
+detection, poor peak shape, and blank contamination). To our               obtained. We issued questionnaires to women who visited
+best knowledge, there were no studies on PTEs of short-chain               regional hospitals for delivery from 2015 to 2016 at the
+perﬂuoroalkyl carboxylic acids (PFCAs) (C4−C6) and                         Aﬃliated Hospital of Capital Medical University at a rate of 2−
+perﬂuorobutanesulfonic acid (PFBS). Our lab developed                      3 persons per day. To investigate prenatal exposure and
+
+
+
+
+                                                                                                                                                            Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+sensitive online TurboFlow SPE HPLC-MS/MS analytical                       exclude other confounding factors, volunteers were in healthy
+methods for PFASs without chain-length discrimination                      condition and required to be lived in Beijing for at least 1 year
+recently,30,31 providing the feasibility of the calculation of             and gave birth to a single live-born child without congenital
+PTEs of short-chain PFAAs. The present study aimed to ﬁll the              anomalies. Finally, 132 pregnant women were recruited.
+data gaps in PTEs for short-chain PFAAs.                                   Maternal blood samples were collected 1 or 2 days before
+   Generally, there are two main modes of entry in the human               delivery, while cord blood samples were collected immediately
+body for PFASs, namely, through ingestion and inhalation.32,33             after delivery. The blood samples were centrifuged at 3000 rpm
+PFASs could stay in the human body as a consequence of                     for 15 min immediately after collection in the hospital. Then
+enterohepatic recirculation.34 PFASs have strong binding                   serum was transferred to 3 mL polypropylene containers and
+aﬃnity to serum proteins,13,14 resulting in their prominent                stored at −80 °C prior to analysis. Demographic data on the
+presence in human serum compared to speciﬁc tissues.35 Most                mothers and infants were obtained from the questionnaire or
+PFASs in serum are in the bounded form, while only a small                 the medical records at delivery (Supporting Information (SI)
+fraction exist as free molecules. Human serum albumin (HSA)                Table S1). Demographical characteristics information about
+is the major protein in serum, accounting for 60% of total                 three pairs of paired mother−infant and two mothers were
+plasma protein content;36 it is also the major binding protein             missing. The mean ± standard deviation (SD) age of the
+for PFASs.37 Many previous studies have employed HSA to                    participants at delivery was 31.0 ± 3.74 years, the mean
+demonstrate the accumulation and toxic mechanism of PFASs                  pregnancy body mass index (BMI) was 27.1 ± 3.38 kg/m2, and
+in humans.38−40 Although liver-fatty acid binding protein (L-              the mean gestational age was 38.8 ± 1.32 weeks. In all, 77% of
+FABP) is mainly present in the liver, it is also one of the major          pregnant women were primiparous, and 89% of fetuses had a
+proteins in serum with a concentration of 9.46 μg/L (4.5−17.5              normal gestational age (37−40 weeks). All participants did not
+μg/L).41 Due to similar structure patterns between PFASs and               smoke or consume alcohol during pregnancy and did not have
+fatty acids, L-FABP is also an important binding protein for               an occupational exposure experience to PFASs. As for infants,
+PFASs. Moreover, the binding between L-FABP and PFASs is                   the number of female infants (n = 63) was almost equal to that
+suggested to potentially inﬂuence the uptake and transport of              of males (n = 66). The birth weight, birth length, and ponderal
+fatty acids and might further interfere with glycolipid                    index (PI) of the infants were 3478 ± 431 g, 50.0 ± 1.0 cm,
+metabolism.14,42 PFAS−protein complexes, as macromole-                     and 27.7 ± 2.76 kg/m3, respectively.
+cules, are diﬃcult to pass through the placental barrier; thus,               Laboratory Analysis of PFASs. In total, 21 targeted
+only free PFASs can cross the placental barrier.17,43 Hence, the           PFASs (including perﬂuorobutanoic acid (PFBA), perﬂuor-
+free state concentration of PFASs aﬀects the transport                     opentanoic acid (PFPeA), perﬂuorohexanoic acid (PFHxA),
+eﬃciency, and binding ability might be a critical factor to                perﬂuoroheptanoic acid (PFHpA), PFOA, perﬂuorononanoic
+regulate PTE. Binding aﬃnity is generally measured and                     acid (PFNA), perﬂuorodecanoic acid (PFDA), perﬂuorounde-
+quantiﬁed by an equilibrium Kd, which is the inverse of the                canoic acid (PFUdA), perﬂuorododecanoic acid (PFDoA),
+binding aﬃnity (Ka). Thus, we hypothesized that Kd is one of               perﬂuorotridecanoic acid (PFTrA), perﬂuorotetradecanoic
+the decisive factors for PTE of PFASs in humans. The                       acid (PFTeA), perﬂuorohexadecanoic acid (PFHxDA), per-
+literature has presented a hypothesis that the binding aﬃnity to           ﬂuorooctadecanoic acid (PFODA), perﬂuorobutanesulfonic
+albumin and/or L-FABP is associated with U-shaped trend for                acid (PFBS), perﬂuorohexanesulfonic acid (PFHxS), perﬂuor-
+PTEs of PFASs.16,17 However, no experimental evidence was                  oheptanesulfonic acid (PFHpS), PFOS, perﬂuorodecanesul-
+reported in an observational study. Therefore, we adopted Kd               fonic acid (PFDS), perﬂuorooctane sulfonamide (PFOSA), 6:2
+as the metric for the aﬃnity of PFASs binding to protein and               Cl-PFESA, 8:2 Cl-PFESA) were analyzed in the present study.
+hypothesized that Kd is one of the decisive factors for PTE of             Our previously developed online SPE-HPLC-MS/MS meth-
+PFASs in humans.                                                           od,31 consisting of a UltiMate 3000 DGLC high-performance
+   We collected 132 paired maternal and cord serum samples                 liquid chromatography (ThermoFisher Scientiﬁc, USA) and a
+in the present study, and the main objectives were to (1)                  TSQ Quantiva triple quadrupole mass spectrometer (Thermo-
+investigate the occurrence of 21 PFASs and determine their                 Fisher Scientiﬁc, USA), was employed. Method limits of
+PTEs, (2) explore the possible associations among maternal                 detection (MLODs) ranged from 0.013 to 0.038 ng mL−1
+serum PFASs, cord serum PFASs, and infant birth outcomes,                  (Table S2); the detection frequencies are shown in Table S3.
+as well as the possible associations between individual                       Calf serum (Invitrogen, Oslo, Norway) not containing
+characteristics and PTEs of PFASs, and (3) determine the                   PFASs (background lower than the limit of detection) was
+Kd of HSA−PFAS complexes (Kd‑HP), Kd of L-FABP−PFAS                        used for method validation, quality control, and quality
+                                                                    6530                                                     DOI: 10.1021/acs.est.9b00715
+                                                                                                              Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                            Article
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+Figure 1. Typical chromatogram of the standard mixture of 21 targeted PFASs (1 ng mL−1, each).
+
+assurance of the analytical method. Matrix spiked recoveries                release PFASs. The standard solution used for calculation of Kd
+were measured by spiking at three levels (i.e., 0.05, 0.5, and 5            for PFOS binding to proteins is pure linear solution, which is
+ng mL−1 of each PFAS), and the spiked recoveries of PFASs                   purchased from Wellington Lab (Canada). Detailed informa-
+were ranging from 83.8% to 115%. To avoid background                        tion about the equilibrium dialysis experiment is shown in the
+contamination, all of the ﬂow tubes of the mobile phase of                  Supporting Information.
+UltiMate 3000 DGLC were changed into polyproplene tubes                        The calculation of Kd of the protein (serum)−PFAS
+and polyether ether ketone materials without PFASs back-                    complexes was derived from a previous method.45,46 In the
+ground contamination. All containers and equipment were                     process of PFAS binding to the protein (serum), the free state
+precleaned with LC-MS-grade methanol, and all solutions and                 PFAS (LF) could bind reversibly to the protein (R) and form
+reagents used in sample preparation and analysis were tested                the protein (serum)−PFAS complex (LR), as shown in eq 1
+and conﬁrmed that they did not contain PFAS. A procedural                      L F + R ⇔ LR                                                          (1)
+blank (i.e., MeOH) was used to monitor background PFASs
+and the possible carry-over between samples. A quality control              At equilibrium, Kd is an indicator for evaluating the aﬃnity of
+sample (i.e., 2 ng mL−1) was injected every eight samples to                PFAS binding to protein (serum) and is deﬁned by eq 2
+monitor the stability of peak intensity and the drift of retention                    [L F][R]
+time for PFASs. Chromatograms of the 21 targeted PFASs are                     Kd =
+shown in Figure 1. Detailed information about the analytical                           [LR]                                                          (2)
+method used in the present study is presented in the                        Han et al. (2003) proposed an equation (eq 3) for linking LF
+Supporting Information (SI), and native standards and                       to Kd
+detection parameters are listed in Table S4.
+   Dissociation Constants (Kd) of the Protein (Serum)−                         [L]F   [L]F  K
+                                                                                    =      + d
+PFAS Complexes. HSA and L-FABP are the most important                            r     n     n                                                       (3)
+transport proteins in human serum, and they were selected to                where [L]F refers to the molar free state concentration of
+study the relationship between Kd and PTEs. Human serum                     PFAS, r refers to the moles of PFAS binding to per mole of
+(containing all endogenous proteins) was regarded as a whole                protein, and n refers to the number of binding sites; the units
+entity to calculate the Kd‑SP of PFASs in the present study. To             of [L], [R], and Kd are all in molar units (M). There is a linear
+verify the stability of Kd‑SP values in diﬀerent sera, four human           association between [L]F/r and [L]F, and 1/n and Kd/n are the
+serum samples (with nondetectable or low PFASs) were                        slope and the intercept, respectively; then the Kd value can be
+assigned to calculate the individual Kd values of serum−PFAS                calculated.
+complexes (Kd‑SP). The Kd‑SP values were highly consistent in                  Statistical Analysis. Data processing was performed using
+four diﬀerent human serum samples (RSD ranging from 0.5%                    R (version 3.4.1). For statistical analysis, we replaced values
+to 11.6%), suggesting that serum could be considered as a                   below the MLODs with MLODs divided by the square root of
+whole entity for obtaining properties, such as Kd (Figure S1).              2. To better estimate PTEs of PFAS, only paired samples with
+The Kd‑SP and Kd values of HSA−PFAS (Kd‑HP) and L-FABP−                     concentrations > MLOD in both maternal and cord serum
+PFAS complexes (Kd‑LP) were obtained by an equilibrium                      were used. One-way analysis of variance (ANOVA) was used
+dialysis, which is considered to be gold standard approach in               to compare the diﬀerences in the PTEs of PFASs, and linear
+protein binding studies.40,44 The equilibrium dialysis experi-              regression was performed between PTEs and following
+ment is based on a rapid equilibrium dialysis device with a                 individual predictor variables for each PFAS. Covariates were
+molecular weight membrane cutoﬀ of 8 kDa (Thermo ﬁsher                      included one at a time: maternal age (continuous, year) and
+scientiﬁc, USA). This device needs 4 h to achieve equilibrium,              gestational age (continuous, weeks), categorical variable such
+and then precipitated buﬀer (namely, 90/10 acetonitrile/water               as maternal weight (<66.8, 66.8−74.7, ≥74.7, kg), height
+with 0.1% formic acid) was used to precipitate the protein and              (<1.60, 1.60−1.65, ≥1.65, m), prenatal BMI (<25.4, 25.4−
+                                                                     6531                                                     DOI: 10.1021/acs.est.9b00715
+                                                                                                               Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                          Article
+
+
+
+
+                                                                                                                                                           Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+Figure 2. (a) Median concentrations of PFASs in maternal and cord serum, and (b) composition of PFASs in maternal and cord serum.
+
+28.1, ≥28, kg/m2), infant’s sex (male, female), parity (no child,          major long-chain PFAS, which was detected in 98% and 99%
+≥one child), birth weight (<3.29, 3.29−3.68, >3.68), and birth             of the maternal (median concentration 0.57 ng/mL) and cord
+length (<50, 50, >50). The categories of maternal weight,                  serum samples (median concentration 0.38 ng/mL), respec-
+height, prenatal BMI, birth weight, and birth length were based            tively. Short-chain PFAAs (PFBA, PFPeA, PFHxA, PFHpA,
+on tertiles. Moreover, multivariate linear regression models               and PFBS) and long-chain PFASs accounted for 5.68% and
+were also established to explore associations between PFASs                20.1% of total PFASs in the maternal serum samples, while
+concentration and birth outcomes (including birth weight,                  they accounted 9.12% and 20.9% of the total PFASs in the
+birth weight, birth length, ponderal index, and gestational age),          cord serum samples (Figure 2b).
+and PFAS levels were divided into low-, middle-, and high-                    A comparison of PFAS concentrations between the present
+exposure groups. For PFHpA and PFTrA, due to their low                     study and previous literature is summarized in Table S5.
+detection frequencies in serum, the participants were divided              Although PFOS was regulated around the world a decade ago,
+into a low-exposure group (<MLOD) and the remaining parts                  it was still the major PFAS detected in human serum.48−50 The
+are divided into two groups (middle- and high-exposure                     median levels of PFOS and PFOA (4.07 and 2.21 ng/mL in
+groups) according to the concentration. From a statistical                 maternal serum and 1.80 and 1.88 ng/mL in cord serum,
+point of view, the multivariable model adjusted for                        respectively) in the present study were lower than those
+confounding factors. Potential confounders, including maternal             reported in samples collected before 2009,26,51 and these
+age, weight, and height, prenatal BMI, infant’s sex, parity, and           median values were comparable to those in samples collected
+gestational age, were entered into the ﬁnal multivariable model            during a similar period.48−50 As a novel PFAS was only
+with p < 0.20 in univariate associations with birth outcomes.              produced in China, 6:2 Cl-PFESA was reported in Chinese
+Statistical signiﬁcance was deﬁned as a p < 0.05. Exposure                 pregnant women before.17,52 The median 6:2 Cl-PFESA value
+groups were included as ordered variables in the ﬁnal                      in the present study was 0.094 and 0.091 ng/mL in maternal
+multivariate regression model for trend testing. Moreover,                 and cord serum, respectively, which was slightly lower than
+statistically suggestive was deﬁned as a p < 0.10, which was               those in samples collected from Wuhan in 2014 (1.89 and 0.80
+suggested by a previous study.47                                           ng/mL in maternal and cord serum, respectively;17 1.54 and
+
+■    RESULTS AND DISUSSION
+   Concentrations of PFASs in Maternal and Cord
+                                                                           0.60 ng/mL in maternal and cord serum, respectively52). This
+                                                                           might be due to the fact that Wuhan has been an important
+                                                                           ﬂuorine chemical base in China since the 1990s, and factories
+Serum. The detection frequencies and concentrations of                     there might have been producing 6:2 Cl-PFESA for a long
+PFASs in maternal and cord serum and number of paired                      time.53,54
+samples with concentrations > MLOD are listed in Table S3,                    Associations between PFASs and Birth Outcomes.
+and the median value is shown in Figure 2. C8 PFASs,                       Associations among individual PFAS and birth outcomes of
+including PFOS and PFOA, were the dominant PFASs in both                   fetuses are shown in Table S6 and Table S7. PFBA in maternal
+cord and maternal serum (Figure 2a). Short-chain PFAAs,                    serum (n = 110) showed signiﬁcant negative association with
+including PFBA, PFPeA, PFHxA, PFHpA, and PFBS, were                        birth length, with an estimated decrease of 0.60 cm (95% CI,
+detected in 83%, 62%, 76%, 33%, and 87% of the maternal                    −1.03 and −0.17 cm) in the highest exposure group than in
+serum and 78%, 52%, 78%, 19%, and 87% of the cord serum,                   the lowest exposure group (p for trend = 0.004), and PFBA in
+respectively, with median levels of 0.10, 0.05, 0.17, 0.04, and            cord serum (n = 103) showed suggestive association with birth
+0.14 ng/mL in maternal serum, and 0.12, 0.04, 0.18, 0.04, and              weight, PI, with p for trend = 0.07. PFHxS in cord serum (n =
+0.12 ng/mL in cord serum, respectively. PFOS and PFOA was                  95) showed suggestive association with gestational age, with an
+deﬁned as C8 compounds, and PFCAs with a carbon chain                      estimated decrease of 0.47 weeks (95% CI, −0.92 and −0.02
+length > 8 (C9−C13 PFASs in the present study) was deﬁned                  weeks) for the highest versus lowest exposure group (p for
+as the long-chain PFASs. Long-chain PFASs were detected in                 trend = 0.053). For long-chain PFASs, PFDoA in cord serum
+almost one-half of the serum samples, and PFNA was the                     (n = 118) showed signiﬁcantly association with birth length,
+                                                                    6532                                                    DOI: 10.1021/acs.est.9b00715
+                                                                                                             Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                        Article
+
+
+
+
+                                                                                                                                                         Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+Figure 3. Trends of (a) PTEs of the PFASs (%) and (b) Kd of the PFASs (M) along with the chain length.
+
+with an estimated increase of 0.67 (95% CI, 0.27 and 1.10 cm)            were carried out to study the toxicity of PFBA on animal
+and 0.50 cm (95% CI, 0.07 and 0.92 cm) for the middle versus             models. Das et al.64 reported that PFBA did not produce
+lowest exposure group and highest versus lowest exposure                 developmental toxicity during pregnancy in mice, while
+group, respectively (p for trend = 0.018). PFTrA in cord serum           Mahapatra et al.65 observed that localized lipid droplets were
+(n = 33) showed signiﬁcant positive association with birth               accumulated in PFBA-exposed cells and suggest that PFBA
+weight, with an estimated increase of 263 g (95% CI, 52.9 and            could aﬀect cell metabolism. Chang et al.66 suggested that
+474 g) for the middle-exposure group versus lowest exposure              PFBA could increase thyroid hormone turnover and transiently
+group (p for trend = 0.044). For the novel PFASs, 6:2 Cl-                increase free T4. Moreover, PFDoA and PFTrA were observed
+PFESA (n = 90) in cord serum showed signiﬁcantly positive                to have a suggestive or signiﬁcantly positive association with
+association with birth length, with an estimated increase of             birth weight or length of fetuses in our present study. An
+0.54 cm (95% CI, 0.12 and 0.95 cm) for the highest versus                animal experiment showed that exposing zebraﬁsh larvae to
+lowest exposure group (p for trend = 0.016).
+                                                                         PFDoA could cause disruption of the hypothalamus−
+   There were inconsistent associations between PFASs and
+                                                                         pituitary−thyroid axis.67 Kim et al.15 reported PFTrA in both
+birth outcomes reported in the literature,24,55−60 and most
+                                                                         maternal and cord serum have signiﬁcantly negative associa-
+studies focused on the related birth outcomes, such as birth
+weight, of PFOS and PFOA.24,55,56,58,60 Birth weight did not             tions with fetal thyroid hormone level. The latter is suggested
+associate with PFOS or PFOA in maternal r cord serum in the              to be a critical factor for fetal growth and development; thus,
+present study, which was consistent with the null associations           the inﬂuence on birth outcomes related to these PFASs might
+reported in previous studies.48,55 PFASs other than PFOS and             be mediated through this pathway.
+PFOA were currently not regulated in the recent past, and                   To our knowledge, this is the ﬁrst study that reports PFBA
+birth outcomes aﬀected by these compounds were studied to a              and PFBS in paired maternal and cord serum, and both PFBA
+lesser extent. It was noteworthy that PFBA (C4) in maternal              and PFBS might aﬀect birth outcomes. The production of
+serum was signiﬁcantly negatively associated with birth length,          short-chain PFAAs has increased in the past several years due
+and cord PFBA had suggestively positive association with birth           to the regulation of legacy long-chain PFAAs, and their levels
+weight (p = 0.07) and PI (p = 0.07) in our study. Testing on             in humans have therefore been increasing sera.29,68 The
+both human and animal tissues showed that short-chain PFAAs              possible adverse eﬀects of short-chain PFASs need further
+were distributed in various organs/tissues.61−63 A few studies           attention, especially after long-term exposure, and more
+                                                                  6533                                                    DOI: 10.1021/acs.est.9b00715
+                                                                                                           Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                            Article
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+Figure 4. Correlation between the PTE and Kd‑SP, PTE and Kd‑HP, and PTE and Kd‑LP.
+
+attention should be paid on susceptible populations, such as              shortest half-life of PFOS (1.9 years), PFOA (1.7 years), and
+fetus and children.                                                       PFHxS (3.6 years) ever reported.54 Short-chain PFAAs were
+   Placental Transfer Eﬃciencies (PTEs) of PFASs. The                     also considered nonbioaccumulative in the environment.5,70
+occurrence of PFASs in cord serum suggested that these                    Due to these properties of short-chain alternatives, the
+chemicals can cross the placenta barrier, and the mean of                 production dramatically increased in recent years. As a result,
+PFASs PTEs ranged from 44% (PFOS) to 146% (PFBA). A U-                    they were ubiquitously detected in environmental studies and
+shaped trend for the PTEs along with an increasing chain                  the general population.30,70,71 Our present study implied a
+length was observed (the ether linkage contained in the                   widely distribution of short-chain PFAAs in humans, and they
+backbone of 6:2 Cl-PFESA was counted in the chain length,                 could be transferred to the fetus more eﬀectively than legacy
+and 6:2 Cl-PFESA considered one molecule longer than                      PFAAs. Although animal experiments and ﬁeld investigations
+PFOS) (Figure 3a), which was in line with previous                        have suggested low bioaccumulative potentials for short-chain
+studies.16,17,28 To the best of our knowledge, there has been             PFAAs in aquatic ecosystems,70 their higher PTEs increased
+no information on PTEs of short-chain PFCAs (C4−C6) to                    the risk to susceptible populations, such as fetuses.
+date; the PTE of PFHpA (C7) was the shortest chain length                    Associations between Demographic Characteristics
+PFAS ever reported in the literature.16,17 They were neglected            and PTEs. Demographic characteristics such as mother age
+because of their lower toxicity in animal experiments or their            and weight were considered confounding factors for chemical-
+concentrations being under MLODs, which might be due to                   speciﬁc PTEs of PFASs in previous studies.17,72 Associations
+the low sensitivity of the analytical methods. PTEs had a                 between demographic characteristics and PTEs in the present
+descending trend from PFBA (C4, PTE = 146%) to PFDA                       study were carefully evaluated (Table S8). A statistically
+(C10, PTE = 44%) and then started to increase with increasing             signiﬁcant association between the maternal weight and PTE
+carbon chain length from PFDA to PFTrDA (C13, PTE =                       of PFOS was observed, with an estimated increase of 10.1%
+120%). The PTEs for short-chain PFAAs, such as PFBA                       (95% CI, 2.3% and 17.9%) for the second tertile versus lowest
+(146%), PFPeA (118%), and PFHxA (110%), were much                         tertile group (p for trend = 0.03). Besides, PTE of PFNA
+higher than those of legacy PFASs, such as PFOA (83.2%) and               showed suggestive association with maternal weight (p for
+PFOS (44%). Moreover, we found that the mean values of                    trend = 0.07). Women with high BMI tended to increase PTE
+PTEs for C4−C7 PFCAs and C13 PFCA) were all above                         of PFDA, with an estimated increase of 0.4% (95% CI, −7.9%
+100%, indicating these compounds are more inclined to                     and 8.7%) and 12.8% (95% CI, −0.9% and 26.6%),
+accumulate in the fetus. PFCAs tend to transfer more                      respectively, for the second tertile and third tertile versus
+eﬃciently than PFSAs with the same ﬂuorinated chain length;               lowest tertile group (p for tend = 0.04). Moreover, older
+for example, PFPeA had a mean PTE of 118%, 1.2-fold higher                mothers tended to decrease PTE of PFUdA, with a decrease of
+than that of PFBS (97%); PFHpA had a mean PTE of 102%,                    2.6% (95% CI, −4.6% and −0.5%) (p = 0.015) per year
+1.4-fold higher than that of PFHxS (73%). Our present study               increase in maternal age, while PTE of PFUdA showed
+provided PTEs of C4−C6 PFCAs, which ﬁlled the data gaps in                suggestively positive association with birth length, with an
+PTEs for short-chain PFAAs.                                               estimated increase of 29.1% (95% CI, −0.4% and 57.8%) for
+   To date there has been little information available on short-          the third tertile versus the ﬁrst tertile group (p for tend = 0.06).
+chain PFAAs in pregnant women and fetuses, not to mention                 The present study showed that maternal age, maternal weight,
+the PTEs. Among human monitoring studies, Olsen et al.69                  and BMI could inﬂuence the PTEs of PFASs, which was
+found that the mean serum elimination half-life of PFBS was               consistent with previous studies.17,72 The reason might be
+only 25.8 days in occupational workers, much shorter than the             possibly that maternal age and weight would aﬀect the
+                                                                   6534                                                       DOI: 10.1021/acs.est.9b00715
+                                                                                                               Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                            Article
+
+development of placental vascular, consequently interfering the           have a higher PCV (0.62) than pregnant women (0.38);77
+function of placenta.73                                                   however, PFASs were mainly distributed in serum. Therefore,
+   Association between Kd and PTEs. The literature has                    the diﬀerent PCVs between the mothers and the fetuses might
+shown that PFASs could bind to proteins, such as serum                    not be the important factor inﬂuencing the PFASs transfer
+albumin and L-FABP, and the aﬃnities showed an inverted U-                from maternal blood to cord blood. The albumin concen-
+shape with increasing chain length.42,74 To our knowledge, no             tration in cord serum is lower than that in maternal serum,78
+experimental evidence has demonstrated the association                    which might cause the competition for PFASs between the
+between the binding aﬃnities of PFASs to serum and the PTE.               albumins on each side of the placenta.
+   The Kd‑SP, Kd‑HP, and Kd‑LP of individual PFASs are listed in
+Table S9, and Kd‑SP, Kd‑HP, and Kd‑LP also showed a U-shaped
+trend along with increasing perﬂuoroalkyl chain length (Figure
+                                                                          ■
+                                                                          *
+                                                                              ASSOCIATED CONTENT
+                                                                          S Supporting Information
+3b). PFBA (C4) had the highest Kd‑SP, Kd‑HP, and Kd‑LP, and               The Supporting Information is available free of charge on the
+they were 482 ± 45, 419 ± 37, and 879 ± 51 μM, respectively.              ACS Publications website at DOI: 10.1021/acs.est.9b00715.
+Kd‑SP and Kd‑HP decreased from C4 to C10 and then increased
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+from C10 to C13. However, Kd‑LP decreased from C4 to C11                          Online Turboﬂow HPLC-MS/MS procedure for PFASs
+and then increased from C11 to C13. The Kd‑HP and Kd‑LP                           analysis; method validation, quality control, and quality
+values reported in our study were similar to those reported in                    assurance (QC/QA); steps for incubation and equili-
+previous studies (Table S9). Information on the PFAS-HSA                          brium dialysis and calculation of Kd‑SP, Kd‑HP, and Kd‑LP;
+interaction mainly focused on PFOS and PFOA, and the Kd‑HP                        demographic characteristics of studied population;
+values of PFOA and PFOS generally ranged from 10 μM to                            method limits of detection and quantitation of targeted
+1000 μM and from 1 μM to 100 μM in previous                                       PFASs in the present study; supplier, purity of targeted
+studies,42,44−46,75 respectively. Moreover, the lowest Kd‑HP of                   PFASs standards and internal standards, solvents, and
+linear PFOS ever reported was only 8 × 10−2 μM.46 The large                       protein used in the present study; concentrations of
+range of dissociation constants for PFASs might be due to                         PFASs in maternal and cord serum; summary of PFASs
+methodological diﬀerences, such as equilibrium dialysis,44                        median concentrations in the present study and previous
+ﬂuorescence,75 ultraﬁltration centrifugation,46 size exclusion                    studies; multiple linear regression coeﬃcients between
+chromatography,45 and the purity of PFASs standards (pure                         PFAS concentrations in cord serum and birth outcomes;
+linear vs technical PFASs) and protein (dry powder vs                             multiple linear regression coeﬃcients between PFASs
+solution), but the trends of the dissociation constants for                       concentrations in cord serum and birth outcomes;
+individual PFASs were generally consistent in previous studies.                   percentage change in PFASs PTEs associated with
+We reported the complete Kd‑HP and Kd‑LP values of PFCAs                          individual factors; Kd‑SP, Kd‑HP, and Kd‑LP in the present
+with a carbon length ranging from C4 to C13. Except for                           and previous studies; Kd‑SP in four diﬀerent serum
+PFUdA and PFDoA, the aﬃnity of PFAS binding to HSA was                            samples (PDF)
+
+
+                                                                          ■
+greater than that to L-FABP. Consistently, Zhang et al.42 also
+found PFUdA to have the highest aﬃnity (10.6 ± 1.2 μM) to                     AUTHOR INFORMATION
+L-FABP among PFCAs with 7−13 ﬂuorinated carbons. The
+                                                                          Corresponding Author
+K d‑SP values for individual PFASs were between the
+                                                                          *Tel.: +86-10-6284-9357; E-mail: jjfu@rcees.ac.cn.
+corresponding Kd‑HP and Kd‑LP values. Spearman correlation
+analysis was carried out to explore the relationship between the          ORCID
+PTE and the Kd of the same PFAS. Kd‑SP, Kd‑HP, and Kd‑LP were             Jianjie Fu: 0000-0002-6373-0719
+all signiﬁcantly associated with the PTE (p < 0.01) (Figure 4).           Aiqian Zhang: 0000-0001-5680-2529
+   PFASs might pass through the placenta barrier by passive               Maoyong Song: 0000-0002-6776-4705
+diﬀusion;17,43 hence, this process was inﬂuenced by the free              Guibin Jiang: 0000-0002-6335-3917
+PFASs concentration gradient between both sides of the                    Author Contributions
+placental barrier. The higher Kd values mean weaker binding               ⊥
+                                                                           K.G. and T.Z.: These authors contributed equally to this
+aﬃnities to proteins in serum, which might cause a higher free
+                                                                          work
+fraction of these PFASs in serum. Short-chain and long-chain
+PFAAs with relatively high Kd could transfer from maternal to             Notes
+cord more eﬃciently. The signiﬁcant correlations between Kd               The authors declare no competing ﬁnancial interest.
+and the PTE generally supported our hypotheses that Kd
+dominated the placental transfer process of PFASs. The
+correlation coeﬃcients of the ﬁtted curves between Kd‑SP and
+                                                                          ■   ACKNOWLEDGMENTS
+                                                                          This study was jointly supported by the Chinese Academy of
+the PTE, Kd‑HP and the PTE, and Kd‑LP and the PTE were 0.89,              Sciences, Grant No. XDB14030500, the National Natural
+0.92, and 0.86, respectively, which indicated Kd‑HP was most              Science Foundation (21477154, 21607168, and 91743204),
+relevant to PTEs of PFASs. Moreover, the slopes of the Kd‑HP-             and the Youth Innovation Promotion Association CAS
+PTE curve (2354) were also biggest compared to the Kd‑SP-                 (2018052). The authors also thank all of the blood donors.
+
+                                                                          ■
+PTE curve (1923) and Kd‑LP-PTE curve (958), which further
+suggested the Kd‑HP was the critical factor and regulated the                 REFERENCES
+placental transfer process of PFASs, and this conclusion might             (1) Rotander, A.; Kärrman, A.; Toms, L.M. L.; Kay, M.; Mueller, J.
+be extended to the placental transfer process of other                    F.; Gómez Ramos, M. J. Novel Fluorinated Surfactants Tentatively
+pollutants. Additionally, the blood composition such as packed            Identified in Firefighters Using Liquid Chromatography Quadrupole
+cell volume (PCV) and albumin concentration in maternal                   Time-of-Flight Tandem Mass Spectrometry and a Case-Control
+blood and cord blood were not consistent.76 The newborns                  Approach. Environ. Sci. Technol. 2015, 49 (4), 2434−2442.
+
+                                                                   6535                                                       DOI: 10.1021/acs.est.9b00715
+                                                                                                               Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                                            Article
+
+  (2) D’Agostino, L. A.; Mabury, S. A. Identification of novel                         (19) Vuong, A. M.; Yolton, K.; Webster, G. M.; Sjödin, A.; Calafat,
+fluorinated surfactants in aqueous film forming foams and commercial                  A. M.; Braun, J. M.; Dietrich, K. N.; Lanphear, B. P.; Chen, A.
+surfactant concentrates. Environ. Sci. Technol. 2014, 48 (1), 121−129.                Prenatal polybrominated diphenyl ether and perfluoroalkyl substance
+  (3) Tokranov, A. K.; Nishizawa, N.; Amadei, C. A.; Zenobio, J. E.;                  exposures and executive function in school-age children. Environ. Res.
+Pickard, H. M.; Allen, J. G.; Vecitis, C. D.; Sunderland, E. M. How Do                2016, 147, 556−564.
+We Measure Poly- and Perfluoroalkyl Substances (PFASs) at the                          (20) Granum, B.; Haug, L. S.; Namork, E.; Stølevik, S. B.; Thomsen,
+Surface of Consumer Products? Environ. Sci. Technol. Lett. 2019, 6                    C.; Aaberge, I. S.; van Loveren, H.; Løvik, M.; Nygaard, U. C. Pre-
+(1), 38−43.                                                                           natal exposure to perfluoroalkyl substances may be associated with
+  (4) Lau, C.; Anitole, K.; Hodes, C.; Lai, D.; Pfahles-Hutchens, A.;                 altered vaccine antibody levels and immune-related health outcomes
+Seed, J. Perfluoroalkyl acids: a review of monitoring and toxicological               in early childhood. J. Immunotoxicol. 2013, 10 (4), 373−379.
+findings. Toxicol. Sci. 2007, 99 (2), 366−394.                                         (21) Grandjean, P.; Heilmann, C.; Weihe, P.; Nielsen, F.; Mogensen,
+  (5) Conder, J. M.; Hoke, R. A.; Wolf, W. d.; Russell, M. H.; Buck, R.               U. B.; Budtz-Jørgensen, E. Serum vaccine antibody concentrations in
+C. Are PFCAs bioaccumulative? A critical review and comparison                        adolescents exposed to perfluorinated compounds. Environ. Health
+with regulatory criteria and persistent lipophilic compounds. Environ.                Perspect. 2017, 125 (7), 077018.
+Sci. Technol. 2008, 42 (4), 995−1003.                                                  (22) Høyer, B. B.; Ramlau-Hansen, C. H.; Vrijheid, M.; Valvi, D.;
+
+
+
+
+                                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+  (6) Gomis, M. I.; Vestergren, R.; MacLeod, M.; Mueller, J. F.;                      Pedersen, H. S.; Zviezdai, V.; Jönsson, B. A.; Lindh, C. H.; Bonde, J.
+Cousins, I. T. Historical human exposure to perfluoroalkyl acids in the               P.; Toft, G. Anthropometry in 5-to 9-year-old Greenlandic and
+United States and Australia reconstructed from biomonitoring data                     Ukrainian children in relation to prenatal exposure to perfluorinated
+using population-based pharmacokinetic modelling. Environ. Int.                       alkyl substances. Environ. Health Perspect. 2015, 123 (8), 841−846.
+2017, 108, 92−102.                                                                     (23) Mora, A. M.; Oken, E.; Rifas-Shiman, S. L.; Webster, T. F.;
+  (7) Governments unite to step-up reduction on global ddt reliance                   Gillman, M. W.; Calafat, A. M.; Ye, X.; Sagiv, S. K. Prenatal exposure
+and add nine new chemicals under international treaty; UNEP                           to perfluoroalkyl substances and adiposity in early and mid-childhood.
+(United Nations Environment Programme), 2009; http://chm.pops.                        Environ. Health Perspect. 2017, 125 (3), 467−473.
+int/Convention/Pressrelease/COP4Geneva8May2009/tabid/542/                              (24) Maisonet, M.; Terrell, M. L.; McGeehin, M. A.; Christensen, K.
+language/en-US/Default.aspx (accessed Oct 24, 2018).                                  Y.; Holmes, A.; Calafat, A. M.; Marcus, M. Maternal concentrations of
+  (8) Chemicals proposed for listingunder the convention; UNEP                        polyfluoroalkyl compounds during pregnancy and fetal and postnatal
+(United Nations Environment Programme), 2015; http://chm.pops.                        growth in British girls. Environ. Health Perspect. 2012, 120 (10),
+int/TheConvention/ThePOPs/ChemicalsProposedforListing/tabid/                          1432−1437.
+2510/Default.aspx (accessed Oct 24, 2018).                                             (25) Washino, N.; Saijo, Y.; Sasaki, S.; Kato, S.; Ban, S.; Konishi, K.;
+  (9) Birnbaum, L. S.; Grandjean, P. Alternatives to PFASs:                           Ito, R.; Nakata, A.; Iwasaki, Y.; Saito, K. Correlations between
+perspectives on the science. Environ. Health Perspect. 2015, 123 (5),                 prenatal exposure to perfluorinated chemicals and reduced fetal
+                                                                                      growth. Environ. Health Perspect. 2009, 117 (4), 660−667.
+104−105.
+                                                                                       (26) Fei, C.; McLaughlin, J. K.; Tarone, R. E.; Olsen, J.
+  (10) Wang, Z.; Cousins, I. T.; Scheringer, M.; Hungerbuehler, K.
+                                                                                      Perfluorinated chemicals and fetal growth: a study within the Danish
+Hazard assessment of fluorinated alternatives to long-chain perfluor-
+                                                                                      National Birth Cohort. Environ. Health Perspect. 2007, 115 (11),
+oalkyl acids (PFAAs) and their precursors: status quo, ongoing
+                                                                                      1677−1682.
+challenges and possible solutions. Environ. Int. 2015, 75, 172−179.
+                                                                                       (27) Mora, A. M.; Fleisch, A. F.; Rifas-Shiman, S. L.; Woo Baidal, J.
+  (11) Wang, Z.; Dewitt, J. C.; Higgins, C. P.; Cousins, I. T. A never-
+                                                                                      A.; Pardo, L.; Webster, T. F.; Calafat, A. M.; Ye, X.; Oken, E.; Sagiv, S.
+ending story of per- and polyfluoroalkyl substances (PFASs)? Environ.
+                                                                                      K. Early life exposure to per- and polyfluoroalkyl substances and mid-
+Sci. Technol. 2017, 51 (5), 2508−2518.                                                childhood lipid and alanine aminotransferase levels. Environ. Int.
+  (12) Eriksson, U.; Mueller, J. F.; Toms, L.-M. L.; Hobson, P.;
+                                                                                      2018, 111, 1−13.
+Kärrman, A. Temporal trends of PFSAs, PFCAs and selected                              (28) Liu, J.; Li, J.; Liu, Y.; Chan, H. M.; Zhao, Y.; Cai, Z.; Wu, Y.
+precursors in Australian serum from 2002 to 2013. Environ. Pollut.                    Comparison on gestation and lactation exposure of perfluorinated
+2017, 220, 168−177.                                                                   compounds for newborns. Environ. Int. 2011, 37 (7), 1206−1212.
+  (13) Jones, P. D.; Hu, W.; De Coen, W.; Newsted, J. L.; Giesy, J. P.                 (29) Brendel, S.; Fetter, É .; Staude, C.; Vierke, L.; Biegelengler, A.
+Binding of perfluorinated fatty acids to serum proteins. Environ.                     Short-chain perfluoroalkyl acids: environmental concerns and a
+Toxicol. Chem. 2003, 22 (11), 2639−2649.                                              regulatory strategy under REACH. Environ. Sci. Eur. 2018, 30 (1), 9.
+  (14) Ng, C. A.; Hungerbühler, K. Bioaccumulation of perfluorinated                  (30) Gao, K.; Fu, J. J.; Xue, Q.; Li, Y. L.; Liang, Y.; Pan, Y. Y.; Zhang,
+alkyl acids: observations and models. Environ. Sci. Technol. 2014, 48                 A. Q.; Jiang, G. B. An integrated method for simultaneously
+(9), 4637−4648.                                                                       determining 10 classes of per-and polyfluoroalkyl substances in one
+  (15) Kim, S.; Choi, K.; Ji, K.; Seo, J.; Kho, Y.; Park, J.; Kim, S.; Park,          drop of human serum. Anal. Chim. Acta 2018, 999, 76−86.
+S.; Hwang, I.; Jeon, J. Trans-placental transfer of thirteen                           (31) Gao, K.; Gao, Y.; Li, Y. L.; Fu, J. J.; Zhang, A. Q. A rapid and
+perfluorinated compounds and relations with fetal thyroid hormones.                   fully automatic method for the accurate determination of a wide
+Environ. Sci. Technol. 2011, 45 (17), 7465−7472.                                      carbon-chain range of per-and polyfluoroalkyl substances (C4−C18)
+  (16) Zhang, T.; Sun, H. W.; Lin, Y.; Qin, X.; Zhang, Y.; Geng, X.;                  in human serum. J. Chromatogr. A 2016, 1471, 1−10.
+Kannan, K. Distribution of poly-and perfluoroalkyl substances in                       (32) Shoeib, M.; Harner, T.; Wilford, B. H.; Jones, K. C.; Zhu, J.
+matched samples from pregnant women and carbon chain length                           Perfluorinated sulfonamides in indoor and outdoor air and indoor
+related maternal transfer. Environ. Sci. Technol. 2013, 47 (14), 7974−                dust: occurrence, partitioning, and human exposure. Environ. Sci.
+7981.                                                                                 Technol. 2005, 39 (17), 6599.
+  (17) Pan, Y. T.; Zhu, Y. S.; Zheng, T. Z.; Cui, Q. Q.; Buka, S. L.;                  (33) Yao, Y.; Zhao, Y.; Sun, H.; Chang, S.; Zhu, L.; Alder, A. C.;
+Zhang, B.; Guo, Y.; Xia, W.; Yeung, L. W.; Li, Y. Y. Novel chlorinated                Kannan, K. Per-and Polyfluoroalkyl Substances (PFASs) in Indoor Air
+polyfluorinated ether sulfonates and legacy per-/polyfluoroalkyl                      and Dust from Homes and Various Microenvironments in China:
+substances: placental transfer and relationship with serum albumin                    Implications for Human Exposure. Environ. Sci. Technol. 2018, 52 (5),
+and glomerular filtration rate. Environ. Sci. Technol. 2017, 51 (1),                  3156−3166.
+634−644.                                                                               (34) Zhao, W.; Zitzow, J. D.; Ehresman, D. J.; Chang, S.-C.;
+  (18) Hoffman, K.; Webster, T. F.; Weisskopf, M. G.; Weinberg, J.;                   Butenhoff, J. L.; Forster, J.; Hagenbuch, B. Na+/Taurocholate
+Vieira, V. M. Exposure to polyfluoroalkyl chemicals and attention                     Cotransporting Polypeptide and Apical Sodium-Dependent Bile
+deficit/hyperactivity disorder in US children 12−15 years of age.                     Acid Transporter Are Involved in the Disposition of Perfluoroalkyl
+Environ. Health Perspect. 2010, 118 (12), 1762−1767.                                  Sulfonates in Humans and Rats. Toxicol. Sci. 2015, 146 (2), 363−373.
+
+                                                                               6536                                                           DOI: 10.1021/acs.est.9b00715
+                                                                                                                               Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                                                                         Article
+
+  (35) Ng, C. A.; Hungerbühler, K. Bioaccumulation of perfluorinated               tional workers in a manufactory in China. Environ. Sci. Technol. 2015,
+alkyl acids: observations and models. Environ. Sci. Technol. 2014, 48               49 (11), 6953−6962.
+(9), 4637−4648.                                                                       (54) Fu, J. J.; Gao, Y.; Cui, L.; Wang, T.; Liang, Y.; Qu, G. B.; Yuan,
+  (36) Guyton, A. C. Textbook of Medical Physiology, 9th ed.; W.B                   B.; Wang, Y. W.; Zhang, A. Q.; Jiang, G. B. Occurrence, temporal
+Saunders: Philadelphia, PA, 1996; pp 161−164.                                       trends, and half-lives of perfluoroalkyl acids (PFAAs) in occupational
+  (37) Luo, Z.; Shi, X.; Hu, Q.; Zhao, B.; Huang, M. Structural                     workers in China. Sci. Rep. 2016, 6, 38039.
+evidence of perfluorooctane sulfonate transport by human serum                        (55) Lee, Y. J.; Kim, M. K.; Bae, J.; Yang, J. H. Concentrations of
+albumin. Chem. Res. Toxicol. 2012, 25 (5), 990−902.                                 perfluoroalkyl compounds in maternal and umbilical cord sera and
+  (38) Salvalaglio, M.; Muscionico, I.; Cavallotti, C. Determination of             birth outcomes in Korea. Chemosphere 2013, 90 (5), 1603−1609.
+energies and sites of binding of PFOA and PFOS to human serum                         (56) Fei, C.; McLaughlin, J. K.; Tarone, R. E.; Olsen, J.
+albumin. J. Phys. Chem. B 2010, 114 (46), 14860−14874.                              Perfluorinated chemicals and fetal growth: a study within the Danish
+  (39) Weiss-Errico, M. J.; Miksovska, J.; O’Shea, K. E. I2̂ -Cyclodextrin          National Birth Cohort. Environ. Health Perspect. 2007, 115, 1677−
+Reverses Binding of Perfluorooctanoic Acid to Human Serum                           1682.
+Albumin. Chem. Res. Toxicol. 2018, 31 (4), 277−284.                                   (57) Wu, K.; Xu, X.; Peng, L.; Liu, J.; Guo, Y.; Huo, X. Association
+  (40) Bischel, H. N.; Macmanusspencer, L. A.; Luthy, R. G.                         between maternal exposure to perfluorooctanoic acid (PFOA) from
+
+
+
+
+                                                                                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+Noncovalent interactions of long-chain perfluoroalkyl acids with                    electronic waste recycling and neonatal health outcomes. Environ. Int.
+serum albumin. Reprod. Toxicol. 2012, 33 (4), 611−612.                              2012, 48, 1−8.
+  (41) Pelsers, M. M.; Namiot, Z.; Kisielewski, W.; Namiot, A.;                       (58) Li, M.; Zeng, X. W.; Qian, Z. M.; Vaughn, M. G.; Sauvé, S.;
+Januszkiewicz, M.; Hermens, W. T.; Glatz, J. F. Intestinal-type and                 Paul, G.; Lin, S.; Lu, L.; Hu, L. W.; Yang, B. Y. Isomers of
+liver-type fatty acid-binding protein in the intestine. Tissue                      perfluorooctanesulfonate (PFOS) in cord serum and birth outcomes
+distribution and clinical utility. Clin. Biochem. 2003, 36 (7), 529−535.            in China: Guangzhou Birth Cohort Study. Environ. Int. 2017, 102, 1−
+  (42) Zhang, L. Y.; Ren, X. M.; Guo, L. H. Structure-based                         8.
+investigation on the interaction of perfluorinated compounds with                     (59) Han, W.; Gao, Y.; Yao, Q.; Yuan, T.; Wang, Y.; Zhao, S.; Shi,
+human liver fatty acid binding protein. Environ. Sci. Technol. 2013, 47             R.; Bonefeldjorgensen, E. C.; Shen, X.; Tian, Y. Perfluoroalkyl and
+(19), 11293−11301.                                                                  polyfluoroalkyl substances in matched parental and cord serum in
+  (43) Lambot, N.; Lybaert, P.; Boom, A.; Delogne-Desnoeck, J.;                     Shandong, China. Environ. Int. 2018, 116, 206−213.
+Vanbellinghen, A. M.; Graff, G.; Lebrun, P.; Meuris, S. Evidence for a                (60) Bach, C. C.; Bech, B. H.; Nohr, E. A.; Olsen, J.; Matthiesen, N.
+clathrin-mediated recycling of albumin in human term placenta. Biol.                B.; Bonefeld-Jørgensen, E. C.; Bossi, R.; Henriksen, T. B.
+Reprod. 2006, 75 (1), 90−97.                                                        Perfluoroalkyl acids in maternal serum and indices of fetal growth:
+  (44) Wu, L. L.; Gao, H. W.; Gao, N. Y.; Chen, F. F.; Chen, L.
+                                                                                    the Aarhus birth cohort. Environ. Health Perspect. 2016, 124 (6), 848−
+Interaction of perfluorooctanoic acid with human serum albumin.
+                                                                                    854.
+BMC Struct. Biol. 2009, 9 (1), 31.
+                                                                                      (61) Bogdanska, J.; Sundström, M.; Bergström, U.; Borg, D.; Abedi-
+  (45) Han, X.; Snow, T. A.; Kemper, R. A.; Jepson, G. W. Binding of
+                                                                                    Valugerdi, M.; Bergman, Ã .; Depierre, J.; Nobel, S. Tissue distribution
+perfluorooctanoic acid to rat and human plasma proteins. Chem. Res.
+                                                                                    of 35S-labelled perfluorobutanesulfonic acid in adult mice following
+Toxicol. 2003, 16 (6), 775−781.
+                                                                                    dietary exposure for 1−5 days. Chemosphere 2014, 98, 28−36.
+  (46) Beesoon, S.; Martin, J. W. Isomer-specific binding affinity of
+                                                                                      (62) Burkemper, J. L.; Aweda, T. A.; Rosenberg, A. J.; Lunderberg,
+perfluorooctanesulfonate (PFOS) and perfluorooctanoate (PFOA) to
+serum proteins. Environ. Sci. Technol. 2015, 49 (9), 5722−5731.                     D. M.; Peaslee, G. F.; Lapi, S. E. Environ. Sci. Technol. Lett. 2017, 4
+  (47) Meeker, J. D.; Yang, T.; Ye, X.; Calafat, A. M.; Hauser, R.                  (6), 211−215.
+Urinary concentrations of parabens and serum hormone levels, semen                    (63) Pérez, F.; Nadal, M.; Navarro-Ortega, A.; Fàbrega, F.;
+quality parameters, and sperm DNA damage. Environ. Health Perspect.                 Domingo, J. L.; Barceló, D.; Farré, M. Accumulation of perfluoroalkyl
+2011, 119 (2), 252−257.                                                             substances in human tissues. Environ. Int. 2013, 59, 354−362.
+  (48) Monroy, R.; Morrison, K.; Teo, K.; Atkinson, S.; Kubwabo, C.;                  (64) Das, K. P.; Grey, B. E.; Zehr, R. D.; Wood, C. R.; Butenhoff, J.
+Stewart, B.; Foster, W. G. Serum levels of perfluoroalkyl compounds                 L.; Chang, S. C.; Ehresman, D. J.; Tan, Y. M.; Lau, C. Effects of
+in human maternal and umbilical cord blood samples. Environ. Res.                   perfluorobutyrate exposure during pregnancy in the mouse. Toxicol.
+2008, 108 (1), 56−62.                                                               Sci. 2008, 105 (1), 173−181.
+  (49) Fromme, H.; Mosch, C.; Morovitz, M.; Alba-Alejandre, I.;                       (65) Mahapatra, C. T.; Damayanti, N. P.; Guffey, S. C.; Serafin, J. S.;
+Boehmer, S.; Kiranoglu, M.; Faber, F.; Hannibal, I.; Genzel-                        Irudayaraj, J.; Sepúlveda, M. S. Comparative in vitro toxicity
+Boroviczény, O.; Koletzko, B. Pre-and postnatal exposure to                        assessment of perfluorinated carboxylic acids. J. Appl. Toxicol. 2017,
+perfluorinated compounds (PFCs). Environ. Sci. Technol. 2010, 44                    37 (6), 699−708.
+(18), 7123−7129.                                                                      (66) Chang, S.; Bjork, J.; Wallace, K.; Butenhoff, J. Effects of
+  (50) Matilla-Santander, N.; Valvi, D.; Lopez-Espinosa, M.-J.;                     perfluorobutyrate on thyroid hormone status in rats. Toxicol. Lett.
+Manzano-Salgado, C. B.; Ballester, F.; Ibarluzea, J.; Santa-Marina,                 2008, 180 (3−4), S11−S11.
+L.; Schettgen, T.; Guxens, M.; Sunyer, J. Exposure to perfluoroalkyl                  (67) Zhang, S.; Guo, X.; Lu, S.; Sang, N.; Li, G.; Xie, P.; Liu, C.;
+substances and metabolic outcomes in pregnant women: Evidence                       Zhang, L.; Xing, Y. Exposure to PFDoA causes disruption of the
+from the Spanish INMA Birth Cohorts. Environ. Health Perspect.                      hypothalamus-pituitary-thyroid axis in zebrafish larvae. Environ. Pollut.
+2017, 125 (11), 117004.                                                             2018, 235, 974−982.
+  (51) Ode, A.; Rylander, L.; Lindh, C. H.; Källén, K.; Jönsson, B. A.;            (68) Kang, H.; Choi, K.; Lee, H. S.; Kim, D. H.; Park, N. Y.; Kim, S.;
+Gustafsson, P.; Olofsson, P.; Ivarsson, S. A.; Rignell-Hydbom, A.                   Kho, Y. Elevated levels of short carbon-chain PFCAs in breast milk
+Determinants of maternal and fetal exposure and temporal trends of                  among Korean women: Current status and potential challenges.
+perfluorinated compounds. Environ. Sci. Pollut. Res. 2013, 20 (11),                 Environ. Res. 2016, 148, 351−359.
+7970−7978.                                                                            (69) Olsen, G. W.; Chang, S. C.; Noker, P. E.; Gorman, G. S.;
+  (52) Chen, F. F.; Yin, S.; Kelly, B. C.; Liu, W. P. Chlorinated                   Ehresman, D. J.; Lieder, P. H.; Butenhoff, J. L. A comparison of the
+polyfluoroalkyl ether sulfonic acids in matched maternal, cord, and                 pharmacokinetics of perfluorobutanesulfonate (PFBS) in rats,
+placenta samples: a study of transplacental transfer. Environ. Sci.                 monkeys, and humans. Toxicology 2009, 256 (1), 65−74.
+Technol. 2017, 51 (11), 6387−6394.                                                    (70) Zhou, Z.; Liang, Y.; Shi, Y. L.; Xu, L.; Cai, Y. Q. Occurrence
+  (53) Gao, Y.; Fu, J. J.; Cao, H. M.; Wang, Y. W.; Zhang, A. Q.;                   and transport of perfluoroalkyl acids (PFAAs), including short-chain
+Liang, Y.; Wang, T.; Zhao, C.; Jiang, G. B. Differential accumulation               PFAAs in Tangxun Lake, China. Environ. Sci. Technol. 2013, 47 (16),
+and elimination behavior of perfluoroalkyl acid isomers in occupa-                  9249−9257.
+
+                                                                             6537                                                          DOI: 10.1021/acs.est.9b00715
+                                                                                                                            Environ. Sci. Technol. 2019, 53, 6529−6538
+Environmental Science & Technology                                                                               Article
+
+ (71) Zhang, Y.; Beesoon, S.; Zhu, L.; Martin, J. W. Isomers of
+perfluorooctanesulfonate and perfluorooctanoate and total perfluor-
+oalkyl acids in human serum from two cities in North China. Environ.
+Int. 2013, 53, 9−17.
+ (72) Manzano-Salgado, C. B.; Casas, M.; Lopez-Espinosa, M. J.;
+Ballester, F.; Basterrechea, M.; Grimalt, J. O.; Jimenez, A. M.; Kraus,
+T.; Schettgen, T.; Sunyer, J.; Vrijheid, M. Transfer of perfluoroalkyl
+substances from mother to fetus in a Spanish birth cohort. Environ.
+Res. 2015, 142, 471−478.
+ (73) Reynolds, L. P.; Borowicz, P. P.; Caton, J. S.; Vonnahme, K. A.;
+Luther, J. S.; Buchanan, D. S.; Hafez, S. A.; Grazul-Bilska, A. T.;
+Redmer, D. A. Uteroplacental vascular development and placental
+function: an update. Int. J. Dev. Biol. 2010, 54 (2−3), 355−365.
+ (74) Lien, G. W.; Huang, C. C.; Wu, K. Y.; Chen, M. H.; Lin, C. Y.;
+Chen, C. Y.; Hsieh, W. S.; Chen, P. C. Neonatal−maternal factors and
+
+
+
+
+                                                                                                                                Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​53/​11/​6529/​14435857/​es9b00715.​pdf by UNIV OF ILLINOIS CHICAGO user on 01 November 2026
+perfluoroalkyl substances in cord blood. Chemosphere 2013, 92 (7),
+843−850.
+ (75) Sheng, N.; Cui, R.; Wang, J.; Guo, Y.; Wang, J.; Dai, J. Y.
+Cytotoxicity of novel fluorinated alternatives to long-chain perfluor-
+oalkyl substances to human liver cell line and their binding capacity to
+human liver fatty acid binding protein. Arch. Toxicol. 2018, 92 (1),
+359−369.
+ (76) Syme, M. R.; Paxton, J. W.; Keelan, J. A. Drug transfer and
+metabolism by the human placenta. Clin. Pharmacokinet. 2004, 43 (8),
+487−514.
+ (77) Susan, T.; Blackburn, D. Maternal, Fetal, & Neonatal
+Physiology: A Clinical Perspective. Qual. Health. Res. 2007, 11 (6),
+780−794.
+ (78) Yuan, H.; Pawliszyn, J. Application of solid-phase micro-
+extraction in the determination of diazepam binding to human serum
+albumin. Anal. Chem. 2001, 73 (18), 4410−4416.
+
+
+
+
+                                                                           6538                  DOI: 10.1021/acs.est.9b00715
+                                                                                  Environ. Sci. Technol. 2019, 53, 6529−6538
+

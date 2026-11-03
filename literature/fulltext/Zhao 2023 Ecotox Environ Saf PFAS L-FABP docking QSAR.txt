@@ -1,0 +1,545 @@
+                                                           Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+                                                                     Contents lists available at ScienceDirect
+
+
+                                                 Ecotoxicology and Environmental Safety
+                                                           journal homepage: www.elsevier.com/locate/ecoenv
+
+
+
+
+Hepatotoxicity assessment investigations on PFASs targeting L-FABP using
+binding affinity data and machine learning-based QSAR model
+Jiayi Zhao a, b, 1, Xiaoyue Shi b, 1, Zhiqin Wang b, 1, Sijie Xiong a, Yongfeng Lin b, Xiaoran Wei b,
+Yanwei Li c, Xiaowen Tang a, *
+a
+    Department of Medical Chemistry, School of Pharmacy, Qingdao University, Qingdao 266071, China
+b
+    Department of Occupational and Environmental Health, School of Public Health, Qingdao University, Qingdao 266071, China
+c
+    Environment Research Institute, Shandong University, Qingdao 266237, China
+
+
+
+
+A R T I C L E I N F O                                       A B S T R A C T
+
+Edited by Hao Zhu                                           Per- and polyfluoroalkyl substances (PFASs) are persistent organic pollutants that have been detected in various
+                                                            environmental media and human serum, but their safety assessment remains challenging. PFASs may accumulate
+Keywords:                                                   in liver tissues and cause hepatotoxicity by binding to liver fatty acid binding protein (L-FABP). Therefore,
+PFASs                                                       evaluating the binding affinity of PFASs to L-FABP is crucial in assessing the potential hepatotoxic effects. In this
+L-FABP
+                                                            study, two binding sites of L-FABP were evaluated, results suggested that the outer site possessed high affinity to
+Binding affinity
+                                                            polyfluoroalkyl sulfates and the inner site preferred perfluoroalkyl sulfonamides, overall, the inner site of L-FABP
+Machine learning
+Bayesian Kernel Machine Regression                          was more sensitive to PFASs. The binding affinity data of PFASs to L-FABP were used as training set to develop a
+                                                            machine learning model-based quantitative structure-activity relationship (QSAR) for efficient prediction of
+                                                            potentially hazardous PFASs. Further Bayesian Kernel Machine Regression (BKMR) model disclosed flexibility as
+                                                            the determinant molecular property on PFASs-induced hepatotoxicity. It can influence affinity of PFASs to target
+                                                            protein through affecting binding conformations directly (individual effect) as well as integrating with other
+                                                            molecular properties (joint effect). Our present work provided more understanding on hepatotoxicity of PFASs,
+                                                            which could be significative in hepatotoxicity gradation, administration guidance, and safer alternatives
+                                                            development of PFASs.
+
+
+
+
+1. Introduction                                                                                 Liu et al., 2019; Dickman and Aga, 2022). Therefore, accurate prediction
+                                                                                                and assessment of the toxicity of PFASs to humans are essential for
+    Per- and polyfluoroalkyl substances (PFASs) have been widely                                long-term development goals in the field of environmental health.
+applied in numerous industrial and commercial products since 1950s                                  It has been reported that PFASs have toxic effects on reproduction,
+(Amstutz et al., 2022; Gao et al., 2020; Presentato et al., 2020), which                        immune and endocrine function (Sunderland et al., 2019). For instance,
+has led to the increase of distributions in various environmental media                         PFOS and 6:2 Cl-PFESA can regulate the expression level of key medi­
+and biota samples (Dai et al., 2006; Penland et al., 2020; Han et al.,                          ators in phosphatidylinositol metabolism pathways and enzyme in
+2023). Of particular concern are perfluorooctanoate (PFOA) and per­                             glycerophosphoserines biosynthesis to cause hepatotoxicity (Li et al.,
+fluorooctane sulfonate (PFOS), due to the extremely widespread appli­                           2023). PFASs can also reduce the PC/PE ratio of liver cell membrane,
+cation and distribution in environment (Zhu et al., 2022). Although the                         inhibiting the secretion of VLDL and promoting the accumulation of
+Stockholm Convention in 2009 has issued restrictions on the production                          triglyceride in hepatocytes (Li et al., 2023). The interaction between
+and usage of PFOA, PFOS and related compounds, many alternatives                                PFASs and cytochrome P450 has been proposed as a potential key mo­
+have still appeared on the market (Presentato et al., 2020; Shan et al.,                        lecular event of leading to PFAS-induced hepatotoxicity (Amstutz et al.,
+2021). At present, about 5000 kinds of identified PFASs have been                               2022). Besides, PFOS can cause hepatic steatosis and pathological
+registered and more PFASs are still unknown, which possess persistence                          micro/macro vacuolation with a superfluous triglyceride level occurred
+and bioaccumulation characteristics in human body (Feng et al., 2019;                           in zebrafish (Yi et al., 2019). These studies suggested that liver is the
+
+
+    * Corresponding author.
+      E-mail address: xwtang1219@qdu.edu.cn (X. Tang).
+    1
+      These authors contributed equally to this work.
+
+https://doi.org/10.1016/j.ecoenv.2023.115310
+Received 25 April 2023; Received in revised form 23 July 2023; Accepted 27 July 2023
+Available online 29 July 2023
+0147-6513/© 2023 The Author(s). Published by Elsevier Inc. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-
+nc-nd/4.0/).
+J. Zhao et al.                                                                                                Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+significant target organ of PFASs. The accumulation of PFASs in liver               individual and joint impacts of confounding factors investigation with
+may result in and even exacerbate the hepatotoxicity (Huang et al.,                 nonparametric statistical approach (BKMR) revealed that molecular
+2022; Chen et al., 2021). Recent study indicated that liver weight,                 flexibility was the determinant of PFASs-induced hepatotoxicity. The
+hepatosomatic index, triglyceride content and cholesterol content were              present work could be significative in hepatotoxicity gradation,
+positively correlated with the liver PFAS concentration in Rana nigro­              administration guidance, and safer alternatives development of PFASs.
+maculata (Lin et al., 2022). It has also demonstrated a strong positive
+correlations between the –log dissociation constants (–logKd) of PFASs              2. Materials and methods
+for liver fatty acid binding protein (L-FABP) and accumulation of PFASs
+in liver (Cao et al., 2019; Jia et al., 2022). Therefore, binding affinity to       2.1. Model preparation
+L-FABP is a major contributing factor to the potential bioaccumulation
+of PFASs in liver tissues. It has been verified that several typical PFASs,             L-FABP is of particular interest as it can bind two fatty acid molecules
+such as PFOA, PFOS and related perfluorooctanesulfonamide-based                     simultaneously. Both two ligand binding sites need to be studied in the
+fluorochemicals (PFOSAs) can bind to L-FABP due to the structural                   present work and all the resolved structures of L-FABP are highly
+similarity to its natural substrate (fatty acids) (Luebker et al., 2002;            identical. The ligand-receptor complex that contains two ligands in the
+Sheng et al., 2016). The binding to L-FABP facilitates the transport of             two binding sites would be more convenient for the present study, which
+PFASs into hepatocytes, thereby initiating some relevant hepatotoxic                can distinctly indicate the binding site of PFAS and provide more ac­
+effects. Taken together, L-FABP is a pivotal protein that affects hepato­           curate docking sites for molecular docking process. Therefore, the X-ray
+toxicity due to the accumulation of PFASs in the liver. Regarding to the            crystal structure of human liver-fatty acid binding protein complexed
+critical role of L-FABP in the hepatotoxicity of PFASs, a growing number            with two molecules of oleic acid recorded in Protein Data Bank (htt
+of studies aiming to assess the toxicity of PFASs according to L-FABP               ps://www.rcsb.org/, PDB code: 2LKK) was utilized to construct the
+binding affinities have been proposed (Cao et al., 2019; Cheng and Ng,              initial receptor model. The protein and natural ligand (oleic acid) parts
+2018). Currently, most toxicity data available merely refer to a handful            were extracted and processed for subsequent molecular docking exper­
+of chemicals, such as PFOA and PFOS, while hepatotoxicity data of most              iments. A ligand database comprising 1599 compounds (listed in Sup­
+PFASs are notably deficient and, in the case of emerging replacements               plemental Material_1) was constructed based on a recent study that
+and by products, the data are completely unexplored (Fenton et al.,                 reported the discovery and characterization of PFASs in environmental
+2021). Therefore, elucidating the structure-based interactions between              and human samples (Liu et al., 2019). All structures in the database were
+PFASs and L-FABP is essential to predict the hepatotoxicity of novel                optimized using the OPLS4 force field, and the protonated states of
+PFASs.                                                                              ionizable groups were defined at pH 7.0 ± 0.2 (Kontoyianni, 2017),
+    Although only a limited number of studies have investigated the                 which simulated the slightly fluctuating pH conditions in the physio­
+binding affinities of PFASs to L-FABP (Gao et al., 2019; Sheng et al.,              logical liver environment.
+2016), a recent nontarget screening method using Size-Exclusion
+Chromatography-Coelution (SECC) and nontarget analysis (NTA) has
+                                                                                    2.2. Molecular fingerprint calculation
+identified that PFASs were with high binding affinity to L-FABP (Yang
+et al., 2020). And the quantitative relationship between PFASs and
+                                                                                        A total of 13 molecular fingerprints and 192 categories of 2D mo­
+L-FABP binding has been disclosed through experimental exposure and
+                                                                                    lecular descriptors were utilized in this study, generated from an inte­
+QSAR model combined with molecular dynamics (MD) simulations (Cao
+                                                                                    grated web-based platform for molecular descriptor and fingerprint
+et al., 2019), which provided an elaborate computational model to
+                                                                                    computation (http://www.scbdd.com/chemdes/). The molecular fin­
+predict the L-FABP binding affinities of some specific PFASs. But given
+                                                                                    gerprints included CDK fingerprint (1024 bits), CDK extended finger­
+the sheer number and structural diversity, a larger quantity of PFASs
+                                                                                    print (1024 bits), Graphonly fingerprint (1024 bits), AtomPairs2D
+with broader scope of categories should be investigated. Notably, in
+                                                                                    fingerprint (780 bits), AtomPairs2D count fingerprint (780 bits), E-state
+silico prediction approaches, such as quantitative structure-activity
+                                                                                    fingerprint (79 bits), Klekota-Roth fingerprint (4860 bits), Klekota-Roth
+relationship (QSAR) models, hold promise for the quantitative assess­
+                                                                                    Count fingerprint (4860 bits), PubChem fingerprint (881 bits), Sub­
+ment of chemical risk, particularly when the training set is of high
+                                                                                    structure fingerprint (307 bits), Substructure Count fingerprint (307
+quality. These methods have already been utilized to evaluate the
+                                                                                    bits), MACCS fingerprint (166 bits) and Morgan fingerprint (1024 bits).
+endocrine disrupting effects of PFASs (Azhagiya Singam et al., 2020; Lin
+                                                                                    Detailed explanations on these molecular fingerprints were provided in
+and Chou, 2022; Yu et al., 2022; Lavado et al., 2022). Therefore, the use
+                                                                                    Table S1. Additionally, 192 categories of 2D molecular descriptors were
+of in silico approaches to predict the hepatotoxicity of PFASs towards
+                                                                                    calculated by MOE software (version 2014.09). Prior to machine
+L-FABP is of significant interest. Given the diversity of PFASs compound
+                                                                                    learning analysis, all molecular fingerprints and descriptors were stan­
+properties, considering the impact of various molecular characteristics
+                                                                                    dardized as follows:
+of PFASs on their affinity to L-FABP is of particularly important. How­
+ever, the use of multivariate parametric regression methods may be                  Xi = (X0 –μ) / σ
+inadequate in addressing collinearity and non-additivity issues. Previous
+studies have primarily focused on investigating the influence of single             where Xi is the standardized value of fingerprints or descriptors, X0 is the
+molecular features, which may be inadequate regarding to under­                     original value, μ is the feature mean, and σ is the feature standard
+standing the real impact of multiple molecular features. Fortunately, the           deviation.
+Bayesian Kernel Machine Regression (BKMR) models have recently been
+introduced as a novel approach capable of assessing the combined ef­                2.3. Molecular docking
+fects of molecular features, which could provide insight into the hepa­
+totoxicity of PFASs comprehensively (Bobb et al., 2015; Roostaei et al.,               Molecular docking was performed by using the Maestro module in
+2021).                                                                              Schrödinger software package. Protonated states of titratable residues in
+    In the present study, we calculated the binding affinities of 1599              receptor were calculated at the same pH (7.0 ± 0.2) as the ligand
+PFASs to L-FABP and elucidated the dominant binding site of target                  preparation (Kontoyianni, 2017). The receptor was relaxed with the
+protein in PFASs-induced hepatotoxicity. By using the binding affinity              OPLS4 force field at 310 K. Glide docking procedure was employed for
+data as training set, a machine learning-based quantitative structure-              the current docking study, with centroid of oleic acid defined as the
+activity relationship (QSAR) model was subsequently developed for                   center of the docking grid. The size of the grid was set to 25 * 25 * 25 Å3.
+the efficient prediction of potentially hazardous PFASs. Further                    Finally, flexible molecular docking based on induced fit theory was
+
+                                                                                2
+J. Zhao et al.                                                                                                 Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+executed, and results (binding mode and docking score) with the best
+docking score were recorded.
+
+2.4. Correlation analysis
+
+   In order to assess the credibility of molecular docking, a regression
+analysis was conducted using IBM SPSS Statistics 25. Dissociation con­
+stants (Kd) of PFASs towards L-FABP from previous studies (Yang et al.,
+2020) and the binding energy obtained from molecular docking were
+used as the independent and dependent variables, respectively. The
+Pearson Correlation Coefficient (r) was selected to evaluate the degree of
+explanation of independent variable towards dependent variable,
+namely Kd and binding energy.
+
+2.5. Machine learning
+
+    Firstly, missing values were filled with 0 and variance filtering
+(variance is 0) was applied (Lin et al., 2021). Next, Scikit-learn, based on
+the Python language, was utilized for constructing the predictive model.
+Prior to training, the data sets including 829 components for non-portal           Fig. 1. Distribution on affinity of PFASs binding to portal and non-portal region
+site and 933 components for portal site were separately divided into               of L-FABP.
+training and verification sets at a ratio of 4:1 at random. Two categories
+with five machine learning algorithms, including classical and popular             sampler, to determine the contribution of each descriptor. The rela­
+regression algorithm (Ridge and Lasso), and other algorithms trans­                tionship between a specific characteristic and affinity was calculated
+formed from classification algorithms (Decision Tree (DT), Support                 while controlling for the other 11 PFASs characteristics at the median.
+Vector Machine (SVM) and Random Forest (RF)), were employed for                    Linear or nonlinear relationships could be directly observed as a result.
+constructing the models. The hyperparameters of each algorithm were                Additionally, the change in binding force was calculated at the median,
+optimized using the grid search and learning curve methods. The best               while controlling for all PFASs characteristics at specific percentiles
+hyperparameter values were summarized in Table S2 and detailed                     (25th, 50th, 75th), when the single PFASs feature increased by an
+parameter values were provided in Supplementary Materials_2. The                   inter-quartile range (IQR). Moreover, controlling for the other 10 PFASs
+predictive ability and robustness of these regression models were eval­            characteristics at the median, the relationship between one character­
+uated using ten-fold cross-validation (internal validation) and external           istic at the 10th, 50th, 90th percentiles and another characteristic
+validation (Du et al., 2017). The coefficient of determination (R2) was            elevating an IQR with affinity was calculated.
+used to assess the regression performance of the results obtained from
+the machine learning algorithms.                                                   3. Results and discussion
+
+2.6. BKMR                                                                          3.1. Molecular docking and accuracy verification
+
+    Although ridge regression and other statistical methods have solved                Due to the limited availability of toxicity/affinity data towards L-
+the multicollinearity problem, they are incapable of modeling the                  FABP for the huge number of PFASs, molecular docking was employed
+nonlinear, non-additive, or high dimensional functional relationships.             to generate sufficient binding affinity data in the present study. L-FABP
+By using the kernel machine regression model, BKMR can provide in-                 is comprised of a β-barrel composed of 11 anti-parallel β-sheets with two
+depth analysis on the potentially complex nonlinear relationship or/               ɑ-helices closing one end. Unlike other intracellular lipid-binding pro­
+and interaction. It can fit various effects produced by molecular char­            teins, L-FABP is unique in containing two substrate binding sites, namely
+acteristics, such as relative contributions on the overall effect, joint ef­       portal and non-portal region (Fig. S1) (He et al., 2007; Sharma and
+fects of multiple molecular characteristics, and bivariate exposure-               Sharma, 2011). While previous studies mainly focused on the interac­
+response functions of molecular features. In this study, R version 4.2.1           tion between PFASs and the non-portal region of L-FABP (Yang et al.,
+(R Foundation for Statistical Computing, Vienna, Austria) was employed             2020), the portal region, as a substrate binding site, also warrants
+to implement BKMR, which was established as follows (Bobb et al.,                  detailed investigation. Therefore, the binding of PFASs towards both the
+2015):                                                                             portal and non-portal regions of L-FABP was analyzed using molecular
+                                                                                   docking. As a result, 766 PFASs and 653 PFASs were successfully docked
+Yi=h(xi)+zi T β+ei                                                                 in the portal and non-portal regions, respectively, with a total of 621
+                                                                                   PFASs exhibiting considerable binding affinity towards both two
+where Yi is the dependent variable or response variable, which repre­
+                                                                                   regions.
+sents hepatotoxicity, namely binding affinity of PFASs to L-FABP, xi
+                                                                                       For toxic compounds, the tighter binding to biological target
+represents molecular characteristics (such as Pol, nA, Hyd, nC, nF, Brs,
+                                                                                   generally exhibits the stronger toxicity (Cheng et al., 2021). To verify
+Bs, Flex, logP, Varea, Vvol, Wei), h() is a Gaussian kernel exposure-
+                                                                                   the correlation between binding affinity to L-FABP and actual hepato­
+response function, zi is the covariate of xi, containing a set of potential
+                                                                                   toxicity of PFASs, the correlation between binding energy from in silico
+confounders (extrinsic affecting factors distinguished from the intrinsic
+                                                                                   molecular docking and dissociation constant from in vitro fluorescence
+molecular characteristics of PFASs, and no potential confounder was
+                                                                                   displacement experiments was analyzed. The binding affinity data of
+included in the present study) (Bobb et al., 2015), T is the transpose
+                                                                                   PFASs to L-FABP were generated with the higher value to the two
+operator, β is the linear regression coefficient associated with the input
+                                                                                   pockets, as a result, all the affinity data were derived from non-portal
+variable xi, and ei refers to the residuals.
+                                                                                   region. The Pearson correlation coefficient between dissociation con­
+    Posterior inclusion probabilities (PIPs) of molecular descriptors were
+                                                                                   stant and binding affinity was 0.79 (Fig. S2), indicating that the docking
+calculated via a hierarchical variable selection method (Bobb et al.,
+                                                                                   score of PFASs binding to L-FABP generated by molecular docking can
+2015) with 25,000 iterations using a Markov chain Monte Carlo
+
+                                                                               3
+J. Zhao et al.                                                                                                 Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+
+
+Fig. 2. The binding modes of three typical PFASs and oleic acid to the portal region (green border) and non-portal region (blue border) of L-FABP. Hydrogen bond or
+salt bridge interactions are labeled with blue dotted line, red dotted line represents no obvious interactions. Distances are given in angstrom.
+
+
+reflect the potential hepatotoxicity of PFASs. As shown in Fig. 1, affin­            difference on inhibitory activity. Moreover, the non-portal site of
+ities of PFASs binding to the portal site ranged from − 8.92 to − 2.44               L-FABP is occupied preferentially when binding with natural substrate
+kcal/mol with a mean of − 6.33 kcal/mol, and from − 9.42 to − 4.56                   or competitive inhibitors. In conclusion, the non-portal pocket of
+kcal/mol with a mean of − 5.38 kcal/mol to the non-portal site. The                  L-FABP, the prioritized binding site of PFASs, is more sensitive to the
+natural ligand exhibits a significantly lower binding affinity compared              production of PFASs toxicity.
+to PFASs at either of the two sites (− 4.34 kcal/mol in portal and − 3.46
+kcal/mol in non-portal region), demonstrating the potent competitor                  3.2. Binding mode analysis
+role of PFASs. PFASs showed a higher affinity for the non-portal site than
+the portal site (p < 0.01). The difference of about 1 kcal/mol on the                    For the natural state of L-FABP, two oleic acid molecules are com­
+median for affinity of PFASs to the two sites corresponds to about                   bined in the portal and non-portal substrate binding sites. As displayed
+six-fold change in activity (IC50), revealing the biologically significant           in Fig. 2, hydrogen bond or salt bridge interactions are formed between
+
+
+
+
+  Fig. 3. Comparison on binding affinities of different types of PFASs to L-FABP in the portal region (A) and non-portal region (B). * p < 0.05 and * * p < 0.01.
+
+                                                                                 4
+J. Zhao et al.                                                                                                Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+
+
+Fig. 4. Performance of toxicity prediction models of PFASs towards L-FABP assessed by cross-validation and external validation. Abbreviations: AP2D, AtomPairs2D;
+AP2DC, AtomPairs2D Count; CDKE, CDK Extended; CDKG, CDK Graphonly; KR, KlekotaRoth; KRC, KlekotaRoth Count; MACCS, MACCSkeys; S, Substructure; SC,
+Substructure Count; 2D, 2D descriptor; RF, Random Forest; SVR, support vector regression; DT, Decision Tree.
+
+
+oleic acid and polar residues, such as Lys31 and Ser56 in the portal re­            3.3. Development and characterization of prediction models
+gion, and Arg122, Ser39, and Ser124 in the non-portal region. Three
+typical PFASs that refers to short chain (ClPFLCAs_i), long chain (K/d-O/               The non-portal region has been identified as the prioritized binding
+CO-PFLSA) and branched chain (qaPFSMc) were selected for the binding                site of PFASs, so the binding affinity data with non-portal region of L-
+mode analysis (Fig. 2). The results indicate that PFASs can bind to the             FABP were adopted for training and validation set of the subsequent
+non-portal region with the same binding mode as oleic acid, demon­                  hepatotoxicity prediction model of PFASs. A total of 70 regression
+strating a tight binding to L-FABP. However, in the portal region, only             models, comprising five machine learning algorithms and fourteen types
+Ser56 contributes slightly to the binding, and no obvious interaction is            of molecular descriptors, were established for the machine learning
+found with Lys31 (the distances are greater than 5 Å shown in Fig. 2).              model. Performances of the established models were evaluated through
+The different binding modes in the two sites could be a reasonable                  cross-validation (internal validation) and external validation. As
+explanation to the different binding affinity of PFASs to portal and non-           depicted in Fig. 4, the cross-validation values ranged from 0.25 to 0.61,
+portal region of L-FABP.                                                            while the external validation values ranged from 0.22 to 0.63. Previous
+    PFASs can also be categorized by the acid groups, and the binding               reported prediction accuracies for chemicals with limited toxicity were
+affinity for different types of PFASs to L-FABP was summarized in Fig. 3.           ranged from 0.30 to 0.55 (Lawal et al., 2020; Singh et al., 2022; Tash­
+Categories with a low success rate or small quantity in docking analysis            chilova et al., 2022), and the accuracies of the present prediction models
+were excluded, resulting in five categories of PFASs for portal region              were higher than the previous reported virtual screening strategy (Li
+affinity analysis and seven categories for non-portal region affinity               et al., 2013). Therefore, a satisfactory model based on the non-portal site
+analysis. The medians of the considered categories of PFASs were                    of L-FABP was successfully developed to predict the hepatotoxicity of
+− 6~− 5 kcal/mol in portal region and − 7~− 6 kcal/mol in non-portal                PFASs. In terms of prediction performances, 2D molecular
+region, revealing the high affinity of PFASs to the inner site of L-FABP            descriptors-Ridge algorithm model with the highest cross validation
+again. Polyfluoroalkyl sulfates exhibited the strongest binding affinity to         score (0.61) and competitive external validation score (0.57) was
+portal region of L-FABP (p < 0.05), and perfluoroalkyl sulfonamides                 considered as the optimal prediction model to estimate the L-FABP
+provided the strongest binding to non-portal region (p < 0.01).                     toxicity of PFASs.
+                                                                                        The top ten models based on performance of cross-validation were
+
+                                                                                5
+J. Zhao et al.                                                                                                        Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+                 Table 1                                                                  molecular descriptors and AtomPairs2D Count fingerprint were good
+                 PIPs values of PAFSs molecular descriptors when                          recommendations as chemical descriptors for the development of the
+                 binding with L-FABP.                                                     prediction models of PFASs toxicity towards L-FABP.
+                  Molecular Descriptors                          PIPs                         Furthermore, the performance of different machine learning algo­
+                  Flex                                           1.00
+                                                                                          rithms in hepatotoxicity prediction was analyzed. The top ten models
+                  nC                                             1.00                     covered four algorithms, among which Ridge had the highest average
+                  Pol                                            1.00                     metric values of cross-validation (0.60–0.61) and Random Forest had
+                  Varea                                          0.92                     the highest frequency of occurrence. The results indicated that Ridge
+                  Bs                                             0.85
+                                                                                          and Random Forest could achieve better results than other three ma­
+                  nA                                             0.72
+                  Vvol                                           0.69                     chine learning methods. Unlike the regression algorithms transformed
+                  Hyd                                            0.59                     from the classification algorithms (Regression Tree, Support Vector
+                  Brs                                            0.58                     Regression, etc.), Ridge regression is a classical and popular regression
+                  logP                                           0.56                     algorithm owing to its simplicity, computational expedience, and its
+                  Wei                                            0.51
+                  nF                                             0.43
+                                                                                          robustness in different data regimes (Wan et al., 2014). Regularization
+                                                                                          term was employed by this classical regression algorithm to form a
+                 Abbreviations: PIPs, posterior inclusion probability;                    penalty on the original loss function to deal with the multicollinearity
+                 Flex, molecular flexibility; nC, number of carbon
+                                                                                          problem. In a certain range of changes, eliminating multicollinearity
+                 atoms; Pol, sum of atomic polarizabilities; Varea, Van
+                                                                                          may improve the generalization ability of the model to a certain extent.
+                 der Waals surface area; Bs, number of single bonds; nA,
+                                                                                          Random Forest is one of the most widely used algorithms with excellent
+                 number of atoms; Vvol, Van der Waals volume; Hyd,
+                 number of hydrophobic atoms; Brs, number of rotat­                       performance, speed, and generalizability (Carracedo-Reboredo et al.,
+                 able single bonds; logP, log octanol/water partition                     2021), and it has proven to be practical in the construction of the pre­
+                 coefficient; Wei, molecular weight; nF, number of                        diction models of PFASs hepatotoxicity towards L-FABP.
+                 fluorine atoms.                                                              In addition, the binding affinity data with portal region of L-FABP
+                                                                                          were also used to train machine learning models with the same regres­
+also provided (Fig. S3). The cross-validation scores ranged from 0.57 to                  sion models. Results showed that the performances of portal models
+0.61, and external validation ranged from 0.53 to 0.62. The perfor­                       were particularly poor with the best validation score of only 0.30 for
+mances of different types of structural fingerprints in predicting PFASs                  cross-validation and 0.35 for external validation (Fig. S4). The unsatis­
+toxicity towards L-FABP were evaluated, and 2D molecular descriptors                      factory performance on machine learning model for portal region may
+and AtomPairs2D Count fingerprint were found to have better perfor­                       be attributed to the higher flexibility and solvent accessibility of the
+mance capabilities than other chemical descriptors. These two de­                         binding site, which makes it difficult to correlate PFASs molecular fea­
+scriptors showed higher average metric values of cross-validation scores                  tures with binding affinity and further hinders the training of machine
+(0.60–0.61 for 2D molecular descriptors and 0.57–0.59 for AtomPairs2D                     learning model.
+Count fingerprint). Moreover, six out of the top ten models were
+developed based on 2D molecular descriptors and AtomPairs2D Count
+fingerprint (three for 2D molecular descriptors and four for Atom­
+Pairs2D Count fingerprint). Therefore, the results suggested that 2D
+
+
+
+
+Fig. 5. . (A) Joint effects of exposure to a mixture of PFASs Descriptors on the affinity levels to L-FABP in BKMR models. Results were obtained by comparing the
+effects of exposure to 12 PFASs descriptors simultaneously at various percentiles (10th to 90th) with the effects of exposure fixed at their 50th percentile. “Estimate”
+represents the level of affinity with all molecular features at a specific percentile (P10-P90). Effect estimates are represented by circles, while 95 % confidence intervals
+are depicted by black vertical lines. A red horizontal dotted line is used to represent − 0.65. *p < 0.05. (B) Individual effects of PFASs descriptors on the affinity levels
+in BKMR models. The data were plotted by comparing the affinity levels caused by individual descriptors from their 25th to 75th percentile with all other descriptors
+held at the corresponding quantiles (25th, 50th, or 75th percentile). “Estimate” represents the level of affinity that the molecular characteristic increases an IQR when
+others are fixed at a particular percentile (P25, P50, P75). Effect estimates are represented by circles, while colored horizontal lines depict 95 % CIs. *p < 0.05.
+
+                                                                                      6
+J. Zhao et al.                                                                                                Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+
+
+Fig. 6. Bivariate exposure-response functions for PFASs descriptors. “Estimate” represents the level of affinity when the descriptor on the upper coordinate axis
+holding at 25th quantiles and the other descriptors on the right longitudinal axis held at different quantiles (25th, 50th, and 75th percentiles) with the rest 10
+descriptors held at the median. Data were estimated using the Bayesian Kernel Machine Regression.
+
+
+3.4. Joint/individual effects of different PFASs descriptors on binding             above the 65th percentile, indicating that the joint action of various
+ability of PFASs and L-FABP                                                         molecular characteristics could increase the affinity to L-FABP. To
+                                                                                    further identify the driving factors in the overall association between
+    BKMR was employed to evaluate the contributions of molecular                    characteristics and affinity, single factor effects analysis was conducted
+characteristics on binding ability to L-FABP, then uncovering the                   by assessing the change in affinity linked with a change in individual
+structure-function relationship of PFAS to hepatotoxicity. By deter­                descriptors from the 25th to 75th percentile while maintaining other
+mining the significance of descriptors through PIPs, it showed that                 descriptors at varying quantiles (25th, 50th, or 75th percentile)
+molecular flexibility (Flex), the molecule polarization (pol) and the               (Fig. 5B). Results showed that a change in molecular flexibility level
+number of carbon atoms (nC) were the most important factors to                      from the 25th to 75th percentile was associated with a decrease of 0.03
+affecting the affinity to L-FABP (Table 1, PIPs=1.00). Further univariate           (95 % CI: − 2.78, 2.84), − 3.58 (95 % CI: − 5.03, − 2.12), and − 3.90 (95
+effect relationship analysis indicated that all the three molecular de­             % CI: − 7.28, − 0.52) in affinity levels, indicating that flexibility is the
+scriptors were non-linearly correlated to the binding affinity (Fig. S5).           determinant of hepatotoxicity caused by PFASs. Further bivariate effect
+The flexibility of PFASs generally increases with the number of carbon              function analysis showed that the three functional variation curves of
+atoms, therefore, the two descriptors, nC and Flex, exhibited a similar             polarizability intersected as the flexibility level increased from the 25th
+influence tendency on binding affinity. High flexibility or more carbon             percentile to the 75th percentile (Fig. 6), indicating the significant
+atoms can provide more conformations, which is favorable for binding                interaction of molecular flexibility on polarizability. In conclusion,
+to the target. However, the affinity would decrease as PFASs could no               flexibility was identified as the determinant in PFASs-induced hepato­
+longer enter the protein pockets if the number of carbon atoms increases            toxicity, it can not only directly affect binding conformations with in­
+too much. Besides, the descriptor of molecule polarization was found                dividual effect but also integrate on other molecular properties with
+with irregular influence on binding affinity.                                       joint effect to influence the binding of PFASs to L-FABP.
+    To investigate the overall impact of molecular characteristics on
+binding affinity between PFASs and L-FABP, joint effects analysis was               4. Conclusions
+performed by using BKMR models. As displayed in Fig. 5A, positive
+overall association with statistical significance between molecular                    In the present study, a series of in-silico approaches were employed
+characteristics and binding affinity emerged when all descriptors were              to investigate the binding of PFASs to L-FABP, which could be an
+
+
+                                                                                7
+J. Zhao et al.                                                                                                    Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+
+effective evaluation of PFASs-induced hepatotoxicity. By using molec­            Appendix A. Supporting information
+ular docking, the inner site of L-FABP was identified as the prioritized
+binding site of PFASs. PIPs analysis disclosed that three molecular de­             Supplementary data associated with this article can be found in the
+scriptors of PFASs, molecular flexibility, atomic polarizabilities and the       online version at doi:10.1016/j.ecoenv.2023.115310.
+number of carbon atoms were the crucial characteristics to the binding
+with L-FABP. Further individual and joint effects analysis with BKMR             References
+model revealed that molecular flexibility could interact with other
+molecular properties to influence the affinity to L-FABP indirectly. As a        Amstutz, V.H., Cengo, A., Sijm, D., Vrolijk, M.F., 2022. The impact of legacy and novel
+                                                                                      perfluoroalkyl substances on human cytochrome P450: An in vitro study on the
+parallel research content to BKMR, a machine learning based hepato­                   inhibitory potential and underlying mechanisms. Toxicology 468, 153116.
+toxicity prediction model was constructed for efficient prediction of            Azhagiya Singam, E.R., Tachachartvanich, P., Fourches, D., Soshilov, A., Hsieh, J.C.Y., La
+potentially hazardous PFASs. The current study could contribute to the                Merrill, M.A., Smith, M.T., Durkin, K.A., 2020. Structure-based virtual screening of
+                                                                                      perfluoroalkyl and polyfluoroalkyl substances (PFASs) as endocrine disruptors of
+more particular knowledge of hepatotoxicity of different PFASs, and the               androgen receptor activity using molecular docking and machine learning. Environ.
+obtained toxicity prediction model could facilitate efforts in determining            Res. 190, 109920.
+the toxicity of emerging PFASs and further assisting the management of           Bobb, J.F., Valeri, L., Claus Henn, B., Christiani, D.C., Wright, R.O., Mazumdar, M.,
+                                                                                      Godleski, J.J., Coull, B.A., 2015. Bayesian kernel machine regression for estimating
+toxic compounds.                                                                      the health effects of multi-pollutant mixtures. Biostatistics 16, 493–508.
+                                                                                 Cao, H., Zhou, Z., Wang, L., Liu, G., Sun, Y., Wang, Y., Wang, T., Liang, Y., 2019.
+CRediT authorship contribution statement                                              Screening of potential PFOS alternatives to decrease liver bioaccumulation:
+                                                                                      experimental and computational approaches. Environ. Sci. Technol. 53, 2811–2819.
+                                                                                 Carracedo-Reboredo, P., Linares-Blanco, J., Rodriguez-Fernandez, N., Cedron, F.,
+    Jiayi Zhao: Methodology, Investigation, Formal analysis, Data                     Novoa, F.J., Carballal, A., Maojo, V., Pazos, A., Fernandez-Lozano, C., 2021.
+curation, Visualization, Writing – original draft; Xiaoyue Shi: Method­               A review on machine learning approaches and trends in drug discovery. Comput.
+ology, Investigation, Formal analysis, Data curation, Visualization,                  Struct. Biotechnol. J. 19, 4538–4558.
+                                                                                 Chen, J., Li, H., Yao, J., Guo, H., Zhang, H., Guo, Y., Sheng, N., Wang, J., Dai, J., 2021.
+Writing – original draft; Zhiqin Wang: Methodology, Investigation,                    Chronic exposure to PFO4DA and PFO5DoDA, two perfluoroalkyl ether carboxylic
+Formal analysis, Data curation, Visualization, Writing – original draft;              acids (PFECAs), suppresses hepatic stress signals and disturbs glucose and lipid
+Sijie Xiong: Methodology, Investigation, Data curation; Yongfeng Lin:                 metabolism in male mice. J. Hazard Mater. 411, 124963.
+                                                                                 Cheng, W., Ng, C.A., 2018. Predicting relative protein affinity of novel per- and
+Funding acquisition, Writing – review & editing; Xiaoran Wei: Visual­                 polyfluoroalkyl substances (PFASs) by an efficient molecular dynamics approach.
+ization, Funding acquisition, Writing – review & editing, Supervision;                Environ. Sci. Technol. 52, 7972–7980.
+Yanwei Li: Funding acquisition, Writing – review & editing; Xiaowen              Cheng, W., Doering, J.A., LaLone, C., Ng, C., 2021. Integrative computational approaches
+                                                                                      to inform relative bioaccumulation potential of per- and polyfluoroalkyl substances
+Tang: Resources, Conceptualization, Software, Funding acquisition,                    across species. Toxicol. Sci. 180, 212–223.
+Project administration, Validation, Writing – review & editing,                  Dai, J., Li, M., Jin, Y., Saito, N., Xu, M., Wei, F., 2006. Perfluorooctanesulfonate and
+Supervision.                                                                          periluorooctanoate in red panda and giant panda from China. Environ. Sci. Technol.
+                                                                                      40, 5647–5652.
+                                                                                 Dickman, R.A., Aga, D.S., 2022. A review of recent studies on toxicity, sequestration, and
+Declaration of Competing Interest                                                     degradation of per- and polyfluoroalkyl substances (PFAS). J. Hazard Mater. 436,
+                                                                                      129120.
+                                                                                 Du, H., Cai, Y., Yang, H., Zhang, H., Xue, Y., Liu, G., Tang, Y., Li, W., 2017. In silico
+    The authors declare that they have no known competing financial
+                                                                                      prediction of chemicals binding to aromatase with machine learning methods. Chem.
+interests or personal relationships that could have appeared to influence             Res Toxicol. 30, 1209–1218.
+the work reported in this paper.                                                 Feng, H., Ruan, Y., Zhang, K., Lam, P.K.S., 2019. Current analytical methodologies and
+                                                                                      gaps for per- and polyfluoroalkyl substances determination in the marine
+                                                                                      environment. TrAC Trends Anal. Chem. 121, 115372.
+Data Availability                                                                Fenton, S.E., Ducatman, A., Boobis, A., DeWitt, J.C., Lau, C., Ng, C., Smith, J.S.,
+                                                                                      Roberts, S.M., 2021. Per- and polyfluoroalkyl substance toxicity and human health
+    Data will be made available on request.                                           review: current state of knowledge and strategies for informing future research.
+                                                                                      Environ. Toxicol. Chem. 40, 606–630.
+                                                                                 Gao, K., Zhuang, T., Liu, X., Fu, J., Zhang, J., Fu, J., Wang, L., Zhang, A., Liang, Y.,
+Acknowledgements                                                                      Song, M., Jiang, G., 2019. Prenatal exposure to per- and polyfluoroalkyl substances
+                                                                                      (PFASs) and association between the placental transfer efficiencies and dissociation
+                                                                                      constant of serum proteins-PFAS complexes. Environ. Sci. Technol. 53, 6529–6538.
+    This study was supported by the National Natural Science Founda­             Gao, K., Chen, Y., Xue, Q., Fu, J., Fu, K., Fu, J., Zhang, A., Cai, Z., Jiang, G., 2020. Trends
+tion of China (82003425, 22006083), Natural Science Foundation of                     and perspectives in per-and polyfluorinated alkyl substances (PFASs) determination:
+Shandong Province (ZR2020QH293), Taishan Scholars Program of                          faster and broader. TrAC Trends Anal. Chem. 133, 116114.
+                                                                                 Han, F., Wang, Y., Li, J., Lyu, B., Liu, J., Zhang, J., Zhao, Y., Wu, Y., 2023. Occurrences of
+Shandong Province (TSQN202211012), and Qingdao Marine Science                         legacy and emerging per- and polyfluoroalkyl substances in human milk in China:
+and Technology Innovation Special Project (22-3-3-HYGG-25-HY).                        Results of the third National Human Milk Survey (2017-2020). J. Hazard Mater. 443,
+                                                                                      130163.
+                                                                                 He, Y., Yang, X., Wang, H., Estephan, R., Francis, F., Kodukula, S., Storch, J., Stark, R.E.,
+Supplementary materials
+                                                                                      2007. Solution-state molecular structure of apo and oleate-liganded liver fatty acid-
+                                                                                      binding protein. Biochemistry 46, 12543–12556.
+    Structure of L-FABP complexed with two molecules of oleic acid               Huang, J., Wang, Q., Liu, S., Lai, H., Tu, W., 2022. Comparative chronic toxicities of
+(Fig. S1), Pearson correlation between binding affinity and dissociation              PFOS and its novel alternatives on the immune system associated with intestinal
+                                                                                      microbiota dysbiosis in adult zebrafish. J. Hazard Mater. 425, 127950.
+constant (Fig. S2), top ten models of combinations with different                Jia, Y., Zhu, Y., Xu, D., Feng, X., Yu, X., Shan, G., Zhu, L., 2022. Insights into the
+chemical descriptors and machine learning methods (Fig. S3), perfor­                  competitive mechanisms of per- and polyfluoroalkyl substances partition in liver and
+mance of toxicity prediction models of PFASs towards portal of L-FABP                 blood. Environ. Sci. Technol. 56, 6192–6200.
+                                                                                 Kontoyianni, M., 2017. Docking and virtual screening in drug discovery. Proteom. Drug
+(Fig. S4), univariate exposure-response functions for concerned PFASs                 Discov.: Methods Protoc. 255–266.
+descriptors (Fig. S5), descriptions for the used fingerprints (Table S1),        Lavado, G.J., Baderna, D., Carnesecchi, E., Toropova, A.P., Toropov, A.A., Dorne, J.,
+hyper-parameters for algorithm optimization (Table S2), and code of the               Benfenati, E., 2022. QSAR models for soil ecotoxicity: Development and validation of
+                                                                                      models to predict reproductive toxicity of organic chemicals in the collembola
+best machine learning model.                                                          Folsomia candida. J. Hazard Mater. 423, 127236.
+    List of 1599 PFASs used in the present study (Supplementary mate­            Lawal, H.A., Uzairu, A., Uba, S., 2020. QSAR, molecular docking, design, and
+rials_1), and detailed hyperparameter of the machine learning models                  pharmacokinetic analysis of 2-(4-fluorophenyl) imidazol-5-ones as anti-breast cancer
+                                                                                      drug compounds against MCF-7 cell line. J. Bioenerg. Biomembr. 52, 475–494.
+(Supplementary materials_2).                                                     Li, C., Jiang, L., Qi, Y., Zhang, D., Liu, X., Han, W., Ma, W., Xu, L., Jin, Y., Luo, J.,
+                                                                                      Zhao, K., Yu, D., 2023. Integration of metabolomics and proteomics reveals the
+                                                                                      underlying hepatotoxic mechanism of perfluorooctane sulfonate (PFOS) and 6: 2
+
+
+
+
+                                                                             8
+J. Zhao et al.                                                                                                                       Ecotoxicology and Environmental Safety 262 (2023) 115310
+
+     chlorinated polyfluoroalkyl ether sulfonic acid (6:2 Cl-PFESA) in primary human                      from northwestern Pacific to Southern Ocean: evidences of current and historical
+     hepatocytes. Ecotoxicol. Environ. Saf. 249, 114361.                                                  release. J. Hazard Mater. 411, 125049.
+Li, Z., Cai, Y.H., Cheng, Y.K., Lu, X., Shao, Y.X., Li, X., Liu, M., Liu, P., Luo, H.B., 2013.       Sharma, A., Sharma, A., 2011. Fatty acid induced remodeling within the human liver
+     Identification of novel phosphodiesterase-4D inhibitors prescreened by molecular                     fatty acid-binding protein. J. Biol. Chem. 286, 31924–31928.
+     dynamics-augmented modeling and validated by bioassay. J. Chem. Inf. Model 53,                  Sheng, N., Li, J., Liu, H., Zhang, A., Dai, J., 2016. Interaction of perfluoroalkyl acids with
+     972–981.                                                                                             human liver fatty acid-binding protein. Arch. Toxicol. 90, 217–227.
+Lin, H., Liu, Z., Yang, H., Lu, L., Chen, R., Zhang, X., Zhong, Y., Zhang, H., 2022. Per- and        Singh, J., Sangwan, N., Chauhan, A., Sarma, P., Prakash, A., Medhi, B., Avti, P.K., 2022.
+     polyfluoroalkyl substances (PFASs) impair lipid metabolism in rana nigromaculata: a                  Screening and identification of phytochemical drug molecules against mutant
+     field investigation and laboratory study. Environ. Sci. Technol. 56, 13222–13232.                    BRCA1 receptor of breast cancer using computational approaches. Mol. Cell
+Lin, H.H., Chiang, W.C., Yang, C.T., Cheng, C.T., Zhang, T., Lo, L.J., 2021. On                           Biochem. 477, 885–896.
+     construction of transfer learning for facial symmetry assessment before and after               Sunderland, E.M., Hu, X.C., Dassuncao, C., Tokranov, A.K., Wagner, C.C., Allen, J.G.,
+     orthognathic surgery. Comput. Methods Prog. Biomed. 200, 105928.                                     2019. A review of the pathways of human exposure to poly- and perfluoroalkyl
+Lin, Z., Chou, W.C., 2022. Machine learning and artificial intelligence in toxicological                  substances (PFASs) and present understanding of health effects. J. Expo. Sci.
+     sciences. Toxicol. Sci. 189, 7–19.                                                                   Environ. Epidemiol. 29, 131–147.
+Liu, Y., D’Agostino, L.A., Qu, G., Jiang, G., Martin, J.W., 2019. High-resolution mass               Tashchilova, A., Podoplelova, N., Sulimov, A., Kutov, D., Ilin, I., Panteleev, M.,
+     spectrometry (HRMS) methods for nontarget discovery and characterization of poly-                    Shikhaliev, K., Medvedeva, S., Novichikhina, N., Potapov, A., Sulimov, V., 2022.
+     and per-fluoroalkyl substances (PFASs) in environmental and human samples. TrAC                      New blood coagulation factor XIIa inhibitors: molecular modeling, synthesis, and
+     Trends Anal. Chem. 121, 115420.                                                                      experimental confirmation. Molecules 27, 1234.
+Luebker, D.J., Hansen, K.J., Bass, N.M., Butenhoff, J.L., Seacat, A.M., 2002. Interactions           Wan, S., Mak, M.W., Kung, S.Y., 2014. R3P-Loc: a compact multi-label predictor using
+     of fluorochemicals with rat liver fatty acid-binding protein. Toxicology 176,                        ridge regression and random projection for protein subcellular localization. J. Theor.
+     175–185.                                                                                             Biol. 360, 34–45.
+Penland, T.N., Cope, W.G., Kwak, T.J., Strynar, M.J., Grieshaber, C.A., Heise, R.J.,                 Yang, D., Han, J., Hall, D.R., Sun, J., Fu, J., Kutarna, S., Houck, K.A., LaLone, C.A.,
+     Sessions, F.W., 2020. Trophodynamics of per- and polyfluoroalkyl substances in the                   Doering, J.A., Ng, C.A., Peng, H., 2020. Nontarget screening of per- and
+     food web of a Large Atlantic Slope River. Environ. Sci. Technol. 54, 6800–6811.                      polyfluoroalkyl substances binding to human liver fatty acid binding protein.
+Presentato, A., Lampis, S., Vantini, A., Manea, F., Dapra, F., Zuccoli, S., Vallini, G., 2020.            Environ. Sci. Technol. 54, 5676–5686.
+     On the ability of perfluorohexane sulfonate (PFHxS) bioaccumulation by Two                      Yi, S., Chen, P., Yang, L., Zhu, L., 2019. Probing the hepatotoxicity mechanisms of novel
+     Pseudomonas sp. strains isolated from PFAS-contaminated environmental matrices.                      chlorinated polyfluoroalkyl sulfonates to zebrafish larvae: implication of structural
+     Microorganisms 8, 92.                                                                                specificity. Environ. Int. 133, 105262.
+Roostaei, J., Colley, S., Mulhern, R., May, A.A., Gibson, J.M., 2021. Predicting the risk of         Yu, S., Ren, J., Lv, Z., Li, R., Zhong, Y., Yao, W., Yuan, J., 2022. Prediction of the
+     GenX contamination in private well water using a machine-learned Bayesian                            endocrine-disrupting ability of 49 per- and polyfluoroalkyl substances: in silico and
+     network model. J. Hazard Mater. 411, 125075.                                                         epidemiological evidence. Chemosphere 290, 133366.
+Shan, G., Qian, X., Chen, X., Feng, X., Cai, M., Yang, L., Chen, M., Zhu, L., Zhang, S.,             Zhu, Y., Jia, Y., Wang, X., Yi, S., Li, Y., Zhong, W., Zhu, L., 2022. Mechanisms underlying
+     2021. Legacy and emerging per- and poly-fluoroalkyl substances in surface seawater                   the impacts of lipids on the diverse bioavailability of per- and polyfluoroalkyl
+                                                                                                          substances in foods. Environ. Sci. Technol. 56, 3613–3622.
+
+
+
+
+                                                                                                 9
+

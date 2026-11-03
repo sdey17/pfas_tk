@@ -1,0 +1,1136 @@
+ 1                                       Supporting Information
+
+ 2                                             For
+ 3   Nontarget Screening of Per- and Polyfluoroalkyl Substances Binding to Human Liver Fatty
+ 4   Acid Binding Protein
+
+ 5   Diwen Yanga, Jiajun Hana, David Ross Halla, Jianxian Suna, Jesse Fua, Steven Kutarnaa, Keith A.
+ 6   Houckb, Carlie A. LaLonec, Jon A. Doeringc,d, Carla A. Nge, Hui Peng*a,f
+
+
+
+
+                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+ 7   a Department of Chemistry, University of Toronto, Toronto, ON, Canada
+
+ 8   b Center for Computational Toxicology and Exposure, Office of Research and Development,
+
+ 9   United States Environmental Protection Agency, Research Triangle Park, NC, 27711 USA
+10   c Great Lakes Toxicology and Ecology Division, U.S. Environmental Protection Agency, Duluth,
+
+11   Minnesota 55804 United States
+12   d National Research Council, U.S. Environmental Protection Agency, Duluth, Minnesota 55804
+
+13   USA
+14   e Department of Civil & Environmental Engineering, University of Pittsburgh, 3700 O'Hara St,
+
+15   Pittsburgh, USA
+16   f School of the Environment, University of Toronto, Toronto, ON, Canada
+
+
+
+
+17   *Corresponding author: Hui Peng, e-mail: hui.peng@utoronto.ca, Department of Chemistry,
+
+18   University of Toronto, Toronto, Ontario, M5S3H6, Canada.
+
+
+19   Words 2015
+20   Tables 3
+21   Figures 8
+
+22   This supporting information provides text and figures addressing (1) Chemical and reagents used;
+23   (2) Overexpression of hL-FABP; (3) Fluorescence displacement assay; (4) Dissociation constants
+24   (Kd) of PFASs binding to hL-FABP; (5) Sample collection and preparation; (6) Small molecule
+25   analysis with LC-Orbitrap; (7) Proteome analysis with liquid chromatography and high-resolution
+26   mass spectrometry; (8) Nontarget/suspect data analysis; (9) The chemical number, name and
+27   molecular formula and structures of 74 per- and polyfluoroalkyl substances (PFASs); (10) The
+28   inhibition concentration, dissociation constants, peak intensity and retention time of 20 hL-FABP
+29   ligands; (11) Western blot analysis of overexpressed His-tagged hL-FABP. (12) Direct binding of
+30   1,8-ANS to hL-FABP; (13) Calculation process of dissociation constants (Kd) of PFASs; (14) The
+31   dose-response curves of 20 PFASs; (15) Verification of hL-FABP in SEC fraction F2 by
+32   proteomics; (16) PFOS impurity in NEt-FOSA standards; (17) Confirmation of PFPeS and PFHpS
+33   by their authentic standards; (18) Confirmation of the secondary structure of hL-FABP via Circular
+34   Dichroism (CD) spectrometer.
+
+
+
+
+                                                    S1
+35   Chemicals and Reagents. The characterization of the stability of the 74 standard solutions during
+
+36   storage was in progress by EPA. To confirm the identity of 74 PFASs, 74 PFASs were dissolved
+
+37   in methanol to reach the final concentration of 1M of each PFAS. The PFASs were subjected to
+
+38   LC-Orbitrap for analysis (details are provided below). Stock solutions of 30 mM concentrations
+
+39   of 74 PFASs were prepared in dimethyl sulfoxide (DMSO) and stored at -20 °C. A commercial
+
+
+
+
+                                                                                                           Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+40   AFFF technical product was the representative AFFFs used in different Air Force bases in USA.
+
+41   hL-FABP pNIC28-Bsa4 plasmid (plasmid #42344) was purchased from Addgene (Cambridge,
+
+42   MA, USA). BL21(DE3) competent Escherichia coli was purchased from BioLabs Inc. (Whitby,
+
+43   ON, CA). Isopropyl- -D-thiogalactopyranoside (IPTG) and 1-anilinonaphthalene-8-sulfonic acid
+
+44   (1,8-ANS) were purchased from Thermo Fisher Scientific (Ottawa, ON, CA). Supelclean™
+
+45   ENVI™-18 solid-phase extraction (SPE) cartridges (6 mL, 1g) were purchased from Sigma-
+
+46   Aldrich (St. Louis, MO, USA). Trypsin Gold (mass spectrometry grade) was obtained from
+
+47   Promega (Madison, WI, USA). Triethyl ammonium bicarbonate buffer (TEAB), tris(2-
+
+48   carboxyethyl)phosphine hydrochloride (TCEP), iodoacetamide, cOmplete Mini EDTA-free
+
+49   protease inhibitor cocktail tablets, and dithiothreitol (DTT) were obtained from Sigma-Aldrich (St.
+
+50   Louis, MO, USA). Phosphate-Buffered Saline tablets, HEPES and tris-HCL were purchased from
+
+51   BioShop Canada Inc. (Burlington, ON, Canada). Ultrapure water, methanol and acetonitrile
+
+52   (HPLC grade) were purchased from Fisher Scientific (Ottawa, ON, CA). Formic acid (mass
+
+53   spectrometry grade) was purchased from EMO Millipore (St. Louis, MO, USA).
+
+54   Overexpression of hL-FABP. hL-FABP pNIC28-Bsa4 plasmid (plasmid #42344) was purchased
+
+55   from Addgene (Cambridge, MA, USA). The plasmid was transformed into BL21 (DE3) strain of
+
+56   Escherichia coli. The hL-FABP protein was overexpressed by adding in 1 mM IPTG followed by
+
+57   overnight incubation at 18 °C. Bacterial cells were lysed by sonication in a lysis buffer (10 mM
+
+
+                                                     S2
+58   HEPES, 100 mM NaCl, 0.2 mM EDTA, 10% glycerol, 0.5 mM DTT and protease inhibitors
+
+59   cocktail (Sigma S8830, pH 7.4)) as described previously.1 The total protein concentration was
+
+60   measured by the Bradford protein assay. The identity of hL-FABP was confirmed by SDS-PAGE
+
+61   and western blot with an anti-His antibody (Figure S1).
+
+62   Circular Dichroism (CD) Spectroscopy. Recombinant his-tagged hL-FABP were loaded into a
+
+
+
+
+                                                                                                        Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+63   circular cuvette with a 1mm pathlength and analyzed on a Jasco J-710 circular dichroism
+
+64   spectrophotometer at room temperature. Spectra was acquired from 800nm to 190 nm with 2 nm
+
+65   resolution, with baseline subtraction of the background PBS buffer. Reference L-FABP CD
+
+66   spectrum downloaded from the Protein Circular Dichroism Databank 2(reference number
+
+67   CD0004134000). We also used the PDB2CD web-application3 to predict hL-FABP CD spectrum
+
+68   from structural data produced by Patil et al.4 (PDB entry 6DO6) and the SP175 soluble proteins
+
+69   reference database. The CD spectra of purified his-tagged hL-FABP is consistent with reference
+
+70   and predicted spectrum (Figure S8), and also the experimental spectra determined in a previous
+
+71   study.5 These results demonstrated that the hL-FABP protein structure was well preserved
+
+72   during the experiments.
+
+73   Fluorescence Displacement Assay. The binding of 74 PFASs to hL-FABP was individually
+
+74   determined by the displacement of bound 1,8-ANS from hL-FABP as previously described.6 To
+
+75   initially determine the interactions between 74 PFASs and hL-FABP, we investigated the
+
+76   fluorescence displacement of 1,8-ANS by PFASs at a fixed concentration of 300 µM. In brief,1
+
+77   L of 4 mM 1,8-ANS was added in 100 L buffer A (50 mM tri-HCL, 150 mM NaCl, 1 mM
+
+78   dithiothreitol, pH 8.0) with hL-FABP (1 M). Following incubation at room temperature for 30
+
+79   min, 1 µL of the stock solution of each PFASs (final concentration = 300 µM) was added in
+
+80   fluorescence probe solution (n = 3) individually. The mixtures were incubated for 30 min at room
+
+
+                                                    S3
+ 81   temperature. The fluorescence signal was measured via an Infinite 200 PRO multimode plate
+
+ 82   reader (Tecan Group Ltd., Switzerland) with 350 nm excitation wavelength and emission spectra
+
+ 83   between 420 nm and 600 nm. The 30 PFASs causing > 10% reduction of fluorescence intensity
+
+ 84   were considered as potential hL-FABP ligands and thus selected for Kd measurement.
+
+ 85   Dissociation Constants (Kd) of PFASs Binding to hL-FABP. The dissociation constant (KdA) of
+
+
+
+
+                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+ 86   1,8-ANS was experimentally derived from the measurement of maximal fluorescence intensities
+
+ 87   of bound 1,8-ANS at various concentrations (0-50 µM, n = 3) (Figure S2). The one-site binding
+
+ 88   model based Scatchard equation (eq 1) was fit to the displacement of protein-bound 1,8-ANS to
+
+ 89   calculate KdA:
+      [𝐿𝐴𝑁𝑆]𝑓       [𝐿𝐴𝑁𝑆]𝑓    𝐾𝑑𝐴
+ 90     𝑟       =     𝑛       + 𝑛                                        (1)
+
+ 91   where [LANS]f represents the concentrations of free 1,8-ANS; KdA represents the dissociation
+
+ 92   constant of 1,8-ANS; n represents the number of binding sites which is 1 for 1,8-ANS and hL-
+
+ 93   FABP; r is the number of moles of bound 1,8-ANS per mole of hL-FABP which is fixed to 1.
+
+ 94   With the Scatchard equation, the KdA was calculated to be 18.0 µM, similar to the results
+
+ 95   reported in a previous study.7
+
+ 96             With KdA values, the dissociation constants (Kd) of PFASs were determined from the
+
+ 97   displacement of protein-bound 1,8-ANS by PFASs at different concentrations (n = 3). Specifically,
+
+ 98   concentrations of 1.23, 3.7, 11.1, 33.3, 100, 300 µM were selected for high-affinity PFASs, while
+
+ 99   only high concentrations (50, 75, 150, 300 µM) were used for low-affinity PFASs. In brief, 1 L
+
+100   of stock solution of each 74 PFASs was individually added into a 100 L mixture of hL-FABP (1
+
+101   M) and 1,8-ANS (40 µM) in buffer A which had been incubated for 30 min to reach equilibrium
+
+102   before adding PFAS. The measurement of fluorescence intensity was done after 30 min incubation
+
+103   at room temperature. The displacement of 1,8-ANS binding to hL-FABP by increasing
+
+                                                     S4
+104   concentrations of PFAS was corresponding to a reduction in fluorescence intensity. Kd values of
+
+105   PFASs were determined by fitting to a sigmoidal model (Figure S3, SI). The GraphPad Prism V7.0
+
+106   was used to plot dose-response curves in which the IC50 value of 9 PFASs or IC10 value of 11
+
+107   PFASs were derived.
+
+108             With the IC50/10 of each PFASs, the corresponding Kd values were obtained through the
+
+
+
+
+                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+109   Cheng-Prusoff equation8:
+                        [ 𝐿𝐴𝑁𝑆]
+110   fPFAS =           [ 𝐿𝑃𝐹𝐴𝑆]                                                          (2)
+                𝐾𝑑𝐴 (1 + 𝐾 ) + [𝐿𝐴𝑁𝑆]
+                            𝑑
+
+
+
+111   where fPFAS represents fractional occupancy of PFAS binding to hL-FABP by displacing 1,8-ANS;
+
+112   LPFAS represents the concentration of PFAS; Kd represents dissociation constant of PFAS.
+
+113             Therefore, for high-affinity ligands when IC50 could be reliably determined, Kd values were
+
+114   calculated by rearranging eq 2 to eq 3:
+                  𝐼𝐶50
+115   𝐾𝑑 =         [𝐿𝐴𝑁𝑆]                                                                   (3)
+             1+     𝐾𝑑𝐴
+
+
+
+116             Similarly, for low-affinity PFASs for which only IC10 is determined, Kd values were
+
+117   calculated by rewriting eq 2 to eq 4:
+                9 × 𝐼𝐶10
+118   𝐾𝑑 =         [𝐿𝐴𝑁𝑆]                                                           (4)
+             1+     𝐾𝑑𝐴
+
+
+119   Sample Collection and Preparation. Water samples were collected from the west end of Lake
+
+120   Niapenco which was reported to be contaminated by AFFF chemicals from John C. Munro
+
+121   International Airport, Hamilton, ON. Water samples were collected using polypropylene tubes
+
+122   which were then stored on ice during the transportation and extracted within 10 hours. Water
+
+123   samples were centrifuged at 4000 g for 10 min at 4 C. Following centrifugation, 100 mL of water
+
+124   samples were extracted with solid-phase extraction (SPE) cartridges (Supelclean™ ENVI™-18
+
+125   SPE, 6 mL, 1g), a common SPE previously used for nontarget analysis.9 The SPE cartridges were
+                                                        S5
+126   preconditioned with 6 mL of methanol and equilibrated with 6 mL of ultra-pure water. Water samples
+
+127   were then passed through the conditioned SPE cartridges at a flow rate of 1–2 drops/s. AFFF chemicals
+
+128   were eluted with 5 mL of methanol. The eluents were reconstituted in 50 L of methanol after dryness
+
+129   under nitrogen flow. A procedural blank was incorporated by loading 100 mL of ultrapure water
+
+130   onto the SPE cartridges with the same procedure, and no background contamination was detected.
+
+
+
+
+                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+131   Small Molecule Analysis with LC-Orbitrap. PFASs analysis including NTA analysis was
+
+132   conducted using a Q Exactive mass spectrometry equipped with a Vanquish UHPLC system
+
+133   (Thermo Fisher Scientific, USA). Separation of PFASs and AFFF chemicals was achieved with
+
+134   Accucore Vanquish C18 column (50 × 2.1 mm, 1.5 m, Thermo Scientific). The Injection
+
+135   volume was 2 L with 1% formic acid in ultrapure water (A) and 1% formic acid in acetonitrile
+
+136   (B) as mobile phases. Initially, 10% B was increased to 80% in 2 min, then increased to 100% at
+
+137   5 min and held static for 3 min, followed by a decrease to initial conditions of 10% B and held for
+
+138   1min to allow for equilibration. The flow rate was 0.15 mL/min. The column and sample
+
+139   compartment temperatures were maintained at 40 C and 4 C, respectively. For the analysis of 74
+
+140   PFASs, data were acquired in full MS mode. Parameters for full scan (100–1000 m/z) switch mode
+
+141   recorded at resolution R = 70 000 (at m/z 200) with a maximum of 3 × 106 ions collected within
+
+142   200 ms. For NTA of AFFF chemicals, data were acquired in data-independent acquisition (DIA)
+
+143   mode. Parameters for full MS scan Parameters for DIA were one full MS1 scan (100–1000 m/z)
+
+144   recorded at resolution R = 70 000 (at m/z 200) with a maximum of 3 × 106 ions collected within
+
+145   100 ms, followed by DIA MS/MS scan (200–500 m/z) recorded at resolution R = 35 000 (at m/z
+
+146   200) with a maximum of 1 × 105 ions collected within 60 ms. DIA data were collected by use of
+
+147   10 m/z isolation windows per MS/MS scan, in total, there were 30, 10-m/z wide windows between
+
+148   200–500 m/z. Mass spectrometric settings for ESI (-) mode which were the used for both full MS
+
+
+                                                       S6
+149   mode and DIA mode were as follows: spray voltage, 2.7 kV; sheath gas flow rate, 30 L/h; auxiliary
+
+150   gas flow rate, 6 L/h; capillary temperature 300 C.
+
+151   Proteome Analysis with Liquid Chromatography and High-Resolution Mass Spectrometry.
+
+152   For proteome analysis, the proteins from each SEC fraction were precipitated with 4-fold volumes
+
+153   of cold acetone at -20 oC followed by re-dissolving in 1M TEAB. The protein samples were then
+
+
+
+
+                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+154   reduced with 5 mM tris(2-carboxyethyl)phosphine hydrochloride (TCEP) for 60 min,
+
+155   carboxymethylated with 15 mM iodoacetamide in the dark at room temperature for 30 min. The
+
+156   proteins were then digested with trypsin (4 µg) for 16 hours at 37 oC. Digestion was terminated by
+
+157   adding formic acid to 1% (v/v). The tryptic peptides were analyzed by Q Exactive Quadrupole-
+
+158   Orbitrap Mass Spectrometer (Thermo Fisher Scientiﬁc, USA) coupled with a Vanquish UHPLC
+
+159   system (Thermo Fisher Scientiﬁc, USA).1 3 μL of each sample were loaded on Acclaim PepMap
+
+160   100 C18 LC Columns (75μm × 2cm, nanoViper, 3μm, 100Å, Thermo Fisher Scientiﬁc, USA) for
+
+161   analytical separations of peptides. (A) 1% formic acid in acetonitrile (v/v) (B) 1% formic acid in
+
+162   ultrapure water (v/v) were used as mobile phases at a 0.120 mL/min flow rate. Initially, B was
+
+163   increased from 5% to 50% in 6 mins, then increased to 100% in 12 mins, and kept static for 1 min
+
+164   following by a decrease to initial conditions of 5% B and held for 1 min to allow for equilibration,
+
+165   the total method duration was 15 min. The positively charged ions were subjected to 400-1500 m/z
+
+166   full scan with 70,000 resolution, 60 ms maximum IT and 3 × 106 AGC target. The secondary mass
+
+167   spectrometry data were acquired under data-dependent single ion monitor mode (dd-SIM) with
+
+168   17,500 resolution, 50 ms maximum IT, 2.0 isolation window, 2 × 105 AGC target, 4 × 104 intensity
+
+169   threshold and 10s dynamic exclusion.
+
+170   Nontarget/Suspect Data Analysis. Nontarget data analysis was accomplished with an in-house
+
+171   R program. Raw mass spectrometry files were converted to mzXML format. The peaks were
+
+
+                                                      S7
+172   detected with the XCMS package at a mass tolerance of 2.5 ppm.10 The peak features were matched
+
+173   across samples with a mass tolerance of 2.5 ppm and retention time window of 20 seconds, after
+
+174   retention time adjustment. The ratio of abundances in F2 from hL-FABP lysates to those in F2
+
+175   from wild type E. coli lysates, was calculated for each peak feature. The p-value of the difference
+
+176   between the two groups was also determined by student’s t-test. Only the features exhibiting
+
+
+
+
+                                                                                                            Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+177   greater peak intensities (fold change > 10, p-value < 0.05) in extracts from hL-FABP
+
+178   overexpressing lysates were considered as potential hL-FABP ligands. Isotopic peaks and adducts
+
+179   were excluded by matching chromatographic peaks and theoretical mass difference. The final
+
+180   differentiated peak list from the output of the R program was manually checked using MS1 mass
+
+181   and retention time.
+
+182          The features were searched against PFAS (1,021 PFASs) and AFFF surfactant (869
+
+183   surfactants) libraries established in two recent studies,11, 12 with a mass tolerance of 3 ppm.
+
+184   Confidence levels were assigned to all identities according to the Schymanski et al. scale.13 In
+
+185   brief, a level 1 confidence was assigned to PFASs for which authentic standards are available for
+
+186   confirmation by matching retention time, MS1 and MS2. In the case of AFFF surfactants, the
+
+187   confidence levels fall to levels 2 or 3, in which molecular ions and fragmentation were matched.
+
+188   For instance, SO3- and HSO4- were detected as diagnostic fragments of alkyl ether sulfates.
+
+
+
+
+                                                      S8
+189   Table S1: The summary of 74 per- and polyfluoroalkyl substances (PFASs) from U. S.
+190   Environmental Protection Agency (EPA) PFAS screening library48with chemical number, name,
+191   molecular formula and structure. The PFASs have been categorized based on their chemical
+192   structures. The chemical number is consistent with the U.S.EPA PFAS screening library.
+        Category      No    CASRN                       Name                     Molecular                               Structure
+                                                                                 Formula
+                      41   2043-47-2           4:2 Fluorotelomer alcohol         C6H5F9O                                         F F F F
+                                                                                                                                                    F
+                                                                                                             HO
+                                                                                                                                                    F
+                                                                                                                                   F F          F
+                      70    647-42-7           6:2 Fluorotelomer alcohol         C8H5F13O                                F F F F F F
+                                                                                                                                                         F
+
+
+
+
+                                                                                                                                                                      Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+                                                                                                     HO
+                                                                                                                                                         F
+                                                                                                                F F F F F
+                      64    678-39-7           8:2 Fluorotelomer alcohol         C10H5F17O               F F F F F F F F
+                                                                                                 F
+                                                                                                                                                            OH
+                                                                                                 F
+                                                                                                         F    F F F F F F
+                                                                                                                              F F
+                      11    375-01-9              Heptafluorobutanol             C4H3F7O                             F
+                                                                                                                                           OH
+                                                                                                                     F
+                                                                                                                          F       F F
+                      48    355-80-6         1H,1H,5H-Perfluoropentanol          C5H4F8O                                          F F       F
+
+                                                                                                                 HO            F
+                                                                                                                       F F F F
+                      67    335-99-9            Dodecafluoroheptanol             C7H4F12O                            F F F F F F
+                                                                                                         HO                                             F
+                                                                                                         F F F F F
+                      50    423-65-4          11:1 Fluorotelomer alcohol         C12H3F23O       F F F F F F F F F F
+                                                                                             F
+                                                                                                                                                                 OH
+                                                                                             F
+                                                                                                 F       F F F F F F F F F F
+                      49    679-02-7          3-(Perfluoropropyl)propanol        C6H7F7O                             F F
+                                                                                                             F
+        Alcohols                                                                                                                      OH
+                                                                                                             F
+                                                                                                                 F           F F
+                      40   3792-02-7           4:4 Fluorotelomer alcohol         C8H9F9O                                        F F F F
+                                                                                                                                                        F
+                                                                                                         HO
+                                                                                                                                                        F
+                                                                                                                                        F F         F
+                      61   1694-30-0    3H-Perfluoro-4-hydroxy-3-penten-2-one    C5H2F6O2                                     O       OH
+                                                                                                                 F                      F
+                                                                                                                 F                      F
+                                                                                                                         F            F
+                      32   129301-42-   1H,1H,8H,8H-Perfluoro-3,6-dioxaoctane-   C6H6F8O4                                         F F F F
+                                                                                                                          O                             OH
+                               4                      1,8-diol                                       HO                                 O
+                                                                                                                 F F F F
+
+                      62    374-40-3           1-Pentafluoroethylethanol         C4H5F5O                                     F      OH
+                                                                                                                      F
+                                                                                                                      F                 CH3
+                                                                                                                              F F
+                      30   125070-38-    3-(Perfluoro-2-butyl)propane-1,2-diol   C7H7F9O2                                             F F           F
+                                                                                                                                                        F
+                               4                                                                         HO                                             F
+                                                                                                                         OH F F F F
+                                                                                                                                 F F
+                      35    376-90-9          Hexafluoroamylene glycol           C5H6F6O2
+                                                                                                              HO                                OH
+                                                                                                                          F F F F
+                      66   77953-71-0            3H-Perfluoro-2,2,4,4-           C5H5F7O4                            HO OH
+                                                                                                                        HO OH
+                                                                                                                 F                              F
+                                                  tetrahydroxypentane
+                                                                                                                 F                              F
+                                                                                                                      F           F         F
+                      4     679-12-9          4H-Perfluorobutanoic acid          C4H2F6O2                                     F F      O
+                                                                                                                     F
+                                                                                                                                           OH
+                                                                                                                          F       F F
+
+                      12    375-22-4            Perfluorobutanoic acid           C4HF7O2                                     F F       O
+                                                                                                                  F
+                                                                                                                                           OH
+                                                                                                                  F
+                                                                                                                          F       F F
+       Carboxylates
+                      14   914637-49-     2H,2H,3H,3H-Perfluorooctanoic acid     C8H5F11O2               F
+                                                                                                                 F F F F                        O
+
+                               3                                                                         F
+                                                                                                                                                    OH
+                                                                                                             F       F F F F
+
+                                                                                                         F                                          O
+                      17    375-95-1            Perfluorononanoic acid           C9HF17O2            F
+                                                                                                                 F F F F F F
+                                                                                                     F                                                  OH
+                                                                                                             F F F F F F F F
+
+
+
+
+                                                            S9
+             20    307-24-4             Perfluorohexanoic acid               C6HF11O2                               F F F F           O
+                                                                                                            F
+                                                                                                                                          OH
+                                                                                                            F
+                                                                                                           F F F F F
+             21   3825-26-1         Ammonium perfluorooctanoate             C8H4F15NO2                  F F F F F F O
+                                                                                                F
+                                                                                                                                           O- NH4+
+                                                                                                F
+                                                                                                        F       F F F F F F
+             74    335-67-1             Perfluorooctanoic acid               C8HF15O2                        F F F F F F                   O
+                                                                                                    F
+                                                                                                                                               OH
+                                                                                                    F
+                                                                                                            F     F F F F F F
+             23   1763-28-6    3,3-Bis(trifluoromethyl)-2-propenoic acid     C5H2F6O2                                 F
+                                                                                                                    F     F
+                                                                                                                            O
+                                                                                                                 F
+
+
+
+
+                                                                                                                                                           Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+                                                                                                                              OH
+                                                                                                                 F
+                                                                                                                    F
+             56   243139-64-   3-(Perfluoroisopropyl)-2-propenoic acid       C6H3F7O2                               F F
+                                                                                                                  F     F
+                      2                                                                                                       O
+                                                                                                                  F
+                                                                                                                    F F       OH
+             6    2795-39-3      Potassium perfluorooctanesulfonate          C8F17KO3S                      F F F F F F F F
+                                                                                                                       O
+                                                                                                    F
+                                                                                                                      S - +
+                                                                                                    F                    O K
+                                                                                                        F F F F F F FO
+             15   757124-72-        4:2 Fluorotelomer sulfonic acid          C6H5F9O3S                     F F F F
+                                                                                                                       O
+                                                                                                        F
+                      4                                                                                 F
+                                                                                                                     S
+                                                                                                                        OH
+                                                                                                          F  F F    O
+             26   3871-99-6      Potassium perfluorohexanesulfonate          C6F13KO3S                          F F F F F F
+                                                                                                                             O
+                                                                                                    F
+                                                                                                                            S - +
+                                                                                                    F                         O K
+                                                                                                            F       F F F FO
+Sulfonates                                                                                                  F F F F F F F F
+             46   1763-23-1          Perfluorooctanesulfonic acid            C8HF17O3S                                       O
+                                                                                                F
+                                                                                                                            S
+                                                                                                F                             OH
+                                                                                                        F       F F F F F FO
+             57   29420-49-3     Potassium perfluorobutanesulfonate          C4F9KO3S                               F F F F
+                                                                                                                                 O
+                                                                                                                F
+                                                                                                                                S - +
+                                                                                                                F                 O K
+                                                                                                                    F       F FO
+             73    375-73-5          Perfluorobutanesulfonic acid            C4HF9O3S                                   F F F F
+                                                                                                                                    O
+                                                                                                             F
+                                                                                                                                   S
+                                                                                                             F                       OH
+                                                                                                                    F       F F   O
+             5    1652-63-7    Perfluorooctanesulfonamido ammonium         C14H16F17N2O2S   F
+                                                                                                F F F F F F FO H
+                                                                                                                 N                                    N+
+                                               iodide                                       F
+                                                                                                               S
+                                                                                                                O
+                                                                                                F F F F F F F F
+             9    1691-99-2                 N-Ethyl-N-(2-                  C12H10F17NO3S                                                       CH3
+
+                               hydroxyethyl)perfluorooctanesulfonamide                       F F F F F F F FO
+                                                                                                                N
+                                                                                                              S                                      OH
+                                                                                            F
+                                                                                                               O
+                                                                                               F F F F F F F F
+             16   31506-32-8    N-Methylperfluorooctanesulfonamide          C9H4F17NO2S                 F F F F F F F F
+                                                                                                                             O
+                                                                                                F
+                                                                                                                            S   CH3
+                                                                                                F                             N
+                                                                                                        F       F F F F F FO H
+             19   13485-61-5           Nonafluoropentanamide                 C5H2F9NO                               F       F F    O
+                                                                                                            F
+                                                                                                            F NH2
+                                                                                                     F F F F
+             24   4151-50-2      N-Ethylperfluorooctanesulfonamide         C10H6F17NO2S        F F F F F F F F
+ Amides                                                                                     F
+                                                                                                               O
+                                                                                                              S
+                                                                                            F                   N                                    CH3
+                                                                                              F F F F F F FO H
+             31    662-50-0             Heptafluorobutyramide                C4H2F7NO                                   F F       O
+                                                                                                                F
+                                                                                                                                       NH2
+                                                                                                                F
+                                                                                                                        F    F F
+                                                                                                                    F              O
+             38    355-81-7             Perfluoropentanamide                 C5H3F8NO                                       F F
+                                                                                                                F                      NH2
+                                                                                                                        F F F F
+             58    355-66-8              Octafluoroadipamide                C6H4F8N2O2                              O       F F F F
+                                                                                                                                           NH2
+                                                                                                        H2N
+                                                                                                                        F F F F        O
+                                                                                                            F F F F F F F F
+             60    754-91-6          Perfluorooctanesulfonamide             C8H2F17NO2S         F
+                                                                                                                              O
+                                                                                                                             S
+                                                                                                F                              NH2
+                                                                                                        F        F F F F F FO
+
+
+
+
+                                                    S10
+         68    355-27-1         1H,1H-Perfluoropentylamine             C5H4F9N                                     F F F F
+                                                                                                   H2N                                              F
+                                                                                                                                                    F
+                                                                                                                           F F              F
+         71   1619-92-7        2-Amino-2H-perfluoropropane             C3H3F6N                                             NH2
+                                                                                                               F                        F
+                                                                                                               F                        F
+                                                                                                                   F               F
+                                                                                                                   HO NH2
+         33   31253-34-6       2-Aminohexafluoropropan-2-ol           C3H3F6NO                                 F         F
+                                                                                                               F         F
+                                                                                                                   F   F
+         45   883498-76-      Bis(1H,1H-perfluoropropyl)amine         C6H5F10N                         F                                    F
+                                                                                               F                                                    F
+                  8                                                                            F                           N                        F
+                                                                                                           F F                         F F
+
+
+
+
+                                                                                                                                                                   Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+                                                                                                                           H
+         34   330562-41-    Perfluoro-3,6,9-trioxatridecanoic acid    C10HF19O5    F
+                                                                                       F   F F                         F F F F                           O
+                  9                                                                                            O                                    O
+                                                                                   F                                               O                          OH
+                                                                                       F F F F F F     F F F F
+         7    55621-21-1   Perfluoro-3,6-dioxaoctane-1,8-dioic acid   C6H2F8O6             O      F F F F
+                                                                                               O           OH
+                                                                                        HO           O
+                                                                                            F F F F      O
+         2    2144-53-8        6:2 Fluorotelomer methacrylate         C12H9F13O2           F F F F F F                                          O
+                                                                                       F                                                                CH3
+                                                                                                                                        O
+                                                                                       F
+                                                                                           F       F F F F                                CH2
+         10   329710-76-         2-(Trifluoromethoxy)ethyl            C4H4F6O4S                                                        F
+                                                                                                                                    O    F
+                  1              trifluoromethanesulfonate                                         F           O
+                                                                                                                                   O
+                                                                                                                                     S   F
+                                                                                                   F                                  O
+                                                                                                       F
+         13   74427-22-8          2,2-Difluoroethyl triflate          C3H3F5O3S                                F
+                                                                                                       F             O
+                                                                                                       F            S                       F
+                                                                                                                      O
+                                                                                                                   O
+                                                                                                                                       F
+         27    333-36-8                   Flurothyl                    C4H4F6O                                 F                        F
+                                                                                                       F                                        F
+                                                                                                                           O
+                                                                                                       F                                        F
+         28   863090-89-     Perfluoro(4-methoxybutanoic) acid         C5HF9O3                                             F F          O
+                  5                                                                                F           O
+                                                                                                                                                OH
+                                                                                                   F
+                                                                                                       F           F F F F
+         37   13252-13-6   Perfluoro-2-methyl-3-oxahexanoic acid      C6HF11O3                             F F                          O
+                                                                                                                                   F
+                                                                                                   F                           O
+                                                                                                                                            OH
+                                                                                                   F
+                                                                                                           F       F F
+                                                                                                                      F                 F
+                                                                                                                                   F
+Ethers   1    58244-27-2        Tris(Trifluoroethoxy)methane          C7H7F9O3                                 F
+                                                                                                                       F
+                                                                                                                           F
+
+                                                                                                                           O
+                                                                                                   F                                            F
+                                                                                                                    O              O
+                                                                                                   F                                            F
+                                                                                                           F                                F
+                                                                                                                   F
+         18   15242-17-8        Allyl perfluoroisopropyl ether         C6H5F7O                             F               F
+
+                                                                                                       F                                CH2
+                                                                                                                       O
+                                                                                                       F           F
+                                                                                                           F
+         44   163702-08-       Perfluoroisobutyl methyl ether          C5H3F9O                                                     F
+                                                                                                                           F           F
+                  7
+                                                                                                                   O         F
+                                                                                                       H3C
+                                                                                                                          F  F
+                                                                                                                       F F F
+         3    28523-86-6                 Sevoflurane                   C4H3F7O                                     F
+                                                                                                                       F
+                                                                                                                               F
+
+                                                                                                           F
+                                                                                                                               O        F
+                                                                                                           F
+                                                                                                                   F
+         52   56860-81-2   Difluoromethyl 1H,1H-perfluoropropyl        C4H3F7O                                                 F F
+                                                                                                       F           O                            F
+                                                                                                                                                F
+                                                                                                               F                     F
+         53   1623-05-8     Heptafluoropropyl trifluorovinyl ether     C5F10O                              F                       F F
+                                                                                                                       O                            F
+                                                                                                   F
+                                                                                                                                                    F
+                                                                                                             F F F F
+         54   151772-58-      Perfluoro-3,6-dioxaheptanoic acid        C5HF9O4                     F        F F      O
+                                                                                               F
+                  6                                                                                              O
+                                                                                               F           O           OH
+                                                                                                              F F F F
+
+
+
+
+                                               S11
+           65   163702-05-      Ethyl perfluorobutyl ether     C6H5F9O                 F F F F
+                                                                               F
+                    4                                                                                          O            CH3
+                                                                               F
+                                                                                   F           F F
+           47    356-24-1      Methyl heptafluorobutyrate      C5H3F7O2                        F F          O
+                                                                                   F                                    CH3
+                                                                                                                   O
+                                                                                   F
+                                                                                           F       F F
+                                                                                                                O
+           36    424-18-0      Methyl perfluorohexanoate       C7H3F11O2               F F F F
+Acetates                                                                       F
+                                                                                                                       O
+                                                                                                                            CH3
+                                                                               F
+                                                                                       F       F F F F
+                                                                               F                                   O
+           39   132424-36-       Methyl 2H,2H,3H,3H-           C8H7F9O2    F
+                                                                                           F F
+                                                                                                                                   CH3
+                    3             perfluoroheptanoate                      F                                               O
+                                                                                   F F F F
+
+
+
+
+                                                                                                                                         Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+           22    355-95-3      1-Propenylperfluoropropane       C6H5F7                     F F
+                                                                                   F                                    CH3
+                                                                                   F
+                                                                                           F       F F
+           25   239795-57-       2-Vinylperfluorobutane         C6H3F9                     H2C
+                                                                                                                   F
+                                                                                                                        F
+                    4                                                                      F
+                                                                                                                        F
+                                                                                           F
+                                                                                                   F       F F
+                                                                                                                    F
+           72   2648-47-7         5H-Perfluoropentanal         C5H2F8O                                 F F
+
+                                                                                       O                                   F
+                                                                                                   F F F F
+           42    375-02-0        Perfluorobutyraldehyde         C4HF7O                             F F
+                                                                                           F
+                                                                                                                       O
+                                                                                           F
+                                                                                                   F       F F
+           43    356-42-3    Pentafluoropropanoic anhydride     C6F10O3                F               O       O           F
+                                                                               F                                                F
+                                                                               F                           O                    F
+                                                                                           F F   F F
+           63    678-78-4      Perfluoroglutaryl difluoride     C5F8O2                      O F F O
+Others
+                                                                                       F                                F
+                                                                                                   F F F F
+           51    813-03-6    5H-Octafluoropentanoyl fluoride    C5HF9O                         F       F F          O
+
+                                                                                       F                                    F
+                                                                                               F F F F
+           55    374-41-4     Methyl perfluoroethyl ketone     C4H3F5O                         F   O
+                                                                                           F
+                                                                                           F                       CH3
+                                                                                                   F F
+           29    406-58-6      1,1,1,3,3-Pentafluorobutane      C4H5F5                         F F             F
+                                                                                                                    F
+                                                                                                                    F
+           59   19430-93-4    1H,1H,2H-Perfluoro-1-hexene       C6H3F9                                 F F         F
+                                                                                                                        F
+                                                                                                                        F
+                                                                                                   F F F F
+           69   1767-94-8        6H-Perfluorohex-1-ene          C6HF11                             F       F F         F
+                                                                                   F
+                                                                                                                               F
+                                                                                           F           F F F F
+
+
+
+
+                                             S12
+193   Table S2: The inhibition concentration (IC50/10), dissociation constants (Kd), LC-MS peak
+194   intensities (concentration at 1 M) and retention times of 19 PFASs binding to hL-FABP.
+195   Results for the other 55 inactive PFASs are not shown. NMe-FOSA (16) is excluded from the
+196   table since its Kd is greater than 1000 M even though its peak intensity is very high.
+197      No        IC50 (M)     IC10 (M)    Kd (M)      Peak Intensity   Retention time (min)
+         17          13.88          NA          4.30         2.54E+08               4.16
+198      60          18.92          NA          5.87         3.85E+08               4.81
+          6          26.12          NA          8.10         5.25E+08               4.58
+         46          26.12          NA          8.10         5.25E+08               4.58
+         34          26.49          NA          8.22         2.88E+08               4.87
+
+
+
+
+                                                                                                   Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+         26          36.06          NA         11.19         3.96E+08               3.97
+         24          53.46          NA         16.58         2.14E+08               5.52
+         21          60.39          NA         18.74         3.76E+08               3.84
+         74          60.39          NA         18.74         3.76E+08               3.84
+         73           NA           41.69      116.40         3.74E+08               3.29
+         57           NA           44.86      125.25         3.74E+08               3.29
+         61           NA           48.44      135.24         1.67E+07               2.39
+         20           NA           50.42      140.76         7.43E+07               3.22
+         14           NA           56.60      158.03         9.54E+07               4.26
+         54           NA           90.37      252.31         3.64E+06               3.16
+          4           NA          125.90      351.53         2.72E+07               1.23
+         52           NA          256.14      715.15         7.36E+05               3.09
+         28           NA          291.88      814.93         4.31E+07               2.99
+         48           NA          328.10      916.06         6.70E+06               3.12
+
+
+
+
+                                                  S13
+199   Table S3. Exact masses, retention times, predicted formulas and structures of 11 PFASs in AFFF
+200   technical products binding to hL-FABP, identified by the SECC method.
+201      m/z       RT (min)      Formula                       Structures
+202    348.9377      3.37        C5F11SO3-                F F F FF
+                                                                   O
+                                                                         F
+
+203                                                   F           S
+                                                                    OH
+                                                         F F F FO
+204
+       398.9342      3.63        C6F13SO3-              F F F FF F
+205                                                 F
+                                                                    O                 .
+                                                                   S
+206                                                   F F F F F FO
+                                                                     OH
+207    498.9275      4.26        C8F17SO3-            F F F F F FF F
+
+
+
+
+                                                                                                       Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+                                                                      O
+                                                  F
+208                                               F
+                                                                     S
+                                                                        OH
+                                                     F F F F F F FO
+       448.9305      3.91        C7F15SO3-          F F F F F FF F
+                                                                     O
+                                                   F                S
+                                                                       OH
+                                                       F F F F F FO
+       460.9306      3.94        C8F15SO3-                F     F F F FF
+                                                                            O
+                                                                             F
+                                                  F
+                                                                           S
+                                                  F                          OH
+                                                      F        F   F F F FO
+       442.9399      3.83       C8HF14SO3-                F    F F F FF
+                                                                 O
+                                                                              F
+                                               H
+                                                                S
+                                               F                   OH
+                                                 F   F F F F FO
+       480.9367      4.05       C8HF16SO3-        F F F F F FF F
+                                                                  O
+                                               H
+                                                                S
+                                               F                   OH
+                                                 F F F F F F FO
+       476.9252      4.02        C8F15SO4-                O    F F F FF
+                                                                        O
+                                                                              F
+                                               F
+                                                                       S
+                                               F                         OH
+                                                      F    F F F F F FO
+       382.9392      3.36        C6F13SO2-                    F F F FF   F
+                                                                              O
+                                                      F
+                                                                             S
+                                                                               OH
+                                                  F F F F F F
+       548.9233      4.53        C9F19SO3-     F F F F F F F FF
+                                                                        O
+                                                                                  F
+                                              F                        S
+                                                      F F F F F F F F O OH
+       514.8972      4.29       C8ClF16SO3-               F F F F F FF
+                                                                           O
+                                                                              F
+                                               Cl
+                                                                          S
+                                                F                           OH
+                                                      F       F F F F F FO
+
+
+
+
+                                                          S14
+                                                                                                           Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+209
+210   Figure S1: Western blot and SDS-PAGE results of His-tagged hL-FABP. (Left) Overexpression
+211   of His-tagged hL-FABP in Escherichia coli from four biological replicates, detected by western
+212   blot with His-tag antibody. The molecular weight of hL-FABP is around 15 kDa. (Right) SDS-
+213   PAGE of purified His-tagged hL-FABP where F1 was used for experiments. W1-3 are proteins
+214   in the fractions of washing buffer. F1-5 are His-tagged hL-FABP in the fraction of elution buffer.
+
+
+
+
+                                                     S15
+215
+
+
+
+
+                                                                                                           Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+216   Figure S2: Direct binding of 1,8-ANS to hL-FABP. (A) fluorescence emission signal with
+217   increasing concentrations of 1,8-ANS in hL-FABP. Arrow indicates increasing concentration of
+218   1,8-ANS (0, 1.56, 3.12, 5, 6.25, 10, 12.5, 15, 20, 25, 30, 35, 40, 45, 50 M). (B) Plot of maximal
+219   emission measured at 480 nm for 1,8-ANS in the presence of 1 M hL-FABP as a function of
+220   1,8-ANS concentration. Values are mean ± SE, n = 3. (C) The scratcher plot of 1,8-ANS
+221   binding to hL-FABP.
+
+
+
+
+                                                     S16
+                                                                                                        Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+222
+223   Figure S3: Calculation process of dissociation constants (Kd) of PFASs via dose-response curves
+224   obtained by fluorescence displacement assay. (A) Dose-response curve of PFOS (46) with
+225   calculated IC50. (B) Dose-response curve of perfluoro-3,6-dioxaheptanoic acid (54) with
+226   calculated IC10. (C) Calculation equations of Kd of PFASs.
+
+
+
+
+                                                   S17
+                                                                                                    Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+227
+228   Figure S4: The dose-response curves of 20 PFASs obtained by fluorescence displacement assay
+229   with calculated inhibitory concentration (IC50/10) and dissociation constant (Kd).
+
+
+
+
+                                                  S18
+                                                                                                       Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+230
+231   Figure S5: Verification of hL-FABP in SEC fraction F2 by proteomics. (a) Amino acid sequence
+232   of hL-FABP Adgene plasmid #42344 with N-terminal hexahistidine tag (lower case); AA in bold
+233   are those sequenced in (C) and (D). (B) Proteomic samples were searched against the hL-FABP
+234   sequence and the E. coli K-12 reference proteome (Uniprot #UP000000625). Of the 73 unique
+235   peptides detected in all replicates (n = 3), 5 were assigned to hL-FABP. (C, D) Representative
+236   MS/MS sequence of two unique hL-FABP peptides that were detected in all three replicates.
+
+
+
+
+                                                   S19
+                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+237
+
+
+
+
+238
+239
+240   Figure S6: PFOS impurity in NEt-FOSA standard contributes to the activity measured by
+241   fluorescence displacement method. (A) LC-MS results of 0.5 M of NEt-FOSA (orange)
+242   standards with a high concentration of PFOS (blue) detected in standards. (B) Relative
+243   fluorescence intensity of 40 M 1,8-ANS in 1 M hL-FABP as a function of adding NEt-FOSA
+244   (1.23, 3.7 11.11, 33.33, 100, 300 M). Blue dots indicate the relative fluorescence percentage as
+245   a function of adding NEt-FOSA (24), orange dots indicate the estimated relative fluorescence
+246   percentage as a function of the impurity PFOS in NEt-FOSA (24) obtained through calculation.
+
+
+
+
+                                                     S20
+                                                                                                      Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+247
+
+
+
+
+248
+
+249   Figure S7: The identities of PFPeS (A), PFHpS (B) in F2 of hL-FABP (1, 2 from two replicates)
+250   were confirmed by their authentic standards (3).
+
+
+
+
+                                                  S21
+       (A)
+
+
+
+
+                                                                                                          Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+       (B)
+
+
+
+
+251
+252   Figure S8: (A) Circular Dichroism (CD) spectra of the recombinant poly-his tagged hL-FABP
+253   protein in E. coli used in this study plotted against reference FABP CD spectra (PCDDB) and
+254   computational predicted spectra (Predicted); see Experimental Details for additional information.
+255   Differences in peak heights result from differences in sample concentration. (B) High-tension
+256   voltage (HT) of the experimental CD spectrum, the sharp increase around 190 nm accounts for
+257   the corresponding sharp decrease in the experimental CD spectra.
+
+
+
+
+                                                    S22
+258   References
+259   1.      Peng, H.; Saunders, D. M. V.; Sun, J. X.; Jones, P. D.; Wong, C. K. C.; Liu, H. L.; Giesy,
+260   J. P. Mutagenic azo dyes, rather than flame retardants, are the predominant brominated
+261   compounds in house dust. Environ. Sci. Technol. 2016, 50 (23), 12669-12677.
+262   2.      Whitmore, L.; Miles, A. J.; Mavridis, L.; Janes, R. W.; Wallace, B. A. PCDDB: new
+263   developments at the Protein Circular Dichroism Data Bank. Nucleic Acids Res. 2017, 45 (D1),
+264   D303-D307.
+265   3.      Mavridis, L.; Janes, R. W. PDB2CD: a web-based application for the generation of
+266   circular dichroism spectra from protein atomic coordinates. Bioinformatics 2017, 33 (1), 56-63.
+
+
+
+
+                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-supplement/​498388/​pdf/​es0c00049_si_001/​ by CALEPA AIR RESOURCES BOARD user on 03 November 2026
+267   4.      Patil, R.; Mohanty, B.; Liu, B. A.; Chandrashekaran, I. R.; Headey, S. J.; Williams, M.
+268   L.; Clements, C. S.; Ilyichova, O.; Doak, B. C.; Genissel, P.; Weaver, R. J.; Vuillard, L.; Halls,
+269   M. L.; Porter, C. J. H.; Scanlon, M. J. A ligand-induced structural change in fatty acid-binding
+270   protein 1 is associated with potentiation of peroxisome proliferator-activated receptor agonists. J.
+271   Biol. Chem. 2019, 294 (10), 3720-3734.
+272   5.      Sheng, N.; Li, J.; Liu, H.; Zhang, A. Q.; Dai, J. Y. Interaction of perfluoroalkyl acids with
+273   human liver fatty acid-binding protein. Arch. Toxicol. 2016, 90 (1), 217-227.
+274   6.      Velkov, T.; Chuang, S.; Wielens, J.; Sakellaris, H.; Charman, W. N.; Porter, C. J. H.;
+275   Scanlon, M. J. The interaction of lipophilic drugs with intestinal fatty acid-binding protein. J.
+276   Biol. Chem. 2005, 280 (18), 17769-17776.
+277   7.      Sheng, N.; Cui, R. N.; Wang, J. H.; Guo, Y.; Wang, J. S.; Dai, J. Y. Cytotoxicity of novel
+278   fluorinated alternatives to long-chain perfluoroalkyl substances to human liver cell line and their
+279   binding capacity to human liver fatty acid binding protein. Arch. Toxicol. 2018, 92 (1), 359-369.
+280   8.      Yung-Chi, C.; Prusoff, W. H. Relationship between the inhibition constant (KI) and the
+281   concentration of inhibitor which causes 50 per cent inhibition (I50) of an enzymatic reaction.
+282   Biochem. Pharmacol. 1973, 22 (23), 3099-3108.
+283   9.      Wolf, S. T.; Reagen, W. K. Method for the determination of perfluorinated compounds
+284   (PFCs) in water by solid-phase extraction and liquid chromatography/tandem mass spectrometry
+285   (LC/MS/MS). Anal. Methods 2011, 3 (7), 1485-1493.
+286   10.     Smith, C. A.; Want, E. J.; O'Maille, G.; Abagyan, R.; Siuzdak, G. XCMS: Processing
+287   mass spectrometry data for metabolite profiling using Nonlinear peak alignment, matching, and
+288   identification. Anal. Chem. 2006, 78 (3), 779-787.
+289   11.     Garcia, R. A.; Chiaia-Hernandez, A. C.; Lara-Martin, P. A.; Loos, M.; Hollender, J.;
+290   Oetjen, K.; Higgins, C. P.; Field, J. A. Suspect Screening of Hydrocarbon Surfactants in AFFFs
+291   and AFFF-Contaminated Groundwater by High-Resolution Mass Spectrometry. Environ. Sci.
+292   Technol. 2019, 53 (14), 8068-8077.
+293   12.     Liu, Y. N.; Dagostino, L. A.; Qu, G. B.; Jiang, G. B.; Martin, J. W. High-resolution mass
+294   spectrometry (HRMS) methods for nontarget discovery and characterization of poly- and per-
+295   fluoroalkyl substances (PFASs) in environmental and human samples. Trend. Anal. Chem. 2019.
+296   13.     Schymanski, E. L.; Jeon, J.; Gulde, R.; Fenner, K.; Ruff, M.; Singer, H. P.; Hollender, J.
+297   Identifying small molecules via high resolution mass spectrometry: communicating confidence.
+298   Environ. Sci. Technol. 2014, 48 (4), 2097-2098.
+
+
+
+
+                                                      S23
+

@@ -91,6 +91,47 @@ ALLENDORF = [
      "", "", ""),
 ]
 
+# SI Table SI-2.3, read from the Supporting Information: the dialysis
+# concentrations actually reached, not the design bound. c_ref is the
+# reference cell, c_free the freely dissolved concentration in the
+# measurement cell at equilibrium, both ng/mL and both means of six
+# measurements; v is the paper's own analyte:BSA molar ratio at
+# equilibrium. The main text says only "held below 0.1"; v shows the
+# experiments actually ran from 4e-4 to 3.8e-2 mol/mol, two orders
+# below that ceiling and spanning two orders among themselves.
+# All of SI-2.3 is batch A3803.
+SI23 = {   # analyte: (c_ref ng/mL, SD, c_free ng/mL, SD, v mol/mol)
+    "PFBA":    ("5.77", "0.30", "3.82", "0.25", "4e-4"),
+    "PFHxA":   ("5.72", "0.11", "2.39", "0.12", "1.4e-3"),
+    "PFHpA":   ("6.09", "0.50", "3.82", "0.32", "7.4e-3"),
+    "PFOA":    ("10.56", "0.27", "5.86", "0.27", "1.5e-2"),
+    "PFNA":    ("6.45", "0.38", "4.09", "0.21", "1.2e-2"),
+    "PFDA":    ("5.33", "0.02", "2.27", "1.25", "1.6e-2"),
+    "PFUnDA":  ("2.92", "1.30", "1.80", "0.60", "1.2e-2"),
+    "HFPO-DA (GenX)": ("8.13", "0.55", "2.91", "0.11", "6.7e-4"),
+    "ADONA":   ("7.06", "0.34", "5.15", "0.17", "6.5e-3"),
+    "PFBS":    ("10.50", "0.74", "5.86", "0.80", "2.1e-3"),
+    "PFHxS":   ("9.50", "0.45", "3.61", "0.15", "3.8e-2"),
+    "PFOS":    ("6.31", "0.33", "3.98", "0.30", "2.5e-2"),
+    "9Cl-PF3ONS": ("4.76", "0.17", "2.09", "0.06", "2.7e-2"),
+    "PFECHS":  ("8.37", "0.51", "2.85", "0.11", "1.5e-3"),
+}
+
+# SI-2.4, verbatim sense: BOTH batches are heat-shock-fraction
+# lyophilised powders. The difference is that A3803 has had a charcoal
+# treatment to remove essentially all fatty acids and A7906 has not.
+# Calling A7906 "the heat-shock fraction" as though that distinguished
+# it was wrong; it distinguishes nothing.
+BATCH = {
+    "A3803": ("A3803 (heat-shock fraction, charcoal-treated to remove "
+              "essentially all fatty acids; the paper's Table 1 and the "
+              "batch it chose for the headline values)"),
+    "A7906": ("A7906 (heat-shock fraction, NOT defatted; SI Table "
+              "SI-2.4.1). SI-2.4 states the paper could not determine "
+              "whether the batch difference comes from residual fatty "
+              "acids or from conformational change during extraction"),
+}
+
 B_METHOD = ("equilibrium dialysis against BSA; K_PW from the linear "
             "regression of bound-phase against aqueous concentration")
 B_UNITS = ("log K_PW (protein-water distribution coefficient), L_water per "
@@ -148,11 +189,10 @@ def main():
 
     for rec in ALLENDORF:
         (chem, ncf, head, lk, sd, ka, fb, fbsd, cbsa, lk7, sd7, ka7) = rec
+        si = SI23.get(chem)
         for batch, val, s, kav, src in (
-                ("A3803 (essentially fatty-acid-free; the paper's Table 1)",
-                 lk, sd, ka, "Table 1"),
-                ("A7906 (heat-shock fraction; SI Table SI-2.4.1)",
-                 lk7, sd7, ka7, "SI Table SI-2.4.1")):
+                (BATCH["A3803"], lk, sd, ka, "Table 1"),
+                (BATCH["A7906"], lk7, sd7, ka7, "SI Table SI-2.4.1")):
             if not val:
                 continue
             r = blank(fields)
@@ -166,8 +206,13 @@ def main():
                 unbound_fraction="",
                 n_binding_sites="not applicable (partitioning, not site binding)",
                 protein_conc=cbsa, protein_conc_units="g/L",
-                ligand_conc_range="compound:BSA molar ratio held below 0.1",
-                ligand_conc_units="mol/mol",
+                ligand_conc_range=(
+                    f"c_ref {si[0]} +/- {si[1]} ng/mL, c_free {si[2]} "
+                    f"+/- {si[3]} ng/mL at equilibrium (SI Table SI-2.3)"
+                    if si and src == "Table 1"
+                    else "compound:BSA molar ratio held below 0.1"),
+                ligand_conc_units=("ng/mL" if si and src == "Table 1"
+                                   else "mol/mol"),
                 temperature_c="37",
                 buffer="physiologically representative dialysis buffer",
                 is_computational="no",
@@ -179,7 +224,13 @@ def main():
                               f"coefficient at one molar ratio, NOT fitted "
                               f"from a binding isotherm | fraction bound "
                               f"{fb} +/- {fbsd}%"),
-                ligand_over_protein_max="0.1")
+                ligand_over_protein_max=(
+                    si[4] if si and src == "Table 1" else "0.1"))
+            if si and src == "Table 1":
+                r["source_table"] += (
+                    f" | SI Table SI-2.3: analyte:BSA molar ratio at "
+                    f"equilibrium v = {si[4]} mol/mol, measured, not the "
+                    f"0.1 design ceiling")
             new.append(r)
 
     print(f"{len(new)} per-compound rows to add "

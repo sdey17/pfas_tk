@@ -1,0 +1,747 @@
+Arch Toxicol (2016) 90:217–227
+DOI 10.1007/s00204-014-1391-7
+
+ ORGAN TOXICITY AND MECHANISMS
+
+
+
+Interaction of perfluoroalkyl acids with human liver fatty
+acid‑binding protein
+Nan Sheng · Juan Li · Hui Liu · Aiqian Zhang ·
+Jiayin Dai
+
+
+
+
+Received: 22 July 2014 / Accepted: 15 October 2014 / Published online: 5 November 2014
+© Springer-Verlag Berlin Heidelberg 2014
+
+
+Abstract Perfluoroalkyl acids (PFAAs) are highly persis-               PFAA to bind to hL-FABP. Molecular simulation showed
+tent and bioaccumulative, resulting in their broad distribu-           that substitution of Arg122 increased the volume of the
+tion in humans and the environment. The liver is an impor-             outer binding pocket, making it impossible to form inten-
+tant target for PFAAs, but the mechanisms behind PFAAs                 sive hydrophobic stacking and hydrogen bonds with PFOA,
+interaction with hepatocyte proteins remain poorly under-              and highlighting its crucial role in the binding process. The
+stood. We characterized the binding of PFAAs to human                  binding affinity of PFAAs increased significantly with their
+liver fatty acid-binding protein (hL-FABP) and identified              carbon number. Arg122 and Asn111 played a pivotal role
+critical structural features in their interaction. The binding         in these interactions. Our findings may help understand the
+interaction of PFAAs with hL-FABP was determined by                    distribution pattern, bioaccumulation, elimination, and tox-
+fluorescence displacement and isothermal titration calorim-            icity of PFAAs in humans.
+etry (ITC) assay. Molecular simulation was conducted to
+define interactions at the binding sites. ITC measurement              Keywords Perfluorinated compounds · Human liver fatty
+revealed that PFOA/PFNA displayed a moderate affinity                  acid-binding protein · Interaction · Isothermal titration
+for hL-FABP at a 1:1 molar ratio, a weak binding affinity              calorimetry · Molecular simulation
+for PFHxS and no binding for PFHxA. Moreover, the inter-
+action was mainly mediated by electrostatic attraction and
+hydrogen bonding. Substitution of Asn111 with Asp caused               Introduction
+loss of binding affinity to PFAA, indicating its crucial role
+for the initial PFAA binding to the outer binding site. Sub-           Perfluoroalkyl acids (PFAAs) are a family of perfluoroalkyl
+stitution of Arg122 with Gly caused only one molecule of               and polyfluoroalkyl substances (PFASs) with unique physi-
+                                                                       cal and chemical characteristics consisting of a carbon
+                                                                       backbone and charged functional moiety like carboxylate,
+Electronic supplementary material The online version of this           sulfonate, or phosphonate (Lau et al. 2007). Many PFAAs,
+article (doi:10.1007/s00204-014-1391-7) contains supplementary         which are highly resistant to degradation and environ-
+material, which is available to authorized users.
+                                                                       mentally persistent due to strong C–F bonds (Weiss et al.
+N. Sheng · H. Liu · J. Dai (*)                                         2009), have been widely used in commercial and indus-
+Key Laboratory of Animal Ecology and Conservation                      trial products (Renner 2001). Because of their wide use in
+Biology, Institute of Zoology, Chinese Academy of Sciences,            recent decades, PFAAs have been detected in the liver, fat,
+Beijing 100101, People’s Republic of China
+                                                                       and serum of wildlife (De Silva and Mabury 2006) and in
+e-mail: daijy@ioz.ac.cn
+                                                                       the serum and blood of humans (Kannan et al. 2004). The
+J. Li · A. Zhang (*)                                                   elimination half-lives of perfluorooctanoic acid (PFOA)
+State Key Laboratory of Environmental Chemistry                        and perfluorooctanesulfonate (PFOS) in serum varies
+and Ecotoxicology, Research Center for Eco‑Environmental
+                                                                       widely by species and sex and are considered long (up to
+Sciences, Chinese Academy of Sciences, Beijing 100085,
+People’s Republic of China                                             3.8 and 5.4 years) in human blood (Lau et al. 2007). Due
+e-mail: aqzhang@rees.ac.cn                                             to their environmental persistence, bioaccumulation and
+
+                                                                                                                         13
+218                                                                                            Arch Toxicol (2016) 90:217–227
+
+
+biomagnification through the food web, as well as their         key residues in interaction with PFAAs. This research will
+presence in humans and wildlife, the potential health risks     further our understanding about the effect of PFAAs on
+of PFAAs are of great concern on an international scale.        human livers and how they interact with each other such
+    The toxicity and human health effect of PFAAs have          that their potential risk to humans can be evaluated.
+been investigated in the past decade. Exposure to PFAAs
+(C > 7) in laboratory animals was found to increase the
+liver-to-body weight ratio, lipid levels, and peroxisome pro-   Materials and methods
+liferation and reduce serum cholesterol and triacylglycerol
+(Kennedy et al. 2004). PFAAs have been shown to activate        Chemicals
+the peroxisome proliferator-activated receptor α (PPARα)
+(Kennedy et al. 2004). Once activated, PPARα can regulate       Octanoic acid (OA, purity ≥ 99 %), perfluorohexanoic acid
+the transcription of genes involved in a number of biologi-     (PFHxA, >97 %), perfluorooctanoic acid (PFOA, >96 %),
+cal processes, including lipid metabolism, inflammation,        perfluorononanoic acid (PFNA, >97 %), tridecafluorohex-
+and cell growth. In addition, the structural resemblance of     ane-1-sulfonic acid potassium salt (PFHxS, >98 %), throm-
+PFAAs to natural fatty acids has raised concern that PFAAs      bin, and 8-anilino-1-naphthalenesulfonic acid (1,8-ANS,
+may disrupt fatty acid binding with some important trans-       ≥97 %) were purchased from Sigma (St. Louis, MO).
+port proteins and disrupt lipid regulation (Lau et al. 2007).   Sequencing-grade trypsin was purchased from Promega
+Some epidemiological studies have shown positive associa-       (Madison, WI).
+tions between PFOA and lipids in general human popula-
+tions. For example, in occupationally exposed employees,        Overexpression and purification of WT hL‑FABP and its
+increased PFOA was associated with increased total cho-         variants
+lesterol and triglycerides (Olsen et al. 2007; Sakr et al.
+2007). Recently, a much larger study of adults from envi-       Full-length WT hL-FABP was cloned into the pET-28a
+ronmentally exposed and adjacent communities reported a         vector between the BamH I and Xho I restriction sites. To
+positive association between PFOA and total and low-den-        obtain recombinant protein consisting of 127 amino acids
+sity lipoprotein cholesterol, and a less clear association of   in accordance with WT hL-FABP, we inserted a 5′ throm-
+PFOA with triglycerides (Steenland et al. 2009). As these       bin restriction enzyme cutting site before the target gene
+epidemiological data are inconsistent, adverse effects of       and mutated the original thrombin restriction enzyme cut-
+PFAAs to humans and the mechanism of action need fur-           ting site (CGC to CCC) in the pET-28a vector. The insert
+ther exploration.                                               sequence was confirmed by DNA sequencing. The result-
+    Previous studies have shown that the liver is an impor-     ant plasmid was transformed to the BL21 (DE3) strain of
+tant target for PFAAs. Liver fatty acid-binding protein         Escherichia coli. Following IPTG (1 mM) induction at a
+(L-FABP or FABP1) is the most broadly distributed mam-          cell density of 0.6, recombined protein was overexpressed
+malian FABP and is highly expressed in the liver as well        for 18 h at 23 °C. Bacterial cells were lysed by sonication
+as in the intestine and kidneys. FABPs are members of           in a buffer containing 1 mM PMSF and 1 mM DTT. Affin-
+the intracellular lipid-binding protein superfamily. They       ity purification was performed on a HisTrap HP column on
+play an important role in uptake, sequestering, and trans-      an AKTA FPLC system (GE Healthcare, USA). The details
+port of long-chain fatty acids and interact with transport      for protein purification are given in the supplementary
+and enzyme systems, as well as gene expression regulation       information. Protein concentration was determined by the
+(Atshaves et al. 2010; Bernlohr et al. 1997). L-FABP has a      bicinchoninic acid method.
+high affinity and capacity to bind to long-chain fatty acid        The hL-FABP variants (S39G, M74G, N111D, and
+and its oxidation products. Previous studies have shown         R122G) were mutated from WT hL-FABP using a Fast
+that PFAAs may, with a similar structure to fatty acids, suc-   Mutagenesis System (TransGen Biotech, China). Overex-
+cessfully compete and bind with these natural ligands for       pression, purification, and identification of proteins were
+L-FABP (Luebker et al. 2002; Zhang et al. 2013). Human          the same as described above.
+L-FABP (hL-FABP) may be a potential cytosolic trans-
+porter for these major pollutants within the hepatocyte         Circular dichroism spectroscopy
+cytoplasm to the nucleus for PPAR-mediated transcrip-
+tional regulation and detoxification pathways. However,         After incubation with various concentrations of PFAAs, CD
+mechanistic details of PFAAs binding with hL-FABP have          spectra of 5 μM hL-FABP (WT and its variants) in buffer
+not been carefully investigated.                                B were collected on a Chirascan Plus spectrometer (Applied
+    In this study, we characterized the binding of PFAAs to     Photophysics, Leatherhead, UK) at room temperature with a
+wild-type (WT) hL-FABP and its variants, and identified         1-mm path length quartz cuvette. The spectra were recorded
+
+13
+Arch Toxicol (2016) 90:217–227                                                                                            219
+
+
+from 193 to 250 nm with a 0.5 nm bandwidth, 1-nm incre-          were heated and then resolved on 4 % stacking, 20 %
+ment and 0.5-s collection time per step. Three scans were        resolving polyacrylamide gels at 4 °C. Gels were stained
+averaged as the final spectra data for secondary structure       with Coomassie Blue G-250 and destained with 5 % meth-
+analysis. The spectra of buffer B were obtained the same way     anol/10 % acetic acid solution.
+and were subtracted from the protein spectra. The α-helix
+and β-sheet contents of proteins were estimated with the         Molecular simulations
+CDSSTR algorithm (Kelly et al. 2005; Sreerama and Woody
+2000), which gave the smallest value of RMSD.                    All molecular simulations were performed on a DELL
+                                                                 Precision 370 work station with a SYBYL-X 1.2 software
+Fluorescence binding assays                                      package from Tripos, Inc., Co. (SYBYL-X, version 1.2;
+                                                                 Tripos International: St. Louis, MO, 2010). The geometry
+Fluorescence emission spectra were measured on a Horiba          optimizations of the tested molecules were conducted with
+Fluoromax-4 spectrofluorometer (Edison, NJ) in buffer            the standard Tripos Force Field and the conjugate-gradient
+C (50 mM Tris–HCl, pH 8.0) at room temperature under             minimization with an energy change convergence criterion
+steady-state conditions. Fluorometric titrations of 1,8-ANS      of 0.05 kcal/mol. Atomic charges were computed using
+into hL-FABP and PFAAs displacement were performed               the Gasteiger Huckel charge field. The X-ray crystal struc-
+as described previously (Carbone and Velkov 2013; Velkov         tures of hL-FABP (PDB ID: 3STK) were obtained from the
+et al. 2005), with an adjustment in protein concentration        Protein Data Bank (PDB, http://www.rcsb.org/pdb). The
+(0.25 μM). All data modeling operations were performed           binding pose of the tested compounds with hL-FABP was
+as previously described using GraphPad Prism V5.0                subsequently investigated using a flexible docking method
+(GraphPad software, San Diego, CA, USA). Details are             with the Tripos Surflex-Dock program. Moreover, further
+given in the supplementary information.                          computations were performed on the Surflex-Dock-simu-
+                                                                 lated lowest-energy ligand–protein complex using energy
+Isothermal titration calorimetry (ITC)                           minimization and molecular dynamics along with an
+                                                                 AMBER7 FF99 force field to obtain more accurate poses.
+The ITC experiments on the binding of PFAAs to WT hL-
+FABP and its variants were carried out by iTC200 titra-
+tion calorimetry (MicroCal, GE Healthcare) at 25 °C.             Results
+Freshly purified proteins in buffer B were diluted with the
+same buffer and loaded into the sample cell (200 μl). Solu-      Effect of PFAAs on the secondary structure of hL‑FABP
+tions of PFAAs in buffer B were placed in an injection           by CD spectroscopy
+syringe (40 μl). Concentrations of proteins and PFAAs
+were changed according to the different proteins or PFAAs        To investigate the interactions of PFAAs with hL-FABP, the
+(see Table S1). The first PFAA injection was 0.5 μl, and         solution structure of WT hL-FABP and its variants before
+the following 19 injections were 2 μl. The stirring rate was     and after the addition of different concentrations of PFAAs
+1,000 rpm. The time between the titration steps was 120 s        was examined using circular dichroism. The far-UV CD
+to reach an equilibrium state. Dilution heats of PFAAs were      spectra of the recombinant hL-FABP exhibited a negative
+measured by injecting PFAAs solution into buffer alone. The      minima at 218 nm and a shoulder at 195 nm (Fig. 1), indi-
+resulting data were fitted to the one site of the site binding   cating typical structures rich in β-sheet. The recombinant
+model using Microcal ORIGIN Software with subtracting            WT hL-FABP contained 17.1 % α-helix and 50.3 % β-sheet
+dilution heats of PFAAs beforehand. All ITC experiments          (Table 1), similar to the contents of the secondary structure
+were repeated three times to ensure reproducibility.             (12.6 % α-helix and 59.1 % β-sheet) predicted by Predict-
+                                                                 Protein (http://www.predictprotein.org). The α-helix and
+Limited proteolysis of hL‑FABP                                   β-sheet contents of S39G, M74G, and N111D exhibited no
+                                                                 significant changes compared to those of wild type, show-
+Before the experiment, proteins were changed into buffer         ing that these variants retained secondary structures similar
+D (50 mM Tris–HCl, 2 mM CaCl2, 5 % Glycerin, pH 8.0)             to the WT protein. For R122G; however, the helical content
+with a HiTrap Desalting column. Proteins (50 μM) were            decreased to 15.3 %, and its sheet amount increased mini-
+pre-equilibrated with PFOA (0, 1, 5, 25, and 50 μM final         mally, indicating that secondary structures were affected due
+PFOA concentrations) for 30 min at 20 °C, and then trypsin       to Arg122 substitution with glycine (Table 1). With the addi-
+was added at a ratio of 20:1 (protein/protease, w/w). Diges-     tion of PFAAs, CD spectral change depended on the type of
+tion was performed at 37 °C for 8 h, followed by the addi-       chemicals and substitution. After adding PFHxS and PFHxA,
+tion of 1 μl of 50 mM PMSF to stop the digestion. Samples        no measurable changes in CD spectra of WT hL-FABP and
+
+                                                                                                                   13
+220                                                                                                              Arch Toxicol (2016) 90:217–227
+
+
+                                 WT hL-FABP              control                                       R122G             control
+                      15                                                              15                                 10 µΜ PFOA
+                                                         10 µΜ PFOA
+                                                         50 µΜ PFOA                                                      50 µΜ PFOA
+                                                         100 µΜ PFOA                                                     100 µΜ PFOA
+                      10                                                              10                                 200 µΜ PFOA
+                                                         200 µΜ PFOA
+         CD (mdeg)
+
+
+
+
+                                                                         CD (mdeg)
+                       5                                                              5
+
+
+                       0                                                              0
+
+
+                      -5                                                              -5
+
+
+                     -10                                                             -10
+                           200   210       220    230      240     250                     200   210      220     230       240        250
+                                       wavelength (nm)                                                 wavelength (nm)
+
+                                       N111D
+                      15
+                                                         control
+                                                                                      10
+                                                                                                        M74G
+                                                         10 µΜ PFOA                                                  control
+                                                         50 µΜ PFOA                                                  10 µΜ PFOA
+                                                         100 µΜ PFOA                                                 50 µΜ PFOA
+                      10
+                                                         200 µΜ PFOA                                                 100 µΜ PFOA
+                                                                                      5                              200 µΜ PFOA
+
+
+
+
+                                                                          CD (mdeg)
+         CD (mdeg)
+
+
+
+
+                       5
+
+
+                       0                                                              0
+
+
+                      -5
+                                                                                      -5
+                     -10
+                           200   210       220    230     240      250                     200   210       220    230       240        250
+                                       wavelength (nm)                                                 wavelength (nm)
+
+                     20                S39G
+                                                   control
+                                                   10 µΜ PFOA
+                     15                            50 µΜ PFOA
+                                                   100 µΜ PFOA
+                     10                            200 µΜ PFOA
+        CD (mdeg)
+
+
+
+
+                      5
+
+                      0
+
+                     -5
+
+                     -10
+
+                           200   210       220    230     240      250
+
+
+Fig. 1  CD spectra of different concentrations of PFOA added to 5 μM WT hL-FABP and its four variants (S39G, M74G, N111D, and R122G),
+respectively
+
+
+
+its variants were observed (Figure S1, Table S1). After add-              WT, S39G, M74G, and N111D variants increased with
+ing PFOA/PFNA, the α-helix content of WT hL-FABP,                         PFAA chain length, while β-sheet decreased.
+S39G, M74G, and N111D variants increased with PFOA
+concentration, while the β-sheet content decreased slightly.              Binding affinity of PFAAs for hL‑FABP by fluorescence
+The α-helix and β-sheet contents in the R122G variant                     displacement assays
+showed no substantial change (Fig. 1; Table 1). The degree of
+CD spectral change was PFNA > PFOA > PFHxS/PFHxA.                         To obtain binding parameters of PFAAs for hL-FABP,
+Except for the R122G variant, the content of α-helices for                the effect of titrating 0.25 μM hL-FABP with increasing
+
+13
+Arch Toxicol (2016) 90:217–227                                                                                                         221
+
+Table 1  Effect of PFAAs on the relative proportion of the secondary structure components of WT hL-FABP and its four variants as determined
+by CD
+            WT                        S39G                     M74G                     N111D                     R122G
+            α-Helices    β-Sheet      α-Helices   β-Sheet      α-Helices    β-Sheet     α-Helices    β-Sheet      α-Helices    β-Sheet (%)
+            (%)          (%)          (%)         (%)          (%)          (%)         (%)          (%)          (%)
+
+No PFAAs    17.1         50.3         16.9        50.4         16.6         51.2        17.5         49.1         15.3         51.5
+PFHxS       17.4         49.8         17.2        49.0         16.9         50.6        17.6         49.1         15.5         50.7
+PFHxA       16.9         50.0         17.2        49.8         16.5         50.5        17.5         49.3         15.4         50.9
+PFOA        17.5         46.8         17.6        47.4         17.1         48.7        17.9         48.4         15.1         49.6
+PFNA        17.8         47.9         18.0        48.6         17.4         48.6         18.3        47.4         14.9         50.8
+
+All data were determined by adding 100 μM PFAAs to 5 μM hL-FABP in 20 mM NaH2PO4/Na2HPO4 (pH 7.4)
+
+
+concentrations of ANS was examined (Fig. S2A). The fluo-               measurements revealed that PFOA and PFNA could bind to
+rescence intensity at 470 nm, corrected for background                 WT hL-FABP binding sites at a 1:1 molar ratio, giving Kd
+(ligand only), was plotted as a function of total ligand con-          values of 6.49 and 3.14 μM (Table 3; Fig. 3), respectively,
+centration (Fig. 2a). Nonlinear regression analysis (Hill              consistent with the ligand displacement assay results.
+plot) of the binding data demonstrated that ANS bound to               Moreover, the ΔH for PFOA binding with WT hL-FABP
+WT hL-FABP and S39G and M74G with an apparent dis-                     was −29.49 kJ/mol, much larger than ΔS (0.4 J/mol/deg),
+sociation constant (Kd), respectively (Fig. S2A). These                indicating that the interaction was mainly mediated by
+results suggest a stoichiometry of one ANS molecule per                electrostatic attraction and hydrogen bonding. The Kd val-
+hL-FABP binding site in the complex (n = 1.01–1.19,                    ues of PFOA and PFNA for S39G and M74G variants were
+Table 2). For N111D and R122G variants, however, no                    similar to that of wild type. However, the binding affinities
+binding was detected (Table 2).                                        of N111D for PFOA and PFNA were lost. Interestingly,
+   After the dissociation constant of ANS with hL-FABP                 for R122G, the binding affinities for PFOA and PFNA
+was obtained, it was used as a fluorescence probe in the               were a bit lower than its wild type, while the molar ratio
+ligand displacement assays to measure the binding affini-              for PFOA/PFNA to the protein binding site changed to 1:2.
+ties of PFAAs with the protein (Figs. 2 and S2). The appar-            Based on the ITC assay, it was concluded that PFOA/PFNA
+ent inhibition constants or Kd derived from these experi-              displayed a moderate affinity for hL-FABP and decreased
+ments are documented in Table 2. The binding affinity                  in the order PFNA > PFOA > PFHxS > PFHxA.
+of WT hL-FABP and its variants for PFHxA and PFHxS
+was not detected. The calculated Kd of PFOA and PFNA                   Binding to PFOA protects hL‑FABP from proteolysis
+for S39G and M74G variants was similar to the wild type.
+However, binding affinities of PFOA and PFNA for N111D                 Figure 4 shows the proteolytic peptide pattern that evolved
+and R122G were not observed. Based on the fluorescence                 from the digestion of hL-FABP with trypsin (Arg-C; Lys-
+displacement assay, it was concluded that PFOA/PFNA                    C) in the apo- and holo-PFOA bound forms. The apo-form
+
+in the order PFNA > PFOA ≫ PFHxS/PFHxA. These data
+displayed a moderate affinity for hL-FABP and decreased                was significantly more susceptible to proteolysis than the
+                                                                       holo-PFOA form. This indicated that PFOA binding stabi-
+indicate that hL-FABP was capable of binding structurally              lized the WT hL-FABP, S39G, and M74G structure. How-
+diverse nonfatty acid lipophilic environmental chemicals.              ever, binding to PFOA protected N111D from proteolysis
+                                                                       to some extent, but PFOA binding had no protection for
+Thermodynamic analysis of the interaction of hL‑FABP                   R122G.
+with PFAAs using ITC
+                                                                       Molecular simulations
+To determine accurate Kd values of hL-FABP and PFAAs
+with different chain lengths, we performed ITC measure-                To gain insight into the role of the key residues, molecu-
+ment (concentrations of hL-FABPs and PFAAs for ITC                     lar docking coupled with molecular dynamics was per-
+assay are given in Table S2). We did not observe binding               formed to identify the interaction between PFAAs and
+affinity of WT hL-FABP and its variants for PFHxA. How-                the binding sites of L-FABP. PFAAs bound with two WT
+ever, the binding affinities of WT hL-FABP and its vari-               hL-FABP binding sites (Fig. 5a). In the outer binding site,
+ants for PFHxS were weak, with Kd values ranging from                  PFAA entered in a heads-in orientation. Its head carboxyl
+26.95 to 61.35 μM for the variants (Table S3). The ITC                 made polar contact with the positive amide of Asn111 and
+
+                                                                                                                               13
+222                                                                                                                                                           Arch Toxicol (2016) 90:217–227
+
+
+                                           500000                     A                                                        the ζNH of Arg122 at the interface of the two binding sites.
+                                                                                                                               The PFAAs carboxyl was also involved in hydrogen bond
+Fluorescence Intensity (a.u.)
+
+
+                                           400000                                                                              interactions with three trapped water molecules in the bind-
+                                                                                                                               ing cavity (H2O 353, 243 and 227). The PFOA alkyl tail
+                                           300000                                                                              was stabilized by hL-FABP hydrophobic residues (Phe15,
+                                                                                                                               Ala54, Ile52, and Met113) (Fig. S4A). In the inner binding
+                                           200000                                                         WT hL-FABP           site, the PFAA head carboxyl made ionic contacts with the
+                                                                                                          S39G
+                                                                                                                               side chain of Ser39 and Arg122. The PFOA carboxyl was
+                                           100000                                                                              also involved in hydrogen bond interactions with the same
+                                                                                                          M74G
+                                                                                                                               three waters. The PFOA alkyl tail was accommodated in a
+                                                              0                                                                hydrophobic cavity lined by Phe50, Ile52, and Thr102 (Fig.
+                                                                  0           5              10               15          20   S4B). The orientation of PFOA in the inner site was stabi-
+                                                                                        1,8-ANS (µM)                           lized by the above hydrophobic contacts.
+                                                                                                                                   For the N111D variant, the substitution of Asn111 with
+                                            600000                    B                            WT hL-FABP                  Asp did not cause significant conformational change in the
+                                                                                                                               inner cavity comparison with WT hL-FABP. However, sub-
+Fluorescence Intensity (a.u.)
+
+
+
+
+                                            500000
+                                                                                                                               stitution of Asn111 with Asp disrupted the attraction of the
+                                            400000
+                                                                                                                               positive amide of Asn111 to the negative carboxyl group
+                                                                                                                               of PFOA (Fig. 5b). It caused the dramatic reduction in the
+                                            300000                                                                             orientation potential for PFOA-hL-FABP interaction. In
+                                                                                                                               addition, the interaction between the PFOA anion head and
+                                            200000                                                                             the ζNH of Arg122 alone could not stabilize the heads-in
+                                                                                                                               mode. Consequently, it was difficult for PFOA to access the
+                                            100000
+                                                                                                                               inner binding site due to the exclusion of the outer cavity
+                                                              0                                                                (Fig. 5e).
+                                                                      420   440       460   480     500       520   540            Unlike the N111D variant, the substitution of Arg122
+                                                                                      wavelength (nm)                          with glycine increased the volume of the outer binding
+                                                                                                                               pocket by 34 %, making it impossible for the outer bind-
+                                                            100       C                                                        ing site to form intensive hydrophobic stacking and hydro-
+                                                                                                 WT hL-FABP                    gen bonds with PFOA (Fig. 5c). However, the hydrogen
+                                Relative Fluorescence (%)
+
+
+
+
+                                                            80                                                                 bond between the carboxyl of PFOA and positive amide
+                                                                                                                               of Asn111 was retained to introduce PFOA in a heads-
+                                                            60                                                                 in mode. For the R122G variant, PFOA still entered and
+                                                                                                                               bound to the inner binding site. Since Ser39 established
+                                                            40                                                                 a hydrogen bond network with the help of the trapped
+                                                                                                                               water molecules, PFOA was stabilized in the inner cavity
+                                                            20
+                                                                                                                               (Fig. 5f).
+                                                                                                                                   The substitution of S39 with glycine in the variant did
+                                                                                                                               not have a large impact on the interaction between PFOA
+                                                             0
+                                                                                                                               and hL-FABP (Fig. 5d, g). Without the hydrogen bonds
+                                                                      -1          0          1            2          3         between PFOA and Ser39 in the inner binding site, the
+                                                                                      log[PFOA] (µM)                           charged anion group of PFOA established a hydrogen bond
+                                                                                                                               with Arg122, which stabilized PFOA. For M74G, the situa-
+Fig. 2  Binding of fluorescence probe with hL-FABP. a Maximal                                                                  tion was similar to that of S39G (data not shown).
+fluorescence emission plot (measured at 470 nm) for 1,8-ANS in the
+presence of 250 nM of hL-FABP as a function of 1,8-ANS concentra-
+tion. Values are mean ± SE, n = 3. b Effect of increasing concen-                                                              Discussion
+trations of PFOA on 1,8-ANS fluorescence. Fluorescence emission
+spectra of 1,8-ANS-hL-FABP in the presence of increasing concen-                                                               Human liver cells are challenged by various lipophilic envi-
+trations of PFOA. Arrow indicates the direction of increasing PFOA
+concentration. c Relative fluorescence intensity of 12.25 μM 1,8-
+                                                                                                                               ronmental xenobiotics, including PFAAs, which can be
+ANS in 250 nM hL-FABP as a function of added PFOA concentra-                                                                   toxic at high concentrations. These xenobiotics can inter-
+tions. Values are mean ± SE, n = 3                                                                                             act with some hepatic and transport proteins and disrupt
+
+
+
+13
+Arch Toxicol (2016) 90:217–227                                                                                                            223
+
+Table 2  Binding parameters                      1,8-ANS                              PFOA                          PFNA
+of PFOA and PFNA for WT
+hL-FABP and its four variants                      2
+                                                 R      Kd (μM)        n              IC50 (μM)      Kd (μM)        IC50 (μM)      Kd (μM)
+determined fluorometrically by
+displacement of 1,8-ANS              Wild type   0.95   3.56 ± 0.48    1.01 ± 0.08    8.14 ± 1.17    2.36 ± 0.34    4.55 ± 0.31    1.32 ± 0.20
+                                     S39G        0.96   6.64 ± 0.96    1.19 ± 0.07    7.16 ± 0.46    3.80 ± 0.18    4.06 ± 0.53    2.20 ± 0.26
+                                     M74G        0.95   4.79 ± 0.79    1.07 ± 0.08    6.68 ± 0.92    2.62 ± 0.36    4.93 ± 0.45    1.84 ± 0.26
+                                     N111D       NBa    NBa            NBa            NBa            NBa            NBa            NBa
+a                                    R122G       NBa    NBa            NBa            NBa            NBa            NBa            NBa
+    NB no binding detected
+
+
+Table 3  Thermodynamic parameters for the binding of PFOA to WT hL-FABP and its four variants as determined by ITC at 25 °C
+
+                         N (sites)           Ka (M−1)                 Kd (μM)        ΔH (kJ/mol)           ΔS (J/mol/deg)       ΔG (kJ/mol)
+
+PFOA         WT          0.999 ± 0.016       (1.54 ± 0.14) × 105        6.49         −29.49 ± 0.68         0.4                  −29.50 ± 0.672
+             S39G        1.08 ± 0.024        (1.21 ± 0.13) × 105        8.26         −24.47 ± 0.72         15                   −17.67 ± 0.35
+             M74G        0.984 ± 0.013       (1.12 ± 0.09) × 105        8.93         −5.57 ± 0.11          4.0                  −5.675 ± 0.006
+             N111D       NDa                 (3.52 ± 1.89) × 103      284.09         NDa                   NDa                  NDa
+             R122G       0.554 ± 0.042       (1.19 ± 0.32) × 105        8.40         −17.30 ± 2.71         27                   −17.97 ± 2.04
+PFNA         WT          1.20 ± 0.016        (3.18 ± 0.35) × 105        3.14         −5.07 ± 0.09          8.2                  −5.275 ± 0.113
+             S39G        1.08 ± 0.012        (3.00 ± 0.26) × 105        3.33         −5.10 ± 0.08          7.9                  −5.301 ± 0.122
+             M74G        1.09 ± 0.026        (1.08 ± 0.19) × 105        9.26         −5.39 ± 0.20          5.0                  −5.513 ± 0.073
+             N111D       NDa                 (8.84 ± 1.77) × 103      113.12         NDa                   NDa                  NDa
+             R122G       0.562 ± 0.010       (1.55 ± 0.16) × 105           6.45      −8.49 ± 0.21          −4.7                 −8.609 ± 0.086
+a
+    ND not detected
+
+
+the biological function of liver cells. PFAAs have a similar               other three variants. Thus, for R122G, we inferred that
+structure to endogenous fatty acids, except that the hydro-                only one of two sites could interact with PFOA. Molecu-
+gen atoms of the fatty acids are replaced by fluorine atoms.               lar simulation confirmed that the R122G variant engulfed
+Therefore, PFAAs may disrupt the binding of fatty acids                    PFOA only in the inner binding cavity, highlighting the
+to their transporters and finally disturb lipid regulation. In             crucial role of Arg122 for PFAAs binding. The substitution
+this study, PFAAs were validated as binding ligands by ITC                 of Arg122 with glycine increased the volume of the outer
+binding assays, and PFOA and PFNA displayed a moderate                     binding pocket, and this conformational change resulted in
+affinity for hL-FABP.                                                      the inability of PFOA to bind with the outer binding site.
+    Our simulation studies showed that PFOA and PFNA                       Our CD results showed that the helical content for R122G
+may bind with hL-FABP by a similar way of long-chain                       decreased, indicating that secondary structures changed
+fatty acids binding with the protein. Sharma and Sharma                    and affected the outer binding site of R122G because two
+(2011) revealed that hL-FABP had two binding sites with                    α helices were close to one end of the barrel and near the
+heads-in modes of entry for long-chain fatty acids, with                   outer binding cavity (Sharma and Sharma 2011). This loos-
+the hL-FABP complex structure displaying an overall fold                   ened or extended conformation was also supported by the
+consisting of a β barrel formed by ten antiparallel β sheets               limited proteolysis of R122G, which showed that it was
+and two α helices closing one end of the barrel. Sharma and                significantly more susceptible to proteolysis than the wild
+Sharma (2011) further proposed that the encounter of the                   type or the other holo-variant-PFOA complexes.
+first fatty acid with Arg122 in hL-FABP triggered a con-                      Molecular simulations revealed that the substitution of
+formational change in this residue, which then shunted                     Asn111 with Asp did not cause obvious conformational
+the hydrophobic cargo to the inner fatty acid binding site                 change compared with the WT hL-FABP. Our CD experi-
+in hL-FABP. Once the inner binding site was occupied, the                  ment and the limited proteolysis of N111D supported the
+outer one was free to receive the second fatty acid cargo,                 molecular simulation results. However, the substitution of
+which again bound in a heads-in orientation stabilized by                  Asn111 with Asp caused the dramatic reduction in the ori-
+interactions with Asn111 and Arg122.                                       entation potential of PFOA-L-FABP interaction. The inter-
+    In this study, the ITC assay showed that PFOA bound                    action between the PFOA anion and the ζNH of Arg122
+with the R122G variant binding site at a molar ratio 1:2                   alone could not stabilize the heads-in mode, and the hydro-
+was significantly different from WT hL-FABP and the                        phobic contact between PFOA and the outer binding site
+
+                                                                                                                                   13
+224                                                                                                                                                                                                           Arch Toxicol (2016) 90:217–227
+
+                                                Time (min)                                                                          Time (min)                                                                          Time (min)
+                                    0      10         20       30         40                                        0       10         20         30           40                                     0            10       20        30       40
+
+                            0.00                                                                            0.00
+                                                                                                                                                                                              0.00
+
+                            -0.50                                                                           -0.30
+µcal/sec
+
+
+
+
+                                                                                 µcal/sec
+
+
+
+
+                                                                                                                                                                      µcal/sec
+                                                                                                                                                                                              -0.20
+
+                                                                                                            -0.60                                                                             -0.40
+                            -1.00
+
+                                                                                                            -0.90                                                                             -0.60
+                            -1.50
+                              0.0
+                                                                                                                                                                                               -0.3
+
+
+
+
+                                                                                    kcal mol of injectant
+    kcal mol of injectant
+
+
+
+
+                                                                                                             -2.0
+
+
+
+
+                                                                                                                                                                      kcal mol of injectant
+                             -1.5                                                                                                                                                              -0.6
+                                                                                                             -4.0
+                                                                                                                                                                                               -0.9
+                             -3.0
+
+                                                                                -1
+                                                                                                             -6.0
+ -1
+
+
+
+
+                                                                                                                                                                      -1
+                                                                                                                                                                                               -1.2
+                             -4.5                                                                            -8.0
+                                                           WT hL-FABP                                                                            R122G                                         -1.5
+                                                                                                                                                                                                                                      N111D
+                                                                                                                                                                                               -1.8
+                                    0.0   0.5   1.0    1.5    2.0   2.5                                             0.00     0.25      0.50       0.75         1.00                                       0    1    2   3    4   5    6    7   8
+
+                                                Molar Ratio                                                                         Molar Ratio                                                                         Molar Ratio
+
+                                                 Time (min)                                                                         Time (min)
+                                    0      10         20       30         40                                        0       10         20         30           40
+
+                            0.00                                                                            0.00
+
+
+                            -0.40                                                                           -0.20
+                                                                                µcal/sec
+µcal/sec
+
+
+
+
+                            -0.80                                                                           -0.40
+
+                            -1.20                                                                           -0.60
+
+                             0.0                                                                             0.0
+                                                                               kcal mol of injectant
+ kcal mol of injectant
+
+
+
+
+                             -1.5                                                                            -1.5
+
+
+                             -3.0
+                                                                                       -1
+
+
+
+
+                                                                                                             -3.0
+-1
+
+
+
+
+                             -4.5                              M74G                                          -4.5                                 S39G
+
+                                    0.0   0.5   1.0    1.5    2.0   2.5                                             0.0    0.5   1.0     1.5     2.0     2.5
+
+                                                Molar Ratio                                                                      Molar Ratio
+
+
+Fig. 3  ITC profiles for the binding of PFOA to WT hL-FABP and its four variants (S39G, M74G, N111D, and R122G) at 25 °C
+
+
+
+was rather weak in comparison with that of its native fatty                                                                           following scenario for PFAAs uptake by hL-FABP. The
+acid (octanoic acid), indicating that no binding to WT hL-                                                                            carboxyl head of the first PFOA with a heads-in orientation
+FABP was observed using the ITC assay (Fig. S5). Moreo-                                                                               made polar contact with the positive amide of Asn111, and
+ver, the electronegative nature of fluorine also results in the                                                                       the ζNH of Arg122. Arg122 located at the interface of the
+decrease in hydrophobic contact (Krafft and Riess 2009).                                                                              two binding sites worked like a lever and pulled the first
+Consequently, PFOA loses its access to the inner binding                                                                              PFAAs inside. Because PFAAs only entered in a heads-in
+sites due to the exclusion of the outer cavity. The docking                                                                           orientation, the opposite resulted in a direct clash of PFAA
+results were consistent with the ITC assay, which showed                                                                              hydrophobic tails with Arg122. In the inner binding pocket,
+that the binding affinities of N111D for PFOA and PFNA                                                                                the PFAA head group made ionic contact with side chains
+were almost lost. This indicated that Asn111 plays a pivotal                                                                          of Arg122 and Ser39, and the alkyl tail was stabilized by
+role in the heads-in mode of PFOA.                                                                                                    hL-FABP hydrophobic residues.
+   Taken together, our study demonstrated that hL-FABP                                                                                   PFAAs (n > 8) can activate PPAR activators (PPARα
+can bind two molecules of PFAAs. We proposed the                                                                                      and PPARγ), as well as the constitutive androstane
+
+13
+Arch Toxicol (2016) 90:217–227                                                                                                                 225
+
+
+receptor and pregnane X receptor (Ding et al. 2009; Fang                   hepatocyte, transport of these relatively insoluble lipo-
+et al. 2012; Vanden Heuvel et al. 2006). As these nuclear                  philic environmental pollutants from the cytoplasm to the
+hormone receptors are located in the nucleus of the                        nucleus seems to be required for activation of the PPARs
+                                                                           transcriptional response. Researchers have provided con-
+                                                                           vincing evidence that hL-FABP directly interacts with
+                                                                           PPARα and is involved in the nucleo-cytoplasmic shuttling
+                                                                           of activator ligands (Hostetler et al. 2009; Wolfrum et al.
+                                                                           2001). Thus, we speculated that L-FABP may act as a car-
+                                                                           rier to deliver PFAAs to PPARs and then disrupt PPAR
+                                                                           pathways.
+                                                                              Finally, based on the binding affinity of PFAAs for hL-
+                                                                           FABP obtained in this study, we estimated the concentra-
+                                                                           tion of PFAAs bound to hL-FABP as follows:
+                                                                           [PFAA-P] + [PFAA] = [PFAA]total
+
+                                                                           [PFAA-P] + [P] = [P]total
+
+                                                                           [PFAA-P] = Kb [PFAA][P]
+                                                                              In above equation, [PFAA-P] is the concentration of pro-
+                                                                           tein-bound PFAA, [PFAA] is the concentration of unbound
+                                                                           PFAA, [PFAA]total is the total concentration of PFAA, [P] is
+                                                                           the concentration of free hL-FABP, [P]total is the total con-
+                                                                           centration of hL-FABP, which in the physiological condi-
+Fig. 4  Electrophoretic band of WT hL-FABP and its four variants           tion is 200–400 μM in hepatocyte cytosol (Lawrence et al.
+(S39G, M74G, N111D, and R122G) digested with trypsin
+
+
+
+
+Fig. 5  Comparison between the wild type and residue substitution          gram), respectively. The binding poses of PFOA in the outer and
+hL-FABP active pockets. a Whole structures of hL-FABP, outer bind-         inner binding sites of the wild-type pockets are illustrated by blue and
+ing site is indicated as a green pocket, and inner binding site is shown   magenta sticks, respectively. The binding poses of PFOA in the wild-
+in magenta. b–d represent the outer pocket comparison between the          type pocket for Arg122, Asn111, and Ser39 mutation cavities are
+wild type (opaque diagram) and the Arg122, Asn111, and Ser39               illustrated by yellow, orange, and cyan sticks, separately. The hydro-
+mutant proteins (gridding diagram), respectively. e–g represent the        gen bonds are shown by yellow dashed lines. Trapped water mole-
+inner pocket comparison between the wild type (opaque diagram)             cules are also shown (color figure online)
+and the Arg122, Asn111, and Ser39 mutant proteins (gridding dia-
+
+
+                                                                                                                                      13
+226                                                                                                            Arch Toxicol (2016) 90:217–227
+
+
+2000), and Kb is the equilibrium association constant (1/Kd)                 intestinal intracellular lipid binding proteins. Chem Res Toxicol
+of PFAA with the protein.                                                    26:1240–1250
+                                                                         De Silva AO, Mabury SA (2006) Isomer distribution of perfluorocar-
+   The geometric mean concentration of PFOA in their serum                   boxylates in human blood: potential correlation to source. Envi-
+is 2.2 μM for occupational workers, while the concentration                  ron Sci Technol 40:2903–2909
+is only 12 nM for the general human population (Olsen et al.             Ding L, Hao F, Shi Z, Wang Y, Zhang H, Tang H et al (2009) Sys-
+2007). According to the mean ratio of liver to blood given in                tems biological responses to chronic perfluorododecanoic acid
+                                                                             exposure by integrated metabonomic and transcriptomic studies.
+the literature (Maestri et al. 2006), the liver concentration of             J Proteome Res 8:2882–2891
+PFOA in occupational workers is between 2.86 and 5.94 μM.                Ehresman DJ, Froehlich JW, Olsen GW, Chang SC, Butenhoff JL
+The calculated concentration of hL-FABP-PFOA for the gen-                    (2007) Comparison of human whole blood, plasma, and serum
+eral population was 0.05 μM and that for occupational work-                  matrices for the determination of perfluorooctanesulfonate (pfos),
+                                                                             perfluorooctanoate (pfoa), and other fluorochemicals. Environ
+ers was 2.77–5.85 μM. Thus, the concentrations of hL-FABP                    Res 103:176–184
+bound by PFOA in both populations were insignificant. How-               Fang X, Zou S, Zhao Y, Cui R, Zhang W, Hu J et al (2012) Kupffer
+ever, for workers with the highest concentration of PFOA                     cells suppress perfluorononanoic acid-induced hepatic peroxi-
+(275.6 μM) in their serum (Ehresman et al. 2007; Sakr et al.                 some proliferator-activated receptor alpha expression by releas-
+                                                                             ing cytokines. Arch Toxicol 86:1515–1525
+2007), the concentration of hL-FABP-PFOA reached 186.43                  Hostetler HA, McIntosh AL, Atshaves BP, Storey SM, Payne HR,
+μM. This suggested as much as 46–93 % of hL-FABP was                         Kier AB et al (2009) L-fabp directly interacts with pparalpha in
+bound by PFOA, and since hL-FABP is a transport protein,                     cultured primary hepatocytes. J Lipid Res 50:1663–1675
+displacement would impair the uptake and transport of fatty              Kannan K, Corsolini S, Falandysz J, Fillmann G, Kumar KS, Loga-
+                                                                             nathan BG et al (2004) Perfluorooctanesulfonate and related fluo-
+acids. Taken together, more attention should be paid toward                  rochemicals in human blood from several countries. Environ Sci
+the potential toxic effects of PFAAs on humans, or at least                  Technol 38:4489–4495
+occupational workers.                                                    Kelly SM, Jess TJ, Price NC (2005) How to study proteins by circular
+                                                                             dichroism. Biochim Biophys Acta 1751:119–139
+                                                                         Kennedy GL Jr, Butenhoff JL, Olsen GW, O’Connor JC, Seacat AM,
+                                                                             Perkins RG et al (2004) The toxicology of perfluorooctanoate.
+Conclusions                                                                  Crit Rev Toxicol 34:351–384
+                                                                         Krafft MP, Riess JG (2009) Chemistry, physical chemistry, and uses
+This is the first report on the accurate binding constant and                of molecular fluorocarbon–hydrocarbon diblocks, triblocks, and
+                                                                             related compounds–unique “apolar” components for self-assem-
+role of specific sites in the binding interaction of hL-FABP                 bled colloid and interface engineering. Chem Rev 109:1714–1792
+with PFAAs. The binding affinity of PFAAs increased sig-                 Lau C, Anitole K, Hodes C, Lai D, Pfahles-Hutchens A, Seed J (2007)
+nificantly with their carbon number. The driving forces for                  Perfluoroalkyl acids: a review of monitoring and toxicological
+the binding of PFAAs with hL-FABP were predominantly                         findings. Toxicol Sci 99:366–394
+                                                                         Lawrence JW, Kroll DJ, Eacho PI (2000) Ligand-dependent interac-
+hydrophobic and hydrogen-bonding interaction. Arg122                         tion of hepatic fatty acid-binding protein with the nucleus. J Lipid
+and Asn111 played a pivotal role in these interactions.                      Res 41:1390–1401
+These findings may help understand the distribution pat-                 Luebker DJ, Hansen KJ, Bass NM, Butenhoff JL, Seacat AM (2002)
+tern, bioaccumulation, elimination, and toxicity of PFAAs                    Interactions of fluorochemicals with rat liver fatty acid-binding
+                                                                             protein. Toxicology 176:175–185
+in humans.                                                               Maestri L, Negri S, Ferrari M, Ghittori S, Fabris F, Danesino P et al
+                                                                             (2006) Determination of perfluorooctanoic acid and perfluorooc-
+Acknowledgments This work was supported by the Strategic                     tanesulfonate in human tissues by liquid chromatography/single
+Priority Research Program of the Chinese Academy of Sciences                 quadrupole mass spectrometry. Rapid Commun Mass Spectrom
+(XDB14000000) and the National Natural Science Foundation of                 20:2728–2734
+China (grants 31320103915 and 31025006 for Dai, 21277164 for             Olsen GW, Burris JM, Ehresman DJ, Froehlich JW, Seacat AM,
+Zhang).                                                                      Butenhoff JL et al (2007) Half-life of serum elimination of per-
+                                                                             fluorooctanesulfonate, perfluorohexanesulfonate, and perfluo-
+Conflict of interest The authors declare they have no competing              rooctanoate in retired fluorochemical production workers. Envi-
+financial interests.                                                         ron Health Perspect 115:1298–1305
+                                                                         Renner R (2001) Growing concern over perfluorinated chemicals.
+                                                                             Environ Sci Technol 35:154A–160A
+                                                                         Sakr CJ, Leonard RC, Kreckmann KH, Slade MD, Cullen MR (2007)
+References                                                                   Longitudinal study of serum lipids and liver enzymes in workers
+                                                                             with occupational exposure to ammonium perfluorooctanoate. J
+Atshaves BP, Martin GG, Hostetler HA, McIntosh AL, Kier AB,                  Occup Environ Med 49:872–879
+    Schroeder F (2010) Liver fatty acid-binding protein and obesity. J   Sharma A, Sharma A (2011) Fatty acid induced remodeling within
+    Nutr Biochem 21:1015–1032                                                the human liver fatty acid-binding protein. J Biol Chem
+Bernlohr DA, Simpson MA, Hertzel AV, Banaszak LJ (1997) Intra-               286:31924–31928
+    cellular lipid-binding proteins and their genes. Annu Rev Nutr       Sreerama N, Woody RW (2000) Estimation of protein secondary
+    17:277–303                                                               structure from circular dichroism spectra: comparison of contin,
+Carbone V, Velkov T (2013) Interaction of phthalates and                     selcon, and cdsstr methods with an expanded reference set. Anal
+    phenoxy acid herbicide environmental pollutants with                     Biochem 287:252–260
+
+
+13
+Arch Toxicol (2016) 90:217–227                                                                                                             227
+
+Steenland K, Tinker S, Frisbee S, Ducatman A, Vaccarino V (2009)          Weiss J, Andersson P, Lamoree M, Leonards P, van Leeuwen S, Ham-
+    Association of perfluorooctanoic acid and perfluorooctane sul-           ers T (2009) Competitive binding of poly- and perfluorinated
+    fonate with serum lipids among adults living near a chemical             compounds to the thyroid hormone transport protein transthyre-
+    plant. Am J Epidemiol 170:1268–1278                                      tin. Toxicol Sci 109:206–216
+Vanden Heuvel JP, Thompson JT, Frame SR, Gillies PJ (2006) Differ-        Wolfrum C, Borrmann CM, Borchers T, Spener F (2001) Fatty acids
+    ential activation of nuclear receptors by perfluorinated fatty acid      and hypolipidemic drugs regulate peroxisome proliferator-acti-
+    analogs and natural fatty acids: a comparison of human, mouse,           vated receptors alpha- and gamma-mediated gene expression via
+    and rat peroxisome proliferator-activated receptor-alpha, -beta,         liver fatty acid binding protein: a signaling path to the nucleus.
+    and -gamma, liver × receptor-beta, and retinoid × receptor-              Proc Natl Acad Sci U S A 98:2323–2328
+    alpha. Toxicol Sci 92:476–489                                         Zhang W, Zhang Y, Taniyasu S, Yeung LW, Lam PK, Wang J et al
+Velkov T, Chuang S, Wielens J, Sakellaris H, Charman WN, Porter              (2013) Distribution and fate of perfluoroalkyl substances in
+    CJ et al (2005) The interaction of lipophilic drugs with intestinal      municipal wastewater treatment plants in economically devel-
+    fatty acid-binding protein. J Biol Chem 280:17769–17776                  oped areas of china. Environ Pollut 176:10–17
+
+
+
+
+                                                                                                                                   13
+

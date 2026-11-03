@@ -1,0 +1,672 @@
+pubs.acs.org/est                                                                                                                                 Article
+
+
+
+Nontarget Screening of Per- and Polyﬂuoroalkyl Substances Binding
+to Human Liver Fatty Acid Binding Protein
+Diwen Yang, Jiajun Han, David Ross Hall, Jianxian Sun, Jesse Fu, Steven Kutarna, Keith A. Houck,
+Carlie A. LaLone, Jon A. Doering, Carla A. Ng, and Hui Peng*
+      Cite This: Environ. Sci. Technol. 2020, 54, 5676−5686                          Read Online
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+ACCESS                         Metrics & More                            Article Recommendations              *
+                                                                                                              sı Supporting Information
+
+
+ABSTRACT: More than 1000 per- and polyﬂuoroalkyl substances
+(PFASs) have been discovered by nontarget analysis (NTA), but
+their prioritization for health concerns is challenging. We
+developed a method by incorporating size-exclusion column co-
+elution (SECC) and NTA, to screen PFASs binding to human liver
+fatty acid binding protein (hL-FABP). Of 74 PFASs assessed, 20
+were identiﬁed as hL-FABP ligands in which eight of them have
+high binding aﬃnities. Increased PFAS binding aﬃnities correlate
+with stronger responses in electrospray ionization (ESI−) and
+longer retention times on a C18 column. This is well explained by
+a mechanistic model, which revealed that both polar and
+hydrophobic interactions are crucial for binding aﬃnities.
+Encouraged by this, we then developed an SECC method to
+identify hL-FABP ligands, and all eight high-aﬃnity ligands were selectively captured from 74 PFASs. The method was further
+applied to an aqueous ﬁlm-forming foam (AFFF) product in which 31 new hL-FABP ligands were identiﬁed. Suspect and
+nontargeted screening revealed these ligands as analogues of perﬂuorosulfonic acids and homologues of alkyl ether sulfates (C8- and
+C10/EOn, C8H17(C2H4O)nSO4−, and C10H21(C2H4O)nSO4−). The SECC method was then applied to AFFF-contaminated surface
+waters. In addition to perﬂuorooctanesulfonic acid and perﬂuorohexanesulfonic acid, eight other AFFF chemicals were discovered as
+novel ligands, including four C14- and C15/EOn. This study implemented a high-throughput method to prioritize PFASs and revealed
+the existence of many previously unknown hL-FABP ligands.
+
+
+■    INTRODUCTION
+Per- and polyﬂuoroalkyl substances (PFASs) have been used in
+                                                                                >1000 PFASs in commercial products (e.g., aqueous ﬁlm-
+                                                                                forming foams, AFFFs)12−14 and environmental matrices
+a variety of industrial and consumer applications including                     including surface waters,11,15,16 wastewaters,9 particulate
+ﬁreﬁghting foams, insecticides, textile, and surface coatings in                matter,10 and sediments17 has been revealed by recent NTA
+the past decades.1−3 Of the PFASs studied to date, many are                     studies. The detection of diverse PFASs in ﬁsh,18 polar bears,19
+extremely stable and persistent in the environment due to their                 and human serum20 provides evidence for the bioaccumulation
+chemical structures with strong carbon−ﬂuorine bonds. The                       of these PFASs from the environment to organisms. The
+broad distributions of PFASs in water, wildlife, air, and human                 bioaccumulation of previously unknown PFASs was also
+blood have been reported worldwide.3−6 Since the early 2000s,                   observed in laboratory-cultured rainbow trout exposed to
+due to concerns regarding their persistence, bioaccumulation,                   AFFF technical products.21 While these studies raised concerns
+and toxicity, perﬂuorooctanesulfonic acid (PFOS), perﬂuor-                      about previously unknown PFASs, prioritization of these
+ooctanoic acid (PFOA), and related PFASs have been phased                       PFASs according to their potential health risks related to their
+out in some parts of the world.7 While these well-known
+                                                                                bioaccumulation and toxicities is challenging due to their high
+classes of PFASs (e.g., perﬂuorinated acids) have been
+                                                                                number and diverse structures.
+intensively studied and regulated by regulatory policies, the
+Toxic Substances Control Act (TSCA) Inventory lists 602
+PFASs that are still actively used in U.S. commerce.8                           Received: January 3, 2020
+Identiﬁcation of the unknown PFASs in the environment                           Revised: March 31, 2020
+and their potential health risks is thus an urgent need.                        Accepted: April 6, 2020
+   Recent advances in high-resolution mass spectrometry-based                   Published: April 6, 2020
+nontarget analysis (NTA) provide an opportunity to character-
+ize unknown PFASs in the environment.9−12 The existence of
+
+                                      © 2020 American Chemical Society                                             https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                         5676                                      Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                 pubs.acs.org/est                                           Article
+
+   Liver fatty acid binding protein (L-FABP) is a critical                   reagents, solvents, and protocols used are listed in the
+protein regulating the toxicokinetics of PFASs.22−26 Previous                Supporting Information.
+studies have documented that the diﬀerent binding aﬃnities of                   Binding Aﬃnities of 74 PFASs to hL-FABP. The
+classic PFASs to L-FABP contribute to their tissue                           determination of the binding aﬃnities of PFASs to hL-FABP
+distributions,27 bioconcentration potential,28 and placental                 was achieved by using a ﬂuorescence displacement method.
+transfers.26 Physiologically based pharmacokinetic (PBPK)                    His-tagged hL-FABP was overexpressed in the BL 21 (DE3)
+modeling also supports that L-FABP plays an essential role in                strain of E. coli. The binding of 74 PFASs to hL-FABP was
+determining the bioaccumulation of PFASs in organisms.29,30                  determined by the displacement of bound 1-anilinonaphtha-
+L-FABP is also a key transporter to delivering lipophilic ligands            lene-8-sulfonic acid (1,8-ANS) from hL-FABP as previously
+to peroxisome proliferator activated receptors (PPARs),31,32                 described.44 1,8-ANS is nonﬂuorescent in aqueous buﬀer but
+the nuclear receptors mediating certain toxicities of                        becomes strongly ﬂuorescent once it binds in a hydrophobic
+PFASs.33−36 L-FABP may impact the toxicities of PFASs by                     environment (i.e., proteins). Thus, the binding aﬃnity of 74
+directly regulating the signaling pathways of PPARs. For                     PFASs to hL-FABP was measured by spiking each PFAS to the
+instance, sex-dependent impacts of perﬂuorononanoic acid                     mixture of hL-FABP and 1,8-ANS. The decrease in
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+(PFNA) on triglycerides in zebraﬁsh liver were found to be                   ﬂuorescence was expected as PFASs replaced 1,8-ANS from
+mediated by L-FABP, via opposite regulations of expressions of               the hydrophobic protein binding pocket. More details about
+L-FABP.37 Regarding the critical role of L-FABP in toxicity                  protein expression and binding aﬃnity measurement are
+and bioaccumulation, recent studies proposed to prioritize                   provided in the Supporting Information.
+PFASs according to L-FABP binding aﬃnities.27,38 To address                     SEC-Co-elution (SECC) Method. The SEC-co-elution
+the challenge of prioritizing a large number of PFASs, which is              method was performed on an Agilent 1260 Inﬁnity II HPLC
+infeasible for traditional bioassay-based toxicity tests, time- and          (Agilent Technologies) with an AdvanceBio SEC column (300
+cost-eﬀective computational methods such as molecular                        Å/2.7 μm, Agilent Technologies). Solutions of 0.5 μM PFOS,
+dynamics simulations and molecular docking were pro-                         PFOA, and 3:1 FTOH were spiked with 1 μM hL-FABP (n =
+posed.27,38−40 While in silico prediction is promising when a                2) and incubated on ice for 60 min. Aliquots (100 μL) were
+high-quality training set is available, the accuracy of prediction           loaded onto the SEC column. A 10 mM phosphate-buﬀered
+for unknown PFASs is challenged by their diverse structures.                 saline (PBS) solution was used as the mobile phase in the
+Thus, the implementation of a high-throughput experimental                   HPLC at a ﬂow rate of 0.2 mL/min. The dual-wavelength
+method to identify unknown PFASs binding to L-FABP is of                     signals were set to 260 and 280 nm to monitor proteins. Five
+great interest.                                                              fractions were collected using a fraction collector (Agilent
+   In this study, we aim to develop an experimental method for               1260 Inﬁnity II, Agilent Technologies) at a time interval of 2
+nontargeted screening of PFASs binding to hL-FABP from                       min from 12 to 22 min. For chemical analysis, 1.2 mL of
+environmental mixtures including an AFFF technical product                   methanol was added to the fractions to denature proteins and
+and AFFF-contaminated waters.41 To achieve this, we                          extract PFASs. After centrifugation at 14,000g for 10 min, the
+implemented a method by employing size-exclusion chroma-                     supernatants were collected for PFAS analysis. The pellets of
+tography-co-elution (SECC) and NTA to screen hL-FABP                         the fractions after centrifugation were subjected to sodium
+ligands with high selectivity; and the SECC method was then                  dodecyl sulfate−polyacrylamide gel electrophoresis (SDS-
+applied to an AFFF product and AFFF-contaminated river                       PAGE) or proteomics analysis to determine hL-FABP. For
+waters in which 39 AFFF chemicals were discovered as new                     all subsequent experiments, hL-FABP was consistently eluted
+hL-FABP ligands.                                                             in fraction 2 (F2) (14−16 min).
+
+■     MATERIALS AND METHODS
+   Chemicals and Reagents. Seventy-four per- and poly-
+                                                                                To apply the SECC method to identify hL-FABP ligands
+                                                                             from 74 PFASs, a 3M AFFF technical product, and AFFF-
+                                                                             contaminated surface waters, the mixtures of chemicals were
+ﬂuoroalkyl substances (PFASs) (detailed information is                       individually incubated with non-hL-FABP- and hL-FABP-
+provided in Table S1) were supplied by Evotec SE (Branford,                  overexpressing E. coli lysates. Speciﬁcally, 0.5 μM solutions of
+CT) under contract to the U.S. Environmental Protection                      the 74 PFAS mixtures, a 25 mg L−1 solution of the AFFF
+Agency (EPA) through a Material Transfer Agreement. The                      technical product, and 1% SPE extracts of AFFF-contaminated
+U.S. EPA’s PFAS screening library was established with a                     water in buﬀer A (50 mM Tris-HCl, 150 mM NaCl, 1 mM
+chemical category-based prioritization approach through which                dithiothreitol, pH 8.0) were used and incubated (n = 2)
+the chemicals were selected based on structural diversity,                   individually. The F2 fractions containing hL-FABP from SEC
+toxicity data availability and quantity, physicochemical proper-             were extracted with methanol as mentioned above. The
+ties, and chemical standard availability,42 providing a chance to            chemicals co-eluted with hL-FABP in F2 underwent mass
+evaluate structure-related binding aﬃnities of PFASs to hL-                  spectrometry using an LC-Orbitrap for NTA to determine hL-
+FABP. A commercial AFFF technical product is representative                  FABP ligands. Details of the analysis of proteomes and small
+AFFFs used in diﬀerent air force bases in the United States,                 molecules including NTA analysis are provided in the
+which was provided by the Davis−Monthan Air Force Base in                    Supporting Information.
+Tucson (Arizona, USA) and manufactured by 3M as described                       Data Analysis. Statistical analyses were performed using
+in a previous study.43 AFFF-contaminated water samples were                  GraphPad Prism (v7.0.4, GraphPad Software Inc., San Diego,
+collected from the west end of Lake Niapenco, Hamilton,                      CA, USA) or the R studio (v1.1.456, RStudio, Inc., Boston,
+Canada (details of sample collection are provided in the                     MA, USA). MaxQuant algorithms (http://maxquant.org/,
+Supporting Information).41 Water samples were collected                      version 1.6.2.3) were used to process the proteomic raw ﬁles.
+using polypropylene tubes, which were then stored on ice                     The FASTA ﬁle of the human and E. coli proteome was
+during the transportation and extracted within 10 h. Other                   downloaded from the UniProt database. The one-way ANOVA
+                                                                      5677                                      https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                pubs.acs.org/est                                             Article
+
+
+
+
+                                                                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 1. Characterization of the binding aﬃnities of 74 PFASs to hL-FABP. (A) Fluorescence intensity of 1,8-ANS (40 μM) in 1 μM hL-FABP in
+the presence of individual PFASs at 300 μM. Inactive and active PFASs are labeled in black and red colors, respectively. (B) Dose-dependent
+competition of ﬂuorescence signals of 1,8-ANS (40 μM) in 1 μM hL-FABP by four representative PFASs (34, 46, 28, & 57). Fluorescence intensity
+was normalized to negative controls (1,8-ANS only). (C) Structures of four representative active PFASs (34, 46, 28, & 57, red), and two inactive
+PFASs (7 & 9, black). PFAS 46, 57, and 9 refer to PFOS, PFHxS, and NEt-FOSE as described in Table S1.
+
+test was used to detect the statistical signiﬁcance of peak                 aﬃnity (Kd = 8.2 μM). This result is supported by a very recent
+intensities or retention times between PFASs.                               study, which determined that two other ether PFASs, 6:2
+
+■
+                                                                            chlorinated polyﬂuorinated ether sulfonate (6:2 Cl-PFESA)
+     RESULTS AND DISCUSSION                                                 and hexaﬂuoropropylene oxide trimer acid (HFPO-TA), also
+   Interactions between PFASs and hL-FABP Are                               have strong binding aﬃnities to hL-FABP.45
+Predictable by LC−MS Behaviors. To understand the                              In parallel, we analyzed the same 74 PFASs with an LC-
+structure-related interactions between PFASs and hL-FABP,                   Orbitrap in electrospray ionization negative mode (ESI−), the
+the binding aﬃnities of 74 structurally diverse PFASs from the              most common ionization mode to analyze PFASs,6,46,47 and
+U.S. EPA’s PFAS screening library42 to hL-FABP were tested                  found that 39 of them could not be detected due to the lack of
+through a ﬂuorescence displacement method in which 1,8-                     ionizable functional groups (representative structures are
+ANS23,24 was used as a ﬂuorescence probe. The initial                       shown in Figure 2A). Comparing with the results of the
+screening concentration of PFASs was ﬁxed at 300 μM.                        ﬂuorescence displacement assay, all of these 39 “MS-inactive”
+While 44 of the 74 (59.5%) PFASs showed no ﬂuorescence                      PFASs also showed nonbinding to hL-FABP. In contrast with
+displacement (deﬁned as “inactive”), 9 PFASs (12.2%)                        these MS-inactive PFASs, strong instrumental signals (in-
+resulted in >50% reduction in ﬂuorescence intensity (deﬁned                 dicated by high peak intensities) were observed for 20 hL-
+as “high” aﬃnity ligands), and 21 (28.4%) PFASs, which                      FABP ligands, especially for high-aﬃnity ligands (Kd ≈ 4.3−
+induced less (10−50%) ﬂuorescence intensity reduction,                      18.7 μM). The average peak intensities of high-aﬃnity PFASs
+showed “weak” binding aﬃnities (Figure 1A). The 30 positive
+                                                                            (n = 9) are 3.7 × 108 at 1 μM, signiﬁcantly (p = 2.9 × 10−21)
+hits were selected for the next round of quantiﬁcation of their
+                                                                            higher than those of low-aﬃnity (intensity = 8.2 × 107, n = 11)
+dissociation constant (Kd) by obtaining dose−response curves.
+Consistent with initial screening, low micrometer Kd values                 and inactive (intensity = 1.9 × 105, n = 54) PFASs (Figure 2B).
+(4.3−18.7 μM) were detected for the nine high-aﬃnity PFASs                  A signiﬁcant relationship was also observed between hL-FABP
+(Figure 1B). Among these PFASs, seven are classic                           binding aﬃnities of PFASs and their retention times on a C18
+perﬂuoroalkyl acids (PFAAs) and their salts including PFOS                  column. The retention times of high-aﬃnity PFASs (4.47 ±
+(46), PFOA, and PFNA (Figure 1C, Table S2), which have                      0.30 min, n = 9) are signiﬁcantly (p = 8.48 × 10−5) longer than
+been well documented to bind strongly to L-FABP.22,24,25 An                 those of weak (3.26 ± 0.95 min, n = 11) and inactive PFASs
+ether chemical (34) was also detected with a high binding                   (2.75 ± 0.65 min, n = 15) (Figure 2C).
+                                                                     5678                                        https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                 Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                pubs.acs.org/est                                             Article
+
+
+
+
+                                                                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 2. Binding aﬃnities of 74 PFASs to hL-FABP are predictable by their LC−MS behaviors. (A) Peak intensities (red dots) and Kd (blue
+columns) values of 9 high-aﬃnity (Kd ≈ 4.3−18 μM), 11 low-aﬃnity (Kd ≈ 116−916 μM), and 54 inactive (Kd > 1000 μM) PFASs. Note that all
+39 MS-inactive PFASs do not bind to hL-FABP. Structures of representative MS-inactive PFASs are shown in the box. (B) Peak intensities of high-
+aﬃnity PFASs are signiﬁcantly higher than those of weak and inactive PFASs. p values were determined by one-way ANOVA. (C) Retention times
+of high-aﬃnity PFASs on C18 columns are signiﬁcantly longer than those of weak and inactive PFASs. Thirty-nine PFASs, which were not detected
+by LC−MS, are not shown in (C). p values were determined by one-way ANOVA.
+
+
+
+
+Figure 3. Proposed mechanisms to link LC−MS behaviors and hL-FABP binding aﬃnities. (A) Binding aﬃnities of three PFOS analogues are
+related to their ESI− responses. (B) Binding aﬃnities of three ether analogues are related to their retention times on C18 columns. (C) Proposed
+physicochemical mechanisms to link LC−MS behaviors and hL-FABP binding aﬃnities. The polar interactions (red color) between the negatively
+charged acidic group and positively charged Arg-122 on hL-FABP mimic the process of ionization of PFASs under ESI−; the hydrophobic
+interactions (blue colors) between alkyl chains and Phe-50 and Ile-52 mimic the partition of PFASs on the C18 column. PFAS 9, 16, and 46 refer
+to NEt-FOSE, NMe-FOSA, and PFOS as described in Table S1.
+
+
+   The association of hL-FABP binding aﬃnities with LC−MS                   responses were increased in the order NEt-FOSE (9) < NMe-
+behaviors of PFASs is clearly illustrated by the representative             FOSA (16) < PFOS (46) (Figure 3A), mainly due to the
+structurally similar analogues in Figure 3. The instrumental                decrease in their pKa values. Such a trend is consistent with the
+                                                                     5679                                        https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                 Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                               pubs.acs.org/est                                            Article
+
+
+
+
+                                                                                                                                                            Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 4. Benchmarking the SECC method to identify PFASs binding to hL-FABP. (A) Workﬂow of the SECC method. hL-FABP ligands (bound)
+and inactive PFASs (free) were separated by SEC according to their sizes. Proteins and PFASs in each HPLC fraction were analyzed by proteomics
+and nontarget analysis to assign the interactions. (B) hL-FABP was eluted in F2 (14−16 min) from SEC as evidenced by SDS-PAGE. Red color
+arrow indicates the band of hL-FABP (∼14 kDa). (C) Co-elution of PFOA and PFOS with hL-FABP in F2. Note that 3:1 FTOH (inactive) was
+eluted in F5 (20−22 min) as a free chemical. (D) Benchmarking the SECC method with a mixture of 74 PFASs (0.5 μM for each chemical). Note
+that only eight high-aﬃnity PFASs were co-eluted with hL-FABP in F2, compared to non-hL-FABP lysates. (E) SECC method selectively captured
+the high-aﬃnity PFASs. NEt-FOSA (blue dot) was not captured by the SECC method even though it was identiﬁed as a high-aﬃnity hL-FABP
+ligand by the ﬂuorescence displacement method. Only six individual high-aﬃnity PFASs are shown (two of the hL-FABP ligands are salts of PFOA
+and PFOS).
+
+stronger binding aﬃnities of PFOS (Kd = 8.1 μM) relative to                hydrogen bonds with Arg-122, Ser-39, and Ser-124,22 and the
+NMe-FOSA (Kd ≈ 1000 μM) and NEt-FOSE (Kd > 1000                            responses of PFASs in an ESI− source are related to their pKa-
+μM). Similarly, the increasing retention times of three                    dependent ionization eﬃciencies; moreover, the binding of the
+analogues of ether chemicals 7, 28, and 34 are in accordance               alkyl chain of PFAS to the hydrophobic cavity of hL-FABP
+with their increasing binding aﬃnities to hL-FABP. Moreover,               (i.e., Phe-50, Ile-52, etc.) and the retention of PFASs on the
+the crystal structure of hL-FABP complexed with palmitic acid              C18 stationary phase are both determined by their hydro-
+shows that hL-FABP is capable of binding palmitic acids at two             phobicity. To the best of our knowledge, this is the ﬁrst study
+sites.48 The ionic and hydrogen bonds between the carboxylic               to connect LC−MS behaviors to bioactivities of PFASs. The
+acid group of palmitic acid and Arg-122, Ser-39, and Ser-124,              discovery provides a straightforward strategy to prioritize the
+together with the hydrophobic interactions between the alkyl               PFASs detected by NTA: only PFASs detected under ESI− and
+chain and interior cavity, were revealed to play vital roles in            eluted after 3.0 min (in current LC conditions referred to in
+stabilizing the complex at both binding sites. Although the                the Supporting Information) are possible hL-FABP ligands.
+crystal structure of PFASs binding to hL-FABP is not resolved,                Note that this is a descriptive model to initially narrow down
+molecular docking simulations revealed that both polar and                 priority PFASs. However, not all PFASs meeting the LC−MS
+hydrophobic interactions play important roles.22,25,38                     criteria (RT > 3.0 min under ESI−) are necessarily hL-FABP
+   Therefore, together with the experimental and in silico                 ligands. For instance, NMe-FOSA (chemical 16 in Figure 3A)
+information, we proposed a mechanistic model to link LC−MS                 was detected under ESI− with high intensity (3.43 × 108 at 0.5
+behaviors to hL-FABP binding aﬃnities of PFASs (Figure 3C):                μM); however, it is a weak hL-FABP ligand with Kd ≈ 1000
+the polar interaction between PFASs and hL-FABP relies on                  μM. Since the estimated pKa value of NMe-FOSA is 8.78,49 it
+the negative charge of acidic head groups to maintain ionic and            is neutral at physiological pH (7.4) and is not expected to form
+                                                                    5680                                       https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                               Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                   pubs.acs.org/est                                           Article
+
+                                                                               method. Solutions (0.5 μM) of the three PFASs were
+                                                                               individually incubated with 1 μM E. coli lysates overexpressing
+                                                                               hL-FABP or non-hL-FABP-overexpressing E. coli lysates and
+                                                                               then fractionated with an SEC column. SDS-PAGE revealed
+                                                                               that hL-FABP (∼14 kDa) was eluted in fraction 2 (F2, 14−16
+                                                                               min), while other background E. coli proteins were eluted in
+                                                                               earlier fractions (F1, 12−14 min) due to their bigger sizes
+                                                                               (Figure 4B). The presence of hL-FABP in F2 was conﬁrmed
+                                                                               with proteomics (Figure S5). One of the two hL-FABP ligands,
+                                                                               PFOS, was co-eluted with hL-FABP in F2 at 0.11 ± 0.028 μM
+                                                                               (Figure 4C). The other ligand, PFOA, was also co-eluted in
+                                                                               F2, albeit at a smaller amount (0.09 ± 0.025 μM), partially due
+                                                                               to its weaker aﬃnity relative to PFOS. In contrast, the inactive
+                                                                               3:1 FTOH was eluted later in F5 as a free chemical. For the
+
+
+
+
+                                                                                                                                                               Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+                                                                               non-hL-FABP lysates, all three PFASs were eluted in F5 as free
+                                                                               chemicals. These results veriﬁed the selectivity of the SECC
+Figure 5. Nontarget screening of PFASs binding to hL-FABP in the               method to identify hL-FABP ligands.
+AFFF technical product. (A) Volcano plot representing the log-                    To further benchmark the method to identify hL-FABP
+transformed ratios and corresponding p values of features detected
+under ESI−. The ratio of peak abundances of PFASs detected in hL-
+                                                                               ligands from a mixture, we mixed all 74 PFASs at 0.5 μM and
+FABP-overexpressing E. coli lysates to those in non-hL-FABP lysates            then subjected the mixture to the ligand identiﬁcation. The
+was calculated as described in the Method section in the Supporting            majority of weak or inactive PFASs were eluted in F4 or F5 as
+Information. The red dot indicates features signiﬁcantly co-eluted             free chemicals, which were observed in both hL-FABP-
+with hL-FABP in F2. (B) Retention times and m/z values of hL-FABP              overexpressing and non-hL-FABP lysates (Figure 4D). Eight
+ligands detected under ESI−. Note that all ligands are grouped into            PFASs were eluted in F2 when incubating with hL-FABP-
+three classes. (C) Comparison of the m/z and retention times of hL-            overexpressing lysates but not in non-hL-FABP lysates, clearly
+FABP ligands (red color) to all AFFF chemicals (gray color) detected           suggesting the binding of these PFASs to hL-FABP. This result
+under ESI−. (D) Structures of six novel hL-FABP ligands as PFOS                was consistent with the ﬂuorescence displacement experiment
+analogues, at conﬁdence level 3. Note that multiple isomers may exist
+                                                                               through which all eight of these PFASs were deﬁned as strong
+but only one representative structure from the PFAS library53 was
+shown for each chemical.                                                       hL-FABP ligands, such as PFOA (74), PFNA (17), and FOSA
+                                                                               (60) (Table S1). The bound amounts of these high-aﬃnity
+                                                                               PFASs co-eluted in F2 were 0.21−0.46 μM, while they were
+a polar interaction with Arg-122, Ser-39, and Ser-124 on hL-                   <0.01 μM for other low-aﬃnity PFASs (Figure 4E).
+FABP. Moreover, the instrumental responses of nitrogen-                        Interestingly, NEt-FOSA, which was also determined as a
+containing chemicals were reported to be insensitive to pKa,                   strong hL-FABP ligand by the ﬂuorescence displacement
+and all triazines with pKa < 10 are eﬃciently ionized under                    method, was co-eluted in F2 with a minor amount (blue dots
+ESI−.50 In addition, previous studies have reported the                        in Figure 4E). To verify the inconsistency between the two
+decrease in hL-FABP binding aﬃnities for longer-chain                          methods, we used LC−MS to analyze the standard of NEt-
+PFCAs when their carbon chain lengths are greater than                         FOSA, and PFOS was detected as a high-percentage (30%)
+12.22 Therefore, the model may not be applied to the PFASs                     impurity, which mainly explained the high binding aﬃnity of
+with extremely long carbon chains since they cannot ﬁt into                    NEt-FOSA to hL-FABP in the ﬂuorescence displacement
+the binding pocket of hL-FABP. This highlights the need to                     experiment (Figure S6). Therefore, the results indicated that
+develop a selective method to further identify hL-FABP ligands                 NEt-FOSA is not a strong hL-FABP ligand and its exclusion
+that were initially narrowed down by the LC−MS criteria.                       from the screening assay was caused by the PFOS impurity in
+   Development of an SEC-Co-elution Method to                                  the sample. Together with the results, we conclude that SECC
+Screen Unknown hL-FABP Ligands. We opted to develop                            is a highly selective method to identify hL-FABP ligands from a
+an SEC co-elution (SECC) method to identify hL-FABP                            mixture. Eﬀect-directed analysis (EDA) is the predominant
+ligands by incorporating SEC fractionation and nontarget                       strategy to identify causative chemicals from the environmental
+analysis in ESI negative mode (Figure 4A). In brief, the hL-                   mixture.51,52 However, EDA is prone to false-positive rates due
+FABP proteins were incubated with PFASs and then loaded                        to the co-elution of hundreds of chemicals in the same fraction.
+onto an SEC column for nondenaturing fractionations. The                       In contrast, the SECC method is very eﬀective in identifying
+high-aﬃnity PFASs binding to hL-FABP (eluted earlier) were                     unknown ligands even if multiple ligands are present at the
+separated from free unbound inactive PFASs (eluted later)                      same time. We proposed that SECC might be a supplementary
+according to their sizes. The fractions from the SEC were                      method to EDA for the identiﬁcation of unknown ligands in
+collected and analyzed by proteomics and nontarget analysis to                 the environment, and the EDA method could be further
+determine the ligands co-eluted with hL-FABP. To reduce the                    employed to quantify the contributions of individual ligands.
+impacts of nonspeciﬁc binding, we opted to use crude E. coli                      Sulfonic Acid Analogues Were Identiﬁed as the
+lysates rather than puriﬁed hL-FABP for the SECC, as                           Major hL-FABP Ligands in an AFFF Product. We then
+nonspeciﬁc bound PFASs will be removed by higher-                              applied the SECC method to identify PFASs binding to hL-
+abundance E. coli proteins.                                                    FABP in a 3M AFFF technical product. A 25 mg L−1 (∼50
+   For the proof of concept, we used PFOS (Kd = 8.1 μM),                       μM) solution of an AFFF product was incubated with 1 μM E.
+PFOA (Kd = 18.8 μM), and 3:1 FTOH (Kd > 1000 μM) with                          coli lysates overexpressing hL-FABP or non-hL-FABP lysates
+diﬀerent binding aﬃnities, which were determined by the                        for the SECC method. Nontarget analysis was employed to
+ﬂuorescence displacement experiment, to verify the SECC                        determine the chemicals eluted in F2 from hL-FABP-
+                                                                        5681                                      https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                  Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                pubs.acs.org/est                                            Article
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 6. Alkyl ether sulfates were identiﬁed as predominant classes of hL-FABP ligands in the AFFF technical product. (A) Chromatograms of six
+identiﬁed C8/EOn and their assigned formulas. (B) Chromatograms of six identiﬁed C10/EOn and their assigned formulas. (C) MS2 spectra and
+assigned fragments of C8/EOn 2. (D) MS2 spectra and assigned fragments of C8/EOn 3. (E) MS2 spectra and assigned fragments of C10/EOn 1. (F)
+MS2 spectra and assigned fragments of C8/EOn 2.
+
+overexpressing and non-hL-FABP lysates. Only chemicals                      suspect screening are provided in the Supporting Information).
+showing signiﬁcantly higher abundances (10-fold, p < 0.05)                  Eleven PFASs were identiﬁed with this strategy, and all of them
+in hL-FABP-overexpressing lysates than those in non-hL-FABP                 are analogues to perﬂuorosulfonic acids (PFSAs). PFOS and
+lysates were considered as hL-FABP ligands. Among 4056                      perﬂuorohexanesulfonate (PFHxS), two high-aﬃnity hL-FABP
+features detected under ESI−, 33 chemicals were speciﬁcally                 ligands, were identiﬁed as the two most abundant ligands
+co-eluted with hL-FABP in F2 (Figure 5A) after excluding                    according to their peak intensities (Figure 5B). Several other
+isotopic peaks and adducts. Three major classes of homologues               classic odd-chained PFSAs, including perﬂuoropentanesulfo-
+were clearly observed according to their stepwise increase in               nate (PFPeS), perﬂuoroheptanesulfonate (PFHpS), and
+m/z and retention times (Figure 5B). Corresponding to the                   perﬂuorononanesulfonate (PFNS), were detected with lower
+LC−MS mechanistic model proposed above, the retention                       abundances, and the identities of PFPeS and PFHxS were
+times of these detected hL-FABP ligands fall into a narrow                  conﬁrmed by authentic standards (Figure S7). In addition to
+range of 3.07−4.66 min, while a wide range of retention times               these legacy PFSAs, several other PFOS analogues (Figure 5D)
+was detected for 544 other AFFF chemical features (Figure                   including chlorinated (1′), unsaturated (2′), or hydrogenated
+5C). This conﬁrms the above results that only PFASs with                    PFOS (3′) were also reproducibly detected across replicates.
+longer retention times (>3 min) exhibit suﬃcient binding                    Except for PFHxS and PFOS, 9 of the 11 PFSAs detected as
+aﬃnities to hL-FABP; at the same time, large PFASs with                     hL-FABP ligands by the SECC method have never been
+extremely long retention times (>5 min) may also exhibit                    reported before. Due to the lack of authentic standards, seven
+decreased binding aﬃnities due to the limited size of the hL-               of the detected ligands were assigned at conﬁdence level 2 or 3
+FABP binding pocket.                                                        according to the scale by Schymanski et al.,54 by exact mass,
+   To get exact chemical identities for these detected hL-FABP              MS2 spectra, and isotopic peaks. Further studies are warranted
+ligands, we searched against the PFAS library established in                to synthesize standards to determine their binding aﬃnities.
+Liu’s study,53 which summarized 1021 PFASs in more than                        Although PFSAs were identiﬁed, two other classes of
+130 classes discovered in previous NTA studies (details of                  homologues (Figure 5B) were not identiﬁed in the PFAS
+                                                                     5682                                       https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                 pubs.acs.org/est                                             Article
+
+
+
+
+                                                                                                                                                               Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 7. Nontarget screening of hL-FABP ligands in AFFF-contaminated river waters. (A) Volcano plot representing the log-transformed ratios
+and corresponding p values of features detected. The red dot indicates features signiﬁcantly co-eluted with hL-FABP in F2. The blue dots indicate
+PFASs or AFFF surfactants detected. (B) Structures of four detected C15- and C14-ether sulfates. (C) Chromatograms of PFOS and four alkyl ether
+sulfates. Red and black colors indicate the chromatograms from two replicates of hL-FABP-overexpressing lysates. Blue and gray colors indicate the
+chromatograms from two replicates of non-hL-FABP lysates.
+
+library. We hypothesized that these chemicals might be                       lysates for the SECC method. Two hundred and seven
+nonﬂuorinated AFFF chemicals, which comprised the major                      chemicals were detected as putative ligands of hL-FABP as
+portion of AFFF technical products (PFASs only comprise                      shown in Figure 7A. Only 10 of them were assigned by
+0.9−1.5% w/w).55 A very recent suspect screening study                       searching against AFFF, PFAS, and surfactant libraries,
+identiﬁed nine classes of hydrocarbon surfactants in AFFFs.55                including two PFASs (PFOS and PFHxS) and eight alkyl
+Thus, we searched against the AFFF surfactant library (869                   ether sulfates. Since it has been reported that hL-FABP may
+compounds)55 and found two of the hL-FABP ligands,                           bind to many other endogenous metabolites,57 this may
+identiﬁed as C8H17O4S and C10H21O4S alkyl sulfates.                          explain the majority of hL-FABP ligands we detected in the
+Interestingly, these two alkyl sulfates belonged to two                      natural waters. The detection of PFOS and PFHxS as the only
+unidentiﬁed classes of hL-FABP ligands. The chromatograms                    ﬂuorinated ligands corresponded to the results of the AFFF
+of the homologues of C8H17O4S were obtained (Figure 6A),                     technical product in which PFOS and PFHxS are the two most
+and their formulas were predicted as C8H17(C2H4O)nO4S, the                   abundant ﬂuorinated ligands. Other PFASs, such as PFOA,
+alkyl ether sulfates (C8/EOn). The prediction of structures was              were not detected in the contaminated water, which may be
+also supported by their high-resolution MS2 spectra in which                 due to their 10−100 times lower concentrations than
+HSO4− and SO3− fragments were observed as characteristic                     PFOS.41,56
+fragments of sulfate (Figures 6C,D). Homologues of                              Interestingly, the alkyl ether sulfates were also detected by
+C10H21O4S were detected at longer retention times than C8/
+                                                                             the SECC method as the ligands of hL-FABP in AFFF-
+EOn (Figure 6B) due to their longer hydrophobic alkyl chains.
+                                                                             contaminated waters. This was consistent with the results of
+MS2 spectra (Figures 6E,F) further conﬁrmed C10H21O4S
+                                                                             the AFFF technical product. However, C8- and C10/EOn were
+homologues as C10/EOn. The identiﬁcation of C8- and C10/
+EOn as the predominant hL-FABP ligands was consistent with                   detected as the only ligands in the AFFF product, whereas C14-
+the structure-related activities of the 74 PFASs we established              and C15/EOn were detected as the major ligands in river waters
+in the ﬂuorescence displacement experiment of which the ether                (Figures 7,C). This could be due to the components of the
+analogue (34) of perﬂuorinated carboxylic acids was                          AFFF used at the Hamilton Airport diﬀering from the 3 M
+demonstrated to be a strong hL-FABP ligand.                                  AFFF technical product we used in the current study.
+   Predominance of Sulfonic Acid Analogues in AFFF-                          Diﬀerences in the components of AFFF products have been
+Contaminated River Waters Is Evidenced by the SECC                           well documented in previous studies.12,21,55 Alternatively, alkyl
+Method. We then applied the SECC method to identify                          ether sulfates are increasingly used in North America as
+PFASs binding to hL-FABP in AFFF-contaminated surface                        surfactants.58 The identiﬁcation of diﬀerent alkyl ether sulfates
+waters, collected from the Welland River next to the Hamilton                in the river water from the AFFF product may indicate AFFF-
+International Airport.41 Consistent with previous studies,41,56              independent sources of these compounds. The identiﬁcation of
+high concentrations of PFOS (232 ng/L) were detected in                      alkyl ether sulfates as hL-FABP ligands is signiﬁcant since a
+water samples collected from the Welland River. The extracts                 large amount of these surfactants is present in the AFFF
+from river waters from C18 SPE cartridges were spiked with 1                 technical product, and they were also reported to occur in
+μM E. coli lysates overexpressing hL-FABP and non-hL-FABP                    groundwater.55
+                                                                      5683                                        https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                  Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology
+
+                                                                            ■
+                                                                                   pubs.acs.org/est                                              Article
+
+   Implications. Current studies on nontarget analysis and                      AUTHOR INFORMATION
+toxicities of PFASs are disconnected due to the challenges                  Corresponding Author
+posed by the large numbers (>1000) and diverse structures of
+                                                                              Hui Peng − Department of Chemistry and School of the
+PFASs. The SECC method provides a high-throughput                              Environment, University of Toronto, Toronto M5S 3H6, ON,
+experimental way to tackle the challenge of prioritizing                       Canada; orcid.org/0000-0002-2777-0588;
+PFASs according to key proteins, especially when their                         Email: hui.peng@utoronto.ca
+authentic standards are not available. While this study is
+focused on hL-FABP due to its critical role in regulating the               Authors
+toxicokinetics of PFASs, the protein-centric method could also                Diwen Yang − Department of Chemistry, University of Toronto,
+be adapted to screen PFASs binding to other key proteins,                        Toronto M5S 3H6, ON, Canada
+such as PPARs. Computational toxicology is the predominant                    Jiajun Han − Department of Chemistry, University of Toronto,
+                                                                                 Toronto M5S 3H6, ON, Canada
+strategy for high-throughput predictions of toxicities of
+                                                                              David Ross Hall − Department of Chemistry, University of
+chemical contaminants. However, these models are prone to
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+                                                                                 Toronto, Toronto M5S 3H6, ON, Canada
+uncertainties, especially when the training dataset is inappro-               Jianxian Sun − Department of Chemistry, University of Toronto,
+priate. The SECC method provides an opportunity to identify                      Toronto M5S 3H6, ON, Canada
+ligands even if prior information on binding schemes is limited               Jesse Fu − Department of Chemistry, University of Toronto,
+(e.g., alkyl ether sulfates). We believe the SECC method would                   Toronto M5S 3H6, ON, Canada
+be valuable, in combination with computational toxicology, to                 Steven Kutarna − Department of Chemistry, University of
+uncover previously unknown PFASs binding to key proteins.                        Toronto, Toronto M5S 3H6, ON, Canada
+However, one of the limitations of the current study is that                  Keith A. Houck − Center for Computational Toxicology and
+only a single AFFF technical product and AFFF-contaminated                       Exposure, Oﬃce of Research and Development, United States
+waters were applied. Since previous studies have well                            Environmental Protection Agency, Research Triangle Park,
+                                                                                 Durham, North Carolina 27711, United States
+documented the variation in chemical components across                        Carlie A. LaLone − Great Lakes Toxicology and Ecology
+AFFF products,12 the application of the SECC method to                           Division, U.S. Environmental Protection Agency, Duluth,
+more AFFF-contaminated environmental samples is of on-                           Minnesota 55804, United States; orcid.org/0000-0003-
+going interest.                                                                  3174-1314
+   The present study revealed the existence of many previously                Jon A. Doering − Great Lakes Toxicology and Ecology Division,
+unknown, AFFF-derived hL-FABP ligands. Unexpectedly,                             U.S. Environmental Protection Agency, Duluth, Minnesota
+nonﬂuorinated AFFF chemicals were identiﬁed as an even                           55804, United States; National Research Council, U.S.
+bigger class of hL-FABP ligands. Indeed, these nonﬂuorinated                     Environmental Protection Agency, Duluth, Minnesota 55804,
+ionic surfactants were proposed as environmentally safe                          United States; orcid.org/0000-0001-6866-6456
+chemicals to replace PFASs or organic solvents, but limited                   Carla A. Ng − Department of Civil & Environmental
+                                                                                 Engineering, University of Pittsburgh, Pittsburgh, Pennsylvania
+data is available regarding their potential toxicities.58−60 Here,
+                                                                                 15261, United States
+we highlighted hL-FABP as a potential critical target for these
+nonﬂuorinated ionic surfactants.                                            Complete contact information is available at:
+
+
+■
+                                                                            https://pubs.acs.org/10.1021/acs.est.0c00049
+    ASSOCIATED CONTENT
+                                                                            Notes
+*
+sı Supporting Information                                                   The authors declare no competing ﬁnancial interest.
+The Supporting Information is available free of charge at                   The views expressed in this paper are those of the authors and
+https://pubs.acs.org/doi/10.1021/acs.est.0c00049.                           do not necessarily reﬂect the statements, opinions, views,
+                                                                            conclusions, or policies of the U.S. Environmental Protection
+      Additional information of the experimental procedures;                Agency.
+
+                                                                            ■
+      western blot and SDS-PAGE results of His-tagged hL-
+      FABP; direct binding of 1,8-ANS to hL-FABP;
+      calculation process of dissociation constants (Kd) of                      ACKNOWLEDGMENTS
+      PFASs via dose−response curves obtained using the                     This research was supported by the National Sciences and
+      ﬂuorescence displacement assay; veriﬁcation of hL-                    Engineering Research Council (NSERC) Discovery Grant, and
+      FABP in SEC fraction F2 by proteomics; PFOS impurity                  Environment and Climate Change Canada (GCE19P17). The
+      in NEt-FOSA standard measured by the ﬂuorescence                      authors acknowledge the support of instrumentation grants
+      displacement method; circular dichroism (CD) spectra                  from the Canada Foundation for Innovation, the Ontario
+      of the recombinant poly-His tagged hL-FABP 253                        Research Fund, and the NSERC Research Tools and
+      protein and their high-tension voltage; table of the                  Instrument Grant.
+
+                                                                            ■
+      summary of 74 per- and polyﬂuoroalkyl substances
+      (PFASs); table of the inhibition concentration (IC50/                     REFERENCES
+      10), dissociation constants (Kd), LC-MS peak inten-
+      sities, and retention times of 19 PFASs binding to hL-                  (1) Giesy, J. P.; Kannan, K. Perfluorochemical surfactants in the
+      FABP; and table of the exact masses, retention times,                 environment. Environ. Sci. Technol. 2002, 36, 146A−152A.
+                                                                              (2) Lau, C.; Anitole, K.; Hodes, C.; Lai, D.; Pfahles-Hutchens, A.;
+      and predicted formulas and structures of 11 PFASs                     Seed, J. Perfluoroalkyl acids: A review of monitoring and toxicological
+      (PDF)                                                                 findings. Toxicol. Sci. 2007, 99, 366−394.
+
+                                                                     5684                                          https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                   Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                        pubs.acs.org/est                                               Article
+
+  (3) Houde, M.; De Silva, A. O.; Muir, D. C. G.; Letcher, R. J.                   Hundreds of Unrecognized Halogenated Contaminants Discovered in
+Monitoring of perfluorinated compounds in aquatic biota: an updated                Polar Bear Serum. Angew. Chem., Int. Ed. 2018, 57, 16401−16406.
+review. Environ. Sci. Technol. 2011, 45, 7962−7973.                                  (20) Rotander, A.; Kärrman, A.; Toms, L.-M. L.; Kay, M.; Mueller, J.
+  (4) Wilkinson, J.; Hooda, P. S.; Barker, J.; Barton, S.; Swinden, J.             F.; Gómez Ramos, M. J. Novel Fluorinated Surfactants Tentatively
+Occurrence, fate and transformation of emerging contaminants in                    Identified in Firefighters Using Liquid Chromatography Quadrupole
+water: An overarching review of the field. Environ. Pollut. 2017, 231,             Time-of-Flight Tandem Mass Spectrometry and a Case-Control
+954−970.                                                                           Approach. Environ. Sci. Technol. 2015, 49, 2434−2442.
+  (5) Zareitalabad, P.; Siemens, J.; Hamer, M.; Amelung, W.                          (21) Yeung, L. W. Y.; Mabury, S. A. Bioconcentration of Aqueous
+Perfluorooctanoic acid (PFOA) and perfluorooctanesulfonic acid                     Film-Forming Foam (AFFF) in Juvenile Rainbow Trout (Onco-
+(PFOS) in surface waters, sediments, soils and wastewater - A review               rhyncus mykiss). Environ. Sci. Technol. 2013, 47, 12505−12513.
+on concentrations and distribution coefficients. Chemosphere 2013,                   (22) Zhang, L.; Ren, X.-M.; Guo, L.-H. Structure-based investigation
+91, 725−732.                                                                       on the interaction of perfluorinated compounds with human liver fatty
+  (6) Peng, H.; Wei, Q.; Wan, Y.; Giesy, J. P.; Li, L.; Hu, J. Tissue              acid binding protein. Environ. Sci. Technol. 2013, 47, 11293−11301.
+Distribution and Maternal Transfer of Poly- and Perfluorinated                       (23) Luebker, D. J.; Hansen, K. J.; Bass, N. M.; Butenhoff, J. L.;
+Compounds in Chinese Sturgeon (Acipenser sinensis): Implications                   Seacat, A. M. Interactions of flurochemicals with rat liver fatty acid-
+
+
+
+
+                                                                                                                                                                        Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+for Reproductive Risk. Environ. Sci. Technol 2010, 44, 1868−1874.                  binding protein. Toxicology 2002, 176, 175−185.
+  (7) EPA. Risk Management for Per- and Polyﬂuoroalkyl Substances                    (24) Woodcroft, M. W.; Ellis, D. A.; Rafferty, S. P.; Burns, D. C.;
+(PFAS) under TSCA; https://www.epa.gov/assessing-and-managing-                     March, R. E.; Stock, N. L.; Trumpour, K. S.; Yee, J.; Munro, K.
+chemicals-under-tsca/risk-management-and-polyﬂuoroalkyl-                           Experimental characterization of the mechanism of perfluorocarbox-
+substances-pfas.                                                                   ylic acids’ liver protein bioaccumulation: the key role of the neutral
+  (8) Organisation for Economic Co-operation and Development                       species. Environ. Toxicol. Chem. 2010, 29, 1669−1677.
+Toward a New Comprehensive Global Database of Per- and                               (25) Sheng, N.; Li, J.; Liu, H.; Zhang, A.; Dai, J. Interaction of
+Polyﬂuoroalkyl Substances (PFASs): Summary Report on Updating                      perfluoroalkyl acids with human liver fatty acid-binding protein. Arch.
+the OECD 2007 List of Per- and Polyalkyl Substances (PFASs).                       Toxicol. 2016, 90, 217−227.
+Series on Risk Management No. 39. 2018.                                              (26) Gao, K.; Zhuang, T.; Liu, X.; Fu, J.; Zhang, J.; Fu, J.; Wang, L.;
+  (9) Wang, Y.; Yu, N.; Zhu, X.; Guo, H.; Jiang, J.; Wang, X.; Shi, W.;            Zhang, A.; Liang, Y.; Song, M.; Jiang, G. Prenatal Exposure to Per-
+Wu, J.; Yu, H.; Wei, S. Suspect and Nontarget Screening of Per- and                and Polyfluoroalkyl Substances (PFASs) and Association between the
+Polyfluoroalkyl Substances in Wastewater from a Fluorochemical                     Placental Transfer Efficiencies and Dissociation Constant of Serum
+Manufacturing Park. Environ. Sci. Technol. 2018, 52, 11007−11016.                  Proteins-PFAS Complexes. Environ. Sci. Technol. 2019, 53, 6529−
+  (10) Yu, N.; Guo, H.; Yang, J.; Jin, L.; Wang, X.; Shi, W.; Zhang, X.;           6538.
+Yu, H.; Wei, S. Non-Target and Suspect Screening of Per- and                         (27) Cao, H.; Zhou, Z.; Wang, L.; Liu, G.; Sun, Y.; Wang, Y.; Wang,
+Polyfluoroalkyl Substances in Airborne Particulate Matter in China.                T.; Liang, Y. Screening of potential PFOS alternatives to decrease liver
+Environ. Sci. Technol. 2018, 52, 8205−8214.                                        bioaccumulation: experimental and computational approaches.
+  (11) Liu, Y.; Pereira, A. D. S.; Martin, J. W. Discovery of C5-C17               Environ. Sci. Technol. 2019, 53, 2811−2819.
+Poly- and Perfluoroalkyl Substances in Water by In-Line SPE-HPLC-                    (28) Wen, W.; Xia, X.; Hu, D.; Zhou, D.; Wang, H.; Zhai, Y.; Lin, H.
+Orbitrap with In-Source Fragmentation Flagging. Anal. Chem 2015,                   Long-Chain Perfluoroalkyl acids (PFAAs) Affect the Bioconcentra-
+87, 4260−4268.                                                                     tion and Tissue Distribution of Short-Chain PFAAs in Zebrafish
+  (12) Barzen-Hanson, K. A.; Roberts, S. C.; Choyke, S.; Oetjen, K.;               (Danio rerio). Environ. Sci. Technol. 2017, 51, 12358−12368.
+McAlees, A.; Riddell, N.; McCrindle, R.; Ferguson, P. L.; Higgins, C.                (29) Ng, C. A.; Hungerbühler, K. Bioconcentration of perfluorinated
+P.; Field, J. A. Discovery of 40 classes of per- and polyfluoroalkyl               alkyl acids: how important is specific binding? Environ. Sci. Technol.
+substances in historical aqueous film-forming foams (AFFFs) and                    2013, 47, 7214−7223.
+AFFF-impacted groundwater. Environ. Sci. Technol. 2017, 51, 2047−                    (30) Cheng, W.; Ng, C. A. A permeability-limited physiologically
+2057.                                                                              based pharmacokinetic (PBPK) model for perfluorooctanoic acid
+  (13) Place, B. J.; Field, J. A. Identification of Novel Fluorochemicals          (PFOA) in male rats. Environ. Sci. Technol. 2017, 51, 9930−9939.
+in Aqueous Film-Forming Foams Used by the US Military. Environ.                      (31) Wolfrum, C.; Borrmann, C. M.; Borchers, T.; Spener, F. Fatty
+Sci. Technol. 2012, 46, 7120−7127.                                                 acids and hypolipidemic drugs regulate peroxisome proliferator-
+  (14) D’Agostino, L. A.; Mabury, S. A. Identification of Novel                    activated receptors alpha- and gamma-mediated gene expression via
+Fluorinated Surfactants in Aqueous Film Forming Foams and                          liver fatty acid binding protein: A signaling path to the nucleus. Proc.
+Commercial Surfactant Concentrates. Environ. Sci. Technol. 2014,                   Natl. Acad. Sci. U. S. A. 2001, 98, 2323−2328.
+48, 121−129.                                                                         (32) Velkov, T. Interactions between Human Liver Fatty Acid
+  (15) Newton, S.; McMahen, R.; Stoeckel, J. A.; Chislock, M.;                     Binding Protein and Peroxisome Proliferator Activated Receptor
+Lindstrom, A.; Strynar, M. Novel Polyfluorinated Compounds                         Selective Drugs. PPAR Res. 2013, 1.
+Identified Using High Resolution Mass Spectrometry Downstream                        (33) Zhang, L.; Ren, X.-M.; Wan, B.; Guo, L.-H. Structure-
+of Manufacturing Facilities near Decatur, Alabama. Environ. Sci.                   dependent binding and activation of perfluorinated compounds on
+Technol. 2017, 51, 1544−1552.                                                      human peroxisome proliferator-activated receptor γ. Toxicol. Appl.
+  (16) Gebbink, W. A.; van Asseldonk, L.; van Leeuwen, S. P. J.                    Pharmacol. 2014, 279, 275−283.
+Presence of Emerging Per- and Polyfluoroalkyl Substances (PFASs) in                  (34) Ishibashi, H.; Kim, E. Y.; Iwata, H. Transactivation Potencies of
+River and Drinking Water near a Fluorochemical Production Plant in                 the Baikal Seal (Pusa sibirica) Peroxisome Proliferator-Activated
+the Netherlands. Environ. Sci. Technol. 2017, 51, 11057−11065.                     Receptor α by Perfluoroalkyl Carboxylates and Sulfonates: Estimation
+  (17) Lin, Y.; Ruan, T.; Liu, A.; Jiang, G. Identification of Novel               of PFOA Induction Equivalency Factors. Environ. Sci. Technol. 2011,
+Hydrogen-Substituted Polyfluoroalkyl Ether Sulfonates in Environ-                  45, 3123−3130.
+mental Matrices near Metal-Plating Facilities. Environ. Sci. Technol.                (35) Ishibashi, H.; Hirano, M.; Kim, E. Y.; Iwata, H. In vitro and in
+2017, 51, 11588−11596.                                                             silico evaluations of binding affinities of perfluoroalkyl substances to
+  (18) Liu, Y.; Qian, M.; Ma, X.; Zhu, L.; Martin, J. W. Nontarget                 Baikal seal and human peroxisome proliferator-activated receptor α.
+Mass Spectrometry Reveals New Perfluoroalkyl Substances in Fish                    Environ. Sci. Technol. 2019, 53, 2181−2188.
+from the Yangtze River and Tangxun Lake China. Environ. Sci.                         (36) Takacs, M. L.; Abbott, B. D. Activation of mouse and human
+Technol. 2018, 52, 5830−5840.                                                      peroxisome proliferator-activated receptors (alpha, beta/delta,
+  (19) Liu, Y.; Richardson, E. S.; Derocher, A. E.; Lunn, N. J.;                   gamma) by perfluorooctanoic acid and perfluorooctane sulfonate.
+Lehmler, H.-J.; Li, X.; Zhang, Y.; Cui, J. Y.; Cheng, L.; Martin, J. W.            Toxicol. Sci. 2007, 95, 108−117.
+
+                                                                            5685                                           https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                           Environ. Sci. Technol. 2020, 54, 5676−5686
+Environmental Science & Technology                                                       pubs.acs.org/est                                               Article
+
+  (37) Zhang, W.; Zhang, Y.; Zhang, H.; Wang, J.; Cui, R.; Dai, J. Sex             (52) Sun, J.; Peng, H.; Alharbi, H. A.; Jones, P. D.; Giesy, J. P.;
+differences in transcriptional expression of FABPs in zebrafish liver             Wiseman, S. B. Identification of Chemicals that Cause Oxidative
+after chronic perfluorononanoic acid exposure. Environ. Sci. Technol.             Stress in Oil Sands Process-Affected Water. Environ. Sci. Technol.
+2012, 46, 5175−5182.                                                              2017, 51, 8773−8781.
+  (38) Cheng, W.; Ng, C. A. Predicting Relative Protein Affinity of                (53) Liu, Y.; D’Agostino, L. A.; Qu, G.; Jiang, G.; Martin, J. W. High-
+Novel Per- and Polyfluoroalkyl Substances (PFASs) by An Efficient                 resolution mass spectrometry (HRMS) methods for nontarget
+Molecular Dynamics Approach. Environ. Sci. Technol. 2018, 52,                     discovery and characterization of poly- and per-fluoroalkyl substances
+7972−7980.                                                                        (PFASs) in environmental and human samples. TrAC, Trends Anal.
+  (39) Cao, H.; Wang, L.; Liang, Y.; Li, Z.; Feng, H.; Sun, Y.; Zhang,            Chem. 2019, 121, 115420.
+A.; Fu, J. Protonation state effects of estrogen receptor α on the                 (54) Schymanski, E. L.; Jeon, J.; Gulde, R.; Fenner, K.; Ruff, M.;
+recognition mechanisms by perfluorooctanoic acid and perfluor-                    Singer, H. P.; Hollender, J. Identifying small molecules via high
+ooctane sulfonate: A computational study. Ecotoxicol. Environ. Saf.               resolution mass spectrometry: communicating confidence. Environ.
+2019, 171, 647−656.                                                               Sci. Technol. 2014, 48, 2097−2098.
+  (40) Ng, C. A.; Hungerbuehler, K. Exploring the use of molecular                 (55) García, R. A.; Chiaia-Hernández, A. C.; Lara-Martin, P. A.;
+docking to identify bioaccumulative perfluorinated alkyl acids                    Loos, M.; Hollender, J.; Oetjen, K.; Higgins, C. P.; Field, J. A. Suspect
+
+
+
+
+                                                                                                                                                                       Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​54/​9/​5676/​13365400/​es0c00049.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+(PFAAs). Environ. Sci. Technol. 2015, 49, 12306−12314.                            Screening of Hydrocarbon Surfactants in AFFFs and AFFF-
+  (41) de Solla, S. R.; De Silva, A. O.; Letcher, R. J. Highly elevated           Contaminated Groundwater by High-Resolution Mass Spectrometry.
+levels of perfluorooctane sulfonate and other perfluorinated acids                Environ. Sci. Technol. 2019, 53, 8068−8077.
+found in biota and surface water downstream of an international                    (56) Gewurtz, S. B.; Bhavsar, S. P.; Petro, S.; Mahon, C. G.; Zhao,
+                                                                                  X.; Morse, D.; Reiner, E. J.; Tittlemier, S. A.; Braekevelt, E.;
+airport, Hamilton, Ontario Canada. Environ. Int. 2012, 39, 19−26.
+                                                                                  Drouillard, K. High levels of perfluoroalkyl acids in sport fish species
+  (42) Patlewicz, G.; Richard, A. M.; Williams, A. J.; Grulke, C. M.;
+                                                                                  downstream of a firefighting training facility at Hamilton International
+Sams, R.; Lambert, J.; Noyes, P. D.; DeVito, M. J.; Hines, R. N.;
+                                                                                  Airport, Ontario Canada. Environ. Int. 2014, 67, 1−11.
+Strynar, M.; Guiseppi-Elie, A.; Thomas, R. S. A chemical category-
+                                                                                   (57) Furuhashi, M.; Hotamisligil, G. S. Fatty acid-binding proteins:
+based prioritization approach for selecting 75 per- and polyfluoroalkyl
+                                                                                  role in metabolic diseases and potential as drug targets. Nat. Rev. Drug
+substances (PFAS) for tiered toxicity and toxicokinetic testing.                  Discov. 2008, 7, 489−503.
+Environ. Health Perspect. 2019, 127, No. 014501.                                   (58) Jackson, M.; Eadsforth, C.; Schowanek, D.; Delfosse, T.;
+  (43) Rodriguez-Freire, L.; Abad-Fernández, N.; Sierra-Alvarez, R.;             Riddle, A.; Budgen, N. Comprehensive Review of Several Surfactants
+Hoppe-Jones, C.; Peng, H.; Giesy, J. P.; Snyder, S.; Keswani, M.                  in Marine Environments: Fate and Ecotoxicity. Environ. Toxicol.
+Sonochemical degradation of perfluorinated chemicals in aqueous                   Chem. 2016, 35, 1077−1086.
+film-forming foams. J. Hazard. Mater. 2016, 317, 275−283.                          (59) Oskarsson, A.; Wright, M. C. Ionic Liquids: New Emerging
+  (44) Velkov, T.; Chuang, S.; Wielens, J.; Sakellaris, H.; Charman, W.           Pollutants, Similarities with Perfluorinated Alkyl Substances (PFASs).
+N.; Porter, C. J. H.; Scanlon, M. J. The interaction of lipophilic drugs          Environ. Sci. Technol. 2019, 53, 10539−10541.
+with intestinal fatty acid-binding protein. J. Biol. Chem. 2005, 280,              (60) Wang, P. Application of green surfactants developing
+17769−17776.                                                                      environment friendly foam extinguishing agent. Fire Technol. 2015,
+  (45) Sheng, N.; Cui, R.; Wang, J.; Guo, Y.; Wang, J.; Dai, J.                   51, 503−511.
+Cytotoxicity of novel fluorinated alternatives to long-chain perfluor-
+oalkyl substances to human liver cell line and their binding capacity to
+human liver fatty acid binding protein. Arch. Toxicol. 2018, 92, 359−
+369.
+  (46) Peng, H.; Zhang, S.; Sun, J.; Zhang, Z.; Giesy, J. P.; Hu, J.
+Isomer-specific accumulation of perfluorooctanesulfonate from (N-
+ethyl perfluorooctanesulfonamido)ethanol-based phosphate diester in
+Japanese Medaka (Oryzias latipes). Environ. Sci. Technol. 2014, 48,
+1058−1066.
+  (47) Schultz, M. M.; Barofsky, D. F.; Field, J. A. Quantitative
+determination of fluorinated alkyl substances by large-volume-
+injection liquid chromatography tandem mass spectrometry -
+Characterization of municipal wastewaters. Environ. Sci. Technol.
+2006, 40, 289−295.
+  (48) Sharma, A.; Sharma, A. Fatty acid induced remodeling within
+the human liver fatty acid-binding protein. J. Biol. Chem. 2011, 286,
+31924−31928.
+  (49) Rayne, S.; Forest, K. A new class of perfluorinated acid
+contaminants: Primary and secondary substituted perfluoroalkyl
+sulfonamides are acidic at environmentally and toxicologically relevant
+pH values. J. Environ. Sci. Health, Part A: Toxic/Hazard. Subst.
+Environ. Eng. 2009, 44, 1388−1399.
+  (50) Henriksen, T.; Juhler, R. K.; Svensmark, B.; Cech, N. B. The
+relative influences of acidity and polarity on responsiveness of small
+organic molecules to analysis with negative ion electrospray ionization
+mass spectrometry (ESI-MS). J. Am. Soc. Mass Spectrom. 2005, 16,
+446−455.
+  (51) Weiss, J. M.; Simon, E.; Stroomberg, G. J.; de Boer, R.; de Boer,
+J.; van der Linden, S. C.; Leonards, P. E. G.; Lamoree, M. H.
+Identification strategy for unknown pollutants using high-resolution
+mass spectrometry: Androgen-disrupting compounds identified
+through effect-directed analysis. Anal. Bioanal. Chem. 2011, 400,
+3141−3149.
+
+                                                                           5686                                           https://dx.doi.org/10.1021/acs.est.0c00049
+                                                                                                                          Environ. Sci. Technol. 2020, 54, 5676−5686
+

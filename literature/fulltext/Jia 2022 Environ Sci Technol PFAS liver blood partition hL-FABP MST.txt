@@ -1,0 +1,653 @@
+pubs.acs.org/est                                                                                                                                     Article
+
+
+
+Insights into the Competitive Mechanisms of Per- and
+Polyﬂuoroalkyl Substances Partition in Liver and Blood
+Yibo Jia,∥ Yumin Zhu,∥ Dashan Xu, Xuemin Feng, Xiaoyong Yu, Guoqiang Shan,* and Lingyan Zhu*
+      Cite This: Environ. Sci. Technol. 2022, 56, 6192−6200                            Read Online
+
+
+ACCESS
+
+
+
+
+                                                                                                                                                                    Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+                               Metrics & More                              Article Recommendations                *
+                                                                                                                  sı Supporting Information
+
+
+ABSTRACT: Some per- and polyﬂuoroalkyl substances (PFASs) tend to be
+accumulated in liver and cause hepatotoxicity. However, the diﬃculty to directly
+measure liver concentrations of PFASs in humans hampers our understanding of
+their hepatotoxicity and mechanisms of action. We investigated the partitioning of
+11 PFASs between liver and blood in male CD-1 mice. Although accumulation of
+the perﬂuoroalkanesulfonic acids (PFSAs) in mice serum was higher than their
+carboxylic acids (PFCAs) counterparts as expected, the liver-blood partition
+coeﬃcients (RL/S) of PFSAs were lower than the PFCAs RL/S, implying a
+competition between liver and blood. The in vitro experiments further indicated
+that the partitioning was dominantly determined by their competitive binding
+between human liver fatty acid binding protein (hL-FABP) and serum albumin
+(HSA). The binding aﬃnities (Kd) of PFASs to both proteins were measured. The
+correlations between the RL/S and log Kd (hL‑FABP)/log Kd (HSA) were stronger than those with log Kd (hL‑FABP) alone, magnifying that
+the partitioning was dominantly controlled by competitive binding between hL-FABP and HSA. Therefore, the liver concentrations
+of the selected PFASs in humans could be predicted from the available serum concentrations, which is important for assessing their
+hepatotoxicity.
+KEYWORDS: PFASs, liver concentration, partition, protein binding, L-FABP, HSA
+
+
+■    INTRODUCTION
+Per- and polyﬂuoroalkyl substances (PFASs) are widely applied
+                                                                                  seawater,9 but also observed in ﬁsh tissues6 and human blood.10
+                                                                                  These two alternatives have longer half-lives in humans than
+                                                                                  PFOS. As a PFOS alternative, perﬂuoro-(2-ethoxyethane)-
+in industrial and household products because of their favorable
+                                                                                  sulfonic acid (PFEESA) was occasionally detected (31%) in the
+characteristics.1 Due to the widespread production and
+                                                                                  nearshore seawater of China.11
+persistence, PFASs have become ubiquitous environmental
+                                                                                    It is well-documented that some PFASs may induce
+contaminants.2 Perﬂuorooctanoate (PFOA) and perﬂuoroocta-
+                                                                                  hepatotoxicity.12−14 For example, PFOS caused signiﬁcant
+nesulfonate (PFOS) are the most frequently detected PFASs in
+                                                                                  hepatic steatosis and pathological micro/macro vacuolation
+environmental compartments and are believed to exert potential
+                                                                                  with a superﬂuous triglyceride level in zebraﬁsh larvae.14 In mice,
+toxic eﬀects on human health.3,4 Since 3 M Company stopped
+                                                                                  PFOS exposure dysregulated peroxisome proliferator-activated
+producing PFOS in 2000, the government agencies in many                           receptor γ (PPARγ) and then caused hepatic steatosis and
+countries issued a series of regulations to restrict the production               disturbed hepatic lipid metabolism;15 6:2 and 8:2 Cl-PFESA
+and application of PFOA and PFOS,2,5 for example, PFOS was                        displayed comparable or even higher agonistic activity toward
+listed as an Annex B substance under the Stockholm                                the PPARs signaling pathway than PFOS in 3T3-L1 cells;16 and
+Convention.6 To meet the industrial demands, many novel                           the genes involved in the chemical carcinogenesis processes
+PFASs were widely identiﬁed and applied as their alternatives                     were strongly upregulated in liver due to HFPO-TA exposure.13
+and consequently released into the environment.7 For example,                     These observations suggest that the liver is one of the target
+perﬂuoropolyether carboxylic acids (PFECAs) as the alter-                         organs of these PFASs in organisms, where they have been
+natives of PFOA in polymerization processes, including                            shown to preferentially accumulate. However, histopathological
+hexaﬂuoropropylene oxide dimer acid (HFPO-DA, and the
+commercial name is GenX), trimer acid, and tetramer acid
+                                                                                  Special Issue: Emerging Contaminants: Fluorinated
+(HFPO-TA, HFPO-TeA, respectively), were observed in river
+                                                                                  Alternatives to Existing PFAS Compounds
+and coastal sea waters.2,7,8 As alternatives of PFOS, which are
+applied as mist suppressant in hard chrome plating, 6:2 and 8:2                   Received: December 12, 2021
+chlorinated polyﬂuoroether sulfonic acids (6:2 Cl-PFESA, 8:2                      Revised: March 6, 2022
+Cl-PFESA, and the commercial name is F-53B) were not only                         Accepted: April 6, 2022
+detected in the environmental media, including remote surface                     Published: April 18, 2022
+
+                                        © 2022 American Chemical Society                                                 https://doi.org/10.1021/acs.est.1c08493
+                                                                           6192                                        Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                pubs.acs.org/est                                            Article
+
+studies to investigate the direct relationship between the                  PFESA, 8:2 Cl-PFESA) were included as target compounds.
+accumulated levels of PFASs in liver and the induced                        Due to the diverse functional groups of the target PFASs,
+hepatoxicities are rare, particularly in humans. Because it is              carbon, oxygen, and sulfur atoms in the backbone were included
+diﬃcult to abundantly sample internal human tissues (such as                when counting the chain length.19 The detailed information
+the liver) from living individuals, human blood is typically used           about the used chemicals and reagents is listed in Text S1 and
+to evaluate internal exposure to contaminants due to its easy               Table S1 of the Supporting Information (SI). A technical F-53B
+accessibility and available analyses. Discovering the mechanisms            product, which contained 91% of 6:2 Cl-PFESA and 7% of 8:2
+underlying the partition of PFASs between organism livers and               Cl-PFESA,10 was separated using preparative high-performance
+blood would assist to predict their concentrations and toxicities           liquid chromatography (HPLC) to obtain pure 6:2 Cl-PFESA
+in livers.                                                                  and 8:2 Cl-PFESA (Text S1 and Table S2). Fatty acid-free
+   As molecules enter organisms, they are absorbed into the                 albumin human serum albumin (HSA) was obtained from
+bloodstream and transported to the organs within the body.                  Sigma-Aldrich.
+Given the unique hydrophobic and lipophobic properties,                         Recombinant Expression and Puriﬁcation of hL-FABP.
+accumulation of perﬂuoroalkanesulfonic acids (PFSAs) and                    The expression and puriﬁcation of hL-FABP were completed
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+perﬂuoroalkyl carboxylic acids (PFCAs) in organisms is driven               according to a previous study with slight modiﬁcations (Text
+not only by partitioning to phospholipids17 but also predom-                S2).24 The identiﬁcation and purity (>95%) of the recombinant
+inantly by speciﬁc interactions with endogenous proteins.18                 protein were conﬁrmed by SDS-PAGE and Western blot (Figure
+Human serum albumin (HSA) is abundantly expressed in                        S1).
+human blood, and the binding of chemicals with HSA plays                        Animal Treatment. Male CD-1 mice were used as the
+critical roles in the pharmacokinetics, biodistribution, and                model animals, which have strong environmental adaptability,
+toxicities of certain PFASs.19 In human liver, liver-fatty acid             little individual diﬀerence, and lower elimination of PFASs than
+binding protein (hL-FABP) is highly expressed and has strong                female to achieve higher body concentrations.13,25 Speciﬁc
+binding aﬃnities with long-chain PFASs for their transport,                 pathogen-free (SPF) male CD-1 mice (aged 6 weeks, with a
+disposition, and elimination.20 It was reported that the                    weight of 35 ± 3 g) were purchased from Beijing Vital River
+interaction of these long-chain PFASs with hL-FABP made an                  Laboratory Animal Technology Company (Beijing, China).
+important contribution to the high bioaccumulation capacities               Following 1 week of adaptation, they were randomly divided
+of them in liver.20,21 Thus, the accumulation of certain PFASs in           into four groups with each group consisting of six individuals (n
+liver is hypothesized to be the results of binding competition              = 6 per group) of equal size and acclimatized at standard
+between the liver proteins and blood proteins.                              condition (12 h light/dark cycle at 23 ± 1 °C, and humidity of
+   Investigating the distribution of PFASs in diﬀerent tissues              60 ± 5%). Three dosage levels (0.02, 0.2, and 2.0 mg/kg/day)
+provides hints to understand and speculate the intrinsic                    were set accompanied by a blank control. The highest dosage
+bioaccumulation mechanisms.6 There are many ﬁeld and                        was selected according to the no observed adverse eﬀect level of
+laboratory studies reporting the tissue distribution of PFASs,              PFOA in mice.26 The mice received gavage dosage with mixed
+but the results are quite diverse.22 It seems that long-chain               solutions (2.35, 23.5, and 235 μg/mL, respectively) of F-53B
+PFCAs (C9−C14) tended to be enriched in the rat liver;                      and the other nine PFASs at a rate of 8.5 mL/kg body weight
+however, PFOA (C8) and PFHpA (C7) were preferably stored in                 (the mice were weighed before each gavage) every morning for 7
+the blood.20 In contrast, HFPO-TA, as a novel PFOA                          days. All the mice were fasted overnight and euthanized by
+alternative, preferred to accumulate in the liver rather than in            cervical dislocation to sample liver and blood on the day 8 (Text
+serum.13 While the highest total PFASs concentrations were                  S3). All of the animal procedures were approved (Text S1).
+observed in the kidney of frogs,23 more than 75% of the whole                   In Vitro Competition Experiments. In vitro experiments
+body burden of F-53B was present in the blood, muscle, and                  were designed to investigate the competitive binding of the
+gonad of crucian carp.6 The underlying mechanisms accounting                target PFASs with proteins in blood and liver,27,28 which were
+for the diﬀerent partition behaviors of PFASs between liver and             individually housed in two dialysis tubes, and the setup is shown
+blood remain unclear. Particularly, there are very limited data             in Figure S2. The dialysis tubes made of biotech grade cellulose
+regarding PFASs levels in human livers, which hampers the risk              ester (CE) membrane (Float-A-Lyzer G2, 3.5−5 kDa) were
+assessment related to the hepatoxicity of PFASs.                            obtained from Spectrum Laboratories, Inc. Two tubes (serum or
+   In the present study, we shed light on the partitioning                  HSA in tube S, while liver lysate or hL-FABP in tube L) were
+mechanisms of 11 selected representative PFASs between                      placed in a polypropylene beaker containing Tris-HCl buﬀer at
+human liver and blood. The main objectives are as follows: (i)              25 °C. Preliminary experiments proved that there was negligible
+elucidate the rule of liver-blood partition for diverse PFASs in            mass loss of PFASs due to adsorption to the membrane and
+vivo; (ii) simulate and disclose the mechanisms underlying the              inner wall of the beaker, indicating that the competition
+partitioning process using a self-developed in vitro experimental           experiments were reliable (Text S4 and Figure S3). Two groups
+setup; and (iii) establish the liver-blood partition relationships          of experiments were designed: in Group I, the liver lysate and
+between the binding aﬃnities of PFASs with speciﬁc proteins in              serum collected from the same mouse were housed, respectively,
+liver and serum of human. The ﬁndings help to address the                   in the two tubes to explore the competitive binds of PFASs
+dilemma for the growth concerns of potential hepatotoxicity                 between them; while in Group II, the proteins in human liver
+while sparse and uncertain data of measured PFASs contents in               (hL-FABP) and serum (HSA) were put in the tubes to
+human liver.
+
+■
+                                                                            investigate the competitive binding between them, and the
+                                                                            protein concentrations were selected according to their levels in
+   MATERIALS AND METHODS                                                    the mice body (Text S4). Three levels of PFASs were set for each
+  Chemicals and Standards. Seven carboxylic acids                           group, which were in line with the in vivo exposure experiment.
+(PFHxA, PFOA, PFNA, PFDoA, HFPO-DA, HFPO-TA,                                The PFASs bound with the liver lysate or serum and the proteins
+HFPO-TeA) and four sulfonic acids (PFOS, PFEESA, 6:2 Cl-                    are calculated according to the following equations:
+                                                                     6193                                         https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                pubs.acs.org/est                                            Article
+
+   [PFASs]L or S = [PFASs]tube L or tube S − [PFASs]free       (1)              Molecular Docking Analysis. The intermolecular inter-
+                                                                            actions were characterized by molecular docking analysis.32 The
+   [PFASs]hL‐FABP or HSA = [PFASs]tube L or tube S − [PFASs]free            optimized conﬁgurations of all the 11 PFASs were obtained at
+                                                               (2)          the B3LYP/6-31G(d) level by the Gaussian 16 program
+where [PFASs]tube L or tube S is the concentration of the PFASs in          package. Since the secondary binding site of hL-FABP made
+tube L or tube S and [PFASs]free refers to the concentration of             negligible contribution,20,33 we only considered the primary
+PFASs in the Tris-HCl buﬀer. [PFASs]L or S (ng/mg) represents               binding site in the inner pocket. The crystal structure of hL-
+the mass of PFASs (ng), which binds to one milligram of liver or            FABP, containing the complete key residues with high complex
+serum. [PFASs]hL‑FABP or HSA (ng/mmol) is the mass of PFASs                 resolution, was downloaded from the Protein Data Bank (PDB
+(ng) that binds to one millimole of hL-FABP or HSA.                         code: 3STM; htpp://www.rcsb.org/pdb). Both protein and
+   Extraction and Instrumental Analysis. PFASs extraction                   ligand structures were pretreated with AutoDock Tools
+from the mice tissues, serum, and liver lysate in the equilibrium           (v1.5.6),34 and the output ﬁles were used for docking with
+dialysis were performed using an ion-pairing method followed                Autodock Vina (v1.1.2).35 The protein−ligand complex was
+by a solid phase extraction (SPE) cleanup as previously                     illustrated and analyzed by PyMOL (v2.4).36 The reliability of
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+described (Text S3).13 In equilibrium dialysis, the target                  the docking results were veriﬁed by palmitic acid (PLA), which
+PFASs in Tris-HCl buﬀer were puriﬁed and enriched using                     was successfully docked in compliance with the crystallized
+Cleanert PEP cartridges, while precipitated buﬀer was used to               complexes with an acceptable root-mean-square deviation
+extract the PFASs from the hL-FABP and HSA solutions (Text                  (RMSD, 1.94 Å).
+S5).19 The targeted PFASs in all the samples were quantiﬁed on                  Extrapolation RL/S from Mouse to Human. Taking into
+an ultraperformance liquid chromatography system (UPLC)                     consideration the interspecies variation between mouse and
+coupled with a Waters Xevo TQ-S tandem mass spectrometer                    human physiological parameters, the mice RL/S were adjusted to
+(MS/MS, Waters, Milford, MA) operated with negative                         humans using the ratio VLC/VPlasC, where VLC represents the
+electrospray ionization (ESI) in multiple reaction monitoring               fractional volume of liver in body and VPlasC represents the
+(MRM) mode. Detailed instrumental parameters and analytical                 fractional volume of plasma in body. Their values for both
+methods are supplied in Text S6 and Table S3.                               human and mouse were obtained from a previous report.37
+   Quality Assurance and Quality Control. The determi-                          Statistical Analysis. Data analyses were carried out by
+nation of the 11 PFASs was based on the EPA methods 537.129                 Graphpad Prism 9 (Graphpad Software Inc.). One-way analysis
+and 8237.30 A procedural blank and a solvent blank were                     of variance (ANOVA) with a Tukey test was used to estimate the
+analyzed with each batch of 10 samples to monitor any                       signiﬁcant diﬀerences between diﬀerent groups. Spearman’s
+background contamination and instrument carryover. The                      rank correlations analysis was conducted to explore the PFASs
+method detection limits (MDLs) were determined as the                       partition in mice liver and serum, and the competitive binding in
+average concentrations in the blanks plus three times the                   equilibrium dialysis experiments. Statistical signiﬁcance was
+                                                                            deﬁned as p < 0.05 for all comparisons.
+
+                                                                            ■
+standard deviations when speciﬁc PFASs were detected in the
+procedural blanks. Otherwise, the MDLs were determined as the
+concentrations producing a signal-to-noise ratio of three (Table                 RESULTS AND DISCUSSION
+S4). The blank sample matrixes including the mouse liver,                      Liver and Body Weight of the Mice. For the 0.02 and 0.2
+serum, and liver lysate were prepared exactly the same as the               mg/kg/d dosage groups, the liver and body weights of the mice
+samples (Text S3), and the PFASs concentrations in the samples              did not change distinctly after 7 days of exposure (Figure S4a).
+were quantiﬁed using matrix-matched calibration standards (0−               While the absolute liver weight in the highest dosage group
+60 ng/mL). The PFASs in the Tris-HCl buﬀer and HSA/hL-                      increased distinctly, the percentage of liver in the body weight
+FABP solutions in the equilibrium dialysis were quantiﬁed by                (13.3%) was signiﬁcantly higher than the other groups (Figure
+calibration standards in methanol with similar concentration                S4b). The increased liver weight might be due to some adverse
+ranges. Quantitation was carried out using the internal standard            eﬀects according to previous toxicity studies.13,38
+method for the target PFASs in all samples (Table S3). The                     Partitioning of PFASs in Mice Serum and Liver. In all the
+recoveries in the spiked control samples were in the range 70−              three exposure groups, the PFASs with medium- and long-chain
+120% (Table S4 and Table S5), and the PFASs concentrations                  lengths, such as PFOA, PFNA, PFDoA, HFPO-TA, HFPO-TeA,
+were calculated without recovery correction.                                PFOS, and 6:2 and 8:2 Cl-PFESA, were prone to partition into
+   Determination of Binding Capacity. Microscale thermo-                    the liver rather than in the serum (Figure S5). For the short-
+phoresis (MST) is a promising technique to quantify ligand−                 chain PFASs, such as PFHxA, HFPO-DA, and PFEESA, their
+protein interactions, which has the advantages of using less                concentrations were signiﬁcantly lower in both liver and serum,
+proteins and short reaction time. The dissociation constants                suggesting that they had very low accumulation potentials in
+(Kd) values were measured by MST using Monolith NT.115                      liver and serum. For the ordinary PFCAs, their liver
+(NanoTemper Technologies, Munich, Germany) following the                    concentrations increased from PFHxA (C6) to PFDoA (C12)
+manufacturer’s instructions (Text S7). Thermodynamic param-                 in all dosage groups, which was similar to the results reported
+eters were analyzed to understand the interaction models, and               previously.20 Diﬀerent from the liver, the serum concentrations
+they were ﬁtted by the Van’t Hoﬀ equation (eq 3)31                          of PFCAs decreased from PFOA (C8) to PFDoA (C12). For
+         ij K yz
+   R lnjjj d zzz = −
+                                                                            HFPO analogues, the liver concentration of HFPO-TeA was
+
+          j C0 z
+                     ΔH
+          k {
+                                                                            slightly lower than HFPO-TA in the lowest dosage group, while
+                        + ΔS
+                      T                                        (3)          that of HFPO-TeA was 3.26- and 3.15-fold higher than HFPO-
+                                                                            TA in the medium and high dosage groups, respectively (Figure
+where C0 is the standard state concentration (1 mol/L), R is the            S5b,c).
+ideal gas constant (8.314 J·mol−1·K−1), and T is the absolute                  The diﬀerent variation trends of PFASs in serum and liver
+temperature.                                                                suggested that they had diﬀerent binding aﬃnities and
+                                                                     6194                                         https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                 pubs.acs.org/est                                              Article
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 1. (a−c) RL/S and (d−f) [PFASs]L/[PFASs]S vary with chain length of PFASs in (a and d) 0.02 mg/kg/d, (b and e) 0.2 mg/kg/d, and (c and f)
+2 mg/kg/d dosage groups. RL/S is the ratio of concentration for PFASs in liver to serum in CD-1 mice, and [PFASs]L/[PFASs]S is the ratio of
+concentration for PFASs bound with liver to that with serum in equilibrium dialysis experiments. The chain length was the counts of total atoms in
+backbone of PFASs (for PFCAs, the number of carbon atoms; for HFPO analogues, the number of carbon and oxygen atoms; for PFOS, the number of
+carbon and sulfur atoms, and for PFESA, the number of carbon, oxygen, and sulfur atoms in backbone).
+
+mechanisms with the proteins in both tissues. The liver-blood                carboxylic counterparts;40 however, the RL/S values of the
+partition coeﬃcient RL/S, which is the concentration ratio in liver          PFASs with a sulfonic acid group were generally lower at all
+to serum, was calculated to indicate the partitioning of the target          dosage levels. This discrepancy suggested that there was
+PFASs between liver and serum (Figure 1). The chain length                   competition for binding with these PFASs between liver and
+and oil−water partition coeﬃcient (log P, predicted by                       blood.
+Advanced Chemistry Development Software V11.02 in Table                         In Vitro Competition Experiments. To discover the
+S6) have been demonstrated as important indices for the                      intrinsic mechanisms for the observed in vivo results in mice, in
+bioaccumulation of PFASs in organisms.18 Strong positive                     vitro competition experiments were setup on the basis of
+correlations were observed between RL/S and the chain length as              equilibrium dialysis, which has been widely used to measure the
+well as log P (rs = 0.71 and 0.63, respectively). This suggested             binding aﬃnities of drug compounds with proteins.41,42 In
+that the tissue partition of the individual PFASs was greatly                Group I, [PFASs]L/[PFASs]S (which represents the ratio of the
+impacted by their speciﬁc molecular properties.39                            bound PFASs, the same below) increased with the chain length
+   The relatively low RL/S values of several compounds with                  (Figure 1), and there were signiﬁcantly positive correlations
+small molecular size and low log P, such as PFHxA (1.1−3.5)                  between in vitro [PFASs]L/[PFASs]S and in vivo RL/S at all three
+and PFEESA (<1), implied that they are inclined to transport                 levels (rs = 0.80, 0.70, and 0.92, respectively, from low to high
+elsewhere in the body by bloodstream rather than store in                    levels of PFASs, Figure S7). The results suggested that the
+liver.20 On the contrary, 6:2 and 8:2 Cl-PFESAs with higher RL/S             tissue-speciﬁc distribution of PFASs in the mammal’s liver and
+values and lower elimination rates10 than PFOS were inclined to              serum was due to the partition of PFASs between the proteins in
+accumulate in liver to cause potential hepatotoxicity. Similar to            the liver lysates and serum.18,21 To further understand the
+other mammals, the RL/S values of the PFCAs, HFPO analogues                  partition between liver and blood in human, Group II was
+and PFESAs exhibited a positive monotonous relationship with                 designed employing the highly expressed intracellular proteins
+carbon chain length and were higher than 1 at all dosage levels.             in human liver and blood, hL-FABP, and HSA, which were
+However, the RL/S values of PFOA, PFNA, and PFDoA in ﬁsh                     reported to account for PFASs bioaccumulation in the two
+and seabirds were generally less than 1 (Figure S6). This                    tissues.21 As expected, [PFASs]hL‑FABP/[PFASs]HSA increased
+suggested that these compounds behaved diﬀerently in ﬁsh and                 with the chain length (Figure S8), and stronger correlations
+mammals, and they tended to accumulate in liver relative to                  between RL/S and [PFASs]hL‑FABP/[PFASs]HSA were observed,
+serum in mammals. It is worth mentioning that all the target                 with rs = 0.97, 0.90, and 0.89 for the three dosage groups,
+PFASs exhibited lower RL/S values (0.2−9.5) in the highest                   respectively (Figure 2). These results aﬃrmed that the
+dosage group than the other two groups. Similar results were                 competitive binding of PFASs with the two proteins played a
+reported for PFOA and HFPO-TA in male BALB/c mice                            key role in the liver-blood partitioning of the target PFASs in
+(Figure S6).13 Consistent with many previous studies, the                    humans.
+PFASs with sulfonic acid functional groups had higher                           Interactions of PFASs with hL-FABP and HSA. Although
+bioaccumulation potentials in liver and serum than their                     the binding aﬃnities of some common PFASs with hL-FABP
+                                                                      6195                                           https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                   Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                               pubs.acs.org/est                                             Article
+
+                                                                           process.43 Similar to PLA, molecular docking results indicated
+                                                                           that there was hydrogen bonding between the charged
+                                                                           headgroups of PFASs and the Arg, Ser, or Thr residues of hL-
+                                                                           FABP (Figure S12). The hydrophobic tails stretch to interact
+                                                                           with nonpolar residues, leading to stronger binding for the more
+                                                                           hydrophobic (CF2) units of PFASs. Specially, PFDoA with a
+                                                                           much longer carbon length has to bend to ﬁt the pocket.44
+                                                                           HFPO homologues and PFESA, which contain oxygen atoms in
+                                                                           the backbone, would distort to a certain extent in the cavity.13,33
+                                                                           For these compounds, electrostatic interaction was more
+                                                                           relevant to Kd (hL‑FABP) than van der Waals interaction (r =
+                                                                           −0.94 vs −0.63).20 This suggested that the insertion of oxygen
+                                                                           atoms in the backbone may change the binding modes of PFASs
+                                                                           with hL-FABP.45
+
+
+
+
+                                                                                                                                                             Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+                                                                              Regarding the binding with HSA, stronger binding aﬃnities
+                                                                           were observed for the medium-chain length analogues (e.g.,
+                                                                           HFPO-TA > HFPO-TeA > HFPO-DA), which was similar to
+                                                                           the trend of PFASs concentrations in the serum (Table 1). The
+                                                                           larger size of the sulfonate moiety induced greater hydrophobic
+                                                                           and electrostatic interaction for sulfonic acids than carboxylic
+                                                                           acids with a similar chain length to HSA (e.g., PFOS > PFNA
+                                                                           and HFPO-TA).46
+                                                                              Associations between Liver-Blood Partition and Bind-
+                                                                           ing Aﬃnities. Up to now, there is sparse information on the
+                                                                           interaction of the target PFASs with mouse L-FABP and serum
+                                                                           albumin. Since mouse L-FABP (84.3%)47 and serum albumin
+                                                                           (72.4%)48 have high identities with humans, we investigated the
+                                                                           relationships between RL/S obtained from mice and log
+                                                                           Kd (hL‑FABP)/log Kd (HSA), to further verify the competitive
+Figure 2. Spearman correlation between [PFASs] hL‑FABP/[PFASs]HSA          binding mechanisms in liver-blood partition. As expected,
+and RL/S in (a) 0.02 mg/kg/d dosage group, (b) 0.2 mg/kg/d dosage          there were strong negative correlations between the RL/S and log
+group, and (c) 2 mg/kg/d dosage group.                                     Kd (hL‑FABP)/log Kd (HSA) (Figure 3, Table S8, and Correlations 1
+                                                                           and 2). The linear regressions for the low and medium dosage
+and HSA were reported previously, they are not available for the           groups were similar; thus, they were grouped together, which
+novel PFASs alternatives. Particularly, the intrinsic mechanisms           exhibited a steeper slope (−25.60) than that generated from the
+of the binding process for these alternatives remain unclear;              highest dosage group (−6.18). The plausible reason is that there
+therefore, MST was applied to characterize the interactions                was a ﬁxed number of binding sites in liver, which would be
+between them (Figures S9 and S10). The Kd (hL‑FABP) values                 saturated at higher levels of PFASs.13 A previous study reported
+(Table 1 and Table S7) of the PFASs measured at diﬀerent                   the inverse relationships between bioaccumulation factors in
+temperatures (from 21 to 40 °C) decreased with chain length,               organisms and PFASs exposure concentrations, which was
+suggesting that their binding aﬃnities were stronger for long-             believed to be related to the limited number of protein binding
+chain PFASs. The negative Gibbs free energy (ΔG) for all the               sites.49
+target PFASs (Figure S11) indicated that the binding process                  The binding aﬃnities of PFASs to hL-FABP were signiﬁcantly
+was spontaneous. The negative enthalpy change (ΔH) and                     correlated with the human placental transfer eﬃciencies19 and
+standard entropy change (ΔS) suggested that hydrogen bond                  rat liver concentrations.20 We thus examined the association
+and van der Waals forces were the main drivers of the binding              between RL/S with log Kd (hL‑FABP) (Figure S13, Table S8, and
+
+Table 1. Binding Aﬃnities of PFASs with hL-FABP at 25 °C and Dissociation Constants of PFASs with HSA
+
+                                                                     hL-FABP                                                             HSA
+         PFASs                  Kd (μM)             ΔS (J/mol)                 ΔH (kJ/mol)              ΔG (kJ/mol)                    Kd (μM)
+         PFHxA                   538.07               −58.16                     −35.96                   −18.62                         19519
+          PFOA                   17.95                −46.70                     −41.31                   −27.39                         11519
+          PFNA                    6.62                −44.30                     −42.87                   −29.66                          7319
+         PFDoA                    3.45                −196.20                    −89.15                   −30.65                         10319
+        HFPO-DA                  267.78               −31.50                     −29.97                   −20.57                         1156
+        HFPO-TA                  19.94                −16.12                     −31.69                   −26.89                           84
+       HFPO-TeA                   1.22                −73.09                     −55.34                   −33.55                          179
+          PFOS                   16.45                −31.83                     −37.02                   −27.53                          3819
+         PFEESA                 3138.20                                                                                                   874
+      6:2 Cl-PFESA               12.47                −259.20                    −105.07                  −27.79                          6719
+      8:2 Cl-PFESA                5.39                −62.10                     −48.57                   −30.05                           31
+
+                                                                    6196                                          https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                 pubs.acs.org/est                                              Article
+
+
+
+
+                                                                                                                                                                Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+Figure 3. Correlation between log Kd (hL‑FABP)/log Kd (HSA) with (a) mice RL/S and (c) humans RL/S for low and medium dose exposure groups
+(Correlations 1 and 4); and (b) mice RL/S and (d) humans RL/S for high dose exposure group (Correlations 2 and 5). The dotted line represents the
+95% conﬁdence interval. (e) Goodness-of-ﬁt curve between predicted and reported data of RL/S for mice and humans. (f) Predicted to reported ratios
+of RL/S. The reported RL/S are available in Table S9.
+
+Correlations 3 and 4), for which the correlation was weaker than             reported that the mean plasma concentration of PFOA was 3.2
+that of RL/S and log Kd (hL‑FABP)/log Kd (HSA). This fortiﬁed that           ng/mL in Spain, which was equal to a serum concentration of
+the bioaccumulation of PFASs in liver was not only determined                3.84 ng/mL.52,53 Thus, the liver PFOA concentration was
+by their binding aﬃnities with hL-FABP alone but also more                   estimated to be 22.57 ng/g, which was within the concentration
+controlled by their competitive binding between hL-FABP and                  range in the Spanish liver donors.53 The good performance of
+HSA.                                                                         the established correlations promoted us to further calculate the
+   The established correlations were extrapolated to humans                  concentration of protein-bound PFASs in liver ([PFAS]hL‑FABP)
+using the adjusted RL/S (Figure 3, Table S8, and Correlations 5              (Text S8). For example, the plasma concentration of PFOS in
+and 6). The tolerable weekly intake of PFOA (6 ng/kg/week)                   the general German population was 1.8 ng/mL;54 thus, the
+suggested by European Food Safety Authority50 is 3 orders of                 serum concentration was 1.98 ng/mL (the PFOS concentration
+magnitude lower than the highest dosage level, which was                     ratio in serum to plasma is 1.152). The RL/S of PFOS in the
+corresponding to a human equivalent dose (HED, 37.1 μg/kg/                   general population predicted by Correlation 5 is 3.72. The total
+week).26 Therefore, the Correlation 5 is generally applicable for            PFOS concentration in liver was estimated to be 7.36 ng/g while
+the general population, while Correlation 6 is more suitable for             that bound with hL-FABP was 6.36 ng/g. This suggested that a
+occupational population.                                                     large fraction of PFOS might be delivered to nuclear receptors
+   On the basis of the established correlations, the RL/S values of          by hL-FABP and thus result in the potential hepatotoxicity.
+the 11 PFASs in mice (Correlations 1 and 2) and general human
+populations (Correlation 5) were predicted. They were
+compared with the results obtained from previous related
+                                                                             ■    IMPLICATIONS
+                                                                             In this study, we revealed that the competitive binding of certain
+studies to verify the universality of the developed correlations             PFASs with hL-FABP and HSA in humans dominantly
+(Table S9). As shown in Figure 3e,f, the predicted RL/S values               determined its partitioning between liver and blood. Signiﬁcant
+were in agreement with the measured results (slope of ﬁtting                 correlations between RL/S and log Kd (hL‑FABP)/log Kd (HSA) allow
+curve was 1.06, with r2 = 0.90), and the predicted-to-reported               us to predict the human liver concentrations of the target PFASs
+ratios for almost of all the points were within a factor of 2,               on the basis of the available human serum concentrations, which
+meeting the WHO model precision criteria.51 On the basis of the              resolved the scare data conundrum for measured PFASs
+predicted RL/S values of PFASs in human, their human liver                   concentrations in human liver. Thus, the health status of
+concentrations could be estimated on the basis of the measured               human liver could be evaluated by coupling with other
+serum concentration. For example, according to Correlation 5,                physiological parameters. However, interspecies variations
+the RL/S of PFOA in the general population is 5.94. It was                   may cause some uncertainty and variability in the results. In
+                                                                      6197                                           https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                   Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                    pubs.acs.org/est                                             Article
+
+addition, some membrane transporters, which were believed to                        Engineering, Nankai University, Tianjin 300350, P. R. China;
+be involved in the metabolic process for PFASs,55 such as                           Phone: +86-22-23500791; Email: yunongshan@
+enterohepatic circulation, were not considered here. More                           nankai.edu.cn; Fax: +86-22-23500791
+studies are warranted to understand the contribution of other
+proteins to the partitioning of PFASs among target tissues to                Authors
+produce more accurate toxicokinetic research and PFASs health                     Yibo Jia − Key Laboratory of Pollution Processes and
+assessments.                                                                        Environmental Criteria, Ministry of Education, Tianjin
+
+■
+                                                                                    300350, P. R. China; Tianjin Key Laboratory of
+      ASSOCIATED CONTENT                                                            Environmental Remediation and Pollution Control, Tianjin
+* Supporting Information
+sı                                                                                  300350, P. R. China; College of Environmental Science and
+The Supporting Information is available free of charge at                           Engineering, Nankai University, Tianjin 300350, P. R. China
+https://pubs.acs.org/doi/10.1021/acs.est.1c08493.                                 Yumin Zhu − Key Laboratory of Pollution Processes and
+                                                                                    Environmental Criteria, Ministry of Education, Tianjin
+        Discussions of chemicals and animals used, recombinant                      300350, P. R. China; Tianjin Key Laboratory of
+
+
+
+
+                                                                                                                                                                  Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+        expression and puriﬁcation of hL-FABP, pretreatment                         Environmental Remediation and Pollution Control, Tianjin
+        procedures of serum and liver samples, equilibrium                          300350, P. R. China; College of Environmental Science and
+        dialysis experiments, pretreatment procedures of Tris-                      Engineering, Nankai University, Tianjin 300350, P. R. China
+        HCl buﬀer, HSA, and hL-FABP solution, instrumental                        Dashan Xu − Key Laboratory of Pollution Processes and
+        parameters and analytical methods, determination of                         Environmental Criteria, Ministry of Education, Tianjin
+        binding capacity, and calculations of the protein-bound                     300350, P. R. China; Tianjin Key Laboratory of
+        PFASs concentration in liver, tables of detailed                            Environmental Remediation and Pollution Control, Tianjin
+        information of 11 PFASs in the research, instrumental                       300350, P. R. China; College of Environmental Science and
+        parameters and separation method to prepare pure 6:2 Cl-                    Engineering, Nankai University, Tianjin 300350, P. R. China
+        PFESA and 8:2 Cl-PFESA from F-53B, target analytes and                    Xuemin Feng − Key Laboratory of Pollution Processes and
+        internal standards used in the present study, recoveries                    Environmental Criteria, Ministry of Education, Tianjin
+        and method detection limits for 11 PFASs, predicated                        300350, P. R. China; Tianjin Key Laboratory of
+        physicochemical properties and parameters of PFASs,                         Environmental Remediation and Pollution Control, Tianjin
+        dissociation constants of PFASs to hL-FABP at diﬀerent                      300350, P. R. China; College of Environmental Science and
+        temperatures, signiﬁcance, residuals, Y-intercept, stand-                   Engineering, Nankai University, Tianjin 300350, P. R. China
+        ard errors, and 95% conﬁdence intervals for the ﬁtting                    Xiaoyong Yu − Key Laboratory of Pollution Processes and
+        curve, and data of the reported RL/S for humans and mice,                   Environmental Criteria, Ministry of Education, Tianjin
+        and ﬁgures of SDS-PAGE and Western blot, simulation                         300350, P. R. China; Tianjin Key Laboratory of
+        diagram of equilibrium dialysis experiments, fold change                    Environmental Remediation and Pollution Control, Tianjin
+        of the PFAS concentration in terminal buﬀer to the initial                  300350, P. R. China; College of Environmental Science and
+        buﬀer in the adsorption tests, liver and body weight, ratio                 Engineering, Nankai University, Tianjin 300350, P. R. China
+        of liver to body weight of mice in four PFASs dosage
+        groups, concentration of PFASs in mice liver and serum,              Complete contact information is available at:
+        comparison of the RL/S values of PFASs for diﬀerent                  https://pubs.acs.org/10.1021/acs.est.1c08493
+        species in previous reports, Spearman correlation,
+        interaction of PFASs with hL-FABP and HSA measured                   Author Contributions
+                                                                             ∥
+        by microscale thermophoresis, thermomechanical anal-                     Y.J. and Y.Z. contributed equally to this paper.
+        ysis of the interaction between PFASs with hL-FABP by                Notes
+        ﬁtting Kd at diﬀerent temperatures, proposed binding                 The authors declare no competing ﬁnancial interest.
+
+                                                                             ■
+        conformations of the complexs of PFASs and PLA to hL-
+        FABP, and relationship between RL/S with log Kd (hL‑FABP)                ACKNOWLEDGMENTS
+        for low-dose exposure groups and high-dose exposure
+        groups (PDF)                                                         The authors acknowledge ﬁnancial support from the Natural
+
+
+■
+                                                                             Science Foundation of China (NSFC 21737003, 41991313,
+                                                                             22111530176, 42161134001), Ministry of Science and Tech-
+      AUTHOR INFORMATION                                                     nology (2019YFC1804203, 2018YFC1801003), Fundamental
+Corresponding Authors                                                        Research Funds for the Central Universities, Nankai University,
+     Lingyan Zhu − Key Laboratory of Pollution Processes and                 the 111 program of Ministry of Education, China (T2017002),
+       Environmental Criteria, Ministry of Education, Tianjin                Graduate Research and Innovation Project of Tianjin
+       300350, P. R. China; Tianjin Key Laboratory of                        (2019YJSB080), and Chinese University Scientiﬁc Fund (No.
+       Environmental Remediation and Pollution Control, Tianjin              2452021103).
+
+                                                                             ■
+       300350, P. R. China; College of Environmental Science and
+       Engineering, Nankai University, Tianjin 300350, P. R. China;                 REFERENCES
+         orcid.org/0000-0001-9318-7940; Email: zhuly@
+                                                                              (1) Zhu, Y.; Jia, Y.; Liu, M.; Yang, L.; Yi, S.; Feng, X.; Zhu, L.
+       nankai.edu.cn                                                         Mechanisms for tissue-specific accumulation and phase I/II trans-
+     Guoqiang Shan − Key Laboratory of Pollution Processes and               formation of 6:2 fluorotelomer phosphate diester in earthworm (M.
+       Environmental Criteria, Ministry of Education, Tianjin                guillelmi). Environ. Int. 2021, 151, 106451.
+       300350, P. R. China; Tianjin Key Laboratory of                         (2) Joerss, H.; Xie, Z.; Wagner, C. C.; von Appen, W. J.; Sunderland, E.
+       Environmental Remediation and Pollution Control, Tianjin              M.; Ebinghaus, R. Transport of legacy perfluoroalkyl substances and the
+       300350, P. R. China; College of Environmental Science and             replacement compound HFPO-DA through the Atlantic gateway to the
+
+                                                                      6198                                             https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                     Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                            pubs.acs.org/est                                                 Article
+
+Arctic Ocean-Is the Arctic a sink or a source? Environ. Sci. Technol.                    (18) Ng, C. A.; Hungerbuhler, K. Bioconcentration of perfluorinated
+2020, 54, 9958−9967.                                                                   alkyl acids: how important is specific binding? Environ. Sci. Technol.
+  (3) Wan, H. T.; Lai, K. P.; Wong, C. K. C. Comparative analysis of                   2013, 47, 7214−7223.
+PFOS and PFOA toxicity on sertoli cells. Environ. Sci. Technol. 2020, 54,                (19) Gao, K.; Zhuang, T.; Liu, X.; Fu, J.; Zhang, J.; Fu, J.; Wang, L.;
+3465−3475.                                                                             Zhang, A.; Liang, Y.; Song, M.; Jiang, G. Prenatal exposure to per- and
+  (4) Zhu, Y.; Jia, Y.; Wang, X.; Yi, S.; Li, Y.; Zhong, W.; Zhu, L.                   polyfluoroalkyl substances (PFASs) and association between the
+Mechanisms underlying the impacts of lipids on the diverse                             placental transfer efficiencies and dissociation constant of serum
+bioavailability of per- and polyfluoroalkyl substances in foods. Environ.              proteins-PFAS complexes. Environ. Sci. Technol. 2019, 53, 6529−6538.
+Sci. Technol. 2022, 56, 3613.                                                            (20) Cao, H.; Zhou, Z.; Wang, L.; Liu, G.; Sun, Y.; Wang, Y.; Wang,
+  (5) Wang, T.; Wang, Y.; Liao, C.; Cai, Y.; Jiang, G. Perspectives on the             T.; Liang, Y. Screening of potential PFOS alternatives to decrease liver
+inclusion of perfluorooctane sulfonate into the Stockholm convention                   bioaccumulation: experimental and computational approaches. Envi-
+on persistent organic pollutants. Environ. Sci. Technol. 2009, 43, 5171−               ron. Sci. Technol. 2019, 53, 2811−2819.
+5175.                                                                                    (21) Ng, C. A.; Hungerbuhler, K. Bioaccumulation of perfluorinated
+  (6) Shi, Y.; Vestergren, R.; Zhou, Z.; Song, X.; Xu, L.; Liang, Y.; Cai, Y.          alkyl acids: observations and models. Environ. Sci. Technol. 2014, 48,
+Tissue distribution and whole body burden of the chlorinated                           4637−4648.
+
+
+
+
+                                                                                                                                                                              Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+polyfluoroalkyl ether sulfonic acid F-53B in Crucian Carp (Carassius                     (22) Yi, S.; Zhu, L.; Mabury, S. A. First report on in vivo
+                                                                                       pharmacokinetics and biotransformation of chlorinated polyfluoroalkyl
+carassius): evidence for a highly bioaccumulative contaminant of
+                                                                                       ether sulfonates in rainbow trout. Environ. Sci. Technol. 2020, 54, 345−
+emerging concern. Environ. Sci. Technol. 2015, 49, 14156−14165.
+                                                                                       354.
+  (7) Gebbink, W. A.; van Asseldonk, L.; van Leeuwen, S. P. J. Presence
+                                                                                         (23) Cui, Q.; Pan, Y.; Zhang, H.; Sheng, N.; Wang, J.; Guo, Y.; Dai, J.
+of emerging per- and polyfluoroalkyl substances (PFASs) in river and
+                                                                                       Occurrence and tissue distribution of novel perfluoroether carboxylic
+drinking water near a fluorochemical production plant in the                           and sulfonic acids and legacy per/polyfluoroalkyl substances in black-
+Netherlands. Environ. Sci. Technol. 2017, 51, 11057−11065.                             spotted frog (Pelophylax nigromaculatus). Environ. Sci. Technol. 2018,
+  (8) Feng, X.; Ye, M.; Li, Y.; Zhou, J.; Sun, B.; Zhu, Y.; Zhu, L. Potential          52, 982−990.
+sources and sediment-pore water partitioning behaviors of emerging                       (24) Woodcroft, M. W.; Ellis, D. A.; Rafferty, S. P.; Burns, D. C.;
+per/polyfluoroalkyl substances in the South Yellow Sea. J. Hazard.                     March, R. E.; Stock, N. L.; Trumpour, K. S.; Yee, J.; Munro, K.
+Mater. 2020, 389, 122124.                                                              Experimental characterization of the mechanism of perfluorocarboxylic
+  (9) Shan, G.; Qian, X.; Chen, X.; Feng, X.; Cai, M.; Yang, L.; Chen, M.;             acids’ liver protein bioaccumulation: the key role of the neutral species.
+Zhu, L.; Zhang, S. Legacy and emerging per- and poly-fluoroalkyl                       Environ. Toxicol. Chem. 2010, 29, 1669−1677.
+substances in surface seawater from northwestern Pacific to Southern                     (25) Heuvel, J. P. V.; Kuslikis, B. I.; Van Rafelghem, M. J.; Peterson, R.
+Ocean: Evidences of current and historical release. J. Hazard. Mater.                  E. Tissue distribution, metabolism, and elimination of perfluoroocta-
+2021, 411, 125049.                                                                     noic acid in male and female rats. J. Biochem. Toxi 1991, 6, 83−92.
+  (10) Shi, Y.; Vestergren, R.; Xu, L.; Zhou, Z.; Li, C.; Liang, Y.; Cai, Y.             (26) DeWitt, J. C.; Copeland, C. B.; Strynar, M. J.; Luebke, R. W.
+Human exposure and elimination kinetics of chlorinated polyfluor-                      Perfluorooctanoic acid−induced immunomodulation in adult C57BL/
+oalkyl ether sulfonic acids (Cl-PFESAs). Environ. Sci. Technol. 2016, 50,              6J or C57BL/6N female mice. Environ. Health Perspect. 2008, 116,
+2396−2404.                                                                             644−650.
+  (11) Chen, H.; Munoz, G.; Duy, S. V.; Zhang, L.; Yao, Y.; Zhao, Z.; Yi,                (27) Yu, L. J.; Chen, Y.; Treadway, J. L.; McPherson, R. K.; McCoid, S.
+L.; Liu, M.; Sun, H.; Liu, J.; Sauve, S. Occurrence and distribution of                C.; Gibbs, E. M.; Hoover, D. J. Establishment of correlation between in
+per- and polyfluoroalkyl substances in Tianjin, China: The contribution                vitro enzyme binding potency and in vivo pharmacological activity:
+of emerging and unknown analogues. Environ. Sci. Technol. 2020, 54,                    Application to liver alycogen phosphorylase inhibitors. J. Pharmacol.
+14254−14264.                                                                           Exp. Ther. 2006, 317, 1230.
+  (12) Gallo, V.; Leonardi, G.; Genser, B.; Lopez-Espinosa, M. J.;                       (28) Ren, J.; Chaires, J. B. Sequence and structural selectivity of
+Frisbee, S. J.; Karlsson, L.; Ducatman, A. M.; Fletcher, T. Serum                      nucleic acid binding ligands. Biochemistry 1999, 38, 16067−16075.
+perfluorooctanoate (PFOA) and perfluorooctane sulfonate (PFOS)                           (29) Shoemaker, J.; Tettenhorst, D. Method 537.1 Determination of
+concentrations and liver function biomarkers in a population with                      selected per- and polyﬂourinated alkyl substances in drinking water by
+elevated PFOA exposure. Environ. Health Perspect. 2012, 120, 655−                      solid phase extraction and liquid chromatography/tandem mass
+660.                                                                                   spectrometry (LC/MS/MS); U.S. Environmental Protection Agency:
+  (13) Sheng, N.; Pan, Y.; Guo, Y.; Sun, Y.; Dai, J. Hepatotoxic effects of            Washington, DC, 2020.
+hexafluoropropylene oxide trimer acid (HFPO-TA), a novel perfluor-                       (30) Method 8327 Per- and polyﬂuoroalkyl substances (PFAS) by
+                                                                                       liquid chromatography/tandem mass spectrometry (LC/MS/MS);
+ooctanoic acid (PFOA) alternative, on mice. Environ. Sci. Technol.
+                                                                                       U.S. Environmental Protection Agency: Washington, DC, 2021.
+2018, 52, 8005−8015.
+                                                                                         (31) Zhang, M. L.; Xu, Y. P.; Kumar, A.; Zhang, Y.; Wu, W. Q.
+  (14) Yi, S.; Chen, P.; Yang, L.; Zhu, L. Probing the hepatotoxicity
+                                                                                       Studying the potassium-induced G-quadruplex DNA folding process
+mechanisms of novel chlorinated polyfluoroalkyl sulfonates to zebrafish
+                                                                                       using Microscale Thermophoresis. Biochemistry 2019, 58, 3955−3959.
+larvae: Implication of structural specificity. Environ. Int. 2019, 133,                  (32) Wodak, S. J.; De Crombrugghe, M.; Janin, J. Computer studies of
+105262.                                                                                interactions between macromolecules. Prog. Biophys. Mol. Biol. 1987,
+  (15) Li, C. H.; Shi, Y. L.; Li, M.; Guo, L. H.; Cai, Y. Q. Receptor-bound            49, 29−63.
+perfluoroalkyl carboxylic acids dictate their activity on human and                      (33) Sheng, N.; Cui, R.; Wang, J.; Guo, Y.; Wang, J.; Dai, J.
+mouse peroxisome proliferator-activated receptor gamma. Environ. Sci.                  Cytotoxicity of novel fluorinated alternatives to long-chain perfluor-
+Technol. 2020, 54, 9529−9536.                                                          oalkyl substances to human liver cell line and their binding capacity to
+  (16) Li, C. H.; Ren, X. M.; Ruan, T.; Cao, L. Y.; Xin, Y.; Guo, L. H.;               human liver fatty acid binding protein. Arch. Toxicol. 2018, 92, 359−
+Jiang, G. Chlorinated polyfluorinated ether sulfonates exhibit higher                  369.
+activity toward peroxisome proliferator-activated receptors signaling                    (34) Morris, G. M.; Huey, R.; Lindstrom, W.; Sanner, M. F.; Belew, R.
+pathways than perfluorooctanesulfonate. Environ. Sci. Technol. 2018,                   K.; Goodsell, D. S.; Olson, A. J. AutoDock4 and AutoDockTools4:
+52, 3232−3239.                                                                         Automated docking with selective receptor flexibility. J. Comput. Chem.
+  (17) Dassuncao, C.; Pickard, H.; Pfohl, M.; Tokranov, A. K.; Li, M.;                 2009, 30, 2785−2791.
+Mikkelsen, B.; Slitt, A.; Sunderland, E. M. Phospholipid levels predict                  (35) Trott, O.; Olson, A. J. AutoDock Vina: Improving the speed and
+the tissue distribution of poly- and perfluoroalkyl substances in a marine             accuracy of docking with a new scoring function, efficient optimization,
+mammal. Environ. Sci. Technol. Lett. 2019, 6, 119−125.                                 and multithreading. J. Comput. Chem. 2009, 31, 455−461.
+
+                                                                                6199                                               https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                                 Environ. Sci. Technol. 2022, 56, 6192−6200
+Environmental Science & Technology                                                            pubs.acs.org/est                                               Article
+
+  (36) The PyMOL molecular graphics system, Version 1.8;                                 (53) Fàbrega, F.; Kumar, V.; Schuhmacher, M.; Domingo, J. L.; Nadal,
+Schrodinger, LLC, 2015.                                                                 M. PBPK modeling for PFOS and PFOA: Validation with human
+  (37) Chou, W. C.; Lin, Z. Bayesian evaluation of a physiologically                    experimental data. Toxicol. Lett. 2014, 230, 244−251.
+based pharmacokinetic (PBPK) model for perfluorooctane sulfonate                         (54) Gockener, B.; Weber, T.; Rudel, H.; Bucking, M.; Kolossa-
+(PFOS) to characterize the interspecies uncertainty between mice, rats,                 Gehring, M. Human biomonitoring of per- and polyfluoroalkyl
+monkeys, and humans: Development and performance verification.                          substances in German blood plasma samples from 1982 to 2019.
+Environ. Int. 2019, 129, 408−422.                                                       Environ. Int. 2020, 145, 106123.
+  (38) Sheng, N.; Zhou, X.; Zheng, F.; Pan, Y.; Guo, X.; Guo, Y.; Sun, Y.;               (55) Cheng, W.; Ng, C. A. A Permeability-limited physiologically
+Dai, J. Comparative hepatotoxicity of 6:2 fluorotelomer carboxylic acid                 based pharmacokinetic (PBPK) model for perfluorooctanoic acid
+and 6:2 fluorotelomer sulfonic acid, two fluorinated alternatives to long-              (PFOA) in male rats. Environ. Sci. Technol. 2017, 51, 9930−9939.
+chain perfluoroalkyl acids, on adult male mice. Arch. Toxicol. 2017, 91,
+2909−2919.
+  (39) Zhang, Y.; Beesoon, S.; Zhu, L.; Martin, J. W. Biomonitoring of
+perfluoroalkyl acids in human urine and estimates of biological half-life.
+Environ. Sci. Technol. 2013, 47, 10619−10627.
+
+
+
+
+                                                                                                                                                                            Downloaded from pubs.​acs.​org/​esthag/​article-pdf/​56/​10/​6192/​9343116/​es1c08493.​pdf by UNIV OF ILLINOIS CHICAGO user on 03 November 2026
+  (40) Trowbridge, J.; Gerona, R. R.; Lin, T.; Rudel, R. A.; Bessonneau,
+V.; Buren, H.; Morello-Frosch, R. Exposure to perfluoroalkyl
+substances in a cohort of women firefighters and office workers in
+San Francisco. Environ. Sci. Technol. 2020, 54, 3363−3374.
+  (41) Pan, Y.; Zhu, Y.; Zheng, T.; Cui, Q.; Buka, S. L.; Dai, J.; et al.
+Novel chlorinated polyfluorinated ether sulfonates and legacy per-/
+polyfluoroalkyl substances: placental transfer and relationship with
+serum albumin and glomerular filtration rate. Environ. Sci. Technol.
+2017, 51, 634−644.
+  (42) Beesoon, S.; Martin, J. W. Isomer-specific binding affinity of
+perfluorooctanesulfonate (PFOS) and perfluorooctanoate (PFOA) to
+serum proteins. Environ. Sci. Technol. 2015, 49, 5722−5731.
+  (43) Chen, H.; He, P.; Rao, H.; Wang, F.; Liu, H.; Yao, J. Systematic
+investigation of the toxic mechanism of PFOA and PFOS on bovine
+serum albumin by spectroscopic and molecular modeling. Chemosphere
+2015, 129, 217−224.
+  (44) Zhang, L.; Ren, X. M.; Guo, L. H. Structure-based investigation
+on the interaction of perfluorinated compounds with human liver fatty
+acid binding protein. Environ. Sci. Technol. 2013, 47, 11293−301.
+  (45) Robuck, A. R.; McCord, J. P.; Strynar, M. J.; Cantwell, M. G.;
+Wiley, D. N.; Lohmann, R. Tissue-specific distribution of legacy and
+novel per- and polyfluoroalkyl substances in Juvenile seabirds. Environ.
+Sci. Technol. Lett. 2021, 8, 457−462.
+  (46) Jin, H.; Zhang, Y.; Jiang, W.; Zhu, L.; Martin, J. W. Isomer-
+specific distribution of perfluoroalkyl substances in blood. Environ. Sci.
+Technol. 2016, 50, 7808−7815.
+  (47) Han, J.; Fu, J.; Sun, J.; Hall, D. R.; Yang, D.; Blatz, D.; Houck, K.;
+Ng, C.; Doering, J.; LaLone, C.; Peng, H. Quantitative chemical
+proteomics reveals interspecies variations on binding schemes of L-
+FABP with perfluorooctanesulfonate. Environ. Sci. Technol. 2021, 55,
+9012−9023.
+  (48) Basken, N. E.; Green, M. A. Cu(II) bis(thiosemicarbazone)
+radiopharmaceutical binding to serum albumin: further definition of
+species dependence and associated substituent effects. Nuclear Medicine
+and Biology 2009, 36 (5), 495−504.
+  (49) Liu, C.; Gin, K. Y.; Chang, V. W.; Goh, B. P.; Reinhard, M. Novel
+perspectives on the bioaccumulation of PFCs–the concentration
+dependency. Environ. Sci. Technol. 2011, 45, 9758−9764.
+  (50) Knutsen, H. K.; Alexander, J.; Barregård, L.; Bignami, M.;
+Brüschweiler, B.; Ceccatelli, S.; Cottrill, B.; Dinovi, M.; Edler, L.; Grasl-
+Kraupp, B.; Hogstrand, C.; Hoogenboom, L.; Nebbia, C. S.; Oswald, I.
+P.; Petersen, A.; Rose, M.; Roudot, A.-C.; Vleminckx, C.; Vollmer, G.;
+Wallace, H.; Bodin, L.; Cravedi, J.-P.; Halldorsson, T. I.; Haug, L. S.;
+Johansson, N.; van Loveren, H.; Gergelova, P.; Mackay, K.; Levorato,
+S.; van Manen, M.; Schwerdtle, T. Risk to human health related to the
+presence of perfluorooctane sulfonic acid and perfluorooctanoic acid in
+food. EFSA Journal 2018, 16, No. e05194.
+  (51) Characterization and application of physiologically based
+pharmacokinetic models in risk assessment; World Health Organ-
+ization, 2010.
+  (52) Poothong, S.; Thomsen, C.; Padilla-Sanchez, J. A.;
+Papadopoulou, E.; Haug, L. S. Distribution of novel and well-known
+poly- and perfluoroalkyl substances (PFASs) in human serum, plasma,
+and whole blood. Environ. Sci. Technol. 2017, 51, 13388−13396.
+
+                                                                                 6200                                            https://doi.org/10.1021/acs.est.1c08493
+                                                                                                                               Environ. Sci. Technol. 2022, 56, 6192−6200
+

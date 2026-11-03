@@ -1,0 +1,735 @@
+                                 Supporting Information
+
+
+
+Predicting Salt Effects on the Binding of PFAS to Protein
+Yi Gao1 , Tohren C. G. Kibbey2 , Matthew J. Lee1,3 , Denis M. O’Carroll1*
+
+
+
+1 School of Civil      and Environmental Engineering, Water Research Centre and Water Research
+
+Laboratory, The University of New South Wales, Sydney, NSW 2052, Australia.
+2 School of Civil     Engineering and Environmental Science, University of Oklahoma, Norman, OK
+
+73019, USA.
+
+3 Geosyntec   Environmental Consultants, Suite 6, 66 Saint Georges Tce, Perth, Western Australia
+
+6001, Australia
+
+
+
+* Corresponding author: e-mail: d.ocarroll@unsw.edu.au
+
+
+
+
+Pages             28
+
+Figures           14
+
+Tables            4
+
+
+
+
+                                                 S1
+                                           Figures
+
+
+
+
+Figure S1. Comparison of binding constant, Ka, from literature studies for PFAS interactions with
+(a) BSA and (b) HSA1-9 . Circle symbols represent PFCAs, while cross symbols represent PFSAs.
+
+
+
+
+                                               S2
+Figure S2. Comparison of binding constant, Ka, from Starnes, et al. 5 for PFAS interactions with
+various serum albumins.
+
+
+
+
+Figure S3. Water salinity scale in the environment compared to the range of salt concentration in
+
+this study.
+
+
+
+
+                                                S3
+Figure S4. The structure of studied PFAS.
+
+
+
+
+                                            S4
+Figure S5. Fluorescence emission profiles of 0.8 𝜇𝑀 BSA with increasing concentration of PFHpA
+and (a) in the absence of salt, and in the presence of (b) 150 mM NaCl, (c) 300 mM NaCl, (d) 150
+mM KCl, (e) 50 mM CaCl2, (f) 150 mM, and (h) 150 mM MgCl2 in 20 mM MOPs buffer (pH 7)
+at 20 °C.
+
+
+
+
+                                              S5
+Figure S6. Van ’t Hoff plot of 0.8 𝜇𝑀 BSA with increasing concentration of PFHpA in the presence
+of different salts at (i.e., NaCl, KCl, CaCl2 , MgCl2 , and Na2 SO 4 ) in 20 mM MOPs solution at 20, 27,
+37, and 45 °C. Markers are experimentally derived binding affinities. Dashed lines represent fitting
+to the Van ’t Hoff equation as shown in Eq. (4).
+
+
+
+
+Figure S7. Experimentally measured binding constant of PFHpA and PFOS with BSA in the
+presence of NaCl salt in 20 mM citrate buffer at pH 4, 20 mM phosphate buffer at pH 7, and 20 mM
+phosphate buffer titrated with NaOH to pH 10. Error bars represent the standard error of the fit.
+
+
+
+
+                                                  S6
+Figure S8. Model derived (K as_app ) and experimentally obtained (Ka_Hill) binding constants of
+PFHpA/BSA in the presence of different salts (i.e., NaCl, KCl, CaCl2 , MgCl2 , and Na2 SO4 in MOPs
+or phosphate buffer solution at pH 7), with an R2 value of 0.94.
+
+
+
+
+                                               S7
+Figure S9. Fluorescence emission profiles of 0.8 𝜇𝑀 BSA with increasing concentration of (a)
+PFBA, (b) PFHxA, (c) PFHpA, (d) PFOA, (e) PFNA, (f) PFDA, (g) PFBS, (h) PFHxS, (i) PFOS,
+and (j) GenX in the absence of salt in 20 mM NaH2 PO4 -Na2 HPO 4 buffer (pH 7) at 20 °C.
+
+
+
+
+                                            S8
+Figure S10. Comparison of binding constant (K a), between literature studies (with experime nta l
+conditions listed in Table S1) and the present study for PFAS interactions with BSA under a range
+of salt conditions. Circle symbols represent PFCAs, while cross symbols represent PFSAs.
+
+
+
+
+                                              S9
+Figure S11. Model derived (Kas_app ) and experimentally obtained (K a_Hill) binding constants of
+PFAS/BSA in the presence of NaCl salts in 20 mM phosphate buffer solution at pH
+
+
+
+
+                                             S10
+Figure S12. Experimentally obtained Hill coefficient (nHil from Eq. 7) of PFAS/BSA in 20 mM
+sodium phosphate buffer (pH 7, 20°C) in the absence and in the presence of 10, 30, 80, 150, 300
+and 500 mM NaCl salt.
+
+
+
+
+                                              S11
+Figure S13. Model derived binding constants (Kas_app ) and the interfacial adsorption distributio n
+coefficient at low-PFAS-concentration (K iw_0 ). The concentrations of salt used in predicted K iw is
+based on the experimental condition of PFAS/BSA, with 32, 42, 62, and 112 mM NaCl. The size of
+symbols increases with salt concentration
+
+
+
+
+                                                S12
+.
+
+
+
+
+Figure S14. Log KL (derived from Le, et al. 10 ) vs Log Kas_app under different salt concentration for
+PFHxA, PFHpA, PFOA, and PFNA and PFHxS. The size of symbols increases with salt
+concentration increase from 32, to 112 mM (NaCl).
+
+
+
+       The parameter KL in Le, et al. 10 study account for air-water adsorption of PFAS in the
+
+absence of additional salt, which is an indicator of hydrophobicity of PFAS. Fig. S8 shows a linear
+
+relation between Log KL and Log K as_app under all salt conditions indicating that the hydrophobic
+
+interaction (which increased with chain length) is the dominant driven force for PFAS/BSA
+
+interaction. Interestingly, PFHxS falls into the same fitting lines with PFCAs. Given the KL values
+
+are based on chemical structure, which is easy to calculate/obtain. More work is required to
+
+determine the relation between Log KL and Log Kas_app to explore if K as_app can be predicted based
+
+on the KL values.
+
+
+
+
+                                              Tables
+
+
+
+
+                                                S13
+Table S1. Binding constants of PFAS/protein from literature studies (ND: non-detected binding).
+
+
+Fluorinated               Ligand                  Receptor    Buffer                                                             Ka ×10-5
+carbons       Ligand   concentration   Receptor concentration pH        Buffer                    Buffer concentration (mol/L)   (mol/L)_           Method              Reference
+     7        PFOA     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 3.77       Equilibrium dialysis    Alesio, et al. 11
+     8        PFNA     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 44.05      Equilibrium dialysis    Alesio, et al. 11
+     9        PFDA     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 61.62      Equilibrium dialysis    Alesio, et al. 11
+     4        PFBS     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 0.93       Equilibrium dialysis    Alesio, et al. 11
+     6        PFHxS    0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 6.48       Equilibrium dialysis    Alesio, et al. 11
+     8        PFOS     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 17.99      Equilibrium dialysis    Alesio, et al. 11
+     5        GenX     0.001-0.02 mM     BSA      0.01 mM      7.4       PBS                                 1xPBS                 0.65       Equilibrium dialysis    Alesio, et al. 11
+     7        PFOA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.85     Fluorescence-SV model     Alesio, et al. 11
+     8        PFNA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.78     Fluorescence-SV model     Alesio, et al. 11
+     9        PFDA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.31     Fluorescence-SV model     Alesio, et al. 11
+     4        PFBS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.21     Fluorescence-SV model     Alesio, et al. 11
+     6        PFHxS                      BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.48     Fluorescence-SV model     Alesio, et al. 11
+     8        PFOS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.34     Fluorescence-SV model     Alesio, et al. 11
+     5        GenX                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.24     Fluorescence-SV model     Alesio, et al. 11
+     7        PFOA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.41     Fluorescence-MSV model    Alesio, et al. 11
+     8        PFNA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.37     Fluorescence-MSV model    Alesio, et al. 11
+     9        PFDA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.04     Fluorescence-MSV model    Alesio, et al. 11
+     4        PFBS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                  0.2     Fluorescence-MSV model    Alesio, et al. 11
+     6        PFHxS                      BSA    0.00125 mM     7.4       PBS                                 1xPBS                  0.8     Fluorescence-MSV model    Alesio, et al. 11
+     8        PFOS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.33     Fluorescence-MSV model    Alesio, et al. 11
+     5        GenX                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                  0.1     Fluorescence-MSV model    Alesio, et al. 11
+     7        PFOA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.39     Fluorescence-Hill model   Alesio, et al. 11
+     8        PFNA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 2.55     Fluorescence-Hill model   Alesio, et al. 11
+     9        PFDA                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.17     Fluorescence-Hill model   Alesio, et al. 11
+     4        PFBS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                  0.2     Fluorescence-Hill model   Alesio, et al. 11
+     6        PFHxS                      BSA    0.00125 mM     7.4       PBS                                 1xPBS                 0.83     Fluorescence-Hill model   Alesio, et al. 11
+     8        PFOS                       BSA    0.00125 mM     7.4       PBS                                 1xPBS                 1.14     Fluorescence-Hill model   Alesio, et al. 11
+
+                                                                                              S14
+5     GenX    BSA   0.00125 mM   7.4           PBS                           1xPBS                    0.14   Fluorescence-Hill model      Alesio, et al. 11
+                                       Hank’s balanced salt
+3    PFBA     BSA     3 ng/L     7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   0.23     Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+5    PFHxA    BSA     1 ng/L     7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   1.8      Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+6    PFHpA    BSA    0.1 ng/L    7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   7.2      Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+7    PFOA     BSA    0.1 ng/L    7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   11       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+8    PFNA     BSA    0.05 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   14       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+9    PFDA     BSA    0.05 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   36       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+10   PFUnA    BSA   0.025 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   31       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+4     PFBS    BSA     1 ng/L     7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   1.1      Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+6    PFHxS    BSA    0.05 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   44       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+8     PFOS    BSA   0.025 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   32       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+5     GenX    BSA     3 ng/L     7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   0.23     Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+     DONA     BSA    0.1 ng/L    7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   1.8      Dialysis experiment       Allendorf, et al. 2
+      9CL-                             Hank’s balanced salt
+     PF3ONS   BSA   0.025 ng/L   7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   69       Dialysis experiment       Allendorf, et al. 2
+                                       Hank’s balanced salt
+     PFECHS   BSA    0.1 ng/L    7.4     solution (HBSS)      1xHBSS with 1.86 g/L additional salts   24       Dialysis experiment       Allendorf, et al. 2
+                                                                                                                                       Hebert and MacManus-
+                                                                                                      0.09
+6    PFHpA    HAS    0.004 mM    7      phosphate buffer                     50 mM                                Fluorescence                Spencer 4
+                                                                                                                                       Hebert and MacManus-
+7    PFOA     HAS    0.004 mM    7      phosphate buffer                     50 mM                    0.22        Fluorescence                Spencer 4
+                                                                                                                                       Hebert and MacManus-
+7    PFOA     HAS    0.01 mM     7      phosphate buffer                     50 mM                    0.13        Fluorescence                Spencer 4
+
+
+                                                               S15
+                                                                                                                                                                           Hebert and MacManus-
+8     PFNA                       HAS   0.004 mM   7        phosphate buffer                        50 mM                       0.26              Fluorescence                     Spencer 4
+                                                                                                                                                                           Hebert and MacManus-
+8     PFNA                       HAS   0.01 mM    7        phosphate buffer                        50 mM                       0.10              Fluorescence                     Spencer 4
+                                                                                                                                                                           Hebert and MacManus-
+9     PFDA                       HAS   0.004 mM   7        phosphate buffer                        50 mM                       0.47              Fluorescence                     Spencer 4
+                                                                                                                                                                           Hebert and MacManus-
+10    PFUnA                      HAS   0.004 mM   7        phosphate buffer                        50 mM                       0.42              Fluorescence                     Spencer 4
+                                                                                                                                                                           Hebert and MacManus-
+6     PFHxS                      HAS   0.004 mM   7        phosphate buffer                        50 mM                       0.12              Fluorescence                     Spencer 4
+                                                                                                                                                                           Hebert and MacManus-
+8     PFOS                       HAS   0.004 mM   7        phosphate buffer                        50 mM                       0.09              Fluorescence                     Spencer 4
+7     PFOA      0.04-70 ratio    BSA    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       14                  dialysis                   Bischel, et al. 3
+7     PFOA       0.1-4 ratio     BSA    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       1.3               nanoESI-MS                   Bischel, et al. 3
+8     PFNA      0.0005 ratio     BSA    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       14                  dialysis                   Bischel, et al. 3
+8     PFNA      0.02-120 ratio   BSA    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       33                  dialysis                   Bischel, et al. 3
+8     PFNA       0.1-4 ratio     BSA    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       2.6               nanoESI-MS                   Bischel, et al. 3
+8     PFNA      0.0006 ratio     HAS    0.5 mM    7.4   sodium phosphate buffer                    50 mM                       21                  dialysis                   Bischel, et al. 3
+3     PFBA                       HSA              7.4    NaH2PO4-Na2HPO4                           100 mM                      nd                fluorescence                 Chen and Guo 7
+7     PFOA                       HSA              7.4    NaH2PO4-Na2HPO4                           100 mM                      2.7               fluorescence                 Chen and Guo 7
+11    PFDoA                      HSA              7.4    NaH2PO4-Na2HPO4                           100 mM                      nd                fluorescence                 Chen and Guo 7
+4     PFBS                       HSA              7.4    NaH2PO4-Na2HPO4                           100 mM                      nd                fluorescence                 Chen and Guo 7
+8     PFOS                       HSA              7.4    NaH2PO4-Na2HPO4                           100 mM                      0.22              fluorescence                Chen and Guo 7
+                                                                                                                                                                           MacManus-Spencer, et
+8     PFOS                       HSA                                                                                           125               nanoESI-MS                       al. 6
+3     PFBA                       HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0038   Differential Scanning Fluorimetry      Starnes, et al. 5
+5     PFHxA                      HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0058   Differential Scanning Fluorimetry      Starnes, et al. 5
+7     PFOA                       HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0127   Differential Scanning Fluorimetry      Starnes, et al. 5
+4     PFBS                       HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0060   Differential Scanning Fluorimetry      Starnes, et al. 5
+8     PFOS                       HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0145   Differential Scanning Fluorimetry      Starnes, et al. 5
+5     GenX                       HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0064   Differential Scanning Fluorimetry      Starnes, et al. 5
+6    6:2 FTOH                    HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd      Differential Scanning Fluorimetry      Starnes, et al. 5
+6    6:2 FTSA                    HSA   0.13 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0244   Differential Scanning Fluorimetry      Starnes, et al. 5
+3     PFBA                       BSA   0.18 mM    7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0033   Differential Scanning Fluorimetry      Starnes, et al. 5
+
+                                                                                        S16
+5    PFHxA     BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0046   Differential Scanning Fluorimetry   Starnes, et al. 5
+7    PFOA      BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0101   Differential Scanning Fluorimetry   Starnes, et al. 5
+4    PFBS      BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0125   Differential Scanning Fluorimetry   Starnes, et al. 5
+8    PFOS      BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0118   Differential Scanning Fluorimetry   Starnes, et al. 5
+5    GenX      BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0039   Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTOH   BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd      Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTSA   BSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0072   Differential Scanning Fluorimetry   Starnes, et al. 5
+3    PFBA      PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0078   Differential Scanning Fluorimetry   Starnes, et al. 5
+5    PFHxA     PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0105   Differential Scanning Fluorimetry   Starnes, et al. 5
+7    PFOA      PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0270   Differential Scanning Fluorimetry   Starnes, et al. 5
+4    PFBS      PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0080   Differential Scanning Fluorimetry   Starnes, et al. 5
+8    PFOS      PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0263   Differential Scanning Fluorimetry   Starnes, et al. 5
+5    GenX      PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0047   Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTOH   PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd      Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTSA   PSA   0.11 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0192   Differential Scanning Fluorimetry   Starnes, et al. 5
+3    PFBA      RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0053   Differential Scanning Fluorimetry   Starnes, et al. 5
+5    PFHxA     RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0075   Differential Scanning Fluorimetry   Starnes, et al. 5
+7    PFOA      RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0250   Differential Scanning Fluorimetry   Starnes, et al. 5
+4    PFBS      RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0071   Differential Scanning Fluorimetry   Starnes, et al. 5
+8    PFOS      RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0238   Differential Scanning Fluorimetry   Starnes, et al. 5
+5    GenX      RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0061   Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTOH   RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd      Differential Scanning Fluorimetry   Starnes, et al. 5
+6   6:2 FTSA   RSA   0.18 mM    7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.0303   Differential Scanning Fluorimetry   Starnes, et al. 5
+3    PFBA      HSA   0.006 mM   7.4           PBS                               0.1 M                     0.024          Equilibrium dialysis           Gao, et al. 12
+4    PFPeA     HSA   0.006 mM   7.4           PBS                               0.1 M                     0.035          Equilibrium dialysis           Gao, et al. 12
+5    PFHxA     HSA   0.006 mM   7.4           PBS                               0.1 M                     0.051          Equilibrium dialysis           Gao, et al. 12
+6    PFHpA     HSA   0.006 mM   7.4           PBS                               0.1 M                     0.058          Equilibrium dialysis           Gao, et al. 12
+7    PFOA      HSA   0.006 mM   7.4           PBS                               0.1 M                     0.087          Equilibrium dialysis           Gao, et al. 12
+8    PFNA      HSA   0.006 mM   7.4           PBS                               0.1 M                     0.137          Equilibrium dialysis           Gao, et al. 12
+9    PFDA      HSA   0.006 mM   7.4           PBS                               0.1 M                     0.154          Equilibrium dialysis           Gao, et al. 12
+
+                                                                    S17
+10   PFUnDA     HSA     0.006 mM   7.4           PBS                               0.1 M                      0.127          Equilibrium dialysis              Gao, et al. 12
+11   PFDoA      HSA     0.006 mM   7.4           PBS                               0.1 M                      0.097          Equilibrium dialysis              Gao, et al. 12
+12   PFTrDA     HSA     0.006 mM   7.4           PBS                               0.1 M                      0.038          Equilibrium dialysis              Gao, et al. 12
+4     PFBS      HSA     0.006 mM   7.4           PBS                               0.1 M                      0.059          Equilibrium dialysis              Gao, et al. 12
+6     PFHxS     HSA     0.006 mM   7.4           PBS                               0.1 M                      0.127          Equilibrium dialysis              Gao, et al. 12
+8     PFOS      HSA     0.006 mM   7.4           PBS                               0.1 M                      0.263          Equilibrium dialysis              Gao, et al. 12
+      6:2Cl-
+6    PFESA      HSA     0.006 mM   7.4           PBS                               0.1 M                      0.149          Equilibrium dialysis              Gao, et al. 12
+3     PFBA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.011          Equilibrium dialysis              Gao, et al. 12
+4    PFPeA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.015          Equilibrium dialysis              Gao, et al. 12
+5    PFHxA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.023          Equilibrium dialysis              Gao, et al. 12
+6    PFHpA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.028          Equilibrium dialysis              Gao, et al. 12
+7     PFOA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.051          Equilibrium dialysis              Gao, et al. 12
+8     PFNA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.111          Equilibrium dialysis              Gao, et al. 12
+9     PFDA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.130          Equilibrium dialysis              Gao, et al. 12
+10   PFUnDA    L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.185          Equilibrium dialysis              Gao, et al. 12
+11   PFDoA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.105          Equilibrium dialysis              Gao, et al. 12
+12   PFTrDA    L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.032          Equilibrium dialysis              Gao, et al. 12
+4     PFBS     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.023          Equilibrium dialysis              Gao, et al. 12
+6     PFHxS    L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.048          Equilibrium dialysis              Gao, et al. 12
+8     PFOS     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.123          Equilibrium dialysis              Gao, et al. 12
+      6:2Cl-
+6    PFESA     L-FABP   0.006 mM   7.4           PBS                               0.1 M                      0.098          Equilibrium dialysis              Gao, et al. 12
+8     PFOS      HSA     0.006 mM               no buffer                                                     125.000             Ultrafiltration           Beesoon and Martin 8
+8    3m-PFOS    HSA     0.006 mM               no buffer                                                      0.025              Ultrafiltration           Beesoon and Martin 8
+8    4m-PFOS    HSA     0.006 mM               no buffer                                                      0.125              Ultrafiltration           Beesoon and Martin 8
+8    5m-PFOS    HSA     0.006 mM               no buffer                                                      0.111              Ultrafiltration           Beesoon and Martin 8
+7     PFOA      HSA     0.006 mM               no buffer                                                      0.100              Ultrafiltration           Beesoon and Martin 8
+7    3m-PFOA    HSA     0.006 mM               no buffer                                                      0.025              Ultrafiltration           Beesoon and Martin 8
+7    5m-PFOA    HSA     0.006 mM               no buffer                                                      0.033              Ultrafiltration           Beesoon and Martin 8
+
+
+3     PFBA      HSA     0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    0.004    Differential Scanning Fluorimetry     Jackson, et al. 9
+
+
+                                                                       S18
+4    PFPeA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.005   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+5    PFHxA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.006   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+6    PFHpA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.023   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+7     PFOA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.012   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+8     PFNA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.017   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+9     PFDA     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.008   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+10   PFUnDA    HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.007   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+11   PFDoDA    HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.005   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+4     PFBS     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.006   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+6    PFHxS     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.014   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+8     PFOS     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.014   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+5     GenX     HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.006   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+4    4:2FTOH   HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd     Differential Scanning Fluorimetry   Jackson, et al. 9
+
+6    6:2FTOH   HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    nd     Differential Scanning Fluorimetry   Jackson, et al. 9
+
+3    3:3FTCA   HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.006   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+5    5:3FTCA   HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.016   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+6    6:3FTCA   HSA   0.125 mM   7.4   HEPES buffered saline   140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4   0.012   Differential Scanning Fluorimetry   Jackson, et al. 9
+
+
+                                                                    S19
+8   8:3FTCA           HSA   0.125 mM   7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    0.010     Differential Scanning Fluorimetry      Jackson, et al. 9
+
+4   4:2FTSA           HSA   0.125 mM   7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    0.009     Differential Scanning Fluorimetry      Jackson, et al. 9
+
+
+6   6:2FTSA           HSA   0.125 mM   7.4   HEPES buffered saline     140 mM NaCl, 50 mM HEPES, 0.38 mM Na2HPO4    0.027     Differential Scanning Fluorimetry      Jackson, et al. 9
+6   PFHpA     298 K   HSA   0.001 mM   7.4            PBS                                                            0.05               fluorescence               Alesio and Bothun 1
+6   PFHpA     304 K   HSA   0.001 mM   7.4            PBS                                                            5.35               fluorescence               Alesio and Bothun 1
+6   PFHpA     310 K   HSA   0.001 mM   7.4            PBS                                                            7.47               fluorescence               Alesio and Bothun 1
+7    PFOA     298 K   HSA   0.001 mM   7.4            PBS                                                            2.27               fluorescence               Alesio and Bothun 1
+7    PFOA     304 K   HSA   0.001 mM   7.4            PBS                                                           22.30               fluorescence               Alesio and Bothun 1
+7    PFOA     310 K   HSA   0.001 mM   7.4            PBS                                                           19.80               fluorescence               Alesio and Bothun 1
+8    PFNA     298 K   HSA   0.001 mM   7.4            PBS                                                           78.10               fluorescence               Alesio and Bothun 1
+8    PFNA     304 K   HSA   0.001 mM   7.4            PBS                                                            2.02               fluorescence               Alesio and Bothun 1
+8    PFNA     310 K   HSA   0.001 mM   7.4            PBS                                                            0.99               fluorescence               Alesio and Bothun 1
+8   HFPO-TA   298 K   HSA   0.001 mM   7.4            PBS                                                           37.00               fluorescence               Alesio and Bothun 1
+8   HFPO-TA   304 K   HSA   0.001 mM   7.4            PBS                                                           854.00              fluorescence               Alesio and Bothun 1
+8   HFPO-TA   310 K   HSA   0.001 mM   7.4            PBS                                                          23100.00             fluorescence               Alesio and Bothun 1
+6   PFO3DA    298 K   HSA   0.001 mM   7.4            PBS                                                            1.59               fluorescence               Alesio and Bothun 1
+6   PFO3DA    304 K   HSA   0.001 mM   7.4            PBS                                                            0.46               fluorescence               Alesio and Bothun 1
+6   PFO3DA    310 K   HSA   0.001 mM   7.4            PBS                                                            0.30               fluorescence               Alesio and Bothun 1
+6    DFSA     298 K   HSA   0.001 mM   7.4            PBS                                                            0.02               fluorescence               Alesio and Bothun 1
+6    DFSA     304 K   HSA   0.001 mM   7.4            PBS                                                            0.05               fluorescence               Alesio and Bothun 1
+6    DFSA     310 K   HSA   0.001 mM   7.4            PBS                                                            0.21               fluorescence               Alesio and Bothun 1
+                                                                                                                                                                  MacManus-Spencer, et
+7    PFOA             BSA   0.01 mM    7.4   sodium phosphate buffer                    50 mM                        0.33               Fluorescence                       al. 6
+                                                                                                                                                                  MacManus-Spencer, et
+7    PFOA             BSA   0.001 mM   7.4   sodium phosphate buffer                    50 mM                        1.5                Fluorescence                       al. 6
+                                                                                                                                                                  MacManus-Spencer, et
+8    PFNA             BSA   0.01 mM    7.4   sodium phosphate buffer                    50 mM                        0.49               Fluorescence                       al. 6
+                                                                                                                                                                  MacManus-Spencer, et
+8    PFNA             BSA   0.008 mM   7.4   sodium phosphate buffer                    50 mM                        0.7                Fluorescence                       al. 6
+                                                                                                                                                                  MacManus-Spencer, et
+8    PFNA             BSA   0.006 mM   7.4   sodium phosphate buffer                    50 mM                         1                 Fluorescence                       al. 6
+
+
+                                                                             S20
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 BSA     0.004 mM   7.4   sodium phosphate buffer         50 mM    17         Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 BSA     0.002 mM   7.4   sodium phosphate buffer         50 mM    2.3        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 BSA     0.001 mM   7.4   sodium phosphate buffer         50 mM     6         Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+9    PFDA                 BSA     0.01 mM    7.4   sodium phosphate buffer         50 mM    1.8        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+9    PFDA                 BSA     0.002 mM   7.4   sodium phosphate buffer         50 mM    1.4        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+9    PFDA                 BSA     0.001 mM   7.4   sodium phosphate buffer         50 mM     3         Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+10   PFUnA                BSA     0.01 mM    7.4   sodium phosphate buffer         50 mM     3         Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+10   PFUnA                BSA     0.001 mM   7.4   sodium phosphate buffer         50 mM    0.2        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 HSA     0.01 mM    7.4   sodium phosphate buffer         50 mM    0.3        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 HSA     0.001 mM   7.4   sodium phosphate buffer         50 mM    0.5        Fluorescence              al. 6
+                                                                                                                           MacManus-Spencer, et
+7    PFOA                 BSA                7.4   sodium phosphate buffer         50 mM   0.0063       19 F NMR                 al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 BSA                7.4   sodium phosphate buffer         50 mM    0.08        19 F NMR                 al. 6
+                                                                                                                           MacManus-Spencer, et
+8    PFNA                 HSA                7.4   sodium phosphate buffer         50 mM    0.2         19 F NMR                 al. 6
+5    PFHxA   1-1 ratio   L‐FABP              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+7    PFOA    1-1 ratio   L‐FABP              7.4            PBS                    1xPBS   101.01   Equilibrium Dialysis     Khazaee, et al. 13
+4    PFBS    1-1 ratio   L‐FABP              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+8    PFOS    1-1 ratio   L‐FABP              7.4            PBS                    1xPBS   54.35    Equilibrium Dialysis     Khazaee, et al. 13
+6    PFHpA   1-1 ratio   I‐FABP              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+8    PFNA    1-1 ratio   I‐FABP              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+3    PFBA    1-1 ratio   PPAR‐α              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+5    PFHxA   1-1 ratio   PPAR‐α              7.4            PBS                    1xPBS   103.1    Equilibrium Dialysis     Khazaee, et al. 13
+6    PFHpA   1-1 ratio   PPAR‐α              7.4            PBS                    1xPBS    nd      Equilibrium Dialysis     Khazaee, et al. 13
+8    PFNA    1-1 ratio   PPAR‐α              7.4            PBS                    1xPBS   120.48   Equilibrium Dialysis     Khazaee, et al. 13
+7    PFOA    1-1 ratio   PPAR‐γ              7.4            PBS                    1xPBS   175.44   Equilibrium Dialysis     Khazaee, et al. 13
+8    PFOS    1-1 ratio   PPAR‐γ              7.4            PBS                    1xPBS    1.18    Equilibrium Dialysis     Khazaee, et al. 13
+
+                                                                             S21
+3     PFBA      1-1 ratio   PPAR‐δ               7.4         PBS                1xPBS   227.27      Equilibrium Dialysis     Khazaee, et al. 13
+4     PFBS      1-1 ratio   PPAR‐δ               7.4         PBS                1xPBS    nd         Equilibrium Dialysis     Khazaee, et al. 13
+6     PFHxS     1-1 ratio   PPAR‐δ               7.4         PBS                1xPBS   285.71      Equilibrium Dialysis     Khazaee, et al. 13
+8     PFOS      1-1 ratio   PPAR‐δ               7.4         PBS                1xPBS    1.50       Equilibrium Dialysis     Khazaee, et al. 13
+3     PFBA                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  nd      Fluorescence Displacement    Zhang, et al. 14
+4     PFPeA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  nd      Fluorescence Displacement    Zhang, et al. 14
+5     PFHxA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  nd      Fluorescence Displacement    Zhang, et al. 14
+6     PFHpA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.03    Fluorescence Displacement    Zhang, et al. 14
+7     PFOA                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.20    Fluorescence Displacement    Zhang, et al. 14
+8     PFNA                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.62    Fluorescence Displacement    Zhang, et al. 14
+9     PFDA                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.78    Fluorescence Displacement    Zhang, et al. 14
+10   PFUnDA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.94    Fluorescence Displacement    Zhang, et al. 14
+11   PFDoDA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.81    Fluorescence Displacement    Zhang, et al. 14
+13   PFTeDA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.17    Fluorescence Displacement    Zhang, et al. 14
+15   PFHxDA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.09    Fluorescence Displacement    Zhang, et al. 14
+17   PFOcDA                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.16    Fluorescence Displacement    Zhang, et al. 14
+4     PFBS                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.01    Fluorescence Displacement    Zhang, et al. 14
+6     PFHxS                 L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.12    Fluorescence Displacement    Zhang, et al. 14
+8     PFOS                  L-FABP   0.0004 mM   8     Tris- HCl buffer                  0.54    Fluorescence Displacement    Zhang, et al. 14
+6    6:2 FTOH               L-FABP   0.0004 mM   8     Tris- HCl buffer                  nd      Fluorescence Displacement    Zhang, et al. 14
+8    8:2 FTOH               L-FABP   0.0004 mM   8     Tris- HCl buffer                  nd      Fluorescence Displacement    Zhang, et al. 14
+3     PFBA                  PPAR‐γ   0.0008 mM   7.4         PBS                         nd      Fluorescence Displacement    Zhang, et al. 15
+5     PFHxA                 PPAR‐γ   0.0008 mM   7.4         PBS                         nd      Fluorescence Displacement    Zhang, et al. 15
+6     PFHpA                 PPAR‐γ   0.0008 mM   7.4         PBS                        0.008    Fluorescence Displacement    Zhang, et al. 15
+7     PFOA                  PPAR‐γ   0.0008 mM   7.4         PBS                        0.033    Fluorescence Displacement    Zhang, et al. 15
+8     PFNA                  PPAR‐γ   0.0008 mM   7.4         PBS                        0.064    Fluorescence Displacement    Zhang, et al. 15
+9     PFDA                  PPAR‐γ   0.0008 mM   7.4         PBS                        0.118    Fluorescence Displacement    Zhang, et al. 15
+10   PFUnDA                 PPAR‐γ   0.0008 mM   7.4         PBS                        0.172    Fluorescence Displacement    Zhang, et al. 15
+11   PFDoDA                 PPAR‐γ   0.0008 mM   7.4         PBS                        0.070    Fluorescence Displacement    Zhang, et al. 15
+13   PFTeDA                 PPAR‐γ   0.0008 mM   7.4         PBS                        0.063    Fluorescence Displacement    Zhang, et al. 15
+15   PFHxDA                 PPAR‐γ   0.0008 mM   7.4         PBS                        0.078    Fluorescence Displacement    Zhang, et al. 15
+
+                                                                          S22
+17   PFOcDA     PPAR‐γ   0.0008 mM   7.4   PBS         0.093   Fluorescence Displacement   Zhang, et al. 15
+4     PFBS      PPAR‐γ   0.0008 mM   7.4   PBS          nd     Fluorescence Displacement   Zhang, et al. 15
+6     PFHxS     PPAR‐γ   0.0008 mM   7.4   PBS         0.035   Fluorescence Displacement   Zhang, et al. 15
+8     PFOS      PPAR‐γ   0.0008 mM   7.4   PBS         0.107   Fluorescence Displacement   Zhang, et al. 15
+6    6:2 FTOH   PPAR‐γ   0.0008 mM   7.4   PBS          nd     Fluorescence Displacement   Zhang, et al. 15
+8    8:2 FTOH   PPAR‐γ   0.0008 mM   7.4   PBS          nd     Fluorescence Displacement   Zhang, et al. 15
+
+
+
+
+                                                 S23
+Table S2. Average percentages of equivalents per litter (eq/L) * of major ions that are typically
+found in freshwater (e.g., rivers and lakes) 16 and seawater 17 worldwide.
+
+                        Freshwater                                   Seawater
+          Cations               Anions                  Cations          Anions
+          Ca2+ (52.6%)          HCO 3 - (67.1%)         Na+ (76.34%)     Cl- (90.12%)
+          Mg2+ (24.0%)          SO4 2- (16.3%)          Mg2+ (18.57%)    SO4 2- (9.45%)
+          Na+ (19.3%)           Cl- (15.4%)             Ca2+ (3.42%)     HCO 3 - (0.28%)
+          K+ (4.1%)                                     K+ (1.67%)       Br- (0.14%)
+
+
+*The values could vary depending on the specific geochemistry of the sites. Note that freshwater is
+
+defined as having the salinity of less than 1000 mg/L (approx. 0.017 M as NaCl). Salinity up to
+
+3000 mg/L (approx. 0.051 M as NaCl) is fresh to brackish water, up to 5000 mg/L (approx. 0.086
+
+M as NaCl) is brackish water, up to 35,000 mg/L (approx. 0.6 M as NaCl) is saline water, and over
+
+35,000 mg/L is hyper-saline water. Typical sweater has a salinity of about 35,000 mg/L 18 .
+
+
+
+
+                                                  S24
+Table S3. Thermodynamic parameters of BSA/PFHpA binding obtained from binding Van ’t Hoff
+plot (Fig. S6).
+
+                     ΔH              ΔS                    T         ΔG           TΔS
+  Added salt                                      R2
+                   (kJ/mol)      (kJ/mol/K)               (K)      (kJ/mol)     (kJ/mol)
+    no salt         15.6            0.138         0.98    293       -24.8         40.3
+                                                          300       -25.7         41.3
+                                                          310       -27.1         42.7
+                                                          318       -28.2         43.8
+
+NaCl (150 mM)       21.1            0.143         0.94    293       -22.8         43.9
+                                                          300       -23.8         44.9
+                                                          310       -25.3         46.4
+                                                          318       -26.5         47.6
+
+ KCl (150 mM)       16.1            0.133         0.99    293       -22.9         39.0
+                                                          300       -23.9         39.9
+                                                          310       -25.7         41.3
+                                                          318       -26.3         42.3
+CaCl2 (50 mM)       16.9            0.140         0.94    293       -24.2         41.1
+                                                          300       -25.2         42.1
+                                                          310       -26.6         43.5
+                                                          318       -27.7         44.6
+MgCl2 (50 mM)       17.5            0.143         0.99    293       -24.3         41.8
+                                                          300       -25.3         42.8
+                                                          310       -26.7         44.3
+                                                          318       -27.9         45.4
+Na2 SO4 (60 mM)     17.9            0.139         0.99    293       -23.9         41.8
+                                                          300       -24.9         42.8
+                                                          310       -26.3         44.3
+                                                          318       -27.5         45.4
+Na2 SO4 (75 mM)     17.8            0.138         0.99    293       -24.1         41.8
+                                                          300       -25.1         42.8
+                                                          310       -26.5         44.3
+                                                          318       -27.6         45.4
+
+
+
+
+                                            S25
+Table S4. Model derived (Kas_app ) and experimentally obtained (Ka_Hill) binding constants of
+PFHpA/BSA in 20 mM MOPs or 20 mM sodium phosphate buffer (pH 7, 20°C) in the absence and
+in the presence of additional salts (i.e., NaCl, KCl, CaCl2 , MgCl2 , and Na2 SO4 ).
+      Background buffer           Additional salt   K a_Hill ×10-4 (L/mol) Kas_app ×10-4 (L/mol)
+
+        20 mM MOPs                      -               2.67 ± 0.17                2.60
+        20 mM MOPs                150 mM NaCl            1.08 ± 0.04               1.36
+        20 mM MOPs                300 mM NaCl            0.98 ± 0.04               9.19
+        20 mM MOPs                 150 mM KCl            1.21 ± 0.05               1.36
+        20 mM MOPs                 5 mM CaCl2            2.81 ± 0.28               3.16
+        20 mM MOPs                50 mM CaCl2            2.24 ± 0.13               2.09
+        20 mM MOPs                100 mM CaCl2           1.76 ± 0.09               1.51
+        20 mM MOPs                5 mM MgCl2             3.33 ± 0.28               3.16
+        20 mM MOPs                50 mM MgCl2            2.12 ± 0.10               2.09
+        20 mM MOPs               100 mM MgCl2            1.56 ± 0.06               1.51
+        20 mM MOPs               60 mM Na2 SO4           1.10 ± 0.10               1.22
+        20 mM MOPs               75 mM Na2 SO4           1.04 ± 0.09               1.08
+ 20 mM NaH2 PO4 −Na2 HPO4               -                2.43 ± 0.19               2.13
+ 20 mM NaH2 PO4 −Na2 HPO4         10 mM NaCl             1.96 ± 0.14               2.03
+ 20 mM NaH2 PO4 −Na2 HPO4         30 mM NaCl             1.92 ± 0.18               1.85
+ 20 mM NaH2 PO4 −Na2 HPO4         80 mM NaCl             1.45 ± 0.10               1.52
+
+
+
+
+                                             S26
+Application of binding model
+
+         Fluorescence profiles of PFAS/BSA were measured at range of ionic strength with different
+
+salt species to quantify the binding constants (K a_Hill) based on the Hill equation. Model parameters
+
+(i.e., Kas1 , K as2, KA1, and K A2 ) wewre fitted assuming that Kas_app is equivalent to K a_Hill. To do this
+
+the sum of the squared difference K a_Hill and K as_app was minimized. Parameter fits for an individ ua l
+
+salt condition are likely not unique. As such, model parameters are determined by simultaneo us ly
+
+fitting multiple salt conditions, including monovalent and divalent salt conditions. Parameters
+
+uncertainties were derived from the covariance matrix of the fit, assuming normally distributed
+
+residuals. Notably, since the K as_app value is calculated from the fitted parameters rather than being
+
+directly fitted, its associated uncertainty is not presented. Once the model parameters (i.e., Kas1 , Kas2,
+
+K A1, and K A2 ) for a given PFAS are determined, they can be used for prediction of binding affinities
+
+at a range of salt conditions.
+
+         Based upon the model predicted binding affinity it is possible to quantitatively estimate
+
+concentrations (and percentage) of PFAS bound to proteins under environmental or physiologica l
+
+salt conditions.
+
+                                              [𝑃𝑆] + [𝑃𝑎𝑝𝑝 ] = [𝑃𝑡𝑜𝑡𝑎𝑙 ]                                                       (12)
+
+                                              [𝑃𝑆] + [S] = [𝑆𝑡𝑜𝑡𝑎𝑙 ]                                                           (13)
+
+as shown before, [PS] is the concentration of PFAS/protein complex, [P app ] is the concentration of
+
+unbound protein as shown in Eq. (10), and [S] is the concentration of unbound PFAS. [Ptotal] is the
+
+concentration of total protein, [Stotal] is the concentration of total PFAS. Whenever the [Ptotal] and
+
+[Stotal] for a specific system is known and combining with Kas_app , the concentration of PFAS/protein
+
+complex [PS] can be derived. The percentage of bound PFAS is given by:
+
+                                                                              [𝑃𝑆]
+                                             % 𝑜𝑓 𝑏𝑜𝑢𝑛𝑑 𝑃𝐹𝐴𝑆 =
+                                                                            [𝑆𝑡𝑜𝑡𝑎𝑙 ]
+
+                    𝐾𝑎𝑠 _𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎𝑙 +𝐾𝑎𝑠 _𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎𝑙 +1−√(𝐾𝑎𝑠_𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎 𝑙 +𝐾𝑎𝑠_𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎 𝑙 +1) 2 −4𝐾𝑎𝑠_𝑎𝑝𝑝 2 𝑃𝑡𝑜𝑡𝑎 𝑙 𝑆𝑡𝑜𝑡𝑎𝑙
+                =                                                                                                              (14)
+                                                               2 𝐾𝑎𝑠_𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎𝑙
+
+
+Note that the expression of [PS] in Eq. 14 is based on rearranging Eq. 11, 12, and 13, which shown
+
+as:𝐾𝑎𝑠_𝑎𝑝𝑝 [𝑃𝑆]2 − (𝐾𝑎𝑠_𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎𝑙 + 𝐾𝑎𝑠_𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎𝑙 + 1)[𝑃𝑆] + 𝐾𝑎𝑠_𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎𝑙 𝑆𝑡𝑜𝑡𝑎𝑙 = 0. Based up
+
+                                                                                                                    −𝑏±√𝑏 2 −4𝑎𝑐
+the quadratic formular, the roots for quadratic equation (i.e., 𝑎𝑥 2 + 𝑏𝑥 + 𝑐 = 0) are 𝑥 =                                         .
+                                                                                                                          2𝑎
+
+
+Given that          the [PS] should be no larger than [Stotal], [PS] is expressed in term of
+
+𝐾𝑎𝑠_𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎 𝑙 +𝐾𝑎𝑠_𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎𝑙 +1−√(𝐾𝑎𝑠_𝑎𝑝𝑝 𝑃𝑡𝑜𝑡𝑎𝑙 +𝐾𝑎𝑠_𝑎𝑝𝑝 𝑆𝑡𝑜𝑡𝑎𝑙 +1) 2 −4𝐾𝑎𝑠 _𝑎𝑝𝑝 2 𝑃𝑡𝑜𝑡𝑎𝑙 𝑆𝑡𝑜𝑡𝑎𝑙
+                                                                                                       .
+                                              2𝐾𝑎𝑠_𝑎𝑝𝑝
+
+
+                                                              S27
+Reference
+
+1    Alesio, J. & Bothun, G. D. Differential scanning fluorimetry to assess PFAS binding to
+     bovine serum albumin protein. Sci Rep 14, 6501 (2024). https://doi.org/10.1038/s41598-
+     024-57140-9
+2    Allendorf, F., Berger, U., Goss, K. U. & Ulrich, N. Partition coefficients of four perfluoroalkyl
+     acid alternatives between bovine serum albumin (BSA) and water in comparison to ten
+     classical perfluoroalkyl acids. Environ Sci Process Impacts 21, 1852-1863 (2019).
+     https://doi.org/10.1039/c9em00290a
+3    Bischel, H. N., MacManus-Spencer, L. A. & Luthy, R. G. Noncovalent Interactions of Long-
+     Chain Perfluoroalkyl Acids with Serum Albumin. Environmental Science & Technology 44,
+     5263-5269 (2010). https://doi.org/10.1021/es101334s
+4    Hebert, P. C. & MacManus-Spencer, L. A. Development of a fluorescence model for the
+     binding of medium-to long-chain perfluoroalkyl acids to human serum albumin through a
+     mechanistic evaluation of spectroscopic evidence. Analytical chemistry 82, 6463-6471
+     (2010).
+5    Starnes, H. M., Jackson, T. W., Rock, K. D. & Belcher, S. M. Quantitative Cross -Species
+     Comparison of Serum Albumin Binding of Per- and Polyfluoroalkyl Substances from Five
+     Structural Classes. bioRxiv (2023). https://doi.org/10.1101/2023.11.10.566613
+6    MacManus-Spencer, L. A., Tse, M. L., Hebert, P. C., Bischel, H. N. & Luthy, R. G. Binding of
+     Perfluorocarboxylates to Serum Albumin: A Comparison of Analytical Methods. Analytical
+     Chemistry 82, 974-981 (2010). https://doi.org/10.1021/ac902238u
+7    Chen, Y. M. & Guo, L. H. Fluorescence study on site-specific binding of perfluoroalkyl acids
+     to human serum albumin. Arch Toxicol 83, 255-261 (2009).
+     https://doi.org/10.1007/s00204-008-0359-x
+8    Beesoon, S. & Martin, J. W. Isomer-Specific Binding Affinity of Perfluorooctanesulfonate
+     (PFOS) and Perfluorooctanoate (PFOA) to Serum Proteins. Environ Sci Technol 49, 5722-
+     5731 (2015). https://doi.org/10.1021/es505399w
+9    Jackson, T. W., Scheibly, C. M., Polera, M. E. & Belcher, S. M. Rapid Characterization of
+     Human Serum Albumin Binding for Per- and Polyfluoroalkyl Substances Using Differential
+     Scanning Fluorimetry. Environ Sci Technol 55, 12291-12301 (2021).
+     https://doi.org/10.1021/acs.est.1c01200
+10   Le, S.-T., Gao, Y., Kibbey, T. C. & O'Carroll, D. M. Calculating PFAS interfacial adsorption as a
+     function of salt concentration using model parameters determined from chemical
+     structure. Science of The Total Environment 848, 157663 (2022).
+11   Alesio, J. L., Slitt, A. & Bothun, G. D. Critical new insights into the binding of poly- and
+     perfluoroalkyl substances (PFAS) to albumin protein. Chemosphere 287, 131979 (2022).
+     https://doi.org/10.1016/j.chemosphere.2021.131979
+12   Gao, K. et al. Prenatal Exposure to Per- and Polyfluoroalkyl Substances (PFASs) and
+     Association between the Placental Transfer Efficiencies and Dissociation Constant of
+     Serum Proteins-PFAS Complexes. Environ Sci Technol 53, 6529-6538 (2019).
+     https://doi.org/10.1021/acs.est.9b00715
+13   Khazaee, M. et al. Perfluoroalkyl Acid Binding with Peroxisome Proliferator-Activated
+     Receptors alpha, gamma, and delta, and Fatty Acid Binding Proteins by Equilibrium Dialysis
+     with a Comparison of Methods. Toxics 9 (2021). https://doi.org/10.3390/toxics9030045
+14   Zhang, L., Ren, X. M. & Guo, L. H. Structure-based investigation on the interaction of
+     perfluorinated compounds with human liver fatty acid binding protein. Environ Sci Technol
+     47, 11293-11301 (2013). https://doi.org/10.1021/es4026722
+15   Zhang, L., Ren, X. M., Wan, B. & Guo, L. H. Structure-dependent binding and activation of
+     perfluorinated compounds on human peroxisome proliferator-activated receptor gamma.
+     Toxicol Appl Pharmacol 279, 275-283 (2014). https://doi.org/10.1016/j.taap.2014.06.020
+16   Wetzel, R. G. in Limnology (Third Edition) (ed Robert G. Wetzel) 169-186 (Academic
+     Press, 2001).
+17   Hem, J. D. Study and interpretation of the chemical characteristics of natural water. Vol.
+     2254 (Department of the Interior, US Geological Survey, 1985).
+18   EPA. Environmental Info: Water quality,
+     <https://www.epa.sa.gov.au/environmental_info/water_quality/threats > (2024).
+
+
+                                               S28
+

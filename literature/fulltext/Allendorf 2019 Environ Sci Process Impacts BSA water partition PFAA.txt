@@ -1,0 +1,751 @@
+Environmental
+Science
+Processes & Impacts
+                                                                                                                         Published on 14 August 2019
+    PAPER                                                                                                                    Licence and permissions
+
+
+                                             Partition coeﬃcients of four perﬂuoroalkyl acid
+Cite this: Environ. Sci.: Processes
+                                             alternatives between bovine serum albumin (BSA)
+Impacts, 2019, 21, 1852                      and water in comparison to ten classical
+                                             perﬂuoroalkyl acids†
+                                             Flora Allendorf,            *a Urs Berger,      b
+                                                                                                 Kai-Uwe Goss           ac
+                                                                                                                             and Nadin Ulricha
+
+                                             Perﬂuoroalkyl acids (PFAAs) are persistent, ubiquitous environmental contaminants and their long-chain
+                                             representatives are bioaccumulative. The phase-out of these compounds (e.g. PFOA and PFOS) shifted
+                                             the production to alternatives. However, little is known about the bioaccumulative behaviour of the
+                                             alternatives, which are still highly ﬂuorinated. PFAAs are predominantly detected in blood, where they
+                                             bind to the transport protein serum albumin. This sorption can be described by the albumin/water
+                                             partition coeﬃcient. It is unclear whether the partition coeﬃcients of the alternatives are lower than or in
+                                             the same range as those of classical PFAAs. We determined albumin/water partition coeﬃcients for
+                                             seven perﬂuoroalkyl carboxylates, three perﬂuoroalkane sulfonates and four alternatives by dialysis
+                                             experiments in a physiologically representative system. Quantiﬁcation was done by LC-MS/MS and
+                                             a mass balance approach. Logarithmic albumin/water partition coeﬃcients for PFAAs range from 2.8 to
+                                             4.8 [Lwater kgalbumin1] and increase with increasing chain length. Perﬂuorinated sulfonates sorb more
+                                             strongly than their carboxylate counterparts. The albumin/water partition coeﬃcients for the alternatives
+                                             (HFPO-DA, DONA, 9Cl-PF3ONS and PFECHS) are in the same range as for classical PFAAs. Structural
+                                             modiﬁcations such as the introduction of ether groups into the chain do not reduce sorption to albumin,
+                                             whereas the chlorine atom in 9Cl-PF3ONS seems to even increase the sorption to albumin. We further
+Received 13th June 2019
+Accepted 8th August 2019
+                                             investigated whether the sorption strength could be aﬀected in the presence of medium- or long-chain
+                                             fatty acids. Binding competition between medium-chain fatty acids and PFAAs appeared to be possible.
+DOI: 10.1039/c9em00290a
+                                             However, the presence of physiologically more relevant long-chain fatty acids should not alter the
+rsc.li/espi                                  albumin/water partition coeﬃcients of PFAAs.
+
+
+
+    Environmental signicance
+    Increasing numbers of structurally modied but still highly uorinated alternatives to peruoroalkyl acids are entering the environment and subsequently
+    organisms. Little is known about their bioaccumulative behaviour. The bioaccumulation potential of these chemicals depends (among other factors) on their
+    aﬃnity to the main transport protein in blood, serum albumin. We found that four alternatives bind similarly strongly to albumin as classical PFAAs. We
+    therefore conclude that the alternatives are, based on their sorption to albumin, not less potent to bioaccumulate than PFAAs. Understanding of the bio-
+    accumulative behaviour enables authorities to regulate the production of new alternatives before they can enter the environment and not in retrospect, like it
+    was the case for the long-chain peruoroalkyl acids PFOA and PFOS.
+
+
+
+
+                                                                                      Introduction
+                                                                                      Peruoroalkyl acids (PFAAs) have been produced since the
+                                                                                      1950's as processing aids for uoropolymer production or as
+a
+ Department of Analytical Environmental Chemistry, Helmholtz Centre for               surfactants in reghting foams. They may enter the environ-
+Environmental Research – UFZ, Permoserstrasse 15, D-04318 Leipzig, Germany.           ment directly, from impurities or from unintentional side
+E-mail: ora.allendorf@ufz.de; Tel: +49 341 235 1818                                  products, leading to an ubiquitous distribution through water
+Department of Analytical Chemistry, Helmholtz Centre for Environmental Research –
+b
+                                                                                      and air.1–3 They were found to be persistent and long-chain
+UFZ, Permoserstrasse 15, D-04318 Leipzig, Germany
+c
+                                                                                      PFAAs are also bioaccumulative in a variety of organisms4,5
+  Institute of Chemistry, University of Halle-Wittenberg, Kurt-Mothes-Strasse 2, D-
+06120 Halle, Germany
+                                                                                      and suspected to be developmental and organ toxic to
+† Electronic supplementary            information   (ESI)   available.   See   DOI:   humans.6,7 A characteristic of PFAAs is the acidic head group
+10.1039/c9em00290a                                                                    attached to an alkane tail of varying length in which every
+
+
+1852 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                                                 This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                      Environmental Science: Processes & Impacts
+
+
+hydrogen is substituted by a uorine atom.8 The high electro-       the prediction of the partition behaviour for the whole
+negativity of uorine is responsible for their strong acidic        substance class and consequently to contribute to valid PBTK
+nature (pKa is estimated to be below 1)9,10 as well as for the      models, the experimental determination of partition coeﬃ-
+extremely stable C–F bonds. This, together with their surface       cients to relevant phases for some of these compounds is
+active properties leads to their widespread use. Until now          essential.25–27 Oen, the octanol/water partition coeﬃcient Kow
+authorities and researchers mainly focused on the impact of the     (or in the case of ions an adjusted Kow) is used as an estimation
+broadly used compounds peruorooctanoate (PFOA) and per-            for protein/water partitioning. Partitioning of an analyte in
+uorooctanesulfonate (PFOS), which led to regulatory actions        a two-phase system is inuenced by intermolecular interac-
+for the use of PFAAs and an increased awareness of the risk of      tions occurring between the analyte and each phase. Octanol as
+PFAAs.5,11,12 Manufacturers responded precautiously with            a solvent cannot mimic the interaction possibilities (e.g. ionic
+a voluntary phase-out of long-chain PFAAs like PFOA and PFOS        interactions and H-bonding) of a protein, as a result the Kow is
+during the last few decades,11 shiing the production at the        by no means an appropriate substitute for a protein/water
+same time towards alternative compounds. These alternatives         partition system.
+comprise shorter-chain PFAAs but also a whole new variety of            One of the most relevant sorbing phases for PFAAs is serum
+chemicals that are structural modications of the ‘classical’       albumin,28–30 which is the major transport protein in blood with
+PFAAs and still highly uorinated. Four representatives of these    concentrations ranging between 35 and 50 g L1.31 It contains
+alternatives are in the focus of this work and shown in Fig. 1.     several binding sites for various endogenous ligands such as
+Indeed, peruoro-4-ethylcyclohexanesulfonate (PFECHS) has           fatty acids, bilirubin, heme and thyroxine.32,33 Moreover, three
+not been introduced in the course of the phase-out of PFAAs         of these binding sites are involved in the interaction with
+(the production goes back to the 1990s),13 but is included in the   various drugs and other chemicals, such as warfarin, diazepam
+study as a structural alternative. While it was shown that these    or ibuprofen, among others.34–36
+modied compounds are still persistent,14–17 their bio-                 So far association constants to serum albumin for the most
+accumulative and toxic potency compared to long-chain PFAAs         prominent PFAAs were determined with a variability up to four
+is still under discussion.3,14,15,18,19                             orders of magnitude for single compounds depending on the
+    The accumulation of a compound in an organism depends           method and ligand : protein mole ratio used.28,29,37–45 The rst
+on several toxicokinetic factors involving the absorption,          consistent data set of albumin–water partition coeﬃcients of
+distribution, metabolism and excretion (ADME). Physiological        a series of peruoroalkyl carboxylic acids (PFCAs) and three
+based toxicokinetic (PBTK) models of various complexities are       peruoroalkane sulfonic acids (PFSAs) was provided by Bischel
+used to describe and predict concentration–time curves based        et al. (2011). They found log Kalbumin/water ranging from 3.3 to 4.3
+on the ADME processes. To this end, equilibrium partition           [L kg1] (Ka values: 1  105 to 1  106 M1) by means of equi-
+coeﬃcients Kphase1/phase2 between various biological phases         librium dialysis experiments.46
+(e.g. lipids and proteins) and water need to be known. While            In this study we determined albumin/water partition coeﬃ-
+the required partition coeﬃcients can be predicted quite well       cients for four alternatives to classical PFAAs by dialysis exper-
+for most neutral chemicals,20 such predictions become much          iments,22 thereby investigating the eﬀect of their structural
+more diﬃcult for ionisable chemicals and even more so for           modications on their sorption behaviour. Additionally, we
+peruorinated acids.21,22 The partition behaviour of PFAAs          determined the albumin/water partition coeﬃcients of the
+diﬀers strongly from other compounds due to their unique            PFAAs by the same method to ensure that we compare results
+chemical properties. Highly uorinated compounds have               within one consistent data set. We discuss our albumin/water
+much smaller van der Waals interactions compared to non-            partition coeﬃcients for the PFAAs in comparison to literature
+uorinated molecules of the same size.23,24 Hence, to improve       values, which were determined by diﬀerent approaches.
+
+
+
+
+Fig. 1 Alternative compounds to long-chain PFAAs in comparison with two prevailing classical PFAAs. Above: tetraﬂuoro-2-(hepta-
+ﬂuoropropoxy)-propanoate (HFPO-DA) and 4,8-dioxa-3H-perﬂuorononanoate (DONA), compared to perﬂuorooctanoate (PFOA). Below:
+perﬂuoro-4-ethylcyclohexanesulfonate (PFECHS) and 9-chlorohexadecaﬂuoro-3-oxanonane-1-sulfonate (9Cl-PF3ONS) compared to per-
+ﬂuorooctanesulfonate (PFOS).
+
+
+
+This journal is © The Royal Society of Chemistry 2019                             Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1853
+Environmental Science: Processes & Impacts                                                                                                  Paper
+
+
+    In the literature it is oen claimed that PFAAs compete with       greater than 12–14 kDa allowing permeation of the analytes
+other ligands such as fatty acids for specic binding sites on         (poly- and peruorinated compounds) with the retention of BSA
+serum albumin.28,30 We additionally tested whether a competi-          (66.5 kDa). 5 mL of the respective poly- and peruorinated
+tion for specic binding sites can be demonstrated, which              compound solution were added to one chamber of the dialysis
+would aﬀect the partition coeﬃcients of PFAAs. Since the PFAA          cells. Into the other chamber either 5 mL of BSA solution
+chain length may aﬀect this competitive behaviour,29,47 we             (measurement cells) or 5 mL of pure HBSS (reference cells) was
+decided to investigate short-chain and long-chain PFCAs (the           pipetted. The dialysis cells were incubated at 37  C under
+latter dened as CnF2n+1COOH, n $ 7).8                                 constant agitation. BSA-free chambers of both measurement
+                                                                       and reference cells were sampled on two consecutive days at
+                                                                       least and partition coeﬃcients were determined. When both
+Experimental                                                           values matched, equilibrium could be assumed. Most of the
+Chemicals and reagents                                                 compounds required an equilibrating time of 72 h, except for
+Sodium dodecauoro-3H-4,8-dioxanonanoate (DONA, correct                longer-chain PFAAs like PFDA, PFUnDA and PFOS, which
+abbreviation NaDONA‡), 2,3,3,3-tetrauoro-2-(1,1,2,2,3,3,3-            needed 96 h to equilibrate. For each compound, a setup of three
+heptauoropropoxy-)propanoic acid (HFPO-DA/GenX), potas-               measurement cells and three reference cells was prepared.
+sium 9-chlorohexadecauoro-3-oxanonane-1-sulfonate (9Cl-
+PF3ONS, the main component of F-53B), potassium peruoro-              Chemical quantication
+4-ethylcyclohexanesulfonate (PFECHS) and a mixture of PFAA
+calibration standards (PFAC-MXB) and internal standards                The analysis of PFAAs and alternatives was performed using
+(MPFAC-MXA) were supplied by Wellington Laboratories                   ultra performance liquid chromatography with tandem mass
+(Ontario, Canada).                                                     spectrometry (UPLC-MS/MS) (Xevo TQ-S Waters Corporation) as
+   Peruorobutanoic acid (PFBA), peruorohexanoic acid                 described elsewhere.49,50 Aqueous samples were mixed with
+(PFHxA), peruoroheptanoic acid (PFHpA), peruorooctanoic              methanol containing 4 mM ammonium acetate and methanol
+acid (PFOA), peruorononanoic acid (PFNA), peruorodecanoic            extracts were mixed with 4 mM aqueous ammonium acetate
+acid (PFDA), and peruoroundecanoic acid (PFUnDA), as well as          before analysis. Internal standards were added to all samples (to
+three     sulfonic    acid    salts  –   tetrabutylammonium            a nal concentration of 1 ng mL1) before injection (see ESI-
+peruorobutanesulfonate (PFBS), potassium peruorohexane-              1.3.2† for the assignment of internal standards to analytes).
+sulfonate (PFHxS) and potassium peruorooctanesulfonate                Separation was achieved with an ACQUITY UPLC BEH Shield
+(PFOS) were purchased individually from various manufac-               C18 column (1.7 mm particles; 2.1 mm  50 mm). A “PFC
+turers (see ESI-1.1†). For each compound, a stock solution was         isolator column” (Waters) was used to retain and separate
+prepared in methanol and stored at 18  C. Lyophilized                method blanks originating from the mobile phases or the HPLC
+powders of bovine serum albumin (BSA) were supplied by Sigma           system. The detector was operated in negative electrospray
+Aldrich with the product numbers A3803 (heat shock fraction,           ionization mode (ESI), followed by multiple reaction moni-
+essentially fatty acid free, $98%) and A7906 (heat shock frac-         toring for quantication. Instrumental parameters and MS/MS
+tion, pH 7, $98%). Partition coeﬃcients presented in Table 1           transitions are reported in ESI-1.3.† Data acquisition, process-
+were measured only with batch A3803, essentially fatty acid free.      ing and analysis were done by using Water's proprietary so-
+A3803 was the same batch used in experiments where the                 ware MassLynx (version 4.1). Quantication was achieved by the
+partition coeﬃcients of other anionic compounds were                   internal standard method using an external linear calibration
+determined.22                                                          curve to determine relative response factors.
+
+
+Dialysis experiments                                                   Determination of partition coeﬃcients
+Dialysis cells were used as described in detail before.     The22,48
+                                                                       The albumin/water partition coeﬃcient K was calculated as
+individual poly- and peruorinated compounds were diluted in                                           c*i;albumin h                    i
+Hank's balanced salt solution (HBSS; pH 7.4, see ESI-1.2.1†) to                   Ki;albumin=water ¼       *
+                                                                                                                    Lwater kgalbumin 1       (1)
+                                                                                                        ci;water
+a concentration of 20 ng mL1. Where possible, polypropylene
+containers were used to avoid adsorption to glass surfaces. The        where i refers to the compound of interest and * represents the
+concentration of BSA in solution was dependent on the                  equilibrium condition. ci,albumin is the bound concentration to
+compound investigated and ranged from 0.025–3 g L1. The               albumin [g kgalbumin1] and ci,water is the concentration in water
+molar ratio of compound to BSA was held below 0.1 to avoid             [g Lwater1].
+ligand oversaturation of the protein binding sites. Compounds             ci,bound cannot be measured directly. Therefore, a mass
+were measured individually in an assembly of two glass cham-           balance approach was used to determine ci,bound indirectly. For
+bers separated by a membrane (see ESI-1.2.2†). The membrane            each compound a xed amount of serum albumin was added
+(Spectrum Laboratories Inc., Por 4) has a cutoﬀ for molecules          into measurement cells. The mass of the compound bound to
+                                                                       BSA was determined as
+‡ ADONA (ammonium dodecauoro-3H-4,8-dioxanonanoate) is oen used
+instead. We use DONA as the name for the anion.                                           mi,bound ¼ mi,total  mi,free                       (2)
+
+
+1854 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                                This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                                   Environmental Science: Processes & Impacts
+
+
+Table 1    Albumin/water partition coeﬃcients (log Kalbumin/water [Lwater kgalbumin1]) determined for ten PFAAs and four alternative compounds.
+Mean and standard deviation SD were taken from six measurements. HFPO-DA and DONA are not fully ﬂuorinated; therefore no number is
+assigned. Fraction bound fi,bound ¼ mi,bound/mi,total. Ka is the association constant ([PL]/([P]  [L])) with protein P and ligand L and is displayed to
+facilitate comparison with literature values
+
+Number of peruorinated                         log Kalbumin/water                                                          Recovery
+carbons                        Analyte          [L kg1]             SD       Kaa [M1]   SD              fbound   SD       (incl. extracts)   cBSA [g L1]
+
+PFCAs
+3                              PFBA             2.52                 (0.11)   2.3  104   (4.8  103)     34%      (5%)     98%                  3  100
+5                              PFHxA            3.43                 (0.04)   1.8  105   (1.6  104)     58%      (2%)     98%                  1  100
+6                              PFHpA            4.02                 (0.08)   7.2  105   (1.4  105)     34%      (4%)     99%                  1  101
+7                              PFOA             4.20                 (0.05)   1.1  106   (1.1  105)     44%      (3%)     94%                  1  101
+8                              PFNA             4.32                 (0.07)   1.4  106   (2.2  105)     37%      (4%)     99%                  5  102
+9                              PFDAb            4.73                 (0.04)   3.6  106   (3.1  105)     57%      (2%)     57% (106%)           5  102
+10                             PFUnDAb,c        4.60                 (0.30)   3.1  106   (1.4  106)     35%      (13%)    40% (115%)         2.5  102
+                               HFPO-DA          3.06                 (0.03)   2.3  104   (5.0  103)     64%      (1%)     96%                  3  100
+                               DONA             3.93                 (0.03)   1.8  105   (4.7  104)     30%      (2%)     93%                  1  101
+
+PFSAs
+4                              PFBS             3.20                 (0.11)   1.1  105   (2.8  104)     44%      (6%)     101%                 1  100
+6                              PFHxS            4.81                 (0.05)   4.4  106   (3.5  105)     62%      (2%)     92%                  5  102
+8                              PFOSb            4.67                 (0.07)   3.2  106   (4.9  105)     37%      (4%)     78% (104%)         2.5  102
+8                              9Cl-PF3ONSb      5.01                 (0.04)   6.9  106   (6.2  105)     56%      (2%)     75% (106%)         2.5  102
+8                              PFECHS           4.55                 (0.03)   2.4  106   (1.4  105)     66%      (1%)     95%                  1  101
+a
+    Note that the association constant is converted from Kalbumin/water at one molar ratio and not determined by measuring the binding isotherms.
+b
+    Extraction step included due to glass sorption of the analyte. c Only mean of ve measurements was taken.
+
+
+
+   Freely dissolved analyte mass mi,free was measured from the                 Competition experiments with fatty acids
+samples of the measurement cells when equilibrium was
+                                                                               We conducted dialysis experiments with PFHxA or PFNA adding
+reached, see above. Two diﬀerent approaches were used to
+                                                                               known amounts of two diﬀerent fatty acids (tridecanoic acid
+determine the total mass mtotal of the compound in the cells.
+                                                                               (TDA, Fluka) or heptadecanoic acid (HDA, Fluka)) to test
+PFAAs and their alternatives sorb to the glass51 and membrane                  whether free fatty acids and PFAAs would compete for specic
+surfaces as determined in pre-tests. For compounds where less
+                                                                               albumin binding sites. For that, essentially fatty acid free BSA
+than or equal to 10% of the mi,total sorbed to the surface,
+                                                                               (batch A3803) was rst equilibrated with the respective fatty
+reference cells were used, which did not contain any protein.
+                                                                               acid for 24 h before adding the peruorinated compound. Each
+For compounds that sorb substantially (>10%) to the surfaces of
+                                                                               setup had a specic molar ratio of fatty acid to albumin with
+the dialysis cells, reference cells could not be taken as an
+                                                                               approximate [fatty acid] : [albumin] ratios of 2.5, 1 and below 1,
+appropriate reference for the mass balance due to the variability
+                                                                               respectively. Samples of the BSA-free chambers were taken
+of glass surfaces of the handmade cells. Substantial glass
+                                                                               separately for fatty acid analysis and PFAA analysis at the same
+sorption was observed for longer-chain PFAAs. For these                        time points (aer 72 h and 96 h).
+compounds an extraction step was added to full the total mass
+balance criterion. To this end, all uids were discarded aer the
+last sampling and the interior of the cells was extracted with
+2 mL of methanol. Subtraction of the mass found in the extracts                Results and discussion
+from the initially used dilution of the analyte leads to mi,total.
+                                                                               Experimental design
+Overall recoveries aer correction (masses from the dissolved
+fraction and the extracts of the reference cells in comparison to              Albumin/water partition coeﬃcients were determined by dial-
+the initially used dilution of each compound) ranged from 92 to                ysis experiments for each compound individually. Experiments
+115% (see Table 1).                                                            were conducted with seven peruoroalkyl carboxylic acids
+   For the determination of the partition coeﬃcient of                         (PFCAs), three peruoroalkane sulfonic acids (PFSAs) and four
+a compound, mean and standard deviation of six measure-                        per-/polyuorinated alternatives to long-chain PFAAs. We
+ments were taken. We performed a test to determine week-to-                    expect similar partition coeﬃcients for BSA and human serum
+week precision for the determination of the partition coeﬃ-                    albumin (HSA) and used the cheaper BSA in our studies. BSA
+cient for PFNA. For that, dialysis experiments were carried out                and HSA share a sequence homology of 76%.52 They diﬀer in
+three times within seven months based on the setup described                   length by two amino acid residues and fold into structurally
+above, each time with three replicates. The precision was                      similar globular tertiary structures.31 Previously it was shown
+calculated by taking the standard deviation of nine partition                  that sorption to BSA compared to HSA is in the same order of
+coeﬃcients into account.                                                       magnitude53 for compounds like fatty acids as well as for PFOA
+                                                                               and PFNA.40,54
+
+
+This journal is © The Royal Society of Chemistry 2019                                          Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1855
+Environmental Science: Processes & Impacts                                                                                             Paper
+
+
+    For each compound concentrations of BSA were adjusted in
+the dialysis experiments. The amount of protein (the water
+volume is xed at 10 mL by the glass dialysis cells) plays a crit-
+ical role in determining the partition coeﬃcient. It has an
+impact on the freely dissolved concentration of the compound
+and therefore on the fraction analysed. The albumin concen-
+tration was adjusted for each compound to ensure that the
+fraction of the analyte sorbed to albumin (mi,bound/mi,total) is
+between 20 and 80%. Below 20% or above 80%, already small
+variations due to the measuring uncertainty could shi parti-
+tion coeﬃcients up to 1–2 log units (see ESI-2.1†). Simulta-
+neously the molar ratio of respective compound to BSA was held
+below 0.1 to work within the linear range of the sorption
+isotherm as shown before.46,55,56 Recovery from dialysis experi-
+ments was >90% for the majority of the compounds. The mi,total       Fig. 2 Logarithmic albumin/water partition coeﬃcients for the series
+from reference cells and mi,free from the measurement cells were     of PFCAs and the two alternatives HFPO-DA and DONA with
+                                                                     a carboxylate head group. The order of PFCAs corresponds to an
+used to calculate mi,bound and the respective partition coeﬃ-        increasing chain length with PFBA with 3 perﬂuorinated carbons and
+cient. For PFOS, PFDA, PFUnDA and 9Cl-PF3ONS sorption to             PFUnDA with 10 perﬂuorinated carbons. Mean and standard deviation
+the glass surface of the dialysis cells (recovery < 90%) was         SD were taken from six measurements. Error bars of standard devia-
+observed. For these compounds glass cells were extracted with        tions are partly covered by symbols of data points.
+methanol aer the dialysis to calculate mi,total, mi,free and
+mi,bound with respect to the loss through surface sorption. Due
+to error propagation this additional correction led to greater       PFSAs, PFBS has the lowest logarithmic albumin/water partition
+uncertainties in the resulting albumin/water partition coeﬃ-         coeﬃcient of 3.2, while PFHxS and PFOS show relatively high
+cients, especially for long-chain compounds like PFUnDA              logarithmic partition coeﬃcients of 4.8 and 4.6, respectively.
+(where 60% of the analyte was sorbed to the glass surface). For      The log K values for PFHxS and PFOS are in the same order;
+this reason, we were not able to determine the partition coeﬃ-       however, a clear trend of increasing albumin water partition
+cients of longer chain-length analogues of the PFCAs.                coeﬃcients with increasing molecular weight, which was
+    Additionally, we performed a test with PFNA to assess week-      observed for the PFCAs up to PFDA, cannot be seen for the
+to-week precision for the determination of partition coeﬃcients      investigated sulfonic acids.
+(see ESI-2.2†). PFNA was chosen as the test compound since it is        PFSAs have in general higher albumin/water partition coef-
+a long-chain PFAA but still with less than 10% sorption losses to    cients compared to PFCAs with the same number of uori-
+cell surfaces. It was shown that within one experimental setup       nated carbons. Stronger sorption of PFSAs compared to their
+the standard deviation is smaller than that between the week-to-
+week setups, where standard deviation was determined to be 0.1
+log units.
+
+
+Logarithmic albumin/water partition coeﬃcients of the PFAAs
+Experimentally determined partition coeﬃcients of PFAAs are
+summarized in Table 1 and Fig. 2 and 3 (see also ESI-2.3†).
+Logarithmic albumin/water partition coeﬃcients range from
+2.5 to 4.8 (Ka ¼ 2.3  104 to 4.4  106 M1). When considering
+the sorption behaviour of other organic anions to albumin, the
+partition coeﬃcients of PFAAs are comparably high but in the
+same range as those of ibuprofen and 2-naphthaleneacetic acid
+(log K of 3.9 and 4.8, respectively).22 Furthermore, PFCAs sorb
+more strongly to albumin than their hydrocarbon counterparts
+(C4–C11, measured at pH 7.6 and 23  C).38,57
+   The partition coeﬃcients of the PFCAs increase with
+increasing chain length, i.e. number of peruorinated carbons.
+PFBA (3 peruorinated carbons) and PFDA (9 peruorinated             Fig. 3 Logarithmic albumin/water partition coeﬃcients for the three
+carbons) have logarithmic albumin/water partition coeﬃcients         PFSAs and two alternatives 9Cl-PF3ONS and PFECHS with a sulfonate
+                                                                     head group. The order of PFSAs corresponds to an increasing chain
+of 2.5 and 4.7, respectively. It cannot be concluded whether this
+                                                                     length with PFBS with 4 perﬂuorinated carbons and PFOS with 8
+trend continues between PFDA and PFUnDA from our experi-             perﬂuorinated carbons. Mean and standard deviation SD were taken
+ments, due to the relatively higher uncertainty in the               from six measurements. Error bars of standard deviations are partly
+measurement for PFUnDA (SD > 0.3 log units). Among the               covered by symbols of data points.
+
+
+
+1856 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                             This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                       Environmental Science: Processes & Impacts
+
+
+PFCA counterparts is consistent with other studies.58,59 The          similar albumin/water partition coeﬃcients, we conclude that
+log K value of PFHxS is 0.8 log units higher compared to the          the cyclic structure of PFECHS does not aﬀect the interactions
+log K of PFHpA whereas the partition coeﬃcients of PFOS and           with albumin (e.g. by steric hindrance).
+PFNA diﬀer by 0.4 log units. For PFBS, the corresponding                 To investigate the structural characteristics of the four
+carboxylic acid was not analysed. We determined 3D structures         alternatives, especially the ether linkages, we used TURBO-
+by using quantum chemical soware COSMOconf/TURBO-                    MOLE soware included in COSMOconf59,60 as a quantum-
+MOLE59,60 to compare the conformers of PFHxS and PFOS, but            chemical tool to calculate and visualize the conformer of
+no obvious diﬀerences were discernible. Reasons why binding           a compound with the most favourable (i.e. lowest) energy in 3D.
+of PFSAs to albumin is more favourable than PFCAs are still           For each conformer, the so-called sigma surfaces or COSMO
+unclear and discussion is ongoing.38,46,61,62                         surface polarization charge densities are provided describing
+   Another batch of BSA (A7906) was tested to verify whether the      the abilities to undergo various intermolecular interactions,
+determined albumin/water partition coeﬃcients are dependent           such as electrostatic, hydrogen bonding and van der Waals
+on the albumin selected for the experiments. See ESI-2.4† for         interactions. 3D structures with the corresponding sigma
+details. We found diﬀerences up to 0.3 log units in the albumin/      surfaces are shown in Fig. 4 and colours are assigned to the
+water partition coeﬃcients especially for shorter-chain PFAAs.        charge densities of the surface regions. The compound di-n-
+Approximately the same overall standard deviation was deter-          butylether was included for comparison.
+mined for PFNA with both batches of BSA. In conclusion we                Surprisingly, there are no negative charge densities (red
+assume that diﬀerent batches of BSA could aﬀect the value of          colour) to be seen around the ether groups of HFPO-DA, DONA
+determined partition coeﬃcients. Variable extraction and              and 9Cl-PF3ONS as compared to di-n-butylether which acts here
+purication steps could probably aﬀect the conformation of the        as a representative of typical ethers. Instead the surface charge
+native serum albumin which could be a reason for the observed         densities of the peruorinated chains that possess one or two
+diﬀerences in the log K values.63                                     ether functionalities look quite similar to those of PFOA without
+                                                                      any ether functionality. Within the –CF2–O–CF2– group, uorine
+                                                                      has the highest electronegativity and induces a strong positive
+Albumin/water partition coeﬃcients of alternative                     dipole at the neighbouring carbons. For this reason, the dipole
+compounds HFPO-DA, DONA, 9Cl-PF3ONS, and PFECHS                       moment of the carbon–oxygen bond for the PFAAs should be
+Due to their environmental signicance, we included four              smaller compared to the dipole moment of di-n-butylether,
+alternative compounds to long-chain PFAAs in our anal-                resulting in a lower electron density at the oxygen in the ether
+ysis.13,15,64–67 Logarithmic albumin/water partition coeﬃcients       bond. This can explain the rather surprising experimental
+were 3.1 and 3.9 for the carboxylic acids HFPO-DA and DONA            nding that the inclusion of ether functionalities into the per-
+and 5.0 and 4.6 for the sulfonic acids 9Cl-PF3ONS and PFECHS,         uorinated chain did not make these molecules more polar and
+respectively (Table 1).                                               less sorbing.
+    The albumin/water partition coeﬃcients are in the same
+range as the ones of the PFAAs. The categorization of the
+alternatives based on the number of peruorinated carbons is          Comparison of albumin/water partition coeﬃcients to
+diﬃcult since some carbons (e.g. in HFPO-DA and DONA) are             literature values
+not fully uorinated. Based on chemical structures HFPO-DA            Over the last 20 years association constants especially for PFOA
+may be compared to PFBA or PFHxA and DONA to PFHxA or                 were determined by electrophoresis,42 19F NMR,28,40 surface
+PFHpA. Both determined partition coeﬃcients are between the           tension42,45 and dialysis37,39,46 and vary from 102 to 106
+partition coeﬃcients of the respective PFAAs (Fig. 2). The two        [M1].37–40,42 Furthermore, studies using uorescence spectros-
+alternatives to the peruorinated sulfonic acids, 9Cl-PF3ONS          copy included other PFAAs, deriving site-specic association
+and PFECHS, can be compared directly to PFOS (log Kalbumin/           constants on albumin.43,44,61 Discrepancies were shown to exist
+water ¼ 4.7) based on their chemical structure (Fig. 1). They have    between diﬀerent methods, and determined association
+two additional structural characteristics, i.e. the chlorine in the   constants also varied substantially within one method.28,39,40,42
+terminal position of 9Cl-PF3ONS and the cyclic structure of           Reasons are probably indirect measuring methods and incon-
+PFECHS. 9Cl-PF3ONS shows the highest albumin/water parti-             sistent experimental settings, such as temperature varia-
+tion coeﬃcient of all compounds analysed in our experiments           tions37,38,40,43 and the highly variable molar ratios of
+(log K ¼ 5.0). The chlorine substituent on the terminal carbon        [PFAA] : [albumin] (oen [1).28,38–40,42 Sorptive losses to labo-
+in 9Cl-PF3ONS appears to cause an increase in sorption.               ratory devices aﬀecting the determination of Ka were checked or
+Reasons could be its larger atom radius (99 pm compared to 72         reported only rarely.37,40 Additionally, the reported fractions
+pm of uorine) and subsequently increased interaction possi-          bound were oen greater than 80%, a range where the propa-
+bilities at specic binding sites (sterically favoured) or favour-    gated error in K could amount to one or two log units (ESI-2.1†).
+able van der Waals interactions with amino acid residues of the       Our association constants for PFOA and PFNA were 1.1  106
+albumin with the chlorine atom. PFECHS was provided as                M1 and 1.4  106 M1, respectively. Oversaturation can lead to
+a mixture of cis/trans-isomers of the para-substituted cyclo-         an overestimation of the freely dissolved concentration of the
+hexane ring. Due to analytical limitations, we could not diﬀer-       compound and hence to an underestimation of the partition
+entiate between these isomers. Since PFECHS and PFOS have             coeﬃcient. In comparison, approximate physiological PFOA/
+
+
+This journal is © The Royal Society of Chemistry 2019                              Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1857
+Environmental Science: Processes & Impacts                                                                                                    Paper
+
+
+
+
+Fig. 4 Sigma surfaces of lowest-energy conformations of the target compounds determined by using COSMOconf/TURBOMOLE.57,58 Colours
+are assigned to the charge densities (possible interaction site) of the surface region: green: neutral charge density; red shades: negative charge
+density; blue shades: positive charge density. Colour code in conformers: carbon is shown in dark green, ﬂuorine in bright green, oxygen in red,
+sulfur in bright yellow, chlorine in dark yellow, and hydrogen in white.
+
+
+
+albumin molar ratios in a worst case situation (with a serum              twist in their structure.73 However, we did not see such
+albumin concentration of 35 g L1) would be 9  105 in                   a diﬀerence in the respective 3D-structures of PFHxA and PFOA
+general population and 2  103 in a high exposed population,             generated by the mentioned quantum chemical calculations
+i.e. in both cases far below a saturation of serum albumin, even          with COSMOconf/TURBOMOLE.59,60 Figures are included in ESI-
+when a mixture of PFAAs is taken into account.68–71 For DONA              2.6.† Our nding of a positive correlation with increasing
+for example the molar ratio would be far lower at 7  105                number of peruorinated carbons for PFCAs is supported by
+(maximal plasma concentration of a population living in the               several other studies (including only a few PFAAs), although
+vicinity of a production plant 2015).65 Considering this, we              they were performed at very high [PFAA] : [albumin] molar
+conclude that other methods may underestimate the sorption                ratios.29,40,43,61 Other organic ions also show an increase in the
+of PFAAs to albumin in biological systems.                                albumin/water partition coeﬃcient with increasing alkyl chain
+    Bischel et al. (2010 and 2011)37,46 determined the albumin/           length.22 A similar sorption behaviour was also observed for
+water partition coeﬃcients of the same series of PFAAs                    other compound classes such as saturated long-chain fatty
+(PFPeA–PFDoDA and PFBS, PFHxS and PFOS) by a comparable                   acids to HSA.74,75
+equilibrium dialysis approach by means of direct quantication
+(LC-MS/MS). They used a molar ratio of [PFAA] : [albumin] <1,
+but did their experiments at room temperature. According to               Inuence of fatty acid binding
+their measurements, the highest logarithmic albumin/water                 In the literature it is oen postulated that PFAAs compete for
+partition coeﬃcient among the tested PFCAs was shown for                  the specic albumin binding sites with fatty acids.44,47 Serum
+PFHpA (log K ¼ 4.2) and among the tested PFSAs for PFHxS                  albumin is the major transport protein for especially long-chain
+(log K ¼ 4.3) (ESI-2.5†). For higher analogues they describe              fatty acids and the structural similarity of peruoroalkyl acids to
+a decrease of log Kalbumin/water with increasing number of per-           fatty acids suggests a potential competition. D'eon et al.30
+uorinated carbons (e.g. PFUnDA: log K ¼ 3.7 and PFOS: log K ¼            showed that PFHxA is able to displace oleic acid even at low
+4.1). In contrast to Bischel et al. we found that the albumin/            concentrations whereas this eﬀect does not occur for PFOA,
+water partition coeﬃcients of PFCAs increase with increasing              stressing that competing potency could be dependent on the
+number of peruorinated carbons up to at least PFDA, which is             chain length.
+also plausible on theoretical grounds.23,46,72 Since the log K                There are two diﬀerent cases for a potential competition: (A)
+values of Bischel et al. were measured with very high fractions           binding of the fatty acids to serum albumin is inuenced by the
+bound (>95%), their results are more likely aﬀected by the                presence of PFAAs and (B) binding of the PFAAs to serum
+measuring error (as discussed before). Bischel et al. (2011)46            albumin is inuenced by the presence of fatty acids. Case (A) is
+supported their observed trend by the following mechanistic               not reasonable; the partition coeﬃcients of the fatty acids are
+explanation: PFCAs are supposed to undergo a conformeric                  higher compared to the partition coeﬃcients of the PFAAs and
+change when the number of peruorinated carbons exceeds six.              the concentration of fatty acids in blood is higher compared to
+While PFCAs with fewer than seven peruorinated carbons                   the concentration of PFAAs in the blood. For these reasons,
+show a zig-zag geometry, longer-chain PFCAs adopt a helical               a quantitative competition as described for case (A) and
+
+
+1858 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                                    This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                          Environmental Science: Processes & Impacts
+
+
+investigated by D'eon et al.30 could not occur in humans.               former dialysis setups with PFNA, we repeated the set of TDA/
+However, the sorption of PFAAs to serum albumin could be                PFHxA-experiments (except for the lowest [TDA] : [albumin]
+aﬀected by fatty acids, which are present at high concentrations        ratio of 0.6 : 1) for conrmation of the trend. The results of
+in blood (case B). To investigate this potential competition and        a log K of 3.4 with no TDA added and a log K of 3.0 at the highest
+to answer the question whether our experimentally determined            molar ratio conrm the described trend (slope: 0.14 of 3
+partition coeﬃcients (with puried serum albumin) are repre-            values) and the slight inuence of the present TDA concentra-
+sentative of a physiological situation, where fatty acids are           tion on the PFHxA partition coeﬃcient. For PFNA the loga-
+present in higher concentrations, we used PFHxA and PFNA as             rithmic albumin/water partition coeﬃcients are 4.4 (no TDA
+examples for PFCAs and tridecanoic acid (TDA) and heptade-              added) and shi to 4.6 at the [TDA] : [albumin] ratio of 0.3 and
+canoic acid (HDA) as examples for fatty acids. Both fatty acids         slightly decline (similar to PFHxA) to a log K of 4.3 at the highest
+have an uneven number of carbons and therefore do not occur             [TDA] : [albumin] ratio. The result without TDA for PFNA was
+naturally. For this reason, dialysis experiments and analysis           taken from the precision experiments described above. This
+could not be aﬀected by impurities of ubiquitous fatty acids.           shi is diﬃcult to interpret. One assumption is that the binding
+HDA is a long-chain fatty acid and has higher physiological             site could be diﬀerent for PFNA than for PFHxA and, in the case
+relevance (medium chain fatty acids are barely measurable in            of PFNA, the described shi could be caused by the eﬀect of
+human blood),31 while TDA with its higher solubility and a lower        cooperative binding. Specic binding of fatty acid(s) to serum
+sorption capacity to serum albumin was more suitable for the            albumin can cause conformational changes in the tertiary
+experimental approach and analysis.                                     structure of the protein. If this change occurs in binding sites,
+    The concentration of free fatty acids in human blood ranges         interaction possibilities could be created or facilitated resulting
+from 0.2 to 1 mM.31,76 The blood concentration of the fatty acids       in an increased binding strength of the ligand. This cooperative
+is thus considerably higher compared to the concentrations of           binding eﬀect was already found for other compounds.77 While
+PFAAs in general population (1–50 nM).70,71 We adapted the              conformation of the binding site for PFHxA may not be aﬀected
+albumin concentration for the determination of the partition            when TDA is binding, the conformation of the binding site for
+coeﬃcient for PFHxA and PFNA, respectively. Fatty acid                  PFNA may exhibit such a change at low molar concentrations of
+concentrations were subsequently adjusted to the physiological          TDA. Increasing the amount of fatty acids, the competition for
+concentration in human blood ([fatty acid] : [albumin] z                the binding sites may compensate for/overcome the cooperative
+2.5 : 1) and two smaller concentrations to meet approximate             binding eﬀect.
+equimolarity and below saturation (i.e. a ratio below 1) criteria.          For both compounds it appeared that the TDA concentration
+All other concentrations in the setup were kept constant (with          in the dialysis approach has a slight inuence on the respective
+[PFCA] : [albumin] molar ratio <0.1). First, albumin and TDA or         partition coeﬃcient of the PFCA. TDA belongs to the group of
+HDA were equilibrated for 24 h before the respective PFCA was           medium-chain fatty acids which bind preferentially to lower
+added. Aer 72 h and 96 h, samples were taken and albumin/              aﬃnity fatty acid binding sites on albumin whereas long-chain
+water partition coeﬃcients were determined. The results are             fatty acids (>C16) can be found at high-aﬃnity fatty acid binding
+displayed in Fig. 5 and in Table ESI-2.7,† where albumin/water          sites.33 In the literature it is discussed that potential binding
+partition coeﬃcients for PFHxA and PFNA are shown in                    sites of PFCAs46,47 are known drug-binding sites (Sudlow sites I
+dependence of diﬀerent amounts of TDA (A) or HDA (B).                   and II and additionally a third drug-binding site next to fatty
+    There is a slight decrease in the logarithmic albumin/water         acid binding site 6) that partly overlap with well-known fatty
+partition coeﬃcients for PFHxA with increasing concentration            acid binding sites.34,62,78 From our data we cannot deduce a TDA
+of TDA from 3.4 (no TDA added) to 2.9 ([TDA] : [albumin] ratio          specic binding site since we have to assume that TDA tends to
+of 2.3). When applying a linear regression, the slope is 0.22.         sorb at all available binding sites at the given molar ratios.31,32 A
+Considering our inter-week precision of 0.1 log units from              more general interpretation could be that the observed slight
+
+
+
+
+Fig. 5 Logarithmic albumin/water partition coeﬃcients of PFNA and PFHxA in the presence of diﬀerent molar ratios of the fatty acid TDA (A) or
+HDA (B) to albumin in equilibrium. Each data point comprises six measurements. Standard deviations are partly covered by symbols of data
+points. log Kalbumin/water without TDA (molar ratio: 0) for PFHxA and PFNA was taken from former experiments, and the log K for PFNA from
+precision experiments. Experiments with TDA/PFHxA were repeated once, except for the molar ratio of 0.6.
+
+
+
+This journal is © The Royal Society of Chemistry 2019                                 Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1859
+Environmental Science: Processes & Impacts                                                                                              Paper
+
+
+decline of the albumin/water partition coeﬃcient of PFHxA and         albumin. Serum albumin is considered as one of the preferred
+PFNA with increasing amount of TDA could indicate either that         sorption sites for PFAAs in various organisms26 leading to high
+both compounds bind to fatty acid binding sites and that TDA is       PFAA concentrations in blood. The determination of valid
+displacing the PFCA at higher concentrations, or that the             partition coeﬃcients to serum albumin is therefore decisive
+respective PFCA binds to one of the drug-binding sites and the        when describing the distribution of PFAAs in organisms by
+binding of TDA alters the albumin conformation thereby dis-           using PBTK models. PBTK models in combination with bio-
+rupting PFCA–albumin interaction. Both scenarios have already         monitoring data facilitate valuable risk assessment. Consid-
+been described for other organic anions.36,77 In contrast to the      ering the small number of studies that have monitored blood
+slight trends we observed in the experiments with TDA, almost         levels for alternatives in humans so far, there is demand for
+no diﬀerences in the determined partition coeﬃcients occurred         more data from monitoring studies. The only published study
+in the presence of HDA at diﬀerent adjusted [HDA] : [albumin]         on DONA so far found rather low serum concentrations <0.2–1.7
+ratios (Fig. 5B). For PFHxA and PFNA, logarithmic albumin/            mg L1 in blood donors living in the vicinity of a production
+water partition coeﬃcients remain close to 3.25 and 4.55,             site.65 Assuming a similar intrinsic toxicity of classical PFAAs15,66
+respectively. Again, a slight diﬀerence was observed for the          and their alternatives and a constantly increasing exposure to
+partition coeﬃcient determined in the absence of HDA. It              the alternatives due to extended production,79–82 it becomes
+should be noted that HDA experiments for PFNA and PFHxA               clear that these compounds need further attention. Knowledge
+were each conducted using one single batch/stock solution of          about the partitioning of these compounds will help to estimate
+albumin and PFNA or PFHxA, respectively, except for the setup         their potency to bioaccumulate and supports the work of
+without HDA. This could explain the slight diﬀerence. Both            regulatory authorities.
+values are within the standard deviation of the precision tests
+(PFNA) and observed deviations could not be assigned to
+a specic eﬀect in this case.                                         Conﬂicts of interest
+    Since we did not observe a concentration dependent alter-
+ation in the partitioning of PFCAs to albumin for the long-chain      There are no conicts to declare.
+fatty acid HDA, we would expect that there is no signicant
+competition of PFCAs and long-chain fatty acids in the human
+body (despite the slight trends we saw for the medium-chain           Acknowledgements
+TDA) and that the experimentally determined partition coeﬃ-           The authors thank Heidrun Paschke and Andrea Pfenningsdorﬀ
+cients are representative of a physiological situation. But one       for lab assistance and Andrea Ebert for introducing COSMO and
+should be aware that only two representatives were selected in        calculations. The presented work contributes to the programme
+our experiments (with an odd number of carbons), which does           topic Chemicals In The Environment (CITE) funded by the
+not completely cover all physiological situations.                    Helmholtz Research Programme.
+
+Conclusions
+                                                                      References
+The number of alternative compounds to long-chain per-
+uoroalkyl acids is constantly increasing. However, the bio-           1 J. M. Armitage, M. MacLeod and I. T. Cousins, Comparative
+accumulative behaviour of both classical PFAAs and their                 Assessment of the Global Fate and Transport Pathways of
+structurally modied alternatives is still not well understood.          Long-Chain Peruorocarboxylic Acids (PFCAs) and
+PBTK models could help to predict the risk in humans, but such           Peruorocarboxylates (PFCs) Emitted from Direct Sources,
+models require partition coeﬃcients for relevant biological              Environ. Sci. Technol., 2009, 43, 5830–5836.
+matrices. We determined albumin/water partition coeﬃcients             2 Z. Wang, I. T. Cousins, M. Scheringer, R. C. Buck and
+in a physiological representative system of a series of PFAAs and        K. Hungerbuhler, Global emission inventories for C4–C14
+for four alternative compounds. Our data did not show any                peruoroalkyl carboxylic acid (PFCA) homologues from
+relevant competition between long chain fatty acids and PFAAs            1951 to 2030, Part I: production and emissions from
+for sorption sites on albumin. We therefore consider our data            quantiable sources, Environ. Int., 2014, 70, 62–75.
+measured for fatty-acid free albumin as physiologically relevant.      3 A. Blum, S. A. Balan, M. Scheringer, X. Trier, G. Goldenman,
+   For PFCAs, our albumin/water partition coeﬃcients increase            I. T. Cousins, M. Diamond, T. Fletcher, C. Higgins,
+with increasing number of peruorinated carbons up to at least           A. E. Lindeman, G. Peaslee, P. de Voogt, Z. Wang and
+PFDA, which is consistent with most literature data. PFSAs have          R. Weber, The Madrid Statement on Poly- and
+higher partition coeﬃcients in comparison to their PFCA                  Peruoroalkyl Substances (PFASs), Environ. Health
+counterparts.                                                            Perspect., 2015, 123, A107–A111.
+   We demonstrated that the albumin/water partition coeﬃ-              4 J. M. Conder, R. A. Hoke, W. d. Wolf, M. H. Russell and
+cients of the alternatives are in the same range as the ones of the      R. C. Buck, Are PFCAs Bioaccumulative? A Critical Review
+classical PFAAs. These results indicate that the accumulation            and Comparison with Regulatory Criteria and Persistent
+potency of the alternatives in comparison to long-chain PFAAs is         Lipophilic Compounds, Environ. Sci. Technol., 2008, 42,
+not lowered with regard to their sorption to the blood protein           995–1003.
+
+
+1860 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                              This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                       Environmental Science: Processes & Impacts
+
+
+ 5 ECHA European Chemicals Agency, Candidate List of                     kinetics      of    2,3,3,3-tetrauoro-2-(heptauoropropoxy)
+   Substances of Very High Concern for Authorisation, https://           propanoic acid ammonium salt following a single dose in
+   echa.europa.eu/candidate-list-table, accessed 02.05.2019.             rat, mouse, and cynomolgus monkey, Toxicology, 2016,
+ 6 ECHA, Pentadecauorooctanoic acid (PFOA) as a substance of            340, 1–9.
+   very high concern, European Chemicals Agency, 2013.                20 N. Ulrich, S. Endo, T. N. Brown, N. Watanabe, G. Bronner,
+ 7 C. Lau, K. Anitole, C. Hodes, D. Lai, A. Pfahles-Hutchens and         M. H. Abraham and K. U. Goss, UFZ-LSER database v 3.2
+   J. Seed, Peruoroalkyl acids: a review of monitoring and              [Internet], Leipzig, Deutschland, Helmholtz Zentrum für
+   toxicological ndings, Toxicol. Sci., 2007, 99, 366–394.              Umweltforschung – UFZ, accessed on 27.05.2019, http://
+ 8 R. C. Buck, J. Franklin, U. Berger, J. M. Conder, I. T. Cousins,      www.ufz.de/lserd, 2017.
+   P. de Voogt, A. A. Jensen, K. Kannan, S. A. Mabury and             21 S. Endo, T. N. Brown and K. U. Goss, General model for
+   S. P. van Leeuwen, Peruoroalkyl and polyuoroalkyl                   estimating partition coeﬃcients to organisms and their
+   substances in the environment: terminology, classication,            tissues     using    the    biological    compositions    and
+   and origins, Integr. Environ. Assess. Manage., 2011, 7, 513–          polyparameter linear free energy relationships, Environ. Sci.
+   541.                                                                  Technol., 2013, 47, 6630–6639.
+ 9 K. U. Goss, The pKa Values of PFOA and Other Highly                22 L. Henneberger, K. U. Goss and S. Endo, Equilibrium
+   Fluorinated Carboxylic Acids, Environ. Sci. Technol., 2008,           Sorption of Structurally Diverse Organic Ions to Bovine
+   42, 456–458.                                                          Serum Albumin, Environ. Sci. Technol., 2016, 50, 5119–5126.
+10 L. Vierke, U. Berger and I. T. Cousins, Estimation of the acid     23 H. P. Arp, C. Niederer and K. U. Goss, Predicting the
+   dissociation constant of peruoroalkyl carboxylic acids               Partitioning Behavior of Various Highly Fluorinated
+   through an experimental investigation of their water-to-air           Compounds, Environ. Sci. Technol., 2006, 40, 7298–7304.
+   transport, Environ. Sci. Technol., 2013, 47, 11032–11039.          24 K. U. Goss and G. Bronner, What Is So Special about the
+11 USEPA, 2010/2015 PFOA Stewardship Program, U.S.                       Sorption Behavior of Highly Fluorinated Compounds?, J.
+   Environmental Protection Agency Washington, D.C., USA,                Phys. Chem. A, 2006, 110, 9518–9522.
+   2006.                                                              25 C. A. Ng and K. Hungerbuehler, Exploring the Use of
+12 OECD, Risk Reduction Approaches for PFASs, Publications               Molecular       Docking     to    Identify    Bioaccumulative
+   Series on Risk Management No. 29, Organisation for                    Peruorinated Alkyl Acids (PFAAs), Environ. Sci. Technol.,
+   Economic Co-operation and Development, Paris, France,                 2015, 49, 12306–12314.
+   2015.                                                              26 C. A. Ng and K. Hungerbuhler, Bioaccumulation of
+13 Y. Wang, R. Vestergren, Y. Shi, D. Cao, L. Xu, Y. Cai, X. Zhao        peruorinated alkyl acids: observations and models,
+   and F. Wu, Identication, Tissue Distribution, and                    Environ. Sci. Technol., 2014, 48, 4637–4648.
+   Bioaccumulation Potential of Cyclic Peruorinated                  27 M. Khazaee and C. A. Ng, Evaluating parameter availability
+   Sulfonic Acids Isomers in an Airport Impacted Ecosystem,              for physiologically based pharmacokinetic (PBPK)
+   Environ. Sci. Technol., 2016, 50, 10923–10932.                        modeling of peruorooctanoic acid (PFOA) in zebrash,
+14 M. I. Gomis, Z. Wang, M. Scheringer and I. T. Cousins, A              Environ. Sci.: Processes Impacts, 2018, 20, 105–119.
+   modeling assessment of the physicochemical properties              28 X. Han, T. A. Snow, R. A. Kemper and G. W. Jepson, Binding
+   and environmental fate of emerging and novel per- and                 of peruorooctanoic acid to rat and human plasma proteins,
+   polyuoroalkyl substances, Sci. Total Environ., 2015, 505,            Chem. Res. Toxicol., 2003, 16, 775–781.
+   981–991.                                                           29 P. D. Jones, W. Hu, W. De Coen, J. L. Newsted and J. P. Giesy,
+15 Z. Wang, I. T. Cousins, M. Scheringer and K. Hungerbuehler,           Binding of Peruorinated Fatty Acids to Serum Proteins,
+   Hazard assessment of uorinated alternatives to long-chain            Environ. Toxicol. Chem., 2003, 22, 2639–2649.
+   peruoroalkyl acids (PFAAs) and their precursors: status           30 J. C. D'Eon, A. J. Simpson, R. Kumar, A. J. Baer and
+   quo, ongoing challenges and possible solutions, Environ.              S. A. Mabury, Determining the molecular interactions of
+   Int., 2015, 75, 172–179.                                              peruorinated carboxylic acids with human sera and
+16 ECHA European Chemicals Agency, Registered substances,                isolated human serum albumin using nuclear magnetic
+   http://echa.europa.eu/information-on-chemicals/registered-            resonance spectroscopy, Environ. Toxicol. Chem., 2010, 29,
+   substances, accessed 25.05.2019.                                      1678–1688.
+17 S. Wang, J. Huang, Y. Yang, Y. Hui, Y. Ge, T. Larssen, G. Yu,      31 T. Peters, All About Albumin: Biochemistry, Genetics, and
+   S. Deng, B. Wang and C. Harman, First report of a Chinese             Medical Applications, Academic Press, San Diego, 1995.
+   PFOS alternative overlooked for 30 years: its toxicity,            32 S. Curry, P. Brick and N. P. Franks, Fatty acid binding to
+   persistence, and presence in the environment, Environ. Sci.           human serum albumin-new insights from crystallographic
+   Technol., 2013, 47, 10163–10170.                                      studies, Biochim. Biophys. Acta, 1999, 1441, 131–140.
+18 J. S. Bowman, Fluorotechnology is critical to modern life: the     33 A. A. Bhattacharya, T. Grune and S. Curry, Crystallographic
+   FluoroCouncil counterpoint to the Madrid Statement,                   analysis reveals common modes of binding of medium
+   Environ. Health Perspect., 2015, 123, A112–A113.                      and long-chain fatty acids to human serum albumin, J.
+19 S. A. Gannon, W. J. Fasano, M. P. Mawn, D. L. Nabb,                   Mol. Biol., 2000, 303, 721–732.
+   R. C. Buck, L. W. Buxton, G. W. Jepson and S. R. Frame,
+   Absorption, distribution, metabolism, excretion, and
+
+
+This journal is © The Royal Society of Chemistry 2019                              Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1861
+Environmental Science: Processes & Impacts                                                                                             Paper
+
+
+34 G. Sudlow, D. J. Birkett and D. N. Wade, The characterization      48 B. I. Escher and R. P. Schwarzenbach, Evaluation of
+   of two specic drug binding sites on human serum albumin,             Liposome–Water Partitioning of Organic Acids and Bases.
+   Mol. Pharmacol., 1975, 11, 824–832.                                   1. Development of a Sorption Model, Environ. Sci. Technol.,
+35 I. Petitpas, T. Grüne, A. A. Bhattacharya and S. Curry, Crystal      2000, 34, 3954–3961.
+   structures of human serum albumin complexed with                   49 U. Berger, A. Glynn, K. E. Holmstrom, M. Berglund,
+   monounsaturated and polyunsaturated fatty acids, J. Mol.              E. H. Ankarberg and A. Tornkvist, Fish consumption as
+   Biol., 2001, 314, 955–960.                                            a source of human exposure to peruorinated alkyl
+36 J. Ghuman, P. A. Zunszain, I. Petitpas, A. A. Bhattacharya,           substances in Sweden – analysis of edible sh from Lake
+   M. Otagiri and S. Curry, Structural basis of the drug-                Vattern and the Baltic Sea, Chemosphere, 2009, 76, 799–804.
+   binding specicity of human serum albumin, J. Mol. Biol.,          50 A. Glynn, U. Berger, A. Bignert, S. Ullah, M. Aune, S. Lignell
+   2005, 353, 38–52.                                                     and P. O. Darnerud, Peruorinated alkyl acids in blood
+37 H. N. Bischel, L. A. Macmanus-Spencer and R. G. Luthy,                serum from primiparous women in Sweden: serial
+   Noncovalent interactions of long-chain peruoroalkyl acids            sampling during pregnancy and nursing, and temporal
+   with serum albumin, Environ. Sci. Technol., 2010, 44, 5263–           trends 1996–2010, Environ. Sci. Technol., 2012, 46, 9071–
+   5269.                                                                 9079.
+38 J. Sabin, G. Prieto, A. Gonzalez-Perez, J. M. Ruso and             51 U. Shaque, V. Dorn, A. Paschke and G. Schuurmann,
+   F. Sarmiento, Eﬀects of Fluorinated and Hydrogenated                  Adsorption of peruorocarboxylic acids at the silica
+   Surfactants on Human Serum Albumin at Diﬀerent pHs,                   surface, Chem. Commun., 2017, 53, 589–592.
+   Biomacromolecules, 2006, 7, 176–182.                               52 N. El Kadi, N. Taulier, J. Y. Le Huerou, M. Gindre, W. Urbach,
+39 L. L. Wu, H. W. Gao, N. Y. Gao, F. F. Chen and L. Chen,               I. Nwigwe, P. C. Kahn and M. Waks, Unfolding and refolding
+   Interaction of peruorooctanoic acid with human serum                 of bovine serum albumin at acid pH: ultrasound and
+   albumin, BMC Struct. Biol., 2009, 9, 31.                              structural studies, Biophys. J., 2006, 91, 3397–3404.
+40 L. A. MacManus-Spencer, M. L. Tse, P. C. Hebert,                   53 M. Gulden, P. Dierickx and H. Seibert, Validation of
+   H. N. Bischel and R. G. Luthy, Binding of                             a prediction model for estimating serum concentrations of
+   peruorocarboxylates to serum albumin: a comparison of                chemicals which are equivalent to toxic concentrations in
+   analytical methods, Anal. Chem., 2010, 82, 974–981.                   vitro, Toxicol. In Vitro, 2006, 20, 1114–1124.
+41 H. B. Klevens and E. Ellenbogen, Protein-uoroacid                 54 G. J. van der Vusse, Albumin as Fatty Acid Transporter, Drug
+   interaction: Bovine serum albumin peruoro-octanoic acid,             Metab. Pharmacokinet., 2009, 24, 300–307.
+   J. Phys. Chem. B, 1954, 119, 277–288.                              55 B. I. Escher, C. E. Cowan-Ellsberry, S. Dyer, M. R. Embry,
+42 P. Messina, G. Prieto, J. M. Ruso and F. Sarmiento,                   S. Erhardt, M. Halder, J. H. Kwon, K. Johanning,
+   Conformational Changes in Human Serum Albumin                         M. T. Oosterwijk, S. Rutishauser, H. Segner and J. Nichols,
+   Induced by NaPFOA in Aqueous Solutions, J. Phys. Chem.                Protein and lipid binding parameters in rainbow trout
+   B, 2005, 109, 15566–15573.                                            (Oncorhynchus mykiss) blood and liver fractions to
+43 P. C. Hebert and L. A. MacManus-Spencer, Development of               extrapolate from an in vitro metabolic degradation assay to
+   a uorescence model for the binding of medium- to long-               in vivo bioaccumulation potential of hydrophobic organic
+   chain peruoroalkyl acids to human serum albumin                      chemicals, Chem. Res. Toxicol., 2011, 24, 1134–1143.
+   through a mechanistic evaluation of spectroscopic                  56 S. Endo, J. Bauerfeind and K. U. Goss, Partitioning of neutral
+   evidence, Anal. Chem., 2010, 82, 6463–6471.                           organic compounds to structural proteins, Environ. Sci.
+44 Y. M. Chen and L. H. Guo, Fluorescence study on site-                 Technol., 2012, 46, 12697–12703.
+   specic binding of peruoroalkyl acids to human serum              57 J. D. Teresi and J. M. Luck, The combination of organic
+   albumin, Arch. Toxicol., 2009, 83, 255–261.                           anions and serum albumin, J. Biol. Chem., 1952, 194, 823–
+45 P. Messina, G. Prieto, V. Dodero, M. A. Cabrerizo-Vilchez,            834.
+   J. Maldonado-Valderrama, J. M. Ruso and F. Sarmiento,              58 L. Linden, K. U. Goss and S. Endo, 3D-QSAR predictions for
+   Surface characterization of human serum albumin and                   bovine serum albumin–water partition coeﬃcients of
+   sodium peruorooctanoate mixed solutions by pendant                   organic anions using quantum mechanically based
+   drop tensiometry and circular dichroism, Biopolymers,                 descriptors, Environ. Sci.: Processes Impacts, 2017, 19, 261–
+   2006, 82, 261–271.                                                    269.
+46 H. N. Bischel, L. A. Macmanus-Spencer, C. Zhang and                59 TURBOMOLE 4.2.1 (2016), a development of University of
+   R. G. Luthy, Strong associations of short-chain                       Karlsruhe and Forschungszentrum Karlsruhe GmbH, 1989–
+   peruoroalkyl acids with serum albumin and investigation              2007, TURBOMOLE GmbH, since 2007, http://
+   of binding mechanisms, Environ. Toxicol. Chem., 2011, 30,             www.turbomole.com.
+   2423–2430.                                                         60 COSMOconf (V 4.1), COSMOlogic GmbH & Co KG, http://
+47 J. C. D'Eon and S. A. Mabury, Exploring indirect sources of           www.cosmologic.de.
+   human exposure to peruoroalkyl carboxylates (PFCAs):              61 P. Qin, R. Liu, X. Pan, X. Fang and Y. Mou, Impact of carbon
+   evaluating uptake, elimination, and biotransformation of              chain length on binding of peruoroalkyl acids to bovine
+   polyuoroalkyl phosphate esters (PAPs) in the rat, Environ.           serum albumin determined by spectroscopic methods, J.
+   Health Perspect., 2011, 119, 344–350.                                 Agric. Food Chem., 2010, 58, 5561–5567.
+
+
+1862 | Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863                             This journal is © The Royal Society of Chemistry 2019
+Paper                                                                                      Environmental Science: Processes & Impacts
+
+
+62 Z. Luo, X. Shi, Q. Hu, B. Zhao and M. Huang, Structural              substances in an adult German population in southern
+   evidence of peruorooctane sulfonate transport by human              Bavaria, Int. Arch. Occup. Environ. Health, 2007, 80, 313–319.
+   serum albumin, Chem. Res. Toxicol., 2012, 25, 990–992.            72 R. P. Schwarzenbach, P. M. Gschwend and D. M. Imboden,
+63 A. C. Sen, K. Matsuyama, S. Wanwimolruk and J. H. Perrin,            Environmental Organic Chemistry, John Wiley & Sons Inc.,
+   Observations of conformational changes in human serum                New York, 2nd edn, 2003.
+   albumin following removal of fatty acid by charcoal, J.           73 D. A. Ellis, K. A. Denkenberger, T. E. Burrow and
+   Pharm. Biomed. Anal., 1991, 9, 781–784.                              S. A. Mabury, The Use of 19F NMR to Interpret the
+64 EFSA, Scientic opinion on the safety evaluation of the              Structural Properties of Peruorocarboxylate Acids: A
+   substance, 3H-peruoro-3-[(3-methoxy-propoxy)propanoic               Possible     Correlation     with     Their    Environmental
+   acid], ammonium salt, CAS No. 958445-44-8, for use in                Disposition, J. Phys. Chem. A, 2004, 108, 10099–10106.
+   food contact materials, EFSA J., 2011, 9(6), 2182.                74 A. A. Spector, Fatty acid binding to plasma albumin, J. Lipid
+65 H. Fromme, M. Wockner, E. Roscher and W. Volkel, ADONA               Res., 1975, 16, 165–179.
+   and peruoroalkylated substances in plasma samples of             75 G. V. Richieri, A. Anel and A. M. Kleinfeld, Interactions of
+   German blood donors living in South Germany, Int. J. Hyg.            long-chain fatty acids and albumin: Determination of free
+   Environ. Health, 2016, 220, 455–460.                                 fatty acid levels using the uorescent probe ADIFAB,
+66 M. I. Gomis, R. Vestergren, D. Borg and I. T. Cousins,               Biochemistry, 1993, 32, 7574–7580.
+   Comparing the toxic potency in vivo of long-chain                 76 A. Kotani, T. Fuse and F. Kusu, Determination of plasma free
+   peruoroalkyl acids and uorinated alternatives, Environ.            fatty acids by high-performance liquid chromatography with
+   Int., 2018, 113, 1–9.                                                electrochemical detection, Anal. Biochem., 2000, 284, 65–69.
+67 M. Houde, M. Douville, M. Giraudo, K. Jean, M. Lepine,            77 J. R. Simard, P. A. Zunszain, J. A. Hamilton and S. Curry,
+   C. Spencer and A. O. De Silva, Endocrine-disruption                  Location of high and low aﬃnity fatty acid binding sites
+   potential of peruoroethylcyclohexane sulfonate (PFECHS)             on human serum albumin revealed by NMR drug-
+   in chronically exposed Daphnia magna, Environ. Pollut.,              competition analysis, J. Mol. Biol., 2006, 361, 336–351.
+   2016, 218, 950–956.                                               78 E. S. Krenzel, Z. Chen and J. A. Hamilton, Correspondence of
+68 G. W. Olsen, P. W. Logan, K. J. Hansen, C. A. Simpson,               fatty acid and drug binding sites on human serum albumin:
+   J. M. Burris, M. M. Burlew, P. P. Vorarath,                          a two-dimensional nuclear magnetic resonance study,
+   P. Venkateswarlu, J. C. Schumpert and J. H. Mandel, An               Biochemistry, 2013, 52, 1559–1567.
+   Occupational           Exposure        Assessment           of    79 Z. Wang, J. C. DeWitt, C. P. Higgins and I. T. Cousins, A
+   a Peruorooctanesulfonyl Fluoride Production Site:                   Never-Ending Story of Per- and Polyuoroalkyl Substances
+   Biomonitoring, AIHA J., 2003, 64, 651–659.                           (PFASs)?, Environ. Sci. Technol., 2017, 51, 2508–2518.
+69 E. A. Emmett, F. S. Shofer, H. Zhang, D. Freeman, C. Desai        80 M. Strynar, S. Dagnino, R. McMahen, S. Liang, A. Lindstrom,
+   and      L.   M.      Shaw,    Community       exposure     to       E. Andersen, L. McMillan, M. Thurman, I. Ferrer and C. Ball,
+   peruorooctanoate:       relationships     between      serum        Identication of Novel Peruoroalkyl Ether Carboxylic Acids
+   concentrations and exposure sources, J. Occup. Environ.              (PFECAs) and Sulfonic Acids (PFESAs) in Natural Waters
+   Med., 2006, 48, 759–770.                                             Using Accurate Mass Time-of-Flight Mass Spectrometry
+70 R. R. Worley, S. M. Moore, B. C. Tierney, X. Ye, A. M. Calafat,      (TOFMS), Environ. Sci. Technol., 2015, 49, 11622–11630.
+   S. Campbell, M. B. Woudneh and J. Fisher, Per- and                81 L. A. D'Agostino and S. A. Mabury, Identication of novel
+   polyuoroalkyl substances in human serum and urine                   uorinated surfactants in aqueous lm forming foams and
+   samples from a residentially exposed community, Environ.             commercial surfactant concentrates, Environ. Sci. Technol.,
+   Int., 2017, 106, 135–143.                                            2014, 48, 121–129.
+71 H. Fromme, O. Midasch, D. Twardella, J. Angerer,                  82 F. Xiao, Emerging poly- and peruoroalkyl substances in the
+   S. Boehmer and B. Liebl, Occurrence of peruorinated                 aquatic environment: A review of current literature, Water
+                                                                        Res., 2017, 124, 482–495.
+
+
+
+
+This journal is © The Royal Society of Chemistry 2019                             Environ. Sci.: Processes Impacts, 2019, 21, 1852–1863 | 1863
+

@@ -1,0 +1,522 @@
+                                                                                       Environmental Toxicology and Chemistry, Vol. 30, No. 11, pp. 2423–2430, 2011
+                                                                                                                                                     # 2011 SETAC
+                                                                                                                                                  Printed in the USA
+                                                                                                                                               DOI: 10.1002/etc.647
+
+
+
+
+    STRONG ASSOCIATIONS OF SHORT-CHAIN PERFLUOROALKYL ACIDS WITH SERUM
+             ALBUMIN AND INVESTIGATION OF BINDING MECHANISMS
+
+          HEATHER N. BISCHEL,y LAURA A. MACMANUS-SPENCER,z CHAOJIE ZHANG,§ and RICHARD G. LUTHY*y
+                         yDepartment of Civil and Environmental Engineering, Stanford University, Stanford, California, USA
+                                      zDepartment of Chemistry, Union College, Schenectady, New York, USA
+§State Key Laboratory of Pollution Control and Resource Reuse, College of Environmental Science and Engineering, Tongji University, Shanghai, China
+
+                                  (Submitted 20 March 2011; Returned for Revision 9 May 2011; Accepted 23 July 2011)
+
+
+       Abstract— Interactions of perﬂuoroalkyl acids (PFAAs) with tissue and serum proteins likely contribute to their tissue distribution and
+       bioaccumulation patterns. Protein–water distribution coefﬁcients (KPW) based on ligand associations with bovine serum albumin (BSA)
+       as a model protein were recently proposed as biologically relevant parameters to describe the environmental behavior of PFAAs, yet
+       empirical data on such protein binding behavior are limited. In the present study, associations of perﬂuoroalkyl carboxylates (PFCAs)
+       with two to 12 carbons (C2–C12) and perﬂuoroalkyl sulfonates with four to eight carbons (C4, C6, and C8) with BSA are evaluated at low
+       PFAA:albumin mole ratios and various solution conditions using equilibrium dialysis, nanoelectrospray ionization mass spectrometry,
+       and ﬂuorescence spectroscopy. Log KPW values for C4 to C12 PFAAs range from 3.3 to 4.3. Afﬁnity for BSA increases with PFAA
+       hydrophobicity but decreases from the C8 to C12 PFCAs, likely due to steric hindrances associated with longer and more rigid
+       perﬂuoroalkyl chains. The C4-sulfonate exhibits increased afﬁnity relative to the equivalent chain-length PFCA. Fluorescence titrations
+       support evidence that an observed dependence of PFAA-BSA binding on pH is attributable to conformational changes in the protein.
+       Association constants determined for perﬂuorobutanesulfonate and perﬂuoropentanoate with BSA are on the order of those for long-
+       chain PFAAs (Ka106/M), suggesting that physiological implications of strong binding to albumin may be important for short-chain
+       PFAAs. Environ. Toxicol. Chem. 2011;30:2423–2430. # 2011 SETAC
+
+       Keywords—Protein binding            Bioaccumulation        Modeling        Perﬂuoroalkyl acids         Albumin
+
+
+                           INTRODUCTION                                               degradation, and metabolism by vertebrates and renders the
+   The unique chemical properties of perﬂuoroalkyl acids                              perﬂuoroalkyl tail both hydrophobic and oleophobic [7,8].
+(PFAAs), a class of stable anionic surfactants, have been                             Rather than partitioning to adipose tissue, PFAAs are detected
+capitalized on since the 1940 s in the production of a variety                        predominantly in protein-rich compartments such as the liver,
+of industrial and consumer products [1]. In response to com-                          kidney, and blood [9–12], and PFOS concentrations have been
+prehensive research documenting the environmental persis-                             shown to positively correlate with tissue and ﬂuid protein
+tence and widespread occurrence of PFAAs in humans and                                content [9].
+wildlife [2,3], the 3M Company voluntarily eliminated per-                                Recent ﬁeld monitoring data for C7 to C14 PFCAs demon-
+ﬂuorooctane sulfonyl ﬂuoride–based materials including per-                           strate a curvilinear relationship between protein-normalized
+ﬂuorooctanoate (PFOA) and perﬂuorooctane sulfonate (PFOS)                             trophic magniﬁcation factors in a marine mammalian food
+from production. Eight companies subsequently committed to                            web and protein–water distribution coefﬁcients (KPW) esti-
+eliminating emissions of PFOA and related compounds by 2015                           mated from a relationship between octanol–water partition
+as part of a U.S. Environmental Production Agency PFOA                                coefﬁcients and afﬁnities for bovine serum albumin (BSA)
+Stewardship Program [4]. Internationally, however, perﬂuor-                           [13]. The KPW may be incorporated into predictive models to
+oalkyl compounds of varying chain lengths (C4–C15) are still                          improve estimations of chemical distribution and bioaccumu-
+manufactured, and legacy products remain in use globally [1].                         lation of organic contaminants [14]. A globular protein con-
+The phase-out of PFOS has been accompanied by a shift in                              sisting of 583 amino acid residues, BSA (66,430 Da) is widely
+production to shorter-chain-length compounds, including those                         used as a model protein in biophysical, biochemical, and
+based on C4-sulfonyl chemistries [4]. The apparently efﬁcient                         physicochemical studies, because BSA binding sites accom-
+clearance of perﬂuorobutane sulfonate (PFBS), observed in                             modate a wide variety of endogenous and exogenous ligands.
+several organisms, reduces this compound’s bioaccumulative                            Albumin is located to some degree in every ﬂuid of the body,
+potential [5,6].                                                                      accounting for 60% of total serum proteins at concentrations of
+   The structures of two homolog groups, perﬂuoroalkyl                                35 to 50 g/L and exhibiting extravascular concentrations of
+carboxylates (PFCAs) and perﬂuoroalkyl sulfonates (PFSAs),                            10 to 30 g/L in the skin, muscle, liver, gut, and subcutaneous
+resemble those of fatty acids and hydrocarbon-based detergents                        compartment [15]. Despite a proposal that PFAA biomagniﬁ-
+(Supplemental Figure S1), but the high-energy carbon–ﬂuorine                          cation patterns may correlate with binding to serum proteins,
+bond imparts resistance to hydrolysis, photolysis, microbial                          empirical data on the protein-binding behavior of PFAAs are
+                                                                                      limited, especially for short-chain PFAAs. Chen and Guo [16]
+                                                                                      measured displacement of ﬂuorescent probes on human serum
+   All Supplemental Data may be found in the online version of this article.          albumin (HSA) to calculate association constants for PFBS and
+   * To whom correspondence may be addressed
+(luthy@stanford.edu).
+                                                                                      the C4 PFCA on the order of 106/M. However, other commonly
+   Published online 12 August 2011 in Wiley Online Library                            utilized ﬂuorescence methods may not be applicable to the
+(wileyonlinelibrary.com).                                                             study of short-chain PFAAs with albumin [17,18].
+                                                                               2423
+                                                                                                                                                            15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+2424      Environ. Toxicol. Chem. 30, 2011                                                                                            H.N. Bischel et al.
+
+    A wide range of association constants (102–106/M) for                       50 mM sodium phosphate buffer in polypropylene containers
+C8 and C9 PFAAs with rat [12], human [12,16,17,19–22],                          without the use of an organic co-solvent. BSA solutions were
+and bovine [18,22,23] albumins are reported. Primary associ-                    prepared fresh daily in glass volumetric ﬂasks, using 50 mM
+ation constants for PFOA and perﬂuorononanoate (PFNA) with                      sodium phosphate buffer at the desired pH, and concentrations
+BSA suggest binding through speciﬁc high-afﬁnity interactions.                  were measured using absorbance readings from a NanoDrop-
+High log KPW values (>4) were determined for PFOA and                           1000 spectrophotometer (NanoDrop Technologies). Polypro-
+PFNA at physiological PFAA:albumin mole ratios [23]. Site-                      pylene dialysis reservoirs containing the same buffers
+speciﬁc binding of PFOA and perﬂuorohexanoate (PFHxA) to                        (250–500 ml) and spiked with PFAAs were sampled in triplicate
+albumin has the potential to disrupt endogenous functions via                   to determine initial (0 h) and ﬁnal (120 h) PFAA concentrations.
+displacement of the fatty acid oleate [24], which exhibits 107                  The buffer system was selected for consistency with previous
+to 108/M association constants with albumin for its ﬁrst ﬁve                    analyses [22,23]. Dialysis reservoir pH and temperature meas-
+binding sites [25]. However, C4 to C10 PFAAs did not displace                   urements were taken with an Orion 5 Star Multimeter (Thermo
+steroid hormones from avian serum proteins at physiological                     Fisher Scientiﬁc). Dialysis bags containing 2 ml BSA solution
+concentrations [26]. In addition to active uptake of PFAAs by                   were secured with dialysis clips, added to reservoirs, and
+transporter systems [27], PFAA–albumin binding may play a                       equilibrated for 120 h at room temperature (21.2  0.48C)
+role in elimination kinetics [24]. Binding of small molecules to                before sampling. Six reservoirs were prepared at pH 7.0 with
+albumin controls their free concentrations in blood and inﬂu-                   a range of mixed PFAA concentrations and one dialysis bag
+ences the duration of action, because generally only the                        each ([BSA] ¼ 199  4 mM) and were sampled in triplicate at
+unbound fraction can exit the vascular component. Interactions                  equilibrium to determine KPW values. In these tests, individual
+of PFAAs with other biomolecular targets including liver fatty                  free PFAA concentrations at equilibrium ranged from 0.009 to
+acid–binding proteins also may play a role in PFAA bioaccu-                     0.7 mM (Table 1), such that total free PFAA concentrations
+mulation [28] and affect the pharmacokinetics of fatty acids or                 ranged from 0.8 to 5 mM. Additional dialysis reservoirs pre-
+other endogenous ligands [29].                                                  pared at pH 6.1, 7.0, 8.0, and 8.9 with 2.8  0.6 mM total PFAAs
+    The objective of the present study was to examine the                       each contained three dialysis bags ([BSA] ¼ 197  2 mM) that
+interactions of a series PFCAs (C5–C12) and even-chain-length                   were sampled in duplicate for PFAAs. Over the pH range
+PFSAs (C4–C8) with BSA. The fraction of PFAAs bound to                          studied, the PFAAs tested were in ionized form in solution
+BSA, and protein–water distribution coefﬁcients are determined                  [30]; any changes in protonation state on binding to BSA are not
+at physiologically relevant ligand:protein mole ratios, using                   detectable by this method. Unless otherwise stated, error bars
+equilibrium dialysis and liquid chromatography tandem mass                      represent 1 standard deviation. Control dialysis bags containing
+spectrometry, a direct approach that allows evaluation of bind-                 a buffer-only solution were equilibrated in a PFAA-spiked
+ing parameters at low ligand concentrations. Further analyses                   reservoir to conﬁrm equilibration and diffusion of PFAAs
+through dialysis, nanoelectrospray ionization mass spectrome-                   through the dialysis membrane. Control results indicate that
+try (nanoESI-MS), and ﬂuorescence spectroscopy offer insights                   perﬂuorotetradecanoic acid does not diffuse freely into the
+into the mechanisms of PFAA–albumin interactions by evalu-                      dialysis bag, so results for perﬂuorotetradecanoic acid were
+ating various solution- and chemical structure–speciﬁc param-                   excluded.
+eters potentially affecting the binding of PFAAs to albumin. In                     Details of postdialysis sample preparation, PFAA analysis
+particular, the inﬂuence of ﬂuorocarbon carbon chain length,                    via liquid chromatography tandem mass spectrometry, and
+ionic head group, and solution pH and ionic strength are                        mass balance results are available in the Supplemental Data
+assessed.                                                                       (Table S1). Samples and standards were analyzed using a
+                              METHODS                                           Shimadzu LC system (LC10ADvp pumps controlled by an
+                                                                                SCL10Avp controller) coupled to a Sciex API 3000 triple
+Equilibrium dialysis                                                            quadrupole mass spectrometer (MDS Sciex) operating in
+   A purity-corrected equimolar stock solution of PFCAs                         negative electrospray ionization multiple reaction monitoring
+(C5–C12 and C14) and PFSAs (C4, C6, and C8) and a separate                      mode. Analyte separation was achieved using a 40 mm  2.1 mm
+concentrated solution of PFNA were prepared in high-performance                 Targa Sprite C18 column (5-mm particle size, Higgins Ana-
+liquid chromatography (HPLC) grade water and diluted in                         lytical) with a C18 guard column (Higgins Analytical).
+
+Table 1. Fraction of perﬂuoroalkyl acids (PFAAs) bound to 200 mM bovine serum albumin (BSA) and log protein–water distribution coefﬁcients for PFAAs
+                                 with BSA measured over a range of equilibrium free PFAA reservoir concentrationsa
+
+Analyte                                               Reservoir [PFAA] Range (mM)b                         Log KPW                        Fraction bound
+
+Perﬂuorobutanesulfonate (PFBS)                                 0.010 to 0.57                              3.86  0.07                      99.0  0.5%
+Perﬂuorohexanesulfonate (PFHxS)                                0.012 to 0.27                               4.3  0.1                       99.2  0.5%
+Perﬂuorooctanesulfonate (PFOS)                                 0.013 to 0.26                               4.1  0.1                       99.1  0.4%
+Perﬂuoropentanoate (PFPeA)                                     0.024 to 0.56                              3.40  0.02                      96.6  0.8%
+Perﬂuorohexanoate (PFHxA)                                      0.009 to 0.43                              4.05  0.02                      99.2  0.3%
+Perﬂuoroheptanoate (PFHpA)                                     0.054 to 0.30                              4.23  0.08                      99.3  0.1%
+Perﬂuorooctanoate (PFOA)                                       0.023 to 0.32                              4.14  0.04                      99.1  0.2%
+Perﬂuorononanoate (PFNA)                                       0.064 to 0.46                              4.05  0.08                      98.9  0.3%
+Perﬂuorodecanoate (PFDA)                                       0.016 to 0.47                              3.86  0.08                       98  1%
+Perﬂuoroundecanoate (PFUnA)                                    0.026 to 0.38                               3.7  0.2                        95  3%
+Perﬂuorododecanoate (PFDoA)                                    0.031 to 0.68                               3.3  0.1                        80  10%
+a
+  For the fraction of PFAA bound to BSA in each tested reservoir, errors represent 95% conﬁdence values; standard errors for log KPW are from regressions
+  performed using Kaleidagraph software.
+b
+  n ¼ 6; n ¼ 5 for PFHpA.
+                                                                                                                                                     15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+Interactions of perfluoroalkyl acids with albumin                                                   Environ. Toxicol. Chem. 30, 2011        2425
+
+Nanoelectrospray ionization mass spectrometry                         afﬁnity for BSA was expected. The lower fraction bound for
+    Sample preparation, as well as instrument parameters and          perﬂuorododecanoate (PFDoA) relative to other compounds in
+conditions, were previously described [23]. Brieﬂy, individual        the mixed reservoir could reﬂect a decrease in afﬁnity at this
+PFAAs prepared in 9 mM ammonium acetate (pH 7) at room                longer chain length; however, the relatively large error asso-
+temperature were added to BSA (50 mM) in polypropylene                ciated with these results and the mass balance calculations
+microcentrifuge tubes, brought to a 1:1 or 2:1 PFAA:BSA mole          limits full interpretation. In a separate reservoir spiked only
+ratio, and equilibrated for one or more hours before same-day         with PFNA, 98.2% of PFNA was bound to BSA at equilibrium,
+analysis. Samples were analyzed using an Advion Triversa              a result in close agreement with that obtained in the mixed
+Nanomate nano-electrospray robot (Advion BioSystems)                  PFAA experiments.
+coupled with a Waters Micromass Q-Tof API-US quadrupole                  Protein–water distribution coefﬁcients (KPW) were deter-
+time-of-ﬂight mass spectrometer. Instrument gas pressure and          mined for each PFAA by a linear regression of the ratio of
+voltage settings were selected to maximize peak intensities           analyte concentration in the bound phase (Cp) to that in the
+while maintaining resolution and ion current. For static collision    aqueous phase (Cw) (Fig. 1). This ratio may be represented by
+energy tests, mass spectra were acquired for 4 min with cone                                CP              fbound
+voltage set at 100 V and laboratory scale collision energies set to                 KPW ¼       ¼
+                                                                                            CW ralbumin  ½Pð1fbound Þ
+10 eV for singly charged ions. In duplicate collision-induced
+dissociation tests for each tested PFAA–BSA complex, the              where [P] is the protein concentration (g/ml), fbound is the fraction
+collision energy was ramped from 10 to 90 eV, with spectra            bound to protein, and ralbumin is the partial speciﬁc volume of
+                                                                      protein in aqueous solution (0.733 ml/g, [31]). The KPW thus has
+acquired for 2 min at each setting. Additional details are avail-
+able in the Supplemental Data.                                        units of (g bound PFAA/ml BSA)/(g free PFAA/ml water) and
+                                                                      represents the distribution of the combined anionic and neutral
+                                                                      forms of PFAAs between BSA and the aqueous buffer. At the low
+Fluorescence spectroscopy                                             PFAA concentrations tested, the binding isotherm for total
+    The PFAA stock solutions were prepared in 50-ml poly-             PFAAs, represented by the sum of the concentrations of tested
+propylene centrifuge tubes (Corning) in HPLC grade water and          PFAAs, is linear (Fig. S2). Values of log KPW for individual
+were sonicated at 358C to dissolve. Solutions of BSA were             PFAAs range from 3.3 to 4.3 (Table 1). The highest Cw value for
+prepared in glass volumetric ﬂasks in 50 mM sodium phosphate          PFBS, PFPeA, and PFHxA (Cw > 0.4 mM) was excluded in the
+buffer (pH 6.1, 7.0, 8.1, or 9.1) immediately before each             KPW regressions (Supplemental Data, Table S2) because these
+experiment. A stock solution of sodium chloride (3.31 M)              binding isotherms were nonlinear at higher concentrations. All
+was prepared in HPLC grade water as needed. Fluorescence              data were included in nonlinear regressions performed to
+titrations were conducted for PFNA or PFOS with BSA in                determine association constants for the short-chain PFAAs. Data
+solutions buffered at pH 6.1, 7.0, 8.1, or 9.1 without added          obtained at relatively higher PFAA aqueous concentrations here
+sodium chloride and at pH 7.0 with added sodium chloride to           and in previous work [23] demonstrate an expected nonlinear
+achieve an ionic strength of 0.21, 0.30, or 0.41 M. Test solutions    binding relationship, and illustrate that application of KPW
+(14) were prepared in 15-ml polypropylene centrifuge tubes and        should be limited to a narrow concentration range in which
+allowed to equilibrate overnight at 48C. The concentration of         binding may be approximated as linear. At the PFAA:BSA ratios
+BSA was constant at 4 mM, a concentration that was selected,          tested, log KPW results were consistently greater than or at the
+along with instrumental parameters, to maximize both sensi-           high end of the range of BSA–water distribution coefﬁcients
+tivity and resolution. One sample was prepared with no added          compiled for traditional hydrophobic organic contaminants
+PFAA, whereas the other 13 contained a range of PFAA:BSA              (log KPW ¼ 0.09–3.5) [14].
+mole ratios (0.1:1 through 60:1). Emission scans were collected
+in a 1-cm quartz cuvette (Starna Cells) using a PTI Quanta-                          4
+Master spectroﬂuorometer (Photon Technology International).                   3x10
+The excitation wavelength was 295 nm, and the emission was
+recorded from 305 to 450 nm with a step size of 1 nm and an                                                                     PFSAs
+integration time of 0.1 s. All monochromator slit widths were                                                                   PFCAs
+4 nm.                                                                                4
+                                                                              2x10
+                                                                         PW
+
+
+
+
+                    RESULTS AND DISCUSSION
+                                                                      K
+
+
+
+
+Effect of chain length on binding of PFAAs to BSA
+                                                                                     4
+   Dialysis experiments allow direct measurement of PFAA-                     1x10
+BSA binding through partitioning of PFAAs between an exter-
+nal reservoir and BSA-containing dialysis bags. Measured
+concentrations of C2 to C12 PFCAs and C4 to C8 PFSAs in
+the dialysis bag relative to the external reservoir indicate free
+                                                                                    0
+movement of PFAAs through the dialysis membrane and
+retention of PFAA–BSA bound complexes in the dialysis
+                                                                                     2      4       6      8     10    12
+bag. At a BSA concentration of 200 mM (13 g/L) and a range                               Number of fluorinated carbons
+of PFAA mixture concentrations, PFCAs and PFSAs with four
+to 10 ﬂuorinated carbons were highly bound (>95%) to BSA              Fig. 1. Measured BSA–water distribution coefﬁcients (KPW) for
+                                                                      perﬂuoroalkyl sulfonates (PFSAs, white circles) and perﬂuoroalkyl
+across the range of free PFAA concentrations tested (Table 1).        carboxylates (PFCAs, black circles) with ﬂuorocarbon tail lengths of 4 to
+This was consistent even for the short-chain compounds PFBS,          11. Error bars are standard errors for regressions performed in Kaleidagraph
+perﬂuoropentanoate (PFPeA), and PFHxA, for which reduced              software.
+                                                                                                                                               15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+2426     Environ. Toxicol. Chem. 30, 2011                                                                                H.N. Bischel et al.
+
+    An increase in KPW with increasing chain length was
+observed for PFCAs with 4 to 6 ﬂuorinated carbons. For PFCAs
+with more than six ﬂuorinated carbons, KPW values generally
+decreased, although the differences between 6 and 7, 7 and 8,
+and 9 and 10 ﬂuorinated carbons were not signiﬁcant. Kelly
+et al. [13] estimated KPW values for PFCAs with BSA based on a
+generalized BSA–ligand relationship with octanol–water par-
+tition coefﬁcients (KOW). Reported log KPW values increased
+linearly from 2.0 for PFHpA to 5.0 for PFDoA; however, details
+of the KPW calculation were not provided. The trend predicts an
+increase in afﬁnity for BSA with increased hydrophobicity of
+the perﬂuoroalkyl tail but does not account for increased steric
+hindrance associated with longer ﬂuorocarbon tails. Increased
+rigidity of the ﬂuorocarbon tail and changes in molecular
+geometry that begin at C8 and become more pronounced for
+PFCAs with 10 carbons and longer may inﬂuence PFAA
+partitioning and binding behavior [24,32]. Hydrophobic binding
+cavities in BSA may have limited ability to accommodate these
+larger, less ﬂexible ligands.
+Direct binding observed by nanoESI-MS
+    NanoESI-MS, employing a soft ionization technique, is used
+here to conﬁrm direct binding of PFCAs (C2–C9) and PFSAs
+(C4–C8) to BSA and determine stoichiometries of binding at 1:1
+PFAA:albumin mole ratios. Nanoelectrospray ionization mass
+spectrometry has been widely used to study proteins in their
+native conformation and noncovalent interactions of protein–
+ligand complexes preserved in the gas phase [33], although to
+our knowledge this is the ﬁrst reported detection of short-chain
+PFCA and PFSA complexes with BSA by nanoESI-MS. Several
+studies have analyzed intact PFOA– and PFNA–protein com-
+plexes via ESI-MS to elucidate the stoichiometry of binding        Fig. 2. Deconvoluted spectra of 50 mM BSA alone or with 50 mM PFPeA,
+[12,23,26,28,34]. Although caution must be taken when quan-        PFHxA, PFHpA, PFOA, or PFNA. The location of free BSA (P) and
+                                                                   successive bound PFNA ligands (P þ L), (P þ 2L), and (P þ 3L) are denoted
+tifying gas-phase afﬁnities using this method [23] for compar-     on the uppermost spectrum. The peak of each ﬁrst bound PFAA used to
+ison with solution-based results, the technique has been           conﬁrm the expected incremental mass shift (DM) from the free BSA peak is
+increasingly used to determine stoichiometries of speciﬁc bind-    indicated by a star (). Analyte acronyms are listed in Table 1.
+ing for protein–ligand complexes.
+    Representative deconvoluted mass spectra for 1:1 mole ratio    clear evidence of multiple associations of PFOS with a given
+mixtures of BSA and several PFAAs are displayed in Figure 2        albumin molecule at a 1:1 PFOS þ BSA mole ratio. Binding
+and Figure S3. Deconvoluted spectra exhibit distinct peaks for     sites detected in this manner likely represent both strong and
+at least one bound PFAA per BSA. Despite somewhat broad            weak associations at the relatively high ligand:albumin mole
+peaks, the mass increment of noncovalent PFAA–BSA complex          ratio tested. Lower numbers of C4 and shorter PFCAs bound at
+peaks (P þ jL) from the initial protein peak (P) generally         equivalent mole ratios may indicate that secondary binding sites
+corresponds well with the theoretical molecular mass of the        or nonspeciﬁc interactions for these compounds, experienced at
+ligands (DM, Table S3). Protein-bound complexes were also          higher ligand concentrations, are weaker than comparable
+maintained for C2 to C4 PFCAs in the gas phase, with an            interactions of longer-chain PFAAs with BSA.
+observable change in the native BSA spectrum even with the             Because the precise binding location for various chain-
+addition of the C2 PFCA. Peaks corresponding to two bound          length PFAAs on albumin has not been established, the full
+perﬂuoropropionate (PFPrA) and perﬂuorobutanoate (PFBA)            albumin molecule was used in this study to establish speciﬁc
+(P þ 2L) were visible as shoulders at the expected BSA þ           binding of the full range of PFCAs and PFSAs to BSA,
+2(PFAA) complex mass on the broader peaks. Adduct ions             especially for short-chain PFAAs, without selecting for partic-
+in the protein spectra, which may be partially attributed to       ular domains on the protein. In three homologous domains,
+contamination of the protein with low-molecular-weight cations     albumin contains seven fatty acid (FA) binding sites, including
+(e.g., sodium) via contact with laboratory glassware, may mask     four low-afﬁnity sites (Sites 1, 3, 6, and 7) and three high-
+the binding of small or weakly bound ligands and also limit        afﬁnity sites (Sites 2, 4, and 5) that are likely candidates for
+evaluation of binding at low ligand:albumin mole ratios. For       PFAA binding [16]. Existing evidence suggests that PFHxA
+higher-molecular-weight PFAAs, the pattern of native BSA was       binds to Sudlow’s drug binding site II, which overlaps with FA
+preserved with the addition of successive PFAA ligands, lead-      Sites 3 and 4, whereas PFOA preferentially binds to Sudlow’s
+ing to a repetition of the native BSA peak shape at intervals      drug binding site I at FA Site 7 [24]. Use of truncated albumin,
+corresponding to the mass of each bound PFAA. Evidence of          such as recombinant HSA domain II [35], in future work
+multiple PFAAs bound per BSA molecule was distinctly visible       could improve nanoESI-MS mass resolution and, if coupled
+for PFNA and the C4–C8 PFSAs (2–3 PFAAs bound at a 1:1             with newly developed competitive binding nanoESI-MS tech-
+mole ratio). A rough calculation previously indicated that one     niques [35], may provide further information on site-speciﬁc
+PFOS binds per albumin molecule [26]. However, we present          associations.
+                                                                                                                                                                     15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+Interactions of perfluoroalkyl acids with albumin                                                                  Environ. Toxicol. Chem. 30, 2011         2427
+
+Effect of ionic head group on PFAA-BSA binding                                       PFSAs and PFCAs. The PFAAs may interact with positive
+    The protein–water distribution coefﬁcient determined for                         residues on BSA, including lysine (pKa 10.53) and arginine
+PFBS was signiﬁcantly greater than that for the equivalent                           (pKa 12.48) [38], and electrostatic interaction between two
+ﬂuoroalkyl chain length carboxylate, PFPeA. This corresponded                        oppositely charged molecules may be enhanced in the gas phase
+to an association constant for PFBS (Ka ¼ 7.0  3.6  106/M)                         and become relatively difﬁcult to disrupt when complexes are
+that was more than three times greater than that for PFPeA                           desolvated [36]. Additionally, BSA and BSA-PFAA complexes
+(Ka ¼ 2.0  0.8  106/M). Association constants (ratio of bound                      were monitored in positive ionization mode, so the dissociation
+to free reactants) were calculated using a one-class binding                         of PFAAs in an anionic form is not expected. Although
+model that relates the ratio of the bound PFAA concentration to                      both PFCAs and PFSAs are expected to be charged at
+the total protein concentration, n, to the association constant, Ka,                 physiological pH in solution, the carboxylate anions may be
+the free ligand concentration, and the total number of binding                       more amenable to the capture of a proton as compared with the
+sites on the protein [23]. At the concentrations tested, PFBS and                    sulfonate before dissociation from BSA in the ESI source and
+PFPeA exhibited nonlinear isotherms, where a greater fraction                        collision cell. Solution-phase methods may be more appropriate
+of PFBS was bound to BSA relative to PFPeA over the full                             to provide insight into the potential contribution of electrostatic
+range tested in dialysis experiments (Fig. 3).                                       interactions to PFAA-BSA binding.
+    NanoESI-MS was exploited to further evaluate the effect of
+the ionic head group on PFAA-BSA binding. The stability of                           Effect of pH on PFAA-BSA binding
+two pairs of compounds of equal ﬂuorinated alkyl chain length                            The contribution of electrostatic interactions to protein–
+(4 and 8) and a sulfonate or carboxylate moiety was observed by                      ligand binding is often assessed by changing the pH of the
+collision-induced dissociation at 2:1 PFAA:BSA mole ratios.                          solution [39]. However, the analysis and interpretation of the
+Collision-induced dissociation provides a relatively rapid way                       inﬂuence of pH on ligand interactions with BSA is complicated
+to probe the stability of binding in the gas phase. Studies have                     by the fact that BSA undergoes conformational changes with
+suggested a link between the energy required for dissociation of                     changes in pH, potentially altering binding site characteristics.
+gas-phase complexes and solution-phase binding constants,                            Conformational changes can occur through the folding and
+although the relative stability of protein–ligand complexes in                       unfolding of the tertiary and secondary structure of the protein.
+the gas phase and in solution inﬂuences the interpretation of                        In the case of BSA, successive multi-step, reversible trans-
+such measurements [36]. For example, although binding in a                           formations occur with increasing pH, from fast (F) to normal
+hydrophobic pocket may minimize the effects of water                                 (N) near pH 4, and to basic (B) and aged (A) forms near pH 8
+on protein–ligand binding in solution [37], hydrophobic inter-                       and 10, respectively. At near neutral pH (pH 7.4), albumin has a
+actions may not persist in the gas phase, and desolvation                            net charge of 17 and is heart-shaped in the N form [15,40].
+of the protein may have unknown inﬂuences on ligand                                  Over the pH range tested (pH 6–9), BSA begins in the N form at
+interactions [36].                                                                   lower pH and transitions to the B form. An analysis of the native
+    A markedly different result was observed for PFBS and                            ﬂuorescence of BSA reveals a decrease in ﬂuorescence intensity
+PFOS compared with PFPeA and PFNA: the PFSAs did not                                 with increasing pH and a slight blue shift at pH 9 (Fig. S5).
+dissociate from BSA over the range of tested collision energies                      These spectroscopic changes conﬁrm the conformational
+(CE), whereas PFCAs of identical chain lengths dissociated                           changes in BSA as a function of pH.
+from BSA between 40 and 60 eV (Fig. 3). Representative                                   For all tested PFAAs, equilibrium binding to BSA was high
+deconvoluted mass spectra for PFPeA and PFNA at the 2:1                              across all tested pH levels, ranging from 85% bound for PFPeA
+PFAA:BSA mole ratio and spectra demonstrating dissociation                           at pH 9 to greater than 99% for several compounds and pH
+of PFNA with increasing CE are displayed in Figure S4. The                           conditions (Table S4). Similar to KPW results described earlier,
+larger size of the sulfonate moiety relative to the carboxylate                      at pH 7 the average number of PFCA molecules bound per BSA
+may play a role in explaining the different behavior of the                          molecule (n) increases for the C4 to C6 compounds and
+
+
+
+
+Fig. 3. Effect of ionic head group on binding of equivalent-chain-length PFAAs to BSA. In equilibrium dialysis tests (A), PFBS (white) exhibits higher afﬁnity for
+BSA than PFPeA (black) across the full concentration range tested. Data are displayed as the ratio of the bound PFAA concentration to the total protein
+concentration (n) versus the free PFAA concentration and were ﬁt with a one-class binding model to determine Ka (R2 ¼ 0.906 and 0.973 for PFBS and PFPeA,
+respectively). The measured fraction of PFAAs bound to BSA in nanoESI spectra (B) decreased with increasing collision energy for PFCAs (black and white
+squares) at 40 to 60 eV, whereas PFSA-BSA (black and white circles) complexes did not dissociate over the range of collision energies. Analyte acronyms are listed
+in Table 1.
+                                                                                                                                                 15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+2428      Environ. Toxicol. Chem. 30, 2011                                                                                 H.N. Bischel et al.
+
+decreases above C8 (Fig. S6). No increase was observed in                 recently described [17]. For both PFAAs, the estimated
+bound PFSAs with increasing chain length at pH 7. A plot of the           binding constant, KHill, determined from a plot of the degree
+dialysis bag concentration versus reservoir pH reveals an over-           of saturation (Y) versus total PFAA concentration (Fig. S9),
+all increase in binding of PFBS, PFPeA, and PFHxA to BSA                  increases from pH 6 to pH 7, but no further change is observed
+with pH, whereas a negative relationship was obtained for                 at higher pH (Fig. S10). This trend is similar to that obtained for
+several longer chained PFAAs: PFHxS, PFOS, PFUnA, and                     these PFAAs by equilibrium dialysis (Figs. 4 and S7); however,
+PFDoA (Fig. 4 and Table S5). Little to no overall trend in                because the ﬂuorescence data are obtained at higher PFAA:BSA
+binding with pH was observed for PFHpA, PFOA, PFNA, and                   mole ratios, these data are not directly comparable. Given the
+PFDA (Fig. S7). The opposite trend in n observed for short- and           changes in native ﬂuorescence of BSA as a function of pH,
+long-chain PFAAs with pH may result from different conforma-              the differences in binding afﬁnity observed here are likely
+tional changes experienced from binding at different locations            attributable to conformational changes in the protein. However,
+on the protein.                                                           electrostatic changes could also play a role.
+    Fluorescence analysis was used to further probe the binding               One would expect enhanced electrostatic interactions with
+of PFNA and PFOS—two PFAAs with equivalent chain length                   decreasing pH as repulsion from negatively charged amino acid
+but different ionic head groups—to BSA. The binding of                    residues is reduced; however, BSA supports a more compact
+PFAAs to serum albumin evokes changes in the protein’s native             conformation as it approaches its isoelectric point (pH 4.8),
+ﬂuorescence (Fig. S8); these spectroscopic changes may be                 which may reduce accessibility of surfactants to the hydro-
+used to estimate binding constants and stoichiometries, as                phobic cavities of the binding sites [41]. Gelamo et al. [41]
+                                                                          observed a lower binding constant for sodium dodecyl sulfate
+                                                                          with BSA at pH 5 as compared with pH 7 and pH 9. The
+                                                                          compact structure may have a more pronounced effect on
+                                                                          binding of the longer, more hydrophobic PFAAs, whereas
+                                                                          electrostatic interactions may play a larger role in binding
+                                                                          for short-chain PFAAs. The difference in responses of
+                                                                          PFAA––BSA afﬁnity with pH suggests that short- and long-
+                                                                          chain PFAAs may bind at different locations on albumin.
+                                                                              To speciﬁcally investigate the role of electrostatics, the
+                                                                          binding of PFNA and PFOS to BSA as a function of ionic
+                                                                          strength was explored through ﬂuorescence titrations by adding
+                                                                          varying concentrations of sodium chloride to the titration
+                                                                          solutions. The results are shown in Figures S11 and S12. For
+                                                                          both PFAAs, no difference was seen in estimated binding
+                                                                          afﬁnity over a physiologically relevant ionic strength range
+                                                                          (Fig. S13). This result supports the hypothesis that the observed
+                                                                          changes in PFAA-BSA binding with changing pH result pri-
+                                                                          marily from conformational changes in the protein and not
+                                                                          changes in electrostatics.
+                                                                          Signiﬁcance
+                                                                              In recent attempts to include protein associations in bio-
+                                                                          accumulation models, which traditionally approximate organ-
+                                                                          ism or tissue sorptive capacity using only lipid content,
+                                                                          researchers used BSA–ligand relationships to report log KPW
+                                                                          values for a range of hydrophobic organic contaminants [14].
+                                                                          Empirical data for log KPW of a series of PFAA cogeners are
+                                                                          reported in the present study, yielding relatively large values
+                                                                          from 3.3 to 4.3. Considered analogous to octanol–water parti-
+                                                                          tion coefﬁcients, such parameters may be useful to more
+                                                                          accurately predict chemical accumulation and distribution.
+                                                                          However, use of KPW to describe binding between macro-
+                                                                          molecules and small molecule ligands should be conducted
+                                                                          with caution and limited to a narrow concentration range over
+                                                                          which binding may be approximated as linear.
+                                                                              Results from the present study indicate increased binding
+                                                                          with chain length for C4 to C6 PFCAs. Above C8, KPW
+                                                                          decreased with increasing chain length. Additionally, differ-
+                                                                          ences in binding of PFBS and PFOS relative to PFPeA and
+                                                                          PFNA, respectively, observed via dialysis and collision-induced
+                                                                          dissociation indicate an electrostatic component to interactions
+Fig. 4. Effect of pH on n, the concentration of PFAA bound to BSA         with BSA. Fluorescence results for PFOS and PFNA suggest
+normalized to the total protein concentration. Binding of PFBS (white     that these effects are minimal in solution. A number of studies
+circles), PFPeA (white squares), and PFHxA (black squares) to BSA (A)
+decreased with increasing pH, whereas binding of PFHxS (white circles),   have illustrated an important role of the hydrophobic driving
+PFOS (black circles), PFUnA (white squares), and PFDoA (black squares)    force on PFAA environmental partitioning. However, increased
+(B) increased with pH. Analyte acronyms are listed in Table 1.            rigidity associated with long-chain PFCAs may contribute to the
+                                                                                                                                                            15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+Interactions of perfluoroalkyl acids with albumin                                                          Environ. Toxicol. Chem. 30, 2011         2429
+
+observed nonlinear relationship of KPW with the ﬂuorocarbon                    5. Olsen GW, Chang S-C, Noker PE, Gorman GS, Ehresman DJ, Lieder
+tail length.                                                                      PH, Butenhoff JL. 2009. A comparison of the pharmacokinetics
+    Prior studies suggest that the binding of short-chain PFAAs                   of perﬂuorobutanesulfonate (PFBS) in rats, monkeys, and humans.
+                                                                                  Toxicology 256:65–74.
+may be different in nature than that of long-chain PFAAs                       6. Martin JW, Mabury SA, Solomon KR, Muir DCG. 2003. Dietary
+[24,26]. Perﬂuorooctanoate and PFHxA may bind primarily                           accumulation of perﬂuorinated acids in juvenile rainbow trout
+to different sites on HSA, demonstrating that an increase in the                  (Oncorhynchus mykiss). Environ Toxicol Chem 22:189–195.
+ﬂuorinated carbon tail length by only two units may have a                     7. Giesy JP, Kannan K. 2002. Perﬂuorochemical surfactants in the
+substantial effect on the nature of PFCA–albumin interactions                     environment. Environ Sci Technol 36:146A–152A.
+                                                                               8. Kissa E. 2001. Fluorinated Surfactants and Repellents. Marcel Dekker,
+[24]. Fluorescence studies indicate that long-chain PFAAs have                    New York, USA.
+a greater inﬂuence on albumin conformation than short-chain                    9. Hoff PT, Van de Vijver K, Van Dongen W, Esmans EL, Blust R, De Coen
+PFAAs (e.g., PFBS, PFPeA, and PFHxA) [17,18], and the Trp                         WM. 2003. Perﬂuorooctane sulfonic acid in bib (Trisopterus luscus) and
+binding site on HSA, which overlaps with or exists in the                         plaice (Pleuronectes platessa) from the Western Scheldt and the Belgian
+                                                                                  North Sea: Distribution and biochemical effects. Environ Toxicol Chem
+hydrophobic cavity of fatty acid site 7 in subdomain IIA,                         22:608–614.
+may have a preference for long-chain PFAAs [16]. We ﬁnd                       10. Vanden Heuvel JP, Kuslikis BI, Vanrafelghem MJ, Peterson RE. 1991.
+strong binding of short-chain PFAAs to BSA, suggesting that                       Tissue distribution, metabolism, and elimination of perﬂuorooctanoic
+reduced hydrophobicity and steric hindrances of short-chain                       acid in male and female rats. J Biochem Toxicol 6:83–92.
+                                                                              11. Andersen ME, Butenhoff JL, Chang SC, Farrar DG, Kennedy GL, Lau
+PFCAs and PFBS, which may limit observable conformational                         C, Olsen GW, Seed J, Wallacekj KB. 2008. Perﬂuoroalkyl acids and
+changes in albumin by ﬂuorescence methods, do not correspond                      related chemistries: Toxicokinetics and modes of action. Toxicol Sci
+to low afﬁnity for albumin. In the present study, pH-induced                      102:3–14.
+changes in binding afﬁnity observed via equilibrium dialysis                  12. Han X, Snow TA, Kemper RA, Jepson GW. 2003. Binding of
+support evidence that short- and long-chain PFAAs bind at                         perﬂuorooctanoic acid to rat and human plasma proteins. Chem Res
+                                                                                  Toxicol 16:775–781.
+different locations on BSA. Fluorescence titrations suggest that              13. Kelly BC, Ikonomou MG, Blair JD, Surridge B, Hoover D, Grace R,
+the observed pH dependence of binding is attributable to                          Gobas F. 2009. Perﬂuoroalkyl contaminants in an arctic marine food
+conformational changes in the protein.                                            web: Trophic magniﬁcation and wildlife exposure. Environ Sci Technol
+    An effort to reduce the bioaccumulation of PFAAs in                           43:4037–4043.
+                                                                              14. Debruyn AMH, Gobas FAP. 2007. The sorptive capacity of animal
+humans and wildlife has led to shifts in ﬂuorochemical pro-                       protein. Environ Toxicol Chem 26:1803–1808.
+duction to shorter-chain-length compounds. Association con-                   15. Peters TJ. 1996. All About Albumin: Biochemistry, Genetics, and
+stants obtained for PFBS and PFPeA are useful to compare                          Medical Applications. Academic Press, San Diego, CA, USA.
+among various PFAAs and with other exogenous and endog-                       16. Chen YM, Guo LH. 2009. Fluorescence study on site-speciﬁc binding
+                                                                                  of perﬂuoroalkyl acids to human serum albumin. Arch Toxicol 83:255–
+enous ligands in blood. Results in the present study indicate that
+                                                                                  261.
+short-chain PFAAs bind strongly to BSA at low PFAA:albumin                    17. Hebert PC, MacManus-Spencer LA. 2010. Development of a
+mole ratios, suggesting that physiological implications of strong                 ﬂuorescence model for the binding of medium- to long-chain
+binding to albumin may be important for short-chain PFAAs.                        perﬂuoroalkyl acids to human serum albumin through a mechanistic
+However, these results contrast with limited evidence that short-                 evaluation of spectroscopic evidence. Anal Chem 82:6463–6471.
+                                                                              18. Qin PF, Liu RT, Pan XR, Fang XY, Mou Y. 2010. Impact of carbon chain
+chain PFAAs are less bioaccumulative than long-chain PFAAs                        length on binding of perﬂuoroalkyl acids to bovine serum albumin
+[5,6], highlighting a need for additional protein association                     determined by spectroscopic methods. J Agric Food Chem 58:5561–
+measures for bioaccumulation modeling beyond a single-pro-                        5567.
+tein KPW. Further research is needed to investigate the binding               19. Sabin J, Prieto G, Gonzalez-Perez A, Ruso JM, Sarmiento F. 2006.
+of short-chain perﬂuorinated compounds to a multitude of                          Effects of ﬂuorinated and hydrogenated surfactants on human serum
+                                                                                  albumin at different pHs. Biomacromolecules 7:176–182.
+potential protein and transporter targets and to further under-               20. Wu LL, Gao HW, Gao NY, Chen FF, Chen L. 2009. Interaction of
+stand the inﬂuence of such interactions on biological uptake,                     perﬂuorooctanoic acid with human serum albumin. BMC Struct Biol 9:7.
+retention, and functioning.                                                   21. Messina P, Prieto G, Dodero V, Ruso JM, Schulz P, Sarmiento F. 2005.
+                                                                                  Ultraviolet-circular dichroism spectroscopy and potentiometric study of
+                                                                                  the interaction between human serum albumin and sodium perﬂuor-
+                       SUPPLEMENTAL DATA                                          ooctanoate. Biopolymers 79:300–309.
+                                                                              22. MacManus-Spencer LA, Tse ML, Hebert PC, Bischel HN, Luthy RG.
+   Figures S1–S13.
+                                                                                  2010. Binding of perﬂuorocarboxylates to serum albumin: A comparison
+   Tables S1–S5. (1,103 KB DOC)                                                   of analytical methods. Anal Chem 82:974–981.
+                                                                              23. Bischel HN, MacManus-Spencer LA, Luthy RG. 2010. Noncovalent
+Acknowledgement—The present study received ﬁnancial support from the              interactions of long-chain perﬂuoroalkyl acids with serum albumin.
+National Science Foundation Graduate Research Fellowship Program, the             Environ Sci Technol 44:5263–5269.
+Stanford University Woods Institute for the Environment and Union College.    24. D’Eon JC, Simpson AJ, Kumar R, Baer AJ, Mabury SA. 2010.
+We thank Pavel Aronov from the Stanford University Mass Spectrometry              Determining the molecular interactions of perﬂuorinated carboxylic
+Laboratory for nanoESI-MS instrument operation and technical input.               acids with human sera and isolated human serum albumin using nuclear
+                                                                                  magnetic resonance spectroscopy. Environ Toxicol Chem 29:1678–
+                                                                                  1688.
+                            REFERENCES                                        25. Spector AA. 1975. Fatty-acid binding to plasma albumin. J Lipid Res
+ 1. Prevedouros K, Cousins IT, Buck RC, Korzeniowski SH. 2006. Sources,           16:165–179.
+    fate and transport of perﬂuorocarboxylates. Environ Sci Technol 40:       26. Jones PD, Hu WY, De Coen W, Newsted JL, Giesy JP. 2003. Binding of
+    32–44.                                                                        perﬂuorinated fatty acids to serum proteins. Environ Toxicol Chem
+ 2. Houde M, Martin JW, Letcher RJ, Solomon KR, Muir DCG. 2006.                   22:2639–2649.
+    Biological monitoring of polyﬂuoroalkyl substances: A review. Environ     27. Kudo N, Katakura M, Sato Y, Kawashima Y. 2002. Sex hormone-
+    Sci Technol 40:3463–3473.                                                     regulated renal transport of perﬂuorooctanoic acid. Chem-Biol Interact
+ 3. Calafat AM, Wong LY, Kuklenyik Z, Reidy JA, Needham LL. 2007.                 139:301–316.
+    Polyﬂuoroalkyl chemicals in the U.S. population: Data from the National   28. Woodcroft MW, Ellis DA, Rafferty SP, Burns DC, March RE, Stock NL,
+    Health and Nutrition Examination Survey (NHANES) 2003–2004 and                Trumpour KS, Yee J, Munro K. 2010. Experimental characterization of
+    comparisons with NHANES 1999–2000. Environ Health Perspect                    the mechanism of perﬂuorocarboxylic acids’ liver protein bioaccumu-
+    115:1596–1602.                                                                lation: The key role of the neutral species. Environ Toxicol Chem 29:
+ 4. Ritter SK. 2010. Fluorochemicals go short. Chem Eng News 88:12–17.            1669–1677.
+                                                                                                                                                            15528618, 2011, 11, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/etc.647 by University Of Illinois Chicago, Wiley Online Library on [03/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+2430       Environ. Toxicol. Chem. 30, 2011                                                                                           H.N. Bischel et al.
+
+29. Luebker DJ, Hansen KJ, Bass NM, Butenhoff JL, Seacat AM. 2002.                   human serum albumin by noncovalent interaction. Rapid Commun Mass
+    Interactions of ﬂuorochemicals with rat liver fatty acid-binding protein.        Spectrom 19:1637–1643.
+    Toxicology 176:175–185.                                                      36. Yin S, Xie YM, Loo JA. 2008. Mass spectrometry of protein-ligand
+30. Rayne S, Forest K, Friesen KJ. 2009. Computational approaches may                complexes: Enhanced gas-phase stability of ribonuclease-nucleotide
+    underestimate pKa values of longer-chain perﬂuorinated carboxylic                complexes. J Am Soc Mass Spectrom 19:1199–1208.
+    acids: Implications for assessing environmental and biological effects.      37. Vinokur N, Ryzhov V. 2004. Using collision-induced dissociation with
+    J Environ Sci Health Part A Toxic-Hazard Subst Environ Eng 44:317–               corrections for the ion number of degrees of freedom for quick
+    326.                                                                             comparisons of relative bonding strength. J Mass Spectrom 39:1268–
+31. Peters T. 1985. Serum-albumin. Adv Protein Chem 37:161–245.                      1274.
+32. Ellis DA, Denkenberger KA, Burrow TE, Mabury SA. 2004. The use of            38. Zhang X, Chen L, Fei XC, Ma YS, Gao HW. 2009. Binding of PFOS to
+    F-19 NMR to interpret the structural properties of perﬂuorocarboxylate           serum albumin and DNA: Insight into the molecular toxicity of
+    acids: A possible correlation with their environmental disposition. J Phys       perﬂuorochemicals. BMC Mol Biol 10:16.
+    Chem A 108:10099–10106.                                                      39. Kun R, Kis L, Dekany I. Hydrophobization of bovine serum albumin
+33. Grifﬁths WJ, Johnsson AP, Liu S, Rai SK, Wang Y. 2001. Electrospray              with cationic surfactants with different hydrophobic chain length.
+    and tandem mass spectrometry in biochemistry. Biochem J 355:545–                 Colloid Surf B Biointerfaces 79:61–68.
+    561.                                                                         40. Kun R, Szekeres M, Dekany I. 2009. Isothermal titration calorimetric
+34. Han X, Hinderliter PM, Snow TA, Jepson GW. 2004. Binding of                      studies of the pH induced conformational changes of bovine serum
+    perﬂuorooctanoic acid to rat liver-form and kidney-form alpha 2u-                albumin. J Therm Anal Calorim 96:1009–1017.
+    globulins. Drug Chem Toxicol 27:341–360.                                     41. Gelamo EL, Silva C, Imasato H, Tabak M. 2002. Interaction of bovine
+35. Benkestock K, Edlund PO, Roeraade J. 2005. Electrospray ionization               (BSA) and human (HSA) serum albumins with ionic surfactants:
+    mass spectrometry as a tool for determination of drug binding sites to           Spectroscopy and modelling. Biochim Biophys Acta 1594:84–99.
+

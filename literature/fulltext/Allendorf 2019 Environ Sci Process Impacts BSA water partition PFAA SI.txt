@@ -1,0 +1,466 @@
+Electronic Supplementary Material (ESI) for Environmental Science: Processes & Impacts.
+This journal is © The Royal Society of Chemistry 2019
+
+
+
+
+           Supporting Information
+           Partition coefficients of four perfluoroalkyl acid alternatives between bovine serum albumin
+           (BSA) and water in comparison to ten classical perfluoroalkyl acids
+
+           Flora Allendorf1,*, Urs Berger2, Kai-Uwe Goss1,3, and Nadin Ulrich1
+           1 Department of Analytical Environmental Chemistry, Helmholtz Centre for Environmental Research - UFZ, Permoserstrasse 15,
+
+           D-04318 Leipzig, Germany
+           2 Department of Analytical Chemistry, Helmholtz Centre for Environmental Research - UFZ, Permoserstrasse 15, D-04318 Leipzig,
+
+           Germany
+           3 Institute of Chemistry, University of Halle-Wittenberg, Kurt-Mothes-Strasse 2, D-06120 Halle, Germany
+
+
+
+
+           * Corresponding author
+
+           Phone: +49 341 235 1818; e-mail: flora.allendorf@ufz.de
+
+
+
+           Content
+
+           SI-1. Experimental Section.............................................................................................................................2
+              SI-1.1 Suppliers of individual PFAAs for dialysis experiments ...................................................................2
+              SI-1.2 Dialysis cells .....................................................................................................................................2
+                  SI-1.2.1 Preparation of buffer................................................................................................................2
+                  SI-1.2.2 Experimental setup...................................................................................................................3
+              SI-1.3 Instrumental analysis.......................................................................................................................4
+           SI-2. Results ...................................................................................................................................................5
+              SI-2.1 The importance of monitoring fraction bound................................................................................5
+              SI-2.2 Precision experiments .....................................................................................................................6
+              SI-2.3 Dialysis experiments........................................................................................................................7
+              SI-2.4 Batch A7906 ....................................................................................................................................8
+              SI-2.5 Comparison with literature (Bischel et al. 2011) ...........................................................................12
+              SI-2.6 Conformer of PFHxA and PFOA in cross section............................................................................13
+              SI-2.7 Influence of fatty acid binding.......................................................................................................14
+           References...................................................................................................................................................15
+SI-1. Experimental Section
+   SI-1.1 Suppliers of individual PFAAs for dialysis experiments
+ Analyte                                            Company             Purity
+ Perfluorobutanoic acid          PFBA               Sigma Aldrich        99%
+ Perfluorohexanoic acid          PFHxA              Fluka               >97%
+ Perfluoroheptanoic acid         PFHpA              Sigma Aldrich        99%
+ Perfluorooctanoic acid          PFOA               ABCR                >97%
+ Perfluorononanoic acid          PFNA               Sigma Aldrich        97%
+ Perfluorodecanoic acid          PFDA               Fluka               >97%
+ Perfluoroundecanoic acid        PFUnDA             Sigma Aldrich        95%
+ Perfluorobutane sulfonic acid   PFBS, TBA salt     Fluka               >98%
+ Perfluorohexane sulfonic acid   PFHxS, K-salt      Fluka                98%
+ Perfluorooctane sulfonic acid   PFOS, K-salt       Fluka                98%
+
+
+
+
+   SI-1.2 Dialysis cells
+SI-1.2.1 Preparation of buffer
+For dialysis equilibrium experiments, Hank’s balanced salt solution (HBSS) was used as a buffer and was
+supplied as a powder from Sigma Aldrich (Steinheim). The pH was adjusted to 7.4 after adding sodium
+carbonate (Sigma Aldrich; 0.35 g/L), TRIS (Roth, Karlsruhe; 1.21 g/L) and NaN3 (Merck, Darmstadt; 0.3
+g/L), the latter was used to prevent microbial activity. This buffer system was selected for consistency
+with former dialysis studies and exhibits the electrolyte concentration in blood.1 The concentration of
+NaN3 showed no effect on the experiments.1, 2
+
+
+
+
+                                                   2
+SI-1.2.2 Experimental setup
+
+
+
+                                                                   Membrane
+
+
+
+                                                                                             Glass surface
+
+
+
+
+  Chamber with BSA   BSA-free chamber               BSA-free chamber      BSA-free chamber
+  solution
+
+
+
+         Measurement cell                                      Reference cell
+
+
+
+    BSA-molecule     Per-/polyfluorinated analyte
+
+
+
+Figure SI-1.2.3. Schematic setup of a dialysis cell experiment. Three measurement cells and three reference
+cells were prepared for the determination of the partition coefficient for each compound. Initially, the
+stock solution of compound was added in the right chamber of both cells. In the measurement cell BSA-
+solution was added in one chamber, while in the reference cell no protein was added. To all cells of the
+setup, the same analyte concentration was added. Samples were taken from the initial concentration and,
+in equilibrium, from the BSA-free chambers. PFAAs/alternatives tend to sorb to a different degree to the
+glass surface of the cell leading to varying amounts of freely dissolved mass. Therefore, we used two
+approaches to determine total analyte mass (m i,tot ) within the system. For compounds where less than or
+equal to 10% of the m i,tot sorbed to the surface, reference cells were used. For compounds that sorb
+substantially (>10%) to the surfaces of the dialysis cells, reference cells could not be taken as the
+appropriate reference for the mass balance due to the variability of glass surfaces of the handmade cells
+(see main text). For those compounds an extraction step was added. The scheme was adapted from a
+version published in the supplementary information in Henneberger et al. 3
+
+
+
+
+                                                               3
+   SI-1.3 Instrumental analysis
+Table SI-1.3.1. LC-Ramp for PFAA/alternatives analysis with Eluent A: 2 mM NH 4 Ac in Milli-Q water and
+Eluent B: 2 mM NH 4 Ac, 10 % acetonitrile and 2.5 % Milli-Q water in methanol. Column was a ACQUITY UPLC
+BEH Shield C18 (130 Å, 1.7 µm, 2.1 mm x 50 mm) supplied by Waters.
+
+ Time min                    Flow mL/min                          %A                    %B
+ Initial                          0.4                             90                     10
+          0.5                     0.4                             90                     10
+            5                     0.4                             0.1                   99.9
+          7.3                     0.4                             0.1                   99.9
+         7.31                     0.4                             90                     10
+            9                     0.4                             90                     10
+
+
+
+
+Table SI-1.3.2. MS parameters for PFAAs and alternatives measured with LC-MS/MS from Waters. Retention time
+(rt), collision energy (CE)
+
+
+                  rt    Cone    CE       MRM          Internal     Cone     CE      IS MRM       Qualifier
+Analyte
+                (min)    (V)    (V)   transitions   Standard IS     (V)     (V)   transitions   transitions
+
+PFBA            1.35     2      12    213 > 169     13C PFBA
+                                                       4                2   12    217 > 172
+PFHxA           4.01     2      12    313 > 269     13C PFHxA
+                                                       2                2   12    315 > 270
+PFHpA           4.43     2      12    363 > 319     13C PFHxA
+                                                       2                2   12    315 > 270
+PFOA            4.73     2      12    413 > 369     13C PFOA
+                                                       4                2   12    417 > 372
+PFNA            4.99     2      12    463 > 419     13C PFNA
+                                                       5                2   12    468 > 423
+PFDA             5.2     2      12    513 > 469     13C PFDA
+                                                       2                2   12    515 > 470
+PFUnDA           5.4     2      12    563 > 519     13C PFUnDA
+                                                       2                2   12    565 > 520
+PFBS            3.65     30     30    299 > 80      13C PFHxA
+                                                       2                2   12    315 > 270     299 > 99
+PFHxS           4.57     30     32    399 > 80      18O PFHxS
+                                                       2            30      32    403 > 103     399 > 99
+PFOS            5.05     30     38    499 > 80      13C PFOS
+                                                       4            30      38    503 > 99      499 > 99
+DONA            5.63      4     14    377 > 251     13C HFPO-DA
+                                                       3             8      20    287 > 185     377 > 85
+HFPO-DA         5.27     8      20    285 > 185     13C HFPO-DA
+                                                       3                8   20    287 > 185     285 > 169
+9Cl-PF3ONS      5.49     8      26    531 > 350     13C PFOS
+                                                       8            30      38    507 > 99      531 > 83
+PFECHS          5.08     54     32    461 > 381     13C PFOA
+                                                       8                4   10    421 > 376     461 > 99
+
+
+
+
+                                                          4
+SI-2. Results
+  SI-2.1 The importance of monitoring fraction bound
+
+
+
+
+Figure SI-2.1. The relation between measuring error and fraction bound on the
+determination of the partition coefficient. To ensure the accuracy of the determined of
+the partition coefficient the fraction which is bound to the albumin should be between
+20 – 80%. Below or above that, small measuring errors could have significant effects on
+the concluded partition coefficient, since in this range partition coefficients alter
+drastically.
+
+
+
+
+                                                  5
+   SI-2.2 Precision experiments
+Table SI-2.2. Week-to-week precision test for the determination of albumin/water partition coefficients.
+Three experiments were conducted with PFNA and both batches of BSA. Sampling was done after 72 h and
+96 h of triplicates. Mean and standard deviation was calculated for albumin/water partition coefficients
+both sampling points (three x triplicates).
+
+PFNA                                                   log Kalbumin/water [L/kg]
+
+                        BSA Batch A3803 BSA Batch A7906             BSA Batch A3803 BSA Batch A7906
+1st experiment                     Sampling 72 h                               Sampling 96 h
+        Vial1                         4.39                  4.50                   4.25            4.49
+        Vial2                         4.38                  4.37                   4.26            4.51
+        Vial3                         4.38                  4.52                   4.28            4.49
+2nd experiment
+        Vial1                         4.52                  4.64                   4.52            4.68
+        Vial2                         4.54                  4.64                   4.54            4.69
+        Vial3                         4.54                  4.59                   4.54            4.71
+3rd experiment
+        Vial1                         4.46                  4.53                   4.46            4.57
+        Vial2                         4.45                  4.58                   4.45            4.48
+        Vial3                         4.49                  4.40                   4.49            4.52
+Mean                                  4.46                  4.53                   4.42            4.57
+SD                                    0.07                  0.10                   0.12            0.10
+
+
+
+
+                                                   6
+   SI-2.3 Dialysis experiments
+Table SI-2.3. Concentrations × of dialysis experiments in reference cells (c ref ) and freely dissolved in
+measurement cells (c free ) at equilibrium (*) analysed by LC-MS/MS. Values represent the mean and standard
+deviation (SD) of six measurements. Concentration of BSA solution c BSA (batch A3803) used for dialysis
+experiments and amount of analyte/amount of BSA at equilibrium (v).
+
+                                              cfree*
+Analyte          cref* [ng/mL]   SD                         SD            cBSA [g/L]        v [mol/mol]
+                                              [ng/mL]
+PFCAs
+PFBA                      5.77   (0.30)              3.82   (0.25)               3 × 100             4 × 10-4
+PFHxA                     5.72   (0.11)              2.39   (0.12)               1 × 100           1.4 × 10-3
+PFHpA                     6.09   (0.50)              3.82   (0.32)               1 × 10-1          7.4 × 10-3
+PFOA                     10.56   (0.27)              5.86   (0.27)               1 × 10-1          1.5 × 10-2
+PFNA                      6.45   (0.38)              4.09   (0.21)               5 × 10-2          1.2 × 10-2
+PFDAa                     5.33   (0.02)              2.27   (1.25)               5 × 10-2          1.6 × 10-2
+PFUnDAa,b                 2.92   (1.30)              1.80   (0.60)             2.5 × 10-2          1.2 × 10-2
+HFPO-DA                   8.13   (0.55)              2.91   (0.11)               3 × 100           6.7 × 10-4
+DONA                      7.06   (0.34)              5.15   (0.17)               1 × 10-1          6.5 × 10-3
+PFSAs
+PFBS                     10.50   (0.74)              5.86   (0.80)               1 × 100           2.1 × 10-3
+PFHxS                     9.50   (0.45)              3.61   (0.15)               5 × 10-2          3.8 × 10-2
+PFOSa                     6.31   (0.33)              3.98   (0.30)             2.5 × 10-2          2.5 × 10-2
+9Cl-PF3ONSa               4.76   (0.17)              2.09   (0.06)             2.5 × 10-2          2.7 × 10-2
+PFECHS                    8.37   (0.51)              2.85   (0.11)               1 × 10-1          1.5 × 10-3
+a extraction step included due to glass sorption of the analyte, b only mean of five measurements taken
+
+
+
+
+                                                     7
+      SI-2.4 Batch A7906
+We determined albumin/water partition coefficients with another batch of BSA (A7906, Sigma). Both,
+A7906 and A3803, were lyophilized powders gained by heat shock fraction. According to the
+manufacturer, the extraction of A7906 was done without the additional removal of fatty acids, whereas
+A3803 has undergone a charcoal treatment to remove essentially all fatty acids.
+
+We found some differences in the albumin/water partition coefficients measured with the different BSA
+batches (Table and Figure SI-2.4.1-2.4.4, below). Especially short-chain PFAAs and PFHxS showed a lower
+sorption strength of at least 0.3 log units when we used A7906 compared to the batch A3803 (main
+study). If these differences were caused either by potentially present fatty acids that were not removed
+in A7906 or by conformational changes evolved by the extraction and purification steps could not be
+examined. The exact fatty acid composition and their concentrations are not specified and quantification
+of fatty acids in the two batches was not possible due to the very low content of individual fatty acids. In
+conclusion we assume that different batches of BSA could affect the determined partition coefficients.
+The trend of increasing partition coefficients with increasing chain length of the PFCAs, however, was for
+both batches consistent. Variable extraction and purification steps could probably affect the
+conformation of the native serum albumin.4 Overall, one has to consider that a determination of
+partition coefficients with serum albumin of exactly the same conformation cannot be achieved, since
+every withdrawal from the natural environment could influence the protein.
+
+We decided to use essentially fatty acid free albumin to determine the partition coefficients of the PFAS
+to avoid potential interferences by impurities.
+
+
+
+
+                                                     8
+Table SI-2.4.1. Logarithmic albumin/water partition coefficients (log K albumin/water [L water/kg albumin])
+determined for ten PFAAs and four alternative compounds with BSA batch A7906. Mean and standard
+deviation SD were taken from six measurements. HFPO-DA and DONA are not fully fluorinated, therefore
+no number is assigned. Fraction bound f 𝑖, bound = m 𝑖 ,bound /m 𝑖 ,tot . K a is the association constant ([PL]/([P] × [L]))
+with protein P and ligand L and is displayed to facilitate comparison with literature values.
+
+Number of                             log                                                                     Recovery
+perfluorinated Analyte                Kalbumin/water SD          Ka [M-1]    SD              fbound   SD      (incl.
+carbons                               [L/kg]                                                                  Extracts)
+PFCAs
+3              PFBA                           1.90    (0.07) 5.4 × 103        (9.4 ×102)      29%     (4%)          104%
+5                   PFHxA                     3.02    (0.07) 7.0 × 104        (1.1 ×104)      35%     (4%)           95%
+6                   PFHpA                     3.79    (0.05) 4.1 × 105        (4.6 ×104)      62%     (3%)           98%
+7                   PFOA                      4.17    (0.05) 1.0 × 106        (1.2 ×105)      43%     (3%)           94%
+8                   PFNA                      4.48    (0.05) 2.1 × 106        (2.4 ×105)      45%     (3%)          101%
+9                   PFDAa                     4.84    (0.05) 4.7 × 106        (5.6 ×105)      63%     (3%)    84% (119%)
+10                  PFUnDAa,b                 4.72    (0.1) 3.6 × 106         (9.1 ×105)      44%     (6%)    59% (149%)
+                    HFPO-DA                   2.71    (0.04) 3.4 × 104        (3.4 ×103)      44% (2%)                 92%
+                    DONA                      3.80    (0.04) 4.2 × 105        (4.2 ×104)      61% (2%)                 91%
+PFSAs
+4                   PFBS                      2.65    (0.12) 3.1 × 104        (7.5 ×103)      32% (6%)               106%
+6                   PFHxS                     4.49    (0.13) 2.2 × 106        (7.1 ×105)      44% (7%)                 96%
+8                   PFOS                      4.83    (0.11) 4.7 × 106        (1.2 ×106)      77% (4%)                 92%
+8                   9Cl-PF3ONSa               5.02    (0.03) 7.2 × 106        (5.2 ×105)      58% (2%) 81% (110%)
+8                   PFECHS                    4.30    (0.03) 1.3 × 106        (8.6 ×104)      50% (2%)      ≈ 90%
+a extraction step included due to glass sorption of the analyte, b only mean of four measurements taken
+
+
+
+
+                                                             9
+Table SI-2.4.2. Concentrations of dialysis experiments with BSA batch A7906 in reference cells (c ref ) and
+freely dissolved in measurement cells (c free ) at equilibrium (*) analysed by LC-MS/MS. Values represent the
+mean and standard deviation (SD) of six measurements. Concentration of BSA solution c BSA (batch A7906)
+used for dialysis experiments and amount of PFAA/amount of BSA at equilibrium (v).
+
+                                                  cfree*
+Analyte          cref* [ng/mL]   SD                                SD             cBSA [g/L]    v [mol/mol]
+                                                  [ng/mL]
+PFCAs
+PFBA                      8.42   (0.42)                     6.00   (0.29)            1 × 101       1.5 × 10-4
+PFHxA                     8.49   (0.54)                     5.54   (0.30)            1 × 100       1.2 × 10-3
+PFHpA                     7.16   (0.35)                     2.74   (0.19)            5 × 10-1      3.1 × 10-3
+PFOA                     12.10   (0.70)                     6.93   (0.38)            1 × 10-1      1.6 × 10-2
+PFNA                      6.11   (0.36)                     3.34   (0.17)            1 × 10-1      1.5 × 10-2
+PFDAa                     4.11   (0.26)                     1.51   (0.12)            5 × 10-2      1.4 × 10-2
+PFUnDAa,b                 2.99   (0.44)                     1.67   (0.26)          2.5 × 10-2      1.0 × 10-2
+HFPO-DA                   9.30   (0.44)                     5.24   (0.23)            3 × 100       5.4 × 10-4
+DONA                      9.70   (1.02)                     3.79   (0.20)            5 × 10-1      4.2 × 10-3
+PFSAs
+PFBS                      8.42   (0.42)                     6.00   (0.29)            2 × 100       7.0 × 10-4
+PFHxS                     9.20   (0.49)                     5.18   (0.75)            5 × 10-2      2.7 × 10-2
+PFOS                      5.71   (0.41)                     1.32   (0.24)            1 × 10-1      1.2 × 10-2
+9Cl-PF3ONSa               4.59   (0.10)                     1.94   (0.11)          2.5 × 10-2      2.5 × 10-2
+PFECHS                    6.69   (1.09)                     3.33   (0.11)            1 × 10-1      9.6 × 10-4
+a extraction step included due to glass sorption of the analyte, b only mean of four measurements taken
+
+
+
+
+Figure SI-2.4.3. Comparison of albumin/water partition coefficients for the series of PFCAs/carboxylate
+alternatives determined with different batches of BSA (A3803 and A7906). When A7906 was used, lower
+
+                                                     10
+partition coefficients could be noted for shorter-chain carboxylates. Error bars of standard deviations are
+partly covered by symbols of data points.
+
+
+
+
+Figure SI-2.4.4. Comparison of albumin/water partition coefficients for the series of PFSAs/sulfonate
+alternatives determined with different batches of BSA (A3803 and A7906). When A7906 was used, lower
+partition coefficients could be noted for shorter-chain sulfonates, except for PFECHS. Error bars of standard
+deviations are partly covered by symbols of data points.
+
+
+
+
+                                                     11
+   SI-2.5 Comparison with literature (Bischel et al. 2011)
+
+
+
+
+Figure SI-2.5.1. Comparison of albumin/water partition coefficients for the series of PFCAs determined by
+Bischel et al. (2011) 5 and in our study. Bischel measured additionally perfluoropentanoic acid (PFPeA with 5
+perfluorinated carbons) and perfluorododecanoic acid (PFDoDA with 12 perfluorinated carbons) but not
+PFBA. They described partition coefficients with an increasing and a decreasing trend with increasing chain-
+length with a peak at PFHpA, whereas we see an increasing trend with increasing chain-length. Error bars of
+standard deviations are partly covered by symbols of data points.
+
+
+
+
+Figure SI-2.5.2. Comparison of partition coefficients for the series of PFSAs determined by Bischel et al.
+(2011) 5 and in our study. As seen for PFCAs, Bischel noted a similar trend with the highest partition
+coefficient for PFHxS. Regarding our results, we discuss that the trend is not clear, since PFOS sorbed
+stronger to the glass and increased therefore the experimental uncertainty.
+
+
+
+
+                                                     12
+   SI-2.6 Conformer of PFHxA and PFOA in cross section
+
+
+
+
+Figure SI-2.6. Conformers of PFHxA (five perfluorinated carbons) on the left and PFOA (seven
+perfluorinated carbons) on the right, calculated by COSMOconf/TURBOMOLE in cross-section. 6, 7 Literature
+discussed a conformeric change from a rather zig-zag form to a more helical structure occurring when the
+number of perfluorinated carbons exceeds six. This difference is not discernable here.
+
+
+
+
+                                                   13
+       SI-2.7 Influence of fatty acid binding
+Table SI-2.7. Logarithmic albumin/water partition coefficients for PFHxA or PFNA determined in presence of
+fatty acids (tridecanoic acid, TDA or heptadecanoic acid, HDA) at different molar ratios ([fatty acid] :
+[albumin]). Mean and standard deviations are taken by the displayed six measurements.
+
+            TDA Dialysis Experiments                                    HDA Dialysis Experiments
+
+[TDA] :                                                     [HDA] :
+[albumin]             2.5         1.2       0.3             [albumin]             2.4         1.2       0.2
+                     log Kalbumin/water for PFNA                                log Kalbumin/water for PFNA
+72h Vial1             4.34        4.54       4.63           72h Vial1            4.59         4.53      4.49
+72h Vial2             4.32        4.52       4.67           72h Vial2            4.55         4.58      4.56
+72h Vial3             4.40        4.50       4.58           72h Vial3            4.53         4.52      4.51
+96h Vial1             4.28        4.52       4.60           96h Vial1            4.56         4.59      4.51
+96h Vial2             4.32        4.55       4.61           96h Vial2            4.54         4.66      4.59
+96h Vial3             4.37        4.57       4.58           96h Vial3            4.54         4.65      4.55
+Mean                  4.34       4.53       4.61            Mean                 4.55        4.59       4.54
+SD                    0.04       0.02       0.03            SD                   0.02        0.06       0.04
+
+
+[TDA] :                                                     [HDA] :
+[albumin]             2.3         1.1       0.6             [albumin]             2.5         1.5       0.5
+                    log Kalbumin/water for PFHxA                                log Kalbumin/water for PFHxA
+72h Vial1             2.88        3.10      3.17            72h Vial1             3.26        3.27       3.31
+72h Vial2             2.87        3.04      3.19            72h Vial2             3.24        3.16       3.26
+72h Vial3             2.91        3.14      3.19            72h Vial3             3.25        3.23       3.24
+96h Vial1             2.82        3.16      3.16            96h Vial1             3.23        3.32       3.32
+96h Vial2             2.94        3.08      3.25            96h Vial2             3.25        3.16       3.23
+96h Vial3             2.95        3.07      3.13            96h Vial3             3.26        3.23       3.22
+Mean                  2.89       3.10       3.18            Mean                 3.25        3.23       3.26
+SD                    0.05       0.05       0.04            SD                   0.01        0.06       0.04
+
+[TDA] :
+[albumin]             2.3         1.1        0
+                    log Kalbumin/water for PFHxA
+72h Vial1             3.15        3.19      3.35
+72h Vial2             3.06        3.25      3.34
+72h Vial3             3.00        3.13      3.41
+96h Vial1             3.03        3.13      3.31
+96h Vial2             3.00        3.31      3.30
+96h Vial3             2.89        3.13      3.39
+Mean                  3.02       3.19       3.35
+SD                    0.09       0.08       0.04
+
+                                                    14
+References
+
+1.   L. Henneberger, K. U. Goss and S. Endo, Equilibrium Sorption of Structurally Diverse Organic Ions
+     to Bovine Serum Albumin, Environ. Sci. Technol., 2016, 50, 5119-5126.
+2.   S. Endo and K. U. Goss, Serum albumin binding of structurally diverse neutral organic
+     compounds: data and models, Chem. Res. Toxicol., 2011, 24, 2293-2301.
+3.   L. Henneberger, K. U. Goss and S. Endo, Partitioning of Organic Ions to Muscle Protein:
+     Experimental Data, Modeling, and Implications for in Vivo Distribution of Organic Ions, Environ.
+     Sci. Technol., 2016, 50, 7029-7036.
+4.   A. C. Sen, K. Matsuyama, S. Wanwimolruk and J. H. Perrin, Observations of conformational
+     changes in human serum albumin followine removal of fatty acid by charcoal, J. Pharm. Biomed.
+     Anal., 1991, 9, 781-784.
+5.   H. N. Bischel, L. A. Macmanus-Spencer, C. Zhang and R. G. Luthy, Strong associations of short-
+     chain perfluoroalkyl acids with serum albumin and investigation of binding mechanisms, Environ.
+     Toxicol. Chem., 2011, 30, 2423-2430.
+6.   COSMOconf (V 4.1), COSMOlogic GmbH & Co KG, http://www.cosmologic.de.
+7.   TURBOMOLE 4.2.1 (2016), a development of University of Karlsruhe and Forschungszentrum
+     Karlsruhe GmbH, 1989-2007, TURBOMOLE GmbH, since 2007, available from
+     http://www.turbomole.com.
+
+
+
+
+                                                15
+
