@@ -33,7 +33,11 @@ NEW = ["PFAS conc (as reported)", "Protein conc (as reported)",
 # ratio <=0.004"; both carry mol/mol in the units field.  Bischel 2011's
 # 0.0034, Peng's 18.00 and Wu's 1.00 are this project dividing one stated
 # concentration by the other, so they stay blank here.
-RATIO_MARKS = ("mol/mol", "molar ratio", ":1 ", "ratio")
+# Word-boundary matching: the substring "ratio" also occurs inside
+# "titration", which would falsely tag every MST row as reporting a
+# ligand:protein ratio.
+RATIO_RE = re.compile(r"mol/mol|\bmolar ratio\b|\bmole ratio\b"
+                      r"|\bratios?\b|\d+\s*:\s*1\b", re.I)
 
 
 NOTES = [
@@ -104,8 +108,7 @@ def tidy(text):
 def stated_ratio(lig, prot):
     """The paper's own ratio statement, or '' if it never states one."""
     for text in (lig, prot):
-        low = text.lower()
-        if any(m in low for m in RATIO_MARKS):
+        if RATIO_RE.search(text):
             return text
     return ""
 
