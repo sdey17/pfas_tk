@@ -303,7 +303,11 @@ def binding_rows():
     sys.path.insert(0, HERE)
     import build_binding_affinity_table as BAF
     # unfiltered: combined/ is the full record, not the reading copy
-    recs = BAF.build(filter_compounds=False)[1]
+    # The consolidated record keeps computed values; it is the
+    # full record, not a reading copy. Everything else drops
+    # them -- see scripts/excluded_sources.py.
+    recs = BAF.build(filter_compounds=False,
+                     keep_computed=True)[1]
     blocks = BAF.condition_index(recs)
     bases = BAF.basis_index(recs)
     BAF.stamp_conditions(recs, blocks)

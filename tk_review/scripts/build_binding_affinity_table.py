@@ -805,26 +805,45 @@ def location(src):
 def mark_computed(rec, r):
     """Say in the `measure` cell when a value was computed, not measured.
 
-    The working file carries that in is_computational, which this table has
-    no column for, and the reason usually sits behind a pipe in source_table
-    where `location` cuts it off. A predicted value reaching a reading copy
-    unlabelled is the one error this table must not make, so the label goes
-    where it cannot be missed. Applied after the conversions, which switch on
-    the bare measure name.
+    Kept for the consolidated database in db/combined/, which is the full
+    record. This reading copy no longer carries computed values at all --
+    see DROP_COMPUTED -- so in practice this only fires there.
     """
     if not r["is_computational"].strip().lower().startswith("no") and \
             "computational" not in rec["measure"]:
         rec["measure"] += " (computed)"
 
 
-def build(filter_compounds=True):
+# A docking score, a QSAR prediction, a PBPK parameter and an ML fit are
+# not measurements, and this reading copy does not carry them beside
+# measurements where a reader can mistake one for the other. Labelling
+# was the old answer; it relies on the reader noticing a suffix. They
+# stay in db/protein_binding.csv, flagged by is_computational, which is
+# the record. The standing rule and the leak scan that enforces it are
+# in scripts/excluded_sources.py.
+DROP_COMPUTED = True
+
+
+def build(filter_compounds=True, keep_computed=False):
     """filter_compounds=False returns every measurement, for the consolidated
     database in db/combined/, which is the full record rather than a reading
-    copy and should not lose rows to this table's scope."""
+    copy and should not lose rows to this table's scope.
+
+    keep_computed=True additionally keeps docking scores, QSAR and PBPK
+    predictions and ML fits. ONLY the consolidated full record passes it.
+    Everything else -- every figure, every reading copy, every pooled
+    statistic -- takes the default, because a computed value does not
+    belong on an axis beside a measurement. See scripts/excluded_sources.py.
+    """
     with open(SRC) as fh:
         rows = list(csv.DictReader(fh))
     out, skipped, qualitative = [], [], []
+    computed = []
     for r in rows:
+        if DROP_COMPUTED and not keep_computed and not \
+                r["is_computational"].strip().lower().startswith("no"):
+            computed.append(r)
+            continue
         src = source_label(r["study"], r["year"], r["doi"])
         loc = location(r["source_table"])
         lig_mw = MM.molar_mass(r["chemical"], r["n_perfluorinated_carbons"],
@@ -895,6 +914,15 @@ def build(filter_compounds=True):
             kept.append(rec)
         else:
             dropped.append(rec)
+
+    if computed:
+        import sys
+        by = collections.Counter(
+            f"{first_author(r['study'])} {r['year']}" for r in computed)
+        print(f"  dropped {len(computed)} computed rows (docking, QSAR, "
+              f"PBPK, ML): "
+              + ", ".join(f"{s} ({n})" for s, n in by.most_common()),
+              file=sys.stderr)
 
     for i, rec in enumerate(kept, start=1):
         rec["id"] = i

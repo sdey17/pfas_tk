@@ -57,7 +57,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "albumin_kd_to_k.csv")
 OUT = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
 
-SPECIES = ("human", "bovine", "human; bovine")
+# The default species set. Rat is in it because the per-compound and
+# chain-length figures all facet on human / bovine / rat, and Fan 2025
+# and Han 2003 supply real rat serum-albumin measurements. Leaving it
+# out meant a bare re-run of this script silently emptied the rat rows
+# out of every downstream figure.
+SPECIES = ("human", "bovine", "rat", "human; bovine")
+
+# Sentinel for "no species filter at all". It cannot be None, because
+# None is the default and means SPECIES.
+ALL = "\0all"
 ANCHOR = "Qin 2024 (plasma)"
 
 FIELDS = [("pfas_canonical", "PFAS"), ("species", "Species"),
@@ -218,7 +227,8 @@ def collect(keep=None):
                 continue               # already in, with its own exponent
             out.append(row(r, READER, float(r["logK_if_n_assumed_1"]), "1"))
 
-    out = [r for r in out if r["species"] in (keep or SPECIES)]
+    if keep is not ALL:
+        out = [r for r in out if r["species"] in (keep or SPECIES)]
     out.sort(key=lambda r: (rank(r["route"]), r["pfas_canonical"],
                             r["source"]))
     return out
@@ -326,9 +336,9 @@ def main():
     keep = None
     if len(sys.argv) > 1:
         want = {a.lower() for a in sys.argv[1:]}
-        keep = None if "all" in want else want
+        keep = ALL if "all" in want else want
     rows = collect(keep=keep)
-    if keep:
+    if keep and keep is not ALL:
         rows = [r for r in rows if r["species"].lower() in keep]
     write(rows)
 
