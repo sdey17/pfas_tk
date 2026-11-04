@@ -29,6 +29,8 @@ SRC = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
 # the ligand:protein ratio lives.
 COND = os.path.join(HERE, "..", "db", "albumin_logK_with_conc.xlsx")
 OUT = os.path.join(HERE, "..", "figures", "albumin_chainlength_data.csv")
+OUT_EXCLUDED = os.path.join(HERE, "..", "figures",
+                            "albumin_chainlength_excluded.csv")
 FIELDS = ["pfas", "n_cf", "family", "species", "log_k", "category",
           "source", "log_ratio", "ratio_reported"]
 
@@ -40,6 +42,24 @@ FIELDS = ["pfas", "n_cf", "family", "species", "log_k", "category",
 # such. This matters because the ratio is the whole x axis of the
 # loading plots.
 RATIO_REPORTED = {"Allendorf 2019", "Fischer 2024"}
+
+# Sources held out of the figures and out of any pooled statistic. The
+# rows stay in db/protein_binding.csv -- the database records what the
+# literature says -- but they are not plotted, and they are written to
+# OUT_EXCLUDED beside the plotting CSV so the holdout is visible rather
+# than silent. Nothing is excluded for disagreeing with the pack; the
+# reason has to be a defect in the paper's own arithmetic.
+EXCLUDED = {
+    "Wu 2024": (
+        "HSA constants are not recoverable from the paper's own "
+        "tables: the accessible-fluorophore fraction comes out above "
+        "1 for all ten compounds (HSA has one tryptophan), KA is in "
+        "M^-n with n = 0.47-0.87 so inverting it is dimensionally "
+        "wrong, and re-expressed inside the measured window the ten "
+        "compounds collapse to a 0.13-log spread. The assay is also "
+        "17-50 % ethanol v/v with the protein not held constant. "
+        "Full working: scripts/audit_wu2024_hsa.py"),
+}
 
 
 def lookup():
@@ -89,7 +109,7 @@ def main():
     ws = load_workbook(SRC)["Coefficients"]
     ix = {h: i for i, h in enumerate(c.value for c in ws[1])}
 
-    out, dropped = [], 0
+    out, held, dropped = [], [], 0
     for r in ws.iter_rows(min_row=2, values_only=True):
         name = str(r[ix["PFAS"]])
         if name not in ncf:
@@ -103,7 +123,7 @@ def main():
         source = src.split(" Cw")[0].strip()
         species = str(r[ix["Species"]])
         lr = rat.get((name, species, source))
-        out.append({
+        row = {
             "pfas": name, "n_cf": ncf[name],
             "family": family(head.get(name)),
             "species": species,
@@ -112,15 +132,26 @@ def main():
             "log_ratio": "" if lr is None else lr,
             "ratio_reported": ("" if lr is None else
                                "yes" if source in RATIO_REPORTED
-                               else "no")})
+                               else "no")}
+        (held if source in EXCLUDED else out).append(row)
 
     with open(OUT, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(sorted(out, key=lambda r: (r["family"], r["species"],
                                                r["n_cf"], r["log_k"])))
+    if held:
+        with open(OUT_EXCLUDED, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=FIELDS + ["why"])
+            w.writeheader()
+            for r in sorted(held, key=lambda r: (r["source"], r["n_cf"])):
+                w.writerow({**r, "why": EXCLUDED[r["source"]]})
+
     print(f"wrote {OUT}")
     print(f"  {len(out)} rows, {dropped} dropped for having no nCF")
+    for src in sorted({r["source"] for r in held}):
+        n = sum(1 for r in held if r["source"] == src)
+        print(f"  held out {n} rows from {src} -> {OUT_EXCLUDED}")
     got = [r for r in out if r["log_ratio"] != ""]
     rep = sum(1 for r in got if r["ratio_reported"] == "yes")
     print(f"  ratio    {len(got)} rows have one; {rep} stated by the "

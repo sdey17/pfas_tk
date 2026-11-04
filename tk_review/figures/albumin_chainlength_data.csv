@@ -81,7 +81,6 @@ Octanoic acid,0,carboxylate,human,3.022,converted,Chen 2009,,
 butyric acid (C4),0,carboxylate,human,3.433,converted,Chen 2009,,
 Octanoic acid,0,carboxylate,human,4.669,converted,Chen 2009,,
 Octanoic acid,0,carboxylate,human,5.219,converted,Chen 2009,,
-PFBA,3,carboxylate,human,-0.842,quenching,Wu 2024,0.0,no
 PFBA,3,carboxylate,human,1.555,converted,Gao 2019,0.301,no
 PFBA,3,carboxylate,human,2.249,converted,Chen 2025,0.301,no
 3:3 FTCA,3,carboxylate,human,2.329,converted,Chen 2025,0.301,no
@@ -93,7 +92,6 @@ PFPeA,4,carboxylate,human,2.16,measured,Fischer 2024,-2.3979,yes
 NFDHA,4,carboxylate,human,2.938,converted,Chen 2025,0.301,no
 PFPeA,4,carboxylate,human,2.966,converted,Chen 2025,0.301,no
 PFMBA,4,carboxylate,human,4.835,converted,Chen 2025,0.301,no
-HFPO-DA,5,carboxylate,human,-0.259,quenching,Wu 2024,0.0,no
 PFHxA,5,carboxylate,human,1.887,converted,Gao 2019,0.301,no
 PFHxA,5,carboxylate,human,3.032,converted,Chen 2025,0.301,no
 5:3 FTCA,5,carboxylate,human,3.146,converted,Chen 2025,0.301,no
@@ -102,7 +100,6 @@ HFPO-DA,5,carboxylate,human,3.36,converted,Chen 2025,0.301,no
 PFHxA,5,carboxylate,human,3.419,converted,Moro 2022,1.5606,no
 5:3 FTCA,5,carboxylate,human,3.48,measured,Fischer 2024,-2.3979,yes
 PFHxA,5,carboxylate,human,3.533,converted,Moro 2022,1.5606,no
-ADONA,6,carboxylate,human,-0.026,quenching,Wu 2024,0.0,no
 DFSA (dodecafluorosuberic acid),6,carboxylate,human,1.359,converted,Peng 2024,1.2553,no
 PFHpA,6,carboxylate,human,1.833,converted,Peng 2024,1.2553,no
 PFHpA,6,carboxylate,human,1.942,converted,Gao 2019,0.301,no
@@ -116,7 +113,6 @@ ADONA,6,carboxylate,human,3.423,converted,Chen 2025,0.301,no
 ADONA,6,carboxylate,human,3.98,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024,1.2553,no
-PFOA,7,carboxylate,human,0.025,quenching,Wu 2024,0.0,no
 PFOA,7,carboxylate,human,1.638,converted,Han 2003,,
 branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,,
 PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
@@ -233,15 +229,12 @@ PFOS,8,sulfonate,bovine,4.76,measured,Fischer 2024,-2.3979,yes
 PFOS,8,sulfonate,bovine,5.35,qin,Qin 2024,,
 PFNS,9,sulfonate,bovine,5.14,measured,Fischer 2024,-2.3979,yes
 PFDS,10,sulfonate,bovine,5.13,measured,Fischer 2024,-2.3979,yes
-PFPrS,3,sulfonate,human,-0.11,quenching,Wu 2024,0.0,no
-PFBS,4,sulfonate,human,0.088,quenching,Wu 2024,0.0,no
 PFBS,4,sulfonate,human,1.95,converted,Gao 2019,0.301,no
 PFBS,4,sulfonate,human,2.984,converted,Chen 2025,0.301,no
 PFBS,4,sulfonate,human,3.26,measured,Fischer 2024,-2.3979,yes
 PFEESA,4,sulfonate,human,3.466,converted,Chen 2025,0.301,no
 PFPeS,5,sulfonate,human,2.943,converted,Chen 2025,0.301,no
 PFPeS,5,sulfonate,human,3.98,measured,Fischer 2024,-2.3979,yes
-PFHxS,6,sulfonate,human,0.241,quenching,Wu 2024,0.0,no
 PFHxS,6,sulfonate,human,2.28,converted,Gao 2019,0.301,no
 6:2 FTSA,6,sulfonate,human,3.35,measured,Fischer 2024,-2.3979,yes
 6:2 FTSA,6,sulfonate,human,3.794,converted,Chen 2025,0.301,no
@@ -249,8 +242,6 @@ PFHxS,6,sulfonate,human,4.06,converted,Chen 2025,0.301,no
 PFHxS,6,sulfonate,human,4.77,measured,Fischer 2024,-2.3979,yes
 PFHpS,7,sulfonate,human,3.952,converted,Chen 2025,0.301,no
 PFHpS,7,sulfonate,human,5.49,measured,Fischer 2024,-2.3979,yes
-6:2 Cl-PFESA,8,sulfonate,human,0.106,quenching,Wu 2024,0.0,no
-PFOS,8,sulfonate,human,0.713,quenching,Wu 2024,0.0,no
 branched PFOS isomers (range),8,sulfonate,human,2.274,converted,Beesoon 2015,,
 6:2 Cl-PFESA,8,sulfonate,human,2.351,converted,Gao 2019,0.301,no
 PFOS,8,sulfonate,human,2.598,converted,Gao 2019,0.301,no
@@ -264,7 +255,6 @@ PFOS,8,sulfonate,human,4.62,measured,Fischer 2024,-2.3979,yes
 linear PFOS (n-PFOS),8,sulfonate,human,5.274,converted,Beesoon 2015,,
 PFNS,9,sulfonate,human,3.361,converted,Chen 2025,0.301,no
 PFNS,9,sulfonate,human,4.99,measured,Fischer 2024,-2.3979,yes
-8:2 Cl-PFESA,10,sulfonate,human,0.135,quenching,Wu 2024,0.0,no
 8:2 Cl-PFESA,10,sulfonate,human,3.631,converted,Chen 2025,0.301,no
 PFDS,10,sulfonate,human,3.903,converted,Chen 2025,0.301,no
 PFDS,10,sulfonate,human,5.05,measured,Fischer 2024,-2.3979,yes
