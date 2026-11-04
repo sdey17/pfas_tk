@@ -18,7 +18,12 @@ assays that produced the constants being scored.
 Each (study, compound) pair is scored on its TIGHTEST reported site or binding
 step; papers that resolve more than one are listed with the weaker values for
 comparison.  Kd values are from OEHHA 2024 PFOA/PFOS PHG Table A6.2 plus
-Starnes et al. 2024 Table 2 for the DSF comparison.
+Starnes et al. 2024 Table 2 for the DSF comparison.  A62 is a
+transcription of those two sources and nothing else -- it does NOT read
+db/protein_binding.csv, so a constant this project ingested later is not
+scored here unless it is added to FLAGGED below, by hand and with its
+own provenance.  Note A62 already carries a "Wu et al. 2009", which is a
+different paper from the Wu et al. 2024 in FLAGGED.
 
 Run:  python3 tk_review/scripts/binding_kd_physiological_bound.py
 """
@@ -68,6 +73,23 @@ A62 = [
     ("Klevens & Ellenbogen 1954", "bovine", "PFOA",
      [("not site-resolved", 3.1e-3)]),
 ]
+
+
+# Rows this project flagged on its own, scored against the same bound.
+# Kept apart from A62 so the transcription above stays a transcription.
+#
+# Wu et al. 2024, Toxics 12(1):46, Tables 4-6, as KA in M^-n with the
+# fitted n alongside.  The audit in scripts/audit_wu2024_hsa.py shows the
+# constant is dimensionally not a molar Kd unless n = 1; both readings are
+# scored here because both fail, which is the point.
+WU2024 = [
+    ("PFOS", 394.6390, 0.8694), ("PFHxS", 157.9429, 0.7328),
+    ("11Cl-PF3OUdS", 127.6145, 0.7102), ("9Cl-PF3ONS", 117.1120, 0.7240),
+    ("PFBS", 116.4930, 0.6986), ("PFOA", 103.3475, 0.6811),
+    ("NaDONA", 93.0894, 0.6718), ("PFPrS", 79.4511, 0.6487),
+    ("HFPO-DA", 58.9929, 0.6214), ("PFBA", 20.3657, 0.4692),
+]
+WU2024_CSTAR = 315e-6   # geometric-mean PFAS concentration, mol/L
 
 
 def f_bound(kd_M, n=1, alb_uM=ALB_UM):
@@ -123,6 +145,38 @@ def main():
     for lab, L, P in (("Starnes 2024 DSF assay", 1000.0, ALB_UM),
                       ("Chen 2020 assay vs 2 uM HSA", 80.0, 2.0)):
         print("  %-34s %10.1f %12.2g" % (lab, L, L / P))
+
+    floor = max(min(k for _s, k in sites) for _l, _sp, _c, sites in A62)
+    print()
+    print("Wu et al. 2024 (Toxics 12:46) against the same bound.")
+    print("  NOT part of Table A6.2; scored here because this project")
+    print("  flagged it.  The weakest row in A62 is %.0f uM." % (floor * 1e6))
+    print("  %-14s %10s %8s %8s  %s" % ("compound", "Kd (uM)", "n=1", "n=6",
+                                        "vs that floor"))
+    for ch, ka, _n in sorted(WU2024, key=lambda x: 1.0 / x[1]):
+        kd = 1.0 / ka
+        rel = kd / floor
+        tag = ("%5.1fx weaker" % rel if rel >= 1.0
+               else "%5.1fx tighter" % (1.0 / rel))
+        print("  %-14s %10.0f %7.1f%% %7.1f%%  %s"
+              % (ch, kd * 1e6, 100 * f_bound(kd, 1), 100 * f_bound(kd, 6),
+                 tag))
+    print("  All %d fail at n = 6.  The tightest of them, PFOS at %.0f uM,"
+          % (len(WU2024), min(1.0 / ka for _c, ka, _n in WU2024) * 1e6))
+    print("  is weaker than every A62 row but Klevens & Ellenbogen 1954.")
+    print()
+    print("  Re-expressed as the 1:1 constant implied inside the measured")
+    print("  window (K_eff = KA x C*^(n-1), C* = %.0f uM) the ten compounds"
+          % (WU2024_CSTAR * 1e6))
+    print("  collapse onto one value, and it still fails:")
+    eff = [ka * WU2024_CSTAR ** (n - 1.0) for _c, ka, n in WU2024]
+    for lab, k in (("tightest", max(eff)), ("weakest", min(eff))):
+        kd = 1.0 / k
+        print("      %-8s K_eff %6.0f M^-1  ->  Kd %5.0f uM  ->"
+              " %5.1f%% bound at n=6" % (lab, k, kd * 1e6,
+                                         100 * f_bound(kd, 6)))
+    print("  That is the same class as the DSF thermal-transition rows,")
+    print("  which fail too.  The dimensional error is not the whole gap.")
 
 
 if __name__ == "__main__":

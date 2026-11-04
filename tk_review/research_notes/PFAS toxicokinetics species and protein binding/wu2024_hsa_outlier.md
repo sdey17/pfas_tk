@@ -160,10 +160,41 @@ statistic, by name, via `EXCLUDED` in
 `figures/albumin_chainlength_excluded.csv` so the holdout is visible
 rather than silent.
 
-**Still to do:** Wu 2024 also feeds
-`logk_converted_vs_measured.py`, `make_logk_conversion_figure.py`,
-`binding_kd_physiological_bound.py`, `kd_k_interconversion.py` and
+## The independent check: does it clear the physiological bound?
+
+`binding_kd_physiological_bound.py` asks a question that owes nothing to
+any of the four checks above: at 600 µM albumin, what Kd is needed to
+reproduce the >99% bound fraction PFAS actually shows in plasma? At
+n = 6 sites that is **Kd ≲ 36 µM**.
+
+The script did **not** catch Wu, and structurally could not: its `A62`
+table is a hard-coded transcription of OEHHA 2024 Table A6.2 plus two
+Starnes DSF rows, and it never opens `db/protein_binding.csv`. (It does
+carry a `Wu et al. 2009` — a *different* paper, PFOA Kd 26 µM, which
+passes at 99.3%. Easy to mistake for coverage.) Wu 2024 is now scored
+in a separate `FLAGGED`/`WU2024` block, kept apart so the OEHHA
+transcription stays a transcription:
+
+| compound | Kd (µM) | bound, n=1 | bound, n=6 |
+|---|---|---|---|
+| PFOS | 2 534 | 19.1 % | 58.7 % |
+| PFOA | 9 676 | 5.8 % | 27.1 % |
+| PFBA | 49 102 | 1.2 % | 6.8 % |
+
+All ten fail. The *tightest*, PFOS, is weaker than every row in Table
+A6.2 except Klevens & Ellenbogen 1954; PFOA is 3.1× weaker than that
+floor and PFBA 15.8×.
+
+And the part that matters for the diagnosis: **re-expressed, it still
+fails.** K_eff ≈ 1084–1471 M⁻¹ → Kd 680–922 µM → 80–84 % bound at n = 6
+— the same class as the DSF thermal-transition rows, which also fail.
+So the dimensional error is not the whole gap, confirming from an
+independent direction what Check 3 implied: the analysis accounts for
+about a third of it, the assay for the rest.
+
+## Still to do
+
+Wu 2024 also feeds `logk_converted_vs_measured.py`,
+`make_logk_conversion_figure.py`, `kd_k_interconversion.py` and
 `binding_all_data_protein_specific.py`. Those have not been
-re-generated. `binding_kd_physiological_bound.py` in particular asks
-which Kd values are physiologically possible, and Wu's are exactly the
-kind it should be flagging.
+re-generated.
