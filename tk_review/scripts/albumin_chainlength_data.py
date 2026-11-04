@@ -25,9 +25,21 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "db", "protein_binding.csv")
 SRC = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
+# The same extract with the assay conditions joined on, which is where
+# the ligand:protein ratio lives.
+COND = os.path.join(HERE, "..", "db", "albumin_logK_with_conc.xlsx")
 OUT = os.path.join(HERE, "..", "figures", "albumin_chainlength_data.csv")
 FIELDS = ["pfas", "n_cf", "family", "species", "log_k", "category",
-          "source"]
+          "source", "log_ratio", "ratio_reported"]
+
+# Which sources STATE a ligand:protein ratio rather than having one
+# computed here as PFAS concentration over protein concentration.
+# Allendorf gives it per compound in SI Table SI-2.3 and Fischer gives
+# it as a design bound; everyone else states two concentrations and no
+# ratio, so their ratio is this project's division and is marked as
+# such. This matters because the ratio is the whole x axis of the
+# loading plots.
+RATIO_REPORTED = {"Allendorf 2019", "Fischer 2024"}
 
 
 def lookup():
@@ -50,9 +62,30 @@ def family(head):
     return "other"
 
 
+def ratios():
+    """(pfas, species, source) -> log10 ligand:protein ratio."""
+    from openpyxl import load_workbook
+    import math
+    ws = load_workbook(COND)["Coefficients"]
+    ix = {h: i for i, h in enumerate(c.value for c in ws[1])}
+    out = {}
+    for r in ws.iter_rows(min_row=2, values_only=True):
+        try:
+            v = float(str(r[ix["ligand:protein ratio (max)"]]).strip())
+        except (TypeError, ValueError):
+            continue
+        if v <= 0:
+            continue
+        key = (str(r[ix["PFAS"]]), str(r[ix["Species"]]),
+               str(r[ix["Source"]]).split(" Cw")[0].strip())
+        out.setdefault(key, round(math.log10(v), 4))
+    return out
+
+
 def main():
     from openpyxl import load_workbook
     ncf, head = lookup()
+    rat = ratios()
     ws = load_workbook(SRC)["Coefficients"]
     ix = {h: i for i, h in enumerate(c.value for c in ws[1])}
 
@@ -67,12 +100,19 @@ def main():
         cat = ("qin" if src.startswith("Qin 2024") else
                "measured" if route.startswith("measured") else
                "quenching" if "quenching" in route else "converted")
+        source = src.split(" Cw")[0].strip()
+        species = str(r[ix["Species"]])
+        lr = rat.get((name, species, source))
         out.append({
             "pfas": name, "n_cf": ncf[name],
             "family": family(head.get(name)),
-            "species": str(r[ix["Species"]]),
+            "species": species,
             "log_k": float(r[ix["log K (L water / kg protein)"]]),
-            "category": cat, "source": src.split(" Cw")[0].strip()})
+            "category": cat, "source": source,
+            "log_ratio": "" if lr is None else lr,
+            "ratio_reported": ("" if lr is None else
+                               "yes" if source in RATIO_REPORTED
+                               else "no")})
 
     with open(OUT, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
@@ -81,6 +121,10 @@ def main():
                                                r["n_cf"], r["log_k"])))
     print(f"wrote {OUT}")
     print(f"  {len(out)} rows, {dropped} dropped for having no nCF")
+    got = [r for r in out if r["log_ratio"] != ""]
+    rep = sum(1 for r in got if r["ratio_reported"] == "yes")
+    print(f"  ratio    {len(got)} rows have one; {rep} stated by the "
+          f"paper, {len(got) - rep} computed here")
     for k in ("family", "species", "category"):
         print(f"  {k:<9}{dict(collections.Counter(r[k] for r in out))}")
 

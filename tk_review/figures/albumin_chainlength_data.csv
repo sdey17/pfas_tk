@@ -1,277 +1,277 @@
-pfas,n_cf,family,species,log_k,category,source
-PFBA,3,carboxylate,bovine,0.478,converted,Gao 2025
-PFBA,3,carboxylate,bovine,0.655,converted,Gao 2025
-PFBA,3,carboxylate,bovine,1.9,measured,Allendorf 2019
-PFBA,3,carboxylate,bovine,2.52,measured,Allendorf 2019
-PFBA,3,carboxylate,bovine,2.6,qin,Qin 2024
-PFPeA,4,carboxylate,bovine,3.265,measured,Bischel 2011
-PFHxA,5,carboxylate,bovine,1.291,converted,Gao 2025
-HFPO-DA,5,carboxylate,bovine,1.324,converted,Gao 2025
-PFHxA,5,carboxylate,bovine,1.408,converted,Gao 2025
-PFHxA,5,carboxylate,bovine,1.433,converted,Gao 2025
-HFPO-DA,5,carboxylate,bovine,1.5,converted,Gao 2025
-HFPO-DA,5,carboxylate,bovine,1.52,converted,Gao 2025
-PFHxA,5,carboxylate,bovine,1.52,converted,Gao 2025
-HFPO-DA,5,carboxylate,bovine,1.558,converted,Gao 2025
-HFPO-DA,5,carboxylate,bovine,2.71,measured,Allendorf 2019
-PFHxA,5,carboxylate,bovine,2.83,measured,Fischer 2024
-5:3 FTCA,5,carboxylate,bovine,2.9,measured,Fischer 2024
-PFHxA,5,carboxylate,bovine,3.02,measured,Allendorf 2019
-HFPO-DA,5,carboxylate,bovine,3.06,measured,Allendorf 2019
-HFPO-DA,5,carboxylate,bovine,3.28,qin,Qin 2024
-PFHxA,5,carboxylate,bovine,3.28,qin,Qin 2024
-PFHxA,5,carboxylate,bovine,3.43,measured,Allendorf 2019
-PFHxA,5,carboxylate,bovine,3.915,measured,Bischel 2011
-PFHpA,6,carboxylate,bovine,2.029,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.122,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.264,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.339,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.461,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.47,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,2.563,converted,Gao 2025
-PFHpA,6,carboxylate,bovine,3.79,measured,Allendorf 2019
-ADONA,6,carboxylate,bovine,3.8,measured,Allendorf 2019
-ADONA,6,carboxylate,bovine,3.84,measured,Fischer 2024
-ADONA,6,carboxylate,bovine,3.93,measured,Allendorf 2019
-PFHpA,6,carboxylate,bovine,3.93,measured,Fischer 2024
-PFHpA,6,carboxylate,bovine,4.01,qin,Qin 2024
-PFHpA,6,carboxylate,bovine,4.02,measured,Allendorf 2019
-PFHpA,6,carboxylate,bovine,4.095,measured,Bischel 2011
-PFOA,7,carboxylate,bovine,0.685,converted,Klevens 1954
-PFOA,7,carboxylate,bovine,3.327,converted,Gao 2025
-PFOA,7,carboxylate,bovine,3.486,converted,Gao 2025
-PFOA,7,carboxylate,bovine,3.543,converted,Gao 2025
-PFOA,7,carboxylate,bovine,3.668,converted,Gao 2025
-7:3 FTCA,7,carboxylate,bovine,3.79,measured,Fischer 2024
-PFOA,7,carboxylate,bovine,4.005,measured,Bischel 2011
-PFOA,7,carboxylate,bovine,4.17,measured,Allendorf 2019
-PFOA,7,carboxylate,bovine,4.177,converted,Bischel 2010
-PFOA,7,carboxylate,bovine,4.2,measured,Allendorf 2019
-PFOA,7,carboxylate,bovine,4.2,measured,Fischer 2024
-PFOA,7,carboxylate,bovine,4.64,qin,Qin 2024
-PFNA,8,carboxylate,bovine,3.915,measured,Bischel 2011
-PFNA,8,carboxylate,bovine,3.935,converted,Gao 2025
-PFNA,8,carboxylate,bovine,4.033,converted,Gao 2025
-PFNA,8,carboxylate,bovine,4.106,converted,Gao 2025
-PFNA,8,carboxylate,bovine,4.175,converted,Gao 2025
-PFNA,8,carboxylate,bovine,4.177,converted,Bischel 2010
-PFNA,8,carboxylate,bovine,4.32,measured,Allendorf 2019
-PFNA,8,carboxylate,bovine,4.48,measured,Allendorf 2019
-PFNA,8,carboxylate,bovine,4.54,measured,Fischer 2024
-PFNA,8,carboxylate,bovine,4.56,qin,Qin 2024
-PFDA,9,carboxylate,bovine,3.725,measured,Bischel 2011
-PFDA,9,carboxylate,bovine,4.044,converted,Gao 2025
-PFDA,9,carboxylate,bovine,4.129,converted,Gao 2025
-PFDA,9,carboxylate,bovine,4.146,converted,Gao 2025
-PFDA,9,carboxylate,bovine,4.199,converted,Gao 2025
-PFDA,9,carboxylate,bovine,4.73,measured,Allendorf 2019
-PFDA,9,carboxylate,bovine,4.81,measured,Fischer 2024
-PFDA,9,carboxylate,bovine,4.84,measured,Allendorf 2019
-PFUnDA,10,carboxylate,bovine,3.565,measured,Bischel 2011
-PFUnDA,10,carboxylate,bovine,4.6,measured,Allendorf 2019
-PFUnDA,10,carboxylate,bovine,4.62,qin,Qin 2024
-PFUnDA,10,carboxylate,bovine,4.72,measured,Allendorf 2019
-PFUnDA,10,carboxylate,bovine,5.17,measured,Fischer 2024
-PFDoDA,11,carboxylate,bovine,3.165,measured,Bischel 2011
-PFDoDA,11,carboxylate,bovine,5.12,measured,Fischer 2024
-PFTrDA,12,carboxylate,bovine,4.47,measured,Fischer 2024
-PFTeDA,13,carboxylate,bovine,3.87,measured,Fischer 2024
-butyric acid (C4),0,carboxylate,human,2.141,converted,Chen 2009
-Octanoic acid,0,carboxylate,human,3.022,converted,Chen 2009
-butyric acid (C4),0,carboxylate,human,3.433,converted,Chen 2009
-Octanoic acid,0,carboxylate,human,4.669,converted,Chen 2009
-Octanoic acid,0,carboxylate,human,5.219,converted,Chen 2009
-PFBA,3,carboxylate,human,-0.842,quenching,Wu 2024
-PFBA,3,carboxylate,human,1.555,converted,Gao 2019
-PFBA,3,carboxylate,human,2.249,converted,Chen 2025
-3:3 FTCA,3,carboxylate,human,2.329,converted,Chen 2025
-PFMPA,3,carboxylate,human,2.5,converted,Chen 2025
-C6O4,3,carboxylate,human,3.621,converted,Moro 2022
-C6O4,3,carboxylate,human,4.001,converted,Moro 2022
-PFPeA,4,carboxylate,human,1.721,converted,Gao 2019
-PFPeA,4,carboxylate,human,2.16,measured,Fischer 2024
-NFDHA,4,carboxylate,human,2.938,converted,Chen 2025
-PFPeA,4,carboxylate,human,2.966,converted,Chen 2025
-PFMBA,4,carboxylate,human,4.835,converted,Chen 2025
-HFPO-DA,5,carboxylate,human,-0.259,quenching,Wu 2024
-PFHxA,5,carboxylate,human,1.887,converted,Gao 2019
-PFHxA,5,carboxylate,human,3.032,converted,Chen 2025
-5:3 FTCA,5,carboxylate,human,3.146,converted,Chen 2025
-PFHxA,5,carboxylate,human,3.2,measured,Fischer 2024
-HFPO-DA,5,carboxylate,human,3.36,converted,Chen 2025
-PFHxA,5,carboxylate,human,3.419,converted,Moro 2022
-5:3 FTCA,5,carboxylate,human,3.48,measured,Fischer 2024
-PFHxA,5,carboxylate,human,3.533,converted,Moro 2022
-ADONA,6,carboxylate,human,-0.026,quenching,Wu 2024
-DFSA (dodecafluorosuberic acid),6,carboxylate,human,1.359,converted,Peng 2024
-PFHpA,6,carboxylate,human,1.833,converted,Peng 2024
-PFHpA,6,carboxylate,human,1.942,converted,Gao 2019
-DFSA (dodecafluorosuberic acid),6,carboxylate,human,2.546,quenching,Peng 2024
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",6,carboxylate,human,2.695,quenching,Peng 2024
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",6,carboxylate,human,3.379,converted,Peng 2024
-PFHpA,6,carboxylate,human,3.385,converted,Chen 2025
-ADONA,6,carboxylate,human,3.423,converted,Chen 2025
-6:2 FTUCA,6,carboxylate,human,3.551,converted,Chen 2025
-6:2 FTCA,6,carboxylate,human,3.616,converted,Chen 2025
-ADONA,6,carboxylate,human,3.98,measured,Fischer 2024
-PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024
-PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024
-PFOA,7,carboxylate,human,0.025,quenching,Wu 2024
-PFOA,7,carboxylate,human,1.638,converted,Han 2003
-branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015
-PFOA,7,carboxylate,human,2.117,converted,Gao 2019
-linear PFOA (n-PFOA),7,carboxylate,human,2.177,converted,Beesoon 2015
-PFOA,7,carboxylate,human,2.672,converted,Wu 2009
-PFOA,7,carboxylate,human,3.533,converted,Peng 2024
-7:3 FTCA,7,carboxylate,human,3.59,measured,Fischer 2024
-PFOA,7,carboxylate,human,3.767,converted,Chen 2025
-7:3 FTCA,7,carboxylate,human,3.917,converted,Chen 2025
-PFOA,7,carboxylate,human,4.372,quenching,Chen 2009
-PFOA,7,carboxylate,human,4.48,measured,Fischer 2024
-PFOA,7,carboxylate,human,4.641,quenching,Peng 2024
-PFNA,8,carboxylate,human,2.314,converted,Gao 2019
-PFNA,8,carboxylate,human,3.214,quenching,Peng 2024
-PFNA,8,carboxylate,human,3.603,converted,Chen 2025
-8:2 FTUCA,8,carboxylate,human,3.823,converted,Chen 2025
-8:2 FTCA,8,carboxylate,human,3.879,converted,Chen 2025
-PFNA,8,carboxylate,human,4.49,measured,Fischer 2024
-HFPO-TA,8,carboxylate,human,4.746,converted,Peng 2024
-PFNA,8,carboxylate,human,5.07,converted,Peng 2024
-HFPO-TA,8,carboxylate,human,7.861,quenching,Peng 2024
-PFDA,9,carboxylate,human,2.365,converted,Gao 2019
-PFDA,9,carboxylate,human,3.616,converted,Chen 2025
-PFDA,9,carboxylate,human,4.73,measured,Fischer 2024
-PFUnDA,10,carboxylate,human,2.28,converted,Gao 2019
-10:2 FTCA,10,carboxylate,human,3.22,converted,Chen 2025
-PFUnDA,10,carboxylate,human,3.503,converted,Chen 2025
-PFUnDA,10,carboxylate,human,5.18,measured,Fischer 2024
-PFDoDA,11,carboxylate,human,2.165,converted,Gao 2019
-PFDoDA,11,carboxylate,human,2.165,converted,Gao 2019
-PFDoDA,11,carboxylate,human,2.98,converted,Chen 2025
-PFDoDA,11,carboxylate,human,5.05,measured,Fischer 2024
-PFTrDA,12,carboxylate,human,1.754,converted,Gao 2019
-PFTrDA,12,carboxylate,human,2.68,converted,Chen 2025
-PFTrDA,12,carboxylate,human,4.54,measured,Fischer 2024
-PFTeDA,13,carboxylate,human,3.06,converted,Chen 2025
-PFTeDA,13,carboxylate,human,3.87,measured,Fischer 2024
-PFHxDA,15,carboxylate,human,3.158,converted,Chen 2025
-PFBA,3,carboxylate,rat,2.404,converted,Fan 2025
-PFBA,3,carboxylate,rat,3.617,converted,Fan 2025
-PFPeA,4,carboxylate,rat,2.218,converted,Fan 2025
-PFPeA,4,carboxylate,rat,3.628,converted,Fan 2025
-PFHxA,5,carboxylate,rat,2.241,converted,Fan 2025
-HFPO-DA,5,carboxylate,rat,2.74,converted,Fan 2025
-PFHxA,5,carboxylate,rat,3.207,converted,Fan 2025
-HFPO-DA,5,carboxylate,rat,3.439,converted,Fan 2025
-PFHpA,6,carboxylate,rat,2.72,converted,Fan 2025
-PFHpA,6,carboxylate,rat,3.651,converted,Fan 2025
-PFOA,7,carboxylate,rat,1.638,converted,Han 2003
-PFOA,7,carboxylate,rat,2.695,converted,Fan 2025
-PFOA,7,carboxylate,rat,3.377,converted,Fan 2025
-PFNA,8,carboxylate,rat,2.709,converted,Fan 2025
-PFNA,8,carboxylate,rat,3.679,converted,Fan 2025
-PFDA,9,carboxylate,rat,2.251,converted,Fan 2025
-PFDA,9,carboxylate,rat,3.732,converted,Fan 2025
-PFUnDA,10,carboxylate,rat,2.558,converted,Fan 2025
-PFDoDA,11,carboxylate,rat,2.73,converted,Fan 2025
-PFTeDA,13,carboxylate,rat,1.895,converted,Fan 2025
-PFOSA,8,other,bovine,4.24,qin,Qin 2024
-N-EtFOSAA,8,other,bovine,4.29,measured,Fischer 2024
-N-MeFOSAA,8,other,bovine,4.29,measured,Fischer 2024
-FOSAA,8,other,bovine,4.3,measured,Fischer 2024
-PFOSA,8,other,bovine,4.33,measured,Fischer 2024
-FDSA,10,other,bovine,4.69,measured,Fischer 2024
-FBSA,4,other,human,3.431,converted,Chen 2025
-5:1:2 FTB,5,other,human,2.484,converted,Chen 2025
-5:3 FTB,5,other,human,2.694,converted,Chen 2025
-N-TAmP-FHxSA,6,other,human,2.65,converted,Chen 2025
-6:2 FtSaB,6,other,human,2.948,converted,Chen 2025
-PFHxSaAm,6,other,human,3.386,converted,Chen 2025
-FHxSA,6,other,human,3.69,converted,Chen 2025
-6:2 diPAP,6,other,human,3.744,converted,Chen 2025
-8:2 diPAP,8,other,human,3.019,converted,Chen 2025
-PFOSA,8,other,human,3.129,converted,Chen 2025
-FOSAA,8,other,human,3.308,converted,Chen 2025
-N-MeFOSAA,8,other,human,3.356,converted,Chen 2025
-diSAmPAP,8,other,human,3.404,converted,Chen 2025
-N-EtFOSAA,8,other,human,3.442,converted,Chen 2025
-N-EtFOSAA,8,other,human,4.23,measured,Fischer 2024
-N-MeFOSAA,8,other,human,4.27,measured,Fischer 2024
-FOSAA,8,other,human,4.31,measured,Fischer 2024
-PFOSA,8,other,human,4.34,measured,Fischer 2024
-FDSA,10,other,human,4.64,measured,Fischer 2024
-PFBS,4,sulfonate,bovine,1.132,converted,Gao 2025
-PFBS,4,sulfonate,bovine,1.324,converted,Gao 2025
-PFBS,4,sulfonate,bovine,2.28,measured,Fischer 2024
-PFBS,4,sulfonate,bovine,2.65,measured,Allendorf 2019
-PFBS,4,sulfonate,bovine,3.2,measured,Allendorf 2019
-PFBS,4,sulfonate,bovine,3.725,measured,Bischel 2011
-PFPeS,5,sulfonate,bovine,4.0,measured,Fischer 2024
-PFHxS,6,sulfonate,bovine,3.146,converted,Gao 2025
-PFHxS,6,sulfonate,bovine,3.267,converted,Gao 2025
-PFHxS,6,sulfonate,bovine,3.298,converted,Gao 2025
-6:2 FTSA,6,sulfonate,bovine,3.44,measured,Fischer 2024
-PFHxS,6,sulfonate,bovine,3.458,converted,Gao 2025
-6:2 FTSA,6,sulfonate,bovine,3.76,qin,Qin 2024
-PFHxS,6,sulfonate,bovine,4.165,measured,Bischel 2011
-PFHxS,6,sulfonate,bovine,4.61,measured,Fischer 2024
-PFHxS,6,sulfonate,bovine,4.81,measured,Allendorf 2019
-PFHxS,6,sulfonate,bovine,4.82,qin,Qin 2024
-PFHpS,7,sulfonate,bovine,4.88,measured,Fischer 2024
-PFOS,8,sulfonate,bovine,3.943,converted,Gao 2025
-PFOS,8,sulfonate,bovine,3.944,converted,Gao 2025
-PFOS,8,sulfonate,bovine,3.965,measured,Bischel 2011
-PFOS,8,sulfonate,bovine,4.142,converted,Gao 2025
-PFOS,8,sulfonate,bovine,4.148,converted,Gao 2025
-PFOS,8,sulfonate,bovine,4.221,converted,Gao 2025
-PFOS,8,sulfonate,bovine,4.334,converted,Gao 2025
-PFOS,8,sulfonate,bovine,4.336,converted,Gao 2025
-PFECHS,8,sulfonate,bovine,4.55,measured,Allendorf 2019
-PFOS,8,sulfonate,bovine,4.67,measured,Allendorf 2019
-PFOS,8,sulfonate,bovine,4.76,measured,Fischer 2024
-6:2 Cl-PFESA,8,sulfonate,bovine,5.01,measured,Allendorf 2019
-PFOS,8,sulfonate,bovine,5.35,qin,Qin 2024
-PFNS,9,sulfonate,bovine,5.14,measured,Fischer 2024
-PFDS,10,sulfonate,bovine,5.13,measured,Fischer 2024
-PFPrS,3,sulfonate,human,-0.11,quenching,Wu 2024
-PFBS,4,sulfonate,human,0.088,quenching,Wu 2024
-PFBS,4,sulfonate,human,1.95,converted,Gao 2019
-PFBS,4,sulfonate,human,2.984,converted,Chen 2025
-PFBS,4,sulfonate,human,3.26,measured,Fischer 2024
-PFEESA,4,sulfonate,human,3.466,converted,Chen 2025
-PFPeS,5,sulfonate,human,2.943,converted,Chen 2025
-PFPeS,5,sulfonate,human,3.98,measured,Fischer 2024
-PFHxS,6,sulfonate,human,0.241,quenching,Wu 2024
-PFHxS,6,sulfonate,human,2.28,converted,Gao 2019
-6:2 FTSA,6,sulfonate,human,3.35,measured,Fischer 2024
-6:2 FTSA,6,sulfonate,human,3.794,converted,Chen 2025
-PFHxS,6,sulfonate,human,4.06,converted,Chen 2025
-PFHxS,6,sulfonate,human,4.77,measured,Fischer 2024
-PFHpS,7,sulfonate,human,3.952,converted,Chen 2025
-PFHpS,7,sulfonate,human,5.49,measured,Fischer 2024
-6:2 Cl-PFESA,8,sulfonate,human,0.106,quenching,Wu 2024
-PFOS,8,sulfonate,human,0.713,quenching,Wu 2024
-branched PFOS isomers (range),8,sulfonate,human,2.274,converted,Beesoon 2015
-6:2 Cl-PFESA,8,sulfonate,human,2.351,converted,Gao 2019
-PFOS,8,sulfonate,human,2.598,converted,Gao 2019
-PFOS and 6:2 Cl-PFESA (F-53B),8,sulfonate,human,2.823,converted,Sheng 2020
-PFOS,8,sulfonate,human,3.666,quenching,Chen 2009
-PFECHS,8,sulfonate,human,3.968,converted,Chen 2025
-6:2 Cl-PFESA,8,sulfonate,human,3.979,converted,Chen 2025
-PFOS,8,sulfonate,human,4.204,converted,Chen 2025
-8Cl-PFOS,8,sulfonate,human,4.238,converted,Chen 2025
-PFOS,8,sulfonate,human,4.62,measured,Fischer 2024
-linear PFOS (n-PFOS),8,sulfonate,human,5.274,converted,Beesoon 2015
-PFNS,9,sulfonate,human,3.361,converted,Chen 2025
-PFNS,9,sulfonate,human,4.99,measured,Fischer 2024
-8:2 Cl-PFESA,10,sulfonate,human,0.135,quenching,Wu 2024
-8:2 Cl-PFESA,10,sulfonate,human,3.631,converted,Chen 2025
-PFDS,10,sulfonate,human,3.903,converted,Chen 2025
-PFDS,10,sulfonate,human,5.05,measured,Fischer 2024
-PFDoS,12,sulfonate,human,4.067,converted,Chen 2025
-PFBS,4,sulfonate,rat,2.133,converted,Fan 2025
-PFBS,4,sulfonate,rat,4.299,converted,Fan 2025
-PFHxS,6,sulfonate,rat,2.908,converted,Fan 2025
-PFHxS,6,sulfonate,rat,3.081,converted,Fan 2025
-PFOS,8,sulfonate,rat,2.51,converted,Fan 2025
-PFOS,8,sulfonate,rat,3.702,converted,Fan 2025
+pfas,n_cf,family,species,log_k,category,source,log_ratio,ratio_reported
+PFBA,3,carboxylate,bovine,0.478,converted,Gao 2025,4.0969,no
+PFBA,3,carboxylate,bovine,0.655,converted,Gao 2025,4.0969,no
+PFBA,3,carboxylate,bovine,1.9,measured,Allendorf 2019,-3.3979,yes
+PFBA,3,carboxylate,bovine,2.52,measured,Allendorf 2019,-3.3979,yes
+PFBA,3,carboxylate,bovine,2.6,qin,Qin 2024,,
+PFPeA,4,carboxylate,bovine,3.265,measured,Bischel 2011,-2.5528,no
+PFHxA,5,carboxylate,bovine,1.291,converted,Gao 2025,4.0969,no
+HFPO-DA,5,carboxylate,bovine,1.324,converted,Gao 2025,3.7959,no
+PFHxA,5,carboxylate,bovine,1.408,converted,Gao 2025,4.0969,no
+PFHxA,5,carboxylate,bovine,1.433,converted,Gao 2025,4.0969,no
+HFPO-DA,5,carboxylate,bovine,1.5,converted,Gao 2025,3.7959,no
+HFPO-DA,5,carboxylate,bovine,1.52,converted,Gao 2025,3.7959,no
+PFHxA,5,carboxylate,bovine,1.52,converted,Gao 2025,4.0969,no
+HFPO-DA,5,carboxylate,bovine,1.558,converted,Gao 2025,3.7959,no
+HFPO-DA,5,carboxylate,bovine,2.71,measured,Allendorf 2019,-3.1739,yes
+PFHxA,5,carboxylate,bovine,2.83,measured,Fischer 2024,-2.3979,yes
+5:3 FTCA,5,carboxylate,bovine,2.9,measured,Fischer 2024,-2.3979,yes
+PFHxA,5,carboxylate,bovine,3.02,measured,Allendorf 2019,-2.8539,yes
+HFPO-DA,5,carboxylate,bovine,3.06,measured,Allendorf 2019,-3.1739,yes
+HFPO-DA,5,carboxylate,bovine,3.28,qin,Qin 2024,,
+PFHxA,5,carboxylate,bovine,3.28,qin,Qin 2024,,
+PFHxA,5,carboxylate,bovine,3.43,measured,Allendorf 2019,-2.8539,yes
+PFHxA,5,carboxylate,bovine,3.915,measured,Bischel 2011,-2.6676,no
+PFHpA,6,carboxylate,bovine,2.029,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.122,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.264,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.339,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.461,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.47,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,2.563,converted,Gao 2025,4.0,no
+PFHpA,6,carboxylate,bovine,3.79,measured,Allendorf 2019,-2.1308,yes
+ADONA,6,carboxylate,bovine,3.8,measured,Allendorf 2019,-2.1871,yes
+ADONA,6,carboxylate,bovine,3.84,measured,Fischer 2024,-2.3979,yes
+ADONA,6,carboxylate,bovine,3.93,measured,Allendorf 2019,-2.1871,yes
+PFHpA,6,carboxylate,bovine,3.93,measured,Fischer 2024,-2.3979,yes
+PFHpA,6,carboxylate,bovine,4.01,qin,Qin 2024,,
+PFHpA,6,carboxylate,bovine,4.02,measured,Allendorf 2019,-2.1308,yes
+PFHpA,6,carboxylate,bovine,4.095,measured,Bischel 2011,-2.8239,no
+PFOA,7,carboxylate,bovine,0.685,converted,Klevens 1954,,
+PFOA,7,carboxylate,bovine,3.327,converted,Gao 2025,3.273,no
+PFOA,7,carboxylate,bovine,3.486,converted,Gao 2025,3.273,no
+PFOA,7,carboxylate,bovine,3.543,converted,Gao 2025,3.273,no
+PFOA,7,carboxylate,bovine,3.668,converted,Gao 2025,3.273,no
+7:3 FTCA,7,carboxylate,bovine,3.79,measured,Fischer 2024,-2.3979,yes
+PFOA,7,carboxylate,bovine,4.005,measured,Bischel 2011,-2.7959,no
+PFOA,7,carboxylate,bovine,4.17,measured,Allendorf 2019,-1.8239,yes
+PFOA,7,carboxylate,bovine,4.177,converted,Bischel 2010,,
+PFOA,7,carboxylate,bovine,4.2,measured,Allendorf 2019,-1.8239,yes
+PFOA,7,carboxylate,bovine,4.2,measured,Fischer 2024,-2.3979,yes
+PFOA,7,carboxylate,bovine,4.64,qin,Qin 2024,,
+PFNA,8,carboxylate,bovine,3.915,measured,Bischel 2011,-2.6383,no
+PFNA,8,carboxylate,bovine,3.935,converted,Gao 2025,2.3979,no
+PFNA,8,carboxylate,bovine,4.033,converted,Gao 2025,2.3979,no
+PFNA,8,carboxylate,bovine,4.106,converted,Gao 2025,2.3979,no
+PFNA,8,carboxylate,bovine,4.175,converted,Gao 2025,2.3979,no
+PFNA,8,carboxylate,bovine,4.177,converted,Bischel 2010,,
+PFNA,8,carboxylate,bovine,4.32,measured,Allendorf 2019,-1.9208,yes
+PFNA,8,carboxylate,bovine,4.48,measured,Allendorf 2019,-1.9208,yes
+PFNA,8,carboxylate,bovine,4.54,measured,Fischer 2024,-2.3979,yes
+PFNA,8,carboxylate,bovine,4.56,qin,Qin 2024,,
+PFDA,9,carboxylate,bovine,3.725,measured,Bischel 2011,-2.6289,no
+PFDA,9,carboxylate,bovine,4.044,converted,Gao 2025,2.0969,no
+PFDA,9,carboxylate,bovine,4.129,converted,Gao 2025,2.0969,no
+PFDA,9,carboxylate,bovine,4.146,converted,Gao 2025,2.0969,no
+PFDA,9,carboxylate,bovine,4.199,converted,Gao 2025,2.0969,no
+PFDA,9,carboxylate,bovine,4.73,measured,Allendorf 2019,-1.7959,yes
+PFDA,9,carboxylate,bovine,4.81,measured,Fischer 2024,-2.3979,yes
+PFDA,9,carboxylate,bovine,4.84,measured,Allendorf 2019,-1.7959,yes
+PFUnDA,10,carboxylate,bovine,3.565,measured,Bischel 2011,-2.7212,no
+PFUnDA,10,carboxylate,bovine,4.6,measured,Allendorf 2019,-1.9208,yes
+PFUnDA,10,carboxylate,bovine,4.62,qin,Qin 2024,,
+PFUnDA,10,carboxylate,bovine,4.72,measured,Allendorf 2019,-1.9208,yes
+PFUnDA,10,carboxylate,bovine,5.17,measured,Fischer 2024,-2.3979,yes
+PFDoDA,11,carboxylate,bovine,3.165,measured,Bischel 2011,-2.4685,no
+PFDoDA,11,carboxylate,bovine,5.12,measured,Fischer 2024,-2.3979,yes
+PFTrDA,12,carboxylate,bovine,4.47,measured,Fischer 2024,-2.3979,yes
+PFTeDA,13,carboxylate,bovine,3.87,measured,Fischer 2024,-2.3979,yes
+butyric acid (C4),0,carboxylate,human,2.141,converted,Chen 2009,,
+Octanoic acid,0,carboxylate,human,3.022,converted,Chen 2009,,
+butyric acid (C4),0,carboxylate,human,3.433,converted,Chen 2009,,
+Octanoic acid,0,carboxylate,human,4.669,converted,Chen 2009,,
+Octanoic acid,0,carboxylate,human,5.219,converted,Chen 2009,,
+PFBA,3,carboxylate,human,-0.842,quenching,Wu 2024,0.0,no
+PFBA,3,carboxylate,human,1.555,converted,Gao 2019,0.301,no
+PFBA,3,carboxylate,human,2.249,converted,Chen 2025,0.301,no
+3:3 FTCA,3,carboxylate,human,2.329,converted,Chen 2025,0.301,no
+PFMPA,3,carboxylate,human,2.5,converted,Chen 2025,0.301,no
+C6O4,3,carboxylate,human,3.621,converted,Moro 2022,1.5606,no
+C6O4,3,carboxylate,human,4.001,converted,Moro 2022,1.5606,no
+PFPeA,4,carboxylate,human,1.721,converted,Gao 2019,0.301,no
+PFPeA,4,carboxylate,human,2.16,measured,Fischer 2024,-2.3979,yes
+NFDHA,4,carboxylate,human,2.938,converted,Chen 2025,0.301,no
+PFPeA,4,carboxylate,human,2.966,converted,Chen 2025,0.301,no
+PFMBA,4,carboxylate,human,4.835,converted,Chen 2025,0.301,no
+HFPO-DA,5,carboxylate,human,-0.259,quenching,Wu 2024,0.0,no
+PFHxA,5,carboxylate,human,1.887,converted,Gao 2019,0.301,no
+PFHxA,5,carboxylate,human,3.032,converted,Chen 2025,0.301,no
+5:3 FTCA,5,carboxylate,human,3.146,converted,Chen 2025,0.301,no
+PFHxA,5,carboxylate,human,3.2,measured,Fischer 2024,-2.3979,yes
+HFPO-DA,5,carboxylate,human,3.36,converted,Chen 2025,0.301,no
+PFHxA,5,carboxylate,human,3.419,converted,Moro 2022,1.5606,no
+5:3 FTCA,5,carboxylate,human,3.48,measured,Fischer 2024,-2.3979,yes
+PFHxA,5,carboxylate,human,3.533,converted,Moro 2022,1.5606,no
+ADONA,6,carboxylate,human,-0.026,quenching,Wu 2024,0.0,no
+DFSA (dodecafluorosuberic acid),6,carboxylate,human,1.359,converted,Peng 2024,1.2553,no
+PFHpA,6,carboxylate,human,1.833,converted,Peng 2024,1.2553,no
+PFHpA,6,carboxylate,human,1.942,converted,Gao 2019,0.301,no
+DFSA (dodecafluorosuberic acid),6,carboxylate,human,2.546,quenching,Peng 2024,1.2553,no
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",6,carboxylate,human,2.695,quenching,Peng 2024,1.2553,no
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",6,carboxylate,human,3.379,converted,Peng 2024,1.2553,no
+PFHpA,6,carboxylate,human,3.385,converted,Chen 2025,0.301,no
+ADONA,6,carboxylate,human,3.423,converted,Chen 2025,0.301,no
+6:2 FTUCA,6,carboxylate,human,3.551,converted,Chen 2025,0.301,no
+6:2 FTCA,6,carboxylate,human,3.616,converted,Chen 2025,0.301,no
+ADONA,6,carboxylate,human,3.98,measured,Fischer 2024,-2.3979,yes
+PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024,-2.3979,yes
+PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024,1.2553,no
+PFOA,7,carboxylate,human,0.025,quenching,Wu 2024,0.0,no
+PFOA,7,carboxylate,human,1.638,converted,Han 2003,,
+branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,,
+PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
+linear PFOA (n-PFOA),7,carboxylate,human,2.177,converted,Beesoon 2015,,
+PFOA,7,carboxylate,human,2.672,converted,Wu 2009,,
+PFOA,7,carboxylate,human,3.533,converted,Peng 2024,1.2553,no
+7:3 FTCA,7,carboxylate,human,3.59,measured,Fischer 2024,-2.3979,yes
+PFOA,7,carboxylate,human,3.767,converted,Chen 2025,0.301,no
+7:3 FTCA,7,carboxylate,human,3.917,converted,Chen 2025,0.301,no
+PFOA,7,carboxylate,human,4.372,quenching,Chen 2009,0.9031,no
+PFOA,7,carboxylate,human,4.48,measured,Fischer 2024,-2.3979,yes
+PFOA,7,carboxylate,human,4.641,quenching,Peng 2024,1.2553,no
+PFNA,8,carboxylate,human,2.314,converted,Gao 2019,0.301,no
+PFNA,8,carboxylate,human,3.214,quenching,Peng 2024,1.2553,no
+PFNA,8,carboxylate,human,3.603,converted,Chen 2025,0.301,no
+8:2 FTUCA,8,carboxylate,human,3.823,converted,Chen 2025,0.301,no
+8:2 FTCA,8,carboxylate,human,3.879,converted,Chen 2025,0.301,no
+PFNA,8,carboxylate,human,4.49,measured,Fischer 2024,-2.3979,yes
+HFPO-TA,8,carboxylate,human,4.746,converted,Peng 2024,1.2553,no
+PFNA,8,carboxylate,human,5.07,converted,Peng 2024,1.2553,no
+HFPO-TA,8,carboxylate,human,7.861,quenching,Peng 2024,1.2553,no
+PFDA,9,carboxylate,human,2.365,converted,Gao 2019,0.301,no
+PFDA,9,carboxylate,human,3.616,converted,Chen 2025,0.301,no
+PFDA,9,carboxylate,human,4.73,measured,Fischer 2024,-2.3979,yes
+PFUnDA,10,carboxylate,human,2.28,converted,Gao 2019,0.301,no
+10:2 FTCA,10,carboxylate,human,3.22,converted,Chen 2025,0.301,no
+PFUnDA,10,carboxylate,human,3.503,converted,Chen 2025,0.301,no
+PFUnDA,10,carboxylate,human,5.18,measured,Fischer 2024,-2.3979,yes
+PFDoDA,11,carboxylate,human,2.165,converted,Gao 2019,0.301,no
+PFDoDA,11,carboxylate,human,2.165,converted,Gao 2019,0.301,no
+PFDoDA,11,carboxylate,human,2.98,converted,Chen 2025,0.301,no
+PFDoDA,11,carboxylate,human,5.05,measured,Fischer 2024,-2.3979,yes
+PFTrDA,12,carboxylate,human,1.754,converted,Gao 2019,0.301,no
+PFTrDA,12,carboxylate,human,2.68,converted,Chen 2025,0.301,no
+PFTrDA,12,carboxylate,human,4.54,measured,Fischer 2024,-2.3979,yes
+PFTeDA,13,carboxylate,human,3.06,converted,Chen 2025,0.301,no
+PFTeDA,13,carboxylate,human,3.87,measured,Fischer 2024,-2.3979,yes
+PFHxDA,15,carboxylate,human,3.158,converted,Chen 2025,0.301,no
+PFBA,3,carboxylate,rat,2.404,converted,Fan 2025,,
+PFBA,3,carboxylate,rat,3.617,converted,Fan 2025,,
+PFPeA,4,carboxylate,rat,2.218,converted,Fan 2025,,
+PFPeA,4,carboxylate,rat,3.628,converted,Fan 2025,,
+PFHxA,5,carboxylate,rat,2.241,converted,Fan 2025,,
+HFPO-DA,5,carboxylate,rat,2.74,converted,Fan 2025,,
+PFHxA,5,carboxylate,rat,3.207,converted,Fan 2025,,
+HFPO-DA,5,carboxylate,rat,3.439,converted,Fan 2025,,
+PFHpA,6,carboxylate,rat,2.72,converted,Fan 2025,,
+PFHpA,6,carboxylate,rat,3.651,converted,Fan 2025,,
+PFOA,7,carboxylate,rat,1.638,converted,Han 2003,,
+PFOA,7,carboxylate,rat,2.695,converted,Fan 2025,,
+PFOA,7,carboxylate,rat,3.377,converted,Fan 2025,,
+PFNA,8,carboxylate,rat,2.709,converted,Fan 2025,,
+PFNA,8,carboxylate,rat,3.679,converted,Fan 2025,,
+PFDA,9,carboxylate,rat,2.251,converted,Fan 2025,,
+PFDA,9,carboxylate,rat,3.732,converted,Fan 2025,,
+PFUnDA,10,carboxylate,rat,2.558,converted,Fan 2025,,
+PFDoDA,11,carboxylate,rat,2.73,converted,Fan 2025,,
+PFTeDA,13,carboxylate,rat,1.895,converted,Fan 2025,,
+PFOSA,8,other,bovine,4.24,qin,Qin 2024,,
+N-EtFOSAA,8,other,bovine,4.29,measured,Fischer 2024,-2.3979,yes
+N-MeFOSAA,8,other,bovine,4.29,measured,Fischer 2024,-2.3979,yes
+FOSAA,8,other,bovine,4.3,measured,Fischer 2024,-2.3979,yes
+PFOSA,8,other,bovine,4.33,measured,Fischer 2024,-2.3979,yes
+FDSA,10,other,bovine,4.69,measured,Fischer 2024,-2.3979,yes
+FBSA,4,other,human,3.431,converted,Chen 2025,0.301,no
+5:1:2 FTB,5,other,human,2.484,converted,Chen 2025,0.301,no
+5:3 FTB,5,other,human,2.694,converted,Chen 2025,0.301,no
+N-TAmP-FHxSA,6,other,human,2.65,converted,Chen 2025,0.301,no
+6:2 FtSaB,6,other,human,2.948,converted,Chen 2025,0.301,no
+PFHxSaAm,6,other,human,3.386,converted,Chen 2025,0.301,no
+FHxSA,6,other,human,3.69,converted,Chen 2025,0.301,no
+6:2 diPAP,6,other,human,3.744,converted,Chen 2025,0.301,no
+8:2 diPAP,8,other,human,3.019,converted,Chen 2025,0.301,no
+PFOSA,8,other,human,3.129,converted,Chen 2025,0.301,no
+FOSAA,8,other,human,3.308,converted,Chen 2025,0.301,no
+N-MeFOSAA,8,other,human,3.356,converted,Chen 2025,0.301,no
+diSAmPAP,8,other,human,3.404,converted,Chen 2025,0.301,no
+N-EtFOSAA,8,other,human,3.442,converted,Chen 2025,0.301,no
+N-EtFOSAA,8,other,human,4.23,measured,Fischer 2024,-2.3979,yes
+N-MeFOSAA,8,other,human,4.27,measured,Fischer 2024,-2.3979,yes
+FOSAA,8,other,human,4.31,measured,Fischer 2024,-2.3979,yes
+PFOSA,8,other,human,4.34,measured,Fischer 2024,-2.3979,yes
+FDSA,10,other,human,4.64,measured,Fischer 2024,-2.3979,yes
+PFBS,4,sulfonate,bovine,1.132,converted,Gao 2025,4.273,no
+PFBS,4,sulfonate,bovine,1.324,converted,Gao 2025,4.273,no
+PFBS,4,sulfonate,bovine,2.28,measured,Fischer 2024,-2.3979,yes
+PFBS,4,sulfonate,bovine,2.65,measured,Allendorf 2019,-2.6778,yes
+PFBS,4,sulfonate,bovine,3.2,measured,Allendorf 2019,-2.6778,yes
+PFBS,4,sulfonate,bovine,3.725,measured,Bischel 2011,-2.5452,no
+PFPeS,5,sulfonate,bovine,4.0,measured,Fischer 2024,-2.3979,yes
+PFHxS,6,sulfonate,bovine,3.146,converted,Gao 2025,2.8751,no
+PFHxS,6,sulfonate,bovine,3.267,converted,Gao 2025,2.8751,no
+PFHxS,6,sulfonate,bovine,3.298,converted,Gao 2025,2.8751,no
+6:2 FTSA,6,sulfonate,bovine,3.44,measured,Fischer 2024,-2.3979,yes
+PFHxS,6,sulfonate,bovine,3.458,converted,Gao 2025,2.8751,no
+6:2 FTSA,6,sulfonate,bovine,3.76,qin,Qin 2024,,
+PFHxS,6,sulfonate,bovine,4.165,measured,Bischel 2011,-2.8697,no
+PFHxS,6,sulfonate,bovine,4.61,measured,Fischer 2024,-2.3979,yes
+PFHxS,6,sulfonate,bovine,4.81,measured,Allendorf 2019,-1.4202,yes
+PFHxS,6,sulfonate,bovine,4.82,qin,Qin 2024,,
+PFHpS,7,sulfonate,bovine,4.88,measured,Fischer 2024,-2.3979,yes
+PFOS,8,sulfonate,bovine,3.943,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,3.944,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,3.965,measured,Bischel 2011,-2.8861,no
+PFOS,8,sulfonate,bovine,4.142,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,4.148,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,4.221,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,4.334,converted,Gao 2025,1.0969,no
+PFOS,8,sulfonate,bovine,4.336,converted,Gao 2025,1.0969,no
+PFECHS,8,sulfonate,bovine,4.55,measured,Allendorf 2019,-2.8239,yes
+PFOS,8,sulfonate,bovine,4.67,measured,Allendorf 2019,-1.6021,yes
+PFOS,8,sulfonate,bovine,4.76,measured,Fischer 2024,-2.3979,yes
+6:2 Cl-PFESA,8,sulfonate,bovine,5.01,measured,Allendorf 2019,-1.5686,yes
+PFOS,8,sulfonate,bovine,5.35,qin,Qin 2024,,
+PFNS,9,sulfonate,bovine,5.14,measured,Fischer 2024,-2.3979,yes
+PFDS,10,sulfonate,bovine,5.13,measured,Fischer 2024,-2.3979,yes
+PFPrS,3,sulfonate,human,-0.11,quenching,Wu 2024,0.0,no
+PFBS,4,sulfonate,human,0.088,quenching,Wu 2024,0.0,no
+PFBS,4,sulfonate,human,1.95,converted,Gao 2019,0.301,no
+PFBS,4,sulfonate,human,2.984,converted,Chen 2025,0.301,no
+PFBS,4,sulfonate,human,3.26,measured,Fischer 2024,-2.3979,yes
+PFEESA,4,sulfonate,human,3.466,converted,Chen 2025,0.301,no
+PFPeS,5,sulfonate,human,2.943,converted,Chen 2025,0.301,no
+PFPeS,5,sulfonate,human,3.98,measured,Fischer 2024,-2.3979,yes
+PFHxS,6,sulfonate,human,0.241,quenching,Wu 2024,0.0,no
+PFHxS,6,sulfonate,human,2.28,converted,Gao 2019,0.301,no
+6:2 FTSA,6,sulfonate,human,3.35,measured,Fischer 2024,-2.3979,yes
+6:2 FTSA,6,sulfonate,human,3.794,converted,Chen 2025,0.301,no
+PFHxS,6,sulfonate,human,4.06,converted,Chen 2025,0.301,no
+PFHxS,6,sulfonate,human,4.77,measured,Fischer 2024,-2.3979,yes
+PFHpS,7,sulfonate,human,3.952,converted,Chen 2025,0.301,no
+PFHpS,7,sulfonate,human,5.49,measured,Fischer 2024,-2.3979,yes
+6:2 Cl-PFESA,8,sulfonate,human,0.106,quenching,Wu 2024,0.0,no
+PFOS,8,sulfonate,human,0.713,quenching,Wu 2024,0.0,no
+branched PFOS isomers (range),8,sulfonate,human,2.274,converted,Beesoon 2015,,
+6:2 Cl-PFESA,8,sulfonate,human,2.351,converted,Gao 2019,0.301,no
+PFOS,8,sulfonate,human,2.598,converted,Gao 2019,0.301,no
+PFOS and 6:2 Cl-PFESA (F-53B),8,sulfonate,human,2.823,converted,Sheng 2020,,
+PFOS,8,sulfonate,human,3.666,quenching,Chen 2009,1.4771,no
+PFECHS,8,sulfonate,human,3.968,converted,Chen 2025,0.301,no
+6:2 Cl-PFESA,8,sulfonate,human,3.979,converted,Chen 2025,0.301,no
+PFOS,8,sulfonate,human,4.204,converted,Chen 2025,0.301,no
+8Cl-PFOS,8,sulfonate,human,4.238,converted,Chen 2025,0.301,no
+PFOS,8,sulfonate,human,4.62,measured,Fischer 2024,-2.3979,yes
+linear PFOS (n-PFOS),8,sulfonate,human,5.274,converted,Beesoon 2015,,
+PFNS,9,sulfonate,human,3.361,converted,Chen 2025,0.301,no
+PFNS,9,sulfonate,human,4.99,measured,Fischer 2024,-2.3979,yes
+8:2 Cl-PFESA,10,sulfonate,human,0.135,quenching,Wu 2024,0.0,no
+8:2 Cl-PFESA,10,sulfonate,human,3.631,converted,Chen 2025,0.301,no
+PFDS,10,sulfonate,human,3.903,converted,Chen 2025,0.301,no
+PFDS,10,sulfonate,human,5.05,measured,Fischer 2024,-2.3979,yes
+PFDoS,12,sulfonate,human,4.067,converted,Chen 2025,0.301,no
+PFBS,4,sulfonate,rat,2.133,converted,Fan 2025,,
+PFBS,4,sulfonate,rat,4.299,converted,Fan 2025,,
+PFHxS,6,sulfonate,rat,2.908,converted,Fan 2025,,
+PFHxS,6,sulfonate,rat,3.081,converted,Fan 2025,,
+PFOS,8,sulfonate,rat,2.51,converted,Fan 2025,,
+PFOS,8,sulfonate,rat,3.702,converted,Fan 2025,,
