@@ -46,6 +46,7 @@ would swamp all of it.
 Run:  python3 tk_review/scripts/binding_all_data_protein_specific.py
 """
 import collections
+import textwrap
 import csv
 import importlib.util
 import math
@@ -56,6 +57,22 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(os.path.dirname(HERE), "db", "protein_binding.csv")
+
+# Why a source outside the top ten is or is not worth the extra rows.
+# Sources listed here that do NOT appear in the extras are reported as
+# such: they carry an n, but the converter refuses it upstream, and a
+# silently absent row looks the same as one that was never there.
+NOTES = {
+    "Wu 2024": "KA is in M^-n, n = 0.47-0.87; not a molar Kd "
+               "-- audit_wu2024_hsa.py",
+    "Peng 2024": "n from a fluorescence double-log slope",
+    "Chen 2009": "n from a fluorescence double-log slope",
+    "Moro 2022": "ITC, n fitted -- the best of these",
+    "Khazaee 2021": "L-FABP, a non-albumin protein with a usable n",
+    "Woodcroft 2010": "rat L-FABP, multi-site",
+}
+NON_ALBUMIN = {"Khazaee 2021", "Woodcroft 2010", "Zhang 2013",
+               "Sheng 2016", "Fan 2025"}
 
 TOP10 = {"Fischer 2024", "Chen 2025", "Muensterman 2026", "Gao 2025",
          "Qin 2024 (plasma)", "Starnes 2024", "Starnes 2025",
@@ -193,25 +210,33 @@ def part2():
     print()
     extra = collections.Counter(r["source"] for r in conv
                                 if r["source"] not in TOP10)
-    print("  The 25 extra convertible rows, by source:")
+    n_extra = sum(extra.values())
+    print(f"  The {n_extra} extra convertible rows, by source:")
     for s, v in extra.most_common():
-        note = {"Wu 2024": "affinities 3-4 orders below every other "
-                           "measurement of the same compound",
-                "Peng 2024": "n from a fluorescence double-log slope",
-                "Chen 2009": "n from a fluorescence double-log slope",
-                "Moro 2022": "ITC, n fitted -- the best of these",
-                "Khazaee 2021": "L-FABP, the only non-albumin protein "
-                                "with a usable n",
-                "Woodcroft 2010": "rat L-FABP, multi-site"}.get(s, "")
-        print(f"    {v:4d}  {s:16s}{note}")
+        print(f"    {v:4d}  {s:16s}{NOTES.get(s, '')}")
     print()
-    print("  So extending the scope adds 30% more convertible rows, and")
-    print("  16 of the 25 come from double-log slopes or from a source")
-    print("  whose affinities are three orders out. The honest summary:")
-    print("  extending the SOURCE list adds almost no reliability. What")
-    print("  it adds is the only non-albumin protein that converts at")
-    print("  all, which is why Khazaee and Woodcroft were worth having.")
+    pct = 100.0 * n_extra / (len(conv) - n_extra) if len(conv) > n_extra else 0
+    nonalb = sum(v for s, v in extra.items() if s in NON_ALBUMIN)
+    print(f"  So extending the scope adds {pct:.0f}% more convertible "
+          f"rows, and")
+    print(f"  {nonalb} of the {n_extra} are non-albumin proteins -- the only")
+    print("  ones in the database that convert at all:")
+    for line in textwrap.wrap(
+            ", ".join(f"{s} ({extra[s]})"
+                      for s in sorted(extra, key=lambda k: -extra[k])
+                      if s in NON_ALBUMIN), 62):
+        print(f"      {line}")
+    print("  That, not reliability, is what extending the source list")
+    print("  bought.")
     print()
+    absent = [s for s in NOTES if s not in extra]
+    if absent:
+        print("  Absent from that list, and that is the point. These")
+        print("  carry an n, but the converter refuses it upstream, so")
+        print("  they never reach this count at all:")
+        for s in absent:
+            print(f"    {s:16s}{NOTES[s]}")
+        print()
 
 
 def series(rows, ncf, doi, want, value, label, species=None):

@@ -356,7 +356,8 @@ def part4(rows):
     print()
     print(f"  FORWARD, Kd or Ka -> partition coefficient: {nfwd} rows")
     for (src, how), v in sorted(fwd.items(), key=lambda kv: -len(kv[1])):
-        print(f"    {len(v):4d}  {src:24s} n {how}")
+        flag = "  <-- see below" if src in FLAGGED else ""
+        print(f"    {len(v):4d}  {src:24s} n {how}{flag}")
     print(f"    ---- not counted in the {nfwd}, decide for yourself ----")
     print(f"    {prose:4d}  Gao et al. 2025          n from prose Hill "
           f"coefficients -- weaker,")
@@ -367,6 +368,18 @@ def part4(rows):
     print(f"    {no_n_aff:4d}  affinity rows with NO n anywhere -- cannot be "
           f"converted")
     print()
+    for src, why in FLAGGED.items():
+        if any(k[0] == src for k in fwd):
+            n = sum(len(v) for k, v in fwd.items() if k[0] == src)
+            print(f"  {src} IS counted in the {nfwd}: it carries an n, so "
+                  f"the")
+            print(f"  conversion is mechanically available on its "
+                  f"{n} rows. That is")
+            print(f"  what this census measures. It is not a warrant for "
+                  f"the result:")
+            for line in why:
+                print(f"      {line}")
+            print()
     print(f"  REVERSE, partition coefficient -> Kd: {nrev} rows")
     print(f"    {no_n_part:4d}  partition rows, and not one of them carries "
           f"an n.")
@@ -629,6 +642,25 @@ def part7(rows):
     print("  are there to explain activation, not storage. Do not feed")
     print("  them to a mass-balance model even if a mass turns up.")
     print()
+
+# Sources that pass this census mechanically -- they carry an n -- but
+# whose converted value this project does not stand behind. The census
+# counts what the arithmetic can be applied to; this names where doing
+# so would be a mistake, so the two are not confused.
+FLAGGED = {
+    "Wu et al. 2024": (
+        "its KA is in M^-n with n = 0.47-0.87, so inverting it to a",
+        "molar Kd is dimensionally wrong; the modified Stern-Volmer",
+        "fit it comes with returns an accessible-fluorophore fraction",
+        "above 1 on all ten compounds; and re-expressed inside the",
+        "measured window the ten collapse to a 0.13-log spread. The",
+        "assay is 17-50 % ethanol v/v with the protein not held",
+        "constant. Full working: scripts/audit_wu2024_hsa.py. The rows",
+        "are held out of the albumin figures and fail the",
+        "physiological bound in binding_kd_physiological_bound.py.",
+    ),
+}
+
 
 def main():
     print(__doc__.split("Run:")[0].rstrip())
