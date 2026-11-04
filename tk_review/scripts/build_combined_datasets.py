@@ -303,11 +303,14 @@ def binding_rows():
     sys.path.insert(0, HERE)
     import build_binding_affinity_table as BAF
     # unfiltered: combined/ is the full record, not the reading copy
-    # The consolidated record keeps computed values; it is the
-    # full record, not a reading copy. Everything else drops
-    # them -- see scripts/excluded_sources.py.
-    recs = BAF.build(filter_compounds=False,
-                     keep_computed=True)[1]
+    # No computed values here either. The consolidated record is a
+    # record of MEASUREMENTS; the in silico literature is tracked on
+    # its own terms by scripts/insilico_inventory.py, which keeps the
+    # things that actually matter about a model -- what it was trained
+    # on and what descriptors it used -- and which a Kd column cannot
+    # hold. db/protein_binding.csv remains the one place every row
+    # lives. See scripts/excluded_sources.py.
+    recs = BAF.build(filter_compounds=False)[1]
     blocks = BAF.condition_index(recs)
     bases = BAF.basis_index(recs)
     BAF.stamp_conditions(recs, blocks)
