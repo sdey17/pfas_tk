@@ -70,6 +70,57 @@ FLUOR_LIG = ("titrated against 0.25 uM hL-FABP; see IC50 in Table 2", "")
 ITC_PROT = ("not stated in the main text -- SI Table S1", "")
 ITC_LIG = ("not stated in the main text -- SI Table S1", "")
 
+# SI Table S2, the ITC concentrations. The MAIN TEXT cites "Table S1"
+# for these, but SI Table S1 is the circular-dichroism table; S2 is the
+# one that holds them. Keyed (compound, variant) -> (protein uM,
+# ligand mM, the paper's own [ligand]/[protein] ratio).
+# Note how high these ratios are -- 13 to 40 -- against the 0.004 to
+# 0.1 the dialysis studies work at. ITC has to titrate past saturation
+# to see the bend, which is the structural tension between fitting a
+# Kd and reporting a trace-limit coefficient.
+S2_COND = {
+    ("PFOA", "WT"): ("100", "1.3", "13"),
+    ("PFOA", "S39G"): ("100", "1.3", "13"),
+    ("PFOA", "M74G"): ("100", "1.3", "13"),
+    ("PFOA", "R122G"): ("100", "0.65", "6.5"),
+    ("PFOA", "N111D"): ("50", "2", "40"),
+    ("PFNA", "WT"): ("100", "1.3", "13"),
+    ("PFNA", "S39G"): ("100", "1.3", "13"),
+    ("PFNA", "M74G"): ("100", "1.3", "13"),
+    ("PFNA", "R122G"): ("100", "0.65", "6.5"),
+    ("PFNA", "N111D"): ("25", "1", "40"),
+    ("PFHxA", "WT"): ("50", "0.65", "13"),
+    ("PFHxA", "S39G"): ("50", "0.65", "13"),
+    ("PFHxA", "M74G"): ("50", "0.65", "13"),
+    ("PFHxA", "N111D"): ("50", "0.65", "13"),
+    ("PFHxA", "R122G"): ("50", "0.65", "13"),
+    ("PFHxS", "WT"): ("50", "0.75", "15"),
+    ("PFHxS", "S39G"): ("50", "0.75", "15"),
+    ("PFHxS", "M74G"): ("50", "0.75", "15"),
+    ("PFHxS", "N111D"): ("50", "0.75", "15"),
+    ("PFHxS", "R122G"): ("50", "0.75", "15"),
+    ("1,8-ANS", "WT"): ("100", "1.3", "13"),
+}
+
+# SI Table S3: PFHxS by ITC. This settles the ambiguity the main text
+# left -- it says PFHxS binding was weak "with Kd values ranging from
+# 26.95 to 61.35 uM for the variants" without saying whether wild type
+# is inside that range. It is: WT is 33.22 uM.
+# (variant, N, Ka M^-1, Kd uM, dH kJ/mol, dS J/mol/deg, dG kJ/mol)
+T3_PFHXS = [
+    ("WT",    "0.987 +/- 0.056", "(3.01 +/- 0.42)e4", "33.22",
+     "-44.38 +/- 3.66", "-63.1", "-42.80 +/- 5.24"),
+    ("S39G",  "1.02 +/- 0.112", "(2.05 +/- 0.29)e4", "48.78",
+     "-73.62 +/- 12.01", "-164", "-69.52 +/- 16.11"),
+    ("M74G",  "1.12 +/- 0.060", "(3.00 +/- 0.61)e4", "33.33",
+     "-4.37 +/- 0.38", "5.83", "-4.52 +/- 0.24"),
+    ("N111D", "0.925 +/- 0.081", "(3.71 +/- 0.57)e4", "26.95",
+     "-12.47 +/- 1.47", "47.7", "-13.67 +/- 0.28"),
+    ("R122G", "0.421 +/- 0.101", "(1.63 +/- 0.30)e4", "61.35",
+     "-101.70 +/- 35.85", "-260", "-95.2 +/- 41.35"),
+]
+
+
 # Table 2: fluorescence displacement.  (variant, ANS Kd, ANS n,
 #          PFOA IC50, PFOA Kd, PFNA IC50, PFNA Kd)  "" = no binding
 T2 = [
@@ -188,14 +239,49 @@ def rows(fields):
         r.update(
             protein=prot, method=ITC, temperature_c="25",
             buffer="buffer B (ITC)",
+            **(lambda c: {
+                "protein_conc": f"{c[0]} uM protein in the cell, "
+                                f"{c[1]} mM ligand in the syringe "
+                                f"(SI Table S2)",
+                "protein_conc_units": "uM",
+                "ligand_conc_range": f"{c[1]} mM in the syringe; the "
+                                     f"paper's own [ligand]/[protein] "
+                                     f"= {c[2]} (SI Table S2)",
+                "ligand_conc_units": "mM",
+                "ligand_over_protein_max": c[2],
+            } if c else {})(S2_COND.get((chem, v))),
             kd=kd, kd_units="uM",
             ka=ka, ka_units="M^-1, as reported in Table 3",
             n_binding_sites="" if n == "ND" else num(n),
-            protein_conc=ITC_PROT[0], protein_conc_units="",
-            ligand_conc_range=ITC_LIG[0], ligand_conc_units="",
             source_table=(
                 f"Table 3, {v} | Kd {kd} uM | Ka {ka} M^-1 | N {n} | "
                 f"dH {dh} kJ/mol | dS {ds} J/mol/deg | dG {dg} kJ/mol"))
+        out.append(r)
+
+    # --- SI Table S3: PFHxS by ITC ----------------------------------
+    for (v, n, ka, kd, dh, ds, dg) in T3_PFHXS:
+        prot = WT if v == "WT" else VAR.format(v=v)
+        c = S2_COND.get(("PFHxS", v))
+        r = blank(fields)
+        r.update(base("PFHxS"))
+        r.update(
+            protein=prot, method=ITC, temperature_c="25",
+            buffer="buffer B (ITC)", kd=kd, kd_units="uM",
+            ka=ka, ka_units="M^-1, as reported in SI Table S3",
+            n_binding_sites=num(n),
+            protein_conc=(f"{c[0]} uM protein in the cell, {c[1]} mM "
+                          f"ligand in the syringe (SI Table S2)"),
+            protein_conc_units="uM",
+            ligand_conc_range=(f"{c[1]} mM in the syringe; the paper's "
+                               f"own [ligand]/[protein] = {c[2]} "
+                               f"(SI Table S2)"),
+            ligand_conc_units="mM", ligand_over_protein_max=c[2],
+            source_table=(
+                f"SI Table S3, {v} | Kd {kd} uM | Ka {ka} M^-1 | "
+                f"N {n} | dH {dh} kJ/mol | dS {ds} J/mol/deg | "
+                f"dG {dg} kJ/mol | this settles the main text's "
+                f"ambiguity: wild type is 33.22 uM, inside the "
+                f"26.95-61.35 range it quotes"))
         out.append(r)
 
     # --- the two compounds reported only in words -------------------
@@ -203,11 +289,6 @@ def rows(fields):
         ("PFHxA",
          "no binding detected to WT hL-FABP or any variant, by either "
          "ITC or fluorescence displacement (Results text and Fig. S5)"),
-        ("PFHxS",
-         "weak binding; the Results text gives Kd 26.95 to 61.35 uM "
-         "'for the variants' (SI Table S3) and does not make clear "
-         "whether wild type falls inside that range, so no number is "
-         "assigned here"),
     ):
         r = blank(fields)
         r.update(base(chem))

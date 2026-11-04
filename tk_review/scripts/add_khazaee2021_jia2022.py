@@ -135,6 +135,21 @@ GAO19 = "10.1021/acs.est.9b00715"
 
 def main():
     rows = list(csv.DictReader(open(DB, encoding="utf-8")))
+
+    # add() below is a no-op on a key it has already seen, so without
+    # this the script can only ever ADD rows -- re-running it after a
+    # correction leaves the old values in place, which is how a stale
+    # "see Text S7" survived the SI being read. Drop this script's own
+    # rows first so a re-run genuinely refreshes them. The pre-existing
+    # aggregate Jia row is NOT ours and is annotated further down, so
+    # it is kept.
+    mine = {("Khazaee et al.", "2021"), ("Jia et al.", "2022")}
+    before = len(rows)
+    rows = [r for r in rows
+            if (r["study"], r["year"]) not in mine
+            or r["chemical"].startswith("HFPO-DA (GenX),")]
+    print(f"removed {before - len(rows)} rows this script owns, "
+          f"so the re-run refreshes them")
     fields = list(rows[0])
     before = len(rows)
     key = {(r["study"], r["year"], r["chemical"], r["protein"],
@@ -182,8 +197,8 @@ def main():
             protein="liver fatty acid-binding protein (hL-FABP)",
             protein_species="human", method=J_METHOD_FABP,
             kd=f"{kd_fabp:g}", kd_units="uM (25 C)",
-            protein_conc="see Text S7", protein_conc_units="",
-            ligand_conc_range="MST titration series", ligand_conc_units="",
+            protein_conc="10 uM pure hL-FABP labelled with the RED-NHS dye, then 10 uL of labelled protein mixed 1:1 with 10 uL of the PFAS dilution series (SI Text S7)", protein_conc_units="",
+            ligand_conc_range="a 1:1 serial dilution series per compound; SI Text S7 describes the series but never states its concentrations, so the ligand range is not reported even with the SI in hand", ligand_conc_units="",
             temperature_c="25", buffer="Tris-HCl",
             is_computational="no", tk_relevance_noted=J_NOTE,
             source_table="Table 1, hL-FABP Kd column (25 C); the same table "
@@ -216,11 +231,18 @@ def main():
                 head_group=hg, protein="human serum albumin (HSA)",
                 protein_species="human", method=J_METHOD_HSA,
                 kd=f"{kd_hsa:g}", kd_units="uM (25 C)",
-                protein_conc="see Text S7", protein_conc_units="",
-                ligand_conc_range="MST titration series",
-                ligand_conc_units="", temperature_c="25", buffer="Tris-HCl",
+                protein_conc="", protein_conc_units="",
+                ligand_conc_range="", ligand_conc_units="",
+                temperature_c="", buffer="",
                 is_computational="no", tk_relevance_noted=J_NOTE,
-                source_table="Table 1, HSA Kd column, measured in this paper")
+                source_table=(
+                    "Table 1, HSA Kd column. SECONDARY: every value in "
+                    "that column carries a superscript reference; the "
+                    "ones handled here cite sources other than Gao 2019 "
+                    "and those references have NOT been resolved. Jia "
+                    "measured hL-FABP, not HSA, so no conditions are "
+                    "recorded and the value should not be read as this "
+                    "paper's own"))
 
     # ---- point the old aggregate Jia row at the per-compound rows -----
     fixed = 0
