@@ -1,0 +1,88 @@
+pfas,n_cf,family,species,protein_label,log_k,method,source,variant
+PFBA,3,carboxylate,human,L-FABP,1.9,separation,Gao 2019,native
+PFPeA,4,carboxylate,human,L-FABP,2.01,separation,Gao 2019,native
+PFBS,4,sulfonate,human,L-FABP,2.21,separation,Gao 2019,native
+PFHxA,5,carboxylate,human,L-FABP,2.2,separation,Gao 2019,native
+PFHpA,6,carboxylate,human,L-FABP,2.29,separation,Gao 2019,native
+PFHxS,6,sulfonate,human,L-FABP,2.53,separation,Gao 2019,native
+PFOA,7,carboxylate,human,L-FABP,2.55,separation,Gao 2019,native
+6:2 Cl-PFESA,8,sulfonate,human,L-FABP,2.84,separation,Gao 2019,native
+PFNA,8,carboxylate,human,L-FABP,2.89,separation,Gao 2019,native
+PFOS,8,sulfonate,human,L-FABP,2.94,separation,Gao 2019,native
+PFDA,9,carboxylate,human,L-FABP,2.96,separation,Gao 2019,native
+PFUnDA,10,carboxylate,human,L-FABP,3.12,separation,Gao 2019,native
+PFDoDA,11,carboxylate,human,L-FABP,2.87,separation,Gao 2019,native
+PFTrDA,12,carboxylate,human,L-FABP,2.35,separation,Gao 2019,native
+PFEESA,4,sulfonate,human,L-FABP,1.35,direct,Jia 2022,native
+PFHxA,5,carboxylate,human,L-FABP,2.12,direct,Jia 2022,native
+HFPO-DA,5,carboxylate,human,L-FABP,2.42,direct,Jia 2022,native
+PFOA,7,carboxylate,human,L-FABP,3.59,direct,Jia 2022,native
+HFPO-TA,8,carboxylate,human,L-FABP,3.55,direct,Jia 2022,native
+PFOS,8,sulfonate,human,L-FABP,3.63,direct,Jia 2022,native
+6:2 Cl-PFESA,8,sulfonate,human,L-FABP,3.75,direct,Jia 2022,native
+PFNA,8,carboxylate,human,L-FABP,4.03,direct,Jia 2022,native
+8:2 Cl-PFESA,10,sulfonate,human,L-FABP,4.12,direct,Jia 2022,native
+PFDoA,11,carboxylate,human,L-FABP,4.31,direct,Jia 2022,native
+HFPO-TeA,11,carboxylate,human,L-FABP,4.76,direct,Jia 2022,native
+PFHxS,6,sulfonate,human,L-FABP,4.62,separation,Khazaee 2021,native
+PFOA,7,carboxylate,human,L-FABP,5.85,separation,Khazaee 2021,native
+PFOS,8,sulfonate,human,L-FABP,5.59,separation,Khazaee 2021,native
+PFHxS,6,sulfonate,human,L-FABP R122G,3.06,direct,Sheng 2016,R122G
+PFHxS,6,sulfonate,human,L-FABP S39G,3.16,direct,Sheng 2016,S39G
+PFHxS,6,sulfonate,human,L-FABP M74G,3.32,direct,Sheng 2016,M74G
+PFHxS,6,sulfonate,human,L-FABP,3.33,direct,Sheng 2016,native
+PFHxS,6,sulfonate,human,L-FABP N111D,3.42,direct,Sheng 2016,N111D
+PFOA,7,carboxylate,human,L-FABP N111D,2.39,direct,Sheng 2016,N111D
+PFOA,7,carboxylate,human,L-FABP M74G,3.9,direct,Sheng 2016,M74G
+PFOA,7,carboxylate,human,L-FABP R122G,3.92,direct,Sheng 2016,R122G
+PFOA,7,carboxylate,human,L-FABP S39G,3.93,direct,Sheng 2016,S39G
+PFOA,7,carboxylate,human,L-FABP,4.04,direct,Sheng 2016,native
+PFOA,7,carboxylate,human,L-FABP S39G,4.27,displacement,Sheng 2016,S39G
+PFOA,7,carboxylate,human,L-FABP M74G,4.43,displacement,Sheng 2016,M74G
+PFOA,7,carboxylate,human,L-FABP,4.47,displacement,Sheng 2016,native
+PFNA,8,carboxylate,human,L-FABP N111D,2.79,direct,Sheng 2016,N111D
+PFNA,8,carboxylate,human,L-FABP M74G,3.88,direct,Sheng 2016,M74G
+PFNA,8,carboxylate,human,L-FABP R122G,4.04,direct,Sheng 2016,R122G
+PFNA,8,carboxylate,human,L-FABP S39G,4.33,direct,Sheng 2016,S39G
+PFNA,8,carboxylate,human,L-FABP,4.35,direct,Sheng 2016,native
+PFNA,8,carboxylate,human,L-FABP S39G,4.51,displacement,Sheng 2016,S39G
+PFNA,8,carboxylate,human,L-FABP M74G,4.58,displacement,Sheng 2016,M74G
+PFNA,8,carboxylate,human,L-FABP,4.73,displacement,Sheng 2016,native
+"PFBS, potassium salt",4,sulfonate,human,L-FABP,2.75,displacement,Yang 2020,native
+PFBS,4,sulfonate,human,L-FABP,2.78,displacement,Yang 2020,native
+PFHxA,5,carboxylate,human,L-FABP,2.7,displacement,Yang 2020,native
+"PFHxS, potassium salt",6,sulfonate,human,L-FABP,3.8,displacement,Yang 2020,native
+"PFOA, ammonium salt",7,carboxylate,human,L-FABP,3.57,displacement,Yang 2020,native
+PFOA,7,carboxylate,human,L-FABP,3.57,displacement,Yang 2020,native
+N-ethylperfluorooctanesulfonamide (NEtFOSA),8,other,human,L-FABP,3.63,displacement,Yang 2020,native
+"PFOS, potassium salt",8,sulfonate,human,L-FABP,3.94,displacement,Yang 2020,native
+PFOS,8,sulfonate,human,L-FABP,3.94,displacement,Yang 2020,native
+"PFOSA (FOSA, perfluorooctanesulfonamide)",8,other,human,L-FABP,4.08,displacement,Yang 2020,native
+PFNA,8,carboxylate,human,L-FABP,4.21,displacement,Yang 2020,native
+PFBS,4,sulfonate,human,L-FABP,1.83,displacement,Zhang 2013,native
+PFHpA,6,carboxylate,human,L-FABP,2.32,displacement,Zhang 2013,native
+PFHxS,6,sulfonate,human,L-FABP,2.91,displacement,Zhang 2013,native
+PFOA,7,carboxylate,human,L-FABP,3.15,displacement,Zhang 2013,native
+PFOS,8,sulfonate,human,L-FABP,3.58,displacement,Zhang 2013,native
+PFNA,8,carboxylate,human,L-FABP,3.64,displacement,Zhang 2013,native
+PFDA,9,carboxylate,human,L-FABP,3.74,displacement,Zhang 2013,native
+PFUnDA,10,carboxylate,human,L-FABP,3.82,displacement,Zhang 2013,native
+PFDoDA,11,carboxylate,human,L-FABP,3.76,displacement,Zhang 2013,native
+PFTeDA,13,carboxylate,human,L-FABP,3.07,displacement,Zhang 2013,native
+PFHxDA,15,carboxylate,human,L-FABP,2.79,displacement,Zhang 2013,native
+PFOcDA,17,carboxylate,human,L-FABP,3.05,displacement,Zhang 2013,native
+PFBS,4,sulfonate,rat,L-FABP,2.8,displacement,Fan 2025,native
+HFPO-DA (GenX),4,carboxylate,rat,L-FABP,2.81,displacement,Fan 2025,native
+PFPeA,4,carboxylate,rat,L-FABP,3.41,displacement,Fan 2025,native
+PFHxA,5,carboxylate,rat,L-FABP,2.72,displacement,Fan 2025,native
+PFHpA,6,carboxylate,rat,L-FABP,3.2,displacement,Fan 2025,native
+PFHxS,6,sulfonate,rat,L-FABP,3.73,displacement,Fan 2025,native
+PFOA,7,carboxylate,rat,L-FABP,3.76,displacement,Fan 2025,native
+PFOS,8,sulfonate,rat,L-FABP,3.53,displacement,Fan 2025,native
+PFNA,8,carboxylate,rat,L-FABP,4.03,displacement,Fan 2025,native
+PFDA,9,carboxylate,rat,L-FABP,4.12,displacement,Fan 2025,native
+PFUnDA,10,carboxylate,rat,L-FABP,4.0,displacement,Fan 2025,native
+PFDoDA,11,carboxylate,rat,L-FABP,3.72,displacement,Fan 2025,native
+PFTeDA,13,carboxylate,rat,L-FABP,4.04,displacement,Fan 2025,native
+PFOA,7,carboxylate,rat,L-FABP,3.92,displacement,Woodcroft 2010,native
+PFOA,7,carboxylate,rat,L-FABP,4.42,direct,Woodcroft 2010,native
