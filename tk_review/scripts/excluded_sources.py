@@ -92,18 +92,39 @@ LEAK = re.compile(
     r"\|\s*kcal/mol\s*(?:\||$)|"                 # units cell of its own
     r"\bQSAR\b\s*\(|machine-learning QSAR", re.I)
 
+# What a row in a "predict" artifact must say about itself. Matching
+# the CATEGORY and the SOURCE LABEL, not a free-text note, so the
+# marking cannot be lost by an edit to prose.
+PREDICTED = re.compile(r"\bdocking\b|\bDOCKING\b|\bQSAR\b")
+
 # Sheets that document the table rather than carry values. The rule is
 # written down in some of them, so the words appear there by design.
 DOC_SHEETS = {"notes", "conversion basis", "conditions", "sources",
               "legend", "compounds", "skipped", "qualitative"}
 
 # Artifacts the scan covers, and what each must be free of.
-#   plot   feeds a figure: no computed values AND no named holdouts
-#   ship   a reading or working copy: no computed values; a named
-#          holdout may appear, because these are the record
+#   plot    feeds a figure: no computed values AND no named holdouts
+#   ship    a reading or working copy: no computed values; a named
+#           holdout may appear, because these are the record
+#   predict THE ONE NAMED EXCEPTION. A file that exists to carry
+#           predictions, overlaid on a figure as a visibly separate
+#           series. The rule is not suspended for it, it is INVERTED:
+#           every row must be a prediction, and the scan fails on a
+#           row that is not. That is what keeps this an exception
+#           rather than a hole -- a measured value cannot drift into
+#           the file unnoticed any more than a computed one can drift
+#           into a plotted file.
+#
+# Why there is an exception at all: a docking score converts onto the
+# log K axis exactly (dG = -RT ln K), and seeing the predictions
+# beside the measurements is the whole point of the comparison. What
+# must never happen is their entering a POOLED statistic or the
+# coefficient-selection rule, and nothing here lets them -- the
+# measured CSV is still checked as strictly as before.
 ARTIFACTS = [
     ("plot", "figures/albumin_chainlength_data.csv"),
     ("plot", "figures/lfabp_by_compound_data.csv"),
+    ("predict", "figures/albumin_docking_data.csv"),
     ("ship", "db/albumin_logK_shareable.xlsx"),
     ("ship", "db/albumin_logK_with_conc.xlsx"),
     ("ship", "db/albumin_lfabp_reported_conc.xlsx"),
@@ -166,7 +187,10 @@ def main():
 
     print("LEAK SCAN")
     print("  plot = feeds a figure: no computed values, no named holdouts")
-    print("  ship = a reading or working copy: no computed values\n")
+    print("  ship = a reading or working copy: no computed values")
+    print("  predict = the one named exception: predictions ONLY, "
+          "so the test is\n            inverted and a row that is "
+          "not a prediction is the failure\n")
     bad = 0
     for kind, rel in ARTIFACTS:
         path = os.path.join(HERE, "..", rel)
@@ -174,6 +198,18 @@ def main():
             print(f"  [{kind}] {rel:40s} MISSING")
             continue
         rows = artifact_rows(path)
+        if kind == "predict":
+            # Inverted: a row that does NOT declare itself a
+            # prediction is the failure here.
+            hits = [(lab, t) for lab, t in rows
+                    if not PREDICTED.search(t)]
+            bad += len(hits)
+            flag = "clean" if not hits else (
+                f"{len(hits)} row(s) not marked as predictions")
+            print(f"  [{kind}] {rel:40s} {len(rows):5d} rows  {flag}")
+            for lab, t in hits[:4]:
+                print(f"        {lab}: {t[:88]}")
+            continue
         computed = [(lab, t) for lab, t in rows if LEAK.search(t)]
         holdout = []
         if kind == "plot":

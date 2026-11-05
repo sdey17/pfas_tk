@@ -1,0 +1,11 @@
+pfas,n_cf,family,species,log_k,category,source,log_ratio,ratio_reported
+PFBA,3,carboxylate,human,2.7223,docking,Wu 2024 DOCKING,,
+PFPrS,3,sulfonate,human,2.7223,docking,Wu 2024 DOCKING,,
+HFPO-DA,4,carboxylate,human,3.3087,docking,Wu 2024 DOCKING,,
+PFBS,4,sulfonate,human,2.8689,docking,Wu 2024 DOCKING,,
+ADONA,6,carboxylate,human,3.5287,docking,Wu 2024 DOCKING,,
+PFHxS,6,sulfonate,human,3.6753,docking,Wu 2024 DOCKING,,
+PFOA,7,carboxylate,human,3.7486,docking,Wu 2024 DOCKING,,
+6:2 Cl-PFESA,8,sulfonate,human,3.8952,docking,Wu 2024 DOCKING,,
+PFOS,8,sulfonate,human,4.2617,docking,Wu 2024 DOCKING,,
+8:2 Cl-PFESA,10,sulfonate,human,3.9685,docking,Wu 2024 DOCKING,,

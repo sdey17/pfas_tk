@@ -1,10 +1,10 @@
 study,year,chemical,protein,species,dG_kcal_per_mol,K_M^-1,Kd_uM,log_K,lit_median_log_K,lit_n,gap_vs_lit,pdb,note
 Wu et al.,2024,PFOS,human serum albumin (HSA),human,-8.30,1.214e+06,0.824,4.262,3.93,4,+0.33,,"PREDICTED from a docking score, not measured"
-Wu et al.,2024,11Cl-PF3OUdS,human serum albumin (HSA),human,-7.90,6.181e+05,1.618,3.968,,0,,,"PREDICTED from a docking score, not measured"
-Wu et al.,2024,9Cl-PF3ONS (F-53B),human serum albumin (HSA),human,-7.80,5.221e+05,1.915,3.895,,0,,,"PREDICTED from a docking score, not measured"
+Wu et al.,2024,11Cl-PF3OUdS,human serum albumin (HSA),human,-7.90,6.181e+05,1.618,3.968,3.63,1,+0.34,,"PREDICTED from a docking score, not measured"
+Wu et al.,2024,9Cl-PF3ONS (F-53B),human serum albumin (HSA),human,-7.80,5.221e+05,1.915,3.895,3.17,2,+0.73,,"PREDICTED from a docking score, not measured"
 Wu et al.,2024,PFOA,human serum albumin (HSA),human,-7.60,3.725e+05,2.684,3.749,3.77,9,-0.02,,"PREDICTED from a docking score, not measured"
 Wu et al.,2024,PFHxS,human serum albumin (HSA),human,-7.50,3.147e+05,3.178,3.675,4.06,3,-0.38,,"PREDICTED from a docking score, not measured"
-Wu et al.,2024,NaDONA (ADONA),human serum albumin (HSA),human,-7.30,2.245e+05,4.454,3.529,,0,,,"PREDICTED from a docking score, not measured"
+Wu et al.,2024,NaDONA (ADONA),human serum albumin (HSA),human,-7.30,2.245e+05,4.454,3.529,3.70,2,-0.17,,"PREDICTED from a docking score, not measured"
 Wu et al.,2024,HFPO-DA (GenX),human serum albumin (HSA),human,-7.00,1.353e+05,7.391,3.309,3.36,1,-0.05,,"PREDICTED from a docking score, not measured"
 Wu et al.,2024,PFBS,human serum albumin (HSA),human,-6.40,4.915e+04,20.347,2.869,2.98,3,-0.12,,"PREDICTED from a docking score, not measured"
 Wu et al.,2024,PFBA,human serum albumin (HSA),human,-6.20,3.507e+04,28.518,2.722,1.90,2,+0.82,,"PREDICTED from a docking score, not measured"

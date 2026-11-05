@@ -48,12 +48,37 @@ import collections
 import csv
 import math
 import os
+import re
 import statistics as st
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "db", "protein_binding.csv")
 LIT = os.path.join(HERE, "..", "figures", "albumin_chainlength_data.csv")
 OUT = os.path.join(HERE, "..", "db", "docking_derived_logk.csv")
+# A SECOND, plot-ready file, in the schema the per-compound figure
+# already reads, so the figure can overlay these without the measured
+# CSV ever carrying a predicted value. Kept separate on purpose: the
+# standing rule in excluded_sources.py is that no computed value
+# reaches a plotted artifact, and this file is that rule's one named
+# exception rather than a hole in it.
+OUT_PLOT = os.path.join(HERE, "..", "figures",
+                        "albumin_docking_data.csv")
+PLOT_FIELDS = ["pfas", "n_cf", "family", "species", "log_k",
+               "category", "source", "log_ratio", "ratio_reported"]
+
+# The same compound under two names. The database records each paper's
+# own spelling; the plotted CSV uses the short form the rest of the
+# literature uses, and a panel only lines up if they are made to
+# agree. Checked one at a time against the structure, not guessed from
+# the string: the chlorinated ether sulfonates are the F-53B
+# components, named by perfluorinated-chain length in the n:2
+# convention, and NaDONA is the sodium salt of the ADONA acid.
+ALIAS = {
+    "9Cl-PF3ONS": "6:2 Cl-PFESA",    # F-53B major, C8 chain
+    "11Cl-PF3OUdS": "8:2 Cl-PFESA",  # F-53B minor, C10 chain
+    "NaDONA": "ADONA",               # sodium salt / free acid
+    "HFPO-DA": "HFPO-DA",            # GenX; same name both sides
+}
 
 R, T = 8.314, 298.15          # J/mol/K, K
 KCAL = 4184.0                 # J per kcal
@@ -65,18 +90,41 @@ FIELDS = ["study", "year", "chemical", "protein", "species",
           "lit_median_log_K", "lit_n", "gap_vs_lit", "pdb", "note"]
 
 
+def canon(study, year):
+    """DB study+year -> the short label the figures use."""
+    short = re.sub(r"\s+et al\.?", "", study).strip()
+    return f"{short} {year}"
+
+
+def family(head):
+    h = (head or "").lower()
+    if "carboxyl" in h:
+        return "carboxylate"
+    if "sulfonate" in h:
+        return "sulfonate"
+    return "other"
+
+
 def main():
     rows = list(csv.DictReader(open(DB, encoding="utf-8")))
     dock = [r for r in rows
             if "kcal/mol" in (r["kd_units"] + r["ka_units"])
             and "docking" in r["method"].lower()]
 
+    ncf, head = {}, {}
+    for r in rows:
+        c = r["chemical"]
+        if r["n_perfluorinated_carbons"].strip().isdigit():
+            ncf.setdefault(c, int(r["n_perfluorinated_carbons"]))
+        if r["head_group"].strip():
+            head.setdefault(c, r["head_group"])
+
     lit = collections.defaultdict(list)
     for r in csv.DictReader(open(LIT, encoding="utf-8")):
         if r["species"] == "human" and r["source"] != "Wu 2024":
             lit[r["pfas"]].append(float(r["log_k"]))
 
-    out, gaps = [], []
+    out, plot, gaps = [], [], []
     for r in dock:
         val = (r["kd"] or r["ka"]).strip()
         try:
@@ -87,6 +135,7 @@ def main():
         kd = 1e6 / K
         lk = BRIDGE - math.log10(kd)
         key = r["chemical"].split(" (")[0]
+        key = ALIAS.get(key, key)
         L = lit.get(key) or lit.get(r["chemical"]) or []
         med = st.median(L) if L else None
         if med is not None:
@@ -106,10 +155,32 @@ def main():
             pdb=pdb,
             note="PREDICTED from a docking score, not measured"))
 
+        n = ncf.get(r["chemical"])
+        if n is None:
+            continue                 # no nCF: no panel to sit in
+        plot.append(dict(
+            pfas=key, n_cf=n, family=family(head.get(r["chemical"])),
+            species=r["protein_species"], log_k=f"{lk:.4f}",
+            category="docking",
+            # The source label carries the word on the figure's row,
+            # so the row cannot be read as a laboratory by accident.
+            source=f"{canon(r['study'], r['year'])} DOCKING",
+            # No loading: a score is not an assay, so it has no
+            # ligand:protein ratio. Empty here means the companion
+            # ratio figure drops these rows on its own, with no
+            # special case needed there.
+            log_ratio="", ratio_reported=""))
+
     with open(OUT, "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(sorted(out, key=lambda r: -float(r["log_K"])))
+
+    with open(OUT_PLOT, "w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=PLOT_FIELDS)
+        w.writeheader()
+        w.writerows(sorted(plot, key=lambda r: (r["n_cf"],
+                                                r["pfas"])))
 
     print(f"wrote {os.path.relpath(OUT, os.path.join(HERE, '..'))}")
     print(f"  {len(out)} docking scores converted\n")
