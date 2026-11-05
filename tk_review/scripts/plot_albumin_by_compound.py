@@ -18,6 +18,15 @@ pooling them into one cloud.
 Qin is both a row and a dashed line, since it is the value being
 compared against: the line is its number for that compound, so the
 distance from any dot to the line is what the comparison is worth.
+The dot and the line are the SAME NUMBER -- the dot keeps Qin in the
+stack as one laboratory among many, the line lets every other row's
+distance from it be read without tracing down the panel.
+
+QIN'S VALUES ARE ALL BOVINE, and the line is drawn across the human
+and rat rows too. That is the one place this figure crosses species,
+so the legend says so. Grouping the rows by species keeps every other
+comparison within one protein; the line is the exception and is
+labelled as one.
 
 EDIT `COMPOUNDS` to change which panels appear. Anything in the CSV
 works; the default five are the ones under active comparison. The
@@ -44,7 +53,8 @@ STYLE = {
     "measured":  ("#eb6834", "full", "measured directly"),
     "converted": ("#2a78d6", "full", "converted from a Kd"),
     "quenching": ("#1baf7a", "none", "converted on a quenching exponent"),
-    "qin":       ("#52514e", "full", "Qin at this study's operating point"),
+    "qin":       ("#52514e", "full",
+                  "Qin 2024 (BOVINE), at this study's operating point"),
 }
 SURFACE, INK, INK2, MUTED = "#fcfcfb", "#0b0b0b", "#52514e", "#898781"
 GRID, AXIS, BAND = "#e1e0d9", "#c3c2b7", "#f4f3ee"
@@ -152,7 +162,9 @@ def plot(rows=None, save=PNG):
                mew=1.3 if fill == "full" else 1.7, label=lab)
         for col, fill, lab in STYLE.values()
     ] + [Line2D([], [], color=MUTED, lw=1.1, ls=(0, (6, 3)),
-                label="Qin's value for this compound")]
+                label="the same value, drawn across every row —\n"
+                      "reading a HUMAN or RAT row against it\n"
+                      "crosses species")]
     flat[len(order)].legend(handles=handles, loc="upper left",
                             frameon=False, fontsize=9.5,
                             handletextpad=0.9, labelspacing=1.0,
