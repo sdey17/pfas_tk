@@ -149,6 +149,30 @@ def stated_ratio(*texts):
     return ""
 
 
+def range_index():
+    """(Source, PFAS) -> the range check's verdict for that row.
+
+    A Kd is a property of the curve at half occupancy. If the
+    titration never went near that concentration, the number is an
+    extrapolation, and that belongs in the same row as the number
+    rather than in a separate file nobody opens. Produced by
+    scripts/kd_within_tested_range.py, which is run first.
+    """
+    path = os.path.join(HERE, "..", "db", "kd_range_check.csv")
+    if not os.path.exists(path):
+        return {}
+    idx = {}
+    for row in csv.DictReader(open(path, encoding="utf-8")):
+        src = f"{row['study'].replace(' et al.', '')} {row['year']}"
+        bits = [row["range_flag"]]
+        if row["fold_outside"]:
+            bits[0] += f" ({row['fold_outside']}x beyond)"
+        if row["identifiability"]:
+            bits.append(row["identifiability"])
+        idx.setdefault((src, row["chemical"]), " - ".join(bits))
+    return idx
+
+
 def route_for(method):
     low = (method or "").lower()
     for key, label in ROUTES:
@@ -261,7 +285,8 @@ def focus_sheet(wb, hdr, rows_all):
     cols = ["PFAS", "Protein", "Species", "Kd (uM)", "n used",
             "log K (L water / kg protein)", "Route", "Source",
             "PFAS conc (as reported)", "Protein conc (as reported)",
-            "ligand:protein ratio (as reported)", "Note"]
+            "ligand:protein ratio (as reported)",
+            "Kd within tested range?", "Note"]
     sh.append(cols)
     idx = {c: hdr.index(c) for c in cols if c in hdr}
     picked = []
@@ -309,6 +334,9 @@ def main():
     hdr = [c.value for c in ws[1]]
     ws.cell(row=1, column=len(hdr) + 1, value="concentrations reported")
     hdr = [c.value for c in ws[1]]
+    ws.cell(row=1, column=len(hdr) + 1,
+            value="Kd within tested range?")
+    hdr = [c.value for c in ws[1]]
 
     n_alb = ws.max_row - 1
     rows = lfabp_rows()
@@ -344,6 +372,20 @@ def main():
         row[ci].value = verdict
         tally[verdict] = tally.get(verdict, 0) + 1
 
+    # Where each Kd sits relative to the concentrations actually
+    # tested. Blank means the paper does not state enough to check,
+    # which is not the same as passing.
+    ridx = range_index()
+    ri = hdr.index("Kd within tested range?")
+    si, fi = hdr.index("Source"), hdr.index("PFAS")
+    rtally = {}
+    for row in ws.iter_rows(min_row=2):
+        src = str(row[si].value or "").split(" Cw")[0].strip()
+        v = ridx.get((src, row[fi].value))
+        row[ri].value = v
+        key = (v or "not checkable").split(" - ")[0].split(" (")[0]
+        rtally[key] = rtally.get(key, 0) + 1
+
     all_rows = list(ws.iter_rows(min_row=2, values_only=True))
     sh = focus_sheet(wb, hdr, all_rows)
 
@@ -358,6 +400,9 @@ def main():
                and has_conc(r["Protein conc (as reported)"]))
     kd = sum(1 for r in rows if r["Kd (uM)"] is not None)
     print(f"wrote {OUT}")
+    print("  Kd within the tested concentration range:")
+    for k in sorted(rtally, key=lambda k: -rtally[k]):
+        print(f"    {rtally[k]:5d}  {k}")
     print("  concentrations reported as NUMBERS, over every row:")
     for k in ("both", "PFAS only", "protein only", "neither"):
         if k in tally:

@@ -1,0 +1,159 @@
+study,year,chemical,protein,species,method,kd_uM,kd_source,ligand_lo_uM,ligand_hi_uM,protein_uM,range_flag,fold_outside,basis,shift_pct,wiseman_c,identifiability
+Chen et al.,2025,10:2 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",9.06,Kd,0.0625,2,1,outside,4.53,free-conc shift,46.3,,identifiable
+Chen et al.,2025,10:2 FTS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",2.31,Kd,0.0625,2,1,edge,1.16,free-conc shift,72.1,,identifiable
+Chen et al.,2025,11Cl-PF3OUdS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",3.52,Kd,0.0625,2,1,edge,1.76,free-conc shift,65.5,,identifiable
+Chen et al.,2025,3:3 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",70.57,Kd,0.0625,2,1,far outside,35.3,free-conc shift,11.1,,not identifiable
+Chen et al.,2025,4:2 FTS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",18.96,Kd,0.0625,2,1,outside,9.48,free-conc shift,30.6,,marginal
+Chen et al.,2025,5:1:2 FTB,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",49.32,Kd,0.0625,2,1,outside,24.7,free-conc shift,15.0,,not identifiable
+Chen et al.,2025,5:3 FTB,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",30.44,Kd,0.0625,2,1,outside,15.2,free-conc shift,22.0,,marginal
+Chen et al.,2025,5:3 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",10.75,Kd,0.0625,2,1,outside,5.38,free-conc shift,42.6,,identifiable
+Chen et al.,2025,6:2 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",3.64,Kd,0.0625,2,1,edge,1.82,free-conc shift,64.9,,identifiable
+Chen et al.,2025,6:2 FTS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",2.42,Kd,0.0625,2,1,edge,1.21,free-conc shift,71.5,,identifiable
+Chen et al.,2025,6:2 FTUCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",4.23,Kd,0.0625,2,1,edge,2.12,free-conc shift,62.2,,identifiable
+Chen et al.,2025,6:2 FtSaB,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",16.97,Kd,0.0625,2,1,outside,8.48,free-conc shift,32.8,,marginal
+Chen et al.,2025,6:2 diPAP,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",2.71,Kd,0.0625,2,1,edge,1.35,free-conc shift,69.8,,identifiable
+Chen et al.,2025,7:3 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.82,Kd,0.0625,2,1,inside,,free-conc shift,75.2,,identifiable
+Chen et al.,2025,8:2 FTCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.99,Kd,0.0625,2,1,inside,,free-conc shift,74.1,,identifiable
+Chen et al.,2025,8:2 FTS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",4.49,Kd,0.0625,2,1,edge,2.25,free-conc shift,61.0,,identifiable
+Chen et al.,2025,8:2 FTUCA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",2.26,Kd,0.0625,2,1,edge,1.13,free-conc shift,72.4,,identifiable
+Chen et al.,2025,8:2 diPAP,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",14.4,Kd,0.0625,2,1,outside,7.2,free-conc shift,36.2,,identifiable
+Chen et al.,2025,8Cl-PFOS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",0.87,Kd,0.0625,2,1,inside,,free-conc shift,82.2,,identifiable
+Chen et al.,2025,9Cl-PF3ONS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.58,Kd,0.0625,2,1,inside,,free-conc shift,76.9,,identifiable
+Chen et al.,2025,ADONA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.68,Kd,0.0625,2,1,edge,2.84,free-conc shift,56.4,,identifiable
+Chen et al.,2025,FBSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.58,Kd,0.0625,2,1,edge,2.79,free-conc shift,56.7,,identifiable
+Chen et al.,2025,FHxSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",3.07,Kd,0.0625,2,1,edge,1.53,free-conc shift,67.8,,identifiable
+Chen et al.,2025,FOSAA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",7.4,Kd,0.0625,2,1,outside,3.7,free-conc shift,50.8,,identifiable
+Chen et al.,2025,HFPO-DA (GenX),human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.57,Kd,0.0625,2,1,outside,3.29,free-conc shift,53.3,,identifiable
+Chen et al.,2025,N-EtFOSAA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.44,Kd,0.0625,2,1,edge,2.72,free-conc shift,57.2,,identifiable
+Chen et al.,2025,N-MeFOSAA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.63,Kd,0.0625,2,1,outside,3.31,free-conc shift,53.1,,identifiable
+Chen et al.,2025,N-TAmP-FHxSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",33.68,Kd,0.0625,2,1,outside,16.8,free-conc shift,20.4,,marginal
+Chen et al.,2025,NEtFOSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",12.98,Kd,0.0625,2,1,outside,6.49,free-conc shift,38.5,,identifiable
+Chen et al.,2025,NEtFOSE,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.09,Kd,0.0625,2,1,outside,3.04,free-conc shift,54.9,,identifiable
+Chen et al.,2025,NFDHA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",17.34,Kd,0.0625,2,1,outside,8.67,free-conc shift,32.4,,marginal
+Chen et al.,2025,NMeFOSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",12.22,Kd,0.0625,2,1,outside,6.11,free-conc shift,39.8,,identifiable
+Chen et al.,2025,NMeFOSE,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.88,Kd,0.0625,2,1,edge,2.94,free-conc shift,55.6,,identifiable
+Chen et al.,2025,PFBA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",84.9,Kd,0.0625,2,1,far outside,42.5,free-conc shift,9.4,,not identifiable
+Chen et al.,2025,PFBS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",15.6,Kd,0.0625,2,1,outside,7.8,free-conc shift,34.6,,marginal
+Chen et al.,2025,PFDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",3.64,Kd,0.0625,2,1,edge,1.82,free-conc shift,64.9,,identifiable
+Chen et al.,2025,PFDS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.88,Kd,0.0625,2,1,inside,,free-conc shift,74.8,,identifiable
+Chen et al.,2025,PFDoDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",15.76,Kd,0.0625,2,1,outside,7.88,free-conc shift,34.3,,marginal
+Chen et al.,2025,PFDoS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.29,Kd,0.0625,2,1,inside,,free-conc shift,78.9,,identifiable
+Chen et al.,2025,PFEESA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.15,Kd,0.0625,2,1,edge,2.58,free-conc shift,58.4,,identifiable
+Chen et al.,2025,PFEtCHxS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.62,Kd,0.0625,2,1,inside,,free-conc shift,76.6,,identifiable
+Chen et al.,2025,PFHpA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.2,Kd,0.0625,2,1,outside,3.1,free-conc shift,54.5,,identifiable
+Chen et al.,2025,PFHpS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.68,Kd,0.0625,2,1,inside,,free-conc shift,76.2,,identifiable
+Chen et al.,2025,PFHxA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",13.98,Kd,0.0625,2,1,outside,6.99,free-conc shift,36.9,,identifiable
+Chen et al.,2025,PFHxDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",10.45,Kd,0.0625,2,1,outside,5.22,free-conc shift,43.2,,identifiable
+Chen et al.,2025,PFHxS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",1.31,Kd,0.0625,2,1,inside,,free-conc shift,78.8,,identifiable
+Chen et al.,2025,PFHxSaAm,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.19,Kd,0.0625,2,1,outside,3.1,free-conc shift,54.6,,identifiable
+Chen et al.,2025,PFMBA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",0.22,Kd,0.0625,2,1,inside,,free-conc shift,87.8,,identifiable
+Chen et al.,2025,PFMPA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",47.55,Kd,0.0625,2,1,outside,23.8,free-conc shift,15.5,,not identifiable
+Chen et al.,2025,PFNA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",3.75,Kd,0.0625,2,1,edge,1.88,free-conc shift,64.4,,identifiable
+Chen et al.,2025,PFNS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",6.56,Kd,0.0625,2,1,outside,3.28,free-conc shift,53.4,,identifiable
+Chen et al.,2025,PFOA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",2.57,Kd,0.0625,2,1,edge,1.28,free-conc shift,70.6,,identifiable
+Chen et al.,2025,PFOS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",0.94,Kd,0.0625,2,1,inside,,free-conc shift,81.6,,identifiable
+Chen et al.,2025,PFOSA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",11.18,Kd,0.0625,2,1,outside,5.59,free-conc shift,41.7,,identifiable
+Chen et al.,2025,PFPeA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",16.27,Kd,0.0625,2,1,outside,8.13,free-conc shift,33.7,,marginal
+Chen et al.,2025,PFPeS,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",17.15,Kd,0.0625,2,1,outside,8.57,free-conc shift,32.6,,marginal
+Chen et al.,2025,PFTeDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",13.09,Kd,0.0625,2,1,outside,6.54,free-conc shift,38.3,,identifiable
+Chen et al.,2025,PFTrDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",31.44,Kd,0.0625,2,1,outside,15.7,free-conc shift,21.4,,marginal
+Chen et al.,2025,PFUnDA,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",4.73,Kd,0.0625,2,1,edge,2.37,free-conc shift,60.0,,identifiable
+Chen et al.,2025,diSAmPAP,human serum albumin (HSA),human,"equilibrium dialysis, Slide-A-Lyzer 10 kDa MWCO, 48 h at 50 ",5.94,Kd,0.0625,2,1,edge,2.97,free-conc shift,55.4,,identifiable
+Gao et al.,2019,6:2 Cl-PFESA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",67,Kd,2,12,6,outside,5.58,free-conc shift,38.4,,identifiable
+Gao et al.,2019,6:2 Cl-PFESA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",82,Kd,2,12,6,outside,6.83,free-conc shift,34.5,,marginal
+Gao et al.,2019,6:2 Cl-PFESA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",102,Kd,2,12,6,outside,8.5,free-conc shift,30.5,,marginal
+Gao et al.,2019,PFBA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",419,Kd,2,12,6,far outside,34.9,free-conc shift,10.8,,not identifiable
+Gao et al.,2019,PFBA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",482,Kd,2,12,6,far outside,40.2,free-conc shift,9.6,,not identifiable
+Gao et al.,2019,PFBA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",879,Kd,2,12,6,far outside,73.2,free-conc shift,5.6,,not identifiable
+Gao et al.,2019,PFBS,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",169,Kd,2,12,6,outside,14.1,free-conc shift,21.9,,marginal
+Gao et al.,2019,PFBS,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",239,Kd,2,12,6,outside,19.9,free-conc shift,17.0,,not identifiable
+Gao et al.,2019,PFBS,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",436,Kd,2,12,6,far outside,36.3,free-conc shift,10.5,,not identifiable
+Gao et al.,2019,PFDA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",65,Kd,2,12,6,outside,5.42,free-conc shift,39.0,,identifiable
+Gao et al.,2019,PFDA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",70,Kd,2,12,6,outside,5.83,free-conc shift,37.6,,identifiable
+Gao et al.,2019,PFDA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",77,Kd,2,12,6,outside,6.42,free-conc shift,35.7,,marginal
+Gao et al.,2019,PFDoDA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",103,Kd,2,12,6,outside,8.58,free-conc shift,30.3,,marginal
+Gao et al.,2019,PFDoDA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",100,Kd,2,12,6,outside,8.33,free-conc shift,30.8,,marginal
+Gao et al.,2019,PFDoDA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",95,Kd,2,12,6,outside,7.92,free-conc shift,31.8,,marginal
+Gao et al.,2019,PFHpA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",172,Kd,2,12,6,outside,14.3,free-conc shift,21.7,,marginal
+Gao et al.,2019,PFHpA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",209,Kd,2,12,6,outside,17.4,free-conc shift,18.8,,marginal
+Gao et al.,2019,PFHpA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",358,Kd,2,12,6,outside,29.8,free-conc shift,12.3,,not identifiable
+Gao et al.,2019,PFHxA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",195,Kd,2,12,6,outside,16.2,free-conc shift,19.8,,marginal
+Gao et al.,2019,PFHxA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",243,Kd,2,12,6,outside,20.2,free-conc shift,16.8,,not identifiable
+Gao et al.,2019,PFHxA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",443,Kd,2,12,6,far outside,36.9,free-conc shift,10.3,,not identifiable
+Gao et al.,2019,PFHxS,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",79,Kd,2,12,6,outside,6.58,free-conc shift,35.2,,marginal
+Gao et al.,2019,PFHxS,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",158,Kd,2,12,6,outside,13.2,free-conc shift,23.0,,marginal
+Gao et al.,2019,PFHxS,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",210,Kd,2,12,6,outside,17.5,free-conc shift,18.8,,marginal
+Gao et al.,2019,PFNA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",73,Kd,2,12,6,outside,6.08,free-conc shift,36.8,,identifiable
+Gao et al.,2019,PFNA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",84,Kd,2,12,6,outside,7,free-conc shift,34.1,,marginal
+Gao et al.,2019,PFNA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",90,Kd,2,12,6,outside,7.5,free-conc shift,32.8,,marginal
+Gao et al.,2019,PFOA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",115,Kd,2,12,6,outside,9.58,free-conc shift,28.3,,marginal
+Gao et al.,2019,PFOA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",166,Kd,2,12,6,outside,13.8,free-conc shift,22.2,,marginal
+Gao et al.,2019,PFOA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",197,Kd,2,12,6,outside,16.4,free-conc shift,19.7,,marginal
+Gao et al.,2019,PFOS,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",38,Kd,2,12,6,outside,3.17,free-conc shift,49.6,,identifiable
+Gao et al.,2019,PFOS,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",49,Kd,2,12,6,outside,4.08,free-conc shift,44.6,,identifiable
+Gao et al.,2019,PFOS,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",81,Kd,2,12,6,outside,6.75,free-conc shift,34.8,,marginal
+Gao et al.,2019,PFPeA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",286,Kd,2,12,6,outside,23.8,free-conc shift,14.8,,not identifiable
+Gao et al.,2019,PFPeA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",387,Kd,2,12,6,far outside,32.2,free-conc shift,11.6,,not identifiable
+Gao et al.,2019,PFPeA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",685,Kd,2,12,6,far outside,57.1,free-conc shift,7.1,,not identifiable
+Gao et al.,2019,PFTrDA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",265,Kd,2,12,6,outside,22.1,free-conc shift,15.7,,not identifiable
+Gao et al.,2019,PFTrDA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",284,Kd,2,12,6,outside,23.7,free-conc shift,14.9,,not identifiable
+Gao et al.,2019,PFTrDA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",317,Kd,2,12,6,outside,26.4,free-conc shift,13.6,,not identifiable
+Gao et al.,2019,PFUnDA,human serum albumin (HSA),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",79,Kd,2,12,6,outside,6.58,free-conc shift,35.2,,marginal
+Gao et al.,2019,PFUnDA,pooled human serum proteins (whole serum),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",75,Kd,2,12,6,outside,6.25,free-conc shift,36.2,,identifiable
+Gao et al.,2019,PFUnDA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis: protein or serum spiked with PFAS, 1 h",54,Kd,2,12,6,outside,4.5,free-conc shift,42.7,,identifiable
+Han et al.,2021,PFBS,"liver fatty acid-binding protein (hL-FABP), en",human,quantitative interspecies thermal shift assay (QITSA): PFAS-,1034,Kd,100,100,,outside,10.3,free-conc shift,,,
+Han et al.,2021,PFHxS,"liver fatty acid-binding protein (hL-FABP), en",human,quantitative interspecies thermal shift assay (QITSA): PFAS-,85.7,Kd,100,100,,edge,1.17,free-conc shift,,,
+Han et al.,2021,PFNA,"liver fatty acid-binding protein (hL-FABP), en",human,quantitative interspecies thermal shift assay (QITSA): PFAS-,16.2,Kd,100,100,,outside,6.17,free-conc shift,,,
+Han et al.,2021,PFOA,"liver fatty acid-binding protein (hL-FABP), en",human,quantitative interspecies thermal shift assay (QITSA): PFAS-,50.4,Kd,100,100,,edge,1.98,free-conc shift,,,
+Han et al.,2021,PFOS,"liver fatty acid-binding protein (hL-FABP), en",human,quantitative interspecies thermal shift assay (QITSA): PFAS-,18.5,Kd,100,100,,outside,5.41,free-conc shift,,,
+Han et al.,2021,palmitic acid (C16:0),"liver fatty acid-binding protein (hL-FABP), en",human,"QITSA, same protocol as the PFAS panel",0.63,Kd,100,100,,far outside,159,,,,
+Khazaee et al.,2021,PFBA,peroxisome proliferator-activated receptor del,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.044,Kd,0.00154178,0.71716,0.48,inside,,free-conc shift,89.2,,identifiable
+Khazaee et al.,2021,PFHxA,peroxisome proliferator-activated receptor alp,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.097,Kd,0.00105077,0.488769,0.48,inside,,free-conc shift,88.2,,identifiable
+Khazaee et al.,2021,PFHxS,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",1.7,Kd,0.000824773,0.383644,1,outside,4.43,free-conc shift,76.9,,identifiable
+Khazaee et al.,2021,PFHxS,peroxisome proliferator-activated receptor del,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.035,Kd,0.000824773,0.383644,0.48,inside,,free-conc shift,89.3,,identifiable
+Khazaee et al.,2021,PFNA,peroxisome proliferator-activated receptor alp,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.083,Kd,0.000711088,0.330763,0.48,inside,,free-conc shift,88.5,,identifiable
+Khazaee et al.,2021,PFOA,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.099,Kd,0.000796967,0.37071,1,inside,,free-conc shift,89.1,,identifiable
+Khazaee et al.,2021,PFOA,peroxisome proliferator-activated receptor gam,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.057,Kd,0.000796967,0.37071,1,inside,,free-conc shift,89.5,,identifiable
+Khazaee et al.,2021,PFOS,liver fatty acid-binding protein (L-FABP),human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.18,Kd,0.000659834,0.306923,1,inside,,free-conc shift,88.4,,identifiable
+Khazaee et al.,2021,PFOS,peroxisome proliferator-activated receptor gam,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",8.5,Kd,0.000659834,0.306923,1,outside,27.7,free-conc shift,48.6,,identifiable
+Khazaee et al.,2021,PFOS,peroxisome proliferator-activated receptor del,human,"equilibrium dialysis (Slide-A-Lyzer mini, 10 kDa MWCO), 36 h",0.69,Kd,0.000659834,0.306923,0.48,edge,2.25,free-conc shift,78.7,,identifiable
+Moro et al.,2022,C6O4,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),2.4,Kd,4000,4000,110,far outside,1.67e+03,Wiseman c = [P]/Kd,,45.8,identifiable
+Moro et al.,2022,C6O4,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),5.4,Kd,4000,4000,110,far outside,741,Wiseman c = [P]/Kd,,20.4,identifiable
+Moro et al.,2022,HFPO-DA (GenX),defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),19,Kd,4000,4000,110,far outside,211,Wiseman c = [P]/Kd,,5.79,identifiable
+Moro et al.,2022,HFPO-DA (GenX),defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),9.9,Kd,4000,4000,110,far outside,404,Wiseman c = [P]/Kd,,11.1,identifiable
+Moro et al.,2022,PFHxA,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),4.5,Kd,4000,4000,110,far outside,889,Wiseman c = [P]/Kd,,24.4,identifiable
+Moro et al.,2022,PFHxA,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),5.9,Kd,4000,4000,110,far outside,678,Wiseman c = [P]/Kd,,18.6,identifiable
+Moro et al.,2022,PFOA,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),0.4,Kd,4000,4000,110,far outside,1e+04,Wiseman c = [P]/Kd,,275,identifiable
+Moro et al.,2022,PFOA,defatted human serum albumin (dhSA),human,isothermal titration calorimetry (ITC),39.3,Kd,4000,4000,110,far outside,102,Wiseman c = [P]/Kd,,2.8,identifiable
+Sheng et al.,2016,"1,8-ANS","liver fatty acid-binding protein (hL-FABP), re",human,"1,8-ANS fluorescence displacement, Horiba Fluoromax-4, buffe",3.56,Kd,1,8,,inside,,,,,
+Sheng et al.,2016,"1,8-ANS","liver fatty acid-binding protein (hL-FABP), EN",human,"1,8-ANS fluorescence displacement, Horiba Fluoromax-4, buffe",6.64,Kd,1,8,,inside,,,,,
+Sheng et al.,2016,"1,8-ANS","liver fatty acid-binding protein (hL-FABP), EN",human,"1,8-ANS fluorescence displacement, Horiba Fluoromax-4, buffe",4.79,Kd,1,8,,inside,,,,,
+Wu et al.,2024,11Cl-PF3OUdS (8:2 Cl-PFESA),human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,7836.99,1/Ka,170,500,830,outside,15.7,,,,
+Wu et al.,2024,"9Cl-PF3ONS (F-53B, 6:2 Cl-PFESA)",human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,8539.71,1/Ka,170,500,830,outside,17.1,,,,
+Wu et al.,2024,HFPO-DA (GenX),human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,16952,1/Ka,170,500,830,far outside,33.9,,,,
+Wu et al.,2024,NaDONA (ADONA),human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,10742.3,1/Ka,170,500,830,outside,21.5,,,,
+Wu et al.,2024,PFBA,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,49091.8,1/Ka,170,500,830,far outside,98.2,,,,
+Wu et al.,2024,PFBS,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,8583.69,1/Ka,170,500,830,outside,17.2,,,,
+Wu et al.,2024,PFHxS,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,6333.12,1/Ka,170,500,830,outside,12.7,,,,
+Wu et al.,2024,PFOA,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,9680.54,1/Ka,170,500,830,outside,19.4,,,,
+Wu et al.,2024,PFOS,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,2534.21,1/Ka,170,500,830,outside,5.07,,,,
+Wu et al.,2024,PFPrS,human serum albumin (HSA),human,fluorescence quenching (double-logarithmic plot; no inner-fi,12586.5,1/Ka,170,500,830,outside,25.2,,,,
+Yang et al.,2020,"1H,1H,5H-perfluoropentanol","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",916.06,Kd,30,300,,outside,3.05,,,,
+Yang et al.,2020,"2H,2H,3H,3H-perfluorooctanoic acid","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",158.03,Kd,30,300,,inside,,,,,
+Yang et al.,2020,3H-perfluoro-4-hydroxy-3-penten-2-one,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",135.24,Kd,30,300,,inside,,,,,
+Yang et al.,2020,4H-perfluorobutanoic acid,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",351.53,Kd,30,300,,edge,1.17,,,,
+Yang et al.,2020,N-ethylperfluorooctanesulfonamide (NEtFOSA),"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",16.58,Kd,30,300,,edge,1.81,,,,
+Yang et al.,2020,PFBS,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",116.4,Kd,30,300,,inside,,,,,
+Yang et al.,2020,"PFBS, potassium salt","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",125.25,Kd,30,300,,inside,,,,,
+Yang et al.,2020,PFHxA,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",140.76,Kd,30,300,,inside,,,,,
+Yang et al.,2020,"PFHxS, potassium salt","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",11.19,Kd,30,300,,edge,2.68,,,,
+Yang et al.,2020,PFNA,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",4.3,Kd,30,300,,outside,6.98,,,,
+Yang et al.,2020,PFOA,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",18.74,Kd,30,300,,edge,1.6,,,,
+Yang et al.,2020,"PFOA, ammonium salt","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",18.74,Kd,30,300,,edge,1.6,,,,
+Yang et al.,2020,PFOS,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",8.1,Kd,30,300,,outside,3.7,,,,
+Yang et al.,2020,"PFOS, potassium salt","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",8.1,Kd,30,300,,outside,3.7,,,,
+Yang et al.,2020,"PFOSA (FOSA, perfluorooctanesulfonamide)","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",5.87,Kd,30,300,,outside,5.11,,,,
+Yang et al.,2020,"difluoromethyl 1H,1H-perfluoropropyl ether","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",715.15,Kd,30,300,,edge,2.38,,,,
+Yang et al.,2020,perfluoro(4-methoxybutanoic) acid,"liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",814.93,Kd,30,300,,edge,2.72,,,,
+Yang et al.,2020,"perfluoro-3,6,9-trioxatridecanoic acid","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",8.22,Kd,30,300,,outside,3.65,,,,
+Yang et al.,2020,"perfluoro-3,6-dioxaheptanoic acid","liver fatty acid-binding protein (hL-FABP), Hi",human,"1,8-ANS fluorescence displacement: each PFAS spiked into a m",252.31,Kd,30,300,,inside,,,,,
