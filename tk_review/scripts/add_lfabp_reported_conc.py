@@ -149,6 +149,76 @@ def stated_ratio(*texts):
     return ""
 
 
+def basis_index():
+    """(Source, PFAS) -> the basis of a REPORTED coefficient.
+
+    Produced by scripts/partition_basis.py, which reads each paper's
+    own units wording. Only reported coefficients are in it; a
+    converted one is labelled from its route instead, because this
+    project's bridge fixes its basis.
+    """
+    path = os.path.join(HERE, "..", "db", "partition_basis.csv")
+    if not os.path.exists(path):
+        return {}
+    # The workbook carries canonical PFAS names and the raw database
+    # carries each paper's own spelling -- Fischer writes "6:2 FtS"
+    # and "FOSA" where the workbook says "6:2 FTSA" and "PFOSA" -- so
+    # the key has to be canonicalised on both sides or ten of
+    # Fischer's measured rows silently fall through to the fallback
+    # and get labelled as computed here, which they are not.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "pfas_names", os.path.join(HERE, "pfas_names.py"))
+    N = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(N)
+    idx = {"_canon": N.canon}
+    for row in csv.DictReader(open(path, encoding="utf-8")):
+        src = f"{row['study'].replace(' et al.', '')} {row['year']}"
+        idx.setdefault((src, N.canon(row["chemical"])), row)
+    return idx
+
+
+def basis_for(logk, route, src, pfas, bidx):
+    """What the log K in this row is per.
+
+    The discriminator is NOT the route wording. A row whose route
+    reads "measured Kd (equilibrium dialysis)" reports a Kd, and the
+    log K beside it was still computed HERE from that Kd -- most of
+    the L-FABP block is like that. What matters is whether the PAPER
+    reported a coefficient at all:
+
+      in partition_basis.csv  the paper reported one; its own units
+                              wording gives the basis
+      not in it, but a log K  this project computed it through
+                              log10(1e9/M) with M in g/mol, so it is
+                              per KG by construction
+      no log K                nothing to classify
+
+    The 1.364-fold gap between the bases is 0.135 log, always in the
+    direction of over-predicting binding if a volume-basis number is
+    read as mass.
+    """
+    canon = bidx.get("_canon", lambda x: x)
+    hit = bidx.get((src, canon(pfas)))
+    if hit is not None:
+        if hit["basis"] == "not stated":
+            return "NOT STATED by the paper - 0.135 log either way"
+        return f"{hit['basis']} (as the paper reports it) - " \
+               f"{hit['basis_evidence']}"
+    if logk in (None, ""):
+        return None
+    # "measured Kd (...)" means the paper measured a Kd, which this
+    # project then converted -- mass basis by construction. Only a
+    # route that reports a COEFFICIENT ("measured directly", or
+    # Qin's "measured; ... equation at Cw = ...") means the paper
+    # supplied the number itself, and for one of those a failure to
+    # match is a gap, not a licence to call it computed.
+    rt = str(route or "")
+    if rt.startswith("measured") and not rt.startswith("measured Kd"):
+        return "reported by the paper; basis not matched here"
+    return "mass (per kg) - computed here via log10(1e9/M)"
+
+
 def range_index():
     """(Source, PFAS) -> the range check's verdict for that row.
 
@@ -286,7 +356,7 @@ def focus_sheet(wb, hdr, rows_all):
             "log K (L water / kg protein)", "Route", "Source",
             "PFAS conc (as reported)", "Protein conc (as reported)",
             "ligand:protein ratio (as reported)",
-            "Kd within tested range?", "Note"]
+            "Kd within tested range?", "log K basis", "Note"]
     sh.append(cols)
     idx = {c: hdr.index(c) for c in cols if c in hdr}
     picked = []
@@ -303,7 +373,7 @@ def focus_sheet(wb, hdr, rows_all):
     bold, wrap = Font(bold=True), Alignment(vertical="top", wrap_text=True)
     for j, name in enumerate(cols):
         sh.cell(row=1, column=j + 1).font = bold
-        wide = ("as reported" in name
+        wide = ("as reported" in name or "basis" in name
                 or name in ("Protein", "Note", "Route", "Source"))
         sh.column_dimensions[get_column_letter(j + 1)].width = (
             46 if "as reported" in name else 34 if wide else 16)
@@ -337,6 +407,8 @@ def main():
     ws.cell(row=1, column=len(hdr) + 1,
             value="Kd within tested range?")
     hdr = [c.value for c in ws[1]]
+    ws.cell(row=1, column=len(hdr) + 1, value="log K basis")
+    hdr = [c.value for c in ws[1]]
 
     n_alb = ws.max_row - 1
     rows = lfabp_rows()
@@ -347,8 +419,8 @@ def main():
     wrap = Alignment(vertical="top", wrap_text=True)
     for j, name in enumerate(hdr):
         ws.cell(row=1, column=j + 1).font = bold
-        wide = ("as reported" in name or name in ("Protein", "Note",
-                                                  "Route", "Source"))
+        wide = ("as reported" in name or "basis" in name
+                or name in ("Protein", "Note", "Route", "Source"))
         ws.column_dimensions[get_column_letter(j + 1)].width = (
             46 if "as reported" in name else 34 if wide else 16)
         if wide:
@@ -375,16 +447,25 @@ def main():
     # Where each Kd sits relative to the concentrations actually
     # tested. Blank means the paper does not state enough to check,
     # which is not the same as passing.
-    ridx = range_index()
+    ridx, bidx = range_index(), basis_index()
     ri = hdr.index("Kd within tested range?")
+    bi = hdr.index("log K basis")
     si, fi = hdr.index("Source"), hdr.index("PFAS")
-    rtally = {}
+    ki = hdr.index("log K (L water / kg protein)")
+    ti = hdr.index("Route")
+    rtally, btally = {}, {}
     for row in ws.iter_rows(min_row=2):
         src = str(row[si].value or "").split(" Cw")[0].strip()
         v = ridx.get((src, row[fi].value))
         row[ri].value = v
         key = (v or "not checkable").split(" - ")[0].split(" (")[0]
         rtally[key] = rtally.get(key, 0) + 1
+
+        b = basis_for(row[ki].value, row[ti].value, src,
+                      row[fi].value, bidx)
+        row[bi].value = b
+        bkey = (b or "not resolved").split(" - ")[0]
+        btally[bkey] = btally.get(bkey, 0) + 1
 
     all_rows = list(ws.iter_rows(min_row=2, values_only=True))
     sh = focus_sheet(wb, hdr, all_rows)
@@ -403,6 +484,9 @@ def main():
     print("  Kd within the tested concentration range:")
     for k in sorted(rtally, key=lambda k: -rtally[k]):
         print(f"    {rtally[k]:5d}  {k}")
+    print("  what each log K is per (the 0.135-log question):")
+    for k in sorted(btally, key=lambda k: -btally[k]):
+        print(f"    {btally[k]:5d}  {k}")
     print("  concentrations reported as NUMBERS, over every row:")
     for k in ("both", "PFAS only", "protein only", "neither"):
         if k in tally:
