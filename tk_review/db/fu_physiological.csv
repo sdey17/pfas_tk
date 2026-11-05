@@ -1,9 +1,9 @@
 species,pfas,n_admissible,n_tied_at_top,tie_fu_lo_40,tie_fu_hi_40,chosen_source,chosen_logK,chosen_basis,chosen_because,fu_lo_40,fu_hi_40,spread_fold,fu_35,fu_40,fu_50
 human,PFBA,2,1,0.16124,0.16124,Chen 2025,2.249,volume,converted here from a Kd; volume basis; far outside (42.5x beyond) - not identifiable,0.16124,0.410562,2.5,0.180126,0.16124,0.133291
 human,PFHxA,5,1,0.015529,0.015529,Fischer 2024,3.2,mass,the paper measured the coefficient; mass basis,0.007274,0.244881,33.7,0.017708,0.015529,0.012462
-human,PFHpA,5,1,0.001982,0.001982,Fischer 2024,4.1,mass,the paper measured the coefficient; mass basis,0.00148,0.268595,181.5,0.002264,0.001982,0.001586
-human,PFOA,8,1,0.000827,0.000827,Fischer 2024,4.48,mass,the paper measured the coefficient; mass basis,0.000571,0.365225,639.5,0.000945,0.000827,0.000662
-human,PFNA,5,1,0.000808,0.000808,Fischer 2024,4.49,mass,the paper measured the coefficient; mass basis,0.000213,0.108196,508.6,0.000924,0.000808,0.000647
+human,PFHpA,4,1,0.001982,0.001982,Fischer 2024,4.1,mass,the paper measured the coefficient; mass basis,0.00148,0.222225,150.1,0.002264,0.001982,0.001586
+human,PFOA,7,1,0.000827,0.000827,Fischer 2024,4.48,mass,the paper measured the coefficient; mass basis,0.000571,0.365225,639.5,0.000945,0.000827,0.000662
+human,PFNA,4,1,0.000808,0.000808,Fischer 2024,4.49,mass,the paper measured the coefficient; mass basis,0.000808,0.108196,133.9,0.000924,0.000808,0.000647
 bovine,PFBA,5,2,0.070199,0.239388,Allendorf 2019,2.52,mass,the paper measured the coefficient; mass basis,0.070199,0.892663,12.7,0.079431,0.070199,0.056959
 bovine,PFHxA,9,4,0.004131,0.035659,Allendorf 2019,3.43,mass,the paper measured the coefficient; mass basis,0.004131,0.56125,135.9,0.010504,0.009203,0.007376
 bovine,PFHpA,12,4,0.002382,0.004038,Allendorf 2019,4.02,mass,the paper measured the coefficient; mass basis,0.002382,0.18953,79.6,0.002721,0.002382,0.001906

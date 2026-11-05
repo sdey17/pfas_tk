@@ -37,6 +37,12 @@ PREFERENCE -- the surviving candidates are ranked, best first.
   5  among converted values, a stoichiometry the paper counted or
      fixed beats one the reader assumed, which beats a fluorescence
      quenching exponent.
+  6  a measurement at 37 C beats one at 25 C. Both are in this
+     database for Peng 2024, which measured at 298, 304 and 310 K,
+     and a physiological fraction unbound wants body temperature.
+     This also stops the two from counting as independent evidence:
+     see scripts/fix_peng2024_temperatures.py, they are one
+     experiment at two temperatures.
 
 WHAT IS REPORTED.  The winner, the reason it won, and the range of fu
 implied by EVERY admissible candidate. The second is the honest
@@ -88,6 +94,10 @@ def rank(row):
            "edge" if rng.startswith("edge") else
            "far" if rng.startswith("far") else
            "outside" if rng.startswith("outside") else "none")
+    # 25 C rows are demoted below 37 C ones. Where a paper measured
+    # at both, they are one experiment, not two, and a physiological
+    # calculation wants body temperature.
+    temp = 1 if str(row.get("temp") or "").startswith("25") else 0
     n_how = (0 if "n counted" in route else
              1 if "fixed by the paper" in route else
              2 if "assumed by the reader" in route else
@@ -98,6 +108,7 @@ def rank(row):
         {"inside": 0, "edge": 1, "none": 2, "outside": 3, "far": 4}[geo],
         {"identifiable": 0, "none": 1, "marginal": 2, "not": 3}[ident],
         n_how,
+        temp,
     )
 
 
@@ -118,8 +129,30 @@ def why(row):
     return "; ".join(bits)
 
 
+def temperatures():
+    """(Source, PFAS, n) -> the row's temperature.
+
+    The workbook does not carry a temperature column, so this reads
+    it from the database. The key includes n because that is what
+    separates a paper's two temperatures: Peng 2024 measured at 298,
+    304 and 310 K and this database holds two of them per compound
+    with different fitted n. Without the temperature they look like
+    two independent studies, which is what inflated PFNA's spread.
+    """
+    db = os.path.join(HERE, "..", "db", "protein_binding.csv")
+    out = {}
+    for r in csv.DictReader(open(db, encoding="utf-8")):
+        src = f"{r['study'].replace(' et al.', '')} {r['year']}"
+        n = r["n_binding_sites"].strip()
+        for key in {n, n.rstrip("0").rstrip("."), ""}:
+            out.setdefault((src, r["chemical"], key),
+                           r["temperature_c"].strip())
+    return out
+
+
 def load():
     from openpyxl import load_workbook
+    temps = temperatures()
     ws = load_workbook(SRC)["Coefficients"]
     ix = {h: i for i, h in enumerate(c.value for c in ws[1])}
     rows = []
@@ -137,6 +170,8 @@ def load():
             pfas=r[ix["PFAS"]], species=r[ix["Species"]], source=src,
             logK=float(r[ix["log K (L water / kg protein)"]]),
             route=r[ix["Route"]],
+            temp=temps.get((src, str(r[ix["PFAS"]]),
+                            str(r[ix["n used"]] or ""))),
             basis_text=r[ix["log K basis"]],
             range_text=r[ix["Kd within tested range?"]]))
     return rows
@@ -153,7 +188,22 @@ def main():
         print(f"{species.upper()} SERUM ALBUMIN")
         print("=" * 78)
         for c in COMPOUNDS:
-            cand = sorted((r for r in here if r["pfas"] == c), key=rank)
+            cand = [r for r in here if r["pfas"] == c]
+            # One experiment at two temperatures is not two estimates.
+            # Where a source measured the same compound at 37 C and at
+            # 25 C, only the 37 C row is admissible for a
+            # physiological fu; keeping both would report the
+            # temperature dependence as if it were disagreement
+            # between laboratories. This drops a row only when its own
+            # source has a 37 C alternative, so a study that worked
+            # only at 25 C is untouched.
+            at37 = {r["source"] for r in cand
+                    if str(r.get("temp") or "").startswith("37")}
+            dropped = [r for r in cand
+                       if r["source"] in at37
+                       and not str(r.get("temp") or "").startswith("37")]
+            cand = sorted((r for r in cand if r not in dropped),
+                          key=rank)
             if not cand:
                 print(f"\n  {c}: NO admissible candidate")
                 continue
@@ -164,7 +214,9 @@ def main():
             # Allendorf's two BSA batches is 0.62 log, so it has to
             # be said rather than hidden by sort order.
             tied = [r for r in cand if rank(r) == rank(best)]
-            print(f"\n  {c}   {len(cand)} admissible")
+            print(f"\n  {c}   {len(cand)} admissible"
+                  + (f"   ({len(dropped)} dropped: same source at 37 C "
+                     f"supersedes its 25 C row)" if dropped else ""))
             print(f"    chosen  {best['source']:16} log K "
                   f"{best['logK']:.2f}   {why(best)}")
             if len(tied) > 1:
