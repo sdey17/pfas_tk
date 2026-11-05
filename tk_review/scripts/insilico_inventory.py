@@ -298,25 +298,56 @@ M = [
 
     m(study="Zhao et al.", year="2023",
       doi="10.1016/j.ecoenv.2023.115310", kind="qsar-ml",
-      data_origin="unknown", held_out="", detail="db-record",
-      endpoint="L-FABP binding",
-      model="molecular docking (Glide, Schrodinger Maestro) plus a "
-            "machine-learning QSAR built on the docking scores",
-      trained_on="NOT ESTABLISHED -- full text not reachable. The "
-                 "method string says the ML is built ON THE DOCKING "
-                 "SCORES, which would make it a model of a model "
-                 "rather than of any measurement, but that is not "
-                 "confirmed against the paper",
-      n_compounds="not established",
-      descriptors="not established", validation="not established",
-      caveat="No PMC record and the publisher gates the page, so "
-             "neither full text nor abstract was reachable. NOTE "
-             "there are TWO Zhao 2023 papers in this database and "
-             "they are easy to confuse: this one, in Ecotoxicology "
-             "and Environmental Safety, carries the L-FABP docking "
-             "and the ML QSAR; 10.1016/j.envint.2023.107951 in "
-             "Environment International is a review with no primary "
-             "data. Needs institutional access."),
+      data_origin="none", held_out="external-test", detail="read",
+      endpoint="L-FABP binding affinity at two sites (portal and "
+               "non-portal), as a hepatotoxicity proxy",
+      model="molecular docking (Glide, Schrodinger Maestro) to "
+            "GENERATE the data, then Ridge, Lasso, Decision Tree, SVM "
+            "and Random Forest regressors on it, with hyperparameters "
+            "by grid search and learning curve; plus Bayesian Kernel "
+            "Machine Regression to find the determinant property",
+      trained_on="NOT MEASUREMENTS AT ALL. The paper says so plainly: "
+                 "'Due to the limited availability of toxicity/affinity "
+                 "data towards L-FABP for the huge number of PFASs, "
+                 "molecular docking was employed to generate sufficient "
+                 "binding affinity data in the present study.' 766 PFAS "
+                 "docked in the portal region and 653 in the "
+                 "non-portal, 621 with considerable affinity at both. "
+                 "The ML model learns the scoring function, not the "
+                 "chemistry",
+      n_train="621-766 docked", n_compounds="766 portal / 653 non-portal",
+      descriptors="13 molecular fingerprints plus 192 categories of 2D "
+                  "descriptors. Fingerprints from the ChemDes platform "
+                  "(CDK 1024 bits, CDK extended 1024, Graphonly 1024, "
+                  "AtomPairs2D 780, AtomPairs2D count 780, E-state 79, "
+                  "Klekota-Roth 4860, Klekota-Roth count, MACCS 166, "
+                  "Morgan 1024); the 192 2D descriptors from MOE "
+                  "2014.09. All z-score standardised. BKMR runs on 12 "
+                  "named properties (Pol, nA, Hyd, nC, nF, Brs, Bs, "
+                  "Flex, logP, Varea, Vvol, Wei)",
+      n_feat="~11800 + 192", n_features="13 fingerprint sets (about "
+                                        "11,800 bits) plus 192 2D "
+                                        "descriptors",
+      validation="4:1 random split into training and verification; "
+                 "ten-fold cross-validation as internal validation plus "
+                 "an external validation set; R2 as the metric",
+      performance="R2 values are reported in a figure/SI not captured "
+                  "by the text extraction -- not recorded here",
+      applied_to="prioritising potentially hazardous PFAS by predicted "
+                 "L-FABP affinity",
+      caveat="A MODEL OF A MODEL. Every training label is a docking "
+             "score, so the ML reproduces Glide's scoring function "
+             "rather than any measurement, and no amount of "
+             "cross-validation can detect a bias in the thing it "
+             "learned from. This matters here specifically: two "
+             "papers in this database (Wu 2024, Li 2021) have docking "
+             "that rises monotonically with chain length while their "
+             "own measurements turn over above seven carbons, so the "
+             "scoring function is known to miss the one feature the "
+             "L-FABP literature agrees on. Its BKMR result -- that "
+             "FLEXIBILITY is the determinant property -- is a "
+             "statement about the docking scores, not about binding. "
+             "Full text read from the PDF supplied by the user."),
 
     m(study="Zhao et al.", year="2023",
       doi="10.1016/j.envint.2023.107951", pmid="37126916",
