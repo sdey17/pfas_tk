@@ -50,21 +50,54 @@ assay's precision (Khazaee states 4–18 % RSD whole-method):
 | Gao, PFOA | **2.9 %** | **19.7 %** | marginal — only just clears |
 | Gao, PFBA | **0.7 %** | **5.6 %** | **not identifiable** |
 
-## Conclusion, which reverses the starting assumption
+## The cross-test, which stops the conclusion short
 
-**Khazaee's constants stay, unflagged.** The better-designed titration
-of the two is the one that disagrees with the pack.
+Ask what each laboratory would have had to *see* if the other's
+constant were true:
 
-What the audit actually found is that **Gao 2019's L-FABP constants are
-weakly identified, and progressively worse the shorter the chain** —
-the titration is fixed at 2–10 µM while the reported Kd climbs from
-77 µM (PFDA) to 879 µM (PFBA). At PFBA only 0.7 % of the ligand is
-bound and a ten-fold change in Kd moves the measurement 5.6 %, inside
-the method's own noise.
+| | under its own Kd | under the other's Kd |
+|---|---|---|
+| **Gao**, 6 µM protein | 2.8–2.9 % of ligand bound | **49–98 %** |
+| **Khazaee**, 1 µM protein | 20–91 % bound | **under 1 %** |
 
-**Gao supplies the only published PFBA value for L-FABP in this
-database**, and it is the least identifiable number in the set. The
-short-chain end of the L-FABP figure rests on it.
+These are not two analyses of compatible data. **Each laboratory's raw
+observation rules the other's constant out.** One is wrong, or the two
+preparations of "human L-FABP" are not the same material. Better
+titration design does not decide which — so this audit does *not*
+conclude Khazaee is right, only that its Kd is identifiable from its
+own data, which is a narrower claim.
+
+## Where that leaves each
+
+**Against Gao.** A 2.9 % depletion is a small signal, and the quoted
+±13 µM on 197 µM (±6.6 %) would require that depletion pinned to
+±0.19 percentage points — each concentration to about 0.1 %, which is
+not a plausible LC-MS/MS claim. Read the SE as a curve-fit standard
+error on an under-determined curve, not as an uncertainty on Kd. Its
+constants are also weakly identified by its own titration and
+progressively worse the shorter the chain: fixed at 2–12 µM while the
+reported Kd climbs from 77 µM (PFDA) to 879 µM (PFBA). **Gao supplies
+the only published PFBA value for L-FABP in this database and it is
+the least identifiable number in the set.**
+
+**Against Khazaee.** It is alone. Its PFOA value is two logs above all
+twelve other human L-FABP values here, it rests on duplicates, and the
+nearest study by its own method contradicts it outright. Note the
+"everyone else is fluorescence displacement" reply does not rescue it,
+because Gao is not.
+
+## What to do, practically
+
+**Keep both.** Gao's disagreement with the literature is *not uniform*
+— the offset runs +0.03 log at PFHpA and PFBS to +1.38 at PFOA,
+standard deviation 0.43 — so it is not a single scale error that could
+be corrected out. It agrees at the short-chain end and diverges at the
+long.
+
+Fourteen compounds measured identically across three matrices make
+**Gao's ranking the trustworthy part**; its absolute values carry an
+uncertainty far larger than the quoted SE, and the short-chain ones
+should not be read as pinned numbers.
 
 ## Still worth knowing about Khazaee, none of it fatal
 

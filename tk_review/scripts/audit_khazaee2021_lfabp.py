@@ -40,14 +40,47 @@ concentration by 15-20 %, barely outside that precision, and only
 about 3 % of the ligand is bound at all.  Gao's Kd is an
 extrapolation roughly twenty-fold beyond its own data.
 
-CONCLUSION.  Khazaee's L-FABP constants stay, unflagged.  The
-better-designed titration of the two is the one that disagrees with
-the pack.  What this audit actually found is that GAO 2019's L-FABP
-Kd values are weakly identified, and progressively worse the shorter
-the chain -- because the titration is fixed at 2-10 uM while the
+THE CROSS-TEST SETTLES WHAT THE IDENTIFIABILITY TEST CANNOT, and it
+stops the conclusion short of where the identifiability test alone
+would take it.  Ask what each laboratory would have had to SEE if the
+other's constant were true:
+
+    Gao, at 6 uM protein:  under its own Kd, 2.8-2.9 % of the ligand
+                           bound.  Under Khazaee's, 49-98 %.
+    Khazaee, at 1 uM:      under its own Kd, 20-91 % bound.
+                           Under Gao's, under 1 %.
+
+These are not two analyses of compatible data.  Each laboratory's RAW
+OBSERVATION rules the other's constant out.  One of them is wrong, or
+the two preparations of "human L-FABP" are not the same material.
+Better titration design does not decide which, so this audit does not
+claim Khazaee is right -- only that its Kd is identifiable from its
+own data, which is a narrower statement.
+
+WHERE THAT LEAVES EACH.  Against Gao: a 2.9 % depletion is a small
+signal, and the quoted +/- 13 uM on 197 uM (+/- 6.6 %) would require
+that depletion pinned to +/- 0.19 percentage points -- each
+concentration to about 0.1 % -- which is not a plausible claim for
+LC-MS/MS.  Read the quoted SE as a curve-fit standard error on an
+under-determined curve, not as an uncertainty on Kd.  Against Khazaee:
+it is alone.  Its PFOA value is two logs above all twelve other human
+L-FABP values in this database, it rests on duplicates, and the
+nearest comparable study by its own method contradicts it outright.  What this audit also found is that GAO 2019's L-FABP
+Kd values are weakly identified by its own titration, and
+progressively worse the shorter the chain -- because the titration is fixed at 2-10 uM while the
 reported Kd climbs from 77 uM at PFDA to 879 uM at PFBA.  Gao supplies
 the only published PFBA value for L-FABP in this database, and it is
 the least identifiable number in the set.
+
+WHAT TO DO WITH GAO, PRACTICALLY.  Keep it.  Its disagreement with the
+rest of the literature is NOT uniform -- the offset runs +0.03 log at
+PFHpA and PFBS to +1.38 at PFOA, standard deviation 0.43 -- so it is
+not a single scale error that could be corrected out.  It agrees with
+the pack at the short-chain end and diverges at the long.  Fourteen
+compounds measured identically across three matrices make its RANKING
+the trustworthy part; its absolute values carry an uncertainty far
+larger than the quoted SE, and the short-chain ones should not be
+read as pinned numbers.
 
 WHAT IS STILL WORTH KNOWING ABOUT KHAZAEE, none of it fatal:
   - duplicates only.  "All dialysis tests were performed in duplicate",
