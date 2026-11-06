@@ -648,6 +648,27 @@ def conc_range_uM(value, units, mw=None):
             factor = per_ugL / float(mw)
     if factor is None:
         return None, None
+    # A cell reporting BOTH a reference and a freely dissolved
+    # concentration is giving a CONDITION and a RESULT in one string.
+    # Allendorf's dialysis tables (SI-2.3 for batch A3803, SI-2.4.2
+    # for A7906) are the only ones here shaped that way.
+    #
+    # Take c_ref. It is the reference-cell concentration, i.e. the
+    # total analyte present, measured with no protein in the cell and
+    # so already corrected for sorption to the apparatus. c_free is
+    # what is left unbound AFTER binding, so using it as the assay
+    # concentration would make the quantity being measured an input to
+    # itself -- a strong binder would appear to have been tested more
+    # dilute. It would also mean something different from every other
+    # study in this table, all of which state a total.
+    #
+    # Proof that c_ref is the total, from the papers' own arithmetic:
+    # (c_ref - c_free)/c_ref reproduces Allendorf's reported fraction
+    # bound on 13 of 14 compounds, within each one's stated SD.
+    ref = REF_FREE.search(v)
+    if ref:
+        x = float(ref.group(1)) * factor
+        return x, x
     m = CONC_NUM.match(v)
     if not m:
         return None, None
@@ -696,6 +717,10 @@ ALBUMIN_G_PER_MOL = 66463.0
 # Numbers in this column are written in several styles, scientific notation
 # included ("3e0 g/L", "2.5e-2 g/L"), so the number pattern has to admit it.
 _NUM = r"\d+(?:\.\d+)?(?:[eE][+-]?\d+)?"
+# A dialysis cell reporting a reference and a freely dissolved
+# concentration in one string; conc_range_uM takes the reference one.
+REF_FREE = re.compile(rf"c_ref\s+({_NUM})", re.I)
+
 MASS_CONC = re.compile(
     rf"({_NUM})\s*(?:-|to|\u2013)\s*({_NUM})\s*(mg/mL|g/L)"
     rf"|({_NUM})\s*(mg/mL|g/L)", re.I)

@@ -216,6 +216,7 @@ PFHxS,6,sulfonate,bovine,3.298,converted,Gao 2025,2.8751,no
 PFHxS,6,sulfonate,bovine,3.458,converted,Gao 2025,2.8751,no
 6:2 FTSA,6,sulfonate,bovine,3.76,qin,Qin 2024,,
 PFHxS,6,sulfonate,bovine,4.165,measured,Bischel 2011,-2.8697,no
+PFHxS,6,sulfonate,bovine,4.49,measured,Allendorf 2019,-1.4202,yes
 PFHxS,6,sulfonate,bovine,4.61,measured,Fischer 2024,-2.3979,yes
 PFHxS,6,sulfonate,bovine,4.81,measured,Allendorf 2019,-1.4202,yes
 PFHxS,6,sulfonate,bovine,4.82,qin,Qin 2024,,
@@ -226,12 +227,15 @@ PFOS,8,sulfonate,bovine,3.965,measured,Bischel 2011,-2.8861,no
 PFOS,8,sulfonate,bovine,4.142,converted,Gao 2025,1.0969,no
 PFOS,8,sulfonate,bovine,4.148,converted,Gao 2025,1.0969,no
 PFOS,8,sulfonate,bovine,4.221,converted,Gao 2025,1.0969,no
+PFECHS,8,sulfonate,bovine,4.3,measured,Allendorf 2019,-2.8239,yes
 PFOS,8,sulfonate,bovine,4.334,converted,Gao 2025,1.0969,no
 PFOS,8,sulfonate,bovine,4.336,converted,Gao 2025,1.0969,no
 PFECHS,8,sulfonate,bovine,4.55,measured,Allendorf 2019,-2.8239,yes
 PFOS,8,sulfonate,bovine,4.67,measured,Allendorf 2019,-1.6021,yes
 PFOS,8,sulfonate,bovine,4.76,measured,Fischer 2024,-2.3979,yes
+PFOS,8,sulfonate,bovine,4.83,measured,Allendorf 2019,-1.6021,yes
 6:2 Cl-PFESA,8,sulfonate,bovine,5.01,measured,Allendorf 2019,-1.5686,yes
+6:2 Cl-PFESA,8,sulfonate,bovine,5.02,measured,Allendorf 2019,-1.5686,yes
 PFOS,8,sulfonate,bovine,5.35,qin,Qin 2024,,
 PFNS,9,sulfonate,bovine,5.14,measured,Fischer 2024,-2.3979,yes
 PFDS,10,sulfonate,bovine,5.13,measured,Fischer 2024,-2.3979,yes
