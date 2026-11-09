@@ -622,6 +622,28 @@ def to_logK(rec, n_sites, row=None):
 # protein steps are given as "sub-saturating levels" with no number at all.
 # Converting that range and attaching it to Fischer's binding rows would
 # take one step's concentration and label it another's.
+# A concentration cell that LISTS its points rather than giving a
+# range: "0.002, 0.004, 0.006, 0.008, 0.010 and 0.012 mM (2 to 12 uM,
+# a six-point series)". Requires at least three comma- or
+# and-separated numbers before the unit, so an ordinary "0.1 mM" or a
+# dashed range is left to CONC_NUM. The parenthetical gloss is cut
+# first, since it repeats the same series in other units and would
+# otherwise contribute numbers on a different scale.
+_LIST_NUM = re.compile(r"[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?")
+
+
+def listed_points(v):
+    """[floats] if the cell lists >=3 concentrations, else []."""
+    head = v.split("(")[0]
+    if "," not in head:
+        return []
+    head = re.sub(r"\b(?:and|to)\b", ",", head)
+    head = re.sub(r"[A-Za-z/%]+", " ", head)      # drop the unit
+    pts = [float(x) for x in _LIST_NUM.findall(head)]
+    pts = [x for x in pts if x > 0]               # a leading 0 is no point
+    return pts if len(pts) >= 3 else []
+
+
 CONC_NUM = re.compile(
     r"^\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"
     r"\s*(?:(?:-|to)\s*([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?))?"
@@ -669,6 +691,16 @@ def conc_range_uM(value, units, mw=None):
     if ref:
         x = float(ref.group(1)) * factor
         return x, x
+    # A cell that lists its titration points instead of a range --
+    # Gao 2019 writes "0.002, 0.004, 0.006, 0.008, 0.010 and 0.012 mM
+    # (2 to 12 uM, a six-point series)". CONC_NUM wants two numbers
+    # with a dash between them and refuses a list, which left the
+    # molar concentration blank on rows that state it explicitly.
+    # Take the lowest and highest listed points; that is the same
+    # (low, high) this function returns for a dashed range.
+    lst = listed_points(v)
+    if lst:
+        return min(lst) * factor, max(lst) * factor
     m = CONC_NUM.match(v)
     if not m:
         return None, None

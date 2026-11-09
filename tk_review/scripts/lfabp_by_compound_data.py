@@ -51,6 +51,7 @@ Run:  python3 tk_review/scripts/lfabp_by_compound_data.py
 """
 import collections
 import csv
+import importlib.util
 import os
 import re
 
@@ -89,6 +90,17 @@ METHOD = [
     (re.compile(r"displacement", re.I), "displacement"),
 ]
 
+# The same compound under two names splits into two panels, which is
+# the one error this figure cannot show you. The albumin builder goes
+# through the project canonicaliser and this one did not, so
+# HFPO-DA / "HFPO-DA (GenX)" and PFDoA / PFDoDA each drew twice.
+_spec = importlib.util.spec_from_file_location(
+    "pfas_names", os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "pfas_names.py"))
+PN = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(PN)
+
+
 VARIANT = re.compile(r"ENGINEERED POINT VARIANT (\S+)", re.I)
 
 
@@ -96,7 +108,7 @@ def lookup():
     """chemical -> (nCF, head group), from the database."""
     ncf, head = {}, {}
     for r in csv.DictReader(open(DB, encoding="utf-8")):
-        c = r["chemical"]
+        c = PN.canon(r["chemical"])
         if r["n_perfluorinated_carbons"].strip().isdigit():
             ncf.setdefault(c, int(r["n_perfluorinated_carbons"]))
         if r["head_group"].strip():
@@ -134,7 +146,7 @@ def main():
         if "liver fatty acid" not in prot.lower():
             not_lfabp += 1
             continue
-        name = str(r[ix["PFAS"]])
+        name = PN.canon(str(r[ix["PFAS"]]))
         note = str(r[ix["Note"]] or "")
         nb = "no binding detected" in note.lower()
         if r[ix["log K (L water / kg protein)"]] is None and not nb:
