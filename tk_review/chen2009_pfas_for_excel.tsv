@@ -1,0 +1,8 @@
+PFAS	Site	Kd (uM)	n used	log K (L water / kg protein)	Route	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio
+PFBA	Sudlow site I	0.9091	1	4.219	n = 1 assumed; the paper reports no usable stoichiometry	6000	100	60
+PFBS	Sudlow site I	0.4545	1	4.520	n = 1 assumed; the paper reports no usable stoichiometry	5000	100	50
+PFBS	Sudlow site II	0.1538	1	4.990	n = 1 assumed; the paper reports no usable stoichiometry	5000	100	50
+PFDoA	Sudlow site II	0.8333	1	4.257	n = 1 assumed; the paper reports no usable stoichiometry	2000	100	20
+PFOA	Trp214	3.704	5.8	4.372	n as reported by the paper	800	100	8
+PFOS	Sudlow site II	0.1316	1	5.058	n = 1 assumed; the paper reports no usable stoichiometry	6000	100	60
+PFOS	Trp214	45.45	14	3.666	n as reported by the paper	4000	100	40

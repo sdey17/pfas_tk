@@ -53,6 +53,49 @@ _spec = importlib.util.spec_from_file_location(
 _baf = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_baf)
 first_author = _baf.first_author
+# WHAT COUNTS AS A PFAS HERE, and why it is not a name regex.
+# build_binding_affinity_table's own classifier looked like the answer
+# and is not.  Its multi-compound test fires on any comma, so the probe
+# "1,8-ANS" reads as an aggregate rather than a non-PFAS, while its
+# PFAS_LIKE pattern does not recognise EtFOSA, EtFBSA, 9Cl-PF3ONS,
+# NFDHA, M3-Cl-PFECA or Nafion byproduct 2 -- so filtering on it DROPS
+# REAL PFAS: 17 names in Starnes 2025 and 53 in Muensterman 2026.
+# Hand-written fluorine patterns fail the same way in the other
+# direction, and both failures are silent.
+#
+# So this does not try to recognise a PFAS from its name.  It asks only
+# what the database already records about the row:
+#
+#   n_perfluorinated_carbons == 0   the curator counted zero
+#   head_group or chemical says     "reference compound/ligand/probe",
+#                                   "not a PFAS", "endogenous",
+#                                   "pesticide", "... control"
+#   the name is a plain fatty acid  octanoic acid, palmitic acid, ...
+#                                   ANCHORED, so "Perfluorooctanoic
+#                                   acid" and "2H,2H,3H,3H-perfluoro-
+#                                   octanoic acid" cannot match
+#
+# Across the whole file that drops 19 distinct names -- fatty acids,
+# two fluorescent probes, two pesticides and warfarin -- and no PFAS.
+# Every dropped row is named on stderr, so a wrong call is visible
+# rather than silent.
+SAYS = re.compile(r"reference (compound|ligand|probe)|not a PFAS|endogenous|"
+                  r"pesticide|\bcontrol\b", re.I)
+FATTY = re.compile(r"^(n-)?(formic|acetic|propionic|butyric|valeric|caproic|"
+                   r"enanthic|caprylic|pelargonic|capric|lauric|myristic|"
+                   r"palmitic|stearic|oleic|linoleic|arachidonic|"
+                   r"butanoic|pentanoic|hexanoic|heptanoic|octanoic|nonanoic|"
+                   r"decanoic|undecanoic|dodecanoic|tridecanoic|"
+                   r"tetradecanoic|hexadecanoic|octadecanoic)\s+acid", re.I)
+
+
+def is_pfas(r):
+    chem = (r["chemical"] or "").strip()
+    return not (r["n_perfluorinated_carbons"].strip() == "0"
+                or SAYS.search(r["head_group"] or "")
+                or SAYS.search(chem)
+                or FATTY.match(chem))
+
 
 BRIDGE = 4.1774                       # log10(1e9 / 66463), albumin
 TO_UM = {"mM": 1e3, "um": 1.0, "uM": 1.0, "nM": 1e-3, "M": 1e6}
@@ -111,6 +154,12 @@ def main():
     ap.add_argument("year")
     ap.add_argument("-o", "--out", default="",
                     help="output path; '-' for stdout")
+    ap.add_argument("--pfas-only", action="store_true",
+                    help="drop non-PFAS reference ligands (octanoic acid, "
+                         "warfarin, DAUDA and the rest)")
+    ap.add_argument("--cols", default="",
+                    help="comma-separated subset of the column headers, "
+                         "in the order wanted")
     args = ap.parse_args()
 
     rows = list(csv.DictReader(open(DB, encoding="utf-8")))
@@ -124,8 +173,11 @@ def main():
         print(f"  {len(labels)} study labels match: {labels}", file=sys.stderr)
 
     src = f"{first_author(labels[0])} {args.year}"
-    out, skipped = [], 0
+    out, skipped, nonpfas = [], 0, []
     for r in hit:
+        if args.pfas_only and not is_pfas(r):
+            nonpfas.append(r["chemical"])
+            continue
         if not r["kd"]:
             skipped += 1
             continue
@@ -150,9 +202,24 @@ def main():
             fb or "not reported"])
     out.sort(key=lambda x: (x[0], x[2]))
 
-    body = "\n".join(["\t".join(HDR)] + ["\t".join(c) for c in out]) + "\n"
+    hdr, pick = HDR, list(range(len(HDR)))
+    if args.cols:
+        want = [c.strip() for c in args.cols.split(",") if c.strip()]
+        miss = [c for c in want if c not in HDR]
+        if miss:
+            print(f"  no such column(s): {miss}\n  have: {HDR}",
+                  file=sys.stderr)
+            return 1
+        pick = [HDR.index(c) for c in want]
+        hdr = want
+    body = "\n".join(["\t".join(hdr)]
+                     + ["\t".join(c[i] for i in pick) for c in out]) + "\n"
     print(f"  {len(hit)} rows for {labels[0]} {args.year}; "
           f"{len(out)} carry a Kd, {skipped} do not", file=sys.stderr)
+    if nonpfas:
+        u = sorted(set(nonpfas))
+        print(f"  {len(nonpfas)} non-PFAS reference rows dropped "
+              f"(--pfas-only): {', '.join(u)}", file=sys.stderr)
 
     if args.out == "-":
         sys.stdout.write(body)
