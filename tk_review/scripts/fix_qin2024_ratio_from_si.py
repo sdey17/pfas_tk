@@ -6,6 +6,16 @@ Protein Binding of Per- and Polyfluoroalkyl Substances."  Environ Sci
 Technol 2024;58:9954.  doi 10.1021/acs.est.3c10824, PMID 38804966.
 The SI was supplied directly.
 
+SCOPED BY DOI, NOT BY STUDY LABEL.  Two different Qin 2024 papers
+share the label "Qin et al. 2024" in this database: this one
+(3c10824, plasma binding) and the baseline-toxicity paper (3c09950),
+whose Table 1 reports cell, structural-protein and membrane
+coefficients from a completely different experiment -- 220 uL wells
+of 25,000 HEK293H cells, no BSA titration at all.  An earlier run of
+this script filtered on study-plus-year and stamped Table S5's BSA
+ratios and bound fractions onto all 35 rows of the companion paper.
+Filtering on DOI is the only safe key while the two share a label.
+
 WHAT WAS WRONG.  136 rows, 112 with a protein concentration and 111
 with a ligand range, and ZERO ratios -- because protein_conc held
 prose ("0.1-10 mg/mL BSA, chosen per compound", "plasma diluted to
@@ -52,6 +62,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "db", "protein_binding.csv")
 MW_BSA = 66463.0
+DOI = "10.1021/acs.est.3c10824"      # the plasma-binding paper ONLY
 
 # Table S5: name -> (Ctot uM, BSA mg/L, BSA fbound %, plasma mL/L,
 #                    human plasma fbound %, fish plasma fbound %)
@@ -98,7 +109,7 @@ def main():
         rd = csv.DictReader(fh)
         flds, rows = list(rd.fieldnames), list(rd)
 
-    hit = [r for r in rows if r["study"].startswith("Qin") and r["year"] == "2024"]
+    hit = [r for r in rows if r["doi"] == DOI]
     done = miss = 0
     seen = {}
     for r in hit:

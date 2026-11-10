@@ -1,0 +1,184 @@
+pfas,series,log_k,source,species,basis
+PFOS,albumin,4.670,Allendorf 2019,bovine,kg_protein
+PFOS,albumin,4.830,Allendorf 2019,bovine,kg_protein
+PFOS,albumin,3.965,Bischel 2011,bovine,kg_protein
+PFOS,albumin,4.620,Fischer 2024,human,kg_protein
+PFOS,albumin,4.760,Fischer 2024,bovine,kg_protein
+PFOS,albumin,5.350,Qin 2024,bovine,kg_protein
+PFOS,albumin,3.702,Fan 2025,rat,kg_protein
+PFOS,albumin,2.510,Fan 2025,rat,kg_protein
+PFOS,albumin,4.204,Chen 2025,human,kg_protein
+PFOS,albumin,2.598,Gao 2019,human,kg_protein
+PFOS,albumin,4.334,Gao 2025,bovine,kg_protein
+PFOS,albumin,4.336,Gao 2025,bovine,kg_protein
+PFOS,albumin,4.221,Gao 2025,bovine,kg_protein
+PFOS,albumin,4.148,Gao 2025,bovine,kg_protein
+PFOS,albumin,4.142,Gao 2025,bovine,kg_protein
+PFOS,albumin,3.943,Gao 2025,bovine,kg_protein
+PFOS,albumin,3.944,Gao 2025,bovine,kg_protein
+PFOS,albumin,2.146,Hebert 2010,human,kg_protein
+PFOS,albumin,3.666,Chen 2009,human,kg_protein
+PFOS,albumin,0.713,Wu 2024,human,kg_protein
+PFOS,structural protein (Qin 2024),3.805,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFOS,whole cell (Qin 2024),4.185,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFOSA,albumin,4.340,Fischer 2024,human,kg_protein
+PFOSA,albumin,4.330,Fischer 2024,bovine,kg_protein
+PFOSA,albumin,4.240,Qin 2024,bovine,kg_protein
+PFOSA,albumin,3.129,Chen 2025,human,kg_protein
+PFOSA,structural protein (Qin 2024),3.385,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFOSA,whole cell (Qin 2024),3.675,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFNA,albumin,4.320,Allendorf 2019,bovine,kg_protein
+PFNA,albumin,4.480,Allendorf 2019,bovine,kg_protein
+PFNA,albumin,4.930,Bischel 2010,human,kg_protein
+PFNA,albumin,4.740,Bischel 2010,bovine,kg_protein
+PFNA,albumin,4.560,Bischel 2010,bovine,kg_protein
+PFNA,albumin,3.915,Bischel 2011,bovine,kg_protein
+PFNA,albumin,4.490,Fischer 2024,human,kg_protein
+PFNA,albumin,4.540,Fischer 2024,bovine,kg_protein
+PFNA,albumin,4.560,Qin 2024,bovine,kg_protein
+PFNA,albumin,4.882,Bischel 2010,bovine,kg_protein
+PFNA,albumin,5.158,Bischel 2010,bovine,kg_protein
+PFNA,albumin,3.679,Fan 2025,rat,kg_protein
+PFNA,albumin,2.709,Fan 2025,rat,kg_protein
+PFNA,albumin,3.603,Chen 2025,human,kg_protein
+PFNA,albumin,2.314,Gao 2019,human,kg_protein
+PFNA,albumin,4.175,Gao 2025,bovine,kg_protein
+PFNA,albumin,4.106,Gao 2025,bovine,kg_protein
+PFNA,albumin,4.033,Gao 2025,bovine,kg_protein
+PFNA,albumin,3.935,Gao 2025,bovine,kg_protein
+PFNA,albumin,2.656,Hebert 2010,human,kg_protein
+PFNA,albumin,2.275,Hebert 2010,human,kg_protein
+PFNA,albumin,3.214,Peng 2024,human,kg_protein
+PFNA,albumin,5.249,Peng 2024,human,kg_protein
+PFNA,albumin,3.555,Peng 2024,human,kg_protein
+PFNA,structural protein (Qin 2024),3.255,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFNA,whole cell (Qin 2024),3.605,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+6:2 FTSA,albumin,3.350,Fischer 2024,human,kg_protein
+6:2 FTSA,albumin,3.440,Fischer 2024,bovine,kg_protein
+6:2 FTSA,albumin,3.760,Qin 2024,bovine,kg_protein
+6:2 FTSA,albumin,3.794,Chen 2025,human,kg_protein
+6:2 FTSA,structural protein (Qin 2024),3.255,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+6:2 FTSA,whole cell (Qin 2024),3.765,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFOA,albumin,4.200,Allendorf 2019,bovine,kg_protein
+PFOA,albumin,4.170,Allendorf 2019,bovine,kg_protein
+PFOA,albumin,4.005,Bischel 2011,bovine,kg_protein
+PFOA,albumin,4.480,Fischer 2024,human,kg_protein
+PFOA,albumin,4.200,Fischer 2024,bovine,kg_protein
+PFOA,albumin,4.640,Qin 2024,bovine,kg_protein
+PFOA,albumin,4.112,Bischel 2010,bovine,kg_protein
+PFOA,albumin,4.470,Bischel 2010,bovine,kg_protein
+PFOA,albumin,3.377,Fan 2025,rat,kg_protein
+PFOA,albumin,2.695,Fan 2025,rat,kg_protein
+PFOA,albumin,4.525,Moro 2022,human,kg_protein
+PFOA,albumin,2.561,Moro 2022,human,kg_protein
+PFOA,albumin,3.358,Moro 2022,human,kg_protein
+PFOA,albumin,3.492,Moro 2022,human,kg_protein
+PFOA,albumin,3.786,Wu 2009,human,kg_protein
+PFOA,albumin,2.570,Wu 2009,human,kg_protein
+PFOA,albumin,1.997,Wu 2009,human,kg_protein
+PFOA,albumin,3.767,Chen 2025,human,kg_protein
+PFOA,albumin,2.117,Gao 2019,human,kg_protein
+PFOA,albumin,3.668,Gao 2025,bovine,kg_protein
+PFOA,albumin,3.543,Gao 2025,bovine,kg_protein
+PFOA,albumin,3.486,Gao 2025,bovine,kg_protein
+PFOA,albumin,3.327,Gao 2025,bovine,kg_protein
+PFOA,albumin,2.568,Hebert 2010,human,kg_protein
+PFOA,albumin,2.351,Hebert 2010,human,kg_protein
+PFOA,albumin,0.685,Klevens 1954,bovine,kg_protein
+PFOA,albumin,4.372,Chen 2009,human,kg_protein
+PFOA,albumin,2.513,Han 2003,rat,kg_protein
+PFOA,albumin,2.455,Han 2003,human,kg_protein
+PFOA,albumin,4.641,Peng 2024,human,kg_protein
+PFOA,albumin,3.634,Peng 2024,human,kg_protein
+PFOA,albumin,4.643,Peng 2024,human,kg_protein
+PFOA,albumin,0.025,Wu 2024,human,kg_protein
+PFOA,structural protein (Qin 2024),3.005,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFOA,whole cell (Qin 2024),3.805,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFHxS,albumin,4.810,Allendorf 2019,bovine,kg_protein
+PFHxS,albumin,4.490,Allendorf 2019,bovine,kg_protein
+PFHxS,albumin,4.165,Bischel 2011,bovine,kg_protein
+PFHxS,albumin,4.770,Fischer 2024,human,kg_protein
+PFHxS,albumin,4.610,Fischer 2024,bovine,kg_protein
+PFHxS,albumin,4.820,Qin 2024,bovine,kg_protein
+PFHxS,albumin,2.908,Fan 2025,rat,kg_protein
+PFHxS,albumin,3.081,Fan 2025,rat,kg_protein
+PFHxS,albumin,4.060,Chen 2025,human,kg_protein
+PFHxS,albumin,2.280,Gao 2019,human,kg_protein
+PFHxS,albumin,3.458,Gao 2025,bovine,kg_protein
+PFHxS,albumin,3.298,Gao 2025,bovine,kg_protein
+PFHxS,albumin,3.267,Gao 2025,bovine,kg_protein
+PFHxS,albumin,3.146,Gao 2025,bovine,kg_protein
+PFHxS,albumin,2.295,Hebert 2010,human,kg_protein
+PFHxS,albumin,0.241,Wu 2024,human,kg_protein
+PFHxS,structural protein (Qin 2024),2.815,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFHxS,whole cell (Qin 2024),3.425,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+HFPO-DA,albumin,3.060,Allendorf 2019,bovine,kg_protein
+HFPO-DA,albumin,2.710,Allendorf 2019,bovine,kg_protein
+HFPO-DA,albumin,3.280,Qin 2024,bovine,kg_protein
+HFPO-DA,albumin,3.439,Fan 2025,rat,kg_protein
+HFPO-DA,albumin,2.740,Fan 2025,rat,kg_protein
+HFPO-DA,albumin,2.899,Moro 2022,human,kg_protein
+HFPO-DA,albumin,3.182,Moro 2022,human,kg_protein
+HFPO-DA,albumin,2.252,Moro 2022,human,kg_protein
+HFPO-DA,albumin,2.746,Moro 2022,human,kg_protein
+HFPO-DA,albumin,3.360,Chen 2025,human,kg_protein
+HFPO-DA,albumin,1.558,Gao 2025,bovine,kg_protein
+HFPO-DA,albumin,1.520,Gao 2025,bovine,kg_protein
+HFPO-DA,albumin,1.500,Gao 2025,bovine,kg_protein
+HFPO-DA,albumin,1.324,Gao 2025,bovine,kg_protein
+HFPO-DA,albumin,-0.259,Wu 2024,human,kg_protein
+HFPO-DA,structural protein (Qin 2024),2.635,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+HFPO-DA,whole cell (Qin 2024),2.955,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFHpA,albumin,4.020,Allendorf 2019,bovine,kg_protein
+PFHpA,albumin,3.790,Allendorf 2019,bovine,kg_protein
+PFHpA,albumin,4.095,Bischel 2011,bovine,kg_protein
+PFHpA,albumin,4.100,Fischer 2024,human,kg_protein
+PFHpA,albumin,3.930,Fischer 2024,bovine,kg_protein
+PFHpA,albumin,4.010,Qin 2024,bovine,kg_protein
+PFHpA,albumin,3.651,Fan 2025,rat,kg_protein
+PFHpA,albumin,2.720,Fan 2025,rat,kg_protein
+PFHpA,albumin,3.385,Chen 2025,human,kg_protein
+PFHpA,albumin,1.942,Gao 2019,human,kg_protein
+PFHpA,albumin,2.563,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.470,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.461,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.339,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.264,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.122,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.029,Gao 2025,bovine,kg_protein
+PFHpA,albumin,2.165,Hebert 2010,human,kg_protein
+PFHpA,albumin,4.227,Peng 2024,human,kg_protein
+PFHpA,albumin,1.816,Peng 2024,human,kg_protein
+PFHpA,albumin,4.058,Peng 2024,human,kg_protein
+PFHpA,structural protein (Qin 2024),2.515,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFHpA,whole cell (Qin 2024),3.555,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFHxA,albumin,3.430,Allendorf 2019,bovine,kg_protein
+PFHxA,albumin,3.020,Allendorf 2019,bovine,kg_protein
+PFHxA,albumin,3.915,Bischel 2011,bovine,kg_protein
+PFHxA,albumin,3.200,Fischer 2024,human,kg_protein
+PFHxA,albumin,2.830,Fischer 2024,bovine,kg_protein
+PFHxA,albumin,3.280,Qin 2024,bovine,kg_protein
+PFHxA,albumin,3.207,Fan 2025,rat,kg_protein
+PFHxA,albumin,2.241,Fan 2025,rat,kg_protein
+PFHxA,albumin,3.533,Moro 2022,human,kg_protein
+PFHxA,albumin,3.419,Moro 2022,human,kg_protein
+PFHxA,albumin,3.032,Chen 2025,human,kg_protein
+PFHxA,albumin,1.887,Gao 2019,human,kg_protein
+PFHxA,albumin,1.520,Gao 2025,bovine,kg_protein
+PFHxA,albumin,1.433,Gao 2025,bovine,kg_protein
+PFHxA,albumin,1.408,Gao 2025,bovine,kg_protein
+PFHxA,albumin,1.291,Gao 2025,bovine,kg_protein
+PFHxA,structural protein (Qin 2024),2.315,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFHxA,whole cell (Qin 2024),3.315,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
+PFBA,albumin,2.520,Allendorf 2019,bovine,kg_protein
+PFBA,albumin,1.900,Allendorf 2019,bovine,kg_protein
+PFBA,albumin,2.600,Qin 2024,bovine,kg_protein
+PFBA,albumin,3.617,Fan 2025,rat,kg_protein
+PFBA,albumin,2.404,Fan 2025,rat,kg_protein
+PFBA,albumin,2.249,Chen 2025,human,kg_protein
+PFBA,albumin,1.555,Gao 2019,human,kg_protein
+PFBA,albumin,0.655,Gao 2025,bovine,kg_protein
+PFBA,albumin,0.478,Gao 2025,bovine,kg_protein
+PFBA,albumin,-0.842,Wu 2024,human,kg_protein
+PFBA,structural protein (Qin 2024),1.975,"Qin 2024 companion Table 1, D_SP/w",human cell line,converted from L_protein by -0.135
+PFBA,whole cell (Qin 2024),2.265,"Qin 2024 companion Table 1, D_cell/w",human cell line,converted from L_protein by -0.135
