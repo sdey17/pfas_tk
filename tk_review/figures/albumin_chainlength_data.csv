@@ -37,7 +37,7 @@ PFHpA,6,carboxylate,bovine,3.93,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,bovine,4.01,qin,Qin 2024,,
 PFHpA,6,carboxylate,bovine,4.02,measured,Allendorf 2019,-2.1308,yes
 PFHpA,6,carboxylate,bovine,4.095,measured,Bischel 2011,-2.8239,no
-PFOA,7,carboxylate,bovine,0.685,converted,Klevens 1954,,
+PFOA,7,carboxylate,bovine,0.685,converted,Klevens 1954,1.4624,no
 PFOA,7,carboxylate,bovine,3.327,converted,Gao 2025,3.273,no
 PFOA,7,carboxylate,bovine,3.486,converted,Gao 2025,3.273,no
 PFOA,7,carboxylate,bovine,3.543,converted,Gao 2025,3.273,no
@@ -122,11 +122,11 @@ PFHpA,6,carboxylate,human,4.058,quenching,Peng 2024,1.2553,no
 PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024,1.2553,no
 PFOA,7,carboxylate,human,1.638,converted,Han 2003,,
-branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,,
+branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,0.301,no
 PFOA,7,carboxylate,human,1.997,converted,Wu 2009,1.301,no
 PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
-linear PFOA (n-PFOA),7,carboxylate,human,2.177,converted,Beesoon 2015,,
 PFOA,7,carboxylate,human,2.351,converted,Hebert 2010,,
+linear PFOA (n-PFOA),7,carboxylate,human,2.478,converted,Beesoon 2015,0.301,no
 PFOA,7,carboxylate,human,2.561,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,2.568,converted,Hebert 2010,,
 PFOA,7,carboxylate,human,2.57,converted,Wu 2009,1.301,no
@@ -270,7 +270,7 @@ PFHxS,6,sulfonate,human,4.77,measured,Fischer 2024,-2.3979,yes
 PFHpS,7,sulfonate,human,3.952,converted,Chen 2025,0.301,no
 PFHpS,7,sulfonate,human,5.49,measured,Fischer 2024,-2.3979,yes
 PFOS,8,sulfonate,human,2.146,converted,Hebert 2010,,
-branched PFOS isomers (range),8,sulfonate,human,2.274,converted,Beesoon 2015,,
+branched PFOS isomers (range),8,sulfonate,human,2.274,converted,Beesoon 2015,0.301,no
 6:2 Cl-PFESA,8,sulfonate,human,2.351,converted,Gao 2019,0.301,no
 PFOS,8,sulfonate,human,2.598,converted,Gao 2019,0.301,no
 PFOS and 6:2 Cl-PFESA (F-53B),8,sulfonate,human,2.823,converted,Sheng 2020,,
@@ -280,7 +280,7 @@ PFECHS,8,sulfonate,human,3.968,converted,Chen 2025,0.301,no
 PFOS,8,sulfonate,human,4.204,converted,Chen 2025,0.301,no
 8Cl-PFOS,8,sulfonate,human,4.238,converted,Chen 2025,0.301,no
 PFOS,8,sulfonate,human,4.62,measured,Fischer 2024,-2.3979,yes
-linear PFOS (n-PFOS),8,sulfonate,human,5.274,converted,Beesoon 2015,,
+linear PFOS (n-PFOS),8,sulfonate,human,5.575,converted,Beesoon 2015,0.301,no
 PFNS,9,sulfonate,human,3.361,converted,Chen 2025,0.301,no
 PFNS,9,sulfonate,human,4.99,measured,Fischer 2024,-2.3979,yes
 8:2 Cl-PFESA,10,sulfonate,human,3.631,converted,Chen 2025,0.301,no
