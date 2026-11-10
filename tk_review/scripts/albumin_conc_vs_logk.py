@@ -33,19 +33,32 @@ copy), writes it back with the four columns added, and prints the test.
 
 Run:  python3 -I tk_review/scripts/albumin_conc_vs_logk.py <workbook.xlsx>
 """
+import csv
 import collections
 import importlib.util
 import math
 import os
+import re
 import statistics
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DEFAULT = os.path.join(HERE, "..", "db", "albumin_logK_shareable.xlsx")
 OUT = os.path.join(HERE, "..", "db", "albumin_logK_with_conc.xlsx")
+DB = os.path.join(HERE, "..", "db", "protein_binding.csv")
 
 NEW = ["PFAS conc (as stated)", "PFAS conc (uM)", "Protein conc (uM)",
-       "ligand:protein ratio (max)"]
+       "ligand:protein ratio (max)", "f_bound (%)"]
+
+# The bound fraction travels with the VALUE, not with the assay block --
+# two compounds measured side by side in one experiment share a
+# concentration but not an f -- so it is joined per row rather than taken
+# off the condition block the other four come from.
+BOUND = re.compile(r"([\d.]+)\s*%\s*bound")
+UNBOUND = re.compile(r"([\d.]+)\s*%\s*unbound")
+# "99.95 +/- 0.01% bound" -- the regex would otherwise capture the standard
+# error, because it is the number sitting against "% bound".
+PM = re.compile(r"\s*(?:\+/-|\u00b1)\s*[\d.]+")
 
 # Qin 2024 SI Table S6: the slope of log D_BSA/w against log Cw, measured
 # within one laboratory on one isotherm. This is the benchmark.
@@ -89,6 +102,7 @@ def conditions():
     B = _load("baf", "build_binding_affinity_table.py")
     N = _load("pfas_names", "pfas_names.py")
     recs = B.build(filter_compounds=False)[1]
+    fb = bound_index(N)
     blocks = B.condition_index(recs)
     B.stamp_conditions(recs, blocks)
     out = {}
@@ -100,7 +114,10 @@ def conditions():
         c = blocks[B.block_key(B.condition_row(r))]
         cand = (c["pfas_conc_as_stated"], str(c["pfas_conc_uM"]),
                 str(c["protein_conc_uM"]),
-                str(c["ligand_protein_ratio_max"]))
+                str(c["ligand_protein_ratio_max"]),
+                fb.get((r["_id"], N.canon(r["pfas"]),
+                        str(r.get("kd_uM", "") or "").strip()))
+                or fb.get((r["_id"], N.canon(r["pfas"]), "")) or "")
         # (compound, species, source) is NOT unique: one study can measure
         # the same compound on the same protein under several conditions,
         # and keying on those three alone hands them all the conditions of
@@ -118,6 +135,64 @@ def conditions():
             if k not in out or (not out[k][1].strip() and cand[1].strip()):
                 out[k] = cand
     return out
+
+
+def bound_index(N):
+    """(doi, compound, Kd) -> bound percentage, read from the database.
+
+    The affinity records do not carry unbound_fraction, so it is joined
+    from db/protein_binding.csv.
+
+    Kd is in the key because one study can report several bound fractions
+    for one compound, and they are the thing that differs: Bischel 2010
+    measures PFNA on BSA three times, at 99.95, 99.92 and 99.89% bound.
+    A row whose Kd cell is empty cannot be told apart that way, so it
+    never writes a keyed entry.
+
+    The loose (doi, compound) key is added ONLY where the study reports a
+    single value for that compound.  Where it reports several and nothing
+    distinguishes them, the column is left empty rather than stamped with
+    whichever row was read first -- the failure this project already hit
+    once, on Qin 2024.
+
+    Only an explicit "N% bound" or "N% unbound" is read.  Bischel 2011
+    stores a bare "0.01" whose unit the field never states, so those
+    eleven rows are skipped rather than guessed at.
+    """
+    seen = collections.defaultdict(set)
+    out = {}
+    with open(DB, newline="", encoding="utf-8") as fh:
+        for d in csv.DictReader(fh):
+            pct = bound_pct(d.get("unbound_fraction") or "")
+            if not pct:
+                continue
+            cmp_ = N.canon(d["chemical"])
+            kd = str(d.get("kd", "") or "").strip()
+            seen[(d["doi"], cmp_)].add(pct)
+            if kd:
+                out.setdefault((d["doi"], cmp_, kd), pct)
+    for (doi, cmp_), vals in seen.items():
+        if len(vals) == 1:
+            out.setdefault((doi, cmp_, ""), next(iter(vals)))
+    return out
+
+
+def bound_pct(text):
+    """The bound percentage as a number, from whichever way it is written.
+
+    Sources state it either way round -- "46% bound" or "54% unbound" --
+    and some give both. Prefer an explicit bound figure; otherwise take
+    the complement of the unbound one. Returns "" when neither is there,
+    which is most rows: only 57 albumin rows report it at all.
+    """
+    text = PM.sub("", text)
+    m = BOUND.search(text)
+    if m:
+        return f"{float(m.group(1)):g}"
+    m = UNBOUND.search(text)
+    if m:
+        return f"{100 - float(m.group(1)):g}"
+    return ""
 
 
 def fit(xs, ys):
@@ -163,7 +238,7 @@ def main():
         # borrow the plasma paper's Table S5 conditions; the anchor module
         # supplies Qin's conditions below, from the active paper only.
         got = (cond.get(key + (kd,)) if kd else None) or cond.get(key)
-        stated, uM, prot, ratio = got or ("", "", "", "")
+        stated, uM, prot, ratio, fb = got or ("", "", "", "", "")
         # A Qin row is a fit read at a chosen free concentration, not a
         # dosed one, so it takes its whole set of conditions from the
         # anchor module -- including the ligand, protein and ratio, which
@@ -177,9 +252,10 @@ def main():
             # into it.  The free concentration the fit was read at is a
             # different number and lives in the text, not this column.
             uM, prot, ratio = a["ligand_uM"], a["protein_uM"], a["ratio"]
+            fb = ""      # the baseline paper reports no bound fraction
             qin_rows += 1
         d[NEW[0]], d[NEW[1]] = stated, uM
-        d[NEW[2]], d[NEW[3]] = prot, ratio
+        d[NEW[2]], d[NEW[3]], d[NEW[4]] = prot, ratio, fb
         if str(uM).strip():
             filled += 1
         rows.append(d)
