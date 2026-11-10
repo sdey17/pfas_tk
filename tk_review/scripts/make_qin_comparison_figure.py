@@ -48,6 +48,7 @@ Run:  python3 tk_review/scripts/make_qin_comparison_figure.py [data.csv]
 import csv
 import os
 import sys
+import textwrap
 
 import matplotlib
 matplotlib.use("Agg")
@@ -71,6 +72,19 @@ SURFACE = "#fcfcfb"
 INK, INK2, MUTED = "#0b0b0b", "#52514e", "#898781"
 GRID, AXIS = "#e1e0d9", "#c3c2b7"
 QIN_C, MEAS_C = "#2a78d6", "#eb6834"
+
+# No title or subtitle is drawn: the project adds those by hand.  main()
+# prints the caption instead, so its numbers stay tied to the data.
+QIN_LABEL = "Qin 2024, Table 1: the Freundlich fit read at IC10,free"
+CAPTION = (
+    "Qin 2024 sits above every directly measured value for {above} of {n} "
+    "compounds. Each Qin point is its Table 1 log D_BSA/w: the Freundlich "
+    "fit read at IC10,free, the free concentration causing 10% "
+    "cytotoxicity, {lo:.3g} to {hi:.3g} uM. That is inside or above the "
+    "range the isotherm was measured over, so these are interpolations "
+    "rather than extrapolations -- but it is also a loading of 0.3 to 12 "
+    "PFAS per albumin, far past the physiological trace limit. The grey "
+    "cloud is the literature's own spread, up to 4.6 log on one compound.")
 BAND = "#fbe4da"            # a pale wash of the measured hue
 
 plt.rcParams.update({
@@ -105,9 +119,14 @@ def from_workbook():
         if v is None:
             continue
         route = str(r[ix["Route"]])
+        # The anchor names the free concentration it was read at, as
+        # "Cw = x uM" or "IC10,free = x uM" depending on which paper
+        # qin2024_anchor.py has active.  Take either.
         cw = ""
-        if "Cw = " in route:
-            cw = route.split("Cw = ")[1].split(" uM")[0]
+        for tag in ("IC10,free = ", "Cw = "):
+            if tag in route:
+                cw = route.split(tag)[1].split(" uM")[0]
+                break
         rows.append({"pfas": str(r[ix["PFAS"]]), "log_k": float(v),
                      "category": category_of(route),
                      "source": str(r[ix["Source"]]), "cw_uM": cw,
@@ -196,6 +215,8 @@ def main():
     lo = min(r["log_k"] for r in rows) - 0.4
     hi = max(r["log_k"] for r in rows) + 0.25
     above = 0
+    cws = [float(r["cw_uM"]) for r in rows
+           if r["category"] == "qin" and str(r["cw_uM"]).strip()]
 
     for y, key in enumerate(order):
         here = [r for r in rows if r["row_order"] == key]
@@ -258,8 +279,7 @@ def main():
 
     handles = [
         Line2D([], [], marker="D", ls="", ms=9.5, mfc=QIN_C, mec=SURFACE,
-               mew=1.6, label="Qin 2024, Table S6 equation at this "
-                              "study's operating point"),
+               mew=1.6, label=QIN_LABEL),
         Line2D([], [], marker="o", ls="", ms=7.0, mfc=MEAS_C, mec=SURFACE,
                mew=1.4, label="measured directly by another laboratory "
                               "(band = their range)"),
@@ -274,25 +294,20 @@ def main():
               frameon=False, labelspacing=0.7, handletextpad=0.6,
               columnspacing=1.6, borderaxespad=0.0)
 
-    fig.text(0.052, 0.975,
-             "Qin 2024 against every other albumin coefficient",
-             ha="left", va="top", fontsize=14.5, color=INK)
-    fig.text(0.052, 0.940,
-             f"At 10 \u00b5M nominal in 10% FBS, Qin sits above every "
-             f"directly measured value for {above} of {len(order)} "
-             "compounds. Free concentrations\n(0.011\u20133.8 \u00b5M) are "
-             "2\u20133 orders below where Qin measured, so these are the "
-             "Table S6 fits extrapolated,\nnot read off data. The grey "
-             "cloud is the literature's own spread, up to 4.6 log on one "
-             "compound.",
-             ha="left", va="top", fontsize=8.8, color=INK2, linespacing=1.6)
+    # No title or subtitle on the canvas: they are added by hand
+    # downstream.  draw() returns the caption text it would have written,
+    # so the numbers in it stay tied to the data rather than to memory.
     ax.annotate("Qin", xy=(1.0, len(order) - 0.4),
                 xycoords=("axes fraction", "data"), xytext=(10, 6),
                 textcoords="offset points", va="bottom", ha="left",
                 fontsize=8.4, color=MUTED, annotation_clip=False)
-    fig.tight_layout(rect=(0.0, 0.085, 0.955, 0.878))
+    fig.tight_layout(rect=(0.0, 0.085, 0.955, 0.985))
     fig.savefig(OUT, dpi=200)
     plt.close(fig)
+    print("\ncaption (not drawn on the figure):")
+    for line in textwrap.wrap(CAPTION.format(
+            above=above, n=len(order), lo=min(cws), hi=max(cws)), 74):
+        print("  " + line)
 
     print(f"read {len(rows)} marks from {src}")
     print(f"  {len(order)} compounds; Qin above all measured on {above}")

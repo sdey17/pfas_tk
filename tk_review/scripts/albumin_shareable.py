@@ -67,7 +67,11 @@ SPECIES = ("human", "bovine", "rat", "human; bovine")
 # Sentinel for "no species filter at all". It cannot be None, because
 # None is the default and means SPECIES.
 ALL = "\0all"
-ANCHOR = "Qin 2024 (plasma)"
+# Rows the sheet must NOT also take from the "measured" pass, because the
+# anchor module supplies them: both Qin 2024 labels, whichever is active.
+# Dropping only the active one would leave the other paper's albumin rows
+# in the sheet beside it, which is the cross-contamination this guards.
+ANCHOR = ("Qin 2024", "Qin 2024 (plasma)")
 
 FIELDS = [("pfas_canonical", "PFAS"), ("species", "Species"),
           ("kd_uM", "Kd (uM)"), ("n_used", "n used"),
@@ -92,42 +96,11 @@ def rank(route):
             return i
     return len(ORDER)
 
-# Qin W, Henneberger L, Gluge J, Konig M, Escher BI. "Baseline Toxicity
-# Model to Identify the Specific and Nonspecific Effects of PFAS in
-# Cell-Based Bioassays." Environ Sci Technol 2024;58:5727-5738,
-# doi 10.1021/acs.est.3c09950. Main-text Table 1, log D_BSA/w column.
-# Its footnote b says each value is the Freundlich equation of SI Table
-# S6 evaluated at IC10,free; that reproduces to within 0.008 log for all
-# eleven, and those equations are identical to the plasma paper's Table
-# 1 - slope, intercept and R2 to the last digit.
-# (compound, IC10,free in mol/L, log D_BSA/w per L of protein)
-OPERATING = (
-    "10 uM nominal, 10% FBS medium"
-)
-# log D_BSA/w per kg of protein, and the free concentration it was
-# evaluated at, from Qin's SI Table S6 equations solved against his eq 6
-# mass balance for the generic 10% FBS medium (Table S7: 3.0 mL/L protein,
-# 0.07 mL/L lipid) plus the HEK293H cell term (Table S8). The same
-# calculation run on Qin's own 2% csFBS composition reproduces his
-# measured IC10,free with a median of +0.03 log and |median| 0.22 log,
-# worst -0.67 (PFOS) -- so read these as good to a few tenths, not better.
-# (compound, free Cw in uM at 10 uM nominal, log D_BSA/w per kg)
-QIN_AT_OP = [
-    ("PFBA", 3.79, 2.60), ("PFHxA", 1.134, 3.28),
-    ("PFHpA", 0.2344, 4.01), ("PFOA", 0.05577, 4.64),
-    ("PFNA", 0.06658, 4.56), ("PFUnA", 0.05805, 4.62),
-    ("HFPO-DA", 1.141, 3.28), ("PFHxS", 0.03635, 4.82),
-    ("PFOS", 0.01085, 5.35), ("6:2 FTSA", 0.3965, 3.76),
-    ("PFOSA", 0.1278, 4.24),
-]
-_UNUSED_BASELINE_T1 = [
-    ("PFBA", 1.78e-3, 1.94), ("PFHxA", 4.72e-4, 2.70),
-    ("PFHpA", 6.76e-5, 3.40), ("PFOA", 1.84e-5, 3.98),
-    ("PFNA", 7.72e-6, 4.39), ("PFUnA", 3.83e-7, 4.75),
-    ("HFPO-DA", 2.20e-4, 2.28), ("PFHxS", 4.22e-5, 3.52),
-    ("PFOS", 3.89e-6, 4.52), ("6:2 FTSA", 4.25e-5, 3.71),
-    ("PFOSA", 3.28e-7, 4.33),
-]
+# The Qin anchor lives in qin2024_anchor.py, which also holds the other
+# paper's version of it and the audit that tells them apart.  ACTIVE there
+# decides which one this sheet, the concentration columns and both figures
+# all use.  Nothing about Qin is hard-coded here any more.
+ANCHOR_MOD = "qin2024_anchor.py"
 
 FAMILIES = [
     (("scanning fluorimetry", "(dsf)"), "thermal shift (DSF)"),
@@ -185,18 +158,17 @@ def collect(keep=None):
             continue
         if not is_serum_albumin(r["protein"]):
             continue
-        if r["source"] == ANCHOR:
+        if r["source"] in ANCHOR:
             continue             # replaced by the operating-point row
         rr = dict(r, pfas_canonical=N.canon(r["pfas"]), method=r["_method"])
         out.append(row(rr, MEASURED, float(r["logK"])))
-    for name, cw, logk in QIN_AT_OP:
-        rr = {"pfas": name, "pfas_canonical": N.canon(name),
+    for a in _load("qin_anchor", ANCHOR_MOD).anchor():
+        rr = {"pfas": a["pfas"], "pfas_canonical": N.canon(a["pfas"]),
               "species": "bovine",
               "protein": "bovine serum albumin (BSA)",
               "method": "BioSPME 96-pin, Freundlich isotherm",
-              "kd_uM": "", "source": "Qin 2024"}
-        out.append(row(rr, f"{QIN} Cw = {cw:.3g} uM ({OPERATING})",
-                       logk))
+              "kd_uM": "", "source": a["label"]}
+        out.append(row(rr, f"{QIN} {a['where']}", a["logK"]))
 
     # 6. the quenching conversions, using each paper's own exponent
     quenched = set()
@@ -239,20 +211,19 @@ NOTES = [
      "Protein-water partition coefficients for PFAS on serum albumin, "
      "human and bovine. log K is log10 of litres of water per kg of "
      "protein."),
-    ("Qin 2024 is at ONE operating point",
-     "Its rows are the SI Table S6 Freundlich equations evaluated at 10 "
-     "uM nominal in a 10% FBS medium. D_BSA/w is not a constant - it "
-     "falls roughly 0.3 log per decade of free concentration - so each "
-     "Qin row names the free Cw it was evaluated at, in its Route cell. "
-     "At another nominal dose or another medium these values change; "
-     "re-evaluate the equations rather than reusing the numbers."),
-    ("How good is that Cw",
-     "Free concentrations come from Qin's own mass balance (his eq 6) "
-     "with the generic 10% FBS composition of his Table S7 and the "
-     "HEK293H cell term of Table S8. Run on his own 2% csFBS medium the "
-     "same calculation reproduces his measured IC10,free with a median "
-     "of +0.03 log and a typical error of 0.22 log, worst 0.67. Treat "
-     "the Qin rows as good to a few tenths of a log, not better."),
+    ("Which Qin 2024 this is",
+     "Two Qin 2024 papers in Environ Sci Technol both print a log D_BSA/w "
+     "column holding different numbers. These rows are the BASELINE "
+     "TOXICITY paper, 58(13):5727-5738, doi 10.1021/acs.est.3c09950, "
+     "Table 1 as printed. The plasma-binding paper 58(23):9954-9966 is in "
+     "the database but excluded from this sheet."),
+    ("Qin 2024 is at ONE concentration, and it is a high one",
+     "Each value is the Freundlich fit read at IC10,free, the free "
+     "concentration causing 10% cytotoxicity. D_BSA/w falls about 0.3 log "
+     "per decade of free concentration, so the Route cell names the Cw. "
+     "At IC10,free the loading is 0.3 to 12 PFAS per albumin -- at or past "
+     "the site count, and three orders above the physiological nu < 0.01. "
+     "Read these as saturated-carrier values, not trace-limit constants."),
     ("Read the Route column",
      "Rows reach their number by seven routes, from a direct "
      "measurement to a conversion resting on an assumed stoichiometry. "

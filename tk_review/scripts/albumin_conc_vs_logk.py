@@ -54,10 +54,11 @@ QIN_SLOPES = {"PFBA": -0.298, "PFHxA": -0.271, "PFHpA": -0.305,
               "PFHxS": -0.472, "PFOS": -0.379, "6:2 FTSA": -0.092,
               "PFOSA": -0.105}
 # Free concentration each Qin row in the extract was evaluated at.
-QIN_CW = {"PFBA": 3.79, "PFHxA": 1.134, "PFHpA": 0.2344, "PFOA": 0.05577,
-          "PFNA": 0.06658, "PFUnDA": 0.05805, "HFPO-DA": 1.141,
-          "PFHxS": 0.03635, "PFOS": 0.01085, "6:2 FTSA": 0.3965,
-          "PFOSA": 0.1278}
+# The Qin anchor's concentrations come from qin2024_anchor.py, so the sheet,
+# these columns and both figures cannot drift apart.  Keyed by the canonical
+# PFAS name the sheet uses, which renames PFUnA to PFUnDA.
+ANCHOR_MOD = "qin2024_anchor.py"
+CANON = {"PFUnA": "PFUnDA"}
 
 
 def _load(name, fn):
@@ -148,6 +149,8 @@ def main():
     head = [c.value for c in ws[1]]
     ix = {h: i for i, h in enumerate(head)}
     cond = conditions()
+    _a = _load("qin_anchor", ANCHOR_MOD)
+    QIN = {CANON.get(a["pfas"], a["pfas"]): a for a in _a.anchor()}
 
     rows, filled, qin_rows = [], 0, 0
     for r in ws.iter_rows(min_row=2, values_only=True):
@@ -156,18 +159,24 @@ def main():
         key = (str(d["PFAS"]), str(d["Species"]), str(d["Source"]))
         # Prefer the Kd-qualified key so multi-condition studies get their
         # own row's conditions; fall back to the unqualified one.
-        got = (cond.get(key + (kd,)) if kd else None) or cond.get(key) \
-            or cond.get((str(d["PFAS"]), str(d["Species"]),
-                         str(d["Source"]) + " (plasma)"))
+        # No "(plasma)" fallback here.  It used to let a "Qin 2024" row
+        # borrow the plasma paper's Table S5 conditions; the anchor module
+        # supplies Qin's conditions below, from the active paper only.
+        got = (cond.get(key + (kd,)) if kd else None) or cond.get(key)
         stated, uM, prot, ratio = got or ("", "", "", "")
-        # Qin's rows are the Table S6 fit at a chosen free concentration,
-        # not a dosed one, so its own Cw is the honest entry.
+        # A Qin row is a fit read at a chosen free concentration, not a
+        # dosed one, so it takes its whole set of conditions from the
+        # anchor module -- including the ligand, protein and ratio, which
+        # must come from the SAME paper as the coefficient.
         if str(d["Source"]).startswith("Qin 2024") \
-                and str(d["PFAS"]) in QIN_CW:
-            cw = QIN_CW[str(d["PFAS"])]
-            stated = (f"free Cw {cw:g} uM, from 10 uM nominal in 10% FBS "
-                      "(not a dosed concentration)")
-            uM = str(cw)
+                and str(d["PFAS"]) in QIN:
+            a = QIN[str(d["PFAS"])]
+            stated = f"{a['where']}; {a['basis']}"
+            # The conc column is the DOSED ligand everywhere else in the
+            # sheet, so it is the dosed one here too and the ratio divides
+            # into it.  The free concentration the fit was read at is a
+            # different number and lives in the text, not this column.
+            uM, prot, ratio = a["ligand_uM"], a["protein_uM"], a["ratio"]
             qin_rows += 1
         d[NEW[0]], d[NEW[1]] = stated, uM
         d[NEW[2]], d[NEW[3]] = prot, ratio

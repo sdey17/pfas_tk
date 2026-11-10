@@ -152,8 +152,12 @@ def first_author(study):
 # exactly where this project needs it not to be, since one measured albumin
 # and plasma and the other measured cells and assay medium.
 DISAMBIGUATE = {
+    # The baseline-toxicity paper is the project's primary Qin 2024
+    # comparison, so it takes the bare label and the plasma paper is the
+    # one marked.  qin2024_anchor.py decides which supplies the albumin
+    # anchor; this only decides what each row is CALLED.
     "10.1021/acs.est.3c10824": "Qin 2024 (plasma)",
-    "10.1021/acs.est.3c09950": "Qin 2024 (bioassay)",
+    "10.1021/acs.est.3c09950": "Qin 2024",
 }
 
 
@@ -1290,7 +1294,9 @@ NOTES = [
                       "either is absent from Affinity; both are views, not "
                       "different datasets."),
     ("", "`source` disambiguates the two Qin et al. 2024 papers, which share "
-         "a study name and year but are different work: 'Qin 2024 (plasma)' "
+         "a study name and year but are different work: 'Qin 2024' is the "
+         "baseline-toxicity paper (ES&T 58:5727, 3c09950) and "
+         "'Qin 2024 (plasma)' "
          "is the albumin and plasma binding paper (doi 10.1021/acs.est."
          "3c10824) and 'Qin 2024 (bioassay)' the baseline-toxicity paper "
          "(10.1021/acs.est.3c09950), which measured cells and assay medium."),

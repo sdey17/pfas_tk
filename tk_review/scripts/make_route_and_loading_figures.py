@@ -53,6 +53,7 @@ Writes figures/albumin_route_split.png, figures/albumin_logk_vs_loading.png
 and the CSV each is drawn from.
 """
 import collections
+import importlib.util
 import csv
 import math
 import os
@@ -96,24 +97,34 @@ PHYSIO = 0.01
 M_ALB_KG = 66463.0 / 1e3        # kg/mol
 
 
-def qin_operating_nu(log_k, cw_uM):
-    """Loading at the point a Qin coefficient was EVALUATED at.
+def _anchor():
+    """qin2024_anchor.py -- the one definition of the Qin anchor."""
+    spec = importlib.util.spec_from_file_location(
+        "qin_anchor", os.path.join(HERE, "qin2024_anchor.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
-    A Qin log K is not a fit over its whole isotherm: it is SI Table
-    S6's Freundlich equation read at one free concentration, the Cw
-    reached from 10 uM nominal in 10% FBS.  ligand_over_protein_max
-    is the isotherm MAXIMUM (Table S5 Ctot/BSA, 10-37), which is a
-    different condition and about 100x higher.
 
-    Plotting Qin at the maximum puts it where a heavily loaded assay
-    would sit, and makes a trace-regime number look like a high
-    affinity measured under saturation -- the one combination this
-    review argues should not occur.  The honest x for "what loading
-    does THIS coefficient describe" is the operating point:
+def qin_nu_table():
+    """Occupancy of the Qin anchor, mol PFAS per mol albumin.
 
-        nu = D [L_w/kg] * Cw [umol/L_w] * M [kg/mol] / 1e6
+    Carried in the CSV beside the ratio, not plotted.  nu needs no protein
+    concentration -- it is a property of the coefficient and the FREE
+    concentration alone, nu = K x Cw x M -- so it is the one loading
+    measure that is exactly comparable across studies.  Every other row
+    here has only a dosed ratio, so the axis has to be the ratio and nu
+    rides along for whoever wants to check where the Qin points sit.
+
+    It is read straight off the anchor, never recomputed from the sheet:
+    the sheet's concentration column is the DOSE, and nu needs the free
+    concentration the coefficient was read at, which is a different and
+    much smaller number.
     """
-    return 10 ** log_k * cw_uM * M_ALB_KG / 1e6
+    a = _anchor()
+    canon = {"PFUnA": "PFUnDA"}
+    return {canon.get(r["pfas"], r["pfas"]): round(r["nu"], 4)
+            for r in a.anchor()}
 
 
 def route_of(r):
@@ -124,6 +135,7 @@ def route_of(r):
 
 
 def load():
+    NU = qin_nu_table()
     ws = openpyxl.load_workbook(SRC, data_only=True)["Coefficients"]
     h = [c.value for c in ws[1]]
     out = []
@@ -137,17 +149,20 @@ def load():
         except (TypeError, ValueError):
             ratio = None
         lk = float(d["log K (L water / kg protein)"])
+        # The Qin anchor now reports a dosed ligand:protein ratio of the
+        # same kind as every other row -- IC10,nom over the assay medium's
+        # protein -- so it goes on the axis unchanged.  It used to be
+        # plotted at its occupancy instead, because the previous anchor
+        # had no dosed ratio of its own to use.
         plot_ratio, basis = ratio, "assay maximum"
+        nu = ""
         if str(d["Source"]).startswith("Qin 2024"):
-            try:
-                plot_ratio = qin_operating_nu(lk, float(d["PFAS conc (uM)"]))
-                basis = "operating point (Table S6 evaluated at its Cw)"
-            except (TypeError, ValueError):
-                pass
+            basis = "IC10,nom over medium protein (qin2024_anchor.py)"
+            nu = NU.get(str(d["PFAS"]), "")
         out.append(dict(pfas=str(d["PFAS"]), species=str(d["Species"]),
                         source=str(d["Source"]), log_k=lk,
                         route=name, route_rank=i, ratio=ratio,
-                        plot_ratio=plot_ratio, ratio_basis=basis))
+                        plot_ratio=plot_ratio, ratio_basis=basis, nu=nu))
     return out
 
 
