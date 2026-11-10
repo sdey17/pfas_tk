@@ -121,11 +121,11 @@ ADONA,6,carboxylate,human,3.98,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.058,quenching,Peng 2024,1.2553,no
 PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024,1.2553,no
-PFOA,7,carboxylate,human,1.638,converted,Han 2003,,
 branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,0.301,no
 PFOA,7,carboxylate,human,1.997,converted,Wu 2009,1.301,no
 PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
 PFOA,7,carboxylate,human,2.351,converted,Hebert 2010,,
+PFOA,7,carboxylate,human,2.455,quenching,Han 2003,1.7782,no
 linear PFOA (n-PFOA),7,carboxylate,human,2.478,converted,Beesoon 2015,0.301,no
 PFOA,7,carboxylate,human,2.561,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,2.568,converted,Hebert 2010,,
@@ -183,7 +183,7 @@ PFHxA,5,carboxylate,rat,3.207,converted,Fan 2025,,
 HFPO-DA,5,carboxylate,rat,3.439,converted,Fan 2025,,
 PFHpA,6,carboxylate,rat,2.72,converted,Fan 2025,,
 PFHpA,6,carboxylate,rat,3.651,converted,Fan 2025,,
-PFOA,7,carboxylate,rat,1.638,converted,Han 2003,,
+PFOA,7,carboxylate,rat,2.513,quenching,Han 2003,1.7782,no
 PFOA,7,carboxylate,rat,2.695,converted,Fan 2025,,
 PFOA,7,carboxylate,rat,3.377,converted,Fan 2025,,
 PFNA,8,carboxylate,rat,2.709,converted,Fan 2025,,
