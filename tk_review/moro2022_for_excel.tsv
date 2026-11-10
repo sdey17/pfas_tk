@@ -1,0 +1,13 @@
+PFAS	Site / model	T (C)	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio
+PFOA	high-affinity set	25	0.4	0.89	4.525	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+PFOA	high-affinity set	37	39.3	0.95	2.561	n fitted by ITC  ** SUSPECT, see note	Moro 2022	4000 (syringe)	110	7.6
+PFOA	low-affinity set	25	29.7	4.5	3.358	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+PFOA	low-affinity set	37	46	9.5	3.492	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+C6O4	single set of sites	25	2.4	1.6	4.001	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+C6O4	single set of sites	37	5.4	1.5	3.621	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+HFPO-DA (GenX)	sequential site 1 (KD1, higher affinity)	25	19	1	2.899	n = 1 fixed by the sequential model	Moro 2022	4000 (syringe)	110	7.6
+HFPO-DA (GenX)	sequential site 1 (KD1, higher affinity)	37	9.9	1	3.182	n = 1 fixed by the sequential model	Moro 2022	4000 (syringe)	110	7.6
+HFPO-DA (GenX)	sequential site 2 (KD2, lower affinity)	25	84.2	1	2.252	n = 1 fixed by the sequential model	Moro 2022	4000 (syringe)	110	7.6
+HFPO-DA (GenX)	sequential site 2 (KD2, lower affinity)	37	27	1	2.746	n = 1 fixed by the sequential model	Moro 2022	4000 (syringe)	110	7.6
+PFHxA	single set of sites	25	4.5	1.02	3.533	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6
+PFHxA	single set of sites	37	5.9	1.03	3.419	n fitted by ITC	Moro 2022	4000 (syringe)	110	7.6

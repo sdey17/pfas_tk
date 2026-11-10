@@ -1021,8 +1021,21 @@ def compounds(out):
 RATIO_CONFLICT = 10.0
 
 
+# In isothermal titration calorimetry the ligand is in the SYRINGE and the
+# protein in the CELL, so the two recorded concentrations are never in the
+# same vessel and their quotient is not a molar ratio. Computing one
+# overstates the loading by roughly V_cell/V_injected, about 5x: Moro 2022
+# came out at 4000/110 = 36 against a true end-of-titration ratio near 7,
+# which put it at the top of the loading ranking on an artefact. A real
+# ITC ratio needs the cell volume and the injection schedule, which belong
+# in the row as a stated value, so for ITC the quotient is refused here and
+# only a stated ratio is used.
+ITC = re.compile(r"isothermal titration calorimetry|ITC", re.I)
+
+
 def _ratio_cell(r):
-    computed = ratio_max(r["_lig_hi"], r["_prot_lo"])
+    is_itc = bool(ITC.search(r.get("_method") or ""))
+    computed = "" if is_itc else ratio_max(r["_lig_hi"], r["_prot_lo"])
     stated_num = None
     try:
         stated_num = float(str(r.get("_lp_max", "")).strip())
@@ -1053,6 +1066,12 @@ def _ratio_cell(r):
     if stated_num:
         return {"ligand_protein_ratio_max": "%.4g" % stated_num,
                 "ratio_basis": "upper bound stated by the paper"}
+    if is_itc:
+        return {"ligand_protein_ratio_max": "",
+                "ratio_basis": (
+                    "ITC with no stated ratio: the ligand is in the syringe "
+                    "and the protein in the cell, so dividing the two "
+                    "recorded concentrations would not give a molar ratio")}
     return {"ligand_protein_ratio_max": "",
             "ratio_basis": "neither both concentrations nor a stated ratio"}
 
