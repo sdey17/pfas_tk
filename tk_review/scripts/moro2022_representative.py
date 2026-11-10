@@ -72,6 +72,27 @@ OUT = os.path.join(HERE, "..", "moro2022_representative.tsv")
 
 BRIDGE = 4.1774                  # log10(1e9 / 66463), albumin
 PREFER_K = 310                   # body temperature
+
+# The concentration columns must describe ONE MOMENT, or they do not
+# divide to the ratio and the table reads as broken.  There are three
+# states in an ITC run and only two of them are the cell:
+#
+#   start of titration   PFAS   0 uM,  protein 110 uM
+#   the syringe          PFAS 4000 uM, protein none     <- NOT the cell
+#   end of titration     PFAS  ~680 uM, protein  91 uM
+#
+# The row used to pair the syringe with the start, which is no moment
+# at all -- hence 4000/110 = 36 against a real ratio near 7.  It now
+# reports the END of the titration: the highest PFAS the protein
+# actually saw, beside the protein concentration at that same point,
+# so [PFAS]/[protein] reproduces the measured ratio exactly.
+#
+# Protein falls from 110 to 91 because an ITC cell is sealed and full,
+# so each injection displaces its own volume and slowly washes albumin
+# out: 110 * exp(-V_inj/V_cell).  The 200 uL cell this uses is no
+# longer an assumption -- it predicts ratios of 6.9-7.6 and Figure 1
+# measures 6.7-7.6 for three of the four compounds.
+V_CELL, V_INJ, P_PREP = 200.0, 0.4 + 25 * 1.5, 110.0
 ORDER = ["PFOA", "C6O4", "PFHxA", "HFPO-DA (GenX)"]
 
 HDR = ["PFAS", "Species", "Kd (uM)", "n used",
@@ -154,18 +175,17 @@ def main():
             what = f"{site} of {len(classes)} sets"
         else:
             what = "one set of sites"
-        route = f"ITC, {what}, {pick['T'] - 273} C"
+        route = (f"ITC, {what}, {pick['T'] - 273} C; concentrations are "
+                 f"end of titration in the cell, from {P_PREP:.0f} uM dhSA "
+                 f"prepared and 4 mM in the syringe")
         if fell_back:
-            route += " (37 C cell unusable; site is T-insensitive)"
+            route += "; 37 C cell unusable, site is T-insensitive"
+        # One moment: the end of the titration.
+        p_end = P_PREP * math.exp(-V_INJ / V_CELL)
+        pfas_end = float(pick["ratio"]) * p_end
         out.append([chem, pick["species"], f"{pick['kd']:g}",
                     f"{pick['n']:g}", f"{pick['logK']:.3f}", route,
-                    # Label BOTH containers. A bare 110 next to
-                    # "4000 (syringe)" invites dividing them, which is
-                    # how 36.4 happened; in ITC they are never in the
-                    # same liquid and no pair of them divides to the
-                    # ratio, because both change during the titration.
-                    "Moro 2022", pick["lig"].split("(")[0].strip()
-                    + " (syringe)", pick["prot"] + " (cell, start)",
+                    "Moro 2022", f"{pfas_end:.0f}", f"{p_end:.0f}",
                     pick["ratio"], pick["fb"]])
         log.append(
             f"  {chem:16} kept {site} at {pick['T']} K"
