@@ -238,7 +238,7 @@ equilibrium dialysis alone spans 3.2 × 10² to ~10⁶, and fluorescence quenchi
 spans 10² to 2 × 10⁶ by itself. The real drivers are four things, and all four
 are knowable from a paper's methods section.
 
-### 7. The four axes that move a binding constant
+### 7. The five axes that move a binding constant
 
 #### Axis 1 — the ligand:protein ratio (the big one)
 
@@ -300,7 +300,54 @@ between a 20 mM buffer and the ~150 mM of plasma, and the shift is independent
 of chain length and head group. A constant measured in dilute buffer overstates
 binding before any other correction.
 
-#### Axis 4 — which site
+That series has one weakness: it runs at ν ≈ 1,900–19,000 (§7, Axis 1), so in
+principle the salt effect it reports could be a saturation effect in disguise.
+**Bischel et al. 2010 settles that.** The same comparison, on PFNA, measured at
+ν ≈ 6 × 10⁻⁴ — five to seven orders of magnitude lower, and genuinely
+physiological:
+
+| condition | % bound | log K_PW |
+|---|---|---|
+| BSA, 50 mM sodium phosphate pH 7.4 | 99.92 ± 0.01 | **4.74 ± 0.05** |
+| BSA, same + 9 g/L NaCl (saline) | 99.89 ± 0.01 | **4.56 ± 0.05** |
+
+**−0.18 log, or 1.5×, for physiological saline.** Gao's 1.5–2× at ν ~ 10⁴ and
+Bischel's 1.5× at ν ~ 10⁻⁴ agree. The salt effect is real, it is modest, and it
+is *not* an artefact of saturation.
+
+Two practical consequences. A constant measured in a dilute phosphate buffer —
+which is most of the literature — **overstates plasma binding by about 0.2 log**.
+And because the effect is the same size at both ends of the loading axis, the
+salt correction and the saturation correction are independent and must both be
+applied, not treated as alternatives.
+
+#### Axis 4 — pH, and why one classic result does not belong on this axis at all
+
+Almost every modern study runs at pH 7.4. Two in this database do not, and the
+contrast is instructive.
+
+**Beesoon & Martin 2015** incubated in HPLC-grade *water* at **pH 6.4**, not a
+buffer. Albumin undergoes its N→B conformational transition between about pH 7
+and 9, and the fatty-acid sites in subdomain IIIA are the ones most affected, so
+pH 6.4 is on the stable side — but it is not blood, and the constants should not
+be read as physiological without that caveat.
+
+**Klevens & Ellenbogen 1954** — the earliest PFAS–albumin measurement in
+existence — ran in acetate at **pH 3.54–4.3**, *below* BSA's isoelectric point
+(~4.7). At that pH the protein carries net positive charge, the perfluorooctanoate
+anion is a counter-ion, and what the paper actually studies is **flocculation and
+protein–protein aggregation**: its own abstract reports "a marked loss of potential
+binding sites with increase in protein concentration", explained by "the formation
+of high molecular weight aggregates". It reports n = **85** sites and
+K_d = 3.1 × 10⁻³ M.
+
+Eighty-five sites is not a binding stoichiometry; it is a surfactant coating a
+denaturing protein. The value is real and historically important — it is the
+origin of the "PFAS bind albumin weakly" claim that propagated for decades — but
+**it is not a pH 7.4 affinity and should not be pooled with one.** This database
+keeps it, flagged, for exactly that reason.
+
+#### Axis 5 — which site
 
 See §8. This one is routinely invisible because most papers report one number
 without saying which pocket produced it.
@@ -328,6 +375,52 @@ gives 0.13 µM.
 
 **A K_d quoted without its site is as incomplete as one quoted without its n.**
 
+#### The same split, found independently three more times
+
+Chen & Guo resolved sites with three chemical probes. Three other studies reach
+the same structure by entirely different routes, and all three find that the
+*majority* of the stoichiometry is weak surface binding that never operates in
+blood:
+
+| study | method | tight site | weak class |
+|---|---|---|---|
+| **Wu 2009** | ITC, two-step | **1** site, K_d 40.5 µM, in the hydrophobic intracavity | **12** sites, K_d 1818 µM, "on the hydrophilic outer surface" |
+| **Moro 2022** | ITC, two sets of sites | **0.89** sites, K_d 0.4 µM | **4.5** sites, K_d 29.7 µM |
+| **Bischel 2010** | nanoESI-MS | — | up to **8** occupied sites at a 4:1 mole ratio |
+
+Wu's is the cleanest statement of it, because the authors say outright what the
+second class is: *"only one PFOA molecule entered the hydrophobic intracavity in
+the first step and 12 PFOA molecules binding on the hydrophilic outer surface in
+the second step."* K_d 1.8 mM — a coated protein, not a pocket. Moro's HFPO-DA
+second event is the same thing with a thermodynamic signature attached: its
+enthalpy is **positive** (+28.2 kJ/mol), entropically driven, which is the
+fingerprint of desolvation rather than of a binding cavity, and the authors
+attribute it to "unspecific hydrophobic interactions occurring at high
+concentrations".
+
+**Why it matters arithmetically.** In the trace limit, two independent classes of
+site partition the ligand in proportion to n/K_d — independent of concentration —
+and n/K_d is exactly what log K encodes. For Moro's PFOA:
+
+```
+high-affinity   n/K_d = 0.89/0.4  = 2.225    log K = 4.525
+low-affinity    n/K_d = 4.5/29.7  = 0.152    log K = 3.358
+                                     14.7×  =  10^(4.525-3.358)
+```
+
+The tight set carries **93.6%** of bound PFOA at blood concentrations while
+holding five times *less* capacity. Adding both sets moves log K by +0.03.
+
+For a *sequential* fit the weak site drops out even harder. With
+ν = (K₁[L] + 2K₁K₂[L]²)/(1 + K₁[L] + K₁K₂[L]²), the site-2 terms are **second
+order in [L]** and vanish faster than site 1: for Moro's HFPO-DA at 37 °C, site 2
+contributes 0.0% at 10⁻⁵ µM free and does not reach 1% until ~0.1 µM — a million
+times physiological.
+
+**The rule this gives you:** when a paper reports more than one class of site,
+take the one with the highest log K and discard the rest. Not because the others
+are wrong, but because they are unoccupied in blood.
+
 The same paper also supplies the control the field usually lacks. For the same
 three probes the authors measured plain, non-fluorinated fatty acids: octanoic
 acid binds Sudlow II at 1.1 × 10⁷ M⁻¹ — **tighter than every PFAS in the grid**.
@@ -339,7 +432,9 @@ is why the "PFAS displace endogenous ligands" story needs care.
 > using it, and say roughly what each could do to the number.
 >
 > <sub>Which site (up to 345×), the ligand:protein ratio (3–5×, or more), the
-> buffer ionic strength (1.5–2×). Temperature too, if the method were DSF.</sub>
+> buffer ionic strength (1.5–2×, now measured directly at physiological
+> loading by Bischel 2010). Temperature too, if the method were DSF; and pH,
+> if it is not 7.4.</sub>
 
 ---
 
@@ -574,6 +669,22 @@ direction is wrong and the magnitude is off by two and a half orders of
 magnitude. Albumin affinity cannot be the cause of the species difference in
 elimination.
 
+Two **within-study, within-method** comparisons now reinforce this, which
+matters because the Starnes grid is the only other place the species question is
+asked without changing laboratory at the same time:
+
+| study | method | human | rat / bovine | difference |
+|---|---|---|---|---|
+| **Han 2003** | microdesalting + Scatchard | HSA K_d 0.38 mM, n 7.2 | RSA K_d 0.36 mM, n 7.8 | **1.06×**, "no significant difference" |
+| **Bischel 2010** | equilibrium dialysis, log K_PW | HSA 4.93 | BSA 4.74 | **0.19 log (1.5×)** |
+
+Han's is the more striking of the two: same bench, same week, same Scatchard
+analysis, rat and human albumin side by side, and the constants are
+indistinguishable — against a ~1000× species difference in PFOA clearance. The
+paper's own conclusion is that ">90% of PFOA would be bound to serum albumin in
+both rat and human blood", i.e. the bound fraction is the same in both species
+too.
+
 Three independent matrices now agree:
 
 - **Albumin** (Starnes 2024, Fischer 2024): ≤4× across four species.
@@ -590,6 +701,70 @@ proteins bind.**
 > **A gap worth knowing about.** There is **no in vitro measurement of PFAS
 > binding to mouse serum albumin** — not in our 865-row database, not in
 > PubMed. The mouse is the animal most of the toxicology runs on.
+
+### 10a. Isomers, free fraction, and transfer across the placenta
+
+Everything above treats "PFOS" and "PFOA" as single compounds. They are not.
+Technical PFOS made by electrochemical fluorination is ~70–80% linear with the
+balance branched, and the two behave very differently — which turns out to be
+the clearest worked example in this whole literature of a binding constant
+*predicting* a disposition difference.
+
+**Beesoon & Martin 2015** measured isomer-resolved K_d against HSA by
+ultrafiltration, at a deliberately physiological loading (ν 0.33–2.0; the authors
+chose the HSA concentration specifically so that a 1:1 molar ratio fell inside
+the tested range):
+
+| isomer | K_d (M) | n | relative to linear |
+|---|---|---|---|
+| **linear PFOS** | **8 (±4) × 10⁻⁸** | ~2 | — |
+| 4m-PFOS | 8 (±1) × 10⁻⁵ | ~1 | 1000× weaker |
+| 5m-PFOS | 9 (±5) × 10⁻⁵ | ~1 | 1100× weaker |
+| 3m-PFOS | 4 (±2) × 10⁻⁴ | ~1 | 5000× weaker |
+| **linear PFOA** | **1 (±0.9) × 10⁻⁴** | ~2 | — |
+| 5m-PFOA | 3 (±2) × 10⁻⁴ | ~1 | 3× weaker |
+| 3m-PFOA | 4 (±2) × 10⁻⁴ | ~1 | 4× weaker |
+| 4m-PFOA | not determinable | ~1 | weaker still |
+
+Two things change together. The branched isomers bind **more weakly**, and they
+bind at **about one site instead of two** — a branch point in the chain costs
+both affinity and capacity, consistent with the linear tail threading a narrow
+hydrophobic tunnel that a methyl branch cannot enter.
+
+**The chain of inference, and it closes.**
+
+1. Branched isomers bind albumin more weakly → their **free fraction in plasma
+   is higher**.
+2. Confirmed directly in whole serum, not just pure HSA: spiking technical
+   mixtures into calf serum and ultrafiltering, the ratio of %branched in the
+   ultrafiltrate to %branched in the spiked serum is **1.3–1.4 for PFOS** and
+   **1.7–1.8 for PFOA**. More branched material is free.
+3. Only the free fraction is available to cross a membrane. So branched isomers
+   should be **enriched in cord blood relative to maternal blood** — and they
+   are, consistently, in the human cord-blood literature this paper cites.
+4. The same free fraction is what the kidney filters, so branched isomers should
+   also be **preferentially excreted in urine** — and they are.
+
+That is a complete mechanistic account running from a binding constant to a
+population-level observation, and it is one of the few places in PFAS
+toxicokinetics where that chain is closed end to end.
+
+**The caveat that keeps it honest.** Beesoon's method is ultrafiltration, and
+Han 2003 tried the same technique and *abandoned* it: *"PFOA completely
+nonspecifically bound to the membrane of the ultrafiltration unit"* (Amicon
+Ultrafree/Biomax). Beesoon used a Centrifree device with a 30 kDa membrane and
+ran no-protein controls, so the losses were checked — but the direction of any
+residual membrane loss (removing free ligand) would make binding look *tighter*,
+and it would bias the tightly-bound linear isomer least. The 1000× linear/branched
+separation is large enough to survive that; the 3–4× separation for PFOA isomers
+is not obviously so.
+
+**What this means for the table.** Isomer composition is a hidden variable in
+every row of this database that says "PFOS". Most studies use technical mixtures
+without resolving isomers, so their constants are a weighted average over a
+1000-fold range, weighted by a composition they usually do not report.
+
+---
 
 ### 11. The best current numbers
 
@@ -1007,14 +1182,67 @@ water. A tissue is not.
 *Code:* `scripts/mbm_fischer_serum.py`, `scripts/make_mbm_fischer_serum_figure.py`.
 *Data:* `db/mbm_fischer_serum.csv`.
 
+### 13b. Five ways a published constant turns out not to be the constant
+
+These are not hypotheticals. Each was found in a paper in this database while
+reading it against its own numbers, and each would have propagated silently.
+
+**1. The constant is not a binding constant.** Wu 2009's headline value,
+K = 3.12 × 10⁴, is the adsorption constant of a **Temkin monolayer adsorption
+isotherm** fitted to dialysis data — not a 1:1 equilibrium constant. Inverting
+it to a molar K_d is not a defined operation. (It happens to land within 1.3× of
+the paper's own ITC step-1 constant, which is reassuring but not a licence.)
+
+**2. The constant is from the gas phase.** Bischel 2010 reports nanoESI-MS
+association constants ~10⁵ M⁻¹ alongside solution constants ~10⁶ M⁻¹ *in the
+same paper*. A gas-phase complex is not a solution equilibrium; the order of
+magnitude between them is the cost of forgetting that.
+
+**3. The exponent is not a site count.** A Hill coefficient fitted to a
+quenching plot is written in the same column as a stoichiometry and means
+something else entirely. The test is dimensional: if the model is
+Y = K[L]ⁿ/(1 + K[L]ⁿ) then K has units M⁻ⁿ and **cannot be inverted to a molar
+K_d at all**; if it is Y = (K[L])ⁿ/(1 + (K[L])ⁿ) then K is a genuine M⁻¹
+constant. Locate the half-saturation point in the paper's own data and see which
+form reproduces it. Hebert 2010 passes this test; at least one other study in
+the wider literature does not.
+
+**4. The stoichiometry is fitted beyond the data.** Moro 2022's PFOA
+low-affinity set has n = 9.5 at 37 °C — but the titration only reaches a molar
+ratio of **7.2**, read off the paper's own Figure 1c. A stoichiometry larger
+than the loading the experiment achieved is an extrapolation, not a count.
+
+**5. The reported value contradicts the paper's own thermodynamics.** Moro's
+Table 1 gives PFOA's high-affinity K_d as 0.4 µM at 298 K and **39.3 µM** at
+310 K. ΔG = RT·ln(K_d) reproduces every other cell in that table to within
+0.0–0.8 kJ/mol; this one misses by **12.0**, and the printed ΔG of −38.10 kJ/mol
+implies K_d = 0.38 µM — exactly 1/100 of the printed value. The paper's own text
+("no significant variations were observed … in the binding affinities" between
+298 and 310 K) agrees with the thermodynamics and against the printed number.
+
+**The generalisable check.** Four of these five were caught by the same move:
+*take two numbers the paper reports independently and see whether they
+reproduce each other.* K_d against ΔG. A stoichiometry against the molar ratio
+on the figure axis. A fitted n against the model that produced it. Papers are
+internally redundant far more often than they are read that way.
+
+---
+
 ### 14. What is still open
 
 1. **Mouse albumin has never been measured.** The largest single gap.
 2. **n is almost never reported** with a K_d, and it moves log D by up to 0.78.
    Where it has been checked, n ≈ 1 is what makes the datasets consistent
    (§11a, §12) — but that is three compounds, not a rule.
-3. **Nobody has measured a PFAS–albumin constant at a genuinely physiological
-   ν** (< 0.01) across a wide compound set. Chen's 0.06–2 is the closest.
+3. **No one has measured a PFAS–albumin constant at a genuinely physiological
+   ν (< 0.01) across a wide compound set.** This is now narrower than it was.
+   Bischel 2010 *did* measure at ν = 5–10 × 10⁻⁴, and reports log K_PW directly
+   rather than converting — but for **one compound** (PFNA) on two albumins.
+   Li 2021 reaches ν ≈ 0.0016 across 26 standards but reports pseudo-constants
+   from an AFFF matrix. Bischel 2011 runs 11 compounds at ν = 0.0013–0.0034.
+   What is still missing is a **wide compound set, at trace loading, with
+   per-compound constants** — the three studies that each have two of those
+   three properties do not overlap.
 4. **The sulfonates do not reconcile as cleanly as the carboxylates** (§11a),
    and nobody has explained why their specific-to-non-specific separation is
    so much larger. A second, independent sign of the same head-group split
@@ -1029,13 +1257,26 @@ water. A tissue is not.
 6. **Where is the sulfonate optimum?** No dataset here carries a C12
    sulfonate, so all that can be said is nCF ≥ 9.
 
+7. **Isomer composition is unreported in most of the database.** §10a shows
+   linear and branched PFOS differ 1000-fold in K_d. Every row that says "PFOS"
+   without naming the isomer mix is a weighted average over that range, weighted
+   by a composition the paper usually does not state.
+8. **The salt and saturation corrections are independent, and no study applies
+   both.** §7 Axis 3 now has the salt effect measured at both ends of the
+   loading axis (~1.5× at either end), so the two corrections compound. Nothing
+   in this database reports a constant corrected for both.
+
 *Resolved since the first draft:* the basis of Chen's membrane-water
 coefficients, which SI eq S1 and the TRANSIL kit's stated bilayer volumes
 settle as a dimensionless volume/volume ratio, usable directly as a volumetric
 D_MW to within 0.03 log units (`scripts/update_chen_kmw_basis.py`; the pH 7.0
 reporting remains a 0.4-unit extrapolation for anything run at 7.4); the
 apparent Chen-versus-Fischer conflict,
-which is the specific/non-specific regime difference (§11a); Chen's PFNA
+which is the specific/non-specific regime difference (§11a); whether the salt
+effect of Gao 2025 might be a saturation artefact, which Bischel 2010's
+independent measurement at ν ~ 10⁻⁴ rules out (§7, Axis 3); whether a
+within-study, same-method species comparison exists, which Han 2003 (rat vs
+human, 1.06×) and Bischel 2010 (human vs bovine, 1.5×) now supply (§10); Chen's PFNA
 "inversion", which is not significant and is one symptom of a general
 compression of his chain-length profile (§11b); and the location of the
 carboxylate chain-length optimum, which is nCF 10–11 and not the nCF 6–8 that
@@ -1045,6 +1286,34 @@ components to whole matrix, 26 PFAS, 1.55× typical error, no fitted
 parameter.
 
 ---
+
+
+> **Q. Salt and saturation.** Gao 2025 measures a 1.5–2× salt effect at
+> ν ≈ 10⁴; Bischel 2010 measures 1.5× at ν ≈ 10⁻⁴. Why does the second
+> measurement make the first *more* useful rather than merely confirming it?
+>
+> <sub>Because at ν ≈ 10⁴ a salt effect and a saturation effect are confounded —
+> added salt could be shifting the isotherm rather than the affinity. Bischel's
+> measurement is at a loading where saturation cannot be operating, so the
+> effect is attributable to ionic strength alone. The two together also show the
+> correction is the same size in both regimes, which means the salt and
+> saturation corrections are independent and compound.</sub>
+
+> **Q. Two sites, one blood.** A paper reports two classes of site: n₁ = 1 at
+> K_d = 0.4 µM and n₂ = 10 at K_d = 400 µM. Which do you carry into a TK model,
+> and what fraction of bound ligand does the other one hold at 5 nM free PFAS?
+>
+> <sub>The tight one. In the trace limit the classes split as n/K_d: 1/0.4 = 2.5
+> against 10/400 = 0.025, so the weak class carries 1%. Note this is
+> independent of the 5 nM — the ratio n₁K_d₂/n₂K_d₁ does not contain [L].</sub>
+
+> **Q. Why is a 1000-fold isomer difference invisible in most of this table?**
+>
+> <sub>Because most studies dose technical mixtures and report one constant for
+> "PFOS". That number is an average over linear and branched isomers weighted by
+> the mixture composition — typically ~70–80% linear — so it sits near the linear
+> value but is neither, and it shifts with whatever mixture the laboratory
+> happened to buy.</sub>
 
 ## Check your understanding
 
