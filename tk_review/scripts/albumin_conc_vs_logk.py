@@ -97,12 +97,25 @@ def conditions():
         if r["measure"] not in ("Kd", "Ka", "log D"):
             continue
         c = blocks[B.block_key(B.condition_row(r))]
-        k = (N.canon(r["pfas"]), r["species"], r["source"])
         cand = (c["pfas_conc_as_stated"], str(c["pfas_conc_uM"]),
                 str(c["protein_conc_uM"]),
                 str(c["ligand_protein_ratio_max"]))
-        if k not in out or (not out[k][1].strip() and cand[1].strip()):
-            out[k] = cand
+        # (compound, species, source) is NOT unique: one study can measure
+        # the same compound on the same protein under several conditions,
+        # and keying on those three alone hands them all the conditions of
+        # whichever row was seen first. Bischel 2010 measures PFNA on BSA
+        # four times -- at ligand:protein 6e-4, 1e-3, 5 and 120 -- and the
+        # three-key collapse stamped 6e-4 on all four, which is wrong by
+        # five orders of magnitude on two of them. Kd distinguishes them
+        # and is present on both sides of the join, so key on it too and
+        # fall back to the old key when a row has no Kd, leaving every
+        # single-condition study exactly as it was.
+        kd = str(r.get("kd_uM", "") or "").strip()
+        for k in ([(N.canon(r["pfas"]), r["species"], r["source"], kd)]
+                  if kd else []) + \
+                 [(N.canon(r["pfas"]), r["species"], r["source"])]:
+            if k not in out or (not out[k][1].strip() and cand[1].strip()):
+                out[k] = cand
     return out
 
 
@@ -139,10 +152,13 @@ def main():
     rows, filled, qin_rows = [], 0, 0
     for r in ws.iter_rows(min_row=2, values_only=True):
         d = {h: r[i] for i, h in enumerate(head)}
+        kd = str(d.get("Kd (uM)", "") or "").strip()
         key = (str(d["PFAS"]), str(d["Species"]), str(d["Source"]))
-        got = cond.get(key) or cond.get(
-            (str(d["PFAS"]), str(d["Species"]),
-             str(d["Source"]) + " (plasma)"))
+        # Prefer the Kd-qualified key so multi-condition studies get their
+        # own row's conditions; fall back to the unqualified one.
+        got = (cond.get(key + (kd,)) if kd else None) or cond.get(key) \
+            or cond.get((str(d["PFAS"]), str(d["Species"]),
+                         str(d["Source"]) + " (plasma)"))
         stated, uM, prot, ratio = got or ("", "", "", "")
         # Qin's rows are the Table S6 fit at a chosen free concentration,
         # not a dosed one, so its own Cw is the honest entry.
