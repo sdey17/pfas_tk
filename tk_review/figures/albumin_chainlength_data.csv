@@ -93,17 +93,17 @@ NFDHA,4,carboxylate,human,2.938,converted,Chen 2025,0.301,no
 PFPeA,4,carboxylate,human,2.966,converted,Chen 2025,0.301,no
 PFMBA,4,carboxylate,human,4.835,converted,Chen 2025,0.301,no
 PFHxA,5,carboxylate,human,1.887,converted,Gao 2019,0.301,no
-HFPO-DA,5,carboxylate,human,2.252,converted,Moro 2022,0.8808,no
-HFPO-DA,5,carboxylate,human,2.746,converted,Moro 2022,0.8808,no
-HFPO-DA,5,carboxylate,human,2.899,converted,Moro 2022,0.8808,no
+HFPO-DA,5,carboxylate,human,2.252,converted,Moro 2022,0.8388,no
+HFPO-DA,5,carboxylate,human,2.746,converted,Moro 2022,0.8388,no
+HFPO-DA,5,carboxylate,human,2.899,converted,Moro 2022,0.8388,no
 PFHxA,5,carboxylate,human,3.032,converted,Chen 2025,0.301,no
 5:3 FTCA,5,carboxylate,human,3.146,converted,Chen 2025,0.301,no
-HFPO-DA,5,carboxylate,human,3.182,converted,Moro 2022,0.8808,no
+HFPO-DA,5,carboxylate,human,3.182,converted,Moro 2022,0.8388,no
 PFHxA,5,carboxylate,human,3.2,measured,Fischer 2024,-2.3979,yes
 HFPO-DA,5,carboxylate,human,3.36,converted,Chen 2025,0.301,no
-PFHxA,5,carboxylate,human,3.419,converted,Moro 2022,0.8808,no
+PFHxA,5,carboxylate,human,3.419,converted,Moro 2022,0.5798,no
 5:3 FTCA,5,carboxylate,human,3.48,measured,Fischer 2024,-2.3979,yes
-PFHxA,5,carboxylate,human,3.533,converted,Moro 2022,0.8808,no
+PFHxA,5,carboxylate,human,3.533,converted,Moro 2022,0.5798,no
 DFSA (dodecafluorosuberic acid),6,carboxylate,human,1.304,quenching,Peng 2024,1.2553,no
 PFHpA,6,carboxylate,human,1.816,quenching,Peng 2024,1.2553,no
 DFSA (dodecafluorosuberic acid),6,carboxylate,human,1.862,quenching,Peng 2024,1.2553,no
@@ -126,18 +126,18 @@ branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,,
 PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
 linear PFOA (n-PFOA),7,carboxylate,human,2.177,converted,Beesoon 2015,,
 PFOA,7,carboxylate,human,2.351,converted,Hebert 2010,,
-PFOA,7,carboxylate,human,2.561,converted,Moro 2022,0.8808,no
+PFOA,7,carboxylate,human,2.561,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,2.568,converted,Hebert 2010,,
 PFOA,7,carboxylate,human,2.672,converted,Wu 2009,,
-PFOA,7,carboxylate,human,3.358,converted,Moro 2022,0.8808,no
-PFOA,7,carboxylate,human,3.492,converted,Moro 2022,0.8808,no
+PFOA,7,carboxylate,human,3.358,converted,Moro 2022,0.8751,no
+PFOA,7,carboxylate,human,3.492,converted,Moro 2022,0.8751,no
 7:3 FTCA,7,carboxylate,human,3.59,measured,Fischer 2024,-2.3979,yes
 PFOA,7,carboxylate,human,3.634,quenching,Peng 2024,1.2553,no
 PFOA,7,carboxylate,human,3.767,converted,Chen 2025,0.301,no
 7:3 FTCA,7,carboxylate,human,3.917,converted,Chen 2025,0.301,no
 PFOA,7,carboxylate,human,4.372,quenching,Chen 2009,0.9031,no
 PFOA,7,carboxylate,human,4.48,measured,Fischer 2024,-2.3979,yes
-PFOA,7,carboxylate,human,4.525,converted,Moro 2022,0.8808,no
+PFOA,7,carboxylate,human,4.525,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,4.641,quenching,Peng 2024,1.2553,no
 PFOA,7,carboxylate,human,4.643,quenching,Peng 2024,1.2553,no
 PFNA,8,carboxylate,human,2.275,converted,Hebert 2010,,

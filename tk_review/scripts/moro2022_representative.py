@@ -159,9 +159,14 @@ def main():
             route += " (37 C cell unusable; site is T-insensitive)"
         out.append([chem, pick["species"], f"{pick['kd']:g}",
                     f"{pick['n']:g}", f"{pick['logK']:.3f}", route,
+                    # Label BOTH containers. A bare 110 next to
+                    # "4000 (syringe)" invites dividing them, which is
+                    # how 36.4 happened; in ITC they are never in the
+                    # same liquid and no pair of them divides to the
+                    # ratio, because both change during the titration.
                     "Moro 2022", pick["lig"].split("(")[0].strip()
-                    + " (syringe)", pick["prot"], pick["ratio"],
-                    pick["fb"]])
+                    + " (syringe)", pick["prot"] + " (cell, start)",
+                    pick["ratio"], pick["fb"]])
         log.append(
             f"  {chem:16} kept {site} at {pick['T']} K"
             + (f"; dropped {', '.join(other)}" if other else "")
