@@ -235,10 +235,27 @@ For a single PFAS–protein pair the reported association constants span
 
 The natural guess is "different methods". **That is not the main cause** —
 equilibrium dialysis alone spans 3.2 × 10² to ~10⁶, and fluorescence quenching
-spans 10² to 2 × 10⁶ by itself. The real drivers are four things, and all four
+spans 10² to 2 × 10⁶ by itself. The real drivers are six things, and all six
 are knowable from a paper's methods section.
 
-### 7. The five axes that move a binding constant
+**Look at the low end of that table.** 20.4, 103, 116, 395 M⁻¹ — the bottom of
+every row is the same study, **Wu et al. 2024**. Dropping it alone cuts each
+spread by between 4× and 19×:
+
+| chemical | spread, all studies | without Wu 2024 |
+|---|---|---|
+| PFBA | 54,000× | **2,800×** |
+| PFBS | 55,800× | **10,700×** |
+| PFOA | 24,200× | **4,500×** |
+| PFOS | 19,300× | **5,100×** |
+
+So one study supplies a large share of the headline disagreement — but **not
+all of it**. Three to four orders of magnitude survive its removal, and that
+residue is the real subject of this section. Wu is an outlier with an
+identifiable cause (§7, Axis 5); the remaining 10³–10⁴ is the five other axes
+doing their work, and no single study to blame.
+
+### 7. The six axes that move a binding constant
 
 #### Axis 1 — the ligand:protein ratio (the big one)
 
@@ -347,7 +364,55 @@ origin of the "PFAS bind albumin weakly" claim that propagated for decades — b
 **it is not a pH 7.4 affinity and should not be pooled with one.** This database
 keeps it, flagged, for exactly that reason.
 
-#### Axis 5 — which site
+#### Axis 5 — cosolvent
+
+PFAS stocks are often made up in methanol or ethanol, and the cosolvent arrives
+in the assay along with the ligand. Below ~1% v/v this is ignorable and most
+papers keep it there. It is not always ignorable.
+
+**Wu et al. 2024** is the case that shows what happens when it is not. Every
+PFAS stock is in **anhydrous ethanol**, and the titration is built by mixing
+volumes of that stock into a fixed volume of HSA — so the ethanol fraction *is*
+the PFAS volume fraction, and it rises with every titration point:
+
+| v(HSA) : v(PFAS) | [HSA] µM | [PFAS] µM | ν | **ethanol v/v** |
+|---|---|---|---|---|
+| 5 : 1 | 833 | 167 | 0.2 | 17% |
+| 5 : 5 | 500 | 500 | 1.0 | 50% |
+| 5 : 10 | 333 | 667 | 2.0 | 67% |
+| 5 : 30 | **143** | **857** | **6.0** | **86%** |
+
+**The top point of every binding curve in that paper is albumin in more ethanol
+than water.** Albumin is denatured well below that; 86% ethanol is a protein
+precipitation condition.
+
+Two further things go wrong in the same design, both visible in the table.
+**HSA is not held constant** — it falls 5.8-fold, 833 → 143 µM, so a plot of
+quenching against PFAS concentration is varying both axes at once. And the
+ethanol and the PFAS are perfectly collinear by construction, so **no analysis
+of these data can separate the two**: whatever the ligand appears to be doing to
+the fluorescence, the cosolvent is doing in exact proportion.
+
+The arithmetic consequence is the §6 table. Wu's constants land 2.7–3.8 logs
+below every other HSA study, **uniformly, with no compound-specific structure**
+— and a uniform gap is the signature of a method or an analysis, not of
+chemistry. `scripts/audit_wu2024_hsa.py` independently shows the fit itself
+fails on its own terms: the accessible fluorophore fraction comes out above 1
+(up to 4.07) for all ten compounds, which is impossible for a protein with one
+tryptophan.
+
+**The reading habit this gives you:** when a methods section builds a titration
+by *mixing volumes of a stock*, work out what else is in that stock and what
+fraction of the final assay it becomes at the last point. If the ligand is
+dissolved in an organic solvent, that fraction is the cosolvent concentration,
+and it is at its highest exactly where the binding curve is supposed to
+plateau.
+
+Removing Wu from the §6 spread table cuts each compound's range by 4–19×. It
+does not rescue the field: three to four orders of magnitude remain, from the
+other five axes.
+
+#### Axis 6 — which site
 
 See §8. This one is routinely invisible because most papers report one number
 without saying which pocket produced it.
@@ -433,8 +498,9 @@ is why the "PFAS displace endogenous ligands" story needs care.
 >
 > <sub>Which site (up to 345×), the ligand:protein ratio (3–5×, or more), the
 > buffer ionic strength (1.5–2×, now measured directly at physiological
-> loading by Bischel 2010). Temperature too, if the method were DSF; and pH,
-> if it is not 7.4.</sub>
+> loading by Bischel 2010). Temperature too, if the method were DSF; pH, if it
+> is not 7.4; and what the stock was dissolved in — Wu 2024 reaches 86%
+> ethanol and lands 2.7–3.8 logs low.</sub>
 
 ---
 
