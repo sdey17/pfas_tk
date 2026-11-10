@@ -21,7 +21,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 9,PFOS,converted,4.221,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.334,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.336,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
-9,PFOS,converted,4.433,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
+9,PFOS,converted,4.433,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 9,PFOS,converted_quenching,0.713,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,converted_quenching,3.666,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,measured,3.965,Bischel 2011,,measured directly
@@ -40,7 +40,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 8,PFNA,converted,4.033,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,4.106,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,4.175,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
-8,PFNA,converted,4.821,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
+8,PFNA,converted,4.821,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 8,PFNA,converted,4.882,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 8,PFNA,converted,5.158,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 8,PFNA,converted_quenching,3.214,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
@@ -74,7 +74,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 6,PFOA,converted,3.492,Moro 2022,,converted; n counted by ITC
 6,PFOA,converted,3.543,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 6,PFOA,converted,3.668,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
-6,PFOA,converted,3.754,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
+6,PFOA,converted,3.754,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 6,PFOA,converted,3.767,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 6,PFOA,converted,3.786,Wu 2009,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 6,PFOA,converted,4.112,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
@@ -105,7 +105,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 4,PFHxS,converted,3.267,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.298,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.458,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
-4,PFHxS,converted,3.989,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
+4,PFHxS,converted,3.989,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 4,PFHxS,converted,4.06,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 4,PFHxS,converted_quenching,0.241,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 4,PFHxS,measured,4.165,Bischel 2011,,measured directly
@@ -159,7 +159,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 1,HFPO-DA,converted,2.74,Fan 2025,,converted; n counted by ITC
 1,HFPO-DA,converted,2.746,Moro 2022,,converted; n counted by ITC
 1,HFPO-DA,converted,2.899,Moro 2022,,converted; n counted by ITC
-1,HFPO-DA,converted,2.99,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
+1,HFPO-DA,converted,2.99,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 1,HFPO-DA,converted,3.182,Moro 2022,,converted; n counted by ITC
 1,HFPO-DA,converted,3.36,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 1,HFPO-DA,converted,3.439,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"

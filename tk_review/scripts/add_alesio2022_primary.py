@@ -44,11 +44,19 @@ GenX at 0.26, are exactly the two run at a 2:1 PFAS:BSA ratio instead of
 loading.  The pattern is coherent, which is part of why the 10x is read as
 a units slip in one column rather than noise.)
 
-n = 1 IS THE PAPER'S OWN MODEL, not a reader's assumption: eq 2 states
-that ([P] - [PFAS]bound) "represents the residual unbound BSA protein
-assuming 1:1 binding".  The rows therefore carry n = 1 with that basis,
-and the downstream classifier splits them on whether Kd falls inside the
-concentration actually tested -- for PFOA and PFHxS it does not.
+n = 1 IS THE PAPER'S OWN MODEL, not a reader's assumption and not a fit:
+eq 2 states that ([P] - [PFAS]bound) "represents the residual unbound BSA
+protein assuming 1:1 binding".  It is fixed by construction, so the
+n_binding_sites cell says so in the wording site_count() reads as a
+single-site assumption rather than as a bare number, which that function
+treats as a fitted value.  The downstream classifier then splits these
+rows on whether Kd falls inside the concentration actually tested -- for
+PFOA (2.65 uM against 1 uM dosed) and PFHxS (1.54 uM) it does not.
+
+This is the distinction the "n fitted by the paper" route exists for, and
+Alesio is on the other side of it: Beesoon's Scatchard n = 2, Wu 2009's
+saturation n = 13, Bischel's 1.4-4.6 and Fan's 3.0-4.6 are numbers their
+papers obtained from data; Alesio's 1 is a modelling choice.
 
 THE LOADING IS LOW BUT NOT THE LOWEST.  Five of seven compounds were run
 at 1 uM PFAS against 10 uM BSA, a ligand:protein ratio of 0.1, and the
@@ -126,7 +134,17 @@ def build(fields):
             "ka": f"{ka:.3g}",
             "ka_units": f"M^-1 (SE {SE[chem] * 1e5:.3g})",
             "kd": sig(kd_uM), "kd_units": "uM, computed as 1/Ka",
-            "n_binding_sites": "1",
+            # NOT a bare "1": site_count() reads a bare number as a
+            # FIT, and this n is nothing of the kind -- the paper's eq 2
+            # fixes 1:1 by construction ("the term ([P] - [PFAS]bound)
+            # represents the residual unbound BSA protein assuming 1:1
+            # binding").  The wording below is the one the parser reads
+            # as a single-site assumption, as Chen et al. and Khazaee et
+            # al. already use.  With a bare "1" these rows were routed as
+            # "n fitted by the paper from its own binding isotherm",
+            # which is the one thing eq 2's n is not.
+            "n_binding_sites": "single-site model assumed in the "
+                               "paper's eq 2 (n = 1)",
             "binding_site_identified": "",
             "unbound_fraction": (f"{(1 - f) * 100:.1f}% unbound "
                                  f"({f * 100:.1f}% bound, f = {f:.3f} "
