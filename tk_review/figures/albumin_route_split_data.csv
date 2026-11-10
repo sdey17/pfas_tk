@@ -1,326 +1,326 @@
-pfas,species,source,log_k,route,route_rank,ratio
-10:2 FTSA,human,Fischer 2024,4.68,measured directly,0,0.004
-10:2 FTSA,bovine,Fischer 2024,4.88,measured directly,0,0.004
-5:3 FTCA,human,Fischer 2024,3.48,measured directly,0,0.004
-5:3 FTCA,bovine,Fischer 2024,2.9,measured directly,0,0.004
-6:2 Cl-PFESA,bovine,Allendorf 2019,5.01,measured directly,0,0.027
-6:2 Cl-PFESA,bovine,Allendorf 2019,5.02,measured directly,0,0.027
-6:2 FTSA,human,Fischer 2024,3.35,measured directly,0,0.004
-6:2 FTSA,bovine,Fischer 2024,3.44,measured directly,0,0.004
-7:3 FTCA,human,Fischer 2024,3.59,measured directly,0,0.004
-7:3 FTCA,bovine,Fischer 2024,3.79,measured directly,0,0.004
-8:2 FTSA,human,Fischer 2024,4.39,measured directly,0,0.004
-8:2 FTSA,bovine,Fischer 2024,4.49,measured directly,0,0.004
-ADONA,bovine,Allendorf 2019,3.93,measured directly,0,0.0065
-ADONA,bovine,Allendorf 2019,3.8,measured directly,0,0.0065
-ADONA,human,Fischer 2024,3.98,measured directly,0,0.004
-ADONA,bovine,Fischer 2024,3.84,measured directly,0,0.004
-FDSA,human,Fischer 2024,4.64,measured directly,0,0.004
-FDSA,bovine,Fischer 2024,4.69,measured directly,0,0.004
-FOSAA,human,Fischer 2024,4.31,measured directly,0,0.004
-FOSAA,bovine,Fischer 2024,4.3,measured directly,0,0.004
-HFPO-DA,bovine,Allendorf 2019,3.06,measured directly,0,0.00067
-HFPO-DA,bovine,Allendorf 2019,2.71,measured directly,0,0.00067
-N-EtFOSAA,human,Fischer 2024,4.23,measured directly,0,0.004
-N-EtFOSAA,bovine,Fischer 2024,4.29,measured directly,0,0.004
-N-MeFOSAA,human,Fischer 2024,4.27,measured directly,0,0.004
-N-MeFOSAA,bovine,Fischer 2024,4.29,measured directly,0,0.004
-PFBA,bovine,Allendorf 2019,2.52,measured directly,0,0.0004
-PFBA,bovine,Allendorf 2019,1.9,measured directly,0,0.0004
-PFBS,bovine,Allendorf 2019,3.2,measured directly,0,0.0021
-PFBS,bovine,Allendorf 2019,2.65,measured directly,0,0.0021
-PFBS,bovine,Bischel 2011,3.725,measured directly,0,0.00285
-PFBS,human,Fischer 2024,3.26,measured directly,0,0.004
-PFBS,bovine,Fischer 2024,2.28,measured directly,0,0.004
-PFDA,bovine,Allendorf 2019,4.73,measured directly,0,0.016
-PFDA,bovine,Allendorf 2019,4.84,measured directly,0,0.016
-PFDA,bovine,Bischel 2011,3.725,measured directly,0,0.00235
-PFDA,human,Fischer 2024,4.73,measured directly,0,0.004
-PFDA,bovine,Fischer 2024,4.81,measured directly,0,0.004
-PFDS,human,Fischer 2024,5.05,measured directly,0,0.004
-PFDS,bovine,Fischer 2024,5.13,measured directly,0,0.004
-PFDoDA,bovine,Bischel 2011,3.165,measured directly,0,0.0034
-PFDoDA,human,Fischer 2024,5.05,measured directly,0,0.004
-PFDoDA,bovine,Fischer 2024,5.12,measured directly,0,0.004
-PFECHS,bovine,Allendorf 2019,4.55,measured directly,0,0.0015
-PFECHS,bovine,Allendorf 2019,4.3,measured directly,0,0.0015
-PFHpA,bovine,Allendorf 2019,4.02,measured directly,0,0.0074
-PFHpA,bovine,Allendorf 2019,3.79,measured directly,0,0.0074
-PFHpA,bovine,Bischel 2011,4.095,measured directly,0,0.0015
-PFHpA,human,Fischer 2024,4.1,measured directly,0,0.004
-PFHpA,bovine,Fischer 2024,3.93,measured directly,0,0.004
-PFHpS,human,Fischer 2024,5.49,measured directly,0,0.004
-PFHpS,bovine,Fischer 2024,4.88,measured directly,0,0.004
-PFHxA,bovine,Allendorf 2019,3.43,measured directly,0,0.0014
-PFHxA,bovine,Allendorf 2019,3.02,measured directly,0,0.0014
-PFHxA,bovine,Bischel 2011,3.915,measured directly,0,0.00215
-PFHxA,human,Fischer 2024,3.2,measured directly,0,0.004
-PFHxA,bovine,Fischer 2024,2.83,measured directly,0,0.004
-PFHxS,bovine,Allendorf 2019,4.81,measured directly,0,0.038
-PFHxS,bovine,Allendorf 2019,4.49,measured directly,0,0.038
-PFHxS,bovine,Bischel 2011,4.165,measured directly,0,0.00135
-PFHxS,human,Fischer 2024,4.77,measured directly,0,0.004
-PFHxS,bovine,Fischer 2024,4.61,measured directly,0,0.004
-PFNA,bovine,Allendorf 2019,4.32,measured directly,0,0.012
-PFNA,bovine,Allendorf 2019,4.48,measured directly,0,0.012
-PFNA,human,Bischel 2010,4.93,measured directly,0,0.0005
-PFNA,bovine,Bischel 2010,4.74,measured directly,0,0.0006
-PFNA,bovine,Bischel 2010,4.56,measured directly,0,0.0006
-PFNA,bovine,Bischel 2011,3.915,measured directly,0,0.0023
-PFNA,human,Fischer 2024,4.49,measured directly,0,0.004
-PFNA,bovine,Fischer 2024,4.54,measured directly,0,0.004
-PFNS,human,Fischer 2024,4.99,measured directly,0,0.004
-PFNS,bovine,Fischer 2024,5.14,measured directly,0,0.004
-PFOA,bovine,Allendorf 2019,4.2,measured directly,0,0.015
-PFOA,bovine,Allendorf 2019,4.17,measured directly,0,0.015
-PFOA,bovine,Bischel 2011,4.005,measured directly,0,0.0016
-PFOA,human,Fischer 2024,4.48,measured directly,0,0.004
-PFOA,bovine,Fischer 2024,4.2,measured directly,0,0.004
-PFOS,bovine,Allendorf 2019,4.67,measured directly,0,0.025
-PFOS,bovine,Allendorf 2019,4.83,measured directly,0,0.025
-PFOS,bovine,Bischel 2011,3.965,measured directly,0,0.0013
-PFOS,human,Fischer 2024,4.62,measured directly,0,0.004
-PFOS,bovine,Fischer 2024,4.76,measured directly,0,0.004
-PFOSA,human,Fischer 2024,4.34,measured directly,0,0.004
-PFOSA,bovine,Fischer 2024,4.33,measured directly,0,0.004
-PFPeA,bovine,Bischel 2011,3.265,measured directly,0,0.0028
-PFPeA,human,Fischer 2024,2.16,measured directly,0,0.004
-PFPeS,human,Fischer 2024,3.98,measured directly,0,0.004
-PFPeS,bovine,Fischer 2024,4.0,measured directly,0,0.004
-PFTeDA,human,Fischer 2024,3.87,measured directly,0,0.004
-PFTeDA,bovine,Fischer 2024,3.87,measured directly,0,0.004
-PFTrDA,human,Fischer 2024,4.54,measured directly,0,0.004
-PFTrDA,bovine,Fischer 2024,4.47,measured directly,0,0.004
-PFUnDA,bovine,Allendorf 2019,4.6,measured directly,0,0.012
-PFUnDA,bovine,Allendorf 2019,4.72,measured directly,0,0.012
-PFUnDA,bovine,Bischel 2011,3.565,measured directly,0,0.0019
-PFUnDA,human,Fischer 2024,5.18,measured directly,0,0.004
-PFUnDA,bovine,Fischer 2024,5.17,measured directly,0,0.004
-6:2 FTSA,bovine,Qin 2024,3.76,measured directly,0,14.09
-HFPO-DA,bovine,Qin 2024,3.28,measured directly,0,8.995
-PFBA,bovine,Qin 2024,2.6,measured directly,0,36.05
-PFHpA,bovine,Qin 2024,4.01,measured directly,0,10.37
-PFHxA,bovine,Qin 2024,3.28,measured directly,0,32.39
-PFHxS,bovine,Qin 2024,4.82,measured directly,0,35.89
-PFNA,bovine,Qin 2024,4.56,measured directly,0,13.29
-PFOA,bovine,Qin 2024,4.64,measured directly,0,13.29
-PFOS,bovine,Qin 2024,5.35,measured directly,0,36.55
-PFOSA,bovine,Qin 2024,4.24,measured directly,0,12.76
-PFUnDA,bovine,Qin 2024,4.62,measured directly,0,10.1
-C6O4,human,Moro 2022,4.001,"converted, n counted by ITC",1,7.6
-C6O4,human,Moro 2022,3.621,"converted, n counted by ITC",1,6.7
-HFPO-DA,rat,Fan 2025,3.439,"converted, n counted by ITC",1,
-HFPO-DA,rat,Fan 2025,2.74,"converted, n counted by ITC",1,
-HFPO-DA,human,Moro 2022,2.899,"converted, n counted by ITC",1,6.9
-HFPO-DA,human,Moro 2022,3.182,"converted, n counted by ITC",1,6.9
-HFPO-DA,human,Moro 2022,2.252,"converted, n counted by ITC",1,6.9
-HFPO-DA,human,Moro 2022,2.746,"converted, n counted by ITC",1,6.9
-PFBA,rat,Fan 2025,3.617,"converted, n counted by ITC",1,
-PFBA,rat,Fan 2025,2.404,"converted, n counted by ITC",1,
-PFBS,rat,Fan 2025,4.299,"converted, n counted by ITC",1,
-PFBS,rat,Fan 2025,2.133,"converted, n counted by ITC",1,
-PFDA,rat,Fan 2025,3.732,"converted, n counted by ITC",1,
-PFDA,rat,Fan 2025,2.251,"converted, n counted by ITC",1,
-PFDoDA,rat,Fan 2025,2.73,"converted, n counted by ITC",1,
-PFHpA,rat,Fan 2025,3.651,"converted, n counted by ITC",1,
-PFHpA,rat,Fan 2025,2.72,"converted, n counted by ITC",1,
-PFHxA,rat,Fan 2025,3.207,"converted, n counted by ITC",1,
-PFHxA,rat,Fan 2025,2.241,"converted, n counted by ITC",1,
-PFHxA,human,Moro 2022,3.533,"converted, n counted by ITC",1,3.8
-PFHxA,human,Moro 2022,3.419,"converted, n counted by ITC",1,3.8
-PFHxS,rat,Fan 2025,2.908,"converted, n counted by ITC",1,
-PFHxS,rat,Fan 2025,3.081,"converted, n counted by ITC",1,
-PFNA,bovine,Bischel 2010,4.882,"converted, n counted by ITC",1,5.0
-PFNA,bovine,Bischel 2010,5.158,"converted, n counted by ITC",1,120.0
-PFNA,rat,Fan 2025,3.679,"converted, n counted by ITC",1,
-PFNA,rat,Fan 2025,2.709,"converted, n counted by ITC",1,
-PFOA,bovine,Bischel 2010,4.112,"converted, n counted by ITC",1,5.0
-PFOA,bovine,Bischel 2010,4.47,"converted, n counted by ITC",1,70.0
-PFOA,rat,Fan 2025,3.377,"converted, n counted by ITC",1,
-PFOA,rat,Fan 2025,2.695,"converted, n counted by ITC",1,
-PFOA,human,Moro 2022,4.525,"converted, n counted by ITC",1,7.5
-PFOA,human,Moro 2022,2.561,"converted, n counted by ITC",1,7.2
-PFOA,human,Moro 2022,3.358,"converted, n counted by ITC",1,7.5
-PFOA,human,Moro 2022,3.492,"converted, n counted by ITC",1,7.2
-PFOA,human,Wu 2009,3.786,"converted, n counted by ITC",1,20.0
-PFOA,human,Wu 2009,2.57,"converted, n counted by ITC",1,1.5
-PFOA,human,Wu 2009,1.997,"converted, n counted by ITC",1,20.0
-PFOS,rat,Fan 2025,3.702,"converted, n counted by ITC",1,
-PFOS,rat,Fan 2025,2.51,"converted, n counted by ITC",1,
-PFPeA,rat,Fan 2025,3.628,"converted, n counted by ITC",1,
-PFPeA,rat,Fan 2025,2.218,"converted, n counted by ITC",1,
-PFTeDA,rat,Fan 2025,1.895,"converted, n counted by ITC",1,
-PFUnDA,rat,Fan 2025,2.558,"converted, n counted by ITC",1,
-linear PFOA (n-PFOA),human,Beesoon 2015,2.478,"converted, n counted by ITC",1,2.0
-linear PFOS (n-PFOS),human,Beesoon 2015,5.575,"converted, n counted by ITC",1,2.0
-6:2 Cl-PFESA,human,Chen 2025,3.979,"converted, n from the paper's single-site model",2,2.0
-7:3 FTCA,human,Chen 2025,3.917,"converted, n from the paper's single-site model",2,2.0
-8:2 FTCA,human,Chen 2025,3.879,"converted, n from the paper's single-site model",2,2.0
-8Cl-PFOS,human,Chen 2025,4.238,"converted, n from the paper's single-site model",2,2.0
-PFDS,human,Chen 2025,3.903,"converted, n from the paper's single-site model",2,2.0
-PFDoS,human,Chen 2025,4.067,"converted, n from the paper's single-site model",2,2.0
-PFECHS,human,Chen 2025,3.968,"converted, n from the paper's single-site model",2,2.0
-PFHpS,human,Chen 2025,3.952,"converted, n from the paper's single-site model",2,2.0
-PFHxS,human,Chen 2025,4.06,"converted, n from the paper's single-site model",2,2.0
-PFMBA,human,Chen 2025,4.835,"converted, n from the paper's single-site model",2,2.0
-PFOS,human,Chen 2025,4.204,"converted, n from the paper's single-site model",2,2.0
-10:2 FTCA,human,Chen 2025,3.22,"converted, n from the paper's single-site model",2,2.0
-10:2 FTSA,human,Chen 2025,3.814,"converted, n from the paper's single-site model",2,2.0
-3:3 FTCA,human,Chen 2025,2.329,"converted, n from the paper's single-site model",2,2.0
-4:2 FTSA,human,Chen 2025,2.9,"converted, n from the paper's single-site model",2,2.0
-5:1:2 FTB,human,Chen 2025,2.484,"converted, n from the paper's single-site model",2,2.0
-5:3 FTB,human,Chen 2025,2.694,"converted, n from the paper's single-site model",2,2.0
-5:3 FTCA,human,Chen 2025,3.146,"converted, n from the paper's single-site model",2,2.0
-6:2 FTCA,human,Chen 2025,3.616,"converted, n from the paper's single-site model",2,2.0
-6:2 FTSA,human,Chen 2025,3.794,"converted, n from the paper's single-site model",2,2.0
-6:2 FTUCA,human,Chen 2025,3.551,"converted, n from the paper's single-site model",2,2.0
-6:2 FtSaB,human,Chen 2025,2.948,"converted, n from the paper's single-site model",2,2.0
-6:2 diPAP,human,Chen 2025,3.744,"converted, n from the paper's single-site model",2,2.0
-8:2 Cl-PFESA,human,Chen 2025,3.631,"converted, n from the paper's single-site model",2,2.0
-8:2 FTSA,human,Chen 2025,3.525,"converted, n from the paper's single-site model",2,2.0
-8:2 FTUCA,human,Chen 2025,3.823,"converted, n from the paper's single-site model",2,2.0
-8:2 diPAP,human,Chen 2025,3.019,"converted, n from the paper's single-site model",2,2.0
-ADONA,human,Chen 2025,3.423,"converted, n from the paper's single-site model",2,2.0
-FBSA,human,Chen 2025,3.431,"converted, n from the paper's single-site model",2,2.0
-FHxSA,human,Chen 2025,3.69,"converted, n from the paper's single-site model",2,2.0
-FOSAA,human,Chen 2025,3.308,"converted, n from the paper's single-site model",2,2.0
-HFPO-DA,human,Chen 2025,3.36,"converted, n from the paper's single-site model",2,2.0
-N-EtFOSA,human,Chen 2025,3.064,"converted, n from the paper's single-site model",2,2.0
-N-EtFOSAA,human,Chen 2025,3.442,"converted, n from the paper's single-site model",2,2.0
-N-EtFOSE,human,Chen 2025,3.393,"converted, n from the paper's single-site model",2,2.0
-N-MeFOSA,human,Chen 2025,3.09,"converted, n from the paper's single-site model",2,2.0
-N-MeFOSAA,human,Chen 2025,3.356,"converted, n from the paper's single-site model",2,2.0
-N-MeFOSE,human,Chen 2025,3.408,"converted, n from the paper's single-site model",2,2.0
-N-TAmP-FHxSA,human,Chen 2025,2.65,"converted, n from the paper's single-site model",2,2.0
-NFDHA,human,Chen 2025,2.938,"converted, n from the paper's single-site model",2,2.0
-PFBA,human,Chen 2025,2.249,"converted, n from the paper's single-site model",2,2.0
-PFBS,human,Chen 2025,2.984,"converted, n from the paper's single-site model",2,2.0
-PFDA,human,Chen 2025,3.616,"converted, n from the paper's single-site model",2,2.0
-PFDoDA,human,Chen 2025,2.98,"converted, n from the paper's single-site model",2,2.0
-PFEESA,human,Chen 2025,3.466,"converted, n from the paper's single-site model",2,2.0
-PFHpA,human,Chen 2025,3.385,"converted, n from the paper's single-site model",2,2.0
-PFHxA,human,Chen 2025,3.032,"converted, n from the paper's single-site model",2,2.0
-PFHxDA,human,Chen 2025,3.158,"converted, n from the paper's single-site model",2,2.0
-PFHxSaAm,human,Chen 2025,3.386,"converted, n from the paper's single-site model",2,2.0
-PFMPA,human,Chen 2025,2.5,"converted, n from the paper's single-site model",2,2.0
-PFNA,human,Chen 2025,3.603,"converted, n from the paper's single-site model",2,2.0
-PFNS,human,Chen 2025,3.361,"converted, n from the paper's single-site model",2,2.0
-PFOA,human,Chen 2025,3.767,"converted, n from the paper's single-site model",2,2.0
-PFOSA,human,Chen 2025,3.129,"converted, n from the paper's single-site model",2,2.0
-PFPeA,human,Chen 2025,2.966,"converted, n from the paper's single-site model",2,2.0
-PFPeS,human,Chen 2025,2.943,"converted, n from the paper's single-site model",2,2.0
-PFTeDA,human,Chen 2025,3.06,"converted, n from the paper's single-site model",2,2.0
-PFTrDA,human,Chen 2025,2.68,"converted, n from the paper's single-site model",2,2.0
-PFUnDA,human,Chen 2025,3.503,"converted, n from the paper's single-site model",2,2.0
-diSAmPAP,human,Chen 2025,3.404,"converted, n from the paper's single-site model",2,2.0
-6:2 Cl-PFESA,human,Gao 2019,2.351,"converted, n = 1 assumed by the reader",4,2.0
-HFPO-DA,bovine,Gao 2025,1.558,"converted, n = 1 assumed by the reader",4,6250.0
-HFPO-DA,bovine,Gao 2025,1.52,"converted, n = 1 assumed by the reader",4,6250.0
-HFPO-DA,bovine,Gao 2025,1.5,"converted, n = 1 assumed by the reader",4,6250.0
-HFPO-DA,bovine,Gao 2025,1.324,"converted, n = 1 assumed by the reader",4,6250.0
-Octanoic acid,human,Chen 2009,4.669,"converted, n = 1 assumed by the reader",4,
-Octanoic acid,human,Chen 2009,5.219,"converted, n = 1 assumed by the reader",4,
-Octanoic acid,human,Chen 2009,3.022,"converted, n = 1 assumed by the reader",4,
-PFBA,human,Gao 2019,1.555,"converted, n = 1 assumed by the reader",4,2.0
-PFBA,bovine,Gao 2025,0.655,"converted, n = 1 assumed by the reader",4,12500.0
-PFBA,bovine,Gao 2025,0.478,"converted, n = 1 assumed by the reader",4,12500.0
-PFBS,human,Gao 2019,1.95,"converted, n = 1 assumed by the reader",4,2.0
-PFBS,bovine,Gao 2025,1.324,"converted, n = 1 assumed by the reader",4,18750.0
-PFBS,bovine,Gao 2025,1.132,"converted, n = 1 assumed by the reader",4,18750.0
-PFDA,human,Gao 2019,2.365,"converted, n = 1 assumed by the reader",4,2.0
-PFDA,bovine,Gao 2025,4.199,"converted, n = 1 assumed by the reader",4,125.0
-PFDA,bovine,Gao 2025,4.146,"converted, n = 1 assumed by the reader",4,125.0
-PFDA,bovine,Gao 2025,4.129,"converted, n = 1 assumed by the reader",4,125.0
-PFDA,bovine,Gao 2025,4.044,"converted, n = 1 assumed by the reader",4,125.0
-PFDA,human,Hebert 2010,2.972,"converted, n = 1 assumed by the reader",4,
-PFDoDA,human,Gao 2019,2.165,"converted, n = 1 assumed by the reader",4,2.0
-PFHpA,human,Gao 2019,1.942,"converted, n = 1 assumed by the reader",4,2.0
-PFHpA,bovine,Gao 2025,2.563,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.47,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.461,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.339,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.264,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.122,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,bovine,Gao 2025,2.029,"converted, n = 1 assumed by the reader",4,10000.0
-PFHpA,human,Hebert 2010,2.165,"converted, n = 1 assumed by the reader",4,
-PFHxA,human,Gao 2019,1.887,"converted, n = 1 assumed by the reader",4,2.0
-PFHxA,bovine,Gao 2025,1.52,"converted, n = 1 assumed by the reader",4,12500.0
-PFHxA,bovine,Gao 2025,1.433,"converted, n = 1 assumed by the reader",4,12500.0
-PFHxA,bovine,Gao 2025,1.408,"converted, n = 1 assumed by the reader",4,12500.0
-PFHxA,bovine,Gao 2025,1.291,"converted, n = 1 assumed by the reader",4,12500.0
-"PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)",human; bovine,Peng 2025,2.983,"converted, n = 1 assumed by the reader",4,
-PFHxS,human,Gao 2019,2.28,"converted, n = 1 assumed by the reader",4,2.0
-PFHxS,bovine,Gao 2025,3.458,"converted, n = 1 assumed by the reader",4,750.0
-PFHxS,bovine,Gao 2025,3.298,"converted, n = 1 assumed by the reader",4,750.0
-PFHxS,bovine,Gao 2025,3.267,"converted, n = 1 assumed by the reader",4,750.0
-PFHxS,bovine,Gao 2025,3.146,"converted, n = 1 assumed by the reader",4,750.0
-PFHxS,human,Hebert 2010,2.295,"converted, n = 1 assumed by the reader",4,
-PFNA,human,Gao 2019,2.314,"converted, n = 1 assumed by the reader",4,2.0
-PFNA,bovine,Gao 2025,4.175,"converted, n = 1 assumed by the reader",4,250.0
-PFNA,bovine,Gao 2025,4.106,"converted, n = 1 assumed by the reader",4,250.0
-PFNA,bovine,Gao 2025,4.033,"converted, n = 1 assumed by the reader",4,250.0
-PFNA,bovine,Gao 2025,3.935,"converted, n = 1 assumed by the reader",4,250.0
-PFNA,human,Hebert 2010,2.656,"converted, n = 1 assumed by the reader",4,
-PFNA,human,Hebert 2010,2.275,"converted, n = 1 assumed by the reader",4,
-PFOA,human,Gao 2019,2.117,"converted, n = 1 assumed by the reader",4,2.0
-PFOA,bovine,Gao 2025,3.668,"converted, n = 1 assumed by the reader",4,1875.0
-PFOA,bovine,Gao 2025,3.543,"converted, n = 1 assumed by the reader",4,1875.0
-PFOA,bovine,Gao 2025,3.486,"converted, n = 1 assumed by the reader",4,1875.0
-PFOA,bovine,Gao 2025,3.327,"converted, n = 1 assumed by the reader",4,1875.0
-PFOA,human,Hebert 2010,2.568,"converted, n = 1 assumed by the reader",4,
-PFOA,human,Hebert 2010,2.351,"converted, n = 1 assumed by the reader",4,
-PFOA,bovine,Klevens 1954,0.685,"converted, n = 1 assumed by the reader",4,29.0
-PFOA and PFDA,human,Chen 2020,2.218,"converted, n = 1 assumed by the reader",4,40.0
-"PFOA and PFDA (PFPeA tested, little effect)",bovine,Qin 2010,3.266,"converted, n = 1 assumed by the reader",4,
-PFOA and PFOS,human; bovine,Chi 2018,3.533,"converted, n = 1 assumed by the reader",4,
-"PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)",bovine,Alesio 2022,3.995,"converted, n = 1 assumed by the reader",4,
-PFOS,human,Gao 2019,2.598,"converted, n = 1 assumed by the reader",4,2.0
-PFOS,bovine,Gao 2025,4.334,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,4.336,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,4.221,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,4.148,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,4.142,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,3.943,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,bovine,Gao 2025,3.944,"converted, n = 1 assumed by the reader",4,12.5
-PFOS,human,Hebert 2010,2.146,"converted, n = 1 assumed by the reader",4,
-PFOS and 6:2 Cl-PFESA (F-53B),human,Sheng 2020,2.823,"converted, n = 1 assumed by the reader",4,
-PFPeA,human,Gao 2019,1.721,"converted, n = 1 assumed by the reader",4,2.0
-PFTrDA,human,Gao 2019,1.754,"converted, n = 1 assumed by the reader",4,2.0
-PFUnDA,human,Gao 2019,2.28,"converted, n = 1 assumed by the reader",4,2.0
-PFUnDA,human,Hebert 2010,2.908,"converted, n = 1 assumed by the reader",4,
-branched PFOA isomers (range),human,Beesoon 2015,1.7,"converted, n = 1 assumed by the reader",4,2.0
-branched PFOS isomers (range),human,Beesoon 2015,2.274,"converted, n = 1 assumed by the reader",4,2.0
-butyric acid (C4),human,Chen 2009,3.433,"converted, n = 1 assumed by the reader",4,
-butyric acid (C4),human,Chen 2009,2.141,"converted, n = 1 assumed by the reader",4,
-6:2 Cl-PFESA,human,Wu 2024,0.106,"converted, n = the paper's quenching exponent",3,5.993
-8:2 Cl-PFESA,human,Wu 2024,0.135,"converted, n = the paper's quenching exponent",3,5.993
-ADONA,human,Wu 2024,-0.026,"converted, n = the paper's quenching exponent",3,5.993
-DFSA (dodecafluorosuberic acid),human,Peng 2024,2.546,"converted, n = the paper's quenching exponent",3,18.0
-DFSA (dodecafluorosuberic acid),human,Peng 2024,1.304,"converted, n = the paper's quenching exponent",3,18.0
-DFSA (dodecafluorosuberic acid),human,Peng 2024,1.862,"converted, n = the paper's quenching exponent",3,18.0
-HFPO-DA,human,Wu 2024,-0.259,"converted, n = the paper's quenching exponent",3,5.993
-HFPO-TA,human,Peng 2024,7.861,"converted, n = the paper's quenching exponent",3,18.0
-HFPO-TA,human,Peng 2024,4.919,"converted, n = the paper's quenching exponent",3,18.0
-HFPO-TA,human,Peng 2024,6.359,"converted, n = the paper's quenching exponent",3,18.0
-PFBA,human,Wu 2024,-0.842,"converted, n = the paper's quenching exponent",3,5.993
-PFBS,human,Wu 2024,0.088,"converted, n = the paper's quenching exponent",3,5.993
-PFHpA,human,Peng 2024,4.227,"converted, n = the paper's quenching exponent",3,18.0
-PFHpA,human,Peng 2024,1.816,"converted, n = the paper's quenching exponent",3,18.0
-PFHpA,human,Peng 2024,4.058,"converted, n = the paper's quenching exponent",3,18.0
-PFHxS,human,Wu 2024,0.241,"converted, n = the paper's quenching exponent",3,5.993
-PFNA,human,Peng 2024,3.214,"converted, n = the paper's quenching exponent",3,18.0
-PFNA,human,Peng 2024,5.249,"converted, n = the paper's quenching exponent",3,18.0
-PFNA,human,Peng 2024,3.555,"converted, n = the paper's quenching exponent",3,18.0
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,2.695,"converted, n = the paper's quenching exponent",3,18.0
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,3.476,"converted, n = the paper's quenching exponent",3,18.0
-"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,2.959,"converted, n = the paper's quenching exponent",3,18.0
-PFOA,human,Chen 2009,4.372,"converted, n = the paper's quenching exponent",3,8.0
-PFOA,rat,Han 2003,2.513,"converted, n = the paper's quenching exponent",3,60.0
-PFOA,human,Han 2003,2.455,"converted, n = the paper's quenching exponent",3,60.0
-PFOA,human,Peng 2024,4.641,"converted, n = the paper's quenching exponent",3,18.0
-PFOA,human,Peng 2024,3.634,"converted, n = the paper's quenching exponent",3,18.0
-PFOA,human,Peng 2024,4.643,"converted, n = the paper's quenching exponent",3,18.0
-PFOA,human,Wu 2024,0.025,"converted, n = the paper's quenching exponent",3,5.993
-PFOS,human,Chen 2009,3.666,"converted, n = the paper's quenching exponent",3,40.0
-PFOS,human,Wu 2024,0.713,"converted, n = the paper's quenching exponent",3,5.993
-PFPrS,human,Wu 2024,-0.11,"converted, n = the paper's quenching exponent",3,5.993
+pfas,species,source,log_k,route,route_rank,ratio,plot_ratio,ratio_basis
+10:2 FTSA,human,Fischer 2024,4.68,measured directly,0,0.004,0.004,assay maximum
+10:2 FTSA,bovine,Fischer 2024,4.88,measured directly,0,0.004,0.004,assay maximum
+5:3 FTCA,human,Fischer 2024,3.48,measured directly,0,0.004,0.004,assay maximum
+5:3 FTCA,bovine,Fischer 2024,2.9,measured directly,0,0.004,0.004,assay maximum
+6:2 Cl-PFESA,bovine,Allendorf 2019,5.01,measured directly,0,0.027,0.027,assay maximum
+6:2 Cl-PFESA,bovine,Allendorf 2019,5.02,measured directly,0,0.027,0.027,assay maximum
+6:2 FTSA,human,Fischer 2024,3.35,measured directly,0,0.004,0.004,assay maximum
+6:2 FTSA,bovine,Fischer 2024,3.44,measured directly,0,0.004,0.004,assay maximum
+7:3 FTCA,human,Fischer 2024,3.59,measured directly,0,0.004,0.004,assay maximum
+7:3 FTCA,bovine,Fischer 2024,3.79,measured directly,0,0.004,0.004,assay maximum
+8:2 FTSA,human,Fischer 2024,4.39,measured directly,0,0.004,0.004,assay maximum
+8:2 FTSA,bovine,Fischer 2024,4.49,measured directly,0,0.004,0.004,assay maximum
+ADONA,bovine,Allendorf 2019,3.93,measured directly,0,0.0065,0.0065,assay maximum
+ADONA,bovine,Allendorf 2019,3.8,measured directly,0,0.0065,0.0065,assay maximum
+ADONA,human,Fischer 2024,3.98,measured directly,0,0.004,0.004,assay maximum
+ADONA,bovine,Fischer 2024,3.84,measured directly,0,0.004,0.004,assay maximum
+FDSA,human,Fischer 2024,4.64,measured directly,0,0.004,0.004,assay maximum
+FDSA,bovine,Fischer 2024,4.69,measured directly,0,0.004,0.004,assay maximum
+FOSAA,human,Fischer 2024,4.31,measured directly,0,0.004,0.004,assay maximum
+FOSAA,bovine,Fischer 2024,4.3,measured directly,0,0.004,0.004,assay maximum
+HFPO-DA,bovine,Allendorf 2019,3.06,measured directly,0,0.00067,0.00067,assay maximum
+HFPO-DA,bovine,Allendorf 2019,2.71,measured directly,0,0.00067,0.00067,assay maximum
+N-EtFOSAA,human,Fischer 2024,4.23,measured directly,0,0.004,0.004,assay maximum
+N-EtFOSAA,bovine,Fischer 2024,4.29,measured directly,0,0.004,0.004,assay maximum
+N-MeFOSAA,human,Fischer 2024,4.27,measured directly,0,0.004,0.004,assay maximum
+N-MeFOSAA,bovine,Fischer 2024,4.29,measured directly,0,0.004,0.004,assay maximum
+PFBA,bovine,Allendorf 2019,2.52,measured directly,0,0.0004,0.0004,assay maximum
+PFBA,bovine,Allendorf 2019,1.9,measured directly,0,0.0004,0.0004,assay maximum
+PFBS,bovine,Allendorf 2019,3.2,measured directly,0,0.0021,0.0021,assay maximum
+PFBS,bovine,Allendorf 2019,2.65,measured directly,0,0.0021,0.0021,assay maximum
+PFBS,bovine,Bischel 2011,3.725,measured directly,0,0.00285,0.00285,assay maximum
+PFBS,human,Fischer 2024,3.26,measured directly,0,0.004,0.004,assay maximum
+PFBS,bovine,Fischer 2024,2.28,measured directly,0,0.004,0.004,assay maximum
+PFDA,bovine,Allendorf 2019,4.73,measured directly,0,0.016,0.016,assay maximum
+PFDA,bovine,Allendorf 2019,4.84,measured directly,0,0.016,0.016,assay maximum
+PFDA,bovine,Bischel 2011,3.725,measured directly,0,0.00235,0.00235,assay maximum
+PFDA,human,Fischer 2024,4.73,measured directly,0,0.004,0.004,assay maximum
+PFDA,bovine,Fischer 2024,4.81,measured directly,0,0.004,0.004,assay maximum
+PFDS,human,Fischer 2024,5.05,measured directly,0,0.004,0.004,assay maximum
+PFDS,bovine,Fischer 2024,5.13,measured directly,0,0.004,0.004,assay maximum
+PFDoDA,bovine,Bischel 2011,3.165,measured directly,0,0.0034,0.0034,assay maximum
+PFDoDA,human,Fischer 2024,5.05,measured directly,0,0.004,0.004,assay maximum
+PFDoDA,bovine,Fischer 2024,5.12,measured directly,0,0.004,0.004,assay maximum
+PFECHS,bovine,Allendorf 2019,4.55,measured directly,0,0.0015,0.0015,assay maximum
+PFECHS,bovine,Allendorf 2019,4.3,measured directly,0,0.0015,0.0015,assay maximum
+PFHpA,bovine,Allendorf 2019,4.02,measured directly,0,0.0074,0.0074,assay maximum
+PFHpA,bovine,Allendorf 2019,3.79,measured directly,0,0.0074,0.0074,assay maximum
+PFHpA,bovine,Bischel 2011,4.095,measured directly,0,0.0015,0.0015,assay maximum
+PFHpA,human,Fischer 2024,4.1,measured directly,0,0.004,0.004,assay maximum
+PFHpA,bovine,Fischer 2024,3.93,measured directly,0,0.004,0.004,assay maximum
+PFHpS,human,Fischer 2024,5.49,measured directly,0,0.004,0.004,assay maximum
+PFHpS,bovine,Fischer 2024,4.88,measured directly,0,0.004,0.004,assay maximum
+PFHxA,bovine,Allendorf 2019,3.43,measured directly,0,0.0014,0.0014,assay maximum
+PFHxA,bovine,Allendorf 2019,3.02,measured directly,0,0.0014,0.0014,assay maximum
+PFHxA,bovine,Bischel 2011,3.915,measured directly,0,0.00215,0.00215,assay maximum
+PFHxA,human,Fischer 2024,3.2,measured directly,0,0.004,0.004,assay maximum
+PFHxA,bovine,Fischer 2024,2.83,measured directly,0,0.004,0.004,assay maximum
+PFHxS,bovine,Allendorf 2019,4.81,measured directly,0,0.038,0.038,assay maximum
+PFHxS,bovine,Allendorf 2019,4.49,measured directly,0,0.038,0.038,assay maximum
+PFHxS,bovine,Bischel 2011,4.165,measured directly,0,0.00135,0.00135,assay maximum
+PFHxS,human,Fischer 2024,4.77,measured directly,0,0.004,0.004,assay maximum
+PFHxS,bovine,Fischer 2024,4.61,measured directly,0,0.004,0.004,assay maximum
+PFNA,bovine,Allendorf 2019,4.32,measured directly,0,0.012,0.012,assay maximum
+PFNA,bovine,Allendorf 2019,4.48,measured directly,0,0.012,0.012,assay maximum
+PFNA,human,Bischel 2010,4.93,measured directly,0,0.0005,0.0005,assay maximum
+PFNA,bovine,Bischel 2010,4.74,measured directly,0,0.0006,0.0006,assay maximum
+PFNA,bovine,Bischel 2010,4.56,measured directly,0,0.0006,0.0006,assay maximum
+PFNA,bovine,Bischel 2011,3.915,measured directly,0,0.0023,0.0023,assay maximum
+PFNA,human,Fischer 2024,4.49,measured directly,0,0.004,0.004,assay maximum
+PFNA,bovine,Fischer 2024,4.54,measured directly,0,0.004,0.004,assay maximum
+PFNS,human,Fischer 2024,4.99,measured directly,0,0.004,0.004,assay maximum
+PFNS,bovine,Fischer 2024,5.14,measured directly,0,0.004,0.004,assay maximum
+PFOA,bovine,Allendorf 2019,4.2,measured directly,0,0.015,0.015,assay maximum
+PFOA,bovine,Allendorf 2019,4.17,measured directly,0,0.015,0.015,assay maximum
+PFOA,bovine,Bischel 2011,4.005,measured directly,0,0.0016,0.0016,assay maximum
+PFOA,human,Fischer 2024,4.48,measured directly,0,0.004,0.004,assay maximum
+PFOA,bovine,Fischer 2024,4.2,measured directly,0,0.004,0.004,assay maximum
+PFOS,bovine,Allendorf 2019,4.67,measured directly,0,0.025,0.025,assay maximum
+PFOS,bovine,Allendorf 2019,4.83,measured directly,0,0.025,0.025,assay maximum
+PFOS,bovine,Bischel 2011,3.965,measured directly,0,0.0013,0.0013,assay maximum
+PFOS,human,Fischer 2024,4.62,measured directly,0,0.004,0.004,assay maximum
+PFOS,bovine,Fischer 2024,4.76,measured directly,0,0.004,0.004,assay maximum
+PFOSA,human,Fischer 2024,4.34,measured directly,0,0.004,0.004,assay maximum
+PFOSA,bovine,Fischer 2024,4.33,measured directly,0,0.004,0.004,assay maximum
+PFPeA,bovine,Bischel 2011,3.265,measured directly,0,0.0028,0.0028,assay maximum
+PFPeA,human,Fischer 2024,2.16,measured directly,0,0.004,0.004,assay maximum
+PFPeS,human,Fischer 2024,3.98,measured directly,0,0.004,0.004,assay maximum
+PFPeS,bovine,Fischer 2024,4.0,measured directly,0,0.004,0.004,assay maximum
+PFTeDA,human,Fischer 2024,3.87,measured directly,0,0.004,0.004,assay maximum
+PFTeDA,bovine,Fischer 2024,3.87,measured directly,0,0.004,0.004,assay maximum
+PFTrDA,human,Fischer 2024,4.54,measured directly,0,0.004,0.004,assay maximum
+PFTrDA,bovine,Fischer 2024,4.47,measured directly,0,0.004,0.004,assay maximum
+PFUnDA,bovine,Allendorf 2019,4.6,measured directly,0,0.012,0.012,assay maximum
+PFUnDA,bovine,Allendorf 2019,4.72,measured directly,0,0.012,0.012,assay maximum
+PFUnDA,bovine,Bischel 2011,3.565,measured directly,0,0.0019,0.0019,assay maximum
+PFUnDA,human,Fischer 2024,5.18,measured directly,0,0.004,0.004,assay maximum
+PFUnDA,bovine,Fischer 2024,5.17,measured directly,0,0.004,0.004,assay maximum
+6:2 FTSA,bovine,Qin 2024,3.76,measured directly,0,14.09,0.15164326696152436,operating point (Table S6 evaluated at its Cw)
+HFPO-DA,bovine,Qin 2024,3.28,measured directly,0,8.995,0.144499247331408,operating point (Table S6 evaluated at its Cw)
+PFBA,bovine,Qin 2024,2.6,measured directly,0,36.05,0.10028111416192396,operating point (Table S6 evaluated at its Cw)
+PFHpA,bovine,Qin 2024,4.01,measured directly,0,10.37,0.1594180703101202,operating point (Table S6 evaluated at its Cw)
+PFHxA,bovine,Qin 2024,3.28,measured directly,0,32.39,0.14361274888152203,operating point (Table S6 evaluated at its Cw)
+PFHxS,bovine,Qin 2024,4.82,measured directly,0,35.89,0.15961891548796647,operating point (Table S6 evaluated at its Cw)
+PFNA,bovine,Qin 2024,4.56,measured directly,0,13.29,0.16066590746936518,operating point (Table S6 evaluated at its Cw)
+PFOA,bovine,Qin 2024,4.64,measured directly,0,13.29,0.16180077035535942,operating point (Table S6 evaluated at its Cw)
+PFOS,bovine,Qin 2024,5.35,measured directly,0,36.55,0.16143945349044417,operating point (Table S6 evaluated at its Cw)
+PFOSA,bovine,Qin 2024,4.24,measured directly,0,12.76,0.14760830538293498,operating point (Table S6 evaluated at its Cw)
+PFUnDA,bovine,Qin 2024,4.62,measured directly,0,10.1,0.16083559298398362,operating point (Table S6 evaluated at its Cw)
+C6O4,human,Moro 2022,4.001,"converted, n counted by ITC",1,7.6,7.6,assay maximum
+C6O4,human,Moro 2022,3.621,"converted, n counted by ITC",1,6.7,6.7,assay maximum
+HFPO-DA,rat,Fan 2025,3.439,"converted, n counted by ITC",1,,,assay maximum
+HFPO-DA,rat,Fan 2025,2.74,"converted, n counted by ITC",1,,,assay maximum
+HFPO-DA,human,Moro 2022,2.899,"converted, n counted by ITC",1,6.9,6.9,assay maximum
+HFPO-DA,human,Moro 2022,3.182,"converted, n counted by ITC",1,6.9,6.9,assay maximum
+HFPO-DA,human,Moro 2022,2.252,"converted, n counted by ITC",1,6.9,6.9,assay maximum
+HFPO-DA,human,Moro 2022,2.746,"converted, n counted by ITC",1,6.9,6.9,assay maximum
+PFBA,rat,Fan 2025,3.617,"converted, n counted by ITC",1,,,assay maximum
+PFBA,rat,Fan 2025,2.404,"converted, n counted by ITC",1,,,assay maximum
+PFBS,rat,Fan 2025,4.299,"converted, n counted by ITC",1,,,assay maximum
+PFBS,rat,Fan 2025,2.133,"converted, n counted by ITC",1,,,assay maximum
+PFDA,rat,Fan 2025,3.732,"converted, n counted by ITC",1,,,assay maximum
+PFDA,rat,Fan 2025,2.251,"converted, n counted by ITC",1,,,assay maximum
+PFDoDA,rat,Fan 2025,2.73,"converted, n counted by ITC",1,,,assay maximum
+PFHpA,rat,Fan 2025,3.651,"converted, n counted by ITC",1,,,assay maximum
+PFHpA,rat,Fan 2025,2.72,"converted, n counted by ITC",1,,,assay maximum
+PFHxA,rat,Fan 2025,3.207,"converted, n counted by ITC",1,,,assay maximum
+PFHxA,rat,Fan 2025,2.241,"converted, n counted by ITC",1,,,assay maximum
+PFHxA,human,Moro 2022,3.533,"converted, n counted by ITC",1,3.8,3.8,assay maximum
+PFHxA,human,Moro 2022,3.419,"converted, n counted by ITC",1,3.8,3.8,assay maximum
+PFHxS,rat,Fan 2025,2.908,"converted, n counted by ITC",1,,,assay maximum
+PFHxS,rat,Fan 2025,3.081,"converted, n counted by ITC",1,,,assay maximum
+PFNA,bovine,Bischel 2010,4.882,"converted, n counted by ITC",1,5.0,5.0,assay maximum
+PFNA,bovine,Bischel 2010,5.158,"converted, n counted by ITC",1,120.0,120.0,assay maximum
+PFNA,rat,Fan 2025,3.679,"converted, n counted by ITC",1,,,assay maximum
+PFNA,rat,Fan 2025,2.709,"converted, n counted by ITC",1,,,assay maximum
+PFOA,bovine,Bischel 2010,4.112,"converted, n counted by ITC",1,5.0,5.0,assay maximum
+PFOA,bovine,Bischel 2010,4.47,"converted, n counted by ITC",1,70.0,70.0,assay maximum
+PFOA,rat,Fan 2025,3.377,"converted, n counted by ITC",1,,,assay maximum
+PFOA,rat,Fan 2025,2.695,"converted, n counted by ITC",1,,,assay maximum
+PFOA,human,Moro 2022,4.525,"converted, n counted by ITC",1,7.5,7.5,assay maximum
+PFOA,human,Moro 2022,2.561,"converted, n counted by ITC",1,7.2,7.2,assay maximum
+PFOA,human,Moro 2022,3.358,"converted, n counted by ITC",1,7.5,7.5,assay maximum
+PFOA,human,Moro 2022,3.492,"converted, n counted by ITC",1,7.2,7.2,assay maximum
+PFOA,human,Wu 2009,3.786,"converted, n counted by ITC",1,20.0,20.0,assay maximum
+PFOA,human,Wu 2009,2.57,"converted, n counted by ITC",1,1.5,1.5,assay maximum
+PFOA,human,Wu 2009,1.997,"converted, n counted by ITC",1,20.0,20.0,assay maximum
+PFOS,rat,Fan 2025,3.702,"converted, n counted by ITC",1,,,assay maximum
+PFOS,rat,Fan 2025,2.51,"converted, n counted by ITC",1,,,assay maximum
+PFPeA,rat,Fan 2025,3.628,"converted, n counted by ITC",1,,,assay maximum
+PFPeA,rat,Fan 2025,2.218,"converted, n counted by ITC",1,,,assay maximum
+PFTeDA,rat,Fan 2025,1.895,"converted, n counted by ITC",1,,,assay maximum
+PFUnDA,rat,Fan 2025,2.558,"converted, n counted by ITC",1,,,assay maximum
+linear PFOA (n-PFOA),human,Beesoon 2015,2.478,"converted, n counted by ITC",1,2.0,2.0,assay maximum
+linear PFOS (n-PFOS),human,Beesoon 2015,5.575,"converted, n counted by ITC",1,2.0,2.0,assay maximum
+6:2 Cl-PFESA,human,Chen 2025,3.979,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+7:3 FTCA,human,Chen 2025,3.917,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8:2 FTCA,human,Chen 2025,3.879,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8Cl-PFOS,human,Chen 2025,4.238,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFDS,human,Chen 2025,3.903,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFDoS,human,Chen 2025,4.067,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFECHS,human,Chen 2025,3.968,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHpS,human,Chen 2025,3.952,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHxS,human,Chen 2025,4.06,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFMBA,human,Chen 2025,4.835,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFOS,human,Chen 2025,4.204,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+10:2 FTCA,human,Chen 2025,3.22,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+10:2 FTSA,human,Chen 2025,3.814,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+3:3 FTCA,human,Chen 2025,2.329,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+4:2 FTSA,human,Chen 2025,2.9,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+5:1:2 FTB,human,Chen 2025,2.484,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+5:3 FTB,human,Chen 2025,2.694,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+5:3 FTCA,human,Chen 2025,3.146,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 FTCA,human,Chen 2025,3.616,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 FTSA,human,Chen 2025,3.794,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 FTUCA,human,Chen 2025,3.551,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 FtSaB,human,Chen 2025,2.948,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 diPAP,human,Chen 2025,3.744,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8:2 Cl-PFESA,human,Chen 2025,3.631,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8:2 FTSA,human,Chen 2025,3.525,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8:2 FTUCA,human,Chen 2025,3.823,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+8:2 diPAP,human,Chen 2025,3.019,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+ADONA,human,Chen 2025,3.423,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+FBSA,human,Chen 2025,3.431,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+FHxSA,human,Chen 2025,3.69,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+FOSAA,human,Chen 2025,3.308,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+HFPO-DA,human,Chen 2025,3.36,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-EtFOSA,human,Chen 2025,3.064,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-EtFOSAA,human,Chen 2025,3.442,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-EtFOSE,human,Chen 2025,3.393,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-MeFOSA,human,Chen 2025,3.09,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-MeFOSAA,human,Chen 2025,3.356,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-MeFOSE,human,Chen 2025,3.408,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+N-TAmP-FHxSA,human,Chen 2025,2.65,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+NFDHA,human,Chen 2025,2.938,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFBA,human,Chen 2025,2.249,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFBS,human,Chen 2025,2.984,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFDA,human,Chen 2025,3.616,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFDoDA,human,Chen 2025,2.98,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFEESA,human,Chen 2025,3.466,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHpA,human,Chen 2025,3.385,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHxA,human,Chen 2025,3.032,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHxDA,human,Chen 2025,3.158,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFHxSaAm,human,Chen 2025,3.386,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFMPA,human,Chen 2025,2.5,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFNA,human,Chen 2025,3.603,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFNS,human,Chen 2025,3.361,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFOA,human,Chen 2025,3.767,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFOSA,human,Chen 2025,3.129,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFPeA,human,Chen 2025,2.966,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFPeS,human,Chen 2025,2.943,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFTeDA,human,Chen 2025,3.06,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFTrDA,human,Chen 2025,2.68,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+PFUnDA,human,Chen 2025,3.503,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+diSAmPAP,human,Chen 2025,3.404,"converted, n from the paper's single-site model",2,2.0,2.0,assay maximum
+6:2 Cl-PFESA,human,Gao 2019,2.351,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+HFPO-DA,bovine,Gao 2025,1.558,"converted, n = 1 assumed by the reader",4,6250.0,6250.0,assay maximum
+HFPO-DA,bovine,Gao 2025,1.52,"converted, n = 1 assumed by the reader",4,6250.0,6250.0,assay maximum
+HFPO-DA,bovine,Gao 2025,1.5,"converted, n = 1 assumed by the reader",4,6250.0,6250.0,assay maximum
+HFPO-DA,bovine,Gao 2025,1.324,"converted, n = 1 assumed by the reader",4,6250.0,6250.0,assay maximum
+Octanoic acid,human,Chen 2009,4.669,"converted, n = 1 assumed by the reader",4,,,assay maximum
+Octanoic acid,human,Chen 2009,5.219,"converted, n = 1 assumed by the reader",4,,,assay maximum
+Octanoic acid,human,Chen 2009,3.022,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFBA,human,Gao 2019,1.555,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFBA,bovine,Gao 2025,0.655,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+PFBA,bovine,Gao 2025,0.478,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+PFBS,human,Gao 2019,1.95,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFBS,bovine,Gao 2025,1.324,"converted, n = 1 assumed by the reader",4,18750.0,18750.0,assay maximum
+PFBS,bovine,Gao 2025,1.132,"converted, n = 1 assumed by the reader",4,18750.0,18750.0,assay maximum
+PFDA,human,Gao 2019,2.365,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFDA,bovine,Gao 2025,4.199,"converted, n = 1 assumed by the reader",4,125.0,125.0,assay maximum
+PFDA,bovine,Gao 2025,4.146,"converted, n = 1 assumed by the reader",4,125.0,125.0,assay maximum
+PFDA,bovine,Gao 2025,4.129,"converted, n = 1 assumed by the reader",4,125.0,125.0,assay maximum
+PFDA,bovine,Gao 2025,4.044,"converted, n = 1 assumed by the reader",4,125.0,125.0,assay maximum
+PFDA,human,Hebert 2010,2.972,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFDoDA,human,Gao 2019,2.165,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFHpA,human,Gao 2019,1.942,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFHpA,bovine,Gao 2025,2.563,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.47,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.461,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.339,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.264,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.122,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,bovine,Gao 2025,2.029,"converted, n = 1 assumed by the reader",4,10000.0,10000.0,assay maximum
+PFHpA,human,Hebert 2010,2.165,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFHxA,human,Gao 2019,1.887,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFHxA,bovine,Gao 2025,1.52,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+PFHxA,bovine,Gao 2025,1.433,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+PFHxA,bovine,Gao 2025,1.408,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+PFHxA,bovine,Gao 2025,1.291,"converted, n = 1 assumed by the reader",4,12500.0,12500.0,assay maximum
+"PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, HFPO-DA (GenX)",human; bovine,Peng 2025,2.983,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFHxS,human,Gao 2019,2.28,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFHxS,bovine,Gao 2025,3.458,"converted, n = 1 assumed by the reader",4,750.0,750.0,assay maximum
+PFHxS,bovine,Gao 2025,3.298,"converted, n = 1 assumed by the reader",4,750.0,750.0,assay maximum
+PFHxS,bovine,Gao 2025,3.267,"converted, n = 1 assumed by the reader",4,750.0,750.0,assay maximum
+PFHxS,bovine,Gao 2025,3.146,"converted, n = 1 assumed by the reader",4,750.0,750.0,assay maximum
+PFHxS,human,Hebert 2010,2.295,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFNA,human,Gao 2019,2.314,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFNA,bovine,Gao 2025,4.175,"converted, n = 1 assumed by the reader",4,250.0,250.0,assay maximum
+PFNA,bovine,Gao 2025,4.106,"converted, n = 1 assumed by the reader",4,250.0,250.0,assay maximum
+PFNA,bovine,Gao 2025,4.033,"converted, n = 1 assumed by the reader",4,250.0,250.0,assay maximum
+PFNA,bovine,Gao 2025,3.935,"converted, n = 1 assumed by the reader",4,250.0,250.0,assay maximum
+PFNA,human,Hebert 2010,2.656,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFNA,human,Hebert 2010,2.275,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOA,human,Gao 2019,2.117,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFOA,bovine,Gao 2025,3.668,"converted, n = 1 assumed by the reader",4,1875.0,1875.0,assay maximum
+PFOA,bovine,Gao 2025,3.543,"converted, n = 1 assumed by the reader",4,1875.0,1875.0,assay maximum
+PFOA,bovine,Gao 2025,3.486,"converted, n = 1 assumed by the reader",4,1875.0,1875.0,assay maximum
+PFOA,bovine,Gao 2025,3.327,"converted, n = 1 assumed by the reader",4,1875.0,1875.0,assay maximum
+PFOA,human,Hebert 2010,2.568,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOA,human,Hebert 2010,2.351,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOA,bovine,Klevens 1954,0.685,"converted, n = 1 assumed by the reader",4,29.0,29.0,assay maximum
+PFOA and PFDA,human,Chen 2020,2.218,"converted, n = 1 assumed by the reader",4,40.0,40.0,assay maximum
+"PFOA and PFDA (PFPeA tested, little effect)",bovine,Qin 2010,3.266,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOA and PFOS,human; bovine,Chi 2018,3.533,"converted, n = 1 assumed by the reader",4,,,assay maximum
+"PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS, HFPO-DA (GenX)",bovine,Alesio 2022,3.995,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOS,human,Gao 2019,2.598,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFOS,bovine,Gao 2025,4.334,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,4.336,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,4.221,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,4.148,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,4.142,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,3.943,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,bovine,Gao 2025,3.944,"converted, n = 1 assumed by the reader",4,12.5,12.5,assay maximum
+PFOS,human,Hebert 2010,2.146,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFOS and 6:2 Cl-PFESA (F-53B),human,Sheng 2020,2.823,"converted, n = 1 assumed by the reader",4,,,assay maximum
+PFPeA,human,Gao 2019,1.721,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFTrDA,human,Gao 2019,1.754,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFUnDA,human,Gao 2019,2.28,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+PFUnDA,human,Hebert 2010,2.908,"converted, n = 1 assumed by the reader",4,,,assay maximum
+branched PFOA isomers (range),human,Beesoon 2015,1.7,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+branched PFOS isomers (range),human,Beesoon 2015,2.274,"converted, n = 1 assumed by the reader",4,2.0,2.0,assay maximum
+butyric acid (C4),human,Chen 2009,3.433,"converted, n = 1 assumed by the reader",4,,,assay maximum
+butyric acid (C4),human,Chen 2009,2.141,"converted, n = 1 assumed by the reader",4,,,assay maximum
+6:2 Cl-PFESA,human,Wu 2024,0.106,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+8:2 Cl-PFESA,human,Wu 2024,0.135,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+ADONA,human,Wu 2024,-0.026,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+DFSA (dodecafluorosuberic acid),human,Peng 2024,2.546,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+DFSA (dodecafluorosuberic acid),human,Peng 2024,1.304,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+DFSA (dodecafluorosuberic acid),human,Peng 2024,1.862,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+HFPO-DA,human,Wu 2024,-0.259,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+HFPO-TA,human,Peng 2024,7.861,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+HFPO-TA,human,Peng 2024,4.919,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+HFPO-TA,human,Peng 2024,6.359,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFBA,human,Wu 2024,-0.842,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+PFBS,human,Wu 2024,0.088,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+PFHpA,human,Peng 2024,4.227,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFHpA,human,Peng 2024,1.816,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFHpA,human,Peng 2024,4.058,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFHxS,human,Wu 2024,0.241,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+PFNA,human,Peng 2024,3.214,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFNA,human,Peng 2024,5.249,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFNA,human,Peng 2024,3.555,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,2.695,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,3.476,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+"PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)",human,Peng 2024,2.959,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFOA,human,Chen 2009,4.372,"converted, n = the paper's quenching exponent",3,8.0,8.0,assay maximum
+PFOA,rat,Han 2003,2.513,"converted, n = the paper's quenching exponent",3,60.0,60.0,assay maximum
+PFOA,human,Han 2003,2.455,"converted, n = the paper's quenching exponent",3,60.0,60.0,assay maximum
+PFOA,human,Peng 2024,4.641,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFOA,human,Peng 2024,3.634,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFOA,human,Peng 2024,4.643,"converted, n = the paper's quenching exponent",3,18.0,18.0,assay maximum
+PFOA,human,Wu 2024,0.025,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+PFOS,human,Chen 2009,3.666,"converted, n = the paper's quenching exponent",3,40.0,40.0,assay maximum
+PFOS,human,Wu 2024,0.713,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum
+PFPrS,human,Wu 2024,-0.11,"converted, n = the paper's quenching exponent",3,5.993,5.993,assay maximum

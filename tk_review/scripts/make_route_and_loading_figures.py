@@ -33,6 +33,11 @@ FIGURE B -- log K against the loading it was measured at.
   This is the chart the whole loading argument rests on: if nu did
   not matter, these panels would be flat.
 
+QIN IS PLOTTED AT ITS OPERATING POINT, not at the maximum its
+isotherm reached -- see qin_operating_nu.  The two differ by about
+100x and only one of them is the condition the plotted coefficient
+describes.
+
 NO TITLES.  Both figures are drawn without a title or subtitle, so
 they drop into a document that supplies its own caption.  Everything
 needed to read a figure unaided -- axis labels, per-panel compound
@@ -88,6 +93,27 @@ RAMP = ["#0d366b", "#1c5cab", "#2a78d6", "#5598e7", "#86b6ef"]
 ORANGE, GREY = "#eb6834", "#9a9a93"
 INK, MUTED, SURFACE = "#1a1a17", "#6b6b64", "#fcfcfb"
 PHYSIO = 0.01
+M_ALB_KG = 66463.0 / 1e3        # kg/mol
+
+
+def qin_operating_nu(log_k, cw_uM):
+    """Loading at the point a Qin coefficient was EVALUATED at.
+
+    A Qin log K is not a fit over its whole isotherm: it is SI Table
+    S6's Freundlich equation read at one free concentration, the Cw
+    reached from 10 uM nominal in 10% FBS.  ligand_over_protein_max
+    is the isotherm MAXIMUM (Table S5 Ctot/BSA, 10-37), which is a
+    different condition and about 100x higher.
+
+    Plotting Qin at the maximum puts it where a heavily loaded assay
+    would sit, and makes a trace-regime number look like a high
+    affinity measured under saturation -- the one combination this
+    review argues should not occur.  The honest x for "what loading
+    does THIS coefficient describe" is the operating point:
+
+        nu = D [L_w/kg] * Cw [umol/L_w] * M [kg/mol] / 1e6
+    """
+    return 10 ** log_k * cw_uM * M_ALB_KG / 1e6
 
 
 def route_of(r):
@@ -110,10 +136,18 @@ def load():
             ratio = float(str(d["ligand:protein ratio (max)"]))
         except (TypeError, ValueError):
             ratio = None
+        lk = float(d["log K (L water / kg protein)"])
+        plot_ratio, basis = ratio, "assay maximum"
+        if str(d["Source"]).startswith("Qin 2024"):
+            try:
+                plot_ratio = qin_operating_nu(lk, float(d["PFAS conc (uM)"]))
+                basis = "operating point (Table S6 evaluated at its Cw)"
+            except (TypeError, ValueError):
+                pass
         out.append(dict(pfas=str(d["PFAS"]), species=str(d["Species"]),
-                        source=str(d["Source"]),
-                        log_k=float(d["log K (L water / kg protein)"]),
-                        route=name, route_rank=i, ratio=ratio))
+                        source=str(d["Source"]), log_k=lk,
+                        route=name, route_rank=i, ratio=ratio,
+                        plot_ratio=plot_ratio, ratio_basis=basis))
     return out
 
 
@@ -199,8 +233,8 @@ def fig_b(rows, compounds):
 
     for ax, cm in zip(axes, compounds):
         ax.set_facecolor(SURFACE)
-        g = [r for r in rows if r["pfas"] == cm and r["ratio"]
-             and r["ratio"] > 0]
+        g = [r for r in rows if r["pfas"] == cm and r["plot_ratio"]
+             and r["plot_ratio"] > 0]
         ax.axvspan(1e-6, PHYSIO, color="#1baf7a", alpha=0.085, zorder=0)
         # Qin 2024 carries the same orange diamond it has in figure A, so
         # the two figures are read with one key. It is drawn on top and
@@ -210,13 +244,13 @@ def fig_b(rows, compounds):
         for r in g:
             if r["source"].startswith("Qin 2024"):
                 continue
-            ax.scatter([r["ratio"]], [r["log_k"]], s=34,
+            ax.scatter([r["plot_ratio"]], [r["log_k"]], s=34,
                        color=RAMP[r["route_rank"]], edgecolor=SURFACE,
                        linewidth=0.7, zorder=3)
         for r in g:
             if not r["source"].startswith("Qin 2024"):
                 continue
-            ax.scatter([r["ratio"]], [r["log_k"]], s=112, marker="D",
+            ax.scatter([r["plot_ratio"]], [r["log_k"]], s=112, marker="D",
                        color=ORANGE, edgecolor=SURFACE, linewidth=1.8,
                        zorder=6)
         ax.set_xscale("log")
@@ -252,7 +286,7 @@ def fig_b(rows, compounds):
 def main():
     os.makedirs(FIGS, exist_ok=True)
     rows = load()
-    with_ratio = [r for r in rows if r["ratio"]]
+    with_ratio = [r for r in rows if r["plot_ratio"]]
     top5 = [c for c, _ in collections.Counter(
         r["pfas"] for r in with_ratio).most_common(5)]
     print(f"  {len(rows)} rows, {len(with_ratio)} with a ratio")
