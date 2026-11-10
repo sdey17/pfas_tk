@@ -72,7 +72,11 @@ Run:  python3 tk_review/scripts/audit_wu2024_hsa.py
 """
 import math
 
-MIX = [(5, 1), (5, 3), (5, 5)]                      # mL HSA : mL PFAS
+MIX = [(5, 1), (5, 5), (5, 10), (5, 15), (5, 20), (5, 30)]
+# Section 2.3, the two-dimensional titration that produces the
+# constants -- NOT section 2.2's 5:1/5:3/5:5, which is the
+# screening step the paper runs to pick a ratio for its 3-D
+# spectra and from which no binding constant is derived.
 C = [p / (h + p) * 1e-3 for h, p in MIX]            # PFAS, mol/L
 P = [h / (h + p) * 1e-3 for h, p in MIX]            # HSA,  mol/L
 ETOH = [p / (h + p) for h, p in MIX]                # ethanol, v/v
@@ -100,12 +104,12 @@ T = [
 
 
 def assay():
-    print("THE ASSAY, as mixed (Section 2.2)")
+    print("THE ASSAY, as mixed (Section 2.3, the titration)")
     for (h, p), c, pr, e in zip(MIX, C, P, ETOH):
         print(f"  {h} mL HSA : {p} mL PFAS   PFAS {c*1e6:6.1f} uM"
               f"   HSA {pr*1e6:6.1f} uM   L:P {c/pr:4.2f}"
               f"   ethanol {e*100:4.1f} % v/v")
-    print(f"  geometric-mean PFAS across the three points: "
+    print(f"  geometric-mean PFAS across the {len(MIX)} points: "
           f"{CSTAR*1e6:.1f} uM")
     print(f"  HSA is not held constant: it falls "
           f"{P[0]/P[-1]:.2f}-fold across the series.\n")
