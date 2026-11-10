@@ -123,17 +123,19 @@ PFHpA,6,carboxylate,human,4.1,measured,Fischer 2024,-2.3979,yes
 PFHpA,6,carboxylate,human,4.227,quenching,Peng 2024,1.2553,no
 PFOA,7,carboxylate,human,1.638,converted,Han 2003,,
 branched PFOA isomers (range),7,carboxylate,human,1.7,converted,Beesoon 2015,,
+PFOA,7,carboxylate,human,1.997,converted,Wu 2009,1.301,no
 PFOA,7,carboxylate,human,2.117,converted,Gao 2019,0.301,no
 linear PFOA (n-PFOA),7,carboxylate,human,2.177,converted,Beesoon 2015,,
 PFOA,7,carboxylate,human,2.351,converted,Hebert 2010,,
 PFOA,7,carboxylate,human,2.561,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,2.568,converted,Hebert 2010,,
-PFOA,7,carboxylate,human,2.672,converted,Wu 2009,,
+PFOA,7,carboxylate,human,2.57,converted,Wu 2009,1.301,no
 PFOA,7,carboxylate,human,3.358,converted,Moro 2022,0.8751,no
 PFOA,7,carboxylate,human,3.492,converted,Moro 2022,0.8751,no
 7:3 FTCA,7,carboxylate,human,3.59,measured,Fischer 2024,-2.3979,yes
 PFOA,7,carboxylate,human,3.634,quenching,Peng 2024,1.2553,no
 PFOA,7,carboxylate,human,3.767,converted,Chen 2025,0.301,no
+PFOA,7,carboxylate,human,3.786,converted,Wu 2009,1.301,no
 7:3 FTCA,7,carboxylate,human,3.917,converted,Chen 2025,0.301,no
 PFOA,7,carboxylate,human,4.372,quenching,Chen 2009,0.9031,no
 PFOA,7,carboxylate,human,4.48,measured,Fischer 2024,-2.3979,yes
