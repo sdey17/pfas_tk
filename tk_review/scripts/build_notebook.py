@@ -100,8 +100,15 @@ PHYSIO = 0.01          # mol PFAS per mol albumin, the physiological limit
 ROUTES = [
     ("measured directly", lambda r: r.startswith("measured")),
     ("converted, n counted by ITC", lambda r: "counted by ITC" in r),
-    ("converted, n from the paper's single-site model",
-     lambda r: "single-site model" in r),
+    # Two data routes share this ramp step. The Excel keeps them
+    # apart -- an n fitted from a binding isotherm is not an n = 1
+    # fixed by a single-site model -- but a six-step single-hue
+    # ordinal ramp cannot clear the validator's adjacent-lightness
+    # gate on this surface, so the figure collapses the pair rather
+    # than stepping the ramp past what it can carry. The same
+    # collapse already applies to Kd inside vs beyond the range.
+    ("converted, n from the paper's own fit",
+     lambda r: "single-site model" in r or "fitted by the paper" in r),
     ("converted, n = the paper's quenching exponent",
      lambda r: "quenching-plot exponent" in r),
     ("converted, n = 1 assumed by the reader",

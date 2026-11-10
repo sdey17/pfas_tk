@@ -18,6 +18,7 @@ PFHxA,5,carboxylate,bovine,2.566,qin,Qin 2024,1.7137,no
 HFPO-DA,5,carboxylate,bovine,2.71,measured,Allendorf 2019,-3.1739,yes
 PFHxA,5,carboxylate,bovine,2.83,measured,Fischer 2024,-2.3979,yes
 5:3 FTCA,5,carboxylate,bovine,2.9,measured,Fischer 2024,-2.3979,yes
+HFPO-DA,5,carboxylate,bovine,2.99,converted,Alesio 2022,0.301,no
 PFHxA,5,carboxylate,bovine,3.02,measured,Allendorf 2019,-2.8539,yes
 HFPO-DA,5,carboxylate,bovine,3.06,measured,Allendorf 2019,-3.1739,yes
 PFHxA,5,carboxylate,bovine,3.43,measured,Allendorf 2019,-2.8539,yes
@@ -42,6 +43,7 @@ PFOA,7,carboxylate,bovine,3.327,converted,Gao 2025,3.273,no
 PFOA,7,carboxylate,bovine,3.486,converted,Gao 2025,3.273,no
 PFOA,7,carboxylate,bovine,3.543,converted,Gao 2025,3.273,no
 PFOA,7,carboxylate,bovine,3.668,converted,Gao 2025,3.273,no
+PFOA,7,carboxylate,bovine,3.754,converted,Alesio 2022,-1.0,no
 7:3 FTCA,7,carboxylate,bovine,3.79,measured,Fischer 2024,-2.3979,yes
 PFOA,7,carboxylate,bovine,3.846,qin,Qin 2024,0.8299,no
 PFOA,7,carboxylate,bovine,4.005,measured,Bischel 2011,-2.7959,no
@@ -61,6 +63,7 @@ PFNA,8,carboxylate,bovine,4.48,measured,Allendorf 2019,-1.9208,yes
 PFNA,8,carboxylate,bovine,4.54,measured,Fischer 2024,-2.3979,yes
 PFNA,8,carboxylate,bovine,4.56,measured,Bischel 2010,-3.2218,no
 PFNA,8,carboxylate,bovine,4.74,measured,Bischel 2010,-3.2218,no
+PFNA,8,carboxylate,bovine,4.821,converted,Alesio 2022,-1.0,no
 PFNA,8,carboxylate,bovine,4.882,converted,Bischel 2010,-3.2218,no
 PFNA,8,carboxylate,bovine,5.158,converted,Bischel 2010,-3.2218,no
 PFDA,9,carboxylate,bovine,3.725,measured,Bischel 2011,-2.6289,no
@@ -71,6 +74,7 @@ PFDA,9,carboxylate,bovine,4.199,converted,Gao 2025,2.0969,no
 PFDA,9,carboxylate,bovine,4.73,measured,Allendorf 2019,-1.7959,yes
 PFDA,9,carboxylate,bovine,4.81,measured,Fischer 2024,-2.3979,yes
 PFDA,9,carboxylate,bovine,4.84,measured,Allendorf 2019,-1.7959,yes
+PFDA,9,carboxylate,bovine,4.967,converted,Alesio 2022,-1.0,no
 PFUnDA,10,carboxylate,bovine,3.565,measured,Bischel 2011,-2.7212,no
 PFUnDA,10,carboxylate,bovine,4.6,measured,Allendorf 2019,-1.9208,yes
 PFUnDA,10,carboxylate,bovine,4.616,qin,Qin 2024,0.0504,no
@@ -227,6 +231,7 @@ PFBS,4,sulfonate,bovine,1.132,converted,Gao 2025,4.273,no
 PFBS,4,sulfonate,bovine,1.324,converted,Gao 2025,4.273,no
 PFBS,4,sulfonate,bovine,2.28,measured,Fischer 2024,-2.3979,yes
 PFBS,4,sulfonate,bovine,2.65,measured,Allendorf 2019,-2.6778,yes
+PFBS,4,sulfonate,bovine,3.146,converted,Alesio 2022,0.301,no
 PFBS,4,sulfonate,bovine,3.2,measured,Allendorf 2019,-2.6778,yes
 PFBS,4,sulfonate,bovine,3.725,measured,Bischel 2011,-2.5452,no
 PFPeS,5,sulfonate,bovine,4.0,measured,Fischer 2024,-2.3979,yes
@@ -237,6 +242,7 @@ PFHxS,6,sulfonate,bovine,3.386,qin,Qin 2024,0.8803,no
 6:2 FTSA,6,sulfonate,bovine,3.44,measured,Fischer 2024,-2.3979,yes
 PFHxS,6,sulfonate,bovine,3.458,converted,Gao 2025,2.8751,no
 6:2 FTSA,6,sulfonate,bovine,3.576,qin,Qin 2024,1.2031,no
+PFHxS,6,sulfonate,bovine,3.989,converted,Alesio 2022,-1.0,no
 PFHxS,6,sulfonate,bovine,4.165,measured,Bischel 2011,-2.8697,no
 PFHxS,6,sulfonate,bovine,4.49,measured,Allendorf 2019,-1.4202,yes
 PFHxS,6,sulfonate,bovine,4.61,measured,Fischer 2024,-2.3979,yes
@@ -252,6 +258,7 @@ PFECHS,8,sulfonate,bovine,4.3,measured,Allendorf 2019,-2.8239,yes
 PFOS,8,sulfonate,bovine,4.334,converted,Gao 2025,1.0969,no
 PFOS,8,sulfonate,bovine,4.336,converted,Gao 2025,1.0969,no
 PFOS,8,sulfonate,bovine,4.386,qin,Qin 2024,0.3953,no
+PFOS,8,sulfonate,bovine,4.433,converted,Alesio 2022,-1.0,no
 PFECHS,8,sulfonate,bovine,4.55,measured,Allendorf 2019,-2.8239,yes
 PFOS,8,sulfonate,bovine,4.67,measured,Allendorf 2019,-1.6021,yes
 PFOS,8,sulfonate,bovine,4.76,measured,Fischer 2024,-2.3979,yes

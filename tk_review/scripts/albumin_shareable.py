@@ -81,11 +81,14 @@ FIELDS = [("pfas_canonical", "PFAS"), ("species", "Species"),
 MEASURED = "measured directly"
 QIN = "measured; Qin Table S6 equation at"
 ITC = "converted; n counted by ITC"
+FITTED_OK = "converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
+FITTED_EX = "converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
 QUENCH = "converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-ORDER = [MEASURED, QIN, ITC, PAPER_OK, PAPER_EX, READER, QUENCH]
+ORDER = [MEASURED, QIN, ITC, FITTED_OK, FITTED_EX, PAPER_OK,
+         PAPER_EX, READER, QUENCH]
 
 
 def rank(route):
@@ -183,13 +186,24 @@ def collect(keep=None):
     # 3-5. everything the flat Kd-to-K table already classified
     for r in csv.DictReader(open(SRC, encoding="utf-8")):
         if r["convertible"] == "yes":
-            if r["n_basis"] not in ("assumed", ""):
+            # n_basis says HOW the stoichiometry was obtained, and the
+            # three cases are not interchangeable. "ITC" is counted by
+            # calorimetry. "fitted" is read off the paper's own binding
+            # isotherm -- equilibrium dialysis and ultrafiltration work,
+            # never calorimetry; it used to fall into the ITC bucket here,
+            # which mislabelled 25 rows over five studies. "assumed" (or
+            # blank) is a single-site model that fixes n = 1 by
+            # construction. The last two also split on whether the fitted
+            # Kd lands inside the concentration actually tested.
+            try:
+                inside = float(r["kd_over_top_conc"]) <= 1.0
+            except (TypeError, ValueError):
+                inside = False
+            if r["n_basis"] == "ITC":
                 route = ITC
+            elif r["n_basis"] == "fitted":
+                route = FITTED_OK if inside else FITTED_EX
             else:
-                try:
-                    inside = float(r["kd_over_top_conc"]) <= 1.0
-                except (TypeError, ValueError):
-                    inside = False
                 route = PAPER_OK if inside else PAPER_EX
             out.append(row(r, route, float(r["logK"]), r["n_sites_used"]))
         elif r["convertible"] == "assume n = 1":

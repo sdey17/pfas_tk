@@ -8,11 +8,11 @@ row_order,pfas,category,log_k,source,cw_uM,route
 10,PFUnDA,measured,4.72,Allendorf 2019,,measured directly
 10,PFUnDA,measured,5.17,Fischer 2024,,measured directly
 10,PFUnDA,measured,5.18,Fischer 2024,,measured directly
-10,PFUnDA,qin,4.616,Qin 2024,0.383,"measured; Qin Table S6 equation at IC10,free = 0.383 uM (IC10,nom 21.6 uM, PPARgamma assay)"
+10,PFUnDA,qin,4.616,Qin 2024,0.383,"measured; Qin Table S6 equation at IC10,free = 0.383 uM, read off the fit; dosed IC10,nom = 21.6 uM over 19.2 uM medium protein (PPARgamma assay)"
 9,PFOS,converted,2.146,Hebert 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,2.51,Fan 2025,,converted; n counted by ITC
 9,PFOS,converted,2.598,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
-9,PFOS,converted,3.702,Fan 2025,,converted; n counted by ITC
+9,PFOS,converted,3.702,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 9,PFOS,converted,3.943,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,3.944,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.142,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
@@ -21,6 +21,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 9,PFOS,converted,4.221,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.334,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.336,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+9,PFOS,converted,4.433,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
 9,PFOS,converted_quenching,0.713,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,converted_quenching,3.666,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,measured,3.965,Bischel 2011,,measured directly
@@ -28,19 +29,20 @@ row_order,pfas,category,log_k,source,cw_uM,route
 9,PFOS,measured,4.67,Allendorf 2019,,measured directly
 9,PFOS,measured,4.76,Fischer 2024,,measured directly
 9,PFOS,measured,4.83,Allendorf 2019,,measured directly
-9,PFOS,qin,4.386,Qin 2024,3.89,"measured; Qin Table S6 equation at IC10,free = 3.89 uM (IC10,nom 47.8 uM, PPARgamma assay)"
+9,PFOS,qin,4.386,Qin 2024,3.89,"measured; Qin Table S6 equation at IC10,free = 3.89 uM, read off the fit; dosed IC10,nom = 47.8 uM over 19.2 uM medium protein (PPARgamma assay)"
 8,PFNA,converted,2.275,Hebert 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,2.314,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,2.656,Hebert 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,2.709,Fan 2025,,converted; n counted by ITC
 8,PFNA,converted,3.603,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
-8,PFNA,converted,3.679,Fan 2025,,converted; n counted by ITC
+8,PFNA,converted,3.679,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 8,PFNA,converted,3.935,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,4.033,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,4.106,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 8,PFNA,converted,4.175,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
-8,PFNA,converted,4.882,Bischel 2010,,converted; n counted by ITC
-8,PFNA,converted,5.158,Bischel 2010,,converted; n counted by ITC
+8,PFNA,converted,4.821,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
+8,PFNA,converted,4.882,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
+8,PFNA,converted,5.158,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 8,PFNA,converted_quenching,3.214,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 8,PFNA,converted_quenching,3.555,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 8,PFNA,converted_quenching,5.249,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
@@ -52,11 +54,11 @@ row_order,pfas,category,log_k,source,cw_uM,route
 8,PFNA,measured,4.56,Bischel 2010,,measured directly
 8,PFNA,measured,4.74,Bischel 2010,,measured directly
 8,PFNA,measured,4.93,Bischel 2010,,measured directly
-8,PFNA,qin,4.256,Qin 2024,7.72,"measured; Qin Table S6 equation at IC10,free = 7.72 uM (IC10,nom 90.7 uM, PPARgamma assay)"
+8,PFNA,qin,4.256,Qin 2024,7.72,"measured; Qin Table S6 equation at IC10,free = 7.72 uM, read off the fit; dosed IC10,nom = 90.7 uM over 19.2 uM medium protein (PPARgamma assay)"
 7,PFOSA,converted,3.129,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 7,PFOSA,measured,4.33,Fischer 2024,,measured directly
 7,PFOSA,measured,4.34,Fischer 2024,,measured directly
-7,PFOSA,qin,4.196,Qin 2024,0.328,"measured; Qin Table S6 equation at IC10,free = 0.328 uM (IC10,nom 7.85 uM, PPARgamma assay)"
+7,PFOSA,qin,4.196,Qin 2024,0.328,"measured; Qin Table S6 equation at IC10,free = 0.328 uM, read off the fit; dosed IC10,nom = 7.85 uM over 19.2 uM medium protein (PPARgamma assay)"
 6,PFOA,converted,0.685,Klevens 1954,,"converted; n = 1 assumed by the reader, the paper reports none"
 6,PFOA,converted,1.997,Wu 2009,,converted; n counted by ITC
 6,PFOA,converted,2.117,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
@@ -67,15 +69,16 @@ row_order,pfas,category,log_k,source,cw_uM,route
 6,PFOA,converted,2.695,Fan 2025,,converted; n counted by ITC
 6,PFOA,converted,3.327,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 6,PFOA,converted,3.358,Moro 2022,,converted; n counted by ITC
-6,PFOA,converted,3.377,Fan 2025,,converted; n counted by ITC
+6,PFOA,converted,3.377,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 6,PFOA,converted,3.486,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 6,PFOA,converted,3.492,Moro 2022,,converted; n counted by ITC
 6,PFOA,converted,3.543,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 6,PFOA,converted,3.668,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+6,PFOA,converted,3.754,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 6,PFOA,converted,3.767,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
-6,PFOA,converted,3.786,Wu 2009,,converted; n counted by ITC
-6,PFOA,converted,4.112,Bischel 2010,,converted; n counted by ITC
-6,PFOA,converted,4.47,Bischel 2010,,converted; n counted by ITC
+6,PFOA,converted,3.786,Wu 2009,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
+6,PFOA,converted,4.112,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
+6,PFOA,converted,4.47,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 6,PFOA,converted,4.525,Moro 2022,,converted; n counted by ITC
 6,PFOA,converted_quenching,0.025,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 6,PFOA,converted_quenching,2.455,Han 2003,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
@@ -89,19 +92,20 @@ row_order,pfas,category,log_k,source,cw_uM,route
 6,PFOA,measured,4.2,Allendorf 2019,,measured directly
 6,PFOA,measured,4.2,Fischer 2024,,measured directly
 6,PFOA,measured,4.48,Fischer 2024,,measured directly
-6,PFOA,qin,3.846,Qin 2024,18.4,"measured; Qin Table S6 equation at IC10,free = 18.4 uM (IC10,nom 130 uM, PPARgamma assay)"
+6,PFOA,qin,3.846,Qin 2024,18.4,"measured; Qin Table S6 equation at IC10,free = 18.4 uM, read off the fit; dosed IC10,nom = 130 uM over 19.2 uM medium protein (PPARgamma assay)"
 5,6:2 FTSA,converted,3.794,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 5,6:2 FTSA,measured,3.35,Fischer 2024,,measured directly
 5,6:2 FTSA,measured,3.44,Fischer 2024,,measured directly
-5,6:2 FTSA,qin,3.576,Qin 2024,42.5,"measured; Qin Table S6 equation at IC10,free = 42.5 uM (IC10,nom 307 uM, PPARgamma assay)"
+5,6:2 FTSA,qin,3.576,Qin 2024,42.5,"measured; Qin Table S6 equation at IC10,free = 42.5 uM, read off the fit; dosed IC10,nom = 307 uM over 19.2 uM medium protein (PPARgamma assay)"
 4,PFHxS,converted,2.28,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,2.295,Hebert 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
-4,PFHxS,converted,2.908,Fan 2025,,converted; n counted by ITC
+4,PFHxS,converted,2.908,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 4,PFHxS,converted,3.081,Fan 2025,,converted; n counted by ITC
 4,PFHxS,converted,3.146,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.267,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.298,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.458,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
+4,PFHxS,converted,3.989,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 4,PFHxS,converted,4.06,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 4,PFHxS,converted_quenching,0.241,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 4,PFHxS,measured,4.165,Bischel 2011,,measured directly
@@ -109,7 +113,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 4,PFHxS,measured,4.61,Fischer 2024,,measured directly
 4,PFHxS,measured,4.77,Fischer 2024,,measured directly
 4,PFHxS,measured,4.81,Allendorf 2019,,measured directly
-4,PFHxS,qin,3.386,Qin 2024,42.2,"measured; Qin Table S6 equation at IC10,free = 42.2 uM (IC10,nom 146 uM, PPARgamma assay)"
+4,PFHxS,qin,3.386,Qin 2024,42.2,"measured; Qin Table S6 equation at IC10,free = 42.2 uM, read off the fit; dosed IC10,nom = 146 uM over 19.2 uM medium protein (PPARgamma assay)"
 3,PFHpA,converted,1.942,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
 3,PFHpA,converted,2.029,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 3,PFHpA,converted,2.122,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
@@ -121,7 +125,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 3,PFHpA,converted,2.563,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 3,PFHpA,converted,2.72,Fan 2025,,converted; n counted by ITC
 3,PFHpA,converted,3.385,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
-3,PFHpA,converted,3.651,Fan 2025,,converted; n counted by ITC
+3,PFHpA,converted,3.651,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 3,PFHpA,converted_quenching,1.816,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 3,PFHpA,converted_quenching,4.058,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 3,PFHpA,converted_quenching,4.227,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
@@ -130,7 +134,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 3,PFHpA,measured,4.02,Allendorf 2019,,measured directly
 3,PFHpA,measured,4.095,Bischel 2011,,measured directly
 3,PFHpA,measured,4.1,Fischer 2024,,measured directly
-3,PFHpA,qin,3.266,Qin 2024,67.6,"measured; Qin Table S6 equation at IC10,free = 67.6 uM (IC10,nom 375 uM, PPARgamma assay)"
+3,PFHpA,qin,3.266,Qin 2024,67.6,"measured; Qin Table S6 equation at IC10,free = 67.6 uM, read off the fit; dosed IC10,nom = 375 uM over 19.2 uM medium protein (PPARgamma assay)"
 2,PFHxA,converted,1.291,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,1.408,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,1.433,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
@@ -138,7 +142,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 2,PFHxA,converted,1.887,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,2.241,Fan 2025,,converted; n counted by ITC
 2,PFHxA,converted,3.032,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
-2,PFHxA,converted,3.207,Fan 2025,,converted; n counted by ITC
+2,PFHxA,converted,3.207,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 2,PFHxA,converted,3.419,Moro 2022,,converted; n counted by ITC
 2,PFHxA,converted,3.533,Moro 2022,,converted; n counted by ITC
 2,PFHxA,measured,2.83,Fischer 2024,,measured directly
@@ -146,7 +150,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 2,PFHxA,measured,3.2,Fischer 2024,,measured directly
 2,PFHxA,measured,3.43,Allendorf 2019,,measured directly
 2,PFHxA,measured,3.915,Bischel 2011,,measured directly
-2,PFHxA,qin,2.566,Qin 2024,472,"measured; Qin Table S6 equation at IC10,free = 472 uM (IC10,nom 995 uM, PPARgamma assay)"
+2,PFHxA,qin,2.566,Qin 2024,472,"measured; Qin Table S6 equation at IC10,free = 472 uM, read off the fit; dosed IC10,nom = 995 uM over 19.2 uM medium protein (PPARgamma assay)"
 1,HFPO-DA,converted,1.324,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 1,HFPO-DA,converted,1.5,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 1,HFPO-DA,converted,1.52,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
@@ -155,20 +159,21 @@ row_order,pfas,category,log_k,source,cw_uM,route
 1,HFPO-DA,converted,2.74,Fan 2025,,converted; n counted by ITC
 1,HFPO-DA,converted,2.746,Moro 2022,,converted; n counted by ITC
 1,HFPO-DA,converted,2.899,Moro 2022,,converted; n counted by ITC
+1,HFPO-DA,converted,2.99,Alesio 2022,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
 1,HFPO-DA,converted,3.182,Moro 2022,,converted; n counted by ITC
 1,HFPO-DA,converted,3.36,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
-1,HFPO-DA,converted,3.439,Fan 2025,,converted; n counted by ITC
+1,HFPO-DA,converted,3.439,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 1,HFPO-DA,converted_quenching,-0.259,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 1,HFPO-DA,measured,2.71,Allendorf 2019,,measured directly
 1,HFPO-DA,measured,3.06,Allendorf 2019,,measured directly
-1,HFPO-DA,qin,2.146,Qin 2024,220,"measured; Qin Table S6 equation at IC10,free = 220 uM (IC10,nom 654 uM, PPARgamma assay)"
+1,HFPO-DA,qin,2.146,Qin 2024,220,"measured; Qin Table S6 equation at IC10,free = 220 uM, read off the fit; dosed IC10,nom = 654 uM over 19.2 uM medium protein (PPARgamma assay)"
 0,PFBA,converted,0.478,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 0,PFBA,converted,0.655,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 0,PFBA,converted,1.555,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
 0,PFBA,converted,2.249,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 0,PFBA,converted,2.404,Fan 2025,,converted; n counted by ITC
-0,PFBA,converted,3.617,Fan 2025,,converted; n counted by ITC
+0,PFBA,converted,3.617,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 0,PFBA,converted_quenching,-0.842,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 0,PFBA,measured,1.9,Allendorf 2019,,measured directly
 0,PFBA,measured,2.52,Allendorf 2019,,measured directly
-0,PFBA,qin,1.806,Qin 2024,1.78e+03,"measured; Qin Table S6 equation at IC10,free = 1.78e+03 uM (IC10,nom 3190 uM, PPARgamma assay)"
+0,PFBA,qin,1.806,Qin 2024,1.78e+03,"measured; Qin Table S6 equation at IC10,free = 1.78e+03 uM, read off the fit; dosed IC10,nom = 3190 uM over 19.2 uM medium protein (PPARgamma assay)"
