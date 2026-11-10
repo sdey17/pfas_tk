@@ -33,6 +33,17 @@ FIGURE B -- log K against the loading it was measured at.
   This is the chart the whole loading argument rests on: if nu did
   not matter, these panels would be flat.
 
+NO TITLES.  Both figures are drawn without a title or subtitle, so
+they drop into a document that supplies its own caption.  Everything
+needed to read a figure unaided -- axis labels, per-panel compound
+names, the legend -- is still on the canvas; only the prose is gone.
+
+FONT.  Arial is requested first and Liberation Sans is the fallback.
+The two are metrically compatible -- identical glyph advance widths,
+Liberation having been built as a drop-in -- so a figure rendered on a
+machine without Arial has the same layout, line breaks and label
+collisions as one rendered with it.
+
 Writes figures/albumin_route_split.png, figures/albumin_logk_vs_loading.png
 and the CSV each is drawn from.
 """
@@ -43,6 +54,20 @@ import os
 import sys
 
 import openpyxl
+
+# Arial first, so a machine that has it uses it; Liberation Sans is
+# metrically compatible with Arial (identical glyph advance widths,
+# built as a drop-in) and is what renders where Arial is absent, so
+# layout and line breaks are the same either way.
+FONT_STACK = ["Arial", "Liberation Sans", "Helvetica", "DejaVu Sans"]
+
+
+def use_arial():
+    import matplotlib
+    matplotlib.rcParams["font.family"] = "sans-serif"
+    matplotlib.rcParams["font.sans-serif"] = FONT_STACK
+    matplotlib.rcParams["axes.unicode_minus"] = False
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "albumin_logK_with_conc.xlsx")
@@ -92,9 +117,10 @@ def load():
     return out
 
 
-def fig_a(rows, title):
+def fig_a(rows):
     import matplotlib
     matplotlib.use("Agg")
+    use_arial()
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
@@ -106,7 +132,7 @@ def fig_a(rows, title):
              if any(r["pfas"] == c and not r["source"].startswith("Qin")
                     for r in rows)]
 
-    head = 1.55
+    head = 0.92            # legend only; titles are added downstream
     fh = 0.62 * len(order) + head + 1.0
     fig, ax = plt.subplots(figsize=(10.6, fh))
     fig.patch.set_facecolor(SURFACE); ax.set_facecolor(SURFACE)
@@ -151,26 +177,22 @@ def fig_a(rows, title):
               bbox_to_anchor=(0.0, 1.005, 1.0, 0.14), ncol=2, frameon=False,
               fontsize=9.1, labelcolor=INK, handletextpad=0.45,
               columnspacing=1.5, borderaxespad=0)
-    fig.text(0.115, 1 - 0.38 / fh, title, fontsize=13.2, color=INK, va="top")
-    fig.text(0.115, 1 - 0.70 / fh,
-             "Marks are shaded by how the number was obtained, darkest = "
-             "measured. Rows ordered by Qin's value.",
-             fontsize=9.6, color=MUTED, va="top")
     p = os.path.join(FIGS, "albumin_route_split.png")
     fig.savefig(p, dpi=200, facecolor=SURFACE)
     print(f"  wrote {os.path.relpath(p, os.path.join(HERE,'..'))}")
 
 
-def fig_b(rows, title, compounds):
+def fig_b(rows, compounds):
     import matplotlib
     matplotlib.use("Agg")
+    use_arial()
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
 
     n = len(compounds)
     fig, axes = plt.subplots(1, n, figsize=(2.55 * n, 4.5), sharey=True)
     fig.patch.set_facecolor(SURFACE)
-    fig.subplots_adjust(top=0.70, bottom=0.165, left=0.075, right=0.985,
+    fig.subplots_adjust(top=0.82, bottom=0.165, left=0.075, right=0.985,
                         wspace=0.13)
 
     for ax, cm in zip(axes, compounds):
@@ -202,15 +224,9 @@ def fig_b(rows, title, compounds):
     h += [Line2D([], [], marker="o", color="none", markerfacecolor=RAMP[i],
                  markeredgecolor=SURFACE, markersize=8, label=nm)
           for i, (nm, _) in enumerate(ROUTES)]
-    fig.legend(handles=h, loc="upper left", bbox_to_anchor=(0.075, 0.875),
+    fig.legend(handles=h, loc="upper left", bbox_to_anchor=(0.075, 0.995),
                ncol=3, frameon=False, fontsize=8.8, labelcolor=INK,
                handletextpad=0.4, columnspacing=1.4)
-    fig.text(0.075, 0.965, title, fontsize=13.2, color=INK, va="top")
-    fig.text(0.075, 0.918,
-             "Every albumin coefficient for these five, against the molar "
-             "loading it was measured at. If loading did not matter these "
-             "panels would be flat.",
-             fontsize=9.5, color=MUTED, va="top")
     p = os.path.join(FIGS, "albumin_logk_vs_loading.png")
     fig.savefig(p, dpi=200, facecolor=SURFACE)
     print(f"  wrote {os.path.relpath(p, os.path.join(HERE,'..'))}")
@@ -237,11 +253,8 @@ def main():
             w = csv.DictWriter(fh, fieldnames=list(data[0].keys()))
             w.writeheader(); w.writerows(data)
 
-    fig_a(rows, sys.argv[1] if len(sys.argv) > 1 else
-          "Where Qin 2024 sits, and what kind of number it is sitting among")
-    fig_b(with_ratio, sys.argv[2] if len(sys.argv) > 2 else
-          "A binding constant is a function of the loading it was measured at",
-          top5)
+    fig_a(rows)
+    fig_b(with_ratio, top5)
     return 0
 
 
