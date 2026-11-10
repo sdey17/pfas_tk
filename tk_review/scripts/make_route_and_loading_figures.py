@@ -190,9 +190,11 @@ def fig_b(rows, compounds):
     from matplotlib.lines import Line2D
 
     n = len(compounds)
-    fig, axes = plt.subplots(1, n, figsize=(2.55 * n, 4.5), sharey=True)
+    fig, axes = plt.subplots(1, n, figsize=(2.55 * n, 4.75), sharey=True)
     fig.patch.set_facecolor(SURFACE)
-    fig.subplots_adjust(top=0.82, bottom=0.165, left=0.075, right=0.985,
+    # The legend is three rows once Qin has its own key; leave it room
+    # so it does not sit on the panel titles.
+    fig.subplots_adjust(top=0.78, bottom=0.155, left=0.075, right=0.985,
                         wspace=0.13)
 
     for ax, cm in zip(axes, compounds):
@@ -200,10 +202,23 @@ def fig_b(rows, compounds):
         g = [r for r in rows if r["pfas"] == cm and r["ratio"]
              and r["ratio"] > 0]
         ax.axvspan(1e-6, PHYSIO, color="#1baf7a", alpha=0.085, zorder=0)
+        # Qin 2024 carries the same orange diamond it has in figure A, so
+        # the two figures are read with one key. It is drawn on top and
+        # keeps its identity rather than its route shade -- in both
+        # figures the question is where Qin sits relative to the field,
+        # and its route is named in the caption of figure A anyway.
         for r in g:
+            if r["source"].startswith("Qin 2024"):
+                continue
             ax.scatter([r["ratio"]], [r["log_k"]], s=34,
                        color=RAMP[r["route_rank"]], edgecolor=SURFACE,
                        linewidth=0.7, zorder=3)
+        for r in g:
+            if not r["source"].startswith("Qin 2024"):
+                continue
+            ax.scatter([r["ratio"]], [r["log_k"]], s=112, marker="D",
+                       color=ORANGE, edgecolor=SURFACE, linewidth=1.8,
+                       zorder=6)
         ax.set_xscale("log")
         ax.set_title(f"{cm}   (n={len(g)})", fontsize=10.5, color=INK,
                      pad=7)
@@ -220,11 +235,13 @@ def fig_b(rows, compounds):
 
     h = [Line2D([], [], marker="s", color="none", markerfacecolor="#1baf7a",
                 alpha=0.5, markeredgecolor="none", markersize=10,
-                label="physiological loading (< 0.01)")]
+                label="physiological loading (< 0.01)"),
+         Line2D([], [], marker="D", color="none", markerfacecolor=ORANGE,
+                markeredgecolor=SURFACE, markersize=9, label="Qin 2024")]
     h += [Line2D([], [], marker="o", color="none", markerfacecolor=RAMP[i],
                  markeredgecolor=SURFACE, markersize=8, label=nm)
           for i, (nm, _) in enumerate(ROUTES)]
-    fig.legend(handles=h, loc="upper left", bbox_to_anchor=(0.075, 0.995),
+    fig.legend(handles=h, loc="upper left", bbox_to_anchor=(0.075, 0.998),
                ncol=3, frameon=False, fontsize=8.8, labelcolor=INK,
                handletextpad=0.4, columnspacing=1.4)
     p = os.path.join(FIGS, "albumin_logk_vs_loading.png")
