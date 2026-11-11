@@ -111,26 +111,60 @@ T2_NOTE = ("Table 2, equilibrium dialysis against 1 uM BSA over a wide "
            "because they worked at high ratios. PFOA over 0.04-5 gives "
            "Ka 0.2e6, the same PFOA over 0.04-70 gives 1.4e6")
 
+# THE BASIS.  Bischel's eq 2 is
+#
+#     K_PW = C_P/C_W = f_bound / (F_albumin * [P] * (1 - f_bound))
+#
+# with F_albumin the PARTIAL SPECIFIC VOLUME, 0.733 mL/g, stated in the
+# text.  F_albumin * [P] is therefore the volume fraction of protein, and
+# K_PW is litres of water per litre of PROTEIN, not per kg.  The two
+# differ by log10(1/0.733) = 0.135.
+#
+# Checked rather than assumed: recomputing all four reported values from
+# their own percent-bound figures at 500 uM albumin reproduces the volume
+# basis to within 0.02 log (4.914 vs 4.93, 4.710 vs 4.74, 4.571 vs 4.56,
+# 4.768 vs 4.80) and misses the mass basis by 0.13-0.15.
+#
+# These rows used to carry "L_water/kg_protein", which made the pipeline
+# pass the number through unconverted and put all three 0.135 log too
+# high.  The wording below is the one Bischel 2011's rows already use,
+# and build_binding_affinity_table subtracts the density for it.
+KPW_UNITS = ("log K_PW (protein-water distribution coefficient), "
+             "L_water per L_albumin")
+
 ROWS = [
  # Table 1: measured log K_PW. Stored as a log D so no conversion happens.
  dict(chem="PFNA", prot="human serum albumin (HSA)", sp="human", meth=DIAL,
-      ka="4.93", kau="log K_PW (L_water/kg_protein), MEASURED",
+      ka="4.93", kau=KPW_UNITS,
       kd="", n="", prot_c="500", lig="", ratio="0.0005",
       fb="0.05% unbound (99.95 +/- 0.01% bound)", buf=BUF,
       src="Table 1, HSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
-      ka="4.74", kau="log K_PW (L_water/kg_protein), MEASURED",
+      ka="4.74", kau=KPW_UNITS,
       kd="", n="", prot_c="500", lig="", ratio="0.0006",
       fb="0.08% unbound (99.92 +/- 0.01% bound)", buf=BUF,
       src="Table 1, BSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
-      ka="4.56", kau="log K_PW (L_water/kg_protein), MEASURED",
+      ka="4.56", kau=KPW_UNITS,
       kd="", n="", prot_c="500", lig="", ratio="0.001",
       fb="0.11% unbound (99.89 +/- 0.01% bound)",
       buf=BUF + "; plus 9 g/L NaCl (physiological saline)",
       src="Table 1, BSA + NaCl row", note=T1_NOTE +
       " | THE SALT ROW: 9 g/L NaCl lowers log K_PW from 4.74 to 4.56, a "
       "0.18 log drop measured at physiological loading"),
+ dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
+      ka="4.80", kau=KPW_UNITS,
+      kd="", n="", prot_c="500", lig="", ratio="0.0006",
+      fb="0.07% unbound (99.93 +/- 0.01% bound)", buf=BUF,
+      src="Results, fatty-acid-free BSA control (in the text, not Table 1)",
+      note=T1_NOTE +
+      " | THE DEFATTING CONTROL: essentially FATTY-ACID-FREE BSA, against "
+      "the essentially gamma-globulin-free material of the Table 1 rows. "
+      "4.80 +/- 0.08 against 4.74 +/- 0.05 -- the intervals overlap, so "
+      "the paper concludes trace fatty acids 'had little influence on the "
+      "binding affinities' at this loading. A counterweight to the "
+      "defatting caveat Moro 2022 and Han 2003 raise, and worth keeping "
+      "as its own row because it is a separate protein preparation"),
  # Table 2: association constants over wide loading.
  dict(chem="PFOA", prot="bovine serum albumin (BSA)", sp="bovine", meth=TITR,
       ka="2.0e5", kau="M^-1 (Ka,1)", kd="5", n="4.3",

@@ -115,8 +115,8 @@ def conditions():
         cand = (c["pfas_conc_as_stated"], str(c["pfas_conc_uM"]),
                 str(c["protein_conc_uM"]),
                 str(c["ligand_protein_ratio_max"]),
-                fb.get((r["_id"], N.canon(r["pfas"]),
-                        str(r.get("kd_uM", "") or "").strip()))
+                fb.get((r["_id"], N.canon(r["pfas"]), r["species"],
+                        str(r.get("value", "") or "").strip()))
                 or fb.get((r["_id"], N.canon(r["pfas"]), "")) or "")
         # (compound, species, source) is NOT unique: one study can measure
         # the same compound on the same protein under several conditions,
@@ -128,9 +128,18 @@ def conditions():
         # and is present on both sides of the join, so key on it too and
         # fall back to the old key when a row has no Kd, leaving every
         # single-condition study exactly as it was.
+        # Kd distinguishes most multi-condition studies. Bischel 2010 has
+        # four PFNA conditions with NO Kd -- two albumins, a salt row and a
+        # defatted control -- so log K is the tiebreaker there, and it is
+        # on both sides of the join. Without it all four collapsed onto
+        # whichever was read first and the salt row showed the wrong
+        # ligand:protein ratio, 0.0006 against its real 0.001.
         kd = str(r.get("kd_uM", "") or "").strip()
+        lk = str(r.get("logK", "") or "").strip()
         for k in ([(N.canon(r["pfas"]), r["species"], r["source"], kd)]
                   if kd else []) + \
+                 ([(N.canon(r["pfas"]), r["species"], r["source"],
+                    "logK:" + lk)] if lk and not kd else []) + \
                  [(N.canon(r["pfas"]), r["species"], r["source"])]:
             if k not in out or (not out[k][1].strip() and cand[1].strip()):
                 out[k] = cand
@@ -167,10 +176,16 @@ def bound_index(N):
             if not pct:
                 continue
             cmp_ = N.canon(d["chemical"])
-            kd = str(d.get("kd", "") or "").strip()
+            # The raw cell the row reports, Kd or Ka/log K_PW, is what the
+            # affinity records carry as `value`, so it joins without this
+            # file having to redo any unit conversion.  Bischel 2010's four
+            # PFNA conditions have no Kd at all and are told apart only by
+            # it: 4.93, 4.74, 4.56, 4.80.
+            for raw in {str(d.get("kd", "") or "").strip(),
+                        str(d.get("ka", "") or "").strip()} - {""}:
+                out.setdefault((d["doi"], cmp_, d["protein_species"], raw),
+                               pct)
             seen[(d["doi"], cmp_)].add(pct)
-            if kd:
-                out.setdefault((d["doi"], cmp_, kd), pct)
     for (doi, cmp_), vals in seen.items():
         if len(vals) == 1:
             out.setdefault((doi, cmp_, ""), next(iter(vals)))
@@ -237,7 +252,10 @@ def main():
         # No "(plasma)" fallback here.  It used to let a "Qin 2024" row
         # borrow the plasma paper's Table S5 conditions; the anchor module
         # supplies Qin's conditions below, from the active paper only.
-        got = (cond.get(key + (kd,)) if kd else None) or cond.get(key)
+        lk = str(d.get("log K (L water / kg protein)", "") or "").strip()
+        got = (cond.get(key + (kd,)) if kd else None) \
+            or (cond.get(key + ("logK:" + lk,)) if lk and not kd else None) \
+            or cond.get(key)
         stated, uM, prot, ratio, fb = got or ("", "", "", "", "")
         # A Qin row is a fit read at a chosen free concentration, not a
         # dosed one, so it takes its whole set of conditions from the

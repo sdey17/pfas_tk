@@ -48,12 +48,13 @@ row_order,pfas,category,log_k,source,cw_uM,route
 8,PFNA,converted_quenching,5.249,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 8,PFNA,measured,3.915,Bischel 2011,,measured directly
 8,PFNA,measured,4.32,Allendorf 2019,,measured directly
+8,PFNA,measured,4.425,Bischel 2010,,measured directly
 8,PFNA,measured,4.48,Allendorf 2019,,measured directly
 8,PFNA,measured,4.49,Fischer 2024,,measured directly
 8,PFNA,measured,4.54,Fischer 2024,,measured directly
-8,PFNA,measured,4.56,Bischel 2010,,measured directly
-8,PFNA,measured,4.74,Bischel 2010,,measured directly
-8,PFNA,measured,4.93,Bischel 2010,,measured directly
+8,PFNA,measured,4.605,Bischel 2010,,measured directly
+8,PFNA,measured,4.665,Bischel 2010,,measured directly
+8,PFNA,measured,4.795,Bischel 2010,,measured directly
 8,PFNA,qin,4.256,Qin 2024,7.72,"measured; Qin Table S6 equation at IC10,free = 7.72 uM, read off the fit; dosed IC10,nom = 90.7 uM over 19.2 uM medium protein (PPARgamma assay)"
 7,PFOSA,converted,3.129,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 7,PFOSA,measured,4.33,Fischer 2024,,measured directly

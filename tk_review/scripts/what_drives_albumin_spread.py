@@ -207,10 +207,22 @@ def main():
         sd, n = within(key)
         print("  %-32s %7.2f %8.0f%% %6d"
               % (name, sd, 100 * (1 - sd / base), n))
+    lab, _ = within(lambda r: r["src"])
+    both, _ = within(lambda r: (r["src"], r["fam"]))
     print("\n  Species removes almost nothing.  The laboratory removes the")
-    print("  most, and method adds nothing once the laboratory is known --")
-    print("  method is largely a label for which bench it was measured on.")
-    print("  Even knowing the laboratory, ~0.6 log (4x) remains.")
+    print("  most.  Method and laboratory overlap heavily -- knowing both")
+    print("  (%.2f) beats knowing the laboratory alone (%.2f) by only %.2f"
+          % (both, lab, lab - both))
+    print("  log, so method is largely a label for which bench it was")
+    print("  measured on rather than an independent term.")
+    print("  Even knowing BOTH, %.2f log (%.0fx) remains inside one"
+          % (both, 10 ** both))
+    print("  compound, one laboratory and one method.")
+    print()
+    print("  bischel2010_refit_spread.py accounts for a good part of that")
+    print("  last residue: refitting ONE of Bischel's datasets, with the")
+    print("  bench and the operator held fixed, moves PFOA's log K by 0.55")
+    print("  log on its own.")
 
 
 if __name__ == "__main__":
