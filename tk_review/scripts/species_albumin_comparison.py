@@ -70,10 +70,27 @@ def starnes():
 
 
 def within_lab_pairs():
-    """Every source in the plotted CSV reporting two species."""
-    by = collections.defaultdict(lambda: collections.defaultdict(dict))
+    """(source, species, compound, route) -> the log K values in that cell.
+
+    NOT a single value per (species, compound).  An earlier version of this
+    function wrote `by[source][species][pfas] = log_k`, so where a source
+    reported the same compound several times the LAST row read silently
+    became "the" value for that species.  Bischel 2010 has five bovine PFNA
+    rows -- three measured partition coefficients at three buffer
+    conditions and two isotherm fits -- and the collapse paired its single
+    human measurement against a bovine ISOTHERM FIT, comparing a measured
+    coefficient with a converted one and calling the difference a species
+    effect.
+
+    The category (measured, converted, quenching) is part of the key because a species comparison has to be
+    like with like, and cells holding more than one value are reported
+    rather than reduced.
+    """
+    by = collections.defaultdict(lambda: collections.defaultdict(
+        lambda: collections.defaultdict(list)))
     for r in csv.DictReader(open(LIT, encoding="utf-8")):
-        by[r["source"]][r["species"]][r["pfas"]] = float(r["log_k"])
+        by[r["source"]][r["species"]][(r["pfas"], r["category"])].append(
+            float(r["log_k"]))
     return by
 
 
@@ -122,6 +139,7 @@ def main():
     # ---- every other within-lab pair in the plotted data ----------
     print("\n2. EVERY OTHER WITHIN-LAB CROSS-SPECIES PAIR IN THE "
           "PLOTTED DATA\n")
+    ambiguous = []
     for src, sp in sorted(within_lab_pairs().items()):
         if len(sp) < 2:
             continue
@@ -130,13 +148,35 @@ def main():
                 if a >= b:
                     continue
                 common = sorted(set(sp[a]) & set(sp[b]))
-                if not common:
+                d = []
+                for key in common:
+                    va, vb = sp[a][key], sp[b][key]
+                    if len(va) == 1 and len(vb) == 1:
+                        d.append(vb[0] - va[0])
+                    else:
+                        ambiguous.append((src, key[0], key[1], a, b,
+                                          len(va), len(vb)))
+                if not d:
                     continue
-                d = [sp[b][c] - sp[a][c] for c in common]
-                tail = (f"  sd {st.pstdev(d):.3f}" if len(d) > 1
-                        else "")
+                tail = (f"  sd {st.pstdev(d):.3f}" if len(d) > 1 else "")
                 print(f"   {src:14} {b:7} - {a:7}  n={len(d):2d}  "
                       f"median {st.median(d):+.3f} log{tail}")
+    if ambiguous:
+        print("\n   NOT PAIRED, because one side holds several values for "
+              "the same\n   compound and category, and nothing here says "
+              "which condition is\n   which:")
+        for src, pfas, route, a, b, na, nb in ambiguous:
+            print(f"     {src} {pfas} ({route[:34]}): "
+                  f"{a} x{na}, {b} x{nb}")
+        print("\n   Bischel 2010 is the case in point, and its own paper "
+              "resolves it.\n   Table 1 runs HSA and BSA side by side at "
+              "one loading and one\n   buffer: log K_PW 4.93 against 4.74, "
+              "i.e. HUMAN BINDS 0.19 LOG\n   TIGHTER than bovine (4.795 vs "
+              "4.605 on this project's mass\n   basis). Its other two BSA "
+              "rows are a 9 g/L NaCl condition and a\n   fatty-acid-free "
+              "control, which belong against each other, not\n   against "
+              "the human row.")
+
     # Han's zero is not two measurements that agreed. Worth saying,
     # because +0.000 log otherwise reads as a precise result.
     print("\n   Han 2003's exact zero is NOT an independent "
