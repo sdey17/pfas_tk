@@ -38,6 +38,7 @@ Run:  python3 tk_review/scripts/build_revised_working_table.py [-o PATH]
 """
 import argparse
 import collections
+import csv
 import os
 import sys
 
@@ -62,6 +63,40 @@ ONE_PER_COMPOUND = {
                 "no-added-salt condition, so the salt series does not "
                 "enter a cross-study compound list four times",
 }
+
+
+# Studies whose rows differ only by assay temperature.  The review is not
+# about temperature dependence, so one row per compound reaches the sheet
+# and the rest stay in db/protein_binding.csv.  The temperature named here
+# is the one kept.
+BY_TEMPERATURE = {
+    "10.3390/toxics12010043": ("37 (310 K)", "Peng 2024",
+                               "six PFAS measured at 298, 304 and 310 K; "
+                               "310 K is body temperature"),
+}
+
+
+def temperature_picks():
+    """Kd values of the rows to keep, for each study reduced by temperature.
+
+    Keyed on Kd because that is what both sides of the join carry and it
+    is unique within a study: Peng's K_b differs at every temperature, so
+    1e6/K_b does too.  Read from the database rather than hard-coded, so
+    a re-ingestion cannot put the sheet and this list out of step.
+    """
+    out = {}
+    db = os.path.join(HERE, "..", "db", "protein_binding.csv")
+    with open(db, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            spec = BY_TEMPERATURE.get(r["doi"])
+            if not spec or r["temperature_c"] != spec[0]:
+                continue
+            try:
+                kd = 1e6 / float(r["ka"]) if r["ka"] else float(r["kd"])
+            except (TypeError, ValueError, ZeroDivisionError):
+                continue
+            out.setdefault(spec[1], set()).add("%g" % float("%.4g" % kd))
+    return out
 
 
 def moro_picks():
@@ -104,6 +139,11 @@ def main():
 
     picks = moro_picks()
     print(f"  Moro 2022 representative picks: {len(picks)}")
+    temps = temperature_picks()
+    for src, keep in sorted(temps.items()):
+        spec = [v for v in BY_TEMPERATURE.values() if v[1] == src][0]
+        print(f"  {src}: keeping the {spec[0]} rows only "
+              f"({len(keep)} compounds) -- {spec[2]}")
     kept, dropped = [], collections.Counter()
     seen = collections.defaultdict(list)
     for d in rows:
@@ -115,6 +155,14 @@ def main():
                 kept.append(d)
             else:
                 dropped["Moro 2022"] += 1
+            continue
+        if src in temps:
+            key = ("%g" % float("%.4g" % float(val(d, "Kd (uM)")))
+                   if val(d, "Kd (uM)") is not None else "")
+            if key in temps[src]:
+                kept.append(d)
+            else:
+                dropped[src] += 1
             continue
         if src in ONE_PER_COMPOUND:
             k = (str(val(d, "PFAS")), str(val(d, "Species")), src)
@@ -134,10 +182,15 @@ def main():
         dropped[k[2]] += len(g2) - 1
 
     for s, n in sorted(dropped.items()):
-        why = ONE_PER_COMPOUND.get(
-            s, "representative row per compound from "
-               "moro2022_representative.py: tightest site class, 37 C "
-               "where the cell is usable")
+        bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
+        if bytemp:
+            why = (f"kept only the {bytemp[0][0]} rows -- {bytemp[0][2]}; "
+                   "the other temperatures stay in db/protein_binding.csv")
+        else:
+            why = ONE_PER_COMPOUND.get(
+                s, "representative row per compound from "
+                   "moro2022_representative.py: tightest site class, 37 C "
+                   "where the cell is usable")
         print(f"  {s}: dropped {n} ({why})")
 
     out = []
