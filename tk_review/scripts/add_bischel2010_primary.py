@@ -39,6 +39,20 @@ TABLE 1, and it carries two comparisons this project has been short of:
   useful counterweight to the defatting caveat that Moro 2022 and
   Han 2003 raise.
 
+LIGAND CONCENTRATIONS ARE COMPUTED, NOT REPORTED.  Bischel states the
+loading as a mole ratio throughout and never prints a ligand molarity, so
+each row's concentration is the ratio times its albumin concentration.
+For Table 2 that is free: [P] is 1 uM, so the mole ratio IS the micromolar
+concentration.  For Table 1 it is the ratio times 500 uM -- 0.25, 0.30 and
+0.50 uM.
+
+This is not cosmetic.  Without a parseable concentration the downstream
+classifier cannot test whether a fitted Kd falls inside the range actually
+dosed, and its except-branch defaults to "beyond".  All four Table 2 rows
+were carrying "Kd beyond the range tested" for want of the number rather
+than on the evidence; with it, every one of them is INSIDE -- Kd/top runs
+0.0025 to 1.0.
+
 THE RATIO IS THE POINT OF THE PAPER.  These are the only rows in the
 file measured at a genuinely PHYSIOLOGICAL loading: 5-10 x 10^-4
 ligands per albumin, where the paper finds >99.9% bound.  Its thesis
@@ -136,17 +150,17 @@ ROWS = [
  # Table 1: measured log K_PW. Stored as a log D so no conversion happens.
  dict(chem="PFNA", prot="human serum albumin (HSA)", sp="human", meth=DIAL,
       ka="4.93", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="", ratio="0.0005",
+      kd="", n="", prot_c="500", lig="0.25", ratio="0.0005",
       fb="0.05% unbound (99.95 +/- 0.01% bound)", buf=BUF,
       src="Table 1, HSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
       ka="4.74", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="", ratio="0.0006",
+      kd="", n="", prot_c="500", lig="0.30", ratio="0.0006",
       fb="0.08% unbound (99.92 +/- 0.01% bound)", buf=BUF,
       src="Table 1, BSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
       ka="4.56", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="", ratio="0.001",
+      kd="", n="", prot_c="500", lig="0.50", ratio="0.001",
       fb="0.11% unbound (99.89 +/- 0.01% bound)",
       buf=BUF + "; plus 9 g/L NaCl (physiological saline)",
       src="Table 1, BSA + NaCl row", note=T1_NOTE +
@@ -154,7 +168,7 @@ ROWS = [
       "0.18 log drop measured at physiological loading"),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
       ka="4.80", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="", ratio="0.0006",
+      kd="", n="", prot_c="500", lig="0.30", ratio="0.0006",
       fb="0.07% unbound (99.93 +/- 0.01% bound)", buf=BUF,
       src="Results, fatty-acid-free BSA control (in the text, not Table 1)",
       note=T1_NOTE +
@@ -168,25 +182,25 @@ ROWS = [
  # Table 2: association constants over wide loading.
  dict(chem="PFOA", prot="bovine serum albumin (BSA)", sp="bovine", meth=TITR,
       ka="2.0e5", kau="M^-1 (Ka,1)", kd="5", n="4.3",
-      prot_c="1", lig="0.04 to 5 (as [L]:[P])", ratio="5",
+      prot_c="1", lig="0.04 to 5", ratio="5",
       fb="", buf=BUF, src="Table 2, PFOA one-class fit, [L]:[P] 0.04-5",
       note=T2_NOTE + " | one-class fit, R2 0.772, n 4.3 +/- 2.0, "
                      "Ka 0.20 +/- 0.14 x1e6"),
  dict(chem="PFOA", prot="bovine serum albumin (BSA)", sp="bovine", meth=TITR,
       ka="1.4e6", kau="M^-1 (Ka,1)", kd="0.7143", n="1.4",
-      prot_c="1", lig="0.04 to 70 (as [L]:[P])", ratio="70",
+      prot_c="1", lig="0.04 to 70", ratio="70",
       fb="", buf=BUF, src="Table 2, PFOA two-class fit, [L]:[P] 0.04-70",
       note=T2_NOTE + " | two-class fit, R2 0.913, n 1.4 +/- 0.5, "
                      "Ka 1.4 +/- 1.9 x1e6 -- a 136% relative error"),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=TITR,
       ka="1.1e6", kau="M^-1 (Ka,1)", kd="0.9091", n="4.6",
-      prot_c="1", lig="0.02 to 5 (as [L]:[P])", ratio="5",
+      prot_c="1", lig="0.02 to 5", ratio="5",
       fb="", buf=BUF, src="Table 2, PFNA one-class fit, [L]:[P] 0.02-5",
       note=T2_NOTE + " | one-class fit, R2 0.943, n 4.6 +/- 0.3, "
                      "Ka 1.1 +/- 0.2 x1e6 -- the best-constrained fit here"),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=TITR,
       ka="3.3e6", kau="M^-1 (Ka,1)", kd="0.303", n="2.9",
-      prot_c="1", lig="0.02 to 120 (as [L]:[P])", ratio="120",
+      prot_c="1", lig="0.02 to 120", ratio="120",
       fb="", buf=BUF, src="Table 2, PFNA two-class fit, [L]:[P] 0.02-120",
       note=T2_NOTE + " | two-class fit, R2 0.953, n 2.9 +/- 0.7, "
                      "Ka 3.3 +/- 3.2 x1e6 -- a 97% relative error"),

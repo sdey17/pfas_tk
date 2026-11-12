@@ -1,9 +1,9 @@
 PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
-PFNA	human			4.795	measured directly	Bischel 2010		500	0.0005	99.95
-PFNA	bovine			4.605	measured directly	Bischel 2010		500	0.0006	99.92
-PFNA	bovine			4.665	measured directly	Bischel 2010		500	0.0006	99.93
-PFNA	bovine			4.425	measured directly	Bischel 2010		500	0.001	99.89
-PFNA	bovine	0.9091	4.6	4.882	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Bischel 2010		1	5	
-PFOA	bovine	5	4.3	4.112	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Bischel 2010		1	5	
-PFOA	bovine	0.7143	1.4	4.47	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Bischel 2010		1	70	
-PFNA	bovine	0.303	2.9	5.158	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Bischel 2010		1	120	
+PFNA	human			4.795	measured directly	Bischel 2010	0.25	500	0.0005	99.95
+PFNA	bovine			4.605	measured directly	Bischel 2010	0.3	500	0.0006	99.92
+PFNA	bovine			4.665	measured directly	Bischel 2010	0.3	500	0.0006	99.93
+PFNA	bovine			4.425	measured directly	Bischel 2010	0.5	500	0.001	99.89
+PFNA	bovine	0.9091	4.6	4.882	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Bischel 2010	5	1	5	
+PFOA	bovine	5	4.3	4.112	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Bischel 2010	5	1	5	
+PFOA	bovine	0.7143	1.4	4.47	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Bischel 2010	70	1	70	
+PFNA	bovine	0.303	2.9	5.158	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Bischel 2010	120	1	120	

@@ -30,6 +30,11 @@ The fourth is **not in any table**. It is one sentence of Results prose, p5265:
 `Protein conc = 500` is in the Table 1 title and again in Methods p5264
 ("prepared with either 500 µM albumin (human or bovine)").
 
+**`PFAS conc` is computed, not printed.** Bischel states loading as a mole
+ratio throughout and never gives a ligand molarity, so each row's
+concentration is the ratio × its albumin concentration: 5×10⁻⁴ × 500 = 0.25
+µM, 6×10⁻⁴ × 500 = 0.30 µM, 1×10⁻³ × 500 = 0.50 µM.
+
 ### Why the sheet's log K is 0.135 below the paper's
 
 Eq 2, p5265, defines K_PW on a **volume** basis:
@@ -74,7 +79,9 @@ Volume basis to within 0.02 log; mass basis off by 0.13–0.15. So:
 > | PFNA | 1.1 (±0.2) × 10⁶ | 4.6 (±0.3) | 0.943 | 0.02–5 | one-class |
 > | PFNA | 3.3 (±3.2) × 10⁶ | 2.9 (±0.7) | 0.953 | 0.02–120 | two-class |
 
-`Protein conc = 1` is in the Results text immediately above, p5265:
+`PFAS conc` again comes from the ratio, and here it is free: [P] is 1 µM,
+so the mole ratio *is* the micromolar concentration. `Protein conc = 1` is
+in the Results text immediately above, p5265:
 "equilibrium dialysis was conducted … over a wide range of PFNA and PFOA
 concentrations and 1 µM BSA; [L]:[P] mole ratios ranged from 0.02 to 120".
 
