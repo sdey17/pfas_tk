@@ -1317,9 +1317,49 @@ reasoning.
 #### (i) The nth root on double-logarithmic K_b — and the Scatchard exception
 
 **What is done.** Where a paper's K_b comes from a double-logarithmic plot and
-n ≠ 1, the conversion takes **K_b^(1/n)** before inverting, because that is the
-per-ligand constant and it is in L·mol⁻¹. Affects 16 rows: Peng 2024 (6) and
-Wu 2024 (10).
+n ≠ 1, the conversion takes **K_b^(1/n)** before inverting. Affects 16 rows:
+Peng 2024 (6) and Wu 2024 (10).
+
+**The derivation, in full.** The plot assumes one all-or-none reaction — n
+ligands bind together, and the complex is dark:
+
+```
+nQ + P ⇌ QₙP            K_b = [QₙP] / ([Q]ⁿ[P])
+F ∝ [P],  F₀ ∝ [P] + [QₙP]   →   (F₀−F)/F = [QₙP]/[P] = K_b[Q]ⁿ
+                                 log[(F₀−F)/F] = log K_b + n log[Q]
+```
+
+The units follow from the definition alone:
+
+```
+          [QₙP]              mol/L
+K_b =  ───────────  =  ──────────────────  =  (mol/L)⁻ⁿ  =  (L/mol)ⁿ
+        [Q]ⁿ [P]       (mol/L)ⁿ × (mol/L)
+```
+
+and the plot says the same thing: the left side is a ratio of intensities, so
+it is dimensionless, while n·log[Q] carries n decades of mol/L — so log K_b
+must carry n decades of L/mol to balance. At n = 1 that is L·mol⁻¹. At
+n = 2.09 it is (L/mol)^2.09, and 1/K_b is (mol/L)^2.09 — not a concentration.
+Calling it a K_d in µM is not a unit conversion but a category error.
+
+**Why the root is the right repair, and not just a dimensional trick.** Units
+first: [(L/mol)ⁿ]^(1/n) = L·mol⁻¹. But it also has a physical reading. Half the
+protein is complexed when [QₙP] = [P], i.e. K_b[Q]ⁿ = 1, so
+
+```
+[Q]_half = K_b^(−1/n) = 1 / K_b^(1/n)
+```
+
+**1/K_b^(1/n) is the ligand concentration at half-saturation** — the only
+concentration this model defines, and precisely what belongs in a K_d column.
+Verified numerically: evaluating the model at that concentration returns a
+bound fraction of 0.5000 for every affected row.
+
+**What the root does NOT give you.** K_b^(1/n) is the geometric-mean
+per-ligand constant of an all-or-none n-ligand complex. It is *not* a
+microscopic per-site K_d for n independent sites — a different model, and one
+for which the double-log plot is the wrong analysis in the first place.
 
 **Why it is right, from two independent checks.** Peng's Table 2 prints a
 Stern–Volmer constant beside every K_b, from the same titration; K_q ≈ 10¹²
