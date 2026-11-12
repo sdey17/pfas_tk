@@ -30,10 +30,22 @@ The fourth is **not in any table**. It is one sentence of Results prose, p5265:
 `Protein conc = 500` is in the Table 1 title and again in Methods p5264
 ("prepared with either 500 µM albumin (human or bovine)").
 
-**`PFAS conc` is computed, not printed.** Bischel states loading as a mole
-ratio throughout and never gives a ligand molarity, so each row's
-concentration is the ratio × its albumin concentration: 5×10⁻⁴ × 500 = 0.25
-µM, 6×10⁻⁴ × 500 = 0.30 µM, 1×10⁻³ × 500 = 0.50 µM.
+**`PFAS conc` — two reported, two derived.** The tables give loading only as
+a mole ratio, but the Results text on p5265 states the molarities outright:
+
+> "equilibrium dialysis was conducted with 500 µM HSA or BSA and **0.24 ±
+> 0.08 µM or 0.32 ± 0.07 µM PFNA**, respectively, in 50 mM sodium phosphate
+> buffer"
+
+So HSA takes 0.24 and BSA 0.32 as reported. The fatty-acid-free control runs
+at the same 6×10⁻⁴ ratio as that BSA test and takes the same 0.32. The NaCl
+row is not covered by the sentence, so its 0.50 µM is ratio × 500 µM.
+
+**`ligand:protein ratio` is then the quotient, not Table 1's rounded figure.**
+Table 1 prints 5, 6 and 10 ± 1 × 10⁻⁴; the sheet shows 0.00048, 0.00064 and
+0.001, which is the two concentrations divided. The two agree inside the
+paper's own ±1×10⁻⁴, and the pipeline prefers the quotient wherever it does
+not contradict a stated value.
 
 ### Why the sheet's log K is 0.135 below the paper's
 

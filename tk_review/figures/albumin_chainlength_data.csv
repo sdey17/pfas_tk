@@ -59,14 +59,14 @@ PFNA,8,carboxylate,bovine,4.106,converted,Gao 2025,2.3979,no
 PFNA,8,carboxylate,bovine,4.175,converted,Gao 2025,2.3979,no
 PFNA,8,carboxylate,bovine,4.256,qin,Qin 2024,0.6735,no
 PFNA,8,carboxylate,bovine,4.32,measured,Allendorf 2019,-1.9208,yes
-PFNA,8,carboxylate,bovine,4.425,measured,Bischel 2010,-3.2218,no
+PFNA,8,carboxylate,bovine,4.425,measured,Bischel 2010,-3.1938,no
 PFNA,8,carboxylate,bovine,4.48,measured,Allendorf 2019,-1.9208,yes
 PFNA,8,carboxylate,bovine,4.54,measured,Fischer 2024,-2.3979,yes
-PFNA,8,carboxylate,bovine,4.605,measured,Bischel 2010,-3.2218,no
-PFNA,8,carboxylate,bovine,4.665,measured,Bischel 2010,-3.2218,no
+PFNA,8,carboxylate,bovine,4.605,measured,Bischel 2010,-3.1938,no
+PFNA,8,carboxylate,bovine,4.665,measured,Bischel 2010,-3.1938,no
 PFNA,8,carboxylate,bovine,4.821,converted,Alesio 2022,-1.0,no
-PFNA,8,carboxylate,bovine,4.882,converted,Bischel 2010,-3.2218,no
-PFNA,8,carboxylate,bovine,5.158,converted,Bischel 2010,-3.2218,no
+PFNA,8,carboxylate,bovine,4.882,converted,Bischel 2010,-3.1938,no
+PFNA,8,carboxylate,bovine,5.158,converted,Bischel 2010,-3.1938,no
 PFDA,9,carboxylate,bovine,3.725,measured,Bischel 2011,-2.6289,no
 PFDA,9,carboxylate,bovine,4.044,converted,Gao 2025,2.0969,no
 PFDA,9,carboxylate,bovine,4.129,converted,Gao 2025,2.0969,no
@@ -160,7 +160,7 @@ PFNA,8,carboxylate,human,3.603,converted,Chen 2025,0.301,no
 8:2 FTUCA,8,carboxylate,human,3.823,converted,Chen 2025,0.301,no
 8:2 FTCA,8,carboxylate,human,3.879,converted,Chen 2025,0.301,no
 PFNA,8,carboxylate,human,4.49,measured,Fischer 2024,-2.3979,yes
-PFNA,8,carboxylate,human,4.795,measured,Bischel 2010,-3.301,no
+PFNA,8,carboxylate,human,4.795,measured,Bischel 2010,-3.3188,no
 HFPO-TA,8,carboxylate,human,4.919,quenching,Peng 2024,1.2553,no
 PFNA,8,carboxylate,human,5.249,quenching,Peng 2024,1.2553,no
 HFPO-TA,8,carboxylate,human,6.359,quenching,Peng 2024,1.2553,no

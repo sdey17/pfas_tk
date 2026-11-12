@@ -39,12 +39,24 @@ TABLE 1, and it carries two comparisons this project has been short of:
   useful counterweight to the defatting caveat that Moro 2022 and
   Han 2003 raise.
 
-LIGAND CONCENTRATIONS ARE COMPUTED, NOT REPORTED.  Bischel states the
-loading as a mole ratio throughout and never prints a ligand molarity, so
-each row's concentration is the ratio times its albumin concentration.
-For Table 2 that is free: [P] is 1 uM, so the mole ratio IS the micromolar
-concentration.  For Table 1 it is the ratio times 500 uM -- 0.25, 0.30 and
-0.50 uM.
+LIGAND CONCENTRATIONS: TWO ARE REPORTED, TWO ARE COMPUTED.  The tables
+give loading only as a mole ratio, but the Results text on p5265 states
+the molarities for the two main Table 1 conditions outright:
+
+    "equilibrium dialysis was conducted with 500 uM HSA or BSA and
+     0.24 +- 0.08 uM or 0.32 +- 0.07 uM PFNA, respectively, in 50 mM
+     sodium phosphate buffer"
+
+So HSA takes 0.24 and BSA 0.32, as reported.  The fatty-acid-free control
+is run at the same 6e-4 ratio as that BSA test and takes the same 0.32.
+The NaCl row is not covered by the sentence, so its 0.50 uM is the ratio
+times 500 uM -- computed.
+
+For Table 2 the conversion is free either way: [P] is 1 uM, so the mole
+ratio IS the micromolar concentration (0.04-5, 0.04-70, 0.02-5, 0.02-120).
+A first pass here computed 0.25 and 0.30 for the two Table 1 rows before
+the Results sentence was found; those agreed with the reported 0.24 and
+0.32 to within the paper's own error, but reported beats derived.
 
 This is not cosmetic.  Without a parseable concentration the downstream
 classifier cannot test whether a fitted Kd falls inside the range actually
@@ -150,12 +162,12 @@ ROWS = [
  # Table 1: measured log K_PW. Stored as a log D so no conversion happens.
  dict(chem="PFNA", prot="human serum albumin (HSA)", sp="human", meth=DIAL,
       ka="4.93", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="0.25", ratio="0.0005",
+      kd="", n="", prot_c="500", lig="0.24", ratio="0.0005",
       fb="0.05% unbound (99.95 +/- 0.01% bound)", buf=BUF,
       src="Table 1, HSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
       ka="4.74", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="0.30", ratio="0.0006",
+      kd="", n="", prot_c="500", lig="0.32", ratio="0.0006",
       fb="0.08% unbound (99.92 +/- 0.01% bound)", buf=BUF,
       src="Table 1, BSA row", note=T1_NOTE),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
@@ -168,7 +180,7 @@ ROWS = [
       "0.18 log drop measured at physiological loading"),
  dict(chem="PFNA", prot="bovine serum albumin (BSA)", sp="bovine", meth=DIAL,
       ka="4.80", kau=KPW_UNITS,
-      kd="", n="", prot_c="500", lig="0.30", ratio="0.0006",
+      kd="", n="", prot_c="500", lig="0.32", ratio="0.0006",
       fb="0.07% unbound (99.93 +/- 0.01% bound)", buf=BUF,
       src="Results, fatty-acid-free BSA control (in the text, not Table 1)",
       note=T1_NOTE +
