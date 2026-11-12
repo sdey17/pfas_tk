@@ -77,12 +77,17 @@ BY_TEMPERATURE = {
 
 
 def temperature_picks():
-    """Kd values of the rows to keep, for each study reduced by temperature.
+    """(compound, n) of the rows to keep, for each study reduced by temperature.
 
-    Keyed on Kd because that is what both sides of the join carry and it
-    is unique within a study: Peng's K_b differs at every temperature, so
-    1e6/K_b does too.  Read from the database rather than hard-coded, so
-    a re-ingestion cannot put the sheet and this list out of step.
+    Keyed on the STOICHIOMETRY, not on Kd.  Kd is derived, and a derivation
+    can change -- the double-log nth-root correction in
+    build_binding_affinity_table moved every Peng Kd by orders of
+    magnitude and silently emptied this list when it was keyed on Kd.  The
+    n cell is transcribed verbatim from the paper, reaches the sheet
+    unaltered, and is unique within a compound here: Peng's three
+    temperatures give n = 1.51 / 1.18 / 1.10 for PFNA and so on for the
+    rest.  Read from the database so a re-ingestion cannot put the sheet
+    and this list out of step.
     """
     out = {}
     db = os.path.join(HERE, "..", "db", "protein_binding.csv")
@@ -92,10 +97,10 @@ def temperature_picks():
             if not spec or r["temperature_c"] != spec[0]:
                 continue
             try:
-                kd = 1e6 / float(r["ka"]) if r["ka"] else float(r["kd"])
-            except (TypeError, ValueError, ZeroDivisionError):
+                n = "%g" % float(r["n_binding_sites"])
+            except (TypeError, ValueError):
                 continue
-            out.setdefault(spec[1], set()).add("%g" % float("%.4g" % kd))
+            out.setdefault(spec[1], set()).add((r["chemical"], n))
     return out
 
 
@@ -157,8 +162,10 @@ def main():
                 dropped["Moro 2022"] += 1
             continue
         if src in temps:
-            key = ("%g" % float("%.4g" % float(val(d, "Kd (uM)")))
-                   if val(d, "Kd (uM)") is not None else "")
+            try:
+                key = (str(val(d, "PFAS")), "%g" % float(val(d, "n used")))
+            except (TypeError, ValueError):
+                key = None
             if key in temps[src]:
                 kept.append(d)
             else:

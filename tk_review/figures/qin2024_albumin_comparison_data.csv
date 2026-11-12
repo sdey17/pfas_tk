@@ -22,7 +22,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 9,PFOS,converted,4.334,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.336,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 9,PFOS,converted,4.433,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
-9,PFOS,converted_quenching,0.713,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+9,PFOS,converted_quenching,1.104,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,converted_quenching,3.666,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 9,PFOS,measured,3.965,Bischel 2011,,measured directly
 9,PFOS,measured,4.62,Fischer 2024,,measured directly
@@ -43,9 +43,9 @@ row_order,pfas,category,log_k,source,cw_uM,route
 8,PFNA,converted,4.821,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 8,PFNA,converted,4.882,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
 8,PFNA,converted,5.158,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
-8,PFNA,converted_quenching,3.214,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-8,PFNA,converted_quenching,3.555,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-8,PFNA,converted_quenching,5.249,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFNA,converted_quenching,2.745,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFNA,converted_quenching,2.76,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+8,PFNA,converted_quenching,2.921,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 8,PFNA,measured,3.915,Bischel 2011,,measured directly
 8,PFNA,measured,4.32,Allendorf 2019,,measured directly
 8,PFNA,measured,4.425,Bischel 2010,,measured directly
@@ -81,13 +81,13 @@ row_order,pfas,category,log_k,source,cw_uM,route
 6,PFOA,converted,4.112,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
 6,PFOA,converted,4.47,Bischel 2010,,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested"
 6,PFOA,converted,4.525,Moro 2022,,converted; n counted by ITC
-6,PFOA,converted_quenching,0.025,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+6,PFOA,converted_quenching,0.968,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 6,PFOA,converted_quenching,2.455,Han 2003,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 6,PFOA,converted_quenching,2.513,Han 2003,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-6,PFOA,converted_quenching,3.634,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+6,PFOA,converted_quenching,2.529,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+6,PFOA,converted_quenching,2.628,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+6,PFOA,converted_quenching,3.141,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 6,PFOA,converted_quenching,4.372,Chen 2009,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-6,PFOA,converted_quenching,4.641,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-6,PFOA,converted_quenching,4.643,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 6,PFOA,measured,4.005,Bischel 2011,,measured directly
 6,PFOA,measured,4.17,Allendorf 2019,,measured directly
 6,PFOA,measured,4.2,Allendorf 2019,,measured directly
@@ -108,7 +108,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 4,PFHxS,converted,3.458,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 4,PFHxS,converted,3.989,Alesio 2022,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 4,PFHxS,converted,4.06,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
-4,PFHxS,converted_quenching,0.241,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+4,PFHxS,converted_quenching,1.042,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 4,PFHxS,measured,4.165,Bischel 2011,,measured directly
 4,PFHxS,measured,4.49,Allendorf 2019,,measured directly
 4,PFHxS,measured,4.61,Fischer 2024,,measured directly
@@ -127,9 +127,9 @@ row_order,pfas,category,log_k,source,cw_uM,route
 3,PFHpA,converted,2.72,Fan 2025,,converted; n counted by ITC
 3,PFHpA,converted,3.385,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 3,PFHpA,converted,3.651,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
-3,PFHpA,converted_quenching,1.816,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-3,PFHpA,converted_quenching,4.058,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-3,PFHpA,converted_quenching,4.227,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+3,PFHpA,converted_quenching,1.968,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+3,PFHpA,converted_quenching,2.269,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+3,PFHpA,converted_quenching,2.364,Peng 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 3,PFHpA,measured,3.79,Allendorf 2019,,measured directly
 3,PFHpA,measured,3.93,Fischer 2024,,measured directly
 3,PFHpA,measured,4.02,Allendorf 2019,,measured directly
@@ -164,7 +164,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 1,HFPO-DA,converted,3.182,Moro 2022,,converted; n counted by ITC
 1,HFPO-DA,converted,3.36,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 1,HFPO-DA,converted,3.439,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
-1,HFPO-DA,converted_quenching,-0.259,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+1,HFPO-DA,converted_quenching,0.822,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 1,HFPO-DA,measured,2.71,Allendorf 2019,,measured directly
 1,HFPO-DA,measured,3.06,Allendorf 2019,,measured directly
 1,HFPO-DA,qin,2.146,Qin 2024,220,"measured; Qin Table S6 equation at IC10,free = 220 uM, read off the fit; dosed IC10,nom = 654 uM over 19.2 uM medium protein (PPARgamma assay)"
@@ -174,7 +174,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 0,PFBA,converted,2.249,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 0,PFBA,converted,2.404,Fan 2025,,converted; n counted by ITC
 0,PFBA,converted,3.617,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
-0,PFBA,converted_quenching,-0.842,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
+0,PFBA,converted_quenching,0.64,Wu 2024,,"converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 0,PFBA,measured,1.9,Allendorf 2019,,measured directly
 0,PFBA,measured,2.52,Allendorf 2019,,measured directly
 0,PFBA,qin,1.806,Qin 2024,1.78e+03,"measured; Qin Table S6 equation at IC10,free = 1.78e+03 uM, read off the fit; dosed IC10,nom = 3190 uM over 19.2 uM medium protein (PPARgamma assay)"

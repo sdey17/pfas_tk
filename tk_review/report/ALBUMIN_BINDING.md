@@ -1248,7 +1248,7 @@ water. A tissue is not.
 *Code:* `scripts/mbm_fischer_serum.py`, `scripts/make_mbm_fischer_serum_figure.py`.
 *Data:* `db/mbm_fischer_serum.csv`.
 
-### 13b. Five ways a published constant turns out not to be the constant
+### 13b. Six ways a published constant turns out not to be the constant
 
 These are not hypotheticals. Each was found in a paper in this database while
 reading it against its own numbers, and each would have propagated silently.
@@ -1287,6 +1287,20 @@ implies K_d = 0.38 µM — exactly 1/100 of the printed value. The paper's own t
 298 and 310 K) agrees with the thermodynamics and against the printed number.
 
 **The generalisable check.** Four of these five were caught by the same move:
+**6. The constant is not in the units it appears to be.** A K_b read off a
+**double-logarithmic** quenching plot is not in L·mol⁻¹. The model behind that
+plot is nQ + P ⇌ QₙP, so
+
+```
+K = [QₙP] / ([Q]ⁿ[P])   and   log[(F₀−F)/F] = log K + n log[Q]
+```
+
+The left side is dimensionless, so K carries units of **(L/mol)ⁿ**. Inverting
+it gives a "K_d" in (mol/L)ⁿ, which is not a concentration, and every quantity
+derived from it inherits the error — including ΔG = −RT ln K_b, and therefore
+ΔH and ΔS. Peng 2024's enthalpies reaching ±400 kJ·mol⁻¹, four to eight times
+anything non-covalent binding produces, are this and nothing else.
+
 *take two numbers the paper reports independently and see whether they
 reproduce each other.* K_d against ΔG. A stoichiometry against the molar ratio
 on the figure axis. A fitted n against the model that produced it. Papers are
@@ -1294,9 +1308,110 @@ internally redundant far more often than they are read that way.
 
 ---
 
+### 13c. Three conversion decisions, on record
+
+Each of these changes numbers in `albumin_logK_Kd_revised.xlsx`. Recorded here
+so the sheet can be audited against the papers without re-deriving the
+reasoning.
+
+#### (i) The nth root on double-logarithmic K_b — and the Scatchard exception
+
+**What is done.** Where a paper's K_b comes from a double-logarithmic plot and
+n ≠ 1, the conversion takes **K_b^(1/n)** before inverting, because that is the
+per-ligand constant and it is in L·mol⁻¹. Affects 16 rows: Peng 2024 (6) and
+Wu 2024 (10).
+
+**Why it is right, from two independent checks.** Peng's Table 2 prints a
+Stern–Volmer constant beside every K_b, from the same titration; K_q ≈ 10¹²
+against a 2 × 10¹⁰ diffusion limit makes the quenching static, so both describe
+one complex and should agree.
+
+| | median disagreement with K_SV | worst |
+|---|---|---|
+| raw K_b | 16× | 116,667× |
+| K_b^(1/n) | **1.4×** | 4.8× |
+
+And refitting the van't Hoff on K_b^(1/n) brings the enthalpies back inside the
+physical range:
+
+| ΔH (kJ·mol⁻¹) | from raw K_b | from K_b^(1/n) |
+|---|---|---|
+| HFPO-TA | +411.9 | **+10.6** |
+| PFHpA | +328.6 | +16.1 |
+| PFNA | −280.8 | −3.5 |
+| DFSA | +167.0 | +30.1 |
+
+**THE EXCEPTION, and it matters.** This applies **only** to the
+double-logarithmic form. A **Scatchard** analysis already yields a per-site K_a
+in L·mol⁻¹ with n a counted site — there is no (L/mol)ⁿ to undo, and taking the
+root is simply wrong. Han 2003 (micro-SEC + Scatchard, n = 7.8 and 7.2) and
+Chen 2009 (quenching + Scatchard, n = 5.8 and 14) are therefore **left alone**.
+Applying the root to Han's 2778 M⁻¹ at n = 7.8 would give log K −0.49.
+
+`build_binding_affinity_table.is_double_log()` makes the distinction on the
+method string. Note that `QUENCH_WORDS` still contains `"scatchard"`, so Han's
+micro-SEC rows carry the quenching-exponent route label although their n is a
+counted site from a separation assay — a known mislabel, listed in §14.
+
+**What it costs.** Peng's HFPO-TA at 310 K falls 7.86 → 2.98; Wu's rows rise off
+the floor, PFBA −0.84 → 0.64. The compilation's whole log K span narrows from
+−0.84–7.86 to **0.64–5.58** — 2.3 log removed by fixing a units error, not by
+dropping data.
+
+#### (ii) Peng 2024 is held at 310 K
+
+Peng measured six PFAS at 298, 304 and 310 K. The review is not about
+temperature dependence, so one row per compound reaches the sheet and the other
+twelve stay in `db/protein_binding.csv`.
+
+**310 K, because the compilation is a 37 °C compilation.** Of the 171 sheet rows
+whose source states a temperature, **153 (89%) are at 37 °C** — Fischer 2024,
+Allendorf 2019, Fan 2025, Gao 2019, Qin 2024, Alesio 2022, Beesoon 2015,
+Wu 2009. Exactly **four rows sit at 25 °C**, all Moro 2022, and even those are
+fallbacks: `moro2022_representative.py` prefers 37 °C and takes 25 °C only for
+PFOA, where the paper records the 37 °C cell as unusable.
+
+**What it costs,** recorded because it is not free: at 310 K the chain-length
+order inverts (PFNA falls below PFHpA and PFOA, where at 298 K PFNA is highest —
+the ordering Peng's own abstract reports), and mean n rises 1.22 → 1.33 → 1.40
+across the series, so K_b drifts further from L·mol⁻¹ the warmer the assay.
+`BY_TEMPERATURE` in `build_revised_working_table.py` is one line to change.
+
+#### (iii) Bischel 2010 is the only same-experiment test of the K_d bridge
+
+This project otherwise has **no study measuring both a K_d and a protein–water
+partition coefficient on the same material** — the K_d sources and the partition
+sources are disjoint. Bischel 2010 breaks that, because its Table 3 reports a
+K_a for the very dialysis run that produced Table 1's measured log K_PW
+(footnote f: *"K_a calculated for one PFAA:albumin mole ratio assuming n = 3"*).
+
+| | reported K_PW | K_d (µM) | via the bridge | diff |
+|---|---|---|---|---|
+| PFNA, HSA | 4.795 | 0.476 | 4.977 | **+0.182** |
+| PFNA, BSA | 4.605 | 0.714 | 4.801 | **+0.196** |
+
+**The bridge lands within a factor of 1.5 of a directly measured partition
+coefficient**, consistently, on both albumins.
+
+And that 0.19 log is about the width of the measurement's own error bar. K_d is
+proportional to the *unbound* fraction, 0.05% here, against a stated error of
+±0.01% — a fifth of it. Propagated, 99.95 ± 0.01% gives a K_d window of
+**0.18 log**. So the two routes agree to within what the data can resolve: the
+bridge is not biased, it is being applied where K_d is barely determinable.
+
+Caveat: two numbers, one compound, one paper, and n = 3 assumed on one side.
+A reassuring check, not a validation.
+
+---
+
 ### 14. What is still open
 
 1. **Mouse albumin has never been measured.** The largest single gap.
+1. **`QUENCH_WORDS` catches `"scatchard"`**, so Han 2003's micro-SEC rows are
+   labelled as resting on a quenching exponent when their n = 7.8 is a counted
+   site from a separation assay. The numbers are unaffected — §13c(i) exempts
+   Scatchard from the nth root — but the route label understates two of the
+   better measurements, and Han is one of only two rat-vs-human pairs.
 2. **n is almost never reported** with a K_d, and it moves log D by up to 0.78.
    Where it has been checked, n ≈ 1 is what makes the datasets consistent
    (§11a, §12) — but that is three compounds, not a rule.
@@ -1547,6 +1662,11 @@ people.
 | `scripts/check_protein_binding.py` | validation; reproduces published statistics from three papers |
 | `scripts/binding_kd_physiological_bound.py` | §4 View 2 and the §11 scoring table |
 | `scripts/kd_to_partition.py` | §12, the full derivation and diagnostics |
+| `scripts/audit_peng2024_kb_vs_ksv.py` | §13b(6) and §13c(i): K_b against K_SV, and the units argument |
+| `scripts/plot_peng2024_vanthoff.py` | §13c(i): the enthalpies, from the other side |
+| `scripts/bischel2010_refit_spread.py` | what refitting one dataset costs: 0.55 log on PFOA |
+| `tk_review/bischel2010_provenance.md` | §13c(iii): page and table for every Bischel 2010 number |
+| `scripts/what_drives_albumin_spread.py` | the variance decomposition the decisions are judged against |
 | `scripts/binding_species_and_structure.py` | §9–10 |
 | `scripts/chen_fischer_reconciliation.py` | §11a |
 | `scripts/chen_pfna_inversion.py` | §11b |

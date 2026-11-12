@@ -1,7 +1,7 @@
 PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
-HFPO-TA	human	0.0004329	2.09	7.861	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
-PFOA	human	0.5051	1.47	4.641	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
-PFHpA	human	1.339	1.5	4.227	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
-PFNA	human	10.1	1.1	3.214	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
-PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)	human	33.44	1.1	2.695	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
-DFSA (dodecafluorosuberic acid)	human	48.31	1.13	2.546	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+HFPO-TA	human	33.1	2.09	2.978	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+PFNA	human	28.74	1.1	2.76	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+PFOA	human	52.07	1.47	2.628	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+PFO3DA (perfluoro-3,6,9-trioxadecanoic acid)	human	85.35	1.1	2.288	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+PFHpA	human	121.5	1.5	2.269	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	
+DFSA (dodecafluorosuberic acid)	human	151.6	1.13	2.05	converted; n is the paper's fitted quenching-plot exponent, not a counted site	Peng 2024	18	1	18	

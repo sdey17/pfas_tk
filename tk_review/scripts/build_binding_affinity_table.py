@@ -376,11 +376,23 @@ def to_kd_uM(rec):
                    else "unit conversion from " + units)
 
     if meas == "Ka":
-        if units == "M^-1":
-            return out(1e6 / num, "1/Ka")
+        ka, root = num, ""
         if units == "log10 M^-1":
-            return out(1e6 / 10 ** num, "1/Ka, from log10 Ka")
-        return "", "no exact conversion from " + units
+            ka = 10 ** num
+        elif units != "M^-1":
+            return "", "no exact conversion from " + units
+        # A double-log Kb is in (L/mol)^n; take the nth root first so the
+        # reciprocal is a concentration. See DOUBLELOG_WORDS above.
+        if is_double_log(rec.get("_method")):
+            n, _how = site_count(rec.get("_n"))
+            if n and n > 0 and abs(n - 1.0) > 1e-9:
+                ka = ka ** (1.0 / n)
+                root = (f"; Kb^(1/n) with n = {n:g} first, because a "
+                        f"double-logarithmic Kb is in (L/mol)^n and its "
+                        f"reciprocal is only a concentration after the "
+                        f"nth root")
+        base = "1/Ka" + (", from log10 Ka" if units == "log10 M^-1" else "")
+        return out(1e6 / ka, base + root)
 
     return "", "no exact conversion defined"
 
@@ -504,6 +516,25 @@ def site_count(n_sites):
 # number was being accepted. The wording of a spreadsheet cell is not a
 # reason to treat two identical quantities differently, so the test moved
 # to the method.
+# A Kb read off a DOUBLE-LOGARITHMIC plot is not in L/mol.  The model is
+# nQ + P <-> Q_nP with K = [Q_nP]/([Q]^n [P]), so
+#     log[(F0 - F)/F] = log K + n log[Q]
+# and since the left side is dimensionless, K carries units of (L/mol)^n.
+# Inverting it gives a "Kd" in (mol/L)^n, which is not a concentration.
+# The per-ligand constant is K^(1/n), which IS in L/mol.
+#
+# This applies ONLY to the double-log form.  A SCATCHARD analysis --
+# Han 2003's micro-SEC, Chen 2009's quenching -- already yields a per-site
+# Ka in L/mol with n a counted site, so the root must NOT be taken there:
+# on Han's 2778 M^-1 at n = 7.8 it would give log K -0.49.
+DOUBLELOG_WORDS = ("double-log", "double logarithmic")
+
+
+def is_double_log(method):
+    m = (method or "").lower()
+    return any(w in m for w in DOUBLELOG_WORDS)
+
+
 QUENCH_WORDS = ("quench", "scatchard", "stern-volmer", "stern volmer",
                 "double-log", "double logarithmic")
 ITC_WORDS = ("isothermal titration", "(itc)")
