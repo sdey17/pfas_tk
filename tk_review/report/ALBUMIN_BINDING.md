@@ -1353,6 +1353,33 @@ method string. Note that `QUENCH_WORDS` still contains `"scatchard"`, so Han's
 micro-SEC rows carry the quenching-exponent route label although their n is a
 counted site from a separation assay — a known mislabel, listed in §14.
 
+**IS THIS CONVENTIONAL? The diagnosis is. The remedy is ours.**
+
+The criticism of the double-log method is well established and recently
+restated. According to PubMed, van de Weert & Schönbeck (2024), *Eur J Pharm
+Sci* 203:106930 — [DOI](https://doi.org/10.1016/j.ejps.2024.106930) — write
+that "the double log equations are **improperly derived for their purported
+use**", that "the binding stoichiometry and binding constants obtained using
+these equations **may differ substantially from their true values**", and they
+"call for a reassessment of the literature in which this methodology plays a
+central role." The same author made the narrower case earlier in van de Weert
+(2010), *J Fluoresc* 20:625–629 —
+[DOI](https://doi.org/10.1007/s10895-009-0572-x).
+
+What is **not** conventional is taking K_b^(1/n). A search of the literature
+found no publication recommending it, and none of the PFAS–albumin papers here
+performs it. It is this project's own correction, adopted because the two
+checks above pass and because the alternative — carrying a (L/mol)ⁿ into a log
+K column — is certainly wrong.
+
+**And it does not rescue the measurement.** The published critique is broader
+than units: if the equation is improperly derived, the nth root fixes the
+dimensions of a number that was not the binding constant to begin with. Read
+the corrected Peng and Wu values as rank orderings on a defensible scale, not
+as affinities. The honest alternative, closest to what van de Weert recommends,
+is to carry no log K for these 16 rows at all; that is one line in
+`is_double_log()` if the project later prefers it.
+
 **What it costs.** Peng's HFPO-TA at 310 K falls 7.86 → 2.98; Wu's rows rise off
 the floor, PFBA −0.84 → 0.64. The compilation's whole log K span narrows from
 −0.84–7.86 to **0.64–5.58** — 2.3 log removed by fixing a units error, not by

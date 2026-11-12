@@ -527,6 +527,16 @@ def site_count(n_sites):
 # Han 2003's micro-SEC, Chen 2009's quenching -- already yields a per-site
 # Ka in L/mol with n a counted site, so the root must NOT be taken there:
 # on Han's 2778 M^-1 at n = 7.8 it would give log K -0.49.
+#
+# STANDING.  The DIAGNOSIS is conventional -- van de Weert & Schonbeck 2024,
+# Eur J Pharm Sci 203:106930, doi 10.1016/j.ejps.2024.106930, call the double
+# log equations "improperly derived for their purported use" and ask for a
+# reassessment of the literature that rests on them.  The REMEDY is not: no
+# publication found recommends K^(1/n), and none of the papers here performs
+# it.  It is this project's own correction.  It fixes the units; it does not
+# make the number a binding constant, because the critique is that the
+# equation was wrong before the units were.  See report/ALBUMIN_BINDING.md
+# section 13c(i).
 DOUBLELOG_WORDS = ("double-log", "double logarithmic")
 
 
