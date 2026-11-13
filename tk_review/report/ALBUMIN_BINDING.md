@@ -1343,6 +1343,27 @@ must carry n decades of L/mol to balance. At n = 1 that is L·mol⁻¹. At
 n = 2.09 it is (L/mol)^2.09, and 1/K_b is (mol/L)^2.09 — not a concentration.
 Calling it a K_d in µM is not a unit conversion but a category error.
 
+**If you distrust the dimensional argument, here is an operational one.**
+A constant genuinely in L·mol⁻¹ converts to µM⁻¹ by 10⁻⁶, and nothing else.
+So refit the *same* data with [Q] expressed in µmol/L instead of mol/L and see
+what the intercept does. On synthetic data from a known n = 2 model:
+
+| | fitted K_b | ratio to the mol/L fit |
+|---|---|---|
+| [Q] in mol/L | 1 × 10¹⁰ | — |
+| [Q] in µmol/L | 1 × 10⁻² | **10⁻¹²** |
+| a true 1:1 constant, same test | — | 10⁻⁶ |
+
+The conversion factor is **10^(−6n)**, not 10⁻⁶. Same data, same fit, only the
+concentration unit changed, and the "constant" moves by an amount that depends
+on n. That can only happen if n is in its units. The 1:1 control moves by
+exactly 10⁻⁶, as a real L·mol⁻¹ quantity must.
+
+So the objection "1/K_b is just mol/L" is right *conditionally* — it holds the
+moment K_b really is in L·mol⁻¹. The table's label asserts that; the fit
+refutes it. And `n` being dimensionless is not an obstacle: a dimensionless
+exponent is exactly what changes a dimension, the way √(m²) = m.
+
 **Why the root is the right repair, and not just a dimensional trick.** Units
 first: [(L/mol)ⁿ]^(1/n) = L·mol⁻¹. But it also has a physical reading. Half the
 protein is complexed when [QₙP] = [P], i.e. K_b[Q]ⁿ = 1, so
