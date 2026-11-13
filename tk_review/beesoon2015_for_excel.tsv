@@ -1,0 +1,3 @@
+PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
+linear PFOS (n-PFOS)	human	0.08	2	5.575	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Beesoon 2015	12	6	2	
+linear PFOA (n-PFOA)	human	100	2	2.478	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Beesoon 2015	12	6	2	
