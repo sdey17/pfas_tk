@@ -80,6 +80,26 @@ ONE_PER_COMPOUND = {
 # figures/albumin_chainlength_data.csv, where an isomer-resolved point
 # is informative, and in db/protein_binding.csv.
 DROP_SCOPE = {
+    "Klevens 1954":
+        "doi 10.1039/df9541800277, the earliest PFAS-albumin constant "
+        "in the literature. Dropped on reading the primary. It is a "
+        "FLOCCULATION study -- its own abstract is about "
+        "protein-protein aggregation, 'a marked loss of potential "
+        "binding sites with increase in protein concentration' -- run "
+        "in acetate at pH 4.3-5.8, straddling BSA's isoelectric point "
+        "near 4.7, not at blood pH. Its stoichiometry is not a site "
+        "count: n falls from about 150 at 0.5% BSA to about 45 at 4% "
+        "because the protein associates, and the 85 in Fig. 3 belongs "
+        "to the 1% solutions (147 uM) while the row stores 588 uM "
+        "(4%), whose own n is about 45 -- so the protein column and "
+        "the constant come from different conditions. Its ligand axis "
+        "is a BOUND ratio, 'Moles C8 Acid Bound per Mole BSA', not a "
+        "dose, so the row can carry no PFAS concentration. For scale, "
+        "Han 2003 counts 6 to 9 sites on the same protein at pH 7.4 "
+        "and Beesoon 2015 counts 2. Kept in db/protein_binding.csv "
+        "with the primary now read and its pH, temperature and "
+        "provenance corrected (fix_klevens1954_from_primary.py), "
+        "which is where its historical value belongs.",
     "Peng 2025":
         "doi 10.1016/j.jes.2024.02.011. The row MISDESCRIBES its own "
         "paper. It was ingested from a secondary (Starnes & Belcher "
