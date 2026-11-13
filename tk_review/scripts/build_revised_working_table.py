@@ -80,6 +80,37 @@ ONE_PER_COMPOUND = {
 # figures/albumin_chainlength_data.csv, where an isomer-resolved point
 # is informative, and in db/protein_binding.csv.
 DROP_SCOPE = {
+    "Peng 2025":
+        "doi 10.1016/j.jes.2024.02.011. The row MISDESCRIBES its own "
+        "paper. It was ingested from a secondary (Starnes & Belcher "
+        "2026 Table 1) with source_table 'primary not retrieved', and "
+        "records 7 compounds (PFHxA, PFOA, PFNA, PFDA, PFHxS, PFOS, "
+        "HFPO-DA) on 'human; bovine'. The paper -- Peng S-Y, Yang "
+        "Y-D, Tian R, Lu N, J Environ Sci (China) 2025;149:88-98, "
+        "PMID 39181681 -- is 'Critical new insights into the "
+        "interactions of hexafluoropropylene oxide-dimer acid (GenX "
+        "or HFPO-DA) with albumin', and its abstract explores 'the "
+        "binding characteristics of bovine serum albumin (BSA) to "
+        "GenX' against PFOA. Two compounds, BSA only; its MeSH terms "
+        "carry Serum Albumin, Bovine and no human albumin term. So "
+        "both the compound list and the species are wrong, and the "
+        "Ka range attributed to the row is unverified -- it probably "
+        "belongs to a different row of the secondary's table. Not a "
+        "conflation with Peng 2024, which is Peng M et al., Toxics, "
+        "doi 10.3390/toxics12010043, a different group. Three "
+        "further reasons even setting that aside: the stored Kd "
+        "15.64 uM is the GEOMETRIC MIDPOINT of a 21-fold Ka range "
+        "(Kd 3.42-71.4 uM, log K 2.324-3.643), so it is a midpoint "
+        "and not a measurement; the 7-item PFAS string matches no "
+        "compound bucket, so the row entered no per-compound "
+        "statistic; and it carries no PFAS concentration, protein "
+        "concentration, ratio, temperature or buffer at all. Method "
+        "is fluorescence quenching, the family whose constants "
+        "failed three separate audits in this compilation, and its "
+        "'the paper reports none' claim about n is probably false "
+        "for the same reason it was false for Klevens. The row stays "
+        "in db/protein_binding.csv as the record of what the "
+        "secondary said.",
     "Beesoon 2015":
         "PFOS and PFOA isomers by ultrafiltration, the only "
         "isomer-resolved source here. Dropped from the sheet for four "

@@ -1,0 +1,4 @@
+PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
+PFOA	rat	360	7.8	2.513	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Han 2003	3000	50	60	
+PFOA	human	380	7.2	2.455	converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested	Han 2003	3000	50	60	
+PFOA	bovine	3106	1	0.685	converted; n = 1 assumed by the reader BY DECISION -- the paper does report n = 85 (Fig. 3, extrapolated), not used: n falls from ~150 to ~45 as BSA goes 0.5% to 4% because the protein aggregates, so it is a surfactant-adsorption count, not a site count. See fix_klevens1954_from_primary.py	Klevens 1954		588	29	
