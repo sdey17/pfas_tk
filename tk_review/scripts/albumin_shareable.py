@@ -86,6 +86,27 @@ FITTED_EX = "converted; n fitted by the paper from its own binding isotherm, Kd 
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
+
+# Sources where the paper DOES report a stoichiometry but the reader
+# still uses n = 1, by decision.  READER's "the paper reports none"
+# would be a false statement about these papers, so they carry their
+# own wording.  Every replacement must keep the phrase "assumed by the
+# reader" verbatim: what_drives_albumin_spread.py,
+# make_route_and_loading_figures.py, build_notebook.py and
+# fu_physiological.py all bucket this route by that substring, and a
+# row that loses it silently leaves the "reader n=1" class.
+READER_DECLINED = {
+    "Klevens 1954":
+        "converted; n = 1 assumed by the reader BY DECISION -- the "
+        "paper does report n = 85 (Fig. 3, extrapolated), not used: "
+        "n falls from ~150 to ~45 as BSA goes 0.5% to 4% because the "
+        "protein aggregates, so it is a surfactant-adsorption count, "
+        "not a site count. See fix_klevens1954_from_primary.py",
+}
+
+
+def reader_route(source):
+    return READER_DECLINED.get(source, READER)
 QUENCH = "converted; n is the paper's fitted quenching-plot exponent, not a counted site"
 ORDER = [MEASURED, QIN, ITC, FITTED_OK, FITTED_EX, PAPER_OK,
          PAPER_EX, READER, QUENCH]
@@ -211,7 +232,8 @@ def collect(keep=None):
                 continue               # DSF, MST and the rest stay out
             if (r["source"], r["pfas"], r["kd_uM"]) in quenched:
                 continue               # already in, with its own exponent
-            out.append(row(r, READER, float(r["logK_if_n_assumed_1"]), "1"))
+            out.append(row(r, reader_route(r["source"]),
+                           float(r["logK_if_n_assumed_1"]), "1"))
 
     if keep is not ALL:
         out = [r for r in out if r["species"] in (keep or SPECIES)]
