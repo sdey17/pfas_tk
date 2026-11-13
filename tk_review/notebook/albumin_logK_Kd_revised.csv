@@ -262,4 +262,3 @@ PFOS,bovine,,,4.386,"measured; Qin Table S6 equation at IC10,free = 3.89 uM, rea
 PFOSA,bovine,,,4.196,"measured; Qin Table S6 equation at IC10,free = 0.328 uM, read off the fit; dosed IC10,nom = 7.85 uM over 19.2 uM medium protein (PPARgamma assay)",Qin 2024,7.85,19.23476219851647,0.4081152612640801,
 PFUnDA,bovine,,,4.616,"measured; Qin Table S6 equation at IC10,free = 0.383 uM, read off the fit; dosed IC10,nom = 21.6 uM over 19.2 uM medium protein (PPARgamma assay)",Qin 2024,21.6,19.23476219851647,1.122966833541928,
 PFOS and 6:2 Cl-PFESA (F-53B),human,22.63,1,2.823,"converted; n = 1 assumed by the reader, the paper reports none",Sheng 2020,,,,
-PFOA,human,,13,2.673,converted; n counted by ITC,Wu 2009,,10,20,

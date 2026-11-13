@@ -80,6 +80,22 @@ ONE_PER_COMPOUND = {
 # figures/albumin_chainlength_data.csv, where an isomer-resolved point
 # is informative, and in db/protein_binding.csv.
 DROP_SCOPE = {
+    "Wu 2009":
+        "doi 10.1186/1472-6807-9-31, PFOA on HSA at pH 7.40 and 37 C. "
+        "Its Temkin equilibrium-dialysis constant is already refused "
+        "by the converter on its own terms (see the Temkin check in "
+        "build_binding_affinity_table.py and "
+        "scripts/audit_wu2009_temkin.py), leaving only the ITC. That "
+        "ITC row is a different KIND of measurement from the rest of "
+        "the sheet: a two-step sequential fit whose number is a sum "
+        "over two classes of site, n = 1 buried plus n = 12 on the "
+        "surface, so it carries no single dissociation constant and "
+        "its Kd cell is necessarily blank. Every other converted row "
+        "here is one Kd with one stoichiometry. The merge that "
+        "produced it (scripts/merge_wu2009_itc.py) and the per-class "
+        "summing it needed stay in place, so re-admitting is one line "
+        "here and nothing else; the rows remain in "
+        "db/protein_binding.csv and in the figures.",
     "Klevens 1954":
         "doi 10.1039/df9541800277, the earliest PFAS-albumin constant "
         "in the literature. Dropped on reading the primary. It is a "
