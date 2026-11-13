@@ -65,6 +65,36 @@ ONE_PER_COMPOUND = {
 }
 
 
+# NAMED HOLDOUTS dropped from this sheet, 2026-11-13, by decision.
+#
+# scripts/excluded_sources.py already carried Wu 2024 as a named
+# holdout, which kept it out of every FIGURE: figures/
+# albumin_chainlength_data.csv and figures/lfabp_by_compound_data.csv
+# have none of its rows, and the leak scan enforces that.  What the
+# rule deliberately ALLOWED was its presence in the reading and
+# working copies, "because these are the record".  This sheet is the
+# one a reviewer copies into Excel and pools by hand, so the record
+# argument does not protect it: the ten rows were the sheet's entire
+# negative-log-K population and set its lower bound single-handed.
+#
+# They stay in db/protein_binding.csv with the full audit, which is
+# where the record belongs.  The reason is imported rather than
+# retyped so that this sheet and the leak scan cannot drift apart.
+#
+# To re-admit a source, take it out of this set; nothing else changes.
+DROP_HOLDOUTS = {"Wu 2024"}
+
+
+def holdout_reason(src):
+    """The one recorded reason, read from scripts/excluded_sources.py."""
+    try:
+        sys.path.insert(0, HERE)
+        from excluded_sources import SOURCES
+        return " ".join(SOURCES[src].split())
+    except Exception:
+        return "named holdout; see scripts/excluded_sources.py"
+
+
 # Studies whose rows differ only by assay temperature.  The review is not
 # about temperature dependence, so one row per compound reaches the sheet
 # and the rest stay in db/protein_binding.csv.  The temperature named here
@@ -153,6 +183,9 @@ def main():
     seen = collections.defaultdict(list)
     for d in rows:
         src = str(val(d, "Source"))
+        if src in DROP_HOLDOUTS:
+            dropped[src] += 1
+            continue
         if src == "Moro 2022":
             key = (f"{float(val(d, 'Kd (uM)')):g}"
                    if val(d, "Kd (uM)") is not None else "")
@@ -190,7 +223,10 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if bytemp:
+        if s in DROP_HOLDOUTS:
+            why = ("NAMED HOLDOUT, dropped from this sheet: "
+                   + holdout_reason(s))
+        elif bytemp:
             why = (f"kept only the {bytemp[0][0]} rows -- {bytemp[0][2]}; "
                    "the other temperatures stay in db/protein_binding.csv")
         else:
@@ -236,6 +272,14 @@ def main():
          "always PFAS conc / protein conc: for Allendorf 2019 the column "
          "is the paper's own reported v, bound per protein, and for ITC "
          "studies the two concentrations are in different vessels."),
+        "",
+        ("Wu 2024 is NOT in this sheet. Its ten HSA fluorescence-"
+         "quenching rows are a named holdout in "
+         "scripts/excluded_sources.py and were already absent from "
+         "every figure; as of 2026-11-13 they are out of this sheet "
+         "too. They were its only negative log K values and set its "
+         "lower bound alone. The rows, and the full audit, remain in "
+         "db/protein_binding.csv."),
         "",
         ("Gao 2025 is reduced to one row per compound, the no-added-salt "
          "condition; its full four-level salt series is in "

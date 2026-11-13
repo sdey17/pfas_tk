@@ -1,6 +1,7 @@
 "log K = log10(1e9 / M) + log10(n) - log10(Kd in uM), M = 66,463 g/mol for albumin"
 "Read the Route column. Rows reach their log K by different routes, from a direct measurement to a conversion resting on an assumed stoichiometry. Two values in this column are not necessarily the same kind of number."
 "ligand:protein ratio is the molar loading the measurement was made at. Below ~0.01 the assay sees the specific site; above ~1 it increasingly sees non-specific partitioning. It is NOT always PFAS conc / protein conc: for Allendorf 2019 the column is the paper's own reported v, bound per protein, and for ITC studies the two concentrations are in different vessels."
+"Wu 2024 is NOT in this sheet. Its ten HSA fluorescence-quenching rows are a named holdout in scripts/excluded_sources.py and were already absent from every figure; as of 2026-11-13 they are out of this sheet too. They were its only negative log K values and set its lower bound alone. The rows, and the full audit, remain in db/protein_binding.csv."
 "Gao 2025 is reduced to one row per compound, the no-added-salt condition; its full four-level salt series is in db/albumin_logK_with_conc.xlsx."
 "Moro 2022 is reduced to the representative row per compound: tightest site class, 37 C where usable."
 Rebuilt by scripts/build_revised_working_table.py from db/albumin_logK_with_conc.xlsx.

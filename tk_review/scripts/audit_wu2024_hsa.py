@@ -48,7 +48,19 @@ THE ASSAY ITSELF.  Section 2.1: each PFAS was prepared as a 1 mM stock
 in ANHYDROUS ETHANOL.  Section 2.2: 5 mL of 1 mM HSA was mixed with 1,
 3 and 5 mL of that stock.  So the three tubes are 17, 38 and 50 %
 ethanol v/v, against the under 1 % that albumin binding work normally
-tolerates.  Two further consequences of that protocol:
+tolerates.
+
+  READ THE RANGE AS A FLOOR, NOT AS THE EXTENT.  Section 2.2 is the
+  three-tube screening step, run to pick a ratio for the 3-D spectra,
+  and it yields no binding constant; the MIX below is its geometry,
+  kept because the concentrations are the only ones the paper states
+  numerically.  The constants in Tables 4-6 come from Section 2.3,
+  whose series runs 5:0, 5:1, 5:5, 5:10, 5:15, 5:20, 5:30 -- so the
+  top point of every binding curve is 86 % ethanol v/v and HSA falls
+  5.8-fold, 833 to 143 uM.  Everything below therefore understates
+  the cosolvent and the protein drift.
+
+Two further consequences of that protocol:
 
   - the HSA concentration is NOT held constant.  It falls from 833 to
     500 uM across the series while the PFAS rises, so protein and

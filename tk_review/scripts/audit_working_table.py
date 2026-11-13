@@ -96,6 +96,23 @@ def load(path, sheet=None):
     return ws.title, hdr, rows
 
 
+def deliberate_omissions():
+    """Sources this sheet omits ON PURPOSE, from the builder itself.
+
+    Point 4 of this audit exists to separate "missing because nobody
+    added it" from "absent on purpose".  Until a holdout was dropped
+    from the sheet, every absent source was the first kind; now the
+    builder carries a set of the second, so read it from there rather
+    than keep a second list that can drift.
+    """
+    try:
+        sys.path.insert(0, HERE)
+        from build_revised_working_table import DROP_HOLDOUTS
+        return set(DROP_HOLDOUTS)
+    except Exception:
+        return set()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("working", help="path to the working .xlsx")
@@ -154,7 +171,16 @@ def main():
     print("\n  4. sources")
     uc = collections.Counter(str(col(r, "Source")) for r in U)
     oc = collections.Counter(str(col(r, "Source")) for r in O)
-    miss = [s for s in oc if s not in uc]
+    holdouts = deliberate_omissions()
+    absent = [s for s in oc if s not in uc]
+    onpurpose = [s for s in absent if s in holdouts]
+    miss = [s for s in absent if s not in holdouts]
+    if onpurpose:
+        print(f"     absent ON PURPOSE (named holdouts dropped by the "
+              f"builder): {len(onpurpose)}")
+        for s in sorted(onpurpose, key=lambda s: -oc[s]):
+            print(f"       {s:20}{oc[s]:>4} rows  -- not a gap; see "
+                  f"DROP_HOLDOUTS in build_revised_working_table.py")
     print(f"     in the database, absent from the working copy: {len(miss)}")
     for s in sorted(miss, key=lambda s: -oc[s]):
         sp = sorted({str(col(r, "Species")) for r in O

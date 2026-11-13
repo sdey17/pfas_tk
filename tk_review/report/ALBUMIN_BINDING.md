@@ -1308,7 +1308,7 @@ internally redundant far more often than they are read that way.
 
 ---
 
-### 13c. Three conversion decisions, on record
+### 13c. Four conversion decisions, on record
 
 Each of these changes numbers in `albumin_logK_Kd_revised.xlsx`. Recorded here
 so the sheet can be audited against the papers without re-deriving the
@@ -1567,6 +1567,75 @@ bridge is not biased, it is being applied where K_d is barely determinable.
 
 Caveat: two numbers, one compound, one paper, and n = 3 assumed on one side.
 A reassuring check, not a validation.
+
+#### (iv) Wu 2024 is out of the working sheet, not only out of the figures
+
+**DECIDED 2026-11-13: the ten HSA fluorescence-quenching rows are dropped
+from `albumin_logK_Kd_revised.xlsx`.** `DROP_HOLDOUTS = {"Wu 2024"}` in
+`build_revised_working_table.py`. They remain in `db/protein_binding.csv`
+with the full audit in `scripts/audit_wu2024_hsa.py`, which is where the
+record belongs.
+
+What was already true: `scripts/excluded_sources.py` has carried Wu 2024 as a
+**named holdout** for some time, which kept it out of every figure —
+`figures/albumin_chainlength_data.csv` and `figures/lfabp_by_compound_data.csv`
+contain none of its rows, and the leak scan enforces that. What the rule
+deliberately *allowed* was its presence in the reading and working copies,
+"because these are the record."
+
+Why that allowance did not hold for this sheet:
+
+1. **It is the sheet a reviewer pools by hand.** The exemption was written for
+   a record, and this file is a worksheet. Nothing in it stops a reader from
+   taking a mean down the log K column.
+2. **It was the sheet's entire negative-log-K population.** All four negative
+   values were Wu's, out of 282 rows. Negative log K has a physical reading —
+   K < 1 L_water/kg protein means albumin takes the compound up *less well
+   than water does* — and no other source in the compilation produces one.
+   Mechanically, log K < 0 ⟺ K_d > 10^4.1774 × n ≈ 15,050 n µM, so these are
+   the only rows with a millimolar-to-centimolar K_d. Only 2 rows in 282 had
+   K_d above 15 mM and both were Wu's; only 11 had n < 1 and 10 were Wu's.
+3. **It was entering a pooled statistic, against the holdout rule.**
+   `what_drives_albumin_spread.py` reads `notebook/albumin_logK_Kd_revised.csv`,
+   the sheet's own export, so the variance decomposition had been computed
+   *with* the holdout in it. That was a rule violation, not a judgement call.
+
+What changed numerically:
+
+| | with Wu | without Wu |
+|---|---|---|
+| rows in the sheet | 282 | **272** |
+| log K range | −0.84 to 7.86 (8.70 log) | **0.655 to 7.861 (7.21 log)** |
+| the floor | Wu, PFBA, human | **Gao 2025, PFBA, bovine** |
+| negative log K rows | 4 | **0** |
+| pooled SD inside a compound | 1.06 log | **0.87 log** |
+| removed by species | 3 % | **4 %** |
+| removed by the laboratory | 45 % | **45 %** |
+| removed by laboratory + method | 51 % | **62 %** |
+
+The qualitative conclusion is unchanged and slightly strengthened: species
+removes almost nothing, the laboratory removes the most, and holding both
+laboratory and method now accounts for 62 % rather than 51 %. Wu was one
+laboratory running one method, so it had been inflating the *residual* rather
+than the between-laboratory term — which is why dropping it raises the
+explained share instead of lowering it.
+
+§6's "without Wu 2024" spread table stands as written, and is now the
+sheet's actual state rather than a sensitivity check.
+
+**A correction to the recorded reason.** The holdout note in
+`excluded_sources.py` said the assay was "17–50 % ethanol v/v". Those figures
+come from Section 2.2 — the three-tube screening step the paper runs to pick a
+ratio for its 3-D spectra, from which **no binding constant is derived**. The
+constants in Tables 4–6 come from Section 2.3, whose series runs 5:0 to 5:30,
+so the top point of every binding curve is **86 % ethanol v/v** while HSA falls
+5.8-fold, 833 → 143 µM. Both notes are now corrected to say so, and
+`audit_wu2024_hsa.py` flags its own 17–50 % figures as the floor of the
+cosolvent problem rather than its extent. The stale numbers understated the
+defect, so the decision does not turn on the correction — but a justification
+that survives the data should be right.
+
+To re-admit the source, remove it from `DROP_HOLDOUTS`; nothing else changes.
 
 ---
 
