@@ -567,7 +567,18 @@ def is_double_log(method):
     return any(w in m for w in DOUBLELOG_WORDS)
 
 
-QUENCH_WORDS = ("quench", "scatchard", "stern-volmer", "stern volmer",
+# "scatchard" was in this tuple and should not have been.  A Scatchard
+# plot is a LINEARIZATION, not a measurement: it can be applied to
+# fluorescence data or to data from a separative method, and the word
+# says nothing about which.  Han et al. 2003 measure by microdesalting
+# column separation and then fit "a variant of Scatchard analysis"
+# (their eq 2, [L]F/r = [L]F/n + Kd/n); there is no fluorescence
+# anywhere in that paper, yet its two rows were being labelled "n is
+# the paper's fitted quenching-plot exponent".  The genuinely optical
+# terms stay.  Every other Scatchard row in the database also carries
+# one of them, so this changes Han's two rows and nothing else --
+# checked, not assumed.
+QUENCH_WORDS = ("quench", "stern-volmer", "stern volmer",
                 "double-log", "double logarithmic")
 ITC_WORDS = ("isothermal titration", "(itc)")
 
