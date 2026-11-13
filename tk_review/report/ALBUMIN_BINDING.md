@@ -1343,6 +1343,32 @@ must carry n decades of L/mol to balance. At n = 1 that is L·mol⁻¹. At
 n = 2.09 it is (L/mol)^2.09, and 1/K_b is (mol/L)^2.09 — not a concentration.
 Calling it a K_d in µM is not a unit conversion but a category error.
 
+**The paper contradicts itself, and we can see which half is load-bearing.**
+Peng's Table 2 heads the column `Kb (L·mol⁻¹)`. But §3.2 states the equation
+that produced it:
+
+> "The double logarithmic formula can be used to calculate the binding
+> constants and binding site numbers of HSA–PFAS complexes:
+> **log[(F₀ − F)/F] = logK_b + nlog[Q]** … The slope of the straight line is
+> the number of binding sites, n, and **the binding constant K_b is obtained
+> from the exponent of the straight line's intercept** using the double
+> logarithmic graph."
+
+The header is a label; the equation is the operative definition, because it is
+what generated the numbers. The two are inconsistent the moment n ≠ 1, and
+every row in Table 2 has n ≠ 1. The same section also concedes the other half
+of the problem:
+
+> "In theory, the number of binding sites should be an integer because each
+> represents a unique binding site on the protein. In practice, however, the
+> value of 'n' is typically derived by fitting binding models to the
+> experimental data, which **yields non-integer values**."
+
+So the paper grants that n is not a site count while still labelling K_b as
+L·mol⁻¹. That combination is precisely what van de Weert means by "improperly
+derived for their purported use": the L·mol⁻¹ label is a field-wide convention
+carried over from the 1:1 case, not a claim this paper's own equation supports.
+
 **If you distrust the dimensional argument, here is an operational one.**
 A constant genuinely in L·mol⁻¹ converts to µM⁻¹ by 10⁻⁶, and nothing else.
 So refit the *same* data with [Q] expressed in µmol/L instead of mol/L and see
