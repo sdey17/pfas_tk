@@ -205,6 +205,10 @@ def holdout_reason(src):
 # and the rest stay in db/protein_binding.csv.  The temperature named here
 # is the one kept.
 BY_TEMPERATURE = {
+    "10.3390/ijerph17041319": ("310 K", "Chen 2020",
+                               "PFOA and PFDA each measured at 296, "
+                               "303 and 310 K; 310 K is body "
+                               "temperature"),
     "10.1021/jf100412q": ("310 K", "Qin 2010",
                           "PFOA and PFDA each measured at 300, 310 and "
                           "320 K; 310 K is body temperature"),
