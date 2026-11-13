@@ -476,6 +476,31 @@ def protein_mw(protein, species):
 SITE_PAREN = re.compile(r"^\s*(\d*\.?\d+)\s*(?:\(.*\))?\s*$")
 
 
+SITE_LIST = re.compile(
+    r"^\s*(\d+(?:\.\d+)?(?:\s*,\s*\d+(?:\.\d+)?)+)\s*"
+    r"(?:\(.*\))?\s*$")
+
+
+def site_list(n_sites):
+    """Per-class site counts, when a row carries several classes.
+
+    The multi-class sum below is K0 = (1e9/M) x SUM_i n_i/Kd_i.  Until
+    now it assumed n_i = 1 for every class, which is what Woodcroft's
+    "3 (by ITC)" against three constants means -- three classes, one
+    site apiece.  Wu 2009 is the case that breaks that assumption: its
+    ITC fits two classes with N1 = 1 and N2 = 12, so the multiplicities
+    differ and the sum needs them one by one.
+
+    A cell of the form "1, 12 (by ITC, two classes)" returns [1.0,
+    12.0].  Anything else returns None and the old single-number path
+    runs, so existing rows are untouched.
+    """
+    m = SITE_LIST.match(n_sites or "")
+    if not m:
+        return None
+    return [float(x) for x in m.group(1).split(",")]
+
+
 def site_count(n_sites):
     """(n, how it was stated) from the n_binding_sites cell, or (None, None).
 
@@ -485,6 +510,9 @@ def site_count(n_sites):
     assumption, which is weaker than a fit and is labelled so.
     """
     v = (n_sites or "").strip()
+    lst = site_list(v)
+    if lst:
+        return sum(lst), "fitted"
     m = SITE_PAREN.match(v)
     if m:
         return float(m.group(1)), "fitted"
@@ -664,6 +692,30 @@ def to_logK(rec, n_sites, row=None):
                     "or modified Stern-Volmer), not a counted site; the "
                     "same quantity is refused where a paper names it a "
                     "Hill coefficient, so it is refused here too")
+    # A constant fitted to an adsorption isotherm that is not mass
+    # action is not a dissociation constant and has no conversion.
+    # Wu 2009's equilibrium dialysis is fitted with the TEMKIN model,
+    # gamma/N = -(RT/dQ) ln(K_a c_L), which is logarithmic rather than
+    # hyperbolic: 1/K_a is the concentration at which coverage
+    # extrapolates to ZERO, not to one half; below it the fitted
+    # coverage is negative, so the model has no trace limit and a
+    # partition coefficient is a trace-limit quantity; and having no
+    # asymptote it passes its own saturation number, claiming 228% of
+    # N at 1 mM where N = 13 is from the same paper. See
+    # scripts/audit_wu2009_temkin.py. Langmuir is NOT caught here: it
+    # is mass action and converts normally.
+    blob = " ".join(str(rec.get(k) or "") for k in
+                    ("_method", "measure_units")) + " " + \
+        str((row or {}).get("method", "")) + " " + \
+        str((row or {}).get("ka_units", ""))
+    if "temkin" in blob.lower():
+        return "", ("fitted with the Temkin adsorption isotherm, which is "
+                    "logarithmic in concentration: 1/K_a is a zero-coverage "
+                    "threshold rather than a half-saturation, the model has "
+                    "no trace limit to take a partition coefficient in, and "
+                    "it exceeds its own saturation number inside the range "
+                    "measured. Not a dissociation constant; see "
+                    "scripts/audit_wu2009_temkin.py")
     mw, label = protein_mw(rec["protein"], rec["species"])
     if mw is None:
         return "", label
@@ -675,12 +727,18 @@ def to_logK(rec, n_sites, row=None):
     # n_i = 1 for each of them, which is what "n = 3 (by ITC)" means --
     # three classes, one site apiece -- so the count must match the list.
     if len(kds) > 1:
-        if abs(n - len(kds)) > 1e-9:
+        per = site_list(n_sites)
+        if per and len(per) == len(kds):
+            total = sum(ni / ki for ni, ki in zip(per, kds))
+            detail = ("summed over %d classes of site, %s sites apiece"
+                      % (len(kds), "/".join("%g" % x for x in per)))
+        elif abs(n - len(kds)) > 1e-9:
             return "", (f"{len(kds)} dissociation constants but n = {n:g}; "
                         "the site count and the constants do not correspond, "
                         "so the sum cannot be formed")
-        total = sum(1.0 / k for k in kds)
-        detail = f"summed over {len(kds)} classes of site"
+        else:
+            total = sum(1.0 / k for k in kds)
+            detail = f"summed over {len(kds)} classes of site"
     else:
         total = n / kds[0]
         detail = "one class of site" if n == 1 else f"n = {n:g}"

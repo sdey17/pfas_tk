@@ -108,6 +108,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "db", "albumin_kd_to_k.csv")
 
 
+
+# A refusal that says the reported constant is NOT A DISSOCIATION CONSTANT
+# is terminal: assuming n = 1 closes a missing STOICHIOMETRY, it cannot
+# repair a quantity of the wrong kind.  Wu 2009's Temkin K_a is the case
+# -- 1/K_a there is a zero-coverage threshold, not a half-saturation, so
+# the n = 1 fallback would have produced a number from it anyway (and did,
+# log K 2.672, until this guard).  See scripts/audit_wu2009_temkin.py.
+NOT_A_KD = "not a dissociation constant"
+
 def _load(name, fn):
     spec = importlib.util.spec_from_file_location(
         name, os.path.join(HERE, fn))
@@ -265,7 +274,8 @@ def collect():
             row["convertible"] = "yes"
             row["logK"] = r["logK"]
             row["why_not_as_reported"] = ""
-        elif r["kd_uM"]:
+        elif r["kd_uM"] and NOT_A_KD not in (r.get("logK_basis") or
+                                             "").lower():
             # A Kd and no site count the paper stands behind. n = 1 is the
             # one assumption that closes it, kept in its own column.
             row["convertible"] = "assume n = 1"
