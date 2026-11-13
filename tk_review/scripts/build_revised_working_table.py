@@ -65,6 +65,50 @@ ONE_PER_COMPOUND = {
 }
 
 
+# Isomer-resolved studies reduced to the isomer the rest of the
+# literature measures, 2026-11-13, by decision.
+#
+# Beesoon & Martin 2015 is the only source here that resolves PFOS and
+# PFOA into linear and branched isomers.  Every other paper reports
+# "PFOA" or "PFOS" on material whose isomer composition it does not
+# state -- Beesoon say so themselves: the variability in published
+# PFOA Kd "might be due to the isomeric purity (pure linear versus
+# technical PFOA) of the test chemical being used, which was not
+# addressed in any previous work."
+#
+# So a branched-isomer row has no counterpart anywhere in the
+# compilation, and pooling one with a "PFOA" row would compare a
+# minority fraction against a bulk material.  The linear rows stay;
+# the branched rows go to db/protein_binding.csv.
+#
+# WHY LINEAR IS THE RIGHT REPRESENTATIVE, not merely the convenient
+# one.  At low occupancy each isomer contributes n_i/Kd_i to the
+# bound pool, so a mixture's apparent n/Kd is SUM f_i (n_i/Kd_i).
+# Taking Beesoon's own isomer constants and the ECF composition from
+# their Introduction (PFOS 70% linear, PFOA 80% linear):
+#
+#   PFOS   linear supplies 99.99% of the bound pool;
+#          log K technical 5.420 vs pure linear 5.575   -0.155 log
+#   PFOA   linear supplies 98.53% of the bound pool;
+#          log K technical 2.388 vs pure linear 2.478   -0.090 log
+#
+# The branched isomers bind 3 to 4 log more weakly, so they are nearly
+# absent from the bound pool even at 20-30% by mass.  Whether another
+# laboratory used pure linear or technical material therefore cannot
+# be read off its log K: both differences are far below the 0.87 log
+# pooled SD inside one compound.  The conclusion is independent of the
+# mM/M question in audit_beesoon2015_scatchard.py, since every Kd
+# scales by the same factor and only ratios enter here.
+#
+# Full working: scripts/audit_beesoon2015_scatchard.py
+LINEAR_ONLY = {
+    "Beesoon 2015": "isomer-resolved study; the linear isomer is the "
+                    "only one with a counterpart in the rest of the "
+                    "compilation, and supplies 98.5-99.99% of the "
+                    "bound pool in technical material anyway",
+}
+
+
 # NAMED HOLDOUTS dropped from this sheet, 2026-11-13, by decision.
 #
 # scripts/excluded_sources.py already carried Wu 2024 as a named
@@ -186,6 +230,12 @@ def main():
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
             continue
+        if src in LINEAR_ONLY:
+            if str(val(d, "PFAS")).strip().lower().startswith("linear"):
+                kept.append(d)
+            else:
+                dropped[src] += 1
+            continue
         if src == "Moro 2022":
             key = (f"{float(val(d, 'Kd (uM)')):g}"
                    if val(d, "Kd (uM)") is not None else "")
@@ -223,7 +273,9 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s in DROP_HOLDOUTS:
+        if s in LINEAR_ONLY:
+            why = "kept the linear isomer only -- " + LINEAR_ONLY[s]
+        elif s in DROP_HOLDOUTS:
             why = ("NAMED HOLDOUT, dropped from this sheet: "
                    + holdout_reason(s))
         elif bytemp:
@@ -279,6 +331,15 @@ def main():
          "every figure; as of 2026-11-13 they are out of this sheet "
          "too. They were its only negative log K values and set its "
          "lower bound alone. The rows, and the full audit, remain in "
+         "db/protein_binding.csv."),
+        "",
+        ("Beesoon 2015 is reduced to its LINEAR isomers. It is the "
+         "only isomer-resolved source here; every other paper reports "
+         "PFOA or PFOS on material of unstated isomer composition, so "
+         "a branched row has no counterpart to be compared with. "
+         "Linear supplies 98.5-99.99% of the bound pool even in "
+         "technical ECF material, so it is also the right stand-in "
+         "for a mixture. The branched rows stay in "
          "db/protein_binding.csv."),
         "",
         ("Gao 2025 is reduced to one row per compound, the no-added-salt "
