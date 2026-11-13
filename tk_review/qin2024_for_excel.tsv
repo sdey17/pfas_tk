@@ -1,0 +1,12 @@
+PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
+PFUnDA	bovine			4.616	measured; Qin Table S6 equation at IC10,free = 0.383 uM, read off the fit; dosed IC10,nom = 21.6 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	21.6	19.2348	1.123	
+PFOS	bovine			4.386	measured; Qin Table S6 equation at IC10,free = 3.89 uM, read off the fit; dosed IC10,nom = 47.8 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	47.8	19.2348	2.4851	
+PFNA	bovine			4.256	measured; Qin Table S6 equation at IC10,free = 7.72 uM, read off the fit; dosed IC10,nom = 90.7 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	90.7	19.2348	4.7154	
+PFOSA	bovine			4.196	measured; Qin Table S6 equation at IC10,free = 0.328 uM, read off the fit; dosed IC10,nom = 7.85 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	7.85	19.2348	0.4081	
+PFOA	bovine			3.846	measured; Qin Table S6 equation at IC10,free = 18.4 uM, read off the fit; dosed IC10,nom = 130 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	130	19.2348	6.7586	
+6:2 FTSA	bovine			3.576	measured; Qin Table S6 equation at IC10,free = 42.5 uM, read off the fit; dosed IC10,nom = 307 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	307	19.2348	15.9607	
+PFHxS	bovine			3.386	measured; Qin Table S6 equation at IC10,free = 42.2 uM, read off the fit; dosed IC10,nom = 146 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	146	19.2348	7.5904	
+PFHpA	bovine			3.266	measured; Qin Table S6 equation at IC10,free = 67.6 uM, read off the fit; dosed IC10,nom = 375 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	375	19.2348	19.496	
+PFHxA	bovine			2.566	measured; Qin Table S6 equation at IC10,free = 472 uM, read off the fit; dosed IC10,nom = 995 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	995	19.2348	51.7293	
+HFPO-DA	bovine			2.146	measured; Qin Table S6 equation at IC10,free = 220 uM, read off the fit; dosed IC10,nom = 654 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	654	19.2348	34.0009	
+PFBA	bovine			1.806	measured; Qin Table S6 equation at IC10,free = 1.78e+03 uM, read off the fit; dosed IC10,nom = 3190 uM over 19.2 uM medium protein (PPARgamma assay)	Qin 2024	3190	19.2348	165.8456	
