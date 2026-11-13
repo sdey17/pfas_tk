@@ -344,9 +344,16 @@ def main():
         ("ligand:protein ratio is the molar loading the measurement was "
          "made at. Below ~0.01 the assay sees the specific site; above ~1 "
          "it increasingly sees non-specific partitioning. It is NOT "
-         "always PFAS conc / protein conc: for Allendorf 2019 the column "
-         "is the paper's own reported v, bound per protein, and for ITC "
-         "studies the two concentrations are in different vessels."),
+         "always PFAS conc / protein conc. For Allendorf 2019 and "
+         "Klevens 1954 the column is the paper's own reported BOUND "
+         "ratio, moles of PFAS bound per mole of protein, not a dosing "
+         "quotient -- Klevens plots exactly that quantity, 'Moles C8 "
+         "Acid Bound per Mole BSA (MR)', and its 29 is where the "
+         "binding curve breaks, not a concentration anyone dosed. That "
+         "is why those rows leave PFAS conc blank: multiplying the "
+         "ratio by the protein concentration would manufacture a dose "
+         "out of a bound stoichiometry. For ITC studies the two "
+         "concentrations are in different vessels."),
         "",
         ("Wu 2024 is NOT in this sheet. Its ten HSA fluorescence-"
          "quenching rows are a named holdout in "
