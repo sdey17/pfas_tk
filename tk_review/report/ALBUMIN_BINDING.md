@@ -1472,6 +1472,29 @@ the floor, PFBA −0.84 → 0.64. The compilation's whole log K span narrows fro
 −0.84–7.86 to **0.64–5.58** — 2.3 log removed by fixing a units error, not by
 dropping data.
 
+#### (i-bis) Hebert 2010 needs **no** such correction — the form matters
+
+Hebert 2010 also fits a non-integer "n" (n_Hill 1.2–2.9) and also reports a
+constant in M⁻¹, so it looks like the same case. It is not, and the reason is
+worth recording because it is the test to apply to any such paper. Its eq 6 is
+
+```
+Y = (K_Hill[PFAA])^n_Hill / (1 + (K_Hill[PFAA])^n_Hill)
+```
+
+The product **K·[L] is formed first and the exponent applied to the whole
+group**, so K·[L] must be dimensionless and K_Hill is genuinely L·mol⁻¹.
+Compare Peng, where the exponent sits on [Q] alone and the constant absorbs it.
+Same-looking tables, opposite dimensional status, decided entirely by where the
+bracket closes. `is_double_log()` matches on the method string and correctly
+leaves Hebert alone.
+
+**Hebert also reports both bases**, and the sheet takes the right one. Main-text
+Table 1 fits against TOTAL PFAA; SI Table S2 is "Using the Calculated Free PFAA
+Concentrations". The database holds the FREE basis, and the two differ in the
+direction that confirms the reading — free-basis K is higher on all nine
+compounds, by 4% on PFHpA and 31% on PFDA, i.e. most where most is bound.
+
 #### (ii) Peng 2024 is held at 310 K
 
 Peng measured six PFAS at 298, 304 and 310 K. The review is not about

@@ -49,16 +49,35 @@ PFNA measured at BOTH 4 and 10 uM HSA, where the constant falls by
 should not depend on protein concentration; that it does is a datum
 about the method, and Hebert's Table S3 standardises for it.
 
-WHAT IS LEFT BLANK, AND WHY.  The ligand concentration range is not
-recorded.  The SI gives it only as per-figure data tables behind each
-titration, and parsing them did not produce trustworthy values -- two
-compounds came out at 90 mM, which is far above their solubility, so
-the extraction was picking up saturation values as concentrations.
-Rather than store a figure mis-parse, the field is empty and the
-ligand:protein ratio with it.  Buffer and temperature are in the main
-text, which is paywalled and was not retrieved; Gao 2025's Table S1
-says 50 mM phosphate at pH 7, but that is secondary and is recorded
-as such rather than as fact.
+CONDITIONS, now from the main text (supplied 2026-11-13).  An earlier
+version of this script left the ligand range, buffer and temperature
+blank because only the SI was available, and noted that parsing the
+per-figure data tables gave impossible values (90 mM, far above
+solubility).  The Experimental section states the loading directly as
+mole ratios, so no parsing is needed:
+
+    "the other 19 contained a range of PFAA:HSA mole ratios (3:1 or
+     12.5:1 through 150:1 for PFHxA, 3:1 through 150:1 for PFHpA, 0.1:1
+     through 60:1 for PFOA and PFNA, 1:1 through 25:1 for PFDA and
+     PFUnA, 3:1 through 150:1 for PFBS, 3:1 through 150:1 for PFHxS,
+     and 2:1 through 100:1 or 125:1 for PFOS)."
+
+Concentrations are those ratios times each row's own [HSA], 4 or 10 uM.
+The buffer is "50 mM phosphate buffer, pH 7.00", which CONFIRMS what Gao
+2025's Table S1 said secondhand, so that hedge is removed.
+
+TEMPERATURE IS NOT STATED.  Not in the Experimental section, not in the
+SI; the only temperature in the paper is 4 C for stock storage.  The
+cell now says "not stated anywhere in the paper or its SI" rather than
+"not retrieved", because those are different facts and only the first
+is true.
+
+WHICH BASIS.  The paper reports the same fits twice.  Main-text Table 1
+is against TOTAL PFAA; SI Table S2 is "Using the Calculated Free PFAA
+Concentrations".  This database holds the FREE basis, which is the right
+one for a binding constant, and the two differ in the direction that
+confirms the reading -- free-basis K is higher on all nine, by 4 % on
+PFHpA and 31 % on PFDA, i.e. most where most is bound.  Do not mix them.
 
 Run:  python3 tk_review/scripts/add_hebert2010_si.py [--dry-run]
 Idempotent: replaces the lumped row, then rewrites its own 9 rows.
@@ -122,6 +141,16 @@ def main():
         print(f"    {r['chemical'][:68]}...  Ka={r['ka']}")
 
     new = []
+    # Experimental section, main text: "the other 19 contained a range of
+    # PFAA:HSA mole ratios (3:1 or 12.5:1 through 150:1 for PFHxA, 3:1
+    # through 150:1 for PFHpA, 0.1:1 through 60:1 for PFOA and PFNA, 1:1
+    # through 25:1 for PFDA and PFUnA, 3:1 through 150:1 for PFBS, 3:1
+    # through 150:1 for PFHxS, and 2:1 through 100:1 or 125:1 for PFOS)."
+    # Concentrations are the ratio times each row's own [HSA].
+    RATIOS = {"PFHpA": (3, 150), "PFOA": (0.1, 60), "PFNA": (0.1, 60),
+              "PFDA": (1, 25), "PFUnDA": (1, 25), "PFHxS": (3, 150),
+              "PFOS": (2, 125)}
+
     for cm, (ncf, head, levels) in DATA.items():
         for hsa, (k2, n2, k1) in sorted(levels.items()):
             Kfree = st.mean(k2) * 1e3            # M^-1
@@ -141,11 +170,17 @@ def main():
                 binding_site_identified="",
                 unbound_fraction="",
                 protein_conc=f"{hsa:g}", protein_conc_units="uM",
-                ligand_conc_range="", ligand_conc_units="",
-                temperature_c="not retrieved (main text, paywalled)",
-                buffer=("not retrieved (main text, paywalled); Gao 2025 "
-                        "SI Table S1 cites 50 mM phosphate pH 7 for this "
-                        "study, which is SECONDARY"),
+                ligand_conc_range=(
+                    f"{RATIOS[cm][0] * hsa:g} to {RATIOS[cm][1] * hsa:g}"
+                    if cm in RATIOS else ""),
+                ligand_conc_units=("uM (computed from the PFAA:HSA mole "
+                                   "ratio range the Experimental section "
+                                   "states, times this row's [HSA])"
+                                   if cm in RATIOS else ""),
+                temperature_c="not stated anywhere in the paper or its SI",
+                buffer="50 mM sodium phosphate, pH 7.00",
+                ligand_over_protein_max=(f"{RATIOS[cm][1]:g}"
+                                         if cm in RATIOS else ""),
                 is_computational="no",
                 tk_relevance_noted=(
                     "per-compound HSA constants by Trp quenching. PFOA "
@@ -163,22 +198,85 @@ def main():
                     f"compilations quote | read from the Supporting "
                     f"Information, primary"),
                 assay_volume_note=(
-                    "ligand range not recorded: the SI gives it only as "
-                    "per-figure data tables and the extraction was not "
-                    "trustworthy (two compounds parsed to 90 mM, above "
-                    "their solubility), so it is left blank rather than "
-                    "stored as a figure mis-parse"),
-                ligand_over_protein_max=""))
+                    "20 samples per titration, one with no PFAA; the "
+                    "ligand range is the PFAA:HSA mole ratio the "
+                    "Experimental section states, times this row's [HSA], "
+                    "NOT a parse of the SI's per-figure data tables (that "
+                    "route gave 90 mM on two compounds, above their "
+                    "solubility, and is not used). Main-text Table 1 "
+                    "reports the same fits against TOTAL PFAA; this row "
+                    "is the SI Table S2 FREE-PFAA basis, which is higher "
+                    "on all nine compounds, by 4% on PFHpA to 31% on "
+                    "PFDA. Do not mix the two")))
+
+    # --- Figure 5, main text: the two short chains ---------------------
+    # Reported with full fit parameters, but the paper REJECTS its own
+    # model for them: "While the proposed model is a valid description
+    # for the binding of medium- to long-chain PFAAs to HSA, it is not
+    # consistent with the experimental data for PFBS and PFHxA."  They
+    # are kept because the compilation is exhaustive and a measured
+    # non-result is a result, and because they are the only short-chain
+    # points this study has.  Three things make them unlike the nine:
+    # the authors' rejection, R2 of 0.77 and 0.82 against >0.90 for the
+    # rest, and a TOTAL-PFAA basis -- Figure 5's axis is total, and no
+    # free-basis refit is given for them in SI Table S2.
+    SHORT = [("PFBS", 4, "sulfonate", 13.0, 1.22, 0.7651, (3, 150)),
+             ("PFHxA", 5, "carboxylate", 6.45, 1.22, 0.8170, (3, 150))]
+    for cm, ncf, head, k3, nh, r2, (lo, hi) in SHORT:
+        K = k3 * 1e3
+        new.append(dict(
+            study=STUDY, year=YEAR, pmid=PMID, doi=DOI,
+            chemical=cm, n_perfluorinated_carbons=str(ncf),
+            head_group=head, protein=PROTEIN, protein_species="human",
+            method=METHOD,
+            ka=f"{K:.4g}",
+            ka_units=("M^-1 (K_Hill, TOTAL-PFAA basis; no free-basis "
+                      "refit is reported for this compound)"),
+            kd=f"{1e6 / K:.4g}", kd_units="uM",
+            n_binding_sites=(f"n_Hill {nh:.2f}; a Hill coefficient, NOT "
+                             f"a site count"),
+            binding_site_identified="", unbound_fraction="",
+            protein_conc="4", protein_conc_units="uM",
+            ligand_conc_range=f"{lo * 4:g} to {hi * 4:g}",
+            ligand_conc_units=("uM (computed from the PFAA:HSA mole "
+                               "ratio range the Experimental section "
+                               "states, times 4 uM HSA)"),
+            temperature_c="not stated anywhere in the paper or its SI",
+            buffer="50 mM sodium phosphate, pH 7.00",
+            is_computational="no",
+            tk_relevance_noted=(
+                "the only short-chain points in this study, and the "
+                "paper's own counterexample: its model does not "
+                "describe them"),
+            source_table=(f"Figure 5 caption, main text | K_Hill "
+                          f"{k3:g} x1e3 M^-1, n_Hill {nh:.2f}, R2 {r2:g} "
+                          f"| TOTAL-PFAA basis | read from the full "
+                          f"text, primary"),
+            assay_volume_note=(
+                "THE PAPER REJECTS ITS OWN MODEL HERE: 'While the "
+                "proposed model is a valid description for the binding "
+                "of medium- to long-chain PFAAs to HSA, it is not "
+                "consistent with the experimental data for PFBS and "
+                "PFHxA.' R2 is 0.77-0.82 against >0.90 for the nine "
+                "medium- and long-chain rows, and these two reduce "
+                "HSA emission by only 10-20% against 40-60%. Treat as "
+                "a measured non-result, not a binding constant"),
+            ligand_over_protein_max=f"{hi:g}"))
 
     print(f"\n  adding {len(new)} rows:")
     print(f"    {'PFAS':9}{'[HSA] uM':>10}{'K_free M^-1':>14}{'Kd uM':>9}"
           f"{'n_Hill':>9}{'K_tot':>12}")
     for r in new:
-        k1m = r["source_table"].split("mean ")[-1].split(" --")[0]
+        # The Figure 5 rows carry no total-basis companion, so there is
+        # no "mean ..." to pull out of source_table; print a dash.
+        try:
+            k1m = r["source_table"].split("mean ")[-1].split(" --")[0]
+            tot = f"{float(k1m) * 1e3:>12,.0f}"
+        except (IndexError, ValueError):
+            tot = f"{'(is total)':>12}"
         print(f"    {r['chemical']:9}{r['protein_conc']:>10}"
               f"{float(r['ka']):>14,.0f}{float(r['kd']):>9.1f}"
-              f"{r['n_binding_sites'].split()[1]:>9}"
-              f"{float(k1m)*1e3:>12,.0f}")
+              f"{r['n_binding_sites'].split()[1].rstrip(';'):>9}{tot}")
 
     if args.dry_run:
         print("\n  (dry run, nothing written)")

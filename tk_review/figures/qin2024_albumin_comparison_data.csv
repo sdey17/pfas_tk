@@ -141,6 +141,7 @@ row_order,pfas,category,log_k,source,cw_uM,route
 2,PFHxA,converted,1.433,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,1.52,Gao 2025,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,1.887,Gao 2019,,"converted; n = 1 assumed by the reader, the paper reports none"
+2,PFHxA,converted,1.987,Hebert 2010,,"converted; n = 1 assumed by the reader, the paper reports none"
 2,PFHxA,converted,2.241,Fan 2025,,converted; n counted by ITC
 2,PFHxA,converted,3.032,Chen 2025,,"converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
 2,PFHxA,converted,3.207,Fan 2025,,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
