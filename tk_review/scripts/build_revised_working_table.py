@@ -205,6 +205,9 @@ def holdout_reason(src):
 # and the rest stay in db/protein_binding.csv.  The temperature named here
 # is the one kept.
 BY_TEMPERATURE = {
+    "10.1021/jf100412q": ("310 K", "Qin 2010",
+                          "PFOA and PFDA each measured at 300, 310 and "
+                          "320 K; 310 K is body temperature"),
     "10.3390/toxics12010043": ("37 (310 K)", "Peng 2024",
                                "six PFAS measured at 298, 304 and 310 K; "
                                "310 K is body temperature"),
@@ -231,12 +234,36 @@ def temperature_picks():
             spec = BY_TEMPERATURE.get(r["doi"])
             if not spec or r["temperature_c"] != spec[0]:
                 continue
-            try:
-                n = "%g" % float(r["n_binding_sites"])
-            except (TypeError, ValueError):
-                continue
-            out.setdefault(spec[1], set()).add((r["chemical"], n))
+            out.setdefault(spec[1], set()).add(
+                (r["chemical"],) + row_key(r))
     return out
+
+
+def row_key(r):
+    """A key that separates one temperature's row from another's.
+
+    Prefer the STOICHIOMETRY: it is transcribed verbatim from the paper
+    and reaches the sheet unaltered.  Where a paper reports none --
+    Qin 2010 has a Stern-Volmer and a modified Stern-Volmer plot and no
+    double-logarithmic one, so there is no fitted n anywhere in it --
+    every row would carry the reader's assumed n = 1 and n could not
+    tell the temperatures apart.  Fall back to Kd there.
+
+    The docstring above warns against keying on Kd, and that warning
+    was earned: the nth-root correction moved every Peng Kd and emptied
+    this list.  It applies to a Kd that a DERIVATION can move.  Qin's
+    is 1/Ka on a constant transcribed from Table 2, and nothing in the
+    pipeline transforms it, so the objection does not reach it.  The
+    fallback is used only when n is absent, so Peng keeps the n key.
+    """
+    try:
+        return ("n", "%g" % float(r["n_binding_sites"]))
+    except (TypeError, ValueError):
+        pass
+    try:
+        return ("kd", "%g" % float(r["kd"]))
+    except (TypeError, ValueError):
+        return ("none", "")
 
 
 def moro_picks():
@@ -303,11 +330,14 @@ def main():
                 dropped["Moro 2022"] += 1
             continue
         if src in temps:
-            try:
-                key = (str(val(d, "PFAS")), "%g" % float(val(d, "n used")))
-            except (TypeError, ValueError):
-                key = None
-            if key in temps[src]:
+            keys = set()
+            for kind, col in (("n", "n used"), ("kd", "Kd (uM)")):
+                try:
+                    keys.add((str(val(d, "PFAS")), kind,
+                              "%g" % float(val(d, col))))
+                except (TypeError, ValueError):
+                    pass
+            if keys & temps[src]:
                 kept.append(d)
             else:
                 dropped[src] += 1
