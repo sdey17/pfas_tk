@@ -1316,9 +1316,38 @@ reasoning.
 
 #### (i) The nth root on double-logarithmic K_b — and the Scatchard exception
 
-**What is done.** Where a paper's K_b comes from a double-logarithmic plot and
-n ≠ 1, the conversion takes **K_b^(1/n)** before inverting. Affects 16 rows:
-Peng 2024 (6) and Wu 2024 (10).
+**DECIDED: the root is NOT applied.** `APPLY_DOUBLELOG_ROOT = False` in
+`build_binding_affinity_table.py`. Peng 2024 (6 rows) and Wu 2024 (10) carry
+K_b exactly as published. The analysis below is kept because the defect is
+real and the rows are flagged for it — it is documented, not repaired.
+
+Three reasons, in order of weight:
+
+1. **It is this project's transformation, not the field's.** No publication
+   recommends it, and the standing norm here is not to do arithmetic the
+   authors did not.
+2. **It does not move the numbers toward anything independent.** Tested
+   against the compilation's own per-compound medians, the rooted values are
+   *further* from consensus than the raw ones, consistently:
+
+   | PFAS | median (n sources) | Δ raw | Δ rooted |
+   |---|---|---|---|
+   | PFNA | 4.37 (11) | −1.16 | **−1.61** |
+   | PFOA | 3.75 (17) | +0.89 | **−1.13** |
+   | PFHpA | 3.52 (9) | +0.71 | **−1.25** |
+
+   The raw values straddle the median; the rooted ones sit ~1.2 log below it
+   on all three. (Peng's other three compounds — HFPO-TA, PFO3DA, DFSA — have
+   no independent measurement anywhere in the database, so nothing checks
+   them.)
+3. **The published critique is that the equation is improperly derived, not
+   merely mis-labelled.** If so, no transformation recovers a binding
+   constant, and the choice is between reporting what the paper reports and
+   reporting nothing. The compilation is meant to be exhaustive, so it
+   reports, with the flag.
+
+**What the root would have done**, had it been applied — kept here because it
+is the argument for distrusting these rows, and the mechanism is one flag away:
 
 **The derivation, in full.** The plot assumes one all-or-none reaction — n
 ligands bind together, and the complex is dark:

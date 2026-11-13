@@ -383,7 +383,7 @@ def to_kd_uM(rec):
             return "", "no exact conversion from " + units
         # A double-log Kb is in (L/mol)^n; take the nth root first so the
         # reciprocal is a concentration. See DOUBLELOG_WORDS above.
-        if is_double_log(rec.get("_method")):
+        if APPLY_DOUBLELOG_ROOT and is_double_log(rec.get("_method")):
             n, _how = site_count(rec.get("_n"))
             if n and n > 0 and abs(n - 1.0) > 1e-9:
                 ka = ka ** (1.0 / n)
@@ -538,6 +538,28 @@ def site_count(n_sites):
 # equation was wrong before the units were.  See report/ALBUMIN_BINDING.md
 # section 13c(i).
 DOUBLELOG_WORDS = ("double-log", "double logarithmic")
+
+# OFF BY DECISION, 2026-11-13.  The root is NOT applied; these rows carry
+# K_b exactly as published.  Reasons, in order:
+#
+#  1. It is this project's own transformation, not the field's.  No
+#     publication recommends it (see report section 13c(i)), and the
+#     project's standing norm is not to do arithmetic the authors did not.
+#  2. Tested against the compilation's own per-compound medians, the
+#     rooted values are FURTHER from consensus than the raw ones, and
+#     consistently so: PFNA -1.61 against -1.16, PFOA -1.13 against +0.89,
+#     PFHpA -1.25 against +0.71.  Correcting the units did not move the
+#     numbers toward anything independent.
+#  3. The published critique (van de Weert & Schonbeck 2024) is that the
+#     equation is improperly derived, not merely mis-labelled.  If that is
+#     right, no transformation recovers a binding constant, so the choice
+#     is between reporting what the paper reports and reporting nothing --
+#     and the compilation is meant to be exhaustive.
+#
+# What stays: the Route label, the per-row notes, and section 13c(i).  The
+# defect is documented rather than silently repaired.  Flip this to True to
+# restore the correction; it affects Peng 2024 (6 rows) and Wu 2024 (10).
+APPLY_DOUBLELOG_ROOT = False
 
 
 def is_double_log(method):
