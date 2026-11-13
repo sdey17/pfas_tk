@@ -65,47 +65,41 @@ ONE_PER_COMPOUND = {
 }
 
 
-# Isomer-resolved studies reduced to the isomer the rest of the
-# literature measures, 2026-11-13, by decision.
+# SOURCES DROPPED FROM THIS SHEET FOR SCOPE, 2026-11-13, by decision.
 #
-# Beesoon & Martin 2015 is the only source here that resolves PFOS and
-# PFOA into linear and branched isomers.  Every other paper reports
-# "PFOA" or "PFOS" on material whose isomer composition it does not
-# state -- Beesoon say so themselves: the variability in published
-# PFOA Kd "might be due to the isomeric purity (pure linear versus
-# technical PFOA) of the test chemical being used, which was not
-# addressed in any previous work."
+# This is NOT the named-holdout category.  A named holdout (below) is a
+# source whose numbers are not what they appear to be, and it is barred
+# from figures too, by the leak scan.  A scope drop is a source whose
+# numbers are reported as given but which does not earn a row in a
+# cross-study working table.  Gao 2025's salt series, Moro 2022's weak
+# site classes and Peng 2024's non-310 K rows are the same category,
+# handled below; this dict is for dropping a source outright rather
+# than reducing it.
 #
-# So a branched-isomer row has no counterpart anywhere in the
-# compilation, and pooling one with a "PFOA" row would compare a
-# minority fraction against a bulk material.  The linear rows stay;
-# the branched rows go to db/protein_binding.csv.
-#
-# WHY LINEAR IS THE RIGHT REPRESENTATIVE, not merely the convenient
-# one.  At low occupancy each isomer contributes n_i/Kd_i to the
-# bound pool, so a mixture's apparent n/Kd is SUM f_i (n_i/Kd_i).
-# Taking Beesoon's own isomer constants and the ECF composition from
-# their Introduction (PFOS 70% linear, PFOA 80% linear):
-#
-#   PFOS   linear supplies 99.99% of the bound pool;
-#          log K technical 5.420 vs pure linear 5.575   -0.155 log
-#   PFOA   linear supplies 98.53% of the bound pool;
-#          log K technical 2.388 vs pure linear 2.478   -0.090 log
-#
-# The branched isomers bind 3 to 4 log more weakly, so they are nearly
-# absent from the bound pool even at 20-30% by mass.  Whether another
-# laboratory used pure linear or technical material therefore cannot
-# be read off its log K: both differences are far below the 0.87 log
-# pooled SD inside one compound.  The conclusion is independent of the
-# mM/M question in audit_beesoon2015_scatchard.py, since every Kd
-# scales by the same factor and only ratios enter here.
-#
-# Full working: scripts/audit_beesoon2015_scatchard.py
-LINEAR_ONLY = {
-    "Beesoon 2015": "isomer-resolved study; the linear isomer is the "
-                    "only one with a counterpart in the rest of the "
-                    "compilation, and supplies 98.5-99.99% of the "
-                    "bound pool in technical material anyway",
+# A scope drop does NOT touch the figures.  Beesoon's four rows stay in
+# figures/albumin_chainlength_data.csv, where an isomer-resolved point
+# is informative, and in db/protein_binding.csv.
+DROP_SCOPE = {
+    "Beesoon 2015":
+        "PFOS and PFOA isomers by ultrafiltration, the only "
+        "isomer-resolved source here. Dropped from the sheet for four "
+        "reasons that compound: (1) its labels, 'linear PFOA (n-PFOA)' "
+        "and 'linear PFOS (n-PFOS)', are kept out of the PFOA and PFOS "
+        "pools by db/pfas_name_map.csv, so the rows enter no "
+        "per-compound statistic and sit in buckets of one; (2) the "
+        "Scatchard axis units and the reported Kd disagree by 1000x -- "
+        "three independent checks (mass balance against the stated "
+        "2-12 uM spike, the donated stock concentrations, and Kd versus "
+        "the free concentrations actually sampled) all say the printed "
+        "constants are 1000x too large, see "
+        "audit_beesoon2015_scatchard.py; (3) the buffer is HPLC-grade "
+        "water at pH 6.4 with 2-10% residual methanol, not the pH 7.4 "
+        "phosphate the rest of the sheet uses; (4) linear PFOA's n does "
+        "not reproduce -- slope 0.6076 gives 1.65, the box says 2. "
+        "The isomer-mixture finding that made linear the right "
+        "representative is preserved in "
+        "scripts/beesoon2015_isomer_mixture.py and does not depend on "
+        "these rows being in the sheet.",
 }
 
 
@@ -230,11 +224,8 @@ def main():
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
             continue
-        if src in LINEAR_ONLY:
-            if str(val(d, "PFAS")).strip().lower().startswith("linear"):
-                kept.append(d)
-            else:
-                dropped[src] += 1
+        if src in DROP_SCOPE:
+            dropped[src] += 1
             continue
         if src == "Moro 2022":
             key = (f"{float(val(d, 'Kd (uM)')):g}"
@@ -273,8 +264,9 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s in LINEAR_ONLY:
-            why = "kept the linear isomer only -- " + LINEAR_ONLY[s]
+        if s in DROP_SCOPE:
+            why = ("DROPPED FOR SCOPE (not a named holdout; still in the "
+                   "figures and the database): " + DROP_SCOPE[s])
         elif s in DROP_HOLDOUTS:
             why = ("NAMED HOLDOUT, dropped from this sheet: "
                    + holdout_reason(s))
@@ -333,14 +325,13 @@ def main():
          "lower bound alone. The rows, and the full audit, remain in "
          "db/protein_binding.csv."),
         "",
-        ("Beesoon 2015 is reduced to its LINEAR isomers. It is the "
-         "only isomer-resolved source here; every other paper reports "
-         "PFOA or PFOS on material of unstated isomer composition, so "
-         "a branched row has no counterpart to be compared with. "
-         "Linear supplies 98.5-99.99% of the bound pool even in "
-         "technical ECF material, so it is also the right stand-in "
-         "for a mixture. The branched rows stay in "
-         "db/protein_binding.csv."),
+        ("Beesoon 2015 is NOT in this sheet. Its labels are held out "
+         "of the PFOA and PFOS pools by db/pfas_name_map.csv so the "
+         "rows pooled with nothing; its Scatchard axis units and "
+         "reported Kd disagree by 1000x; and its buffer is pH 6.4 "
+         "water with residual methanol, not pH 7.4 phosphate. This is "
+         "a SCOPE drop, not a named holdout: the rows remain in "
+         "db/protein_binding.csv and in the chain-length figure."),
         "",
         ("Gao 2025 is reduced to one row per compound, the no-added-salt "
          "condition; its full four-level salt series is in "

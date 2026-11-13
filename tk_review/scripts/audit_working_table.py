@@ -107,10 +107,15 @@ def deliberate_omissions():
     """
     try:
         sys.path.insert(0, HERE)
-        from build_revised_working_table import DROP_HOLDOUTS
-        return set(DROP_HOLDOUTS)
+        from build_revised_working_table import (DROP_HOLDOUTS,
+                                                  DROP_SCOPE)
+        d = {k: "named holdout (also barred from figures)"
+             for k in DROP_HOLDOUTS}
+        d.update({k: "scope drop (still in the figures and the database)"
+                  for k in DROP_SCOPE})
+        return d
     except Exception:
-        return set()
+        return {}
 
 
 def main():
@@ -176,11 +181,11 @@ def main():
     onpurpose = [s for s in absent if s in holdouts]
     miss = [s for s in absent if s not in holdouts]
     if onpurpose:
-        print(f"     absent ON PURPOSE (named holdouts dropped by the "
-              f"builder): {len(onpurpose)}")
+        print(f"     absent ON PURPOSE (dropped by the builder): "
+              f"{len(onpurpose)}")
         for s in sorted(onpurpose, key=lambda s: -oc[s]):
-            print(f"       {s:20}{oc[s]:>4} rows  -- not a gap; see "
-                  f"DROP_HOLDOUTS in build_revised_working_table.py")
+            print(f"       {s:20}{oc[s]:>4} rows  -- not a gap; "
+                  f"{holdouts[s]}")
     print(f"     in the database, absent from the working copy: {len(miss)}")
     for s in sorted(miss, key=lambda s: -oc[s]):
         sp = sorted({str(col(r, "Species")) for r in O

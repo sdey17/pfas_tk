@@ -34,8 +34,6 @@ PFOS,bovine,,,4.67,measured directly,Allendorf 2019,0.0126168,0.376149,0.025,
 PFOS,bovine,,,4.83,measured directly,Allendorf 2019,0.0126168,0.376149,0.025,
 PFUnDA,bovine,,,4.6,measured directly,Allendorf 2019,0.00517645,0.376149,0.012,
 PFUnDA,bovine,,,4.72,measured directly,Allendorf 2019,0.00517645,0.376149,0.012,
-linear PFOA (n-PFOA),human,100,2,2.478,"converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested",Beesoon 2015,12,6,2,
-linear PFOS (n-PFOS),human,0.08,2,5.575,"converted; n fitted by the paper from its own binding isotherm, Kd inside the range tested",Beesoon 2015,12,6,2,
 PFNA,bovine,,,4.605,measured directly,Bischel 2010,0.32,500,0.00064,99.92
 PFNA,bovine,,,4.425,measured directly,Bischel 2010,0.5,500,0.001,99.89
 PFNA,bovine,,,4.665,measured directly,Bischel 2010,0.32,500,0.00064,99.93
