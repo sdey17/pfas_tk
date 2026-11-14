@@ -1,2 +1,26 @@
 PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
-
+HFPO-DA	rat	67.57	2.47	2.74	converted; n counted by ITC	Fan 2025				
+HFPO-DA	rat	17.87	3.26	3.439	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFBA	rat	168.4	2.84	2.404	converted; n counted by ITC	Fan 2025				
+PFBA	rat	16.21	4.46	3.617	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFBS	rat	176.3	1.59	2.133	converted; n counted by ITC	Fan 2025				
+PFBS	rat	2.78	3.68	4.299	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFDA	rat	161.2	1.91	2.251	converted; n counted by ITC	Fan 2025				
+PFDA	rat	10.33	3.7	3.732	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFDoDA	rat	32.78	1.17	2.73	converted; n counted by ITC	Fan 2025				
+PFHpA	rat	79.96	2.79	2.72	converted; n counted by ITC	Fan 2025				
+PFHpA	rat	10.15	3.02	3.651	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFHxA	rat	166.7	1.93	2.241	converted; n counted by ITC	Fan 2025				
+PFHxA	rat	31.36	3.36	3.207	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFHxS	rat	26.87	2.15	3.081	converted; n counted by ITC	Fan 2025				
+PFHxS	rat	78.87	4.24	2.908	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFNA	rat	31.18	1.06	2.709	converted; n counted by ITC	Fan 2025				
+PFNA	rat	13.27	4.21	3.679	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFOA	rat	94.54	3.11	2.695	converted; n counted by ITC	Fan 2025				
+PFOA	rat	26.77	4.24	3.377	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFOS	rat	129.8	2.79	2.51	converted; n counted by ITC	Fan 2025				
+PFOS	rat	13.77	4.61	3.702	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFPeA	rat	303.1	3.33	2.218	converted; n counted by ITC	Fan 2025				
+PFPeA	rat	13.9	3.92	3.628	converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested	Fan 2025		1		
+PFTeDA	rat	195.3	1.02	1.895	converted; n counted by ITC	Fan 2025				
+PFUnDA	rat	59.18	1.42	2.558	converted; n counted by ITC	Fan 2025				

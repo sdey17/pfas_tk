@@ -65,6 +65,25 @@ ONE_PER_COMPOUND = {
 }
 
 
+# SPECIES THIS SHEET CARRIES, set 2026-11-14 by decision.
+#
+# The reviewer's working copy had already removed Fan 2025 (39 rows,
+# rat serum albumin and rat L-FABP, rat only) and Han 2003's rat row,
+# keeping the human one.  Stating it as a species filter makes that a
+# rule rather than two deletions, so a re-ingestion cannot quietly
+# undo it, and it applies to every source at once -- Starnes 2024's
+# porcine and rat columns are held back by the same line.
+#
+# The rows are NOT lost: db/protein_binding.csv keeps every species,
+# and the cross-species comparisons the review's first aim rests on
+# are computed there, not here (species_albumin_comparison.py and
+# albumin_cannot_explain_tk.py both read the database).
+#
+# To widen the sheet, add to this set; nothing else changes.
+SHEET_SPECIES = {"human", "bovine"}
+SPECIES_DROP_LABEL = "(species not carried)"
+
+
 # SOURCES DROPPED FROM THIS SHEET FOR SCOPE, 2026-11-13, by decision.
 #
 # This is NOT the named-holdout category.  A named holdout (below) is a
@@ -319,6 +338,10 @@ def main():
     seen = collections.defaultdict(list)
     for d in rows:
         src = str(val(d, "Source"))
+        sp = str(val(d, "Species") or "").strip()
+        if sp and sp not in SHEET_SPECIES:
+            dropped[SPECIES_DROP_LABEL] += 1
+            continue
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
             continue
@@ -365,7 +388,12 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s in DROP_SCOPE:
+        if s == SPECIES_DROP_LABEL:
+            why = ("species outside SHEET_SPECIES "
+                   + repr(sorted(SHEET_SPECIES)) + "; the rows stay in "
+                   "db/protein_binding.csv, which is what the "
+                   "cross-species scripts read")
+        elif s in DROP_SCOPE:
             why = ("DROPPED FOR SCOPE (not a named holdout; still in the "
                    "figures and the database): " + DROP_SCOPE[s])
         elif s in DROP_HOLDOUTS:
@@ -432,6 +460,10 @@ def main():
          "too. They were its only negative log K values and set its "
          "lower bound alone. The rows, and the full audit, remain in "
          "db/protein_binding.csv."),
+        "",
+        ("This sheet carries HUMAN and BOVINE albumin only. Rat and "
+         "porcine rows exist in db/protein_binding.csv and are used by "
+         "the cross-species scripts, but are not pooled here."),
         "",
         ("Beesoon 2015 is NOT in this sheet. Its labels are held out "
          "of the PFOA and PFOS pools by db/pfas_name_map.csv so the "

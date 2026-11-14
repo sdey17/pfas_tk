@@ -85,6 +85,32 @@ FITTED_OK = "converted; n fitted by the paper from its own binding isotherm, Kd 
 FITTED_EX = "converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+# Sources whose method family sits outside the default two but which
+# have been read from the primary and admitted DELIBERATELY, one at a
+# time.  The default gate gives the reader's n = 1 route only to
+# "fluorescence" and "separative", which silently excluded every DSF,
+# MST and NMR row -- 98 of them, all already carrying a Kd.  That was
+# a policy acting as a verdict, so admission is now explicit and
+# per-source rather than implied by a family list.
+#
+# Starnes 2024 (DSF): admitted 2026-11-14 after reading Toxicol Sci
+# 2024;199(1):132-148.  Its Table 2 is the only four-species albumin
+# comparison in this compilation.  Its Kd are MILLIMOLAR and sit a
+# median 2.05 log BELOW the per-compound, per-species pools -- every
+# one of the twenty comparisons that has a pool is negative.  That is
+# a method offset, not scatter: DSF reports the concentration at which
+# a ligand measurably stabilises the protein against thermal
+# unfolding, which needs far more occupancy than half-saturation, and
+# the Kd comes off a 50-90 C ramp rather than one temperature.  The
+# rows carry that in their note.  Full working:
+# scripts/audit_starnes2024_dsf.py
+#
+# NOT admitted yet, and each needs its own primary read first:
+# Starnes 2025 (49 DSF rows), Alesio 2024 (11 DSF), Jia 2022 (6 MST),
+# Jackson 2021 (1 DSF), Fedorenko 2021 and MacManus-Spencer 2010 (NMR).
+METHOD_ADMIT = {"Starnes 2024"}
+
+
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
 
 # Sources where the paper DOES report a stoichiometry but the reader
@@ -228,8 +254,9 @@ def collect(keep=None):
                 route = PAPER_OK if inside else PAPER_EX
             out.append(row(r, route, float(r["logK"]), r["n_sites_used"]))
         elif r["convertible"] == "assume n = 1":
-            if family(r["method"]) not in ("fluorescence", "separative"):
-                continue               # DSF, MST and the rest stay out
+            if (family(r["method"]) not in ("fluorescence", "separative")
+                    and r["source"] not in METHOD_ADMIT):
+                continue               # see METHOD_ADMIT above
             if (r["source"], r["pfas"], r["kd_uM"]) in quenched:
                 continue               # already in, with its own exponent
             out.append(row(r, reader_route(r["source"]),
