@@ -38,9 +38,14 @@ SEVEN ROUTES, and `route` names the one each row took:
 STILL OUT, and cheap to add on request: differential scanning
 fluorimetry (82 rows over human, bovine, rat and porcine -- its
 constants sit about three orders off dialysis), microscale
-thermophoresis (6), and Muensterman 2026's immobilised-HSA
-chromatography (82 rows, 83 compounds, on a basis the paper never
-states). Rat and porcine rows are dropped with the species filter.
+thermophoresis (6). Muensterman 2026's immobilised-HSA
+chromatography (82 HSA rows, plus 83 IAM rows that are a phospholipid
+phase rather than a protein) is out for a harder reason: its SI does
+state a basis -- dimensionless partition coefficients -- but reports no
+phase ratio and no immobilised-albumin mass, so nothing can be divided
+back out to reach L water / kg albumin. See
+scripts/audit_muensterman2026_biomimetic.py.
+Rat and porcine rows are dropped with the species filter.
 
 Writes db/albumin_logK_shareable.xlsx.
 
