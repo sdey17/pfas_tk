@@ -209,7 +209,16 @@ def canon_units(raw, measure):
             return "log10 M^-1"
         return u
     if measure == "Ka":
-        if u == "log M^-1":
+        # A log Ka is stored two ways: the bare unit "log M^-1", and
+        # "log Ka, log M^-1" (Li 2021, whose SI column is headed that way).
+        # Test the log marker BEFORE the plain M^-1 test. An exact-match test
+        # on "log M^-1" silently dropped Li 2021's 26 rows: canon_units
+        # returned the raw string, the 1e6/Ka branch below requires
+        # "log10 M^-1" or "M^-1", so the rows reached binding_affinity.xlsx
+        # unconvertible and never got a Kd. Had the plain test run first they
+        # would have been worse than dropped -- a log Ka of 4.097 read as
+        # 4.097 M^-1 puts Kd out by five orders.
+        if "log M^-1" in u or u.startswith(("log Ka", "log10 Ka", "log K_a")):
             return "log10 M^-1"
         if u.startswith("M^-1") or u.startswith("L/mol") or u.startswith("no binding"):
             return "M^-1"

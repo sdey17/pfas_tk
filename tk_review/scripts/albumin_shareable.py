@@ -90,6 +90,13 @@ FITTED_OK = "converted; n fitted by the paper from its own binding isotherm, Kd 
 FITTED_EX = "converted; n fitted by the paper from its own binding isotherm, Kd beyond the range tested"
 PAPER_OK = "converted; n = 1 fixed by the paper's single-site model, Kd inside the range tested"
 PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond the range tested"
+# A third state. "beyond the range tested" is a COMPARISON, and it cannot be
+# made when the paper never prints the concentration series: saying it anyway
+# asserts something the primary does not support, on 163 rows. These two
+# labels say the range is unknown instead. add_bischel2010_primary.py records
+# the same defect being fixed the other way, by finding the number.
+FITTED_NA = "converted; n fitted by the paper from its own binding isotherm, range tested not reported"
+PAPER_NA = "converted; n = 1 fixed by the paper's single-site model, range tested not reported"
 # Sources whose method family sits outside the default two but which
 # have been read from the primary and admitted DELIBERATELY, one at a
 # time.  The default gate gives the reader's n = 1 route only to
@@ -113,7 +120,7 @@ PAPER_EX = "converted; n = 1 fixed by the paper's single-site model, Kd beyond t
 # NOT admitted yet, and each needs its own primary read first:
 # Starnes 2025 (49 DSF rows), Alesio 2024 (11 DSF), Jia 2022 (6 MST),
 # Jackson 2021 (1 DSF), Fedorenko 2021 and MacManus-Spencer 2010 (NMR).
-METHOD_ADMIT = {"Starnes 2024"}
+METHOD_ADMIT = {"Starnes 2024", "Starnes 2025"}
 
 
 READER = "converted; n = 1 assumed by the reader, the paper reports none"
@@ -136,11 +143,43 @@ READER_DECLINED = {
 }
 
 
+# Sources whose PAPER fixes n = 1 in its own model, even though it prints no
+# stoichiometry column for the reader to copy. These are NOT reader
+# assumptions, so READER's "the paper reports none" would misattribute the
+# choice, and the four scripts that bucket on "assumed by the reader" would
+# count them in the wrong class.
+#
+#   Li 2021 -- Equations (1) and (2): "association constants (KA) were
+#   calculated assuming a one site specific binding". A single-site mass-action
+#   model fixes n = 1 by construction. See fix_li2021_from_primary.py.
+#
+#   Starnes 2025 -- Methods, DSF data analysis: "a single-site ligand binding
+#   model was used to calculate dissociation constants". Same basis. See
+#   fix_starnes2025_conc_and_route.py. NOTE this does not extend to Starnes
+#   2024 or Jackson 2021 on the strength of a shared assay lineage: each needs
+#   its own sentence found in its own paper first.
+PAPER_SINGLE_SITE = {"Li 2021", "Starnes 2025"}
+
+
 def reader_route(source):
     return READER_DECLINED.get(source, READER)
+
+
+def within_tested(r):
+    """True if the fitted Kd sits inside the top concentration tested, False if
+    beyond it, and None if the paper reports no series to compare against.
+    None is NOT False: the three cases make different claims about the
+    primary."""
+    raw = (r.get("kd_over_top_conc") or "").strip()
+    if not raw:
+        return None
+    try:
+        return float(raw) <= 1.0
+    except (TypeError, ValueError):
+        return None
 QUENCH = "converted; n is the paper's fitted quenching-plot exponent, not a counted site"
-ORDER = [MEASURED, QIN, ITC, FITTED_OK, FITTED_EX, PAPER_OK,
-         PAPER_EX, READER, QUENCH]
+ORDER = [MEASURED, QIN, ITC, FITTED_OK, FITTED_EX, FITTED_NA, PAPER_OK,
+         PAPER_EX, PAPER_NA, READER, QUENCH]
 
 
 def rank(route):
@@ -247,16 +286,15 @@ def collect(keep=None):
             # blank) is a single-site model that fixes n = 1 by
             # construction. The last two also split on whether the fitted
             # Kd lands inside the concentration actually tested.
-            try:
-                inside = float(r["kd_over_top_conc"]) <= 1.0
-            except (TypeError, ValueError):
-                inside = False
+            inside = within_tested(r)
             if r["n_basis"] == "ITC":
                 route = ITC
             elif r["n_basis"] == "fitted":
-                route = FITTED_OK if inside else FITTED_EX
+                route = (FITTED_NA if inside is None
+                         else FITTED_OK if inside else FITTED_EX)
             else:
-                route = PAPER_OK if inside else PAPER_EX
+                route = (PAPER_NA if inside is None
+                         else PAPER_OK if inside else PAPER_EX)
             out.append(row(r, route, float(r["logK"]), r["n_sites_used"]))
         elif r["convertible"] == "assume n = 1":
             if (family(r["method"]) not in ("fluorescence", "separative")
@@ -264,8 +302,13 @@ def collect(keep=None):
                 continue               # see METHOD_ADMIT above
             if (r["source"], r["pfas"], r["kd_uM"]) in quenched:
                 continue               # already in, with its own exponent
-            out.append(row(r, reader_route(r["source"]),
-                           float(r["logK_if_n_assumed_1"]), "1"))
+            if r["source"] in PAPER_SINGLE_SITE:
+                inside = within_tested(r)
+                route = (PAPER_NA if inside is None
+                         else PAPER_OK if inside else PAPER_EX)
+            else:
+                route = reader_route(r["source"])
+            out.append(row(r, route, float(r["logK_if_n_assumed_1"]), "1"))
 
     if keep is not ALL:
         out = [r for r in out if r["species"] in (keep or SPECIES)]
