@@ -1,0 +1,19 @@
+Priority	Status	Source	Citation	DOI	Protein / species	Method	Reports Kd/Ka?	Reports n?	Est. rows	Note
+1	NEW	Zhou 2025	Ecotoxicol Environ Saf 2025;289:117902	10.1016/j.ecoenv.2025.117902	BSA (bovine)	equilibrium dialysis + fluorescence	yes - protein-water partition coefficient	via fluorescence titration	~10	Reports K_PW directly: the sheet's own quantity, no bridge needed. Same footing as Bischel 2011.
+2	NEW	Pavan 2023	Toxicology 2023;500:153664	10.1016/j.tox.2023.153664	recombinant hSA (human)	ITC + Trp fluorescence quenching	yes - ITC Kd	yes - ITC gives n directly	2-4	ITC is the cleanest fit in the whole database. PFOA + C6O4 (new-generation cyclic).
+3	NEW	Perera 2021	J Hazard Mater 2022;423:127765	10.1016/j.jhazmat.2021.127765	HSA (human)	fluorescence titration + site displacement	yes - Ka, plus 3 site-specific Ka	partial	1-4	GenX/HFPO-DA. Same structure as Chen & Guo 2009; the 3 displacement Ka may be blocked as that one's were.
+4	NEW	Hu 2016	Guang Pu Xue Yu Guang Pu Fen Xi 2016;36(12):4141-7	(no DOI; PMID 30256599)	HSA (human)	ITC + multi-spectroscopic	yes - two binding classes, Ka each	yes - two classes	2	Two-class ITC, same shape as the Wu 2009 data you merged. Chinese-language journal.
+5	NEW	Ryu 2024	Toxics 2024;12(4):253	10.3390/toxics12040253	albumin, human + rat + mouse	presaturation equilibrium dialysis	no - reports fraction unbound	no	~14 human	f_u only. Convertible to Kd ONLY if albumin conc is stated; species mixing must be avoided.
+6	NEW	Wu 2025	Biochem Biophys Res Commun 2025;756:151356	10.1016/j.bbrc.2025.151356	HSA (human)	fluorescence quenching (static)	yes - Kb L/mol	check - may be a double-log exponent	2	PFUnDA + PFTrDA at 298 K, not 310 K. Risk of the quenching-exponent-as-n problem.
+7	NEW	Lamichhane 2024	Analyst 2024;149(9):2724-33	10.1039/d3an02164e	BSA (bovine)	ion-transfer voltammetry at liquid-liquid interface	yes - Ka	n = 1 explicitly assumed	1	Unusual method; check for a Muensterman-type basis gap before reading far.
+8	NEW	Starnes 2026	J Xenobiot 2026;16(2):54	10.3390/jox16020054	serum albumin	unclear from abstract	unknown	unknown	?	Abstract reads as a review/position piece. Screen the full text for primary data FIRST.
+9	NEW	Lu 2021	Environ Pollut 2021;273:116460	10.1016/j.envpol.2021.116460	HSA (human)	unclear - occurrence study + binding	unknown	unknown	?	Mostly a placental occurrence study. Low expected yield.
+-	IN DB	Starnes 2025	Toxicol Sci	10.1093/toxsci/kfae124	HSA (human)	DSF	49 of 68 rows	no - n=1 must be assumed	up to 49	Largest unreviewed block already in the database.
+-	IN DB	Li 2021	Toxics 2021;9(3):63	10.3390/toxics9030063	HSA (human)	equilibrium dialysis	26 rows	no - n=1 must be assumed	26	Equilibrium dialysis, strong method match.
+-	IN DB	Alesio 2024	Sci Rep 2024;14:6501	10.1038/s41598-024-57140-9	BSA (bovine)	DSF	11 rows	no - n=1 must be assumed	11	Companion to Alesio 2022, already in the sheet.
+-	IN DB	Jia 2022	Environ Sci Technol 2022;56:4134	10.1021/acs.est.1c08493	HSA (human)	microscale thermophoresis	6 rows	no - n=1 must be assumed	6	MST; currently held out by the method gate.
+-	IN DB	MacManus-Spencer 2010	Anal Chem 2010;82:974	10.1021/ac902238u	BSA (bovine)	nanoESI-MS + dialysis	3 rows	1 of 3	1-3	Parent of Bischel 2011, which is already in the sheet.
+-	IN DB	Crisalli 2023	Chem Res Toxicol 2023;36:1220	10.1021/acs.chemrestox.3c00011	albumin	ITC	1 row	no	1	ITC single row.
+-	IN DB	Jackson 2021	Environ Sci Technol 2021;55:12291	10.1021/acs.est.1c01200	albumin	DSF	1 row	no	1	Single DSF row.
+-	IN DB	Messina 2005	OEHHA secondary	(none)	albumin	not stated	2 rows	yes	2	Secondary stub; verify against a primary before use.
+-	IN DB	Li 2009	OEHHA secondary	(none)	albumin	not stated	1 row	no	1	Secondary stub.
