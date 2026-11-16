@@ -226,6 +226,29 @@ NON_PFAS = {
 }
 NON_PFAS_DROP_LABEL = "(not a PFAS)"
 
+# Rows whose constant was measured in a co-solvent high enough to act on the
+# quantity being measured. Keyed on (source, compound), NOT on compound alone:
+# 6:2 FTCA and N-EtFOSA are also measured by Chen 2025 by equilibrium dialysis
+# at log K 3.62 and 3.06, and those rows are sound. A compound-wide rule would
+# have deleted them.
+#
+# Starnes 2025 Table S3 gives the solvent per chemical. Three of its admitted
+# rows were prepared in 50% HBS / 50% DMSO because they would not dissolve in
+# buffer. DSF reads out albumin's melting temperature, and DMSO both
+# destabilises albumin and competes for its hydrophobic sites, so at 50% the
+# co-solvent acts on the readout itself rather than sitting beside it. Note
+# how far they fall below the same compounds measured in buffer by Chen 2025:
+# 1.42 against 3.62, and 1.43 against 3.06.
+#
+# Same class of objection that made Wu 2024 a named holdout over 86% ethanol.
+# Reviewer's decision, taken after the three were flagged.
+COSOLVENT_HOLDOUT = {
+    ("Starnes 2025", "9h-perfluorononanoic acid"),
+    ("Starnes 2025", "6:2 ftca"),
+    ("Starnes 2025", "n-etfosa"),
+}
+COSOLVENT_DROP_LABEL = "(50% DMSO co-solvent)"
+
 
 def holdout_reason(src):
     """The one recorded reason, read from scripts/excluded_sources.py."""
@@ -360,8 +383,12 @@ def main():
         if sp and sp not in SHEET_SPECIES:
             dropped[SPECIES_DROP_LABEL] += 1
             continue
-        if str(val(d, "PFAS") or "").strip().lower() in NON_PFAS:
+        cmpd = str(val(d, "PFAS") or "").strip().lower()
+        if cmpd in NON_PFAS:
             dropped[NON_PFAS_DROP_LABEL] += 1
+            continue
+        if (src, cmpd) in COSOLVENT_HOLDOUT:
+            dropped[COSOLVENT_DROP_LABEL] += 1
             continue
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
@@ -409,7 +436,12 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == NON_PFAS_DROP_LABEL:
+        if s == COSOLVENT_DROP_LABEL:
+            why = ("measured in 50% DMSO (Starnes 2025 Table S3), which acts "
+                   "on the melting temperature DSF reads out. The rows stay "
+                   "in the database; the same compounds measured in buffer by "
+                   "other studies are unaffected")
+        elif s == NON_PFAS_DROP_LABEL:
             why = ("not a PFAS: a non-fluorinated fatty acid run as a "
                    "positive control or competitor. The rows stay in the "
                    "database; " + repr(sorted(NON_PFAS)))
