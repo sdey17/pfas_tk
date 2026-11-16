@@ -262,6 +262,32 @@ COSOLVENT_DROP_LABEL = "(50% DMSO co-solvent)"
 R2_FLOOR = {"Starnes 2025": 0.80}
 R2_DROP_LABEL = "(R2 below the floor)"
 
+# Sources admitted on condition that they add DEPTH, not BREADTH. A row from
+# one of these enters only if the sheet already holds that compound from some
+# other source, so these studies strengthen comparisons that already exist
+# instead of adding single-source compounds nothing can be checked against.
+#
+# Reviewer's call: "keep only the PFAS for which we already have data and not
+# add any unique/new PFAS at this stage". Reversible -- empty the set and the
+# dropped rows return.
+#
+# An isomer suffix is stripped before the test, because "PFOS (linear)" and
+# "PFOS (branched)" are PFOS, which the sheet holds from 14 sources; they are
+# Li's isomer resolution of a compound already present, not new compounds.
+# "PFPrS (linear)" is NOT spared by that: the sheet holds no PFPrS at all, so
+# it is genuinely new and goes.
+DEPTH_ONLY = {"Li 2021", "Starnes 2025"}
+DEPTH_DROP_LABEL = "(compound new to the sheet)"
+
+
+def isomer_base(name):
+    """'PFOS (linear)' -> 'pfos'. Only strips a bracketed isomer word, so a
+    bracketed synonym or a chemical name with brackets is left alone."""
+    import re
+    n = str(name or "").strip()
+    n = re.sub(r"\s*\((linear|branched|n-|iso)\)\s*$", "", n, flags=re.I)
+    return n.strip().lower()
+
 
 def r2_floor_drops():
     """(source, compound-lowercased) pairs failing their source's R2 floor,
@@ -414,6 +440,32 @@ def main():
     kept, dropped = [], collections.Counter()
     seen = collections.defaultdict(list)
     r2_failed, r2_seen, r2_missing = r2_floor_drops()
+    # Compounds the sheet holds from a source OUTSIDE the depth-only set.
+    #
+    # This must be built from rows that SURVIVE the other exclusions, not from
+    # raw input. Built naively it counted PFPrS as established because Wu 2024
+    # carries it -- and Wu 2024 is a named holdout that never reaches the
+    # sheet. That would have admitted Li's PFPrS (linear) as "depth" on a
+    # compound the sheet does not actually have, which is the opposite of what
+    # the gate is for. A compound is established only if a row for it is
+    # actually kept.
+    def excluded_otherwise(d):
+        src_ = str(val(d, "Source"))
+        sp_ = str(val(d, "Species") or "").strip()
+        c_ = str(val(d, "PFAS") or "").strip().lower()
+        return (bool(sp_) and sp_ not in SHEET_SPECIES
+                or c_ in NON_PFAS
+                or (src_, c_) in COSOLVENT_HOLDOUT
+                or (src_, c_) in r2_failed
+                or src_ in DROP_HOLDOUTS
+                or src_ in DROP_SCOPE)
+
+    established = {isomer_base(val(d, "PFAS")) for d in rows
+                   if str(val(d, "Source")) not in DEPTH_ONLY
+                   and not excluded_otherwise(d)}
+    if DEPTH_ONLY:
+        print(f"  depth-only sources {sorted(DEPTH_ONLY)}: admitted against "
+              f"{len(established)} compounds already in the sheet")
     for src_name, floor in sorted(R2_FLOOR.items()):
         n = sum(1 for s_, _ in r2_failed if s_ == src_name)
         print(f"  R2 floor {floor} on {src_name}: checked "
@@ -435,6 +487,9 @@ def main():
             continue
         if (src, cmpd) in r2_failed:
             dropped[R2_DROP_LABEL] += 1
+            continue
+        if src in DEPTH_ONLY and isomer_base(cmpd) not in established:
+            dropped[DEPTH_DROP_LABEL] += 1
             continue
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
@@ -482,7 +537,12 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == R2_DROP_LABEL:
+        if s == DEPTH_DROP_LABEL:
+            why = ("the compound is not in the sheet from any other source, "
+                   "and " + repr(sorted(DEPTH_ONLY)) + " are admitted for "
+                   "depth on existing compounds only. The rows stay in the "
+                   "database")
+        elif s == R2_DROP_LABEL:
             why = ("the paper's own R2 for the single-site fit is below "
                    + repr(R2_FLOOR) + ", so the Kd has no well-described "
                    "curve behind it. The rows stay in the database")
