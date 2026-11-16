@@ -99,7 +99,39 @@ SPECIES_DROP_LABEL = "(species not carried)"
 # A scope drop does NOT touch the figures.  Beesoon's four rows stay in
 # figures/albumin_chainlength_data.csv, where an isomer-resolved point
 # is informative, and in db/protein_binding.csv.
+# PENG 2024 -- dropped on the paper's own thermodynamics, not on disagreement
+# with other sources. Table 2 reports a van't Hoff fit per compound, and every
+# one of the six is physically impossible for non-covalent binding:
+#
+#   HFPO-TA  dH +412.1 kJ/mol   Kb swings  624x over 12 K
+#   PFHpA    dH +325.0          165x
+#   PFNA     dH -278.2           79x
+#   DFSA     dH +167.5           14x
+#   PFOA     dH +146.7           10x
+#   PFO3DA   dH -106.6            5x
+#
+# Non-covalent protein-ligand dH runs about +/-10 to 60 kJ/mol; +412 is
+# covalent-bond territory. The enormous values follow from Kb swinging by up to
+# 624-fold across a 12 K span, so the series is not thermodynamically coherent
+# at any temperature. Switching from 310 K to the paper's own headline 298 K
+# does not rescue it: HFPO-TA would read 4.919 against Jia 2022's independent
+# MST value of 2.253, and PFHpA would get worse (1.816 against 3.54 elsewhere).
+# In four of six compounds n also RISES with temperature (HFPO-TA 1.49 -> 2.09),
+# which a site count cannot do -- it is a fitted double-log exponent.
+#
+# Also tested and rejected as the explanation: applying the n-th root to the
+# double-log Kb. That fixes HFPO-TA (7.861 -> 2.978) but worsens PFHpA, PFNA
+# and PFOA; median offset against the rest of the sheet is 1.02 unrooted
+# against 1.20 rooted, so APPLY_DOUBLELOG_ROOT = False stays correct.
+#
+# Cost: DFSA and PFO3DA were Peng-only, so they leave the sheet entirely.
+# Reviewer's call after seeing the table.
 DROP_SCOPE = {
+    "Peng 2024": "every compound's van't Hoff fit gives an impossible "
+                 "enthalpy (dH -278 to +412 kJ/mol against a non-covalent "
+                 "range of about +/-60), because Kb swings up to 624-fold "
+                 "over 12 K; n also rises with temperature. Not coherent at "
+                 "298 or 310 K",
     "Wu 2009":
         "doi 10.1186/1472-6807-9-31, PFOA on HSA at pH 7.40 and 37 C. "
         "Its Temkin equilibrium-dialysis constant is already refused "
