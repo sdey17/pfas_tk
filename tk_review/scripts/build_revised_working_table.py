@@ -59,9 +59,10 @@ FROM = {"ligand:protein ratio": "ligand:protein ratio (max)"}
 
 # Reductions the reviewer made deliberately, preserved.
 ONE_PER_COMPOUND = {
-    "Gao 2025": "salt-effect study: one row per compound, the "
-                "no-added-salt condition, so the salt series does not "
-                "enter a cross-study compound list four times",
+    "Gao 2025": "salt-effect study: one row per compound, at 150 mM added "
+                "NaCl (Gao's physiological level) or the highest level "
+                "measured below it, so the salt series does not enter a "
+                "cross-study compound list several times",
 }
 
 
@@ -320,6 +321,52 @@ def isomer_base(name):
     return n.strip().lower()
 
 
+GAO_SALT_PREFERRED = 150          # mM added NaCl; Gao marks this physiological
+
+
+def gao_salt_pick():
+    """{compound: log K at the preferred salt level}, read from the database.
+
+    Gao 2025 reports a Hill association constant per compound per salt level
+    (20 mM sodium phosphate pH 7 plus 0/10/30/80/150/300/500 mM NaCl), so
+    log K = log10(Ka) + log10(n=1) + BRIDGE - 6. Only four compounds were run
+    at 150 mM; the rest fall back to the highest level measured, which is
+    80 mM. Returns the target value, and the caller picks the row matching it,
+    so this never invents a number the pipeline did not already derive.
+    """
+    import math
+    import re as _re
+    db = os.path.join(HERE, "..", "db", "protein_binding.csv")
+    best = {}
+    with open(db, encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if "Gao" not in (r.get("study") or "") or (r.get("year") or "") != "2025":
+                continue
+            if not r.get("ka"):
+                continue
+            m = _re.search(r"plus (\d+) mM added NaCl", r.get("buffer") or "")
+            if not m:
+                continue
+            salt = int(m.group(1))
+            if salt > GAO_SALT_PREFERRED:
+                continue              # 300 and 500 mM are past physiological
+            c = (r.get("chemical") or "").strip()
+            lk = math.log10(float(r["ka"])) - 6.0 + math.log10(1e9 / 66463.0)
+            if c not in best or salt > best[c][0]:
+                best[c] = (salt, lk)
+    # Key on BOTH the database spelling and the canonical one. The database
+    # says "HFPO-DA (GenX)" where the sheet says "HFPO-DA", and keying only on
+    # the raw name silently left that compound on the no-added-salt row while
+    # the other nine moved -- a miss that looks like data, not a bug.
+    out = {}
+    for c, (salt, lk) in best.items():
+        out[c] = lk
+        bare = _re.sub(r"\s*\([^)]*\)\s*$", "", c).strip()
+        if bare and bare != c:
+            out.setdefault(bare, lk)
+    return out
+
+
 def r2_floor_drops():
     """(source, compound-lowercased) pairs failing their source's R2 floor,
     read from the database's source_table field, plus a per-source tally."""
@@ -567,15 +614,28 @@ def main():
             seen[k].append(d)
             continue
         kept.append(d)
-    # For the reduced sources, keep the row with the LOWEST ratio, which
-    # for Gao 2025 is the no-added-salt condition.
+    # For the reduced sources, keep the row with the LOWEST ratio.
+    #
+    # GAO 2025 IS THE EXCEPTION, and the default was wrong for it. Lowest
+    # ratio selected the NO-ADDED-SALT condition: 20 mM phosphate and nothing
+    # else. Gao's own finding is that salt SUPPRESSES PFAS-albumin binding, so
+    # the saltless row is the one that most overstates affinity, and it is the
+    # least like plasma. Reviewer's call: take 150 mM added NaCl, which Gao
+    # marks as physiological, and fall back to the highest level measured for
+    # compounds Gao did not run at 150. That shifts ten compounds down by 0.18
+    # to 0.34 log. See gao_salt_pick().
+    gao_target = gao_salt_pick()
     for k, g in seen.items():
         def rat(d):
             try:
                 return float(str(val(d, "ligand:protein ratio")))
             except (TypeError, ValueError):
                 return float("inf")
-        g2 = sorted(g, key=rat)
+        if k[2] == "Gao 2025" and str(val(g[0], "PFAS")) in gao_target:
+            want = gao_target[str(val(g[0], "PFAS"))]
+            g2 = sorted(g, key=lambda d: abs(float(val(d, "log K (L water / kg protein)")) - want))
+        else:
+            g2 = sorted(g, key=rat)
         kept.append(g2[0])
         dropped[k[2]] += len(g2) - 1
 
