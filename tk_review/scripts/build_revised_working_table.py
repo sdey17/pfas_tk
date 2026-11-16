@@ -279,6 +279,37 @@ R2_DROP_LABEL = "(R2 below the floor)"
 DEPTH_ONLY = {"Li 2021", "Starnes 2025"}
 DEPTH_DROP_LABEL = "(compound new to the sheet)"
 
+# Isomer-resolved rows. Li 2021 is the only source that splits a compound into
+# linear and branched; everyone else reports a single value for technical
+# material, which is 98.5-99.99% linear. So:
+#
+#   BRANCHED is dropped. It is a different measurement that does not pool with
+#   a linear-dominated value, which is where the Beesoon 2015 discussion
+#   landed. Reviewer deleted these by hand; this makes the builder agree.
+#
+#   LINEAR keeps its number and loses its label, because "PFOS (linear)" and
+#   every other source's "PFOS" are the same quantity and must share a row key
+#   or they never compare. Reviewer renamed these by hand.
+#
+# Stripping the label runs BEFORE the depth gate, so a renamed row is tested
+# against the sheet under the name it will actually carry.
+DROP_BRANCHED = True
+BRANCHED_DROP_LABEL = "(branched isomer)"
+
+
+def strip_isomer_label(name):
+    """'PFOS (linear)' -> 'PFOS'. Leaves bracketed synonyms and chemical names
+    alone -- only the isomer words go."""
+    import re
+    return re.sub(r"\s*\((linear|n-)\)\s*$", "", str(name or "").strip(),
+                  flags=re.I).strip()
+
+
+def is_branched(name):
+    import re
+    return bool(re.search(r"\((branched|iso)\)\s*$", str(name or "").strip(),
+                          flags=re.I))
+
 
 def isomer_base(name):
     """'PFOS (linear)' -> 'pfos'. Only strips a bracketed isomer word, so a
@@ -419,6 +450,10 @@ def val(d, name):
     return d.get(FROM.get(name, name))
 
 
+def setval(d, name, v):
+    d[FROM.get(name, name)] = v
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("-o", "--out", default=OUT)
@@ -437,7 +472,7 @@ def main():
         spec = [v for v in BY_TEMPERATURE.values() if v[1] == src][0]
         print(f"  {src}: keeping the {spec[0]} rows only "
               f"({len(keep)} compounds) -- {spec[2]}")
-    kept, dropped = [], collections.Counter()
+    kept, dropped, renamed = [], collections.Counter(), collections.Counter()
     seen = collections.defaultdict(list)
     r2_failed, r2_seen, r2_missing = r2_floor_drops()
     # Compounds the sheet holds from a source OUTSIDE the depth-only set.
@@ -478,6 +513,15 @@ def main():
         if sp and sp not in SHEET_SPECIES:
             dropped[SPECIES_DROP_LABEL] += 1
             continue
+        if DROP_BRANCHED and is_branched(val(d, "PFAS")):
+            dropped[BRANCHED_DROP_LABEL] += 1
+            continue
+        # Rename before anything else reads the compound: the depth gate, the
+        # duplicate key and the output column must all see the final name.
+        stripped = strip_isomer_label(val(d, "PFAS"))
+        if stripped != str(val(d, "PFAS") or "").strip():
+            setval(d, "PFAS", stripped)
+            renamed[str(val(d, "Source"))] += 1
         cmpd = str(val(d, "PFAS") or "").strip().lower()
         if cmpd in NON_PFAS:
             dropped[NON_PFAS_DROP_LABEL] += 1
@@ -537,7 +581,12 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == DEPTH_DROP_LABEL:
+        if s == BRANCHED_DROP_LABEL:
+            why = ("a branched-isomer row. Every other source reports one "
+                   "value for technical material, which is overwhelmingly "
+                   "linear, so a branched constant does not pool with it. "
+                   "The rows stay in the database")
+        elif s == DEPTH_DROP_LABEL:
             why = ("the compound is not in the sheet from any other source, "
                    "and " + repr(sorted(DEPTH_ONLY)) + " are admitted for "
                    "depth on existing compounds only. The rows stay in the "
