@@ -208,6 +208,24 @@ DROP_SCOPE = {
 # To re-admit a source, take it out of this set; nothing else changes.
 DROP_HOLDOUTS = {"Wu 2024"}
 
+# Non-fluorinated compounds. Several DSF and displacement studies run
+# straight-chain fatty acids as positive controls or competitors, because
+# albumin's fatty-acid sites are what PFAS are thought to occupy. They are
+# real measurements on the same assay, but they are not PFAS, and a PFAS
+# coefficient sheet that carries them will have them swept into any
+# chain-length fit or per-compound median. Dropped at the COMPOUND level, so
+# the rest of each source stays.
+#
+# Reviewer asked for the three Starnes 2025 controls to go. The same rule
+# reaches five pre-existing Chen 2009 rows (octanoic acid x3, butyric acid x2)
+# that had been in the sheet all along -- flagged rather than silently kept,
+# since leaving them would make the rule inconsistent.
+NON_PFAS = {
+    "octanoic acid", "decanoic acid", "hexadecanoic acid",
+    "butyric acid (c4)",
+}
+NON_PFAS_DROP_LABEL = "(not a PFAS)"
+
 
 def holdout_reason(src):
     """The one recorded reason, read from scripts/excluded_sources.py."""
@@ -342,6 +360,9 @@ def main():
         if sp and sp not in SHEET_SPECIES:
             dropped[SPECIES_DROP_LABEL] += 1
             continue
+        if str(val(d, "PFAS") or "").strip().lower() in NON_PFAS:
+            dropped[NON_PFAS_DROP_LABEL] += 1
+            continue
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
             continue
@@ -388,7 +409,11 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == SPECIES_DROP_LABEL:
+        if s == NON_PFAS_DROP_LABEL:
+            why = ("not a PFAS: a non-fluorinated fatty acid run as a "
+                   "positive control or competitor. The rows stay in the "
+                   "database; " + repr(sorted(NON_PFAS)))
+        elif s == SPECIES_DROP_LABEL:
             why = ("species outside SHEET_SPECIES "
                    + repr(sorted(SHEET_SPECIES)) + "; the rows stay in "
                    "db/protein_binding.csv, which is what the "
