@@ -41,6 +41,9 @@ DECIDED = {
     'Fan 2025':       'reviewer dropped (rat only)',
     'Han 2003':       'reviewer dropped (rat only)',
     'Muensterman 2026': 'cannot fit (biomimetic retention index, no phase ratio)',
+    'Alesio 2024':    'reviewer dropped after review (BSA DSF, 11 rows)',
+    'Jia 2022':       'admitted for depth: 4 of 5 own HSA rows; its other 6 '
+                      'Table 1 values are Gao 2019 cited, not measured here',
 }
 
 # A populated ka/kd cell that is NOT a dissociation or association constant.
