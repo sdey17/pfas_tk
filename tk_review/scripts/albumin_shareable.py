@@ -120,7 +120,13 @@ PAPER_NA = "converted; n = 1 fixed by the paper's single-site model, range teste
 # NOT admitted yet, and each needs its own primary read first:
 # Starnes 2025 (49 DSF rows), Alesio 2024 (11 DSF), Jia 2022 (6 MST),
 # Jackson 2021 (1 DSF), Fedorenko 2021 and MacManus-Spencer 2010 (NMR).
-METHOD_ADMIT = {"Starnes 2024", "Starnes 2025"}
+METHOD_ADMIT = {"Starnes 2024", "Starnes 2025", "Jia 2022"}
+# Jia 2022 is microscale thermophoresis, which the family map does not place in
+# "fluorescence" or "separative". Its five HSA rows are its OWN measurements;
+# the six other values in its Table 1 are Gao 2019's, cited, and are not in the
+# database. Its n = 1 is the READER's: unlike Li 2021 and Starnes 2025 the
+# paper names no binding model, so it must NOT go in PAPER_SINGLE_SITE.
+# See fix_jia2022_conditions.py for the pH 8.0 / Tween-20 / labeling caveats.
 
 
 READER = "converted; n = 1 assumed by the reader, the paper reports none"

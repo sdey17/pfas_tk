@@ -227,6 +227,52 @@ NON_PFAS = {
 }
 NON_PFAS_DROP_LABEL = "(not a PFAS)"
 
+# A cell naming SEVERAL compounds at once is a summary, not a measurement of
+# any one of them, and its value is a midpoint describing none. This project
+# has now hit that pattern in Peng 2025, Qin 2010, Chen 2020, Chi 2018,
+# Fedorenko 2021, MacManus-Spencer 2010, Crisalli 2023, Jackson 2021 -- and in
+# Jia 2022, whose row "HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2
+# Cl-PFESA" reached the sheet at a Kd of 185.5 uM while the same five
+# compounds also appear individually from the same paper. A comma outside
+# brackets is the test; a chemical name's own commas sit inside them.
+MULTI_DROP_LABEL = "(several compounds in one cell)"
+
+
+def names_several(name, known):
+    """True if the cell lists SEVERAL compounds.
+
+    A bare comma test does not work: an IUPAC name's commas are locant
+    separators, so "2,2,3,3,4,4-hexafluorobutyric acid" and
+    "Perfluoro-3,6-dioxaheptanoic acid" are single compounds. Testing commas
+    alone flagged ten Starnes 2025 rows that are perfectly good single
+    measurements.
+
+    So the test is data-driven instead of a regex guess: split on commas
+    outside brackets and ask how many parts are themselves names that appear
+    in this dataset as standalone compounds. Two or more means a list.
+    "HFPO-DA (GenX), HFPO-TA, HFPO-TeA, PFEESA, 8:2 Cl-PFESA" yields four such
+    names; "Perfluoro-3,6-dioxaheptanoic acid" yields none, because
+    "Perfluoro-3" and "6-dioxaheptanoic acid" are not compounds anyone reports.
+    """
+    import re
+    txt = str(name or "")
+    if "," not in re.sub(r"\([^)]*\)", "", txt):
+        return False
+    parts, depth, cur = [], 0, ""
+    for ch in txt:
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+        if ch == "," and depth == 0:
+            parts.append(cur); cur = ""
+        else:
+            cur += ch
+    parts.append(cur)
+    hits = sum(1 for q in parts
+               if re.sub(r"\s*\([^)]*\)", "", q).strip().lower() in known)
+    return hits >= 2
+
 # Rows whose constant was measured in a co-solvent high enough to act on the
 # quantity being measured. Keyed on (source, compound), NOT on compound alone:
 # 6:2 FTCA and N-EtFOSA are also measured by Chen 2025 by equilibrium dialysis
@@ -277,7 +323,7 @@ R2_DROP_LABEL = "(R2 below the floor)"
 # Li's isomer resolution of a compound already present, not new compounds.
 # "PFPrS (linear)" is NOT spared by that: the sheet holds no PFPrS at all, so
 # it is genuinely new and goes.
-DEPTH_ONLY = {"Li 2021", "Starnes 2025"}
+DEPTH_ONLY = {"Li 2021", "Starnes 2025", "Jia 2022"}
 DEPTH_DROP_LABEL = "(compound new to the sheet)"
 
 # Isomer-resolved rows. Li 2021 is the only source that splits a compound into
@@ -522,6 +568,11 @@ def main():
     kept, dropped, renamed = [], collections.Counter(), collections.Counter()
     seen = collections.defaultdict(list)
     r2_failed, r2_seen, r2_missing = r2_floor_drops()
+    # Compound names that appear in this dataset WITHOUT a comma, i.e. as
+    # standalone measurements. names_several() tests a comma-bearing cell
+    # against these, so the judgement comes from the data rather than a regex.
+    single_names = {str(val(d, "PFAS")).strip().lower() for d in rows
+                    if val(d, "PFAS") and "," not in str(val(d, "PFAS"))}
     # Compounds the sheet holds from a source OUTSIDE the depth-only set.
     #
     # This must be built from rows that SURVIVE the other exclusions, not from
@@ -569,6 +620,9 @@ def main():
         if stripped != str(val(d, "PFAS") or "").strip():
             setval(d, "PFAS", stripped)
             renamed[str(val(d, "Source"))] += 1
+        if names_several(val(d, "PFAS"), single_names):
+            dropped[MULTI_DROP_LABEL] += 1
+            continue
         cmpd = str(val(d, "PFAS") or "").strip().lower()
         if cmpd in NON_PFAS:
             dropped[NON_PFAS_DROP_LABEL] += 1
@@ -641,7 +695,11 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == BRANCHED_DROP_LABEL:
+        if s == MULTI_DROP_LABEL:
+            why = ("the cell names several compounds, so its value is a "
+                   "midpoint describing none of them. The rows stay in the "
+                   "database")
+        elif s == BRANCHED_DROP_LABEL:
             why = ("a branched-isomer row. Every other source reports one "
                    "value for technical material, which is overwhelmingly "
                    "linear, so a branched constant does not pool with it. "

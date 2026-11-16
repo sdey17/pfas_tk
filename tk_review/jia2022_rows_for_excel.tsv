@@ -1,0 +1,5 @@
+PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
+8:2 Cl-PFESA	human	31	1	2.686	converted; n = 1 assumed by the reader, the paper reports none	Jia 2022				
+HFPO-DA	human	1156	1	1.114	converted; n = 1 assumed by the reader, the paper reports none	Jia 2022				
+HFPO-TA	human	84	1	2.253	converted; n = 1 assumed by the reader, the paper reports none	Jia 2022				
+PFEESA	human	874	1	1.236	converted; n = 1 assumed by the reader, the paper reports none	Jia 2022				
