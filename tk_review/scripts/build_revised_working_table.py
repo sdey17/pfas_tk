@@ -249,6 +249,42 @@ COSOLVENT_HOLDOUT = {
 }
 COSOLVENT_DROP_LABEL = "(50% DMSO co-solvent)"
 
+# Minimum R2 for a fitted single-site constant, by source. A constant is only
+# as good as the curve it was read off, and Starnes 2025 Table S4 publishes the
+# R2 for every fit, so the weak ones can be identified rather than guessed at.
+# Below 0.80 the concentration-response is not well described by the model that
+# produced the Kd, which makes the Kd a number without a curve behind it.
+#
+# Applied ONLY to sources that publish a per-row R2. A source that reports no
+# R2 is not silently admitted under this rule -- it is simply not covered by
+# it, and r2_floor_drops() reports how many rows each source had to check so a
+# source whose R2 went missing cannot pass unnoticed.
+R2_FLOOR = {"Starnes 2025": 0.80}
+R2_DROP_LABEL = "(R2 below the floor)"
+
+
+def r2_floor_drops():
+    """(source, compound-lowercased) pairs failing their source's R2 floor,
+    read from the database's source_table field, plus a per-source tally."""
+    import re
+    db = os.path.join(HERE, "..", "db", "protein_binding.csv")
+    drop, seen, no_r2 = set(), collections.Counter(), collections.Counter()
+    with open(db, encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            src = f"{(r.get('study') or '').replace('et al.', '').strip()} {r.get('year') or ''}".strip()
+            src = src.rstrip(',')
+            floor = R2_FLOOR.get(src)
+            if floor is None or not (r.get("ka") or r.get("kd")):
+                continue
+            seen[src] += 1
+            m = re.search(r"R2 ([\d.]+)", r.get("source_table") or "")
+            if not m:
+                no_r2[src] += 1
+                continue
+            if float(m.group(1)) < floor:
+                drop.add((src, (r.get("chemical") or "").strip().lower()))
+    return drop, seen, no_r2
+
 
 def holdout_reason(src):
     """The one recorded reason, read from scripts/excluded_sources.py."""
@@ -377,6 +413,13 @@ def main():
               f"({len(keep)} compounds) -- {spec[2]}")
     kept, dropped = [], collections.Counter()
     seen = collections.defaultdict(list)
+    r2_failed, r2_seen, r2_missing = r2_floor_drops()
+    for src_name, floor in sorted(R2_FLOOR.items()):
+        n = sum(1 for s_, _ in r2_failed if s_ == src_name)
+        print(f"  R2 floor {floor} on {src_name}: checked "
+              f"{r2_seen.get(src_name, 0)} db row(s), {n} below the floor"
+              + (f", {r2_missing[src_name]} with NO R2 recorded"
+                 if r2_missing.get(src_name) else ""))
     for d in rows:
         src = str(val(d, "Source"))
         sp = str(val(d, "Species") or "").strip()
@@ -389,6 +432,9 @@ def main():
             continue
         if (src, cmpd) in COSOLVENT_HOLDOUT:
             dropped[COSOLVENT_DROP_LABEL] += 1
+            continue
+        if (src, cmpd) in r2_failed:
+            dropped[R2_DROP_LABEL] += 1
             continue
         if src in DROP_HOLDOUTS:
             dropped[src] += 1
@@ -436,7 +482,11 @@ def main():
 
     for s, n in sorted(dropped.items()):
         bytemp = [v for v in BY_TEMPERATURE.values() if v[1] == s]
-        if s == COSOLVENT_DROP_LABEL:
+        if s == R2_DROP_LABEL:
+            why = ("the paper's own R2 for the single-site fit is below "
+                   + repr(R2_FLOOR) + ", so the Kd has no well-described "
+                   "curve behind it. The rows stay in the database")
+        elif s == COSOLVENT_DROP_LABEL:
             why = ("measured in 50% DMSO (Starnes 2025 Table S3), which acts "
                    "on the melting temperature DSF reads out. The rows stay "
                    "in the database; the same compounds measured in buffer by "
