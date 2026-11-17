@@ -32,8 +32,9 @@ WHAT IT IS GOOD FOR:
     energies and the Kd values of Yang et al. 2020, measured by in
     vitro fluorescence displacement.  That is the paper's whole
     validation, and r = 0.79 on a log-scale quantity is a weak anchor.
-    Yang et al. 2020 is NOT yet in this database and is the measurement
-    this paper rests on.
+    Yang et al. 2020 IS now in this database (19 human L-FABP rows by
+    1,8-ANS fluorescence displacement), so the anchor can be checked
+    directly rather than taken on the QSAR paper's word.
   * It resolves L-FABP's two sites as PORTAL and NON-PORTAL, which is
     the same two-site architecture Sheng et al. 2016 calls outer and
     inner.  The nomenclature differs between the two papers.
