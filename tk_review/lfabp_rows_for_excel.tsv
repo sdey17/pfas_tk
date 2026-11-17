@@ -24,9 +24,8 @@ PFHxA	human	538.07	1	2.117	n = 1 assumed	Jia 2022		10
 PFNA	human	6.62	1	4.027	n = 1 assumed	Jia 2022		10		
 PFOA	human	17.95	1	3.593	n = 1 assumed	Jia 2022		10		
 PFOS	human	16.45	1	3.631	n = 1 assumed	Jia 2022		10		
-PFHxS	human	1.7	1	4.617	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
-PFOA	human	0.099	1	5.852	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
-PFOS	human	0.18	1	5.592	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
+PFOA	human	0.099	1	5.852	n = 1 by single-site model	Khazaee 2021	0.33	0.03	5	
+PFOS	human	0.18	1	5.592	n = 1 by single-site model	Khazaee 2021	0.33	0.03	5	
 PFHxS	human	33.22	0.987	3.32	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
 PFHxS	human	48.78	1.02	3.168	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
 PFHxS	human	33.33	1.12	3.374	n fitted by binding isotherm	Sheng 2016	0.75	50	15	

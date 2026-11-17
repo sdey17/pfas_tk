@@ -90,6 +90,17 @@ NOT_ANALYTE = re.compile(
     r"^(DAUDA|1,8-ANS|ANS\b|NBD|oleic acid|palmitic acid|stearic acid|"
     r"lauric acid|myristic acid|arachidonic acid)", re.I)
 PAPER_SINGLE_SITE = {"Fan 2025", "Zhang 2013", "Khazaee 2021"}
+
+# Rows whose Kd lies outside the concentration series the paper actually
+# tested, keyed on (source, compound). A fitted constant beyond the top of the
+# ligand range is an extrapolation of the model, not a measurement.
+#
+#   Khazaee 2021 PFHxS, Kd 1.7 uM. Its protein was ~77 nM (derived in
+#   fix_khazaee2021_protein_conc.py) and its ligand series ran 3.8-384 nM, so
+#   1.7 uM is 22x the protein concentration and 4.4x above the highest ligand
+#   concentration used. Its PFOA (0.099 uM) and PFOS (0.18 uM) sit INSIDE that
+#   series and are kept.
+OUTSIDE_RANGE = {("Khazaee 2021", "pfhxs")}
 FITTED = {"Sheng 2016"}
 
 COLS = ["PFAS", "Species", "Kd (uM)", "n used",
@@ -152,6 +163,8 @@ def main():
             dropped["several compounds in one cell"] += 1; continue
         if "," in str(r.get("kd") or ""):
             dropped["composite Kd (multi-site in one cell)"] += 1; continue
+        if (src, ch.strip().lower()) in OUTSIDE_RANGE:
+            dropped["Kd outside the concentration series tested"] += 1; continue
 
         kd, ku = r.get("kd"), (r.get("kd_units") or "").strip()
         ka = r.get("ka")
