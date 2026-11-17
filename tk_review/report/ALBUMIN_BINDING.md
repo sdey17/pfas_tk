@@ -588,7 +588,8 @@ Muensterman 2026 is the newest and the largest — 83 compounds, the only
 dataset here reaching nCF 17 — and it lands exactly where the relationship
 predicts: the narrowest range in the table, 0.60 log units, and a peak at
 nCF 7. It is also the one measurement in this section that is not an
-equilibrium method at all. Retention on an albumin-coated column is
+equilibrium method at all, and §13c(viii) records why its numbers cannot be
+converted onto this sheet's axis. Retention on an albumin-coated column is
 calibrated against pharmaceuticals of known partition coefficient, so a
 compressed response is what the technique produces rather than something
 that happened to it.
@@ -1308,11 +1309,28 @@ internally redundant far more often than they are read that way.
 
 ---
 
-### 13c. Four conversion decisions, on record
+### 13c. Conversion and admission decisions, on record
 
 Each of these changes numbers in `albumin_logK_Kd_revised.xlsx`. Recorded here
 so the sheet can be audited against the papers without re-deriving the
 reasoning.
+
+**The sheet as it now stands: 288 rows, 20 sources, 63 compounds**, log K 0.478
+to 5.490 with a median of 3.373, 178 human and 110 bovine. Twenty-eight
+compounds rest on a single source and twenty-eight carry three or more. No row
+is negative — the only negative values the compilation ever held were Wu 2024's,
+and §13c(iv) explains their removal.
+
+Those counts are the reviewer's final hand-curated workbook, which differs from
+what `build_revised_working_table.py` currently emits (292 rows) in four places.
+Recorded so neither file looks like an error:
+
+| difference | rows | which is right |
+|---|---|---|
+| Jia 2022 (3 rows) | builder only | builder — the workbook was finalised before Jia was read |
+| Li 2021 PFPrS | workbook only | workbook, if PFPrS is wanted; the depth rule in §13c(vi) drops it as single-source |
+| Bischel 2010 PFNA (2 rows) | builder only | workbook — removed by hand |
+| `6:2 Cl-PFESA (F-53B)` vs `6:2 Cl-PFESA`, and PFHxS 3.146 vs 3.145 | both | cosmetic: same rows, shortened label and one rounding digit |
 
 #### (i) The nth root on double-logarithmic K_b — and the Scatchard exception
 
@@ -1524,11 +1542,55 @@ Concentrations". The database holds the FREE basis, and the two differ in the
 direction that confirms the reading — free-basis K is higher on all nine
 compounds, by 4% on PFHpA and 31% on PFDA, i.e. most where most is bound.
 
-#### (ii) Peng 2024 is held at 310 K
+#### (ii) Peng 2024 is out of the sheet entirely
+
+*This decision was reversed. Peng was first held at 310 K, on the reasoning
+below, which still stands for every other multi-temperature source. It is kept
+here because the reasoning is reusable and because the reversal rests on
+something the temperature choice could not fix.*
+
+**Why it is now out.** Peng's Table 2 reports a van't Hoff fit per compound, and
+every one of the six gives an enthalpy that cannot describe non-covalent
+binding:
+
+| PFAS | ΔH (kJ·mol⁻¹) | K_b swing over 12 K |
+|---|---|---|
+| HFPO-TA | **+412.1** | **624×** |
+| PFHpA | +325.0 | 165× |
+| PFNA | −278.2 | 79× |
+| DFSA | +167.5 | 14× |
+| PFOA | +146.7 | 10× |
+| PFO3DA | −106.6 | 5× |
+
+Protein–ligand ΔH runs roughly ±10 to 60 kJ·mol⁻¹. +412 is the energy of
+breaking covalent bonds. These values are not an aside: they follow directly
+from K_b swinging up to 624-fold across a 12 K span, so the series is not
+thermodynamically coherent **at any temperature**, and switching to the paper's
+own headline 298 K does not rescue it — HFPO-TA would read 4.919 where Jia
+2022's independent microscale thermophoresis gives 2.253, and PFHpA would get
+worse. In four of six compounds n also *rises* with temperature (HFPO-TA 1.49 →
+1.78 → 2.09), which a counted site cannot do and which confirms it is a fitted
+double-logarithmic exponent.
+
+Applying the nth root was tested as an alternative explanation and rejected: it
+fixes HFPO-TA (7.861 → 2.978) but worsens PFHpA, PFNA and PFOA, with a median
+offset against the rest of the sheet of 1.02 unrooted against 1.20 rooted. So
+§13c(i) stands unchanged.
+
+**What the removal cost.** HFPO-TA had been the sheet's largest value at 7.861;
+the maximum is now 5.490. DFSA and PFO3DA were Peng-only and leave the
+compilation. And the drop **chained**: Jia 2022's HFPO-TA had been admitted
+because Peng carried that compound, so once Peng went, the depth rule in
+§13c(vi) dropped Jia's row as a now-single-source compound. The measurement that
+exposed Peng's problem was discarded with it, and HFPO-TA now has no value at
+all. That is a real cost of a rule applied consistently, and it is recorded
+rather than excepted.
+
+**The original reasoning, which still governs Chen 2020 and Qin 2010:**
 
 Peng measured six PFAS at 298, 304 and 310 K. The review is not about
-temperature dependence, so one row per compound reaches the sheet and the other
-twelve stay in `db/protein_binding.csv`.
+temperature dependence, so one row per compound reached the sheet and the other
+twelve stayed in `db/protein_binding.csv`.
 
 **310 K, because the compilation is a 37 °C compilation.** Of the 171 sheet rows
 whose source states a temperature, **153 (89%) are at 37 °C** — Fischer 2024,
@@ -1589,7 +1651,7 @@ Why that allowance did not hold for this sheet:
    a record, and this file is a worksheet. Nothing in it stops a reader from
    taking a mean down the log K column.
 2. **It was the sheet's entire negative-log-K population.** All four negative
-   values were Wu's, out of 282 rows. Negative log K has a physical reading —
+   values were Wu's, out of the 282 rows the sheet then held. Negative log K has a physical reading —
    K < 1 L_water/kg protein means albumin takes the compound up *less well
    than water does* — and no other source in the compilation produces one.
    Mechanically, log K < 0 ⟺ K_d > 10^4.1774 × n ≈ 15,050 n µM, so these are
@@ -1637,11 +1699,164 @@ that survives the data should be right.
 
 To re-admit the source, remove it from `DROP_HOLDOUTS`; nothing else changes.
 
+#### (v) Gao 2025 is taken at 150 mM NaCl, not at no added salt
+
+Gao measured each compound at 20 mM sodium phosphate pH 7 plus 0, 10, 30, 80,
+150, 300 or 500 mM NaCl. The sheet takes one row per compound, and the
+selection was first made by lowest ligand:protein ratio, which happened to pick
+the **no-added-salt** condition.
+
+That was the wrong default for this source, and wrong in a direction that
+matters. Gao's own finding is that salt *suppresses* PFAS–albumin binding, so
+the saltless row is simultaneously the one that most overstates affinity and the
+one least like plasma. `gao_salt_pick()` now targets **150 mM added NaCl**,
+which Gao marks physiological, and falls back to the highest level measured
+below it; 300 and 500 mM are excluded as past physiological. Only four compounds
+were run at 150 mM (PFBA, PFBS, PFHpA, PFOS); the other six fall back to 80 mM.
+Ten values move **down by 0.18 to 0.34 log**.
+
+One defect is worth recording because of its shape rather than its size: keying
+the target on the database spelling alone left HFPO-DA on the saltless row while
+the other nine moved, because the database says `HFPO-DA (GenX)` and the sheet
+says `HFPO-DA`. A miss like that reads as data, not as a bug.
+
+#### (vi) Three sources are admitted for depth, not breadth
+
+Li 2021, Starnes 2025 and Jia 2022 enter only for compounds the sheet already
+holds from another source. The purpose is that these studies strengthen
+comparisons that exist rather than adding single-source compounds nothing can
+check. `DEPTH_ONLY` in `build_revised_working_table.py` is the switch; emptying
+it returns the dropped rows.
+
+The cost is explicit and, for Starnes 2025, large. Its value was breadth — 68
+compounds across 20 chemical classes, including ether acids and fluorotelomer
+carboxylates almost nothing else measures. Restricted to depth it contributes 19
+rows that mostly duplicate compounds already present, at about 1.8 log lower.
+Seventeen compounds for which it holds the only albumin data in existence are
+out. That is a defensible trade for a cross-study comparison table and a poor
+one for a survey; the rule is one line because it should be easy to reverse.
+
+Two mechanics of the rule are worth stating, because both were got wrong first:
+
+- **"Already held" must mean held in the sheet, not present in the input.**
+  Built from raw input, the test counted PFPrS as established because Wu 2024
+  carries it — and Wu 2024 is a named holdout that never reaches the sheet. The
+  established-compound count fell from 74 to 66 once rows that are themselves
+  dropped were excluded.
+- **An isomer suffix is stripped before the test.** `PFOS (linear)` is PFOS,
+  which the sheet holds from fourteen sources, so it is an isomer resolution of
+  an existing compound rather than a new one. The branched row is dropped
+  outright: every other source reports one value for technical material, which
+  is 98.5–99.99 % linear, so a branched constant does not pool with it.
+
+#### (vii) Four quality gates, and what each one caught
+
+These run on every source, not only the new ones.
+
+1. **R² floor.** Starnes 2025 publishes the R² of each single-site fit, so the
+   weak fits can be named rather than guessed at. Seven rows fell below 0.80 —
+   as low as 0.55 — and are out. The cut removed two of the three negative log K
+   values, which is a consistency check passing rather than luck: the weakest
+   binders are where a single-site curve fits worst. It also removed what had
+   been that source's strongest binder, perfluoro-3,6,9-trioxatridecanoic acid
+   at R² 0.62, so it is not simply trimming the bottom of the range.
+2. **Co-solvent.** Three Starnes 2025 rows were prepared in 50 % DMSO, which
+   both destabilises albumin and competes for its hydrophobic sites — acting on
+   the very melting temperature DSF reads out. The same objection removed Wu
+   2024 over 86 % ethanol. The holdout is keyed on *(source, compound)*: 6:2
+   FTCA and N-EtFOSA are also measured in buffer by Chen 2025 at log K 3.62 and
+   3.06, and a compound-wide rule would have deleted those sound rows.
+   **Coverage limit, stated plainly:** the extracted Table S3 holds 41 CAS
+   numbers against 68 chemicals tested and covers only 14 of the admitted rows,
+   so three of *fourteen* rows with a recorded solvent were in DMSO and the rest
+   are unrecorded.
+3. **Non-PFAS.** Straight-chain fatty acids run as positive controls or
+   competitors are dropped at the compound level — octanoic, decanoic,
+   hexadecanoic and butyric acid. This reached beyond the source that prompted
+   it, taking five Chen 2009 rows that had been in the sheet throughout. Chen's
+   octanoic acid sat at log K 4.67–5.22, above every PFAS, which is exactly the
+   row that distorts a chain-length fit.
+4. **Several compounds in one cell.** A cell naming several compounds is a
+   summary whose value describes none of them. The test is data-driven, not a
+   comma search: split outside brackets and count how many parts appear
+   elsewhere as standalone compounds. A bare comma test first flagged ten
+   perfectly good Starnes 2025 rows whose commas are IUPAC locants —
+   `2,2,3,3,4,4-hexafluorobutyric acid` is one compound.
+
+#### (viii) Four sources read in full and not used
+
+Recorded because the reading is the evidence, and because each failed for a
+different reason.
+
+**Muensterman 2026** — 82 immobilised-HSA rows over 83 compounds by biomimetic
+chromatography. Its SI *does* state a basis ("dimensionless partition
+coefficients"), but no phase ratio and no immobilised-albumin mass is reported
+anywhere, so the albumin quantity is absorbed into the calibration constants of
+its own equations and cannot be divided back out. Other volume-basis sources
+converted because a density bridged L_protein to kg_protein; here the
+denominator is not a volume of albumin but albumin-on-silica of unstated
+composition. The authors are explicit that "absolute binding values may not
+always be confirmed … the elution order is highly reproducible". Its published
+Correction (doi 10.1021/acs.est.6c07668) changes eq 4's intercept from 42 to
+0.42 and touches the phospholipid chain only; recomputation confirms the data
+were produced with 0.42, so no value changes.
+
+**Alesio 2024** — BSA by DSF, and the cleanest exclusion in the review because
+the control is internal. Every constant is reported **at 61 °C**, BSA's melting
+temperature (the abstract says so; Table 2's caption reads "Association
+constants at 61 °C"). Alesio 2022 is the same lab, same seven PFAS, same
+protein, by equilibrium dialysis at 37 °C, and those rows are in the sheet. So
+the comparison isolates temperature and method with everything else fixed, and
+every compound falls: PFDA 4.967 → 1.696 (a factor of 1860), PFOS 4.433 →
+2.614, PFOA 3.754 → 2.565, down to HFPO-DA 2.990 → 2.474. The chain-length
+ordering breaks too — at 61 °C PFNA exceeds PFDA, reversing the C9 < C10 trend
+the same lab's 37 °C data gets right. Not an offset that calibrates out.
+
+**Chen 2009's five displacement rows** — competitive probe-displacement
+constants against dansylamide (Sudlow site I) and dansyl-L-proline (site II).
+A displacement constant is site-specific and carries the probe's own affinity,
+none of the five reports n, and the paper's own direct measurement contradicts
+them: Trp-214 quenching gives PFOS K_d 45.45 µM at **n = 14**, i.e. log K 3.666,
+against 5.058 by site II displacement — 1.4 log apart inside one paper, and a
+row forced to n = 1 when the direct method found fourteen sites is wrong twice.
+
+**Jia 2022's six cited values** — a near-miss worth recording. Table 1 prints
+eleven HSA dissociation constants and only five are Jia's; six carry a
+superscript 19, and reference 19 is Gao 2019, a primary this compilation already
+holds. Rebuilt through the bridge, the cited PFHxA 195, PFOA 115, PFNA 73,
+PFOS 38 and 6:2 Cl-PFESA 67 µM reproduce our Gao 2019 rows to 0.000, and cited
+PFDoA 103 matches the row carried as PFDoDA. Ingesting them would have
+double-counted Gao 2019 under Jia's name. In that layout the citation marker
+runs into the digits — 38 reads as "3819" — which is how the error would have
+been made. Jia's own five are kept subject to §13c(vi), and its n = 1 is the
+reader's: unlike Li 2021 and Starnes 2025, which each name a single-site model
+in their own text, Jia states only that "the K_d was finally fitted by MO
+Affinity Analysis software".
+
 ---
 
 ### 14. What is still open
 
-1. **Mouse albumin has never been measured.** The largest single gap.
+1. **Mouse albumin is barely measured, and the one dataset is not in this
+   sheet.** This was listed here as "never measured"; that is no longer right.
+   Ryu et al., *Toxics* 2024;12(4):253 (doi 10.3390/toxics12040253) ran 14 PFAS,
+   C4–C12, against human, rat **and mouse** albumin by presaturation equilibrium
+   dialysis. It reports fraction unbound rather than a K_d, so it does not reach
+   this sheet's axis without an albumin concentration to convert through, and
+   the species must not be pooled — but the gap is now a conversion problem
+   rather than an absence, and it is the first place to look.
+1. **HFPO-TA now has no value at all.** It had two: Peng 2024 at 7.861 and Jia
+   2022 at 2.253. Peng went for the thermodynamics in §13c(ii), and Jia's went
+   with it under the depth rule, because Peng had been its only companion. Of
+   the two, Jia's is the one with no known defect. Re-admitting that single row
+   is a one-line exception and is probably the right call.
+1. **Peng 2024 is a caution about the whole double-logarithmic family.** Its
+   failure was not detectable from any single row: every value looked
+   plausible, and only the van't Hoff fits across its own three temperatures
+   exposed enthalpies of ±100 to 412 kJ·mol⁻¹. Sources reporting one
+   temperature cannot be checked this way at all, and the sheet holds several
+   whose K_b comes from the same plot type. A ΔH column, where papers report
+   one, would be the cheapest systematic screen available.
 1. **`QUENCH_WORDS` catches `"scatchard"`**, so Han 2003's micro-SEC rows are
    labelled as resting on a quenching exponent when their n = 7.8 is a counted
    site from a separation assay. The numbers are unaffected — §13c(i) exempts
