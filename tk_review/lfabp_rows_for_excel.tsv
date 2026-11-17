@@ -1,0 +1,92 @@
+PFAS	Species	Kd (uM)	n used	log K (L water / kg protein)	Route	Source	PFAS conc (uM)	Protein conc (uM)	ligand:protein ratio	f_bound (%)
+6:2 Cl-PFESA	human	102	1	2.839	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFBA	human	879	1	1.903	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFBS	human	436	1	2.208	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFDA	human	77	1	2.961	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFDoDA	human	95	1	2.87	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFHpA	human	358	1	2.294	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFHxA	human	443	1	2.201	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFHxS	human	210	1	2.525	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFNA	human	90	1	2.893	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFOA	human	197	1	2.553	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFOS	human	81	1	2.939	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFPeA	human	685	1	2.012	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFTrDA	human	317	1	2.346	n = 1 assumed	Gao 2019	0.002	0.006	2	
+PFUnDA	human	54	1	3.115	n = 1 assumed	Gao 2019	0.002	0.006	2	
+6:2 Cl-PFESA	human	12.47	1	3.752	n = 1 assumed	Jia 2022		10		
+8:2 Cl-PFESA	human	5.39	1	4.116	n = 1 assumed	Jia 2022		10		
+HFPO-DA	human	267.78	1	2.42	n = 1 assumed	Jia 2022		10		
+HFPO-TA	human	19.94	1	3.548	n = 1 assumed	Jia 2022		10		
+HFPO-TeA	human	1.22	1	4.761	n = 1 assumed	Jia 2022		10		
+PFDoA	human	3.45	1	4.31	n = 1 assumed	Jia 2022		10		
+PFEESA	human	3138.2	1	1.351	n = 1 assumed	Jia 2022		10		
+PFHxA	human	538.07	1	2.117	n = 1 assumed	Jia 2022		10		
+PFNA	human	6.62	1	4.027	n = 1 assumed	Jia 2022		10		
+PFOA	human	17.95	1	3.593	n = 1 assumed	Jia 2022		10		
+PFOS	human	16.45	1	3.631	n = 1 assumed	Jia 2022		10		
+PFHxS	human	1.7	1	4.617	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
+PFOA	human	0.099	1	5.852	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
+PFOS	human	0.18	1	5.592	n = 1 by single-site model	Khazaee 2021	0.33	1	5	
+PFHxS	human	33.22	0.987	3.32	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
+PFHxS	human	48.78	1.02	3.168	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
+PFHxS	human	33.33	1.12	3.374	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
+PFHxS	human	26.95	0.925	3.383	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
+PFHxS	human	61.35	0.421	2.684	n fitted by binding isotherm	Sheng 2016	0.75	50	15	
+PFNA	human	1.32	1.01	4.731	n fitted by binding isotherm	Sheng 2016		0.25		
+PFNA	human	2.2	1.19	4.581	n fitted by binding isotherm	Sheng 2016		0.25		
+PFNA	human	1.84	1.07	4.612	n fitted by binding isotherm	Sheng 2016		0.25		
+PFNA	human	3.14	1.2	4.43	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFNA	human	3.33	1.08	4.358	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFNA	human	9.26	1.09	3.918	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFNA	human	113.12	1	2.794	n = 1 assumed	Sheng 2016	1	25	40	
+PFNA	human	6.45	0.562	3.788	n fitted by binding isotherm	Sheng 2016	0.65	100	6.5	
+PFOA	human	2.36	1.01	4.479	n fitted by binding isotherm	Sheng 2016		0.25		
+PFOA	human	3.8	1.19	4.343	n fitted by binding isotherm	Sheng 2016		0.25		
+PFOA	human	2.62	1.07	4.459	n fitted by binding isotherm	Sheng 2016		0.25		
+PFOA	human	6.49	0.999	4.035	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFOA	human	8.26	1.08	3.964	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFOA	human	8.93	0.984	3.89	n fitted by binding isotherm	Sheng 2016	1.3	100	13	
+PFOA	human	284.09	1	2.394	n = 1 assumed	Sheng 2016	2	50	40	
+PFOA	human	8.4	0.554	3.667	n fitted by binding isotherm	Sheng 2016	0.65	100	6.5	
+1H,1H,5H-perfluoropentanol	human	916.06	1	1.886	n = 1 assumed	Yang 2020	300	1		
+2H,2H,3H,3H-perfluorooctanoic acid	human	158.03	1	2.649	n = 1 assumed	Yang 2020	300	1		
+3H-perfluoro-4-hydroxy-3-penten-2-one	human	135.24	1	2.716	n = 1 assumed	Yang 2020	300	1		
+4H-perfluorobutanoic acid	human	351.53	1	2.302	n = 1 assumed	Yang 2020	300	1		
+N-ethylperfluorooctanesulfonamide (NEtFOSA)	human	16.58	1	3.628	n = 1 assumed	Yang 2020	300	1		
+PFBS	human	116.4	1	2.782	n = 1 assumed	Yang 2020	300	1		
+PFBS	human	125.25	1	2.75	n = 1 assumed	Yang 2020	300	1		
+PFHxA	human	140.76	1	2.699	n = 1 assumed	Yang 2020	300	1		
+PFHxS	human	11.19	1	3.799	n = 1 assumed	Yang 2020	300	1		
+PFNA	human	4.3	1	4.214	n = 1 assumed	Yang 2020	300	1		
+PFOA	human	18.74	1	3.575	n = 1 assumed	Yang 2020	300	1		
+PFOS	human	8.1	1	3.939	n = 1 assumed	Yang 2020	300	1		
+PFOSA (FOSA, perfluorooctanesulfonamide)	human	5.87	1	4.079	n = 1 assumed	Yang 2020	300	1		
+difluoromethyl 1H,1H-perfluoropropyl ether	human	715.15	1	1.993	n = 1 assumed	Yang 2020	300	1		
+perfluoro(4-methoxybutanoic) acid	human	814.93	1	1.936	n = 1 assumed	Yang 2020	300	1		
+perfluoro-3,6,9-trioxatridecanoic acid	human	8.22	1	3.933	n = 1 assumed	Yang 2020	300	1		
+perfluoro-3,6-dioxaheptanoic acid	human	252.31	1	2.446	n = 1 assumed	Yang 2020	300	1		
+PFBS	human	1034	1	1.833	n = 1 by single-site model	Zhang 2013		400		
+PFDA	human	12.9	1	3.737	n = 1 by single-site model	Zhang 2013		400		
+PFDoDA	human	12.3	1	3.758	n = 1 by single-site model	Zhang 2013		400		
+PFHpA	human	336	1	2.321	n = 1 by single-site model	Zhang 2013		400		
+PFHxDA	human	115.4	1	2.785	n = 1 by single-site model	Zhang 2013		400		
+PFHxS	human	85.7	1	2.914	n = 1 by single-site model	Zhang 2013		400		
+PFNA	human	16.2	1	3.638	n = 1 by single-site model	Zhang 2013		400		
+PFOA	human	50.4	1	3.145	n = 1 by single-site model	Zhang 2013		400		
+PFOS	human	18.5	1	3.58	n = 1 by single-site model	Zhang 2013		400		
+PFOcDA	human	62.2	1	3.054	n = 1 by single-site model	Zhang 2013		400		
+PFTeDA	human	60.5	1	3.066	n = 1 by single-site model	Zhang 2013		400		
+PFUnDA	human	10.6	1	3.822	n = 1 by single-site model	Zhang 2013		400		
+HFPO-DA (GenX)	rat	108.23	1	2.811	n = 1 by single-site model	Fan 2025	1	1		
+PFBS	rat	110.82	1	2.801	n = 1 by single-site model	Fan 2025	1	1		
+PFDA	rat	5.36	1	4.116	n = 1 by single-site model	Fan 2025	1	1		
+PFDoDA	rat	13.46	1	3.716	n = 1 by single-site model	Fan 2025	1	1		
+PFHpA	rat	44.54	1	3.197	n = 1 by single-site model	Fan 2025	1	1		
+PFHxA	rat	132.16	1	2.724	n = 1 by single-site model	Fan 2025	1	1		
+PFHxS	rat	13.02	1	3.731	n = 1 by single-site model	Fan 2025	1	1		
+PFNA	rat	6.55	1	4.029	n = 1 by single-site model	Fan 2025	1	1		
+PFOA	rat	12.3	1	3.756	n = 1 by single-site model	Fan 2025	1	1		
+PFOS	rat	20.73	1	3.529	n = 1 by single-site model	Fan 2025	1	1		
+PFPeA	rat	27.57	1	3.405	n = 1 by single-site model	Fan 2025	1	1		
+PFTeDA	rat	6.32	1	4.045	n = 1 by single-site model	Fan 2025	1	1		
+PFUnDA	rat	6.95	1	4.003	n = 1 by single-site model	Fan 2025	1	1		
