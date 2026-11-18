@@ -316,6 +316,9 @@ DISPLAY_NAME = {
     "N-ethyl-N-(2-hydroxyethyl)perfluorooctanesulfonamide (NEt-FOSE)":
         "N-EtFOSE",
     "PFOSA (FOSA, perfluorooctanesulfonamide)": "PFOSA",
+    # Jia 2022 writes perfluorododecanoic acid as PFDoA; Zhang 2013, Fan 2025
+    # and the albumin sheet all write PFDoDA. One compound, two names.
+    "PFDoA": "PFDoDA",
 }
 
 

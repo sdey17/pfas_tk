@@ -1,4 +1,4 @@
-# Serum albumin–water partition coefficients for per- and polyfluoroalkyl substances: a harmonised compilation of 288 measurements from 20 primary sources
+# Protein–water partition coefficients for per- and polyfluoroalkyl substances: harmonised compilations for serum albumin (288 measurements, 20 sources) and liver fatty acid-binding protein (87 measurements, 9 sources)
 
 ## Abstract
 
@@ -26,8 +26,22 @@ full, including seven sources read in their entirety and excluded, because in a
 compilation of this kind the exclusions carry as much information as the
 inclusions.
 
-**Keywords:** PFAS; serum albumin; partition coefficient; protein binding;
-toxicokinetics; data harmonisation
+We then applied the same
+treatment to liver fatty acid-binding protein (L-FABP), the standing candidate
+explanation for hepatic PFAS accumulation, compiling 87 coefficients for 32
+PFAS from nine sources on a per-species bridge constant of 4.8475 for human
+L-FABP against albumin's 4.1774. Across the 21 compounds measured against both
+proteins the median difference is −0.12 log units, so L-FABP has no intrinsic
+affinity advantage over the plasma carrier per unit protein mass — consistent
+with the one in vivo test available, in which deleting L-FABP changes the mouse
+liver partition coefficient by under 20% for 15 of 19 PFAS. Part of the
+remaining L-FABP dispersion is structural: the displacement assays use probes
+that occupy different sites of the two-site cavity, and sources using a
+secondary-site probe and a primary-site probe are not estimating the same
+quantity.
+
+**Keywords:** PFAS; serum albumin; liver fatty acid-binding protein;
+partition coefficient; protein binding; toxicokinetics; data harmonisation
 
 ---
 
@@ -66,6 +80,18 @@ through an explicit identity, verified each against its primary source, and
 recorded every decision that changes a number. The compilation is intended for
 use in mass-balance and toxicokinetic models, and its principal contribution is
 not the central values but the auditable provenance attached to each.
+
+Plasma protein is only half of the problem. Several PFAS accumulate
+preferentially in liver, and the standing explanation for that is binding to
+liver fatty acid-binding protein (L-FABP), the most abundant cytosolic protein
+of the hepatocyte. The L-FABP literature has the same disorder as the albumin
+literature and a quarter as many measurements, and it carries one additional
+difficulty: the protein has two binding sites, and the displacement assays that
+supply most of its constants use probes that occupy them differently. Section 5
+applies the treatment of sections 2 to 4 to that protein, on the same basis, so
+that the two can be compared directly — which turns out to matter, because the
+comparison is the test of whether L-FABP binding can explain hepatic
+accumulation at all.
 
 ---
 
@@ -456,7 +482,264 @@ single reversible switch for that reason.
 
 ---
 
-## 5. Limitations
+## 5. Liver fatty acid-binding protein
+
+### 5.1 A second protein, and a different bridge
+
+Liver fatty acid-binding protein (L-FABP, *FABP1*) is the most abundant
+cytosolic protein of the hepatocyte, 2–5% of cytosolic protein and reaching
+0.1–0.4 mM. It binds long-chain fatty acids and their oxidation products, and
+because several PFAS are structural analogues of those ligands it has been the
+standing candidate explanation for the preferential accumulation of long-chain
+PFAS in liver. The same harmonisation problem applies to it as to albumin, and
+with fewer measurements to work from.
+
+The conversion identity of §2.2 is unchanged, but its leading constant is not.
+That constant is log₁₀(10⁹/*M*) for a protein of molar mass *M*, and L-FABP is
+about one fifth the mass of albumin, so it must be recomputed per species:
+
+| Protein | *M* (Da) | UniProt | Constant |
+|---|---|---|---|
+| human L-FABP | 14,208 | P07148 | 4.8475 |
+| rat L-FABP | 14,273 | P02692 | 4.8455 |
+| mouse L-FABP | 14,246 | P12710 | 4.8463 |
+| human serum albumin, for contrast | 66,463 | P02768 | 4.1774 |
+
+Passing an L-FABP dissociation constant through albumin's 4.1774 understates
+log *K* by 0.67 log units, a factor of 4.7. The three L-FABP constants differ
+from one another by 0.002 log and are interchangeable in practice; the
+distinction that matters is the one from albumin.
+
+### 5.2 Composition
+
+The compilation holds **87 partition coefficients for 32 PFAS from nine primary
+experimental sources**, spanning log *K* 1.35 to 5.85 with a median of 3.53 and
+an interquartile range of 2.70–4.03. Sixty-eight values are human, from seven
+sources; nineteen are rat, from two.
+
+**Table 6.** Composition by source.
+
+| Source | *n* | Species | Compounds | Median log *K* | Range | Method |
+|---|---|---|---|---|---|---|
+| Yang 2020 | 17 | human | 16 | 2.75 | 1.89–4.21 | probe displacement |
+| Gao 2019 | 14 | human | 14 | 2.54 | 1.90–3.12 | equilibrium dialysis |
+| Fan 2025 | 13 | rat | 13 | 3.72 | 2.72–4.12 | probe displacement |
+| Zhang 2013 | 12 | human | 12 | 3.11 | 1.83–3.82 | probe displacement |
+| Jia 2022 | 11 | human | 11 | 3.63 | 1.35–4.76 | microscale thermophoresis |
+| Woodcroft 2010 | 6 | rat | 5 | 3.39 | 2.06–4.35 | probe displacement / ITC |
+| Sheng 2018 | 6 | human | 6 | 4.18 | 3.66–4.32 | probe displacement |
+| Sheng 2016 | 5 | human | 3 | 4.43 | 3.32–4.73 | probe displacement / ITC |
+| Khazaee 2021 | 3 | human | 3 | 5.59 | 4.62–5.85 | equilibrium dialysis |
+
+**Table 7.** Basis of the stoichiometry used in conversion.
+
+| Route | *n* |
+|---|---|
+| *n* = 1 assumed (paper reports no stoichiometry) | 42 |
+| *n* = 1 by the paper's own single-site model | 39 |
+| ITC, one set of sites | 3 |
+| Displacement, high-affinity site of a two-site fit | 2 |
+| ITC, sequential, high-affinity site of a three-site fit | 1 |
+
+Only four values rest on a stoichiometry the authors counted; the remaining 83
+rest on *n* = 1, either assumed by us or fixed by the paper's own model. The
+L-FABP literature is thus more dependent on the single-site assumption than the
+albumin literature is, where 11 rows carried a fitted *n*.
+
+Assay conditions are better reported here than for albumin: a protein
+concentration is recoverable for all 87 rows, and a ligand concentration and
+ligand-to-protein ratio for 64. Those ratios span 2 to 4,000 with a median of
+300 — that is, most of this literature is measured at a large molar excess of
+ligand over protein, the opposite of the physiological regime.
+
+### 5.3 Per unit protein mass, L-FABP and albumin are not distinguishable
+
+Twenty-one compounds have been measured against both proteins. The median
+difference between them, taken per compound on the common log *K* basis, is
+**−0.12 log units** — L-FABP marginally the weaker, by an amount far inside the
+dispersion of either compilation.
+
+This is the most consequential number in this section and it is easy to
+misread, so it is worth stating what it does and does not say. It does not say
+the two proteins are interchangeable in the body: albumin is present in plasma
+at roughly 600 µM and L-FABP in hepatocyte cytosol at 100–400 µM, in different
+compartments, so equal affinity per kilogram of protein still produces very
+different capacities in context. What it does say is that there is no intrinsic
+affinity advantage of L-FABP for PFAS over albumin. Any explanation of
+preferential hepatic accumulation that rests on L-FABP binding PFAS
+*more tightly* than the plasma carrier does not survive this comparison, and
+§5.8 shows the in vivo evidence pointing the same way.
+
+### 5.4 Dispersion, and a structural cause for part of it
+
+Thirteen compounds carry three or more values. The median within-compound range
+is 1.39 log units and the maximum is 3.30, for perfluorooctanoic acid across
+nine sources (log *K* 2.55 to 5.85). The albumin compilation's equivalent
+figures were 2.38 and 4.22 across 32 compounds, so L-FABP is better behaved,
+but not by much and on a quarter as many compounds.
+
+**Table 8.** Distribution by method family.
+
+| Method | *n* | Median log *K* | Range |
+|---|---|---|---|
+| Fluorescent-probe displacement | 55 | 3.58 | 1.83–4.73 |
+| Equilibrium dialysis | 17 | 2.84 | 1.90–5.85 |
+| Microscale thermophoresis | 11 | 3.63 | 1.35–4.76 |
+| Isothermal titration calorimetry | 4 | 4.19 | 3.32–4.43 |
+
+Method matters, as it did for albumin, but here a second and more specific
+axis is visible. The displacement assays do not all use the same probe, and
+the probes do not all occupy the same site.
+
+**Table 9.** Displacement rows by fluorescent probe.
+
+| Probe | *n* | Median log *K* | Sources |
+|---|---|---|---|
+| 1,8-ANS | 38 | 3.69 | Sheng 2016, Sheng 2018, Yang 2020, Fan 2025 |
+| NBD-lauric acid | 12 | 3.11 | Zhang 2013 |
+| ANS | 5 | 3.06 | Woodcroft 2010 |
+
+L-FABP has two binding sites, a completely internalised primary site and a
+secondary site at the entrance to the cavity, and the probes report on them
+differently. Luebker et al. (2002) state that their probe "is believed to bind
+exclusively to the secondary binding site on L-FABP", and conclude that to
+reach the primary site "a probe known to bind both sites, i.e. radiolabeled
+oleic acid, would need to be used". Woodcroft et al. (2010) cite that
+limitation explicitly as their reason for changing probe, and fit ANS to two
+sites with 2:1 stoichiometry by Scatchard analysis. Zhang et al. (2013) use
+NBD-lauric acid and state that it binds the primary site, which oleic and
+palmitic acid displace.
+
+Part of the spread in Table 9 is therefore structural rather than random: a
+constant from a secondary-site probe and a constant from a primary-site probe
+are not estimates of the same quantity. This is a different explanation from
+the one that accounted for most of the albumin dispersion in §3.3, where the
+separation was between an equilibrium measurement and a thermal-denaturation
+one.
+
+A floor on how much of the remaining spread is irreducible comes from one
+laboratory measuring the same thing twice. Sheng 2016 and Sheng 2018 both
+determined PFOA against human L-FABP by 1,8-ANS displacement, two years apart,
+and obtained *K*_d of 2.36 and 8.03 µM — a factor of 3.4, tracking a factor of
+2.1 in the probe's own constant (3.56 against 7.47 µM). Both are carried.
+
+### 5.5 Chain length
+
+**Table 10.** Perfluoroalkyl carboxylate homologous series, human values.
+
+| Perfluorinated carbons | Compound | *n* | Median log *K* |
+|---|---|---|---|
+| 3 | PFBA | 1 | 1.90 |
+| 4 | PFPeA | 1 | 2.01 |
+| 5 | PFHxA | 3 | 2.20 |
+| 6 | PFHpA | 2 | 2.31 |
+| 7 | PFOA | 8 | 3.77 |
+| 8 | PFNA | 6 | 4.12 |
+| 9 | PFDA | 2 | 3.35 |
+| 10 | PFUnDA | 2 | 3.47 |
+| 11 | PFDoDA | 3 | 3.76 |
+| 12 | PFTrDA | 1 | 2.35 |
+| 13 | PFTeDA | 1 | 3.07 |
+| 15 | PFHxDA | 1 | 2.79 |
+| 17 | PFOcDA | 1 | 3.05 |
+
+Affinity rises by **0.36 log units per perfluorinated carbon from C3 to C9**
+and falls thereafter, placing the maximum at perfluorononanoic acid. This is
+the same shape, and the same maximum, as the albumin series of §3.4, which rose
+at 0.52 log units per carbon. Zhang et al. attribute the decline beyond C11 to
+the binding cavity: the fluorocarbon chain is rigid, and beyond a length of
+about 13 Å it must bend to be accommodated, which costs more energy than a
+flexible hydrocarbon chain would. That explanation is specific to a small,
+enclosed cavity and does not transfer to albumin, where the same inflection
+occurs.
+
+### 5.6 Species
+
+The rat arm comes from two laboratories (Fan 2025, Woodcroft 2010) and the
+human arm from five that measured by probe displacement, so the comparison can
+be made with method held fixed. Restricting both sides to displacement:
+
+| Comparison | Shared compounds | Median rat − human |
+|---|---|---|
+| rat vs Zhang 2013 | 10 | +0.50 |
+| rat vs Sheng 2016 | 2 | −0.71 |
+| rat vs Sheng 2018 | 3 | −0.62 |
+| rat vs Yang 2020 | 6 | −0.10 |
+
+The four human sources disagree among themselves by 1.21 log units — PFOA alone
+is 2.36 µM in Sheng 2016 and 50.4 µM in Zhang 2013, a factor of 21 between two
+human laboratories — and that spread is wider than any rat–human gap and
+contains both signs. **The sign of the apparent species difference is set by the
+choice of human comparator.** Pooling across all sources gives +0.40 log over
+13 shared compounds, falling to −0.01 on the five compounds carrying four or
+more independent human values, which is the signature of thin coverage rather
+than biology.
+
+Two published claims sit in opposition on this point and neither survives
+cleanly. Modaresi et al. (2025) state that PFAS bind more strongly to human than
+to rodent FABP; that holds against exactly one human source, on two compounds,
+and reverses against the other three and against the pooled comparison. Fan et
+al. (2025) state that their rat affinities are comparable to human values by the
+same method, citing Zhang 2013; the agreement is near-exact against Yang 2020,
+which they do not cite for it, while against Zhang 2013 the difference is the
+largest of the four.
+
+As with albumin, the practical consequence is that a rat-to-human extrapolation
+factor for L-FABP binding cannot be estimated from this literature, because the
+quantity it would correct for is smaller than the disagreement between
+laboratories measuring one species.
+
+### 5.7 Sources read in full and excluded
+
+**Table 11.** Sources and rows examined and excluded, with reasons.
+
+| Source or class | Rows | Reason |
+|---|---|---|
+| Sheng 2016 engineered variants | 22 | S39G, M74G, N111D and R122G are site-directed point mutants, three of them built to break binding. Pooling them placed PFOA in the sheet eight times across a 120-fold range. Wild type is retained. |
+| Han 2021 | 13 | Its L-FABP constants are quoted from other papers, not measured; its own measurement is a thermal-shift Δ*T*_m. |
+| Probes and natural ligands | 8 | DAUDA, ANS, 1,8-ANS, NBD-lauric acid, oleic and palmitic acid. Palmitic acid would otherwise have entered at log *K* 5.02, inside a PFAS chain-length relationship. |
+| Luebker 2002 | 5 | Table 1 reports IC₅₀ only and fits no dissociation constant; two of four fluorochemicals have no finite value. Converting by Cheng–Prusoff would be the reader's arithmetic for a quantity the authors declined to publish. |
+| Lower-affinity sites of multi-site fits | 4 | Retained in the database; only the high-affinity site enters the compilation, as for Moro 2022 on the albumin side. |
+| Zhao 2023 | 4 | Docking scores and a QSAR over a 1,599-compound library; no measured constant. |
+| Depth-only unique compounds | 2 | 6:2 FTCA and 6:2 FTSA appear only in Sheng 2018 and are held, so that adding a source does not widen the compound list. |
+| Salt duplicates | 2 | Identical constants entered under a free acid and its salt. |
+| Modaresi 2025 | — | Measures *K*_liver, a tissue partition coefficient by C18 solid-phase microextraction on liver homogenates, not a protein dissociation constant. Discussed in §5.8. |
+| Jia 2025 | — | Its 44 constants are plotted and tabulated nowhere, supporting information included; and all 44 PFAS were incubated together as a mixture against 2 µM L-FABP, so each value is a competitive apparent constant under 43 competitors. |
+| Zhao 2025 | — | Docking of 430 PFAS against albumin, PPARγ, transthyretin and GPR40, with QSAR and Kronecker-regularised least squares trained on the docking scores. No L-FABP, no measurement. |
+| Cao & Ng 2025 | — | Molecular dynamics and docking for 96 photolithography PFAS; predicted affinities only. |
+| Mann 2022; Mann & Berger 2023 | — | Engineered hL-FABP biosensors (L50W; acrylodan-conjugated C69S/F50C; split-protein cpGFP fusion). They report limits of detection in ppb, not dissociation constants, and the protein is a designed variant. |
+
+One further source could not be assessed. Yang et al. (2026, *PNAS*) screened
+50 human proteins against 481 chemicals by affinity-selection mass spectrometry
+and report FABP1 as a selective target of legacy PFAS, with crystallography;
+the full text is under a PubMed Central embargo until December 2026 and whether
+it reports numerical constants is not determinable from the abstract.
+
+### 5.8 The one in vivo test, and it is negative
+
+Every value above was measured on isolated protein. Modaresi et al. (2025)
+instead deleted the protein. Using C18 fibre solid-phase microextraction on
+liver homogenates from wild-type and global L-FABP⁻/⁻ mice, with a 24-PFAS
+mixture at 400 ng/L, they obtained liver partition coefficients for both
+genotypes. **For 15 of the 19 PFAS tested, *K*_liver differed by less than 20%
+between wild-type and knockout liver**, with 14 of 19 marginally above the 1:1
+line. The four exceeding 20% all carry a sulfonate or sulfonamide head group:
+PFDS +32%, PFNS +55%, 10:2 FTS +26%, FOSA −21%. No other FABP was upregulated
+in the knockouts, so compensation does not account for the result.
+
+This is not a contradiction of the binding data; it is what the binding data
+predict once §5.3 is taken seriously. If L-FABP has no affinity advantage over
+albumin per unit protein mass, then removing it from a tissue that contains
+many other proteins should move the tissue partition coefficient very little,
+which is what is observed. The tension that remains for toxicokinetic modelling
+is not between the in vitro and in vivo results but in how the in vitro results
+have been used: a strong binding constant for an abundant protein has been read
+as evidence that the protein determines the accumulation, and that inference
+does not follow from affinity alone.
+
+---
+
+## 6. Limitations
 
 **Single-source compounds.** Twenty-eight of the 63 compounds rest on one
 source. For these, the compilation provides a value but no estimate of its
@@ -486,6 +769,26 @@ sparsely characterised: the one dataset located reports fraction unbound rather
 than a dissociation constant, and so does not reach this compilation's basis
 without an albumin concentration through which to convert.
 
+**The L-FABP compilation is thinner in every dimension.** Eighty-seven rows
+against 288, 32 compounds against 63, and nine sources against 20. Nineteen of
+its compounds rest on a single source, and only four of its 87 values carry a
+stoichiometry the authors counted. Where the albumin dispersion statistics rest
+on 32 compounds with three or more values, the L-FABP equivalents rest on 13.
+
+**The L-FABP rat arm is two laboratories and the human arm is unbalanced.**
+Nineteen rat values come from two sources; six of the seven human sources
+contribute fewer than 18 rows each. The method-matched species comparison of
+§5.6 rests on as few as two shared compounds for one of its four contrasts.
+
+**Most L-FABP measurements are made far from physiological loading.** Where a
+ligand-to-protein ratio is recoverable it has a median of 300 and reaches
+4,000. Albumin's compilation contains measurements at ratios below 10⁻³; the
+L-FABP literature contains none, so any non-linearity between the two regimes
+is unobserved here rather than excluded.
+
+**One L-FABP source could not be assessed.** Yang et al. (2026) is under a
+PubMed Central embargo until December 2026 (§5.7).
+
 **Enthalpy is not screened systematically.** The failure mode identified in
 §4.2 — a binding enthalpy outside the physically available range — was detected
 only because one source reported three temperatures. A systematic enthalpy
@@ -494,11 +797,12 @@ improvement to data quality, and has not been performed.
 
 ---
 
-## 6. Conclusions
+## 7. Conclusions
 
-A harmonised compilation of 288 albumin–water partition coefficients for 63 PFAS
-is presented, converted to a single mass basis through an explicit and
-mechanically verified identity. The compilation's central finding is that the
+Two harmonised compilations are presented on one basis: 288 albumin–water
+partition coefficients for 63 PFAS, and 87 L-FABP–water coefficients for 32,
+each converted to a mass basis through an explicit and mechanically verified
+identity. The compilation's central finding is that the
 four-order-of-magnitude disagreement in the published literature is largely
 systematic rather than random, and is resolvable into differences of method,
 temperature, ionic strength, and assumed stoichiometry. Equilibrium dialysis and
@@ -513,24 +817,42 @@ relationship for perfluoroalkyl carboxylates — +0.52 log units per
 perfluorinated carbon to a maximum at C9 — is robust across sources and provides
 a check on any individual value.
 
-The exclusions documented in §4.2 are as much a result as the compilation
-itself. Of seven sources read in full and rejected, two were rejected on grounds
+For L-FABP the same treatment yields 87 coefficients for 32 PFAS from nine
+sources, and one finding that bears directly on how the protein is used in
+toxicokinetic models: across the 21 compounds measured against both proteins,
+L-FABP and albumin are indistinguishable per unit protein mass, differing by a
+median of −0.12 log units. The chain-length relationship has the same shape and
+the same C9 maximum as albumin's, at +0.36 log units per perfluorinated carbon.
+Part of the L-FABP dispersion has a structural cause absent from the albumin
+literature — the displacement probes occupy different sites of a two-site
+cavity, and the authors of the earliest of those studies say so explicitly. The
+case for L-FABP as the determinant of hepatic PFAS accumulation does not rest on
+affinity, since it has no affinity advantage; and the only study to delete the
+protein in vivo finds liver partitioning essentially unchanged for 15 of 19
+PFAS.
+
+The exclusions documented in §4.2 and §5.7 are as much a result as the
+compilations themselves. Of seven sources read in full and rejected, two were rejected on grounds
 stated plainly in the source's own text, two on arithmetic performed on the
 source's own tables, and one on the source's own internal contradiction. In none
 of these cases was the defect apparent from the value as cited elsewhere.
 
 ---
 
-## 7. Data and code availability
+## 8. Data and code availability
 
 | Artefact | Path |
 |---|---|
-| Delivered compilation (288 rows) | `albumin_logK_Kd_FINAL.xlsx` |
+| Delivered albumin compilation (288 rows) | `albumin_logK_Kd_FINAL.xlsx` |
+| Delivered L-FABP compilation (87 rows) | `lfabp_logK_Kd.xlsx`, `lfabp_rows_for_excel.tsv` |
 | Source database (1,460 rows, all proteins and species) | `db/protein_binding.csv` |
 | Conversion pipeline | `scripts/build_binding_affinity_table.py`, `scripts/albumin_kd_to_k.py`, `scripts/albumin_shareable.py`, `scripts/build_revised_working_table.py` |
 | Eligibility screen | `scripts/screen_fits_database.py` |
 | Conversion audit | `scripts/audit_working_table.py` |
 | Exclusion audit | `scripts/excluded_sources.py` |
+| L-FABP pipeline | `scripts/build_lfabp_working_table.py`, `scripts/lfabp_rows_to_tsv.py` |
+| L-FABP audits | `scripts/audit_lfabp_species.py`, `scripts/audit_lfabp_anchors.py` |
+| L-FABP report statistics | `scripts/lfabp_report_stats.py` |
 | Per-source audits | `scripts/audit_*.py` |
 | Extended methodological primer | `report/ALBUMIN_BINDING_PRIMER.md` |
 
@@ -541,7 +863,7 @@ decision.
 
 ---
 
-## 8. References
+## 9. References
 
 Primary sources are cited by first author and year as they appear in Table 1.
 Full bibliographic detail for each, together with the specific table or figure
