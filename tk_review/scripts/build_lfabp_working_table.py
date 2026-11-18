@@ -180,6 +180,10 @@ CONDITIONS = {
         "at 1 uM. Kd from IC50 for high-affinity compounds (eq 1) and from "
         "9 x IC10 for low-affinity ones (eq 2); the paper does not say which "
         "compounds took which route"),
+    ("Yang 2026", "fluorescence"): (
+        1.0, None,
+        "1 uM His-tagged FABP1 with 1,8-ANS (SI Fig. S7); per-compound series "
+        "taken from the figures where plotted"),
     ("Sheng 2018", "fluorescence"): (
         0.2, None,
         "200 nM hL-FABP, stated as an adjustment to the Sheng 2016 protocol; "
@@ -234,6 +238,9 @@ CONDITIONS = {
 # PFOcDA is the weakest of them: its curve only falls to about 40% relative
 # fluorescence at the top point, so its lower plateau is not established.
 LIGAND_FROM_FIGURE = {
+    ("Yang 2026", "pfna"):    (100.0, "Fig. 3D, seven concentrations 1.78-100 uM"),
+    ("Yang 2026", "pfo3tda"): (50.0,  "Fig. 3D, six concentrations 0.37-50 uM"),
+    ("Yang 2026", "hfpo-ta"): (100.0, "SI Fig. S5, six concentrations 0.41-100 uM"),
     ("Sheng 2016", "pfoa"): (1000.0,
                              "Fig. 2c, log[PFOA] plotted at -1, 0, 1, 2, 3 "
                              "(0.1-1000 uM); top of series"),
@@ -319,6 +326,12 @@ DISPLAY_NAME = {
     # Jia 2022 writes perfluorododecanoic acid as PFDoA; Zhang 2013, Fan 2025
     # and the albumin sheet all write PFDoDA. One compound, two names.
     "PFDoA": "PFDoDA",
+    # Yang 2020 entered three perfluoroether carboxylic acids under IUPAC
+    # names because it gave no abbreviation; Yang 2026 supplies them, matched
+    # by CAS. Mapped so one compound is not counted as two.
+    "perfluoro-3,6,9-trioxatridecanoic acid": "PFO3TDA",
+    "perfluoro-3,6-dioxaheptanoic acid": "PFO2HpA",
+    "perfluoro(4-methoxybutanoic) acid": "PFMOBA",
 }
 
 

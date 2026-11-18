@@ -80,7 +80,8 @@ L = 'log K (L water / kg protein)'
 # are the SAME laboratory two years apart and are kept separate deliberately:
 # their disagreement with each other bounds how much of the spread is method
 # rather than laboratory.
-SAME_METHOD = ("Zhang 2013", "Sheng 2016", "Sheng 2018", "Yang 2020")
+SAME_METHOD = ("Zhang 2013", "Sheng 2016", "Sheng 2018", "Yang 2020",
+               "Yang 2026")
 
 def medians(rows, key):
     """compound -> median log K, so a compound measured twice by one source

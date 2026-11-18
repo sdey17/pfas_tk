@@ -25,10 +25,12 @@ METHOD = {
     "Gao 2019": "equilibrium dialysis",
     "Khazaee 2021": "equilibrium dialysis",
     "Jia 2022": "microscale thermophoresis",
+    "Yang 2026": "fluorescent-probe displacement",
 }
 PROBE = {
     "Fan 2025": "1,8-ANS", "Sheng 2016": "1,8-ANS", "Sheng 2018": "1,8-ANS",
     "Woodcroft 2010": "ANS", "Yang 2020": "1,8-ANS",
+    "Yang 2026": "1,8-ANS",
     "Zhang 2013": "NBD-lauric acid",
 }
 NCF = {}   # compound -> n perfluorinated carbons, from the database
