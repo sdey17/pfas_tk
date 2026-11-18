@@ -147,9 +147,12 @@ def code_safe(t):
 # ---------------------------------------------------------------- inline
 def inline(t):
     """Markdown inline markup -> reportlab mini-HTML."""
+    # &nbsp; is used for indenting display equations; protect it before the
+    # bare-& escape turns it into a literal "&amp;nbsp;".
+    t = t.replace("&nbsp;", "\x03")
     t = t.replace("&", "&amp;").replace("<sub>", "\x01").replace("</sub>", "\x02")
     t = re.sub(r"<[^>]+>", "", t)                      # drop other raw HTML
-    t = t.replace("\x01", "<sub>").replace("\x02", "</sub>")
+    t = t.replace("\x01", "<sub>").replace("\x02", "</sub>").replace("\x03", "&nbsp;")
     t = t.replace("<", "&lt;").replace(">", "&gt;")
     t = t.replace("&lt;sub&gt;", "<font size=8>").replace("&lt;/sub&gt;", "</font>")
     # code spans first, so their contents are not re-processed
@@ -164,8 +167,14 @@ def inline(t):
             return label
         return f'<link href="{href}" color="#2a78d6">{label}</link>'
     t = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _link, t)
-    t = re.sub(r"\*\*([^*]+)\*\*", r"<b>\1</b>", t)
-    t = re.sub(r"(?<![\w*])\*([^*]+)\*(?![\w*])", r"<i>\1</i>", t)
+    # Bold must tolerate italics nested inside it: the paper's display
+    # equations are bold runs containing *n* and *K*_d. [^*]+ could not match
+    # those, so the markers rendered literally as "**".
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    # The guards exclude alphanumerics and '*' but NOT '_': subscripted
+    # symbols are written *K*_d, *M*_kg, *K*_liver, and \w includes '_', so
+    # the old guard rejected every one of them and left the asterisks visible.
+    t = re.sub(r"(?<![A-Za-z0-9*])\*([^*]+)\*(?![A-Za-z0-9*])", r"<i>\1</i>", t)
     t = glyph_safe(t)
     for i, c in enumerate(spans):
         t = t.replace(f"\x00{i}\x00",
