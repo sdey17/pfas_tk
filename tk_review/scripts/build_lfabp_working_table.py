@@ -68,10 +68,11 @@ GATES, in the order the builder applies them:
                  names. The free-acid name is kept and the salt row dropped.
                  PFBS and PFBS potassium salt differ (116.4 vs 125.25) and are
                  kept as two.
-  outside the    Khazaee 2021's PFHxS, Kd 1.7 uM against a ligand series
-  range tested   topping out at 0.384 uM. A fit beyond the top of the series
-                 is an extrapolation of the model, not a measurement. Its PFOA
-                 (0.099 uM) and PFOS (0.18 uM) sit inside the series and stay.
+  outside the    Currently EMPTY. Khazaee 2021's PFHxS was excluded here on a
+  range tested   ligand ceiling I had derived rather than read; the SI refutes
+                 the derivation and the row is back. See
+                 fix_khazaee2021_from_si.py. The gate itself stays, for a fit
+                 that genuinely runs past the top of a tested series.
 
 ROUTE LABELS follow the albumin sheet's vocabulary, assigned from what each
 paper actually reports. The one correction worth naming:
@@ -131,16 +132,25 @@ HIGH_SITE = re.compile(r"site\s+1\s+of\s+(\d)", re.I)
 # resolved-site test above them catches those first.
 PAPER_SINGLE_SITE = {"Fan 2025", "Zhang 2013", "Khazaee 2021", "Woodcroft 2010"}
 ITC_COUNTED = {"Sheng 2016"}        # Table 3 N (sites) is the PFAA's own
-OUTSIDE_RANGE = {("Khazaee 2021", "pfhxs")}
+# Rows whose Kd lies beyond the concentration series the paper actually
+# tested. EMPTY at present. Khazaee 2021's PFHxS was here, excluded on a
+# ligand ceiling of 0.384 uM that I had DERIVED from the paper's "0.33-153.5
+# ng/mL" sentence. With the SI in hand that derivation is refuted: the paper
+# states 1 uM protein and SI Figure S5D plots free PFHxS out to 3.1 uM, which
+# is 1.8x above the 1.7 uM Kd. The row is properly bracketed and is back.
+# See fix_khazaee2021_from_si.py.
+OUTSIDE_RANGE = set()
 
 # --- assay concentrations, read from each primary --------------------------
 # (source, method class) -> (protein_uM, ligand_uM, provenance)
 # None means the paper does not state it.
-KHAZAEE_MW = {"pfoa": 414.07, "pfos": 500.13, "pfhxs": 400.11}
-KHAZAEE_NG_ML = 153.5               # top of the stated ligand series, ng/mL
-KHAZAEE_RATIO = 5.0                 # the paper's own top ligand:protein ratio
-
 CONDITIONS = {
+    ("Khazaee 2021", "dialysis"): (
+        1.0, 5.0,
+        "1 uM L-FABP, stated in the methods; mole ratios 0.05, 0.1, 0.5, 1 "
+        "and 5, so the top total ligand is 5 uM. SI Figure S5 plots free "
+        "ligand to 3.75 uM (PFOA) and 3.1 uM (PFHxS), consistent with 5 uM "
+        "total"),
     ("Fan 2025", "fluorescence"): (
         1.0, None,
         "1 uM rL-FABP in 100 uL per well, 1,8-ANS at saturation; the PFAS "
@@ -239,12 +249,6 @@ def salt_base(name):
 def concentrations(src, mcls, compound, row):
     """(protein_uM, ligand_uM) for one row, from the primary. None = unstated."""
     key = compound.strip().lower()
-    if src == "Khazaee 2021":                       # per compound, from ng/mL
-        mw = KHAZAEE_MW.get(key)
-        if mw:                      # unrounded, so the ratio comes out at 5.0
-            lig = KHAZAEE_NG_ML / mw
-            return lig / KHAZAEE_RATIO, lig
-        return None, None
     if (src, mcls) == ("Sheng 2016", "ITC"):        # varies by row, SI Table S2
         p = re.search(r"([\d.]+)\s*uM protein in the cell",
                       row.get("protein_conc") or "")
@@ -416,11 +420,6 @@ def main():
         nb.append([f"  {s} ({m})",
                    f"protein {p if p is not None else 'not stated'} uM, "
                    f"ligand {l if l is not None else 'NOT STATED'} uM", why])
-    nb.append(["  Khazaee 2021 (dialysis)",
-               "per compound: ligand = 153.5 ng/mL / MW, protein = ligand / 5",
-               "the paper prints the series as 0.33-153.5 ng/mL across "
-               "ligand:protein mole ratios 0.05-5 and prints no molar "
-               "protein concentration"])
     for (s, c), (v, why) in sorted(LIGAND_FROM_FIGURE.items()):
         nb.append([f"  {s} / {c.upper()}", f"ligand {v} uM", why])
     nb.append([])

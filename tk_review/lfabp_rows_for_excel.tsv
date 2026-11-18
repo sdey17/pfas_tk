@@ -24,8 +24,9 @@ PFHxA	human	538.07	1	2.117	n = 1 assumed	Jia 2022		5
 PFNA	human	6.62	1	4.027	n = 1 assumed	Jia 2022		5		
 PFOA	human	17.95	1	3.593	n = 1 assumed	Jia 2022		5		
 PFOS	human	16.45	1	3.631	n = 1 assumed	Jia 2022		5		
-PFOA	human	0.099	1	5.852	n = 1 by single-site model	Khazaee 2021	0.37071	0.07414	5	
-PFOS	human	0.18	1	5.592	n = 1 by single-site model	Khazaee 2021	0.30692	0.06138	5	
+PFHxS	human	1.7	1	4.617	n = 1 by single-site model	Khazaee 2021	5	1	5	
+PFOA	human	0.099	1	5.852	n = 1 by single-site model	Khazaee 2021	5	1	5	
+PFOS	human	0.18	1	5.592	n = 1 by single-site model	Khazaee 2021	5	1	5	
 PFHxS	human	33.22	0.987	3.32	ITC, one set of sites, 25 C	Sheng 2016	750	50	15	
 PFNA	human	1.32	1	4.727	n = 1 by single-site model	Sheng 2016		0.25		
 PFNA	human	3.14	1.2	4.43	ITC, one set of sites, 25 C	Sheng 2016	1300	100	13	

@@ -48,6 +48,7 @@ tested from the convertible L-FABP rows without any new measurement.
 
 Read-only.
 """
+import math
 import csv, os, re, statistics, sys
 
 DB = os.path.join(os.path.dirname(__file__), '..', 'db', 'protein_binding.csv')
@@ -112,6 +113,30 @@ def main():
     allk = [k for _, _, _, k in rows]
     print(f"\n  whole compilation: {len(allk)} Kd values, median {statistics.median(allk):.1f} uM, "
           f"{sum(1 for k in allk if k <= 0.18)} at or below 0.18 uM")
+
+    print("\n" + "=" * 74)
+    print("(3) WHY Khazaee 2021 is the outlier: its capacity, from SI Figure S5")
+    print("    The ordinate is specific binding in umol PFAS/umol protein, so each")
+    print("    curve carries Bmax as well as Kd. The paper fits a one-site model in")
+    print("    GraphPad Prism and reports Kd only. Two plotted points determine both;")
+    print("    the recovered Kd checks against the published value.\n")
+    B = math.log10(1e9 / 14208.0)
+    for nm, (l1, b1, l2, b2), pub in (
+            ("PFOA  (S5A)", (0.33, 0.027, 3.75, 0.034), 0.099),
+            ("PFHxS (S5D)", (0.25, 0.12, 3.1, 0.65), 1.7)):
+        r = b1 / b2
+        kd = (l1 * l2 * (1 - r)) / (r * l2 - l1)
+        bmax = b1 * (kd + l1) / l1
+        print(f"    {nm}  Kd recovered {kd:6.3f} vs published {pub:6.3f} uM"
+              f"   ->  Bmax {bmax:6.3f} mol/mol")
+        print(f"                log K with n = 1 is {B - math.log10(pub):.2f}; "
+              f"with n = Bmax it is {B + math.log10(bmax) - math.log10(pub):.2f}")
+    print("\n    PFHxS saturates at one site, as it should. PFOA saturates at 0.035,")
+    print("    about one PFOA per thirty L-FABP molecules, so its 0.099 uM describes")
+    print("    a small competent sub-population rather than the bulk protein. That is")
+    print("    the whole of its 97x gap from every other source. NOT applied to the")
+    print("    sheet: n stays 1, because the albumin rule is to use a reported n and")
+    print("    Khazaee reports no Bmax. Recorded so the outlier is explained.")
     return 0
 
 if __name__ == '__main__':
