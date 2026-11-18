@@ -150,6 +150,19 @@ ITC_COUNTED = {"Sheng 2016"}        # Table 3 N (sites) is the PFAA's own
 # See fix_khazaee2021_from_si.py.
 OUTSIDE_RANGE = set()
 
+# Sources admitted for DEPTH ONLY: they may strengthen a compound the sheet
+# already carries, but a compound unique to them is held back, so that adding
+# a source does not quietly widen the compound list. This is the albumin
+# sheet's rule, where Li 2021, Starnes 2025 and Jia 2022 sit in the same set.
+# Sheng 2018 brought 6:2 FTCA and 6:2 FTSA, which no other L-FABP source has;
+# both are held. Its other six compounds are already present and stay.
+#
+# The established set is built from rows that SURVIVED every other gate and
+# are not themselves depth-only, never from the raw input -- building it from
+# raw input once let a compound qualify on the strength of a row that had
+# already been excluded.
+DEPTH_ONLY = {"Sheng 2018"}
+
 # --- assay concentrations, read from each primary --------------------------
 # (source, method class) -> (protein_uM, ligand_uM, provenance)
 # None means the paper does not state it.
@@ -199,14 +212,46 @@ CONDITIONS = {
     ("Zhang 2013", "fluorescence"): (
         0.4, None,
         "400 nM hL-FABP with 50 nM NBD-lauric acid, a 1:8 probe:protein "
-        "ratio; the per-compound PFC series is SI Figure S3, not tabulated"),
+        "ratio; the per-compound PFC series is read from SI Figure S3, which "
+        "plots each compound separately -- see LIGAND_FROM_FIGURE"),
 }
 
 # Ligand series a figure in the primary does give, per (source, compound).
+#
+# ZHANG 2013's are from SI Figure S3, which plots relative fluorescence against
+# added PFC concentration, one panel per compound, on a log abscissa with
+# printed decade ticks. The points are a two-fold dilution series, so the top
+# of each series reads cleanly. A FOURTH of Zhang's reported Kd values sit
+# ABOVE the top of their own series -- PFBS 1034 uM against 512, PFHpA 336
+# against 256, PFHxDA 115 against 50, PFOcDA 62 against 25 -- which would
+# normally be the OUTSIDE_RANGE condition. It is not, here, because Zhang does
+# not FIT Kd: it fits IC50 and rescales by Kd(probe)/[probe] = 280/50 = 5.6
+# (its eq 2). The fitted quantity is the IC50, and every one of those four is
+# comfortably inside its series (185 of 512, 60.0 of 256, 20.6 of 50, 11.1 of
+# 25). So the rows stay. The test belongs on what a paper fits, not on what it
+# prints after rescaling.
+#
+# PFOcDA is the weakest of them: its curve only falls to about 40% relative
+# fluorescence at the top point, so its lower plateau is not established.
 LIGAND_FROM_FIGURE = {
     ("Sheng 2016", "pfoa"): (1000.0,
                              "Fig. 2c, log[PFOA] plotted at -1, 0, 1, 2, 3 "
                              "(0.1-1000 uM); top of series"),
+    ("Zhang 2013", "pfbs"):   (512.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfhpa"):  (256.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfhxs"):  (128.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfoa"):   (256.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfos"):   (256.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfna"):   (256.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfda"):   (256.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfunda"): (200.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfdoda"): (100.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfteda"): (100.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfhxda"):  (50.0, "SI Fig. S3, top of the two-fold series"),
+    ("Zhang 2013", "pfocda"):  (25.0, "SI Fig. S3, top of the two-fold series; "
+                                "this curve only falls to about 40% relative "
+                                "fluorescence, so its lower plateau is not "
+                                "established"),
 }
 
 COLS = ["PFAS", "Species", "Kd (uM)", "n used",
@@ -411,6 +456,14 @@ def main():
             "Protein conc (uM)": p_uM if p_uM is not None else "",
             "ligand:protein ratio": ratio,
             "f_bound (%)": num(r.get("unbound_fraction")) or ""})
+
+    # depth-only post-pass: see DEPTH_ONLY above
+    established = {d["PFAS"] for d in kept if d["Source"] not in DEPTH_ONLY}
+    held = [d for d in kept
+            if d["Source"] in DEPTH_ONLY and d["PFAS"] not in established]
+    for d in held:
+        dropped[f"compound unique to a depth-only source ({d['PFAS']})"] += 1
+    kept = [d for d in kept if d not in held]
 
     kept.sort(key=lambda d: (d["Species"], d["Source"], d["PFAS"]))
     print(f"L-FABP sheet: {len(kept)} rows from "

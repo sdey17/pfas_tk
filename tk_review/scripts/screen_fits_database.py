@@ -44,6 +44,32 @@ DECIDED = {
     'Alesio 2024':    'reviewer dropped after review (BSA DSF, 11 rows)',
     'Jia 2022':       'admitted for depth: 4 of 5 own HSA rows; its other 6 '
                       'Table 1 values are Gao 2019 cited, not measured here',
+    # --- L-FABP phase ---
+    'Woodcroft 2010': 'admitted: 5 PFCAs by ANS displacement + PFOA by ITC, '
+                      'site-resolved, rat; re-ingested from the primary',
+    'Sheng 2016':     'admitted WILD TYPE ONLY; its 4 engineered point '
+                      'mutants are a different protein and are excluded',
+    'Sheng 2018':     'admitted for depth: 8 Kd in Table 2, but 6:2 FTCA and '
+                      '6:2 FTSA are unique to it and are held back',
+    'Zhang 2013':     'admitted: 12 rows; ligand series read from SI Fig. S3',
+    'Luebker 2002':   'cannot fit (IC50 only; the paper fits no dissociation '
+                      'constant for any competitor, and 2 of 4 have no finite '
+                      'IC50). Its abstract also states the DAUDA Kd 1000x too '
+                      'tight, which the Results correct to 0.35 uM',
+    'Modaresi 2025':  'different quantity: Kliver, a liver TISSUE partition '
+                      'coefficient by C18 SPME on homogenates, not a protein '
+                      'dissociation constant. No Kliver values are tabulated '
+                      'anywhere, only percentage differences in Fig. 4 / S7. '
+                      'Its finding is reported in audit_lfabp_anchors.py',
+    'Jia 2025':       'cannot fit: the 44 measured Kd are plotted in main-text '
+                      'Fig. 1 and tabulated nowhere, SI included; and they '
+                      'were measured on all 44 PFAS AS A MIXTURE against 2 uM '
+                      'L-FABP, so each is a competitive apparent Kd, not a '
+                      'single-ligand constant',
+    'Zhao 2025':      'computational, and not even this protein: docking of '
+                      '430 PFAS against HSA, PPARgamma, TTR and GPR40 with '
+                      'QSAR and Kron-RLS on the docking scores. No L-FABP, '
+                      'no measurement',
 }
 
 # A populated ka/kd cell that is NOT a dissociation or association constant.
