@@ -87,7 +87,15 @@ paper actually reports. The one correction worth naming:
   Sheng's ITC n, by contrast, IS the PFAA's and IS counted: Table 3's N (sites)
   column gives 0.999 for PFOA, 1.20 for PFNA, 0.987 for PFHxS on wild type.
   Together with Woodcroft 2010 that makes two sources, not one, with counted
-  L-FABP stoichiometries.
+  L-FABP stoichiometries. Sheng fits Origin's One Set of Sites model, so those
+  rows take the albumin sheet's existing label for exactly that case --
+  "ITC, one set of sites, <T> C", as Moro 2022 carries it there.
+
+ROUTE VOCABULARY IS THE ALBUMIN SHEET'S, not a parallel one. Every label used
+here either already appears in albumin_logK_Kd_FINAL.xlsx ("n = 1 assumed",
+"n = 1 by single-site model", "n fitted by binding isotherm", "ITC, one set of
+sites, <T> C", "ITC, sequential site 1 of N, <T> C") or extends that pattern
+to a case albumin has no instance of ("displacement, site 1 of 2, <T> C").
 
 CONCENTRATION COLUMNS. These are NOT parsed out of the database's free-text
 condition fields, because the leading number in those fields is not reliably
@@ -310,12 +318,18 @@ def main():
             n = 1.0
             tag = "ITC" if mcls == "ITC" else "displacement"
             if "sequential" in (r.get("n_binding_sites") or "").lower():
-                tag += ", sequential"
+                tag += ", sequential"     # "ITC, sequential site 1 of 3, 30 C"
             T = (r.get("temperature_c") or "").strip()
-            route = (f"{tag}, site 1 of {hs.group(1)}"
-                     + (f", {T} C" if T else ""))
+            route = (f"{tag} site 1 of {hs.group(1)}" if tag.endswith("sequential")
+                     else f"{tag}, site 1 of {hs.group(1)}")
+            route += f", {T} C" if T else ""
         elif src in ITC_COUNTED and mcls == "ITC" and n_raw:
-            n, route = n_raw, "n counted by ITC"
+            # Sheng fits Origin's One Set of Sites model and reports its N, so
+            # this is the albumin sheet's "ITC, one set of sites, 37 C" case
+            # (Moro 2022), word for word, with its own temperature.
+            T = (r.get("temperature_c") or "").strip()
+            n = n_raw
+            route = "ITC, one set of sites" + (f", {T} C" if T else "")
         elif src in PAPER_SINGLE_SITE or (src in ITC_COUNTED
                                           and mcls == "fluorescence"):
             n, route = 1.0, "n = 1 by single-site model"
@@ -325,7 +339,21 @@ def main():
             n, route = 1.0, "n = 1 assumed"
 
         p_uM, l_uM = concentrations(src, mcls, ch, r)
-        ratio = round(l_uM / p_uM, 4) if (p_uM and l_uM) else ""
+        # The albumin sheet PREFERS the ratio the paper itself reports and
+        # computes one only as a fallback. Allendorf 2019 is why: its 28 rows
+        # carry the measured analyte:BSA molar ratio at equilibrium from SI
+        # Table SI-2.3, deliberately in place of the 0.1 design ceiling and in
+        # place of any quotient of the two concentration columns, which hold
+        # c_ref and a g/L protein loading. Same rule here. On the present
+        # L-FABP rows the two agree wherever both exist -- Gao's 2, Sheng's
+        # 13/15 from SI Table S2, Khazaee's 5 -- so this changes no value; it
+        # makes the RULE the same one, which is what matters if a source that
+        # reports a ratio its concentrations do not reproduce is added later.
+        reported = num(r.get("ligand_over_protein_max"))
+        computed = l_uM / p_uM if (p_uM and l_uM) else None
+        ratio = round(reported if reported is not None
+                      else computed, 4) if (reported is not None
+                                            or computed is not None) else ""
         p_uM = round(p_uM, 5) if p_uM is not None else None
         l_uM = round(l_uM, 5) if l_uM is not None else None
         bridge = math.log10(1e9 / MW[sp])
