@@ -2,7 +2,7 @@
 """Two published L-FABP claims, checked against this compilation's own rows.
 
 Both are claims made BY papers ABOUT the binding literature, and both can be
-tested from the 99 convertible L-FABP rows without any new measurement.
+tested from the convertible L-FABP rows without any new measurement.
 
 (1) ZHAO 2023's QSAR ANCHOR IS 16 COMPOUNDS, NOT 1599.
     Zhao et al., Ecotoxicol Environ Saf 2023;262:115310
