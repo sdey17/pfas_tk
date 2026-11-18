@@ -36,9 +36,22 @@ OAT4,,PFHxS,PFHxS,Km,,,,,"Louisse J, Dellafiora L, van den Heuvel JJMW, Rijkers 
 OAT4,,PFOS,PFOS,Km,,,,,"Louisse J, Dellafiora L, van den Heuvel JJMW, Rijkers D, Leenders L, Dorne JCM, Punt A, Russel FGM, Koenderink JB",2023,36436016,transporter_kinetics.csv,
 OAT4,,PFBS,PFBS,Km,,,,,"Louisse J, Dellafiora L, van den Heuvel JJMW, Rijkers D, Leenders L, Dorne JCM, Punt A, Russel FGM, Koenderink JB",2023,36436016,transporter_kinetics.csv,
 URAT1,,"PFHpA, PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS","PFHpA, PFOA, PFNA, PFDA, PFBS, PFHxS, PFOS",Km,,,,,"Louisse J, Dellafiora L, van den Heuvel JJMW, Rijkers D, Leenders L, Dorne JCM, Punt A, Russel FGM, Koenderink JB",2023,36436016,transporter_kinetics.csv,
-OAT1,,"substrates: PFHpA, PFOA | non-substrates: PFNA, PFBS, PFHxS, PFOS","substrates: PFHpA, PFOA | non-substrates: PFNA, PFBS, PFHxS, PFOS",Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al.",2024,39343156,transporter_kinetics.csv,
-OAT2,,"substrates: none | non-substrates: PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS","substrates: none | non-substrates: PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS",Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al.",2024,39343156,transporter_kinetics.csv,
-OAT3,,"substrates: PFHpA, PFOA, PFNA, PFHxS | non-substrates: PFBS, PFOS","substrates: PFHpA, PFOA, PFNA, PFHxS | non-substrates: PFBS, PFOS",Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, et al.",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFHpA,PFHpA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFOA,PFOA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT3,,PFHpA,PFHpA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT3,,PFOA,PFOA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT3,,PFNA,PFNA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT3,,PFHxS,PFHxS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT4,,PFHpA,PFHpA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT4,,PFOA,PFOA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT4,,PFNA,PFNA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT4,,PFHxS,PFHxS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFNA,PFNA,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFBS,PFBS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFHxS,PFHxS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT1,,PFOS,PFOS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT3,,PFBS,PFBS,Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
+OAT2,,"PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS","PFHpA, PFOA, PFNA, PFBS, PFHxS, PFOS",Km,,,,,"Louisse J, Pedroni L, van den Heuvel JJMW, Rijkers D, Bokkers BGH, Dorne JCM, Dellafiora L, Punt A, Russel FGM, Koenderink JB",2024,39343156,transporter_kinetics.csv,
 NTCP,,PFBS,PFBS,Km,,,,,"Zhao W, Zitzow JD, Ehresman DJ, Chang SC, Butenhoff JL, Forster J, Hagenbuch B",2015,26001962,transporter_kinetics.csv,
 NTCP,,PFHxS,PFHxS,Km,,,,,"Zhao W, Zitzow JD, Ehresman DJ, Chang SC, Butenhoff JL, Forster J, Hagenbuch B",2015,26001962,transporter_kinetics.csv,
 NTCP,,PFOS,PFOS,Km,,,,,"Zhao W, Zitzow JD, Ehresman DJ, Chang SC, Butenhoff JL, Forster J, Hagenbuch B",2015,26001962,transporter_kinetics.csv,
@@ -227,7 +240,7 @@ OAT1,human,PFOA,PFOA,Km,48,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,pri
 OAT3,human,PFOA,PFOA,Km,49.1,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,primary_2026/han2012_table6_transporter_km.csv,
 OAT4,human,PFOA,PFOA,Km,172.3,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,primary_2026/han2012_table6_transporter_km.csv,pH 6; Yang 2010
 OAT4,human,PFOA,PFOA,Km,310.3,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,primary_2026/han2012_table6_transporter_km.csv,pH 7.4; Yang 2010 - Km is pH dependent
-OAT4,human,PFOA,PFOA,Km,64.1,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,primary_2026/han2012_table6_transporter_km.csv,third value listed in Han Table 6 row for OAT4/URAT1
+URAT1,human,PFOA,PFOA,Km,64.1,uM,,,Han et al.,2012,21985250 / 10.1021/tx200363w,primary_2026/han2012_table6_transporter_km.csv,"MIS-ASSIGNED IN AN EARLIER VERSION OF THIS FILE as a third OAT4 value. Han Table 6 formats OAT4 and URAT1 as one row; this 64.1 is URAT1's, measured by Yang 2010 in the absence of extracellular chloride. The main record has it correctly under URAT1."
 OATP1A2,human,PFOA,PFOA,Km,no saturable uptake,uM,apical / reabsorptive,standard buffer,Yang et al.,2010,20639259 / 10.1093/toxsci/kfq219,primary_2026/yang2010_human_apical_transporters.csv,closest human orthologue of rat Oatp1a1; did NOT mediate saturable PFOA uptake
 OAT4,human,PFOA,PFOA,Km,172.3,uM,apical / reabsorptive,pH 6.0,Yang et al.,2010,20639259 / 10.1093/toxsci/kfq219,primary_2026/yang2010_human_apical_transporters.csv,uptake stimulated by low extracellular pH
 OAT4,human,PFOA,PFOA,Km,310.3,uM,apical / reabsorptive,pH 7.4,Yang et al.,2010,20639259 / 10.1093/toxsci/kfq219,primary_2026/yang2010_human_apical_transporters.csv,physiological pH gives the weaker affinity

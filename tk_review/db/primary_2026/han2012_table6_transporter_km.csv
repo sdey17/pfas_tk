@@ -10,5 +10,4 @@ OAT1,human,PFOA,48,
 OAT3,human,PFOA,49.1,
 OAT4,human,PFOA,172.3,"pH 6; Yang 2010"
 OAT4,human,PFOA,310.3,"pH 7.4; Yang 2010 - Km is pH dependent"
-OAT4,human,PFOA,64.1,"third value listed in Han Table 6 row for OAT4/URAT1"
-URAT1,human,PFOA,,"Han 2012 Table 6 lists the row with NO Km value"
+URAT1,human,PFOA,64.1,"MIS-ASSIGNED IN AN EARLIER VERSION OF THIS FILE as a third OAT4 value. Han Table 6 formats OAT4 and URAT1 as one row; this 64.1 is URAT1's, measured by Yang 2010 in the absence of extracellular chloride. The main record has it correctly under URAT1."

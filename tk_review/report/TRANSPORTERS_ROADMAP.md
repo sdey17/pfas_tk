@@ -5,13 +5,20 @@ rather than from the earlier narrative. Figures in §1 were counted from the
 files; where the existing retrieval log disagrees, the files win and the
 disagreement is named.
 
+**Stage 0 is complete** (§7), and doing it corrected three claims in the first
+draft of this document. Those corrections are kept in place rather than edited
+away, marked ~~struck~~, because two of them are the kind of error that would
+otherwise be repeated: a second-hand table counted as new data, and a count I
+got wrong in my own survey.
+
 ---
 
 ## 1. What already exists
 
 | Artefact | Size | State |
 |---|---|---|
-| `db/transporter_kinetics.csv` | 217 rows, 29 sources, 48 transporter entities, 63 PFAS | the main table |
+| `db/transporter_kinetics.csv` | **230 rows, 27 sources**, 48 transporter entities, 61 chemical cells | the record — everything read from a primary, including rows that are not transporter kinetics |
+| `db/transporter_kinetics_working.csv` | **241 rows, 15 sources, 34 transporters, 19 compounds** | gated, normalised, split; built by `scripts/build_transporter_working_table.py`, never edited by hand |
 | `db/transporter_mechanism.csv` | 83 rows | direction, sex and hormone regulation; Km on 24 |
 | `db/primary_2026/*.csv` | 24 extracts | per-paper tables read from primaries |
 | `papers/*.txt` | 29 transporter papers | **text only — no PDFs**, see §5 |
@@ -19,17 +26,26 @@ disagreement is named.
 | `report/REPORT.md` §7 | narrative | direction-first, with three open conflicts |
 | `scripts/saturation_margin_km_vs_kt.py` | analysis | the Km-versus-KT conflict, §4.1 below |
 
-**Fill rates in `transporter_kinetics.csv`** — this is the headline problem:
+**Fill rates**, record and working table, after Stage 0:
 
-| Field | Filled | Comment |
-|---|---|---|
-| `uptake_ratio` | 141 / 217 | substrate / not-substrate calls |
-| `km` | **52 / 217** | all in µM or µmol/L; essentially already harmonised |
-| `vmax` | **39 / 217** | units NOT comparable, see §3.2 |
-| `ic50` | 28 / 217 | inhibition, a different quantity again |
+| Field | Record | Working table | Comment |
+|---|---|---|---|
+| `uptake_ratio` | 138 / 230 | — | substrate / not-substrate calls |
+| `km` | **58 / 230** | **59 / 241** | all in µM or µmol/L; essentially already harmonised |
+| `vmax` | 45 / 230 | **38 / 241** | five unit spellings in the record, one basis in the working table (§3.2) |
+| `ic50` | 28 / 230 | — | inhibition, a different quantity again |
+| **`clint_uL_min_mg`** | — | **38 / 241** | V_max/K_m, newly computed; see below |
 
-So two thirds of the table is qualitative. The quantitative core is about
-50 rows, which is the size of a single good paper's output, not a compilation.
+So two thirds is still qualitative, and Stage 0 did **not** double the K_m
+count as this document predicted: it moved it 52 → 58, because the ten Louisse
+2024 values turned out to be six (§3.1). The quantitative core is about 60
+rows, which is the size of a single good paper's output, not a compilation.
+
+What Stage 0 did deliver is the **38-row CL_int column**, which was meant to be
+Stage 3. It spans 2 to 236 µL/min/mg protein, and the highest value in it is
+not a renal transporter at all but human NTCP with PFOS (236), with hepatic
+OATP2B1/PFOS next (99) — a first indication that on a per-mg-protein basis the
+hepatic uptake side is not the minor partner the renal framing assumes.
 
 ---
 
@@ -59,27 +75,61 @@ A V_max measured in transfected HEK293 is per mg of that cell line's protein
 at that expression level. Reaching a tissue clearance needs a relative
 expression or activity factor, and that factor is where IVIVE either works or
 quietly fails. The repository already contains the two papers that attempt it
-(Lin 2024, Sakolish 2026) and 28 of the 217 rows are Sakolish's IVIVE outputs
-rather than measurements — those must not be pooled with measured kinetics.
+(Lin 2024, Sakolish 2026) and 29 of the 230 rows are their composite-RPTEC
+IVIVE outputs rather than measurements — those must not be pooled with measured
+kinetics, and the working table now gates them out.
 
 ---
 
 ## 3. Defects found in the survey
 
-**3.1 The table is out of sync with the primary extracts.** Louisse 2024 is
-the clearest case:
+**3.1 One real sync gap, and it was smaller than I first wrote. RESOLVED.**
+Louisse 2024 was the only case. Its Table 1 holds fifteen rows, ten with a
+K_m — but ~~ten~~ **six** were new:
 
-| | `transporter_kinetics.csv` | `db/primary_2026/louisse2024_human_oat_km.csv` |
-|---|---|---|
-| rows | 3 | 15 |
-| with a K_m | 0 | 10 |
-| content | qualitative substrate lists | per-compound K_m, V_max, efficiency |
+| | `transporter_kinetics.csv` (before) | Table 1 | folded in |
+|---|---|---|---|
+| rows | 3 qualitative | 15 | 16 per-compound |
+| with a K_m | 0 | 10 | **6** |
 
-The primary table was extracted and never folded back in. Yang 2010 and Han
-2012 need the same check (`yang2010_human_apical_transporters.csv`,
-`han2012_table6_transporter_km.csv`, `han2012_table7_pbpk_tm_kt.csv` all exist).
+The other four are Louisse **2023**'s OAT4 values re-tabulated, digit-identical
+to rows already in the record from the 2023 primary (60/4.5, 47/4.5, 58/8.5,
+92/7.3), and the re-tabulation loses precision: it prints the standard error as
+15 for all four where the primary gives 33 for PFHxS. They are stored with the
+reason and **no constant**, which is the treatment Han 2021 and Yang 2026 get on
+the binding side. Done by `scripts/add_louisse2024_oat_km.py`.
 
-**3.2 V_max units are not comparable, and one row is not a V_max.**
+The extraction verifies against itself: efficiency is V_max/K_m, so the printed
+third column is predicted by the first two, and all six reproduce to the
+rounding (3.4/159 → 21.4 against a printed 21).
+
+~~Yang 2010 and Han 2012 need the same check.~~ Both were checked and neither
+needed a fold-in:
+
+- **Yang 2010 was already synced** — all four rows, the three K_m values and
+  the OATP1A2 negative result.
+- **Han 2012 Table 6 is a compilation, not a measurement.** All thirteen of its
+  values are already in the record attributed to the paper that measured them
+  (Weaver 2010, Nakagawa 2008, Yang 2009). Table 6 also silently picks between
+  conflicting primaries where the record keeps both: rat Oat1/PFOA 51
+  (Nakagawa) against Weaver's 43.2, Oat3/PFOA 80.2 against 65.7, Oatp1a1/PFOA
+  162.2 (Yang 2009) against Weaver's 126.4. Its extract additionally
+  mis-assigned URAT1's 64.1 µM as a third OAT4 value, because Han's Table 6
+  formats OAT4 and URAT1 as one row; the record had it right and the extract is
+  corrected.
+
+**3.1b A second-hand V_max must not meet a first-hand K_m. NEW.** Yang 2010's
+OAT4 (37) and URAT1 (0.32 nmol/min/mg) V_max values are in this database only
+as Louisse 2023's introduction quotes them — the retrieval log said so and the
+table did not enforce it. Computing V_max/K_m from them builds a clearance out
+of two papers, so the working table drops the V_max, keeps the K_m, and flags
+the row. This costs two CL_int values, and they are the two that matter most
+for the species question in Stage 4: human OAT4 and URAT1 reabsorption. **Yang
+2010's own V_max is therefore a live request, not a nicety.**
+
+**3.2 V_max units are not comparable, and one row is not a V_max. RESOLVED in
+the working table.** The first two spellings are now one; the rest are carried
+with a flag and excluded from the clearance column.
 
 | Unit | Rows | Comment |
 |---|---|---|
@@ -89,20 +139,29 @@ The primary table was extracted and never folded back in. Yang 2010 and Han
 | `mg/h/kg BW^0.75` | 2 | a whole-body PBPK T_m, not an in vitro V_max |
 | `uL/mg protein/min` | 1 | labelled V_max; it is a clearance |
 
-**3.3 The retrieval log is stale in at least one place.** It calls the Louisse
-2024 K_m table "the main remaining numeric gap"; it has since been obtained.
-The log should be re-walked before any of its gaps are used as a request list.
+**3.3 The retrieval log was stale in one place. RESOLVED.** It called the
+Louisse 2024 K_m table "the main remaining numeric gap"; that line is replaced
+and a dated reconciliation section appended to
+`papers/SOURCES_transporters.md`. The rest of the log held up, including its
+own record of the second-hand V_max in §3.1b.
+
+**3.3b ~~29 sources~~ 27.** The §1 figure in the first draft of this document
+was an error in my own survey, not a change from Stage 0: the pre-Stage-0 file
+has 27 distinct study strings and 28 DOIs, and still does.
 
 **3.4 Enzymes are in the transporter table.** Three carboxylesterase CES1 and
 three CES2 rows, flagged in the `transporter` field as "(enzyme, NOT a
 transporter)". They were included because they were on a requested list. They
 need a scope decision, not silent carriage.
 
-**3.5 Composite and non-specific entities.** 28 rows are "composite RPTEC
-proximal-tubule transport", and compound names include entries like
-"PFBA, PFPeA (C4, C5)" and "6 PFCAs, 3 PFSAs and 4 fluorinated alternatives" —
-the same multi-compound-cell problem the binding builder already solves with
-`names_several()`.
+**3.5 Composite and non-specific entities. RESOLVED in the working table.**
+29 rows are "composite RPTEC proximal-tubule transport", which has no single
+transporter identity to join a direction to, and are gated out. Multi-compound
+cells like "PFBA, PFPeA (C4, C5)" are split one row per compound, each carrying
+a `shared_across` count so one observation spread over seven compounds is never
+read as seven observations; 21 cells split into 84 rows. One cell names no
+specific compound at all ("6 PFCAs, 3 PFSAs and 4 fluorinated alternatives")
+and is gated as UNSPECIFIED.
 
 ---
 
@@ -178,12 +237,23 @@ OEHHA PHG Table A6.3 and Weaver 2010's Discussion.
 
 ## 7. Proposed sequence
 
-**Stage 0 — reconcile what is already here.** No new papers needed.
-Fold `db/primary_2026/*.csv` back into `transporter_kinetics.csv`; normalise
-the two V_max spellings; split the multi-compound cells; separate the 28
-IVIVE-predicted rows and the 6 carboxylesterase rows from measured transporter
-kinetics; re-walk the retrieval log against the files. This alone should roughly
-double the rows carrying a K_m.
+**Stage 0 — reconcile what is already here. COMPLETE, 2026-11-18.** Two
+scripts, neither of which edits the record by hand:
+
+- `scripts/add_louisse2024_oat_km.py` — folds in Louisse 2024 Table 1, six new
+  K_m+V_max pairs, four carry-overs stored without constants, six negatives.
+  Idempotent.
+- `scripts/build_transporter_working_table.py` — gates, normalises, splits and
+  computes CL_int into `db/transporter_kinetics_working.csv`. Six gates
+  (NOT_MEASURED, NOT_A_TRANSPORTER, COMPOSITE, CARRIED_OVER, SECOND_HAND,
+  NOT_VMAX) drop 52 of 230 rows; splitting adds 84 from 21 cells; CL_int comes
+  out on 38.
+
+It did not double the K_m count (52 → 58, not ~100), because the Louisse 2024
+gap was six values rather than ten and the other two suspected gaps were not
+gaps. It did deliver Stage 3's clearance column early, and it found the
+second-hand-V_max defect in §3.1b, which no amount of new paper-fetching would
+have surfaced.
 
 **Stage 1 — decide the inclusion rule**, as `screen_fits_database.py` does for
 binding. Candidate: a row earns a place if it reports **K_m with V_max**, or a

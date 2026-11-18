@@ -54,7 +54,7 @@ for any of these (all paywalled, none in PMC).
 | Kimura O, Fujii Y, Haraguchi K, Kato Y, Ohta C, Koga N, Endo T (2017). Uptake of perfluorooctanoic acid by Caco-2 cells: involvement of organic anion transporting polypeptides. *Toxicol Lett* 277:18–23. | 28552774 | 10.1016/j.toxlet.2017.05.012 | Km 8.3 µM; uptake clearance Vmax/Km = 55.0 µL/mg protein/min; non-saturable clearance 18.1 µL/mg protein/min; BSP Ki 23.1 µM; Na⁺-independent; not inhibited by probenecid or PAH | PARTIAL SUCCESS (abstract carries all numbers). Full text FAILED — Elsevier paywall, no PMC record. |
 | Han X, Yang CH, Snajdr SI, Nabb DL, Mingoia RT (2008). Uptake of perfluorooctanoate in freshly isolated hepatocytes from male and female rats. *Toxicol Lett* 181(2):81–86. | 18662756 | 10.1016/j.toxlet.2008.07.002 | Male Km 88.0 ± 9.1, Vmax 5.61 ± 0.88; female Km 76.1 ± 12.0, Vmax 3.59 ± 0.29 nmol/min/10⁶ cells; clearances 64.8 vs 47.6 µL/min/10⁶ cells; BSP Ki 85.9 vs 29.3 µM | PARTIAL SUCCESS (abstract). Full text FAILED — Elsevier paywall. |
 | Kudo N, Katakura M, Sato Y, Kawashima Y (2002). Sex hormone-regulated renal transport of perfluorooctanoic acid. *Chem Biol Interact* 139(3):301–316. | 11879818 | 10.1016/s0009-2797(02)00006-6 | Male t½ 70× female; castration raised CLR 14-fold; oatp1 and OAT-K mRNA male-predominant; OAT2 mRNA in males only 13% of females; ovariectomy raised OAT3 mRNA | PARTIAL SUCCESS (abstract). Full text FAILED — Elsevier paywall. |
-| Louisse J, Pedroni L, van den Heuvel JJMW, et al. (2024). In vitro and in silico characterization of the transport of selected PFCAs and PFSAs by human OAT1, OAT2 and OAT3. *Toxicology* 509:153961. | 39343156 | 10.1016/j.tox.2024.153961 | OAT1 substrates: PFHpA, PFOA only. OAT2: none. OAT3 substrates: PFHpA, PFOA, PFNA, PFHxS. HEK293-transduced cells | PARTIAL SUCCESS (abstract via Firecrawl on doi.org, 2026-10-01). **The Km/Vmax table could NOT be retrieved** — Elsevier paywall, no PMC record. This is the main remaining numeric gap. |
+| Louisse J, Pedroni L, van den Heuvel JJMW, et al. (2024). In vitro and in silico characterization of the transport of selected PFCAs and PFSAs by human OAT1, OAT2 and OAT3. *Toxicology* 509:153961. | 39343156 | 10.1016/j.tox.2024.153961 | OAT1 substrates: PFHpA, PFOA only. OAT2: none. OAT3 substrates: PFHpA, PFOA, PFNA, PFHxS. HEK293-transduced cells | PARTIAL SUCCESS (abstract via Firecrawl on doi.org, 2026-10-01); **Table 1 SUBSEQUENTLY OBTAINED** and held at `db/primary_2026/louisse2024_human_oat_km.csv`. Six genuinely new Km+Vmax pairs (OAT1 PFHpA 159/3.4, PFOA 185/3.5; OAT3 PFHpA 367/3.2, PFOA 90/1.5, PFNA 42/1.0, PFHxS 778/5.8); the four OAT4 rows it also tabulates are Louisse 2023's own, digit-identical, and are NOT re-counted. Folded into the record 2026-11-18 by `scripts/add_louisse2024_oat_km.py`. |
 | Argoul CML, Toutain PL, Picard-Hagen N, Klukovits A, Koncsos G, Gayrard V, Lacroix MZ (2026). Comparative in vitro study of structure related uptake of ten perfluoroalkyl substances by human and rat renal transporters. *Arch Toxicol*. | 42446666 | 10.1007/s00204-026-04508-7 | Direct human-vs-rat comparison across 8 human and 4 rat renal transporters; OAT1 specifically mediated PFHxA uptake; human OAT3/OAT4 substrates = PFHxA, PFOA, PFNA, PFBS, PFHxS; rat Oat1 and Oatp1a1 transported the same short/medium-chain set; GenX and PFO2OA are substrates of hOAT3, rOat1 and rOatp1a1; long-chain PFDA, PFOS, PFDS were substrates of none | PARTIAL SUCCESS (abstract). Full text FAILED — Springer paywall, published after this container's index; no PMC record. |
 | Ebert A, Allendorf F, Berger U, Goss KU, Ulrich N (2020). Membrane/water partitioning and permeabilities of perfluoroalkyl acids and four of their alternatives … *Environ Sci Technol* 54(8):5051–5061. | 32212724 | 10.1021/acs.est.0c00175 | Measured anionic membrane permeabilities "high enough to explain observed cellular uptake by passive diffusion with no need to postulate the existence of active uptake processes"; COSMO-RS log RMSE 0.61 / 0.46 | PARTIAL SUCCESS (abstract). Full text FAILED — ACS paywall. |
 | Liu YZ, Pan LH, Bai Y, Yang K, Dong PP, Fang ZZ (2020). Per- and polyfluoroalkyl substances exert strong inhibition towards human carboxylesterases. *Environ Pollut* 263(Pt A):114463. | 32283456 | 10.1016/j.envpol.2020.114463 | CES1 IC50: PFDoA 10.6, PFTA 13.4, PFOcDA 12.6 µM; CES2 IC50: 9.56, 17.2, 8.73 µM; noncompetitive Ki 27.7 / 26.9 / 11.9 (CES1) and 4.04 / 29.1 / 27.4 µM (CES2); IVIVE thresholds 0.40–2.91 µM plasma | PARTIAL SUCCESS (abstract carries all values). Full text FAILED — Elsevier paywall. **This is an enzyme, not a transporter** — included because it was on the requested list. |
@@ -77,3 +77,44 @@ for any of these (all paywalled, none in PMC).
 | Han X, Snow TA, Kemper RA, Jepson GW (2003). *Chem Res Toxicol* — binding, clearance and transport of PFOA in rat and human plasma | Requested; plasma protein binding | Covered by the parallel protein-binding agent (`papers/` already contains several albumin-binding papers) | **NOT ATTEMPTED by this agent** (out of transporter scope; flagged for the protein-binding strand) |
 | Per-congener Km and Vmax values of Niu 2026 for P-gp, BCRP and OAT1 | Needed for the efflux row of the database | Full text read (PMC13595387) | **PARTIAL FAILURE** — values exist only inside Figures 1f and 2b,d; only ranges and Vmax/Km ratios are stated in text. |
 | PDF files generally | Deliverable requested `.pdf` + `.txt` pairs | `pmc.ncbi.nlm.nih.gov/articles/<PMCID>/pdf/` with browser UA; `link.springer.com/content/pdf/...`; `sciencedirect.com/.../pdfft` | **FAILED for all transporter papers** — PMC returns a ~1.8 KB anti-bot HTML interstitial; Springer and Elsevier return HTML landing pages. Full text was therefore saved as `.txt` only. The pre-existing regulatory PDFs (ATSDR, EPA, OEHHA) in `papers/` were downloaded by other agents and are present. |
+
+---
+
+## Reconciliation of this log against the files, 2026-11-18
+
+Stage 0 of `report/TRANSPORTERS_ROADMAP.md`. Every claim above was re-walked
+against `db/transporter_kinetics.csv` and `db/primary_2026/*.csv`. Four
+findings, two of which correct this log or that roadmap rather than the data.
+
+**1. Louisse 2024 was the only real sync gap, and it was smaller than stated.**
+Table 1 holds fifteen rows, ten with a Km, but four of those ten are Louisse
+2023's OAT4 values re-tabulated — digit-identical to the rows already in the
+record from the 2023 primary (60/4.5, 47/4.5, 58/8.5, 92/7.3), and the
+re-tabulation even loses precision, printing the standard error as 15 for all
+four where the primary gives 33 for PFHxS. Six values were genuinely new, not
+ten. Entering the other four would have turned one measurement into two.
+
+**2. Han 2012 Table 6 needs no fold-in: it is a compilation, not a
+measurement.** All thirteen of its values are already in the record, each
+attributed to the paper that measured it — Weaver 2010, Nakagawa 2008 and Yang
+2009 — which is the correct attribution. Table 6 also silently picks between
+conflicting primaries where the record keeps both: for rat Oat1/PFOA it prints
+Nakagawa's 51 where Weaver measured 43.2, for rat Oat3/PFOA Nakagawa's 80.2
+against Weaver's 65.7, and for rat Oatp1a1/PFOA Yang 2009's 162.2 against
+Weaver's 126.4. `db/primary_2026/han2012_table6_transporter_km.csv` also
+mis-assigns one value: the 64.1 µM in its third OAT4 row is URAT1's, from Yang
+2010, because Han's Table 6 formats OAT4 and URAT1 as a single row. The record
+has it correctly under URAT1; the extract's note has been corrected.
+
+**3. Yang 2010 was already synced.** All four of its rows, the three Km values
+and the OATP1A2 negative result, were already in the record. The roadmap's
+claim that it "needs the same check" was wrong.
+
+**4. The record holds 27 sources, not 29.** The roadmap's §1 figure was an
+error in that survey, not a change from this reconciliation: the pre-Stage-0
+file has 27 distinct study strings and 28 DOIs, and still does.
+
+Row count went 217 → 230. The two second-hand Vmax values recorded at Yang
+2010 above are now gated out of any computed clearance by
+`scripts/build_transporter_working_table.py`, so Yang 2010's own Vmax remains
+a live request.

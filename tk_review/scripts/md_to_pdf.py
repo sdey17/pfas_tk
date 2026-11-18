@@ -167,6 +167,11 @@ def inline(t):
             return label
         return f'<link href="{href}" color="#2a78d6">{label}</link>'
     t = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _link, t)
+    # Strikethrough, used by the working documents to keep a corrected claim
+    # visible instead of editing it away. Must run before the bold rule only
+    # in the sense that it is independent of it; both are inserted after the
+    # HTML escaping above, which is why the literal tags survive.
+    t = re.sub(r"~~(.+?)~~", r"<strike>\1</strike>", t)
     # Bold must tolerate italics nested inside it: the paper's display
     # equations are bold runs containing *n* and *K*_d. [^*]+ could not match
     # those, so the markers rendered literally as "**".
