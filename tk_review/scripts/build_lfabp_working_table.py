@@ -63,6 +63,14 @@ GATES, in the order the builder applies them:
                  site 1 alone, so the sheet's value is 0.07 log low there.
                  Named rather than corrected, because a one-row-per-constant
                  sheet cannot carry a site series.
+  IC50 only     a half-inhibition concentration is a potency, not an
+                 affinity, and depends on the probe and its loading. Luebker
+                 2002 is the whole of this gate: its Table 1 reports IC50 and
+                 nothing else, and two of its four fluorochemicals have no
+                 finite value. Cheng-Prusoff would convert them using the
+                 paper's own DAUDA constant, but that is the reader's
+                 arithmetic for a quantity the authors declined to publish.
+                 See fix_luebker2002_from_primary.py.
   salt duplicate Yang 2020 lists PFOA and PFOA ammonium salt, PFOS and PFOS
                  potassium salt, at IDENTICAL Kd: one measurement under two
                  names. The free-acid name is kept and the salt row dropped.
@@ -130,7 +138,8 @@ HIGH_SITE = re.compile(r"site\s+1\s+of\s+(\d)", re.I)
 # three PFCAs it fits to a ONE-site competitive model (PFHpA, PFHxA, PFPeA);
 # its two-site and sequential-ITC rows never reach this branch because the
 # resolved-site test above them catches those first.
-PAPER_SINGLE_SITE = {"Fan 2025", "Zhang 2013", "Khazaee 2021", "Woodcroft 2010"}
+PAPER_SINGLE_SITE = {"Fan 2025", "Zhang 2013", "Khazaee 2021", "Woodcroft 2010",
+                     "Sheng 2018"}
 ITC_COUNTED = {"Sheng 2016"}        # Table 3 N (sites) is the PFAA's own
 # Rows whose Kd lies beyond the concentration series the paper actually
 # tested. EMPTY at present. Khazaee 2021's PFHxS was here, excluded on a
@@ -152,10 +161,16 @@ CONDITIONS = {
         "ligand to 3.75 uM (PFOA) and 3.1 uM (PFHxS), consistent with 5 uM "
         "total"),
     ("Fan 2025", "fluorescence"): (
-        1.0, None,
-        "1 uM rL-FABP in 100 uL per well, 1,8-ANS at saturation; the PFAS "
-        "series is 'different concentrations' in SM Text S1 and is not given "
-        "in the paper"),
+        1.0, 300.0,
+        "SM Text S1: 1 uL of PFAS at 16 concentrations, top final 300 uM, in "
+        "DMSO, into 100 uL of buffer A holding 1,8-ANS at 40 uM and rL-FABP "
+        "at 1 uM. Kd from IC50 for high-affinity compounds (eq 1) and from "
+        "9 x IC10 for low-affinity ones (eq 2); the paper does not say which "
+        "compounds took which route"),
+    ("Sheng 2018", "fluorescence"): (
+        0.2, None,
+        "200 nM hL-FABP, stated as an adjustment to the Sheng 2016 protocol; "
+        "the 1,8-ANS concentration and the PFAS series are not restated"),
     ("Gao 2019", "dialysis"): (
         6.0, 12.0,
         "0.006 mM (6 uM) hL-FABP; six-point ligand series 0.002-0.012 mM "
@@ -241,6 +256,24 @@ def names_several(name, known):
                if re.sub(r"\s*\([^)]*\)", "", q).strip().lower() in known) >= 2
 
 
+# The albumin sheet carries bare abbreviations and no parentheticals at all
+# (HFPO-DA, N-EtFOSA, PFOSA, 6:2 Cl-PFESA), so the same compound must be
+# spelled the same way here or the two sheets will not join on name and one
+# compound will be counted twice. Fan 2025's "HFPO-DA (GenX)" against Jia
+# 2022's and Sheng 2018's "HFPO-DA" was exactly that: one compound, two rows,
+# and no rat-human pairing for it. Only names whose short form the albumin
+# sheet already uses are rewritten; the long IUPAC names Yang 2020 contributes
+# have no accepted abbreviation and are left as they are.
+DISPLAY_NAME = {
+    "HFPO-DA (GenX)": "HFPO-DA",
+    "N-ethylperfluorooctanesulfonamide (NEtFOSA)": "N-EtFOSA",
+    "N-methylperfluorooctanesulfonamide (NMeFOSA)": "N-MeFOSA",
+    "N-ethyl-N-(2-hydroxyethyl)perfluorooctanesulfonamide (NEt-FOSE)":
+        "N-EtFOSE",
+    "PFOSA (FOSA, perfluorooctanesulfonamide)": "PFOSA",
+}
+
+
 def salt_base(name):
     return re.sub(r",?\s*(potassium|ammonium|sodium)\s*salt", "",
                   str(name or ""), flags=re.I).strip()
@@ -296,6 +329,13 @@ def main():
             dropped["composite Kd (several sites in one cell)"] += 1; continue
         if (src, ch.strip().lower()) in OUTSIDE_RANGE:
             dropped["Kd outside the concentration series tested"] += 1; continue
+        # A potency, not an affinity. Luebker 2002 is the whole of this: its
+        # Table 1 is IC50 and nothing else, and two of its four fluorochemicals
+        # have no finite value at all. Converting with Cheng-Prusoff would be
+        # the reader's arithmetic, not the paper's.
+        if "ic50" in (r.get("kd_units") or "").lower():
+            dropped["IC50 only; the paper reports no dissociation constant"] += 1
+            continue
 
         kd, ku = r.get("kd"), (r.get("kd_units") or "").strip()
         ka = r.get("ka")
@@ -309,7 +349,7 @@ def main():
         else:
             dropped["no numeric constant"] += 1; continue
 
-        base = salt_base(ch)
+        base = DISPLAY_NAME.get(salt_base(ch), salt_base(ch))
         key = (src, sp, base, round(kd_uM, 6))
         if key in seen_salt:
             dropped["salt form of a row already kept"] += 1; continue

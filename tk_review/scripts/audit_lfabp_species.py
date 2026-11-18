@@ -28,13 +28,23 @@ reduced by median):
 
     rat vs Zhang 2013 (human)   10 shared   about +0.5 log  (rat tighter)
     rat vs Sheng 2016 (human)    2 shared   about -0.7 log  (human tighter)
+    rat vs Sheng 2018 (human)    3 shared   about -0.6 log  (human tighter)
     rat vs Yang 2020  (human)    6 shared   about -0.1 log  (no difference)
 
-All three measured human L-FABP by displacement of a fluorescent probe. They
-disagree among themselves by about 1.2 log -- PFOA alone is 2.36 uM in Sheng
+All four measured human L-FABP by displacement of a fluorescent probe. They
+disagree among themselves by more than a log -- PFOA alone is 2.36 uM in Sheng
 2016 and 50.4 uM in Zhang 2013, a factor of 21 between two human laboratories
 -- and that spread is larger than any rat-human gap and wide enough to contain
-both signs. A species difference cannot be resolved above it. The script
+both signs. It is not even purely between laboratories: Sheng 2016 and Sheng
+2018 are ONE laboratory, and they differ by a factor of 3.4 on PFOA (2.36 vs
+8.03 uM), tracking a factor of 2.1 on their own probe constant.
+
+Worth seeing, though: those same two campaigns AGREE with each other on the
+rat-human DIFFERENCE, -0.71 and -0.62 log, despite disagreeing 3.4-fold on the
+absolute constants. A systematic laboratory offset cancels in a difference. So
+the obstacle is not measurement noise within a laboratory; it is that Zhang
+2013 and the Sheng laboratory disagree about human L-FABP itself, by more than
+either of them differs from rat. A species difference cannot be resolved above it. The script
 prints the current figures; the text here is deliberately rounded so it cannot
 drift silently out of agreement with them.
 
@@ -65,7 +75,12 @@ import collections, os, statistics, sys
 
 XL = os.path.join(os.path.dirname(__file__), '..', 'lfabp_logK_Kd.xlsx')
 L = 'log K (L water / kg protein)'
-SAME_METHOD = ("Zhang 2013", "Sheng 2016", "Yang 2020")   # 1,8-ANS displacement
+# Human sources that displace a fluorescent probe, so the rat arm (which does
+# the same) can be compared with method held fixed. Sheng 2016 and Sheng 2018
+# are the SAME laboratory two years apart and are kept separate deliberately:
+# their disagreement with each other bounds how much of the spread is method
+# rather than laboratory.
+SAME_METHOD = ("Zhang 2013", "Sheng 2016", "Sheng 2018", "Yang 2020")
 
 def medians(rows, key):
     """compound -> median log K, so a compound measured twice by one source
