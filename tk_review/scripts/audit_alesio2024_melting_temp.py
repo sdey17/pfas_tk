@@ -51,7 +51,10 @@ Read-only.
 import csv, math, os, sys
 
 DB = os.path.join(os.path.dirname(__file__), '..', 'db', 'protein_binding.csv')
-XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_revised.xlsx')
+# The albumin record is the reviewer's own workbook. The pipeline's
+# pre-review output (albumin_logK_Kd_revised.xlsx, 292 rows) was
+# deleted at their request; this reads their 288-row version.
+XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_FINAL.xlsx')
 BRIDGE = math.log10(1e9 / 66463.0)
 DOI24 = '10.1038/s41598-024-57140-9'
 

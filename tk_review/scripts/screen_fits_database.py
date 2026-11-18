@@ -25,7 +25,10 @@ Usage:
 import collections, csv, os, sys
 
 DB = os.path.join(os.path.dirname(__file__), '..', 'db', 'protein_binding.csv')
-XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_revised.xlsx')
+# The albumin record is the reviewer's own workbook. The pipeline's
+# pre-review output (albumin_logK_Kd_revised.xlsx, 292 rows) was
+# deleted at their request; this reads their 288-row version.
+XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_FINAL.xlsx')
 SHEET_SPECIES = {'human', 'bovine'}
 
 # Sources the reviewer has already ruled on. They pass or fail the screen on

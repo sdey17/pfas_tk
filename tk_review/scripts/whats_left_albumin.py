@@ -36,7 +36,10 @@ import re
 HERE = os.path.dirname(os.path.abspath(__file__))
 DB = os.path.join(HERE, "..", "db", "protein_binding.csv")
 K2K = os.path.join(HERE, "..", "db", "albumin_kd_to_k.csv")
-SHEET = os.path.join(HERE, "..", "albumin_logK_Kd_revised.xlsx")
+# The albumin record is the reviewer's own workbook. The pipeline's
+# pre-review output (albumin_logK_Kd_revised.xlsx, 292 rows) was
+# deleted at their request; this reads their 288-row version.
+SHEET = os.path.join(HERE, "..", "albumin_logK_Kd_FINAL.xlsx")
 
 
 def fam(method):
@@ -54,8 +57,10 @@ def main():
     import openpyxl
     ws = openpyxl.load_workbook(SHEET)["Coefficients"]
     h = [c.value for c in ws[1]]
+    # The reviewer's workbook is padded out to 16,384 columns by Excel, so
+    # skip rows whose first cell is empty rather than counting the padding.
     rows = [dict(zip(h, [c.value for c in r]))
-            for r in ws.iter_rows(min_row=2)]
+            for r in ws.iter_rows(min_row=2) if r[0].value is not None]
     insheet = {str(r["Source"]) for r in rows}
     print(f"SHEET: {len(rows)} rows, {len(insheet)} sources, "
           f"{len({str(r['PFAS']) for r in rows})} compounds, "

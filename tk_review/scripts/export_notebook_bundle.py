@@ -14,7 +14,10 @@ import openpyxl
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
-SRC = os.path.join(ROOT, "albumin_logK_Kd_revised.xlsx")
+# The albumin record is the reviewer's own workbook. The pipeline's
+# pre-review output (albumin_logK_Kd_revised.xlsx, 292 rows) was
+# deleted at their request; this reads their 288-row version.
+SRC = os.path.join(ROOT, "albumin_logK_Kd_FINAL.xlsx")
 OUT = os.path.join(ROOT, "notebook")
 
 SHEETS = {"Coefficients": "albumin_logK_Kd_revised.csv",

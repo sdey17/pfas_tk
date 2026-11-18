@@ -16,7 +16,10 @@ Read-only. Writes nothing. Answers four questions:
 import csv, math, os, statistics, sys
 
 DB = os.path.join(os.path.dirname(__file__), '..', 'db', 'protein_binding.csv')
-XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_revised.xlsx')
+# The albumin record is the reviewer's own workbook. The pipeline's
+# pre-review output (albumin_logK_Kd_revised.xlsx, 292 rows) was
+# deleted at their request; this reads their 288-row version.
+XL = os.path.join(os.path.dirname(__file__), '..', 'albumin_logK_Kd_FINAL.xlsx')
 
 # --- Table S13, as printed (tR_IAM, CHI_IAM, logK_IAM, tR_HSA, logK_HSA) -----
 # A representative transcription; the full table is 92 rows in the SI.

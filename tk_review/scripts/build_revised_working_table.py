@@ -49,7 +49,11 @@ from openpyxl.styles import Alignment, Font, PatternFill
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "albumin_logK_with_conc.xlsx")
-OUT = os.path.join(HERE, "..", "albumin_logK_Kd_revised.xlsx")
+# NOT the record. The albumin record is albumin_logK_Kd_FINAL.xlsx, the
+# reviewer's own workbook, and this script must never overwrite it. Its
+# former output name was deleted at their request, so a re-run writes a
+# clearly-labelled rebuild artefact instead (gitignored).
+OUT = os.path.join(HERE, "..", "albumin_logK_Kd_rebuild.xlsx")
 
 COLS = ["PFAS", "Species", "Kd (uM)", "n used",
         "log K (L water / kg protein)", "Route", "Source",

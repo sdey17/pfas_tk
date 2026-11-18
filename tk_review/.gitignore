@@ -2,3 +2,4 @@
 # URLs. Their text extractions (papers/*.txt) are committed and are what the
 # analysis was read from; run scripts/fetch_papers.sh to restore the originals.
 papers/*.pdf
+albumin_logK_Kd_rebuild.xlsx
