@@ -185,7 +185,8 @@ this project uses throughout — checking a paper against its own internal
 redundancy.
 
 - **Niu 2026 transposes P-gp and BCRP** in its V_max/K_m paragraph and in its
-  abstract. Dividing the figures' own fitted constants gives, for Fig 3c
+  abstract. *Documented, not escalated — reviewer's decision, 2026-11-19; no
+  author contact.* The figure values are what this database stores. Dividing the figures' own fitted constants gives, for Fig 3c
   (P-gp), HFPO-TA 227 / PFOA 212 / PFOS 139, and for Fig 3f (BCRP), PFOA 279 /
   HFPO-TA 233 / PFOS 24 — each set matching what the text attributes to the
   *other* transporter, on all six values. Three checks say the figures are
@@ -260,6 +261,16 @@ K_m 48 µM and V_max 2.2, and Zhao 2017 reports rat Oatp1a1/PFOS. This is the
 one disagreement that changes a conclusion, because PFOS is the compound whose
 reabsorption the PBPK models most depend on.
 
+**DECISION (reviewer, 2026-11-19): hold both readings and let Stage 1's
+inclusion rule decide.** Neither is demoted now. This is the right call for a
+reason worth writing down: Louisse's row carries a K_m and a V_max and
+Argoul's carries an uptake ratio, so the inclusion rule separates them on
+evidence type before anyone has to adjudicate the biology. If the rule admits
+K_m-with-V_max to the kinetics table and sends substrate calls to the
+direction table, the conflict resolves itself structurally — PFOS appears as a
+measured OAT4 substrate in one and a negative call in the other, both visible,
+neither overwriting the other.
+
 **4.4 Cheng 2006 contradicts itself.** One sentence of its abstract calls renal
 Oatp1a1 "female-predominant", which conflicts with Cheng 2005 and with its own
 androgen-stimulation conclusion. Needs the full text to resolve.
@@ -297,30 +308,35 @@ Abstract-only unless noted. Items 1–4 change conclusions; 5–9 fill the table
 | 5 | **Yang 2009**, *Toxicol Lett* 190:163, 10.1016/j.toxlet.2009.07.011 | Oatp1a1 K_m and the C6–C10 K_i,app series, currently quoted via Weaver 2010's Discussion |
 | ~~6~~ | **Nakagawa 2008** — ✅ **OBTAINED**, Table 1 supplies the four missing V_max values | Also a units defect worth knowing about (§3.7) |
 
-**Correction to request 2.** This document said Ebert 2020 "argues measured
-membrane permeabilities explain cellular uptake with no need to postulate
-active uptake. If right, it reframes the whole strand." That is the abstract's
-claim, and the body does not support it. What Ebert actually compares its
-bilayer permeabilities against is the **control cells** of transporter
-studies — the empty-vector cells those papers use as their own passive
-baseline, which Ebert describes as reflecting "uptake rates by passive
-diffusion". So it explains the passive component the transporter papers had
-already subtracted, and says nothing about the saturable component they
-reported. The body is hedged where the abstract is not: the PFSA match is
-within a factor of 3, but for PFCAs "the comparison to the literature seems
-less distinctive", "a definite conclusion on the species dominance in the
-transmembrane transport is not possible", and the whole comparison needs the
-artificial-bilayer values shifted by 1.8 log units — a factor of 63 — to stand
-in for real membranes. **Ebert does not conflict with any K_m in this
-database, and the strand is not reframed.**
+**Request 2 was mis-specified, by me.** Ebert 2020 is a membrane partitioning
+and permeability paper. Its entire transporter content is four passages: one
+sentence of the abstract, one paragraph of the introduction, one paragraph of
+the results, and one clause of the conclusions. "Reframes the whole strand"
+was built from that single abstract sentence, read when only the abstract was
+available, and it is far more weight than the paper asks to carry. It should
+not have been request 2.
 
-Its real contribution is a clean partitioning series: +0.63 log K_mem/w per
+The paper's own conclusion is agnostic, and points where §8 points: "either of
+the transport processes might dominate permeation, depending on compound
+concentration or **amount and types of transporter proteins in the cell**."
+That is expression-dependence, not a claim that transporters are unnecessary.
+
+What it does bear on is one background assumption — that the uptake seen in
+the **control** cells of transporter assays is passive diffusion. Ebert's
+bilayer permeabilities reproduce effective permeabilities back-calculated from
+the control cells of its refs 53, 55 and 59–61, which are Yang 2009, Weaver
+2010 and three others already in this table, within a factor of 3 for PFSAs
+and less clearly for PFCAs. That corroborates those papers' own subtraction
+step. It says nothing about the saturable component they report, and
+contradicts no K_m here.
+
+Its value to this project is in the other strand: +0.63 log K_mem/w per
 perfluorinated carbon, and PFSAs sorbing ~1.2 log units more strongly than
-PFCAs of equal chain length. Both are directly comparable to the per-carbon
-slope and head-group offset this project already computes for albumin and
-L-FABP, which makes membrane lipid a fourth binding phase for aim 3. Its
-per-compound tables are in SI S3.1.1 and S3.2.1, **not supplied** — a live
-request, and one that should not be met by digitising Figures 1 and 2.
+PFCAs of equal chain length — directly comparable to the per-carbon slope and
+head-group offset already computed for albumin and L-FABP, which makes
+membrane lipid a fourth binding phase for aim 3. Per-compound tables are in SI
+S3.1.1 and S3.2.1, **not supplied**; that is a live request, and not one to be
+met by digitising Figures 1 and 2.
 | 7 | **Han 2008**, *Toxicol Lett* 181:81, 10.1016/j.toxlet.2008.07.002 | Rat hepatocyte uptake, male vs female K_m and V_max — the hepatic side |
 | 8 | **Kimura 2017**, *Toxicol Lett* 277:18, 10.1016/j.toxlet.2017.05.012 | Caco-2 K_m 8.3 µM — an order of magnitude below every other K_m in the table, so either important or wrong |
 | 9 | **Kummu 2015**, 10.1016/j.placenta.2015.07.119 | OAT4 and placental transfer; n = 4 |

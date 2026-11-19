@@ -7,15 +7,23 @@ alternatives and the effects on toxicokinetic behavior."
 Environ Sci Technol 2020;54(8):5051-5061. doi:10.1021/acs.est.0c00175
 PMID 32212724.
 
-The roadmap listed this as request 2 and framed it as potentially
-strand-reframing: "argues measured membrane permeabilities explain cellular
-uptake with no need to postulate active uptake. If right, it reframes the
-whole strand." The reviewer supplied the full text. IT DOES NOT REFRAME THE
-STRAND, and the framing came from reading the abstract rather than the body.
+THIS IS NOT A TRANSPORTER PAPER. Its entire transporter content is four
+passages: one sentence of the abstract, one paragraph of the introduction,
+one paragraph of the results, and one clause of the conclusions. The roadmap
+listed it as request 2 and called it potentially strand-reframing, on the
+strength of that one abstract sentence, read before the full text was
+available. That was too much weight for the paper to carry, and the entry has
+been corrected.
 
-WHAT THE ABSTRACT CLAIMS. "Experimental Pion values were high enough to
+THE ABSTRACT'S SENTENCE is "Experimental Pion values were high enough to
 explain observed cellular uptake by passive diffusion with no need to
 postulate the existence of active uptake processes."
+
+THE PAPER'S OWN CONCLUSION SAYS SOMETHING ELSE, and it points where this
+project's section 8 points -- at expression level: "either of the transport
+processes might dominate permeation, depending on compound concentration or
+amount and types of transporter proteins in the cell." That is agnostic and
+expression-dependent, not a claim that transporters are unnecessary.
 
 WHAT THE BODY ACTUALLY DOES. It compares the authors' bilayer permeabilities
 against effective permeabilities back-calculated from the CONTROL cells of
@@ -41,10 +49,12 @@ The body is also much more hedged than the abstract:
     between artificial bilayers and biomembranes".
 
 So the correct reading is that passive permeation is quantitatively
-sufficient to account for the uptake seen in control cells, which is a real
-and useful result, and that it says nothing about whether the saturable
-component on top of that is transporter-mediated. It does not conflict with
-any Km in this database.
+sufficient to account for the uptake seen in CONTROL cells, which corroborates
+those papers' own subtraction step, and that it says nothing about whether the
+saturable component on top of that is transporter-mediated. It does not
+conflict with any Km in this database. The papers re-analysed are its refs 53,
+55 and 59-61 -- Yang 2009, Weaver 2010 and three others already in this
+table.
 
 The paper does supply an independent check on one of ours: it notes that in
 Yang et al. PFOA uptake falls to 77% of its pH 6 rate at pH 7 and 67% at
