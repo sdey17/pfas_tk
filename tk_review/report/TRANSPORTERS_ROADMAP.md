@@ -796,3 +796,62 @@ published earlier in this document came from the PubMed abstract and were
 right; the PDF nearly overwrote them with values 1000× too small. **A quantity
 extracted by `pdftotext` alone is not safe until the micro signs are
 accounted for.**
+
+---
+
+## 12. Scaling factors, and the albumin problem (pre-Stage 3)
+
+`db/ivive_scaling_factors.csv`. Two ways to turn a CL_int measured in
+transfected cells into a clearance in a kidney, and **they disagree**:
+
+| | REF (HEK293 ÷ kidney) | RAF (probe substrate) | apart |
+|---|---|---|---|
+| OAT1 | 0.16 | 0.64 (tenofovir) | 4× |
+| OAT2 | 0.15 | 7.3 (acyclovir, ganciclovir) | 49× |
+| **OAT3** | **0.37** | **4.1** (oseltamivir acid, benzylpenicillin) | **11×** |
+
+Kumar 2021 ([10.1124/dmd.121.000367](https://doi.org/10.1124/dmd.121.000367),
+PMC8232064) compared both over 26 OAT substrates and found **RAF the better
+predictor** — 65% and 81% of plasma secretory clearances within 2- and 3-fold,
+against 50% and 69% for REF. So the method with no proteomics in it wins, and
+the choice changes a scaled OAT3 clearance by an order of magnitude.
+
+**Two traps recorded in the table.** First, **REF's direction is not a safe
+convention**: Kumar defines it as cells ÷ kidney (so REF < 1, and you divide),
+while Tan 2024 reports REF 8.0 for OAT1 while stating its system expressed
+*less* than in vivo — only consistent if theirs is kidney ÷ cells. Getting it
+backwards is a factor of 40 on OAT1. Second, **REF is cell-line specific**:
+Antonescu 2020 measured OAT1 at 1.32 fmol/µg in HEK293-Flp-In against 5.33 in
+renal cortex, a ratio of 0.25 where Kumar's HEK293 gives 0.16.
+
+### The albumin problem is bigger than the REF/RAF choice
+
+Tan 2024 ([10.1021/acs.molpharmaceut.4c00504](https://doi.org/10.1021/acs.molpharmaceut.4c00504),
+PMC11372837): with 4% human serum albumin present **and the unbound substrate
+concentration held constant**, unbound intrinsic active uptake clearance rose
+**3.5- to 122-fold for OAT1** and **up to 28-fold for OAT3**. The effect
+appeared only for highly protein-bound substrates — f_u between **0.002 and
+0.18** — and was absent for weakly bound ones. Mechanism: facilitated
+dissociation, where albumin releases its ligand at the cell surface so the
+transporter sees more than the bulk free fraction. The authors recommend
+including HSA in routine OAT1/3 assays.
+
+**PFOA's plasma f_u is 0.0017** (Argoul Table 1) — at or below the bottom of
+that range, and PFOS, PFNA and PFHxS are lower still. PFAS are the extreme
+case of the class this effect was demonstrated on.
+
+**And no PFAS assay in this database is recorded as containing protein.** Of
+the 52 tier-A rows across six studies, not one mentions albumin, serum or BSA.
+Where the buffer is stated outright it is protein-free (Argoul: HBSS, and
+Krebs-Henseleit for rat Oat1); for the rest this is an absence of mention
+rather than a verified composition.
+
+So the tier-A clearances are plausibly **lower bounds**, and understated
+*most* for the longest-chain, most tightly bound compounds — the same
+direction as the chain-length trend this compilation is trying to explain.
+That is not a reason to discard the table; it is a caveat to state, and a
+testable prediction: run one PFAS uptake assay with and without HSA.
+
+**It also joins the strands.** The albumin association constants this project
+has spent its effort on are exactly the input a facilitated-dissociation
+correction needs. The binding sheet stops being only a distribution story.
