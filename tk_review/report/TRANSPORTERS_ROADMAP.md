@@ -1284,9 +1284,14 @@ So the corrected position is **narrower and firmer than either earlier one**:
 the human–rat contrast in reabsorption is real and larger than the PHG states,
 the printed percentages are not reliable, and the attribution to the tubule is.
 
-Two laboratories agree with a consistent offset — Ryu runs 1.3–1.9× above
+~~Two laboratories agree with a consistent offset — Ryu runs 1.3–1.9× above
 Argoul, within the spread of equilibrium-dialysis methods, ordering and ratios
-preserved.
+preserved.~~ **Wrong, and §16 shows why.** That reading came from PFOA and a
+handful of neighbours. Across the fifteen overlapping species–compound pairs
+there is no net offset in either direction (geometric mean 0.90×) and the
+spread is thirteen-fold. Eleven of fifteen agree within two-fold; the four
+that do not are the long chains, and §16 settles which laboratory to believe
+there without taking either on trust.
 
 #### ~~What it implies for the rat~~ (superseded by the measurement above)
 
@@ -1310,3 +1315,191 @@ assumption this section exists to reject.
   and localisation, none of which involve f_u. **The rat sex difference is
   entirely unaffected** — same species, same f_u whatever it is, and a 114×
   transporter difference with a sign change.
+
+---
+
+## 16. The axis across all fourteen compounds (Stage 4c)
+
+`scripts/stage4b_all14_species_reabsorption.py` → `db/species_fu_ratios_all14.csv`,
+`db/species_reabsorption_all14.csv`
+
+§15 settled PFOA. The open question was whether the result was a property of
+PFOA or of the class: **if chain length moves the glomerular / tubular split,
+the QSAR aim has to model two mechanisms rather than one.** Ryu's Table 1 has
+fourteen compounds across four matrices, so the binding layer can be run whole.
+
+### The three layers do not have the same coverage, and that is the first result
+
+| layer | what it needs | coverage |
+|---|---|---|
+| 1. f_u by species | plasma binding | **14 × 4, complete** — one lab, one method, one plate |
+| 2. filtered load f_u × GFR | + a species constant | **14 × 3, complete** |
+| 3. reabsorbed fraction | + renal clearance | human **7/14**, mouse **7/14**, rat **1/14** |
+
+**The full three-species triangle closes for exactly one compound.** The
+human–mouse pair closes for seven. The rat is the hole, and **it is a hole in
+the renal clearance data, not in the binding data** — Ryu closed the binding
+half of the rat gap and no further binding work will close the other half.
+What is missing is compound-by-compound rat renal clearance.
+
+### Layer 1: the PFOA result generalises, in both directions
+
+| | geometric mean | range | within 2× of human |
+|---|---|---|---|
+| **rat / human** | **1.20×** | 0.76 – 2.03 | **13 / 14** |
+| CD-1 mouse / human | 4.09× | 1.25 – 18.4 | 3 / 14 |
+| C57BL/6 mouse / human | 3.71× | 1.21 – 18.7 | 3 / 14 |
+
+Holding f_u equal between **rat and human is approximately right for every one
+of the fourteen**. Holding it equal between **mouse and human is wrong for
+eleven of fourteen**. So OEHHA's assumption was not a lucky break on PFOA: it
+is a sound approximation for the rat and a bad one for the mouse, across the
+whole class. That is a stronger statement than §15 could make and it rests on
+no extrapolation at all.
+
+### Layer 1b: the error is chain-length-dependent, not constant
+
+Nine straight-chain carboxylates, C4 → C12:
+
+| nC | | rat/human | C57/human |
+|---|---|---|---|
+| 4 | PFBA | 1.62 | 3.35 |
+| 5 | PFPeA | 2.03 | 6.50 |
+| 6 | PFHxA | 0.94 | 4.79 |
+| 7 | PFHpA | 1.02 | 7.26 |
+| 8 | PFOA | 1.22 | 5.80 |
+| 9 | PFNA | 1.12 | 2.34 |
+| 10 | PFDA | 1.62 | 2.06 |
+| 11 | PFUnDA | 0.83 | 3.03 |
+| 12 | PFDoDA | 0.76 | 1.95 |
+
+The rat/human ratio is **flat** — no trend, 0.76 to 2.03. The mouse/human
+ratio is **not**: it rises from 3.4× at C4 to a 4.8–7.3× plateau over C5–C8,
+then falls to about 2× by C9–C12. **It is largest exactly over the compounds
+of greatest regulatory interest.** A QSAR trained on mouse plasma binding and
+applied to humans carries a chain-length-dependent error, worst in the middle
+of the series.
+
+### Layer 3b: the two rodents are fast for different reasons
+
+This is the finding. For PFOA:
+
+| | observed CL_R ratio | glomerular | tubular |
+|---|---|---|---|
+| human vs **rat** | 303× | 6.8× | **45×** |
+| human vs **mouse** | 85× | **37.7×** | 2.3× |
+
+**The split inverts between the two rodents.** The mouse differs from the human
+in *both* glomerular factors — f_u is 5.8× higher *and* GFR is 6.5× higher,
+and 5.8 × 6.5 = 37.7 — so the glomerulus accounts for nearly the whole
+difference and the tubule adds 2.3×. The rat differs in *one*: its f_u matches
+the human, so its glomerular term is almost pure GFR, and the tubule has to
+carry 45× of the 303×.
+
+So **"rodents clear PFOA faster than humans" is one sentence covering two
+mechanisms.** A PBPK model calibrated on the mouse tubule and applied to the
+rat, or the reverse, imports the wrong term.
+
+Across the seven human–mouse pairs the tubular factor spans 0.06× to 4.6×
+while the glomerular factor spans 13× to 122×; the glomerular term dominates
+six of seven, PFDA marginally excepted. **For four of the six long chains the
+tubular factor is below one** — the tubule does not amplify the mouse's faster
+clearance, it partly cancels it. For PFDA the cancellation is nearly exact
+(13.4× glomerular, 0.06× tubular, 0.9× observed), which is why PFDA has
+almost the same renal clearance in mouse and human despite a 13× higher
+filtered load. **PFHxA is net-secreted in the mouse** (CL_R 6780 against a
+filtered load of 3039 mL/kg·day), so no reabsorbed fraction is defined for it.
+
+### Which laboratory to believe: a test that trusts neither
+
+Pairing Ryu's f_u with Argoul's renal clearances is the cross-study join this
+review otherwise refuses, and the two laboratories disagree most at the long
+chains. Argoul's own equilibration study found long-chain PFAS need up to
+120 h to equilibrate; Ryu dialysed 18 h **with membrane presaturation**. The
+protocols differ exactly where the numbers do.
+
+Binding affinity to albumin rises with chain length, so within the carboxylate
+series f_u **must** fall monotonically from C4 to C12. That is a constraint on
+the data, independent of either protocol:
+
+| series | pairs | inversions | where |
+|---|---|---|---|
+| Ryu human | 8 | **0** | — |
+| Ryu C57BL/6 mouse | 8 | **0** | — |
+| Ryu rat | 8 | **0** | — |
+| Argoul human | 3 | 1 | C9→C10 |
+| Argoul C57BL/6 mouse | 4 | 1 | C9→C10 |
+| Argoul exp. 2 human | 6 | 2 | C9→C10, C10→C11 |
+
+**Ryu's carboxylate series is monotone in all three species. Argoul's is not.**
+Argoul's human f_u rises from PFNA (C9) to PFDA (C10) and again to PFUdA
+(C11), reaching 0.017 — forty times Ryu's 0.00042 and within 15% of Argoul's
+own value for C6 PFHxA. A C11 carboxylate is not as weakly bound as a C6. So
+this is not symmetric uncertainty between two equally good datasets: **Ryu's
+long-chain values satisfy a constraint Argoul's violate**, which is what
+presaturation is for. The layer-3 rows use Ryu's f_u throughout and that
+choice is now argued rather than assumed.
+
+**One row where the choice swings the answer.** Human PFDA is 90.6% reabsorbed
+on Ryu's f_u and 98.5% on Argoul's — the figure Argoul 2026 Table 1 prints.
+The two differ six-fold in f_u for this compound, which is exactly where
+Argoul's series breaks. Every other row moves by under two percentage points.
+
+**What this does not settle:** Argoul supplies the renal clearances and nothing
+here tests those. Each layer-3 row records the join in a
+`provenance_mismatch` column.
+
+### Three provenance facts recorded late, from Ryu's methods section
+
+1. **Ryu's plasma is "equal sex pooled (minimum of 3 male and 3 female)."** The
+   rat renal clearance it is paired with is **male** (18.2 mL/kg·day); female
+   rat renal clearance is 666, thirty-seven-fold higher. Pooling is defensible
+   only if rat plasma f_u does not itself differ by sex, and **no paper
+   measures that** — Ryu's companion tissue paper (*Environ Sci Technol*
+   58:14641) also pools. §14 attributed the sex difference to Oatp1a1
+   expression (114×), a transporter property, so binding is unlikely to carry
+   it; that is an argument, not a measurement.
+2. **Ryu's rat is Wistar-Han**; the renal clearance is Sprague-Dawley.
+3. **Ryu's mouse strains are CD-1 and C57BL/6, and Argoul's is C57BL/6**, so
+   the mouse pairing is strain-matched. Sex is not.
+
+### Strain is not a detail for PFOS
+
+| | CD-1 | C57BL/6 | ratio |
+|---|---|---|---|
+| PFOS | 0.0128 | 0.00256 | **5.0×** |
+| PFUnDA | 0.00052 | 0.00127 | 0.41× |
+
+The other twelve agree between strains within 1.5×. **"Mouse f_u" is not one
+number for PFOS**, so any mouse PFOS reabsorption figure inherits whichever
+strain supplied the binding measurement. On CD-1 the filtered load is 5×
+higher and the reabsorbed fraction 99.4% rather than 97.1%.
+
+### A species constant that two authorities disagree about
+
+| mouse GFR | source |
+|---|---|
+| 16,700 mL/kg·day | OEHHA PHG Table A6.4 / Han 2012 — used here |
+| **10,000 mL/kg·day** | Argoul 2026, recovered exactly from their own f_u × GFR column |
+
+A 1.67× fork in a quantity usually treated as known. The reabsorbed
+*percentage* is insensitive (98.5% against 97.5% for mouse PFOA) because
+reabsorption is near-complete either way, but **the absolute filtered load is
+not**, so any mass-balance model built on it inherits the fork. Aim 3 will
+have to pick one and say so.
+
+### What Stage 4c changes
+
+- **Supported and strengthened.** The rat f_u ≈ human f_u approximation holds
+  across all fourteen compounds, so §15's rescue of the species contrast was
+  not compound-specific luck.
+- **New.** The glomerular / tubular split **inverts between rat and mouse**.
+  This is the first result in the strand that distinguishes the two rodents
+  mechanistically rather than quantitatively.
+- **New.** The mouse/human binding error is chain-length-dependent with a
+  mid-series maximum — a shape the QSAR aim must reproduce.
+- **Corrected.** The "consistent offset" between Ryu and Argoul does not
+  survive fifteen pairs. The disagreement is concentrated at the long chains
+  and the monotonicity test favours Ryu there.
+- **Still open.** Rat renal clearance for thirteen of the fourteen. This is
+  now the single highest-value missing measurement in the strand.

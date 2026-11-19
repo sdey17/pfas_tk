@@ -1,0 +1,43 @@
+chemical,n_perfluorinated_carbons,family,species,matrix,fu,gfr_mL_kg_day,filtered_load_mL_kg_day,clr_mL_kg_day,clr_basis,net_mL_kg_day,pct_reabsorbed,verdict,fu_source,clr_source,provenance_mismatch
+PFBA,4,carboxylate,human,human,0.229,2570,588.53,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFBA,4,carboxylate,rat,rat,0.37,14400,5328.0,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFBA,4,carboxylate,mouse,mouse (C57BL/6),0.767,16700,12808.9,783.0,measured_renal,12025.9,93.9,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFPeA,5,carboxylate,human,human,0.0888,2570,228.216,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFPeA,5,carboxylate,rat,rat,0.18,14400,2592.0,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFPeA,5,carboxylate,mouse,mouse (C57BL/6),0.577,16700,9635.9,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHxA,6,carboxylate,human,human,0.038,2570,97.66,47.0,measured_renal,50.66,51.9,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFHxA,6,carboxylate,rat,rat,0.0358,14400,515.52,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHxA,6,carboxylate,mouse,mouse (C57BL/6),0.182,16700,3039.4,6780.0,measured_renal,-3740.6,,NET_TUBULAR_SECRETION,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFHpA,7,carboxylate,human,human,0.00445,2570,11.437,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHpA,7,carboxylate,rat,rat,0.00454,14400,65.376,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHpA,7,carboxylate,mouse,mouse (C57BL/6),0.0323,16700,539.41,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFOA,8,carboxylate,human,human,0.00245,2570,6.296,0.042,total_as_proxy,6.255,99.3,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFOA,8,carboxylate,rat,rat,0.00298,14400,42.912,18.2,measured_renal,24.712,57.6,net_reabsorption,Ryu 2024,"OEHHA 2024 PHG Table A6.4 (Kemper 2003), male Sprague-Dawley",sex-pooled Wistar-Han fu vs male Sprague-Dawley CLR
+PFOA,8,carboxylate,mouse,mouse (C57BL/6),0.0142,16700,237.14,3.59,measured_renal,233.55,98.5,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFNA,9,carboxylate,human,human,0.00187,2570,4.806,0.067,total_as_proxy,4.739,98.6,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFNA,9,carboxylate,rat,rat,0.0021,14400,30.24,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFNA,9,carboxylate,mouse,mouse (C57BL/6),0.00438,16700,73.146,0.6,measured_renal,72.546,99.2,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFDA,10,carboxylate,human,human,0.000618,2570,1.588,0.15,total_as_proxy,1.438,90.6,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFDA,10,carboxylate,rat,rat,0.001,14400,14.4,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFDA,10,carboxylate,mouse,mouse (C57BL/6),0.00127,16700,21.209,0.13,measured_renal,21.079,99.4,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFUnDA,11,carboxylate,human,human,0.000419,2570,1.077,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFUnDA,11,carboxylate,rat,rat,0.000349,14400,5.026,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFUnDA,11,carboxylate,mouse,mouse (C57BL/6),0.00127,16700,21.209,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFDoDA,12,carboxylate,human,human,0.000105,2570,0.27,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFDoDA,12,carboxylate,rat,rat,7.96e-05,14400,1.146,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFDoDA,12,carboxylate,mouse,mouse (C57BL/6),0.000205,16700,3.423,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+6:2 FTS,6,fluorotelomer sulfonate,human,human,0.0197,2570,50.629,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+6:2 FTS,6,fluorotelomer sulfonate,rat,rat,0.0236,14400,339.84,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+6:2 FTS,6,fluorotelomer sulfonate,mouse,mouse (C57BL/6),0.0253,16700,422.51,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFOSA,8,sulfonamide,human,human,0.0019,2570,4.883,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFOSA,8,sulfonamide,rat,rat,0.00197,14400,28.368,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFOSA,8,sulfonamide,mouse,mouse (C57BL/6),0.0023,16700,38.41,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFBS,4,sulfonate,human,human,0.0365,2570,93.805,1.2,measured_renal,92.605,98.7,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFBS,4,sulfonate,rat,rat,0.0542,14400,780.48,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFBS,4,sulfonate,mouse,mouse (C57BL/6),0.28,16700,4676.0,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHxS,6,sulfonate,human,human,0.000695,2570,1.786,0.053,total_as_proxy,1.733,97.0,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFHxS,6,sulfonate,rat,rat,0.00076,14400,10.944,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFHxS,6,sulfonate,mouse,mouse (C57BL/6),0.013,16700,217.1,0.589,measured_renal,216.511,99.7,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched
+PFOS,8,sulfonate,human,human,0.000753,2570,1.935,0.088,total_as_proxy,1.847,95.5,net_reabsorption,Ryu 2024,Argoul 2026 Table 1,sex-pooled fu
+PFOS,8,sulfonate,rat,rat,0.00109,14400,15.696,,,,,NO_RENAL_CLEARANCE_DATA,Ryu 2024,,
+PFOS,8,sulfonate,mouse,mouse (C57BL/6),0.00256,16700,42.752,1.24,measured_renal,41.512,97.1,net_reabsorption,Ryu 2024,"Argoul 2026 Table 4, female C57BL/6",sex-pooled fu vs female CLR; strain matched

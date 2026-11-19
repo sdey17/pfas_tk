@@ -276,9 +276,61 @@ in character than the PHG states: the human reabsorbs essentially all filtered
 PFOA, the male rat a little over half. **The percentages OEHHA prints are not
 reliable. The attribution of the difference to the tubule is.**
 
-Two laboratories agree with a consistent offset — Ryu runs 1.3–1.9× higher than
-Argoul throughout, within the spread of equilibrium-dialysis methods, with the
-species ordering and ratios preserved.
+### All fourteen compounds, and the split inverts between the rodents
+
+Ryu measures fourteen PFAS, so the binding layer can be run whole rather than
+on PFOA alone. Two results follow.
+
+**First, the rat approximation generalises.** Rat/human f_u has a geometric
+mean of **1.20×** across all fourteen and lies within two-fold for **13 of
+14**. Mouse/human is 3.7–4.1× and within two-fold for only 3 of 14. OEHHA's
+constant-f_u assumption is therefore a sound approximation for the rat and a
+bad one for the mouse, **across the whole class** — not a lucky break on PFOA.
+The mouse/human error is also chain-length-dependent, rising from 3.4× at C4
+to a 4.8–7.3× plateau over C5–C8 and falling to ~2× by C9–C12: largest exactly
+over the compounds of greatest regulatory interest.
+
+**Second, and this is the substantive finding, the two rodents are fast for
+different reasons.** For PFOA:
+
+| | observed CL_R ratio | glomerular | tubular |
+|---|---|---|---|
+| human vs **rat** | 303× | 6.8× | **45×** |
+| human vs **mouse** | 85× | **37.7×** | 2.3× |
+
+The mouse differs from the human in *both* glomerular factors — f_u 5.8× higher
+and GFR 6.5× higher, and 5.8 × 6.5 = 37.7 — so the glomerulus accounts for
+nearly the whole difference. The rat differs in *one*, its f_u matching the
+human, so the tubule must carry 45× of the 303×. **"Rodents clear PFOA faster
+than humans" is one sentence covering two mechanisms**, and a PBPK model
+calibrated on the mouse tubule and applied to the rat imports the wrong term.
+
+Across the human–mouse pairs the glomerular factor dominates six of seven, and
+for four of the six long chains the tubular factor is *below one* — the tubule
+partly cancels the mouse's faster clearance rather than amplifying it.
+
+**Coverage, stated plainly.** The f_u layer is complete (14 × 4 matrices, one
+laboratory). The reabsorbed-fraction layer needs renal clearance, which exists
+for 7 of 14 in the human, 7 of 14 in the mouse and **1 of 14 in the rat**. The
+full three-species triangle closes for PFOA alone. The rat gap is now a hole in
+the *clearance* data, not the binding data — **compound-by-compound rat renal
+clearance is the single highest-value missing measurement in this strand.**
+
+Ryu's plasma is equal-sex-pooled Wistar-Han; the rat clearance it is paired
+with is male Sprague-Dawley, and no study measures whether rat plasma f_u
+differs by sex. The mouse pairing is strain-matched (C57BL/6) but not
+sex-matched. Mouse f_u for PFOS differs **5-fold between CD-1 and C57BL/6**, so
+"mouse f_u" is not one number for that compound.
+
+**On the two laboratories:** the apparent consistent offset was an artefact of
+looking at PFOA. Across fifteen overlapping pairs there is no net offset
+(geometric mean 0.90×) and the spread is thirteen-fold, concentrated at the
+long chains. A test that trusts neither laboratory settles it: within the
+carboxylate series f_u must fall monotonically with chain length, and **Ryu's
+series is monotone in all three species while Argoul's inverts at C9→C10 and
+again at C10→C11.** Argoul's PFUdA value is forty times Ryu's and nearly as
+high as Argoul's own C6. The figures above use Ryu's f_u, and that choice is
+argued rather than assumed.
 
 ---
 
