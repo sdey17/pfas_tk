@@ -24,7 +24,9 @@ got wrong in my own survey.
 | Artefact | Size | State |
 |---|---|---|
 | `db/transporter_kinetics.csv` | **301 rows, 28 sources**, 29 DOIs | the record — everything read from a primary, including rows that are not transporter kinetics |
-| `db/transporter_kinetics_working.csv` | **363 rows, 16 sources, 36 transporters, 22 compounds** | gated, normalised, split; built by `scripts/build_transporter_working_table.py`, never edited by hand |
+| `db/transporter_kinetics_working.csv` | **58 rows** (tier A 52, B 2, C 4) | the constants. Built by `scripts/build_transporter_working_table.py`, never edited by hand |
+| `db/transporter_direction.csv` | **305 rows** (tier D) | substrate calls, uptake ratios, inhibition — a different kind of evidence, in a different file |
+| `scripts/screen_transporter_fits.py` | the inclusion screen | run before reading a paper; the counterpart of `screen_fits_database.py` |
 | `db/membrane_partitioning.csv` | 9 rows | Ebert 2020; a different quantity, kept out of the transporter tables (§6 note) |
 | `db/primary_2026/argoul2026_table1_human_reabsorption.csv` | 9 rows | the in vivo counterpart: net tubular reabsorption as % of filtration clearance |
 | `db/transporter_mechanism.csv` | 83 rows | direction, sex and hormone regulation; Km on 24 |
@@ -371,10 +373,8 @@ gaps. It did deliver Stage 3's clearance column early, and it found the
 second-hand-V_max defect in §3.1b, which no amount of new paper-fetching would
 have surfaced.
 
-**Stage 1 — decide the inclusion rule**, as `screen_fits_database.py` does for
-binding. Candidate: a row earns a place if it reports **K_m with V_max**, or a
-K_i with the probe substrate and its K_m. Uptake ratios and substrate/
-non-substrate calls go to a separate direction table, not the kinetics table.
+**Stage 1 — the inclusion rule. COMPLETE, 2026-11-19.** Decided as proposed,
+with one addition and one rejection. §9 states it and the evidence behind it.
 
 **Stage 2 — build the direction join.** Every transporter gets apical or
 basolateral, reabsorptive or secretory, per species, with the source for the
@@ -453,3 +453,80 @@ is the one compound Argoul finds to be an OAT1 substrate, OAT1 being
 secretory. That is a clean, independent corroboration of the direction calls,
 and it is the strongest single argument in this document that direction must
 be joined before kinetics (Stage 2) rather than after.
+
+---
+
+## 9. The inclusion rule (Stage 1)
+
+One identity, as the binding side has one:
+
+> **CL_int [µL/min/mg protein] = 1000 × V_max [nmol/min/mg protein] / K_m [µM]**
+
+A source reaches the kinetics table only if it supplies what that identity
+needs. Nothing else decides it — not how careful the paper is, not how many
+compounds it covers, not whether it agrees with anyone.
+
+| Tier | Meaning | Rows | Sources |
+|---|---|---|---|
+| **A** | reaches CL_int per mg protein | **52** | 8 |
+| **B** | a clearance on a basis that will not join | 2 | Han 2008 only |
+| **C** | affinity only — K_m, no clearance | 4 | Yang 2009/2010 only |
+| **D** | no constant: substrate calls, uptake ratios, inhibition | 305 | 7 |
+
+A, B and C live in `db/transporter_kinetics_working.csv`; **D is a separate
+file**, `db/transporter_direction.csv`. That split is the rule made physical.
+B and C stay beside A rather than in files of their own because they are six
+rows between them, and because both are one measurement away from A (below).
+
+**The addition: a directly reported clearance counts.** Kimura 2017 reports no
+V_max, but prints "uptake clearance V_max/K_m = 55.0 µL/mg protein/min"
+alongside K_m 8.3 µM. That is the quantity the identity produces, stated
+outright, so the row is tier A. Its implied V_max, 55.0 × 8.3 = 456 pmol/mg
+protein/min, sits inside the range Nakagawa (365–479) and Niu (192–674)
+measured — a consistency check that supports admitting it. Note this also
+settles the §6 item-8 question of whether Kimura's K_m of 8.3 µM, an order of
+magnitude below every other K_m here, is "important or wrong": it is admitted,
+flagged, and left for the write-up, because the clearance it implies is
+unremarkable even though the K_m is not.
+
+**The rejection: K_i and IC50 do not get in**, and the roadmap's original
+candidate ("or a K_i with the probe substrate and its K_m") turns out to admit
+nothing. An IC50 is as much a property of the probe substrate and its
+concentration as of the inhibitor, so two IC50 values measured against
+different probes are not comparable quantities. Converting one into a
+probe-independent K_i needs the probe's own K_m, through Cheng–Prusoff.
+**Of the 20 numeric IC50 values in this record, none carries it.** So the
+clause admits zero rows and the quantity stays in tier D — which is the same
+discipline the albumin and L-FABP sheets apply to probe-displacement
+constants, and for the same reason.
+
+While checking that, the `ic50` column turned out to have the defect `km` had:
+28 populated cells, **20 numeric, 8 prose** ("significant inhibition only by
+C6, C7, C8 at 10 µM"). The builder's `num()` guard already catches these.
+
+**A substrate call is not a weak K_m.** Argoul 2026 contributes 120 rows and
+no constants. That is a real measurement answering a real question — which
+transporters touch which compounds, in which species — but no arithmetic turns
+it into an affinity or a clearance, and keeping it in the same sheet as the
+constants is how, eventually, somebody averages the two. Ryu 2024 adds 109
+more of the same kind. **Together they are two thirds of the compilation**,
+which is why the split matters more here than it did for binding.
+
+### What the screen says is worth asking for
+
+The request list now derives from the data rather than from memory, and it is
+short:
+
+| Source | Needs | Rows gained |
+|---|---|---|
+| **Yang 2010** | its own V_max (the record holds OAT4 37 and URAT1 0.32 only as Louisse 2023's introduction quotes them) | C → A, **+3** |
+| **Yang 2009** | a V_max for Oatp1a1/PFOA | C → A, **+1** |
+| **Han 2008** | mg protein per 10⁶ rat hepatocytes, to convert 64.8 and 47.6 µL/min/10⁶ cells | B → A, **+2** |
+
+**Tier A is 52 rows; all three would make it 58. Nothing else in the record is
+one measurement away.** Two things follow. First, the entire tier-C stratum is
+Yang 2009/2010 — the only affinity-only evidence in the compilation comes from
+the two papers still outstanding, which is a sharper argument for getting them
+than "they are cited a lot". Second, and less comfortably: **the kinetics
+table is nearly at its ceiling on the current literature.** Growth past 58
+rows needs new measurements, not better retrieval.

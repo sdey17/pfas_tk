@@ -45,7 +45,28 @@ It does four things and reports each one.
    observations. Cells that name no specific compound ("6 PFCAs, 3 PFSAs and
    4 fluorinated alternatives") cannot be split and are gated as UNSPECIFIED.
 
-4. COMPUTES CL_int where Km and Vmax are both present on a common basis.
+4. ASSIGNS AN EVIDENCE TIER (Stage 1's inclusion rule) and computes CL_int.
+
+     A  reaches intrinsic clearance per mg protein. Either Km and Vmax are
+        both reported on a convertible basis, or the paper reports Vmax/Km
+        itself in uL/min/mg protein (Kimura 2017 does, and only that).
+     B  reports a clearance on a basis that cannot be joined to A. Han 2008's
+        uL/min per 10^6 hepatocytes is the only case; joining it needs mg
+        protein per 10^6 cells, which that paper does not give.
+     C  affinity only: a Km and no clearance. Still answers the saturation
+        question in the report, which does not need Vmax -- half-saturation
+        against serum concentration is a statement about Km alone.
+     D  no constant: a substrate call, an uptake ratio, or an inhibition
+        measurement. These are the direction evidence, written to a separate
+        file, and they never enter a clearance or affinity comparison.
+
+   WHY IC50 AND Ki ARE TIER D AND NOT TIER C. An IC50 is a property of the
+   probe substrate and its concentration as much as of the inhibitor, so
+   pooling IC50 values measured against different probes compares nothing.
+   Converting one to a probe-independent Ki needs the probe's own Km
+   (Cheng-Prusoff), and NOT ONE of the 20 numeric IC50 values in this record
+   carries it. They stay as evidence that a compound interacts with a
+   transporter, which is a direction claim, not an affinity one.
 
        CL_int [uL/min/mg protein] = 1000 * Vmax [nmol/min/mg] / Km [uM]
 
@@ -67,6 +88,7 @@ import collections, csv, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "..", "db", "transporter_kinetics.csv")
 OUT = os.path.join(HERE, "..", "db", "transporter_kinetics_working.csv")
+DIR_OUT = os.path.join(HERE, "..", "db", "transporter_direction.csv")
 
 NOT_MEASURED = re.compile(
     r"IVIVE|predicted|mRNA|in vivo renal clearance|multiple regression|"
@@ -76,6 +98,15 @@ COMPOSITE = re.compile(r"composite", re.I)
 CARRIED_OVER = re.compile(r"NOT MEASURED HERE", re.I)
 NOT_VMAX = re.compile(r"BW\^0\.75|clearance, not Vmax", re.I)
 SECOND_HAND = re.compile(r"as quoted|as reported|cited (?:in|by)", re.I)
+# A clearance the paper states outright instead of a Vmax. Kimura 2017 prints
+# "uptake clearance Vmax/Km = 55.0 uL/mg protein/min"; Han 2008 prints
+# "uptake clearance 64.8 +/- 15.7 uL/min/10^6 cells". Matched narrowly, on the
+# vmax cell and the source note only, never across the whole row.
+DIRECT_CL = re.compile(
+    r"(?:uptake\s+)?clearance\s*(?:Vmax/Km\s*)?=?\s*([0-9]+(?:\.[0-9]+)?)"
+    r"(?:\s*\+/-\s*[0-9]+(?:\.[0-9]+)?)?\s*"
+    r"u?L/(?:mg\s+protein/min|min/mg\s+protein|min/10\^6\s+cells)", re.I)
+PER_CELLS = re.compile(r"10\^6\s+cells", re.I)
 VMAX_CANON = {"nmol/mg protein/min": "nmol/min/mg protein",
               "pmol/min/mg protein": "pmol/mg protein/min"}
 # unit -> factor converting it to nmol/min/mg protein. pmol is a thousandth
@@ -203,43 +234,78 @@ def main():
                                      if vmax_n is not None else "")
             d["vmax_units"] = vu
             d["substrate_call"] = kind or r["substrate_or_inhibitor"]
-            d["clint_uL_min_mg"] = (
-                round(1000.0 * vmax_n / km, 1)
-                if (km and vmax_n is not None and km > 0) else "")
+            clint = (round(1000.0 * vmax_n / km, 1)
+                     if (km and vmax_n is not None and km > 0) else "")
+            # a clearance the paper states outright, where we have no Vmax
+            direct, per_cells = "", False
+            if clint == "":
+                for cell in (r["vmax"], r["source_table"]):
+                    m = DIRECT_CL.search(cell or "")
+                    if m:
+                        direct = float(m.group(1))
+                        per_cells = bool(PER_CELLS.search(m.group(0)))
+                        break
+            if direct != "" and not per_cells:
+                clint = direct
+            d["clint_uL_min_mg"] = clint
+            d["clint_uL_min_10e6cells"] = direct if per_cells else ""
+            d["tier"] = ("A" if clint != "" else
+                         "B" if per_cells else
+                         "C" if km else "D")
             if len(names) > 1:
                 d["chemical_cell_original"] = r["chemical"]
             out.append(d)
 
     fields = list(rows[0].keys()) + [
         "chemical_cell_original", "chemical_cell_read_as", "shared_across",
-        "km_uM", "vmax_nmol_min_mg", "clint_uL_min_mg", "substrate_call"]
+        "km_uM", "vmax_nmol_min_mg", "clint_uL_min_mg",
+        "clint_uL_min_10e6cells", "tier", "substrate_call"]
     fields = list(dict.fromkeys(fields))
-    with open(OUT, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
-        w.writeheader()
-        for d in out:
-            w.writerow({f: d.get(f, "") for f in fields})
+    # Stage 1's inclusion rule, made physical: constants and direction
+    # evidence are different quantities and live in different files. A row
+    # that carries no constant cannot enter a clearance or affinity
+    # comparison, and keeping it in the same sheet is how it eventually does.
+    kin = [d for d in out if d["tier"] in ("A", "B", "C")]
+    dirn = [d for d in out if d["tier"] == "D"]
+    for path, rowset in ((OUT, kin), (DIR_OUT, dirn)):
+        with open(path, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fields, extrasaction="ignore")
+            w.writeheader()
+            for d in rowset:
+                w.writerow({f: d.get(f, "") for f in fields})
 
     print(f"read    {len(rows):4d} rows from the record")
     print(f"dropped {sum(dropped.values()):4d}")
     for g, n in dropped.most_common():
         print(f"           {n:3d}  {g}")
-    print(f"wrote   {len(out):4d} rows to {os.path.relpath(OUT, os.path.join(HERE,'..'))}")
+    print(f"kept    {len(out):4d} rows, split by evidence tier")
     print()
     for f, n in flags.most_common():
         print(f"   flag {n:3d}  {f}")
 
-    km = [d for d in out if d["km_uM"] != ""]
+    tiers = collections.Counter(d["tier"] for d in out)
     cl = [d for d in out if d["clint_uL_min_mg"] != ""]
+    km = [d for d in out if d["km_uM"] != ""]
+    rel = lambda p: os.path.relpath(p, os.path.join(HERE, ".."))
     print()
-    print(f"K_m present      {len(km):3d} / {len(out)}  "
+    print(f"  {rel(OUT)}   {len(kin)} rows")
+    print(f"    tier A  {tiers['A']:3d}  CL_int per mg protein")
+    print(f"    tier B  {tiers['B']:3d}  clearance on another basis "
+          f"(per 10^6 cells)")
+    print(f"    tier C  {tiers['C']:3d}  affinity only (K_m, no clearance)")
+    print(f"  {rel(DIR_OUT)}        {len(dirn)} rows")
+    print(f"    tier D  {tiers['D']:3d}  substrate calls, uptake ratios, "
+          f"inhibition")
+    print()
+    print(f"K_m present      {len(km):3d}  "
           f"({len({d['study'][:18] for d in km})} studies, "
           f"{len({d['chemical'] for d in km})} compounds, "
           f"{len({d['transporter'] for d in km})} transporters)")
-    print(f"CL_int computed  {len(cl):3d} / {len(out)}")
     if cl:
         v = sorted(d["clint_uL_min_mg"] for d in cl)
-        print(f"   CL_int {v[0]:g} to {v[-1]:g} uL/min/mg protein")
+        print(f"CL_int           {len(cl):3d}  {v[0]:g} to {v[-1]:g} "
+              f"uL/min/mg protein, "
+              f"{len({d['study'][:18] for d in cl})} studies")
     return 0
 
 
