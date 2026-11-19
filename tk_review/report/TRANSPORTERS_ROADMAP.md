@@ -977,8 +977,11 @@ species difference it carries. It does not multiply them together.
 | rat female (Kemper) | 288 | 666 | **net secretion** | — |
 | mouse male / female | 334 | 10 / 16 | 97.0 / 95.2% | 3.0 / 4.8% |
 
-mL/kg-day, f_u assumed 0.02 throughout (OEHHA Table A6.4). The male rat clears
-PFOA renally **303× faster** than the human, and that factors exactly in two:
+mL/kg-day, f_u assumed 0.02 throughout (OEHHA Table A6.4). **That assumption
+does not hold and §15 shows what it costs** — the human row survives it, the
+rat row does not. Read the percentages below as conditional. The male rat
+clears PFOA renally **303× faster** than the human, which is observed and
+f_u-independent, and factors exactly in two:
 
 > **303× = 5.6× (filtered load, i.e. GFR at equal f_u) × 54× (the fraction
 > escaping the tubule)**
@@ -1068,3 +1071,99 @@ cautiously.
 fraction in rat **plasma**, by the method Argoul used for human and mouse —
 one number that would turn the filtered-load term from an assumption into a
 measurement, for both species.
+
+---
+
+## 15. Dropping the constant-f_u assumption (Stage 4b)
+
+`scripts/stage4_fu_sensitivity.py`. The reviewer declined to carry OEHHA's
+assumption that the plasma unbound fraction is 0.02 in every species. That
+objection holds, and checking it changes one of §14's two conclusions.
+
+### What OEHHA actually says
+
+> *"Assuming the unbound fraction in blood (f_u) as 0.02, comparison of the
+> GFR × f_u … and CL_R … provides insight into whether the compound is
+> actively secreted or reabsorbed"* … *"According to this calculation, human
+> kidney reabsorbed 99.8% of PFOA. This mechanism would explain the
+> exceptionally long human T½ relative to animals."*
+
+One clause, no citation, no species justification, carried from Han 2012 —
+and a headline conclusion drawn from it.
+
+### It is not even constant across compounds
+
+Argoul 2026 measured human plasma f_u for nine PFAS. It spans **52-fold**:
+
+| PFAS | measured f_u | OEHHA's 0.02 is |
+|---|---|---|
+| PFHxS | 0.0008 | **25× too high** |
+| PFOS | 0.0016 | 12.5× too high |
+| **PFOA** | **0.0017** | **11.8× too high** |
+| PFNA | 0.0017 | 11.8× too high |
+| PFBS | 0.017 | 1.2× |
+| PFHxA | 0.020 | 1.0× — correct |
+| GenX | 0.042 | 0.5× too low |
+
+**0.02 is a short-chain value applied to the long-chain compounds the PHG is
+about.**
+
+### The human conclusion survives
+
+| f_u | filtered | reabsorbed |
+|---|---|---|
+| 0.02 (assumed) | 51.4 | 99.88% |
+| **0.0017 (measured)** | **4.37** | **98.63%** |
+| 0.0008 (lowest ever measured) | 2.06 | 97.08% |
+
+Human CL_R for PFOA is 0.06 mL/kg-day. Break-even — where the human stops
+reabsorbing — is f_u = 0.000023, **thirty times below anything ever
+measured**. The ~99% figure is not an artefact.
+
+### The rat conclusion does not
+
+| f_u | filtered | reabsorbed |
+|---|---|---|
+| 0.02 (assumed) | 288 | 93.7% |
+| 0.0025 | 36.0 | 49.4% |
+| 0.0017 (= the human's measured value) | 24.5 | **25.7%** |
+| **0.00126** | 18.2 | **0.0% — break-even** |
+| 0.0008 | 11.5 | **net secretion** |
+
+**The male rat stops being a net reabsorber at f_u = 0.00126 — only 1.4-fold
+below the human's measured PFOA f_u.** Whether male rats reabsorb PFOA at
+all, or secrete it like the females, turns on a rat f_u nobody in this
+database has measured, and the 93.7% rests on an assumed value sitting 16-fold
+above that sign change.
+
+### The assumption does not add uncertainty — it assigns the answer
+
+The observed 303× is a fact and does not depend on f_u. **How it splits does:**
+
+| f_u(rat)/f_u(human) | filtered load | tubular escape |
+|---|---|---|
+| 1.0 — *OEHHA, by assumption* | 5.6× | **54×** |
+| 2.0 | 11.2× | 27× |
+| 11.8 — *if rat is near 0.02 while human is 0.0017* | 66× | **4.6×** |
+
+Setting the first column to 1.0 fixes the filtered-load term at 5.6× and sends
+everything else to the tubule. At the bottom row, 66× of the 303× is
+**glomerular** and the renal-reabsorption explanation would not follow. **This
+is circular: the assumption of equal f_u is part of what produces the
+conclusion that the difference is tubular.**
+
+### Consequences for this project
+
+- **Quote human numbers with the measured, per-compound f_u** from Argoul
+  2026 Table 1 — human PFOA 99.0% reabsorbed, not 99.8%.
+- **Do not quote the rat, mouse, dog, macaque or rabbit percentages** from
+  Table A6.4 without the assumption attached. §14's table is amended
+  accordingly.
+- The honest statement of aim 1 is now: **the human reabsorbs PFOA almost
+  completely, and that is robust. The species *contrast* in reabsorption is
+  not established**, because the rat side of it rests on an assumed binding
+  value.
+- §14's other conclusions are untouched: they rest on expression, affinity
+  and localisation, none of which involve f_u. **The rat sex difference is
+  entirely unaffected** — same species, same f_u whatever it is, and a 114×
+  transporter difference with a sign change.
