@@ -23,15 +23,19 @@ record of how this was assembled, including the defects found along the way, is
 5. **Abundance gates relevance.** The highest intrinsic clearance in this whole
    compilation belongs to a transporter that two laboratories cannot detect in
    human kidney.
+6. **The human–rat contrast in renal reabsorption is real and larger than the
+   regulatory figure.** Measured unbound fractions put human reabsorption of
+   filtered PFOA at **99.0%** and the male rat at **58%**, not the 99.8% and
+   93.7% computed from an assumed binding value.
 
 **Three things it does not.**
 
 1. Whether human OAT4 reabsorbs more effectively *in situ* than rat Oatp1a1.
    Per mg of transporter protein they are within 1.3-fold; per kidney they
    cannot be compared, because neither has a scaling factor.
-2. **The species contrast in renal reabsorption.** The widely quoted figures —
-   human 99.8%, male rat 93.7% — rest on an assumed plasma unbound fraction.
-   Where that assumption can be removed, it changes the answer.
+2. ~~The species contrast in renal reabsorption.~~ **Resolved 2026-11-19**,
+   and it moved to the supported list as item 6 — but the widely quoted
+   figures were wrong. See §6.
 3. Whether any of the measured clearances survive contact with plasma protein.
    Every assay in this compilation was run without it.
 
@@ -235,36 +239,46 @@ f_u spans 52-fold across nine PFAS, from 0.08% (PFHxS) to 4.2% (GenX). The
 assumed 2% is about right for the short chains (PFHxA 2.0%, PFBS 1.7%) and **12
 to 25-fold too high for the long chains the PHG is about.**
 
-**The human conclusion survives it.** Human renal clearance of PFOA is 0.06
-mL/kg-day — so small that break-even, where the human would stop reabsorbing,
-is f_u = 0.000023, thirty times below anything ever measured. With the measured
-value the figure is 98.4–98.6% instead of 99.88%.
+**All three species have now been measured.** Ryu 2024 (*Toxics* 12:253,
+presaturation equilibrium dialysis, 14 PFAS) reports plasma f_u in human, rat
+and two mouse strains; Argoul 2025 reports human and mouse independently.
+Recomputing OEHHA's table with measured values rather than 0.02:
 
-**For the mouse, the assumption can be removed entirely**, because both species
-are now measured (Argoul 2025, equilibrium dialysis, 15 PFAS). Doing so changes
-which compartment the difference lives in. The male mouse clears PFOA 167×
-faster than the human, which is f_u-independent; the split is not:
+| | f_u | filtered | CL_R | **reabsorbed** | OEHHA printed |
+|---|---|---|---|---|---|
+| human | 0.00245 | 6.30 | 0.06 | **99.0%** | 99.88% |
+| **male rat** | 0.00298 | 42.9 | 18.2 | **57.6%** | **93.68%** |
+| male mouse | 0.0142 | 237 | 10 | **95.8%** | 97.01% |
 
-| basis | filtered load | tubular escape |
+**The male rat does not reabsorb 94% of filtered PFOA. It reabsorbs about
+58%.** The regulatory figure is wrong by a wide margin, because the assumed
+f_u is eight-fold too high for the rat.
+
+**But the assumption is approximately right in *structure* for this pair**, and
+that is why the species conclusion survives. Rat and human plasma f_u for PFOA
+differ only **1.22-fold** (0.00298 against 0.00245); Ryu's own equivalence
+testing puts human and rat within two-fold, mean absolute fold difference 1.32.
+So the decomposition of the observed 303-fold clearance difference holds:
+
+| | glomerular | tubular |
 |---|---|---|
-| f_u assumed equal (OEHHA) | 6.5× | **25.6×** |
-| measured, experiment 1 | 33.3× | **5.0×** |
-| measured, experiment 2 | 60.0× | **2.8×** |
+| f_u assumed equal (OEHHA) | 5.6× | 54× |
+| **f_u measured** | **6.8×** | **45×** |
 
-**Removing the assumption moves the mouse–human difference from mostly tubular
-to mostly glomerular.** This is not a hypothetical objection: it is OEHHA's own
-arithmetic with two measured numbers in place of one assumed one, and it
-reverses the answer.
+**The mouse is where the assumption fails structurally, not the rat.** Mouse
+f_u is 5.8-fold the human (Ryu) and 6.7-fold (Argoul, independently) — so for
+mouse-versus-human, holding f_u equal shifts the difference from glomerular to
+tubular and reverses the reading.
 
-**For the rat, nothing decides it**, because PFOA is precisely the compound
-whose f_u does *not* converge between the two species that have been measured —
-mouse 0.87–1.2%, human 0.13–0.17%, 6.7-fold apart. At the mouse's value the rat
-reabsorbs 87%; at the human's, 16%; break-even is 0.00126.
+**The corrected position is narrower and firmer than either earlier one.** The
+human–rat contrast in renal reabsorption **is** established, and it is larger
+in character than the PHG states: the human reabsorbs essentially all filtered
+PFOA, the male rat a little over half. **The percentages OEHHA prints are not
+reliable. The attribution of the difference to the tubule is.**
 
-**So: the human reabsorbs PFOA almost completely, and that is robust. The
-species contrast in reabsorption is not established.** One measurement would
-settle it — a rat plasma f_u for PFOA, by the method already applied to human
-and mouse.
+Two laboratories agree with a consistent offset — Ryu runs 1.3–1.9× higher than
+Argoul throughout, within the spread of equilibrium-dialysis methods, with the
+species ordering and ratios preserved.
 
 ---
 
@@ -302,7 +316,6 @@ albumin.
 
 | Measurement | What it decides |
 |---|---|
-| **Rat plasma f_u for PFOA** | whether the species contrast in reabsorption is real (§6) |
 | **OAT4 abundance in the expressing cells** | whether OAT4 really dominates human renal handling, or whether scaled OAT1 overtakes it (§4) |
 | **One PFAS uptake assay ± albumin** | whether every clearance here is a lower bound (§7) |
 | Rat Oatp1a1 REF | whether the reabsorptive sides can be compared per kidney at all (§5) |

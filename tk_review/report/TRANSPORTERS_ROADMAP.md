@@ -1243,7 +1243,52 @@ This is no longer hypothetical. It is OEHHA's own arithmetic with two measured
 numbers in place of one assumed one, and it reverses which compartment the
 difference lives in.
 
-#### What it implies for the rat
+#### The rat gap is closed, and the answer is two-sided
+
+**Ryu S, Burchett W, Zhang S, Modaresi SMS, Agudelo Areiza J, Kaye E, Fischer
+FC, Slitt AL** (2024). "Species-Specific Unbound Fraction Differences in Highly
+Bound PFAS: A Comparative Study across Human, Rat, and Mouse Plasma and
+Albumin." *Toxics* **12**(4):253. PMID 38668476, PMC11054487.
+[10.3390/toxics12040253](https://doi.org/10.3390/toxics12040253)
+
+Presaturation equilibrium dialysis, 14 PFAS at 5 µM, **human, rat and two
+mouse strains**, plasma and albumin. Ingested to
+`db/plasma_unbound_fraction.csv`. **PFOA in rat plasma: f_u = 0.00298.**
+
+Recomputing OEHHA Table A6.4 with measured values throughout:
+
+| | f_u | filtered | CL_R | **reabsorbed** | OEHHA printed |
+|---|---|---|---|---|---|
+| human | 0.00245 | 6.30 | 0.06 | **99.0%** | 99.88% |
+| **male rat** | 0.00298 | 42.9 | 18.2 | **57.6%** | **93.68%** |
+| male mouse | 0.0142 | 237 | 10 | **95.8%** | 97.01% |
+
+**The male rat does not reabsorb 94% of filtered PFOA — it reabsorbs about
+58%.** The assumed f_u is eight-fold too high for the rat, so the regulatory
+percentage is wrong by a wide margin.
+
+**And yet the species conclusion survives**, because the assumption is
+approximately right in *structure* for this pair even though its value is not.
+Rat and human f_u differ **1.22-fold**, and Ryu's equivalence testing puts them
+within two-fold (MAFD 1.32):
+
+| | glomerular | tubular |
+|---|---|---|
+| f_u assumed equal (OEHHA) | 5.6× | 54× |
+| **f_u measured** | **6.8×** | **45×** |
+
+**The mouse is where the assumption fails structurally, not the rat** — mouse
+f_u is 5.8× the human (Ryu) and 6.7× (Argoul, independent method and lab).
+
+So the corrected position is **narrower and firmer than either earlier one**:
+the human–rat contrast in reabsorption is real and larger than the PHG states,
+the printed percentages are not reliable, and the attribution to the tubule is.
+
+Two laboratories agree with a consistent offset — Ryu runs 1.3–1.9× above
+Argoul, within the spread of equilibrium-dialysis methods, ordering and ratios
+preserved.
+
+#### ~~What it implies for the rat~~ (superseded by the measurement above)
 
 | assumed rat f_u | filtered | reabsorbed |
 |---|---|---|
