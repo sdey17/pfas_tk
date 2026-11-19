@@ -418,11 +418,7 @@ with one addition and one rejection. §9 states it and the evidence behind it.
 
 **Stage 3 — CL_int on a common basis. COMPLETE, 2026-11-19.** §13.
 
-**Stage 4 — the species question**, which is the project's aim 1. The rat
-Oatp1a1 reabsorption story has no clean human counterpart: Yang 2010 found
-OATP1A2, the closest human orthologue, does **not** mediate saturable PFOA
-uptake. Whether human OAT4 and URAT1 fill that role is exactly what §4.2 leaves
-open, and item 1 of the request list is the best available evidence.
+**Stage 4 — the species question. COMPLETE, 2026-11-19.** §14.
 
 **Stage 5 — write it up** as a further section of `report/ALBUMIN_BINDING.md`,
 or as its own document if it outgrows that.
@@ -961,3 +957,114 @@ kidney cortex, which is the wrong scalar for transporters quantified in a
 total membrane fraction. Inventing it would put a fabricated number under
 every row downstream, so the stage stops at µL/min/mg protein and names the
 gap.
+
+---
+
+## 14. The species question, as an accounting (Stage 4)
+
+`scripts/stage4_species_accounting.py`, read-only. **An accounting, not a
+model** — turning the measured ratios into a predicted clearance needs the
+whole-organ scalar Stage 3 declined to invent, so this stage decomposes the
+*observed* difference exactly and then lists each candidate mechanism with the
+species difference it carries. It does not multiply them together.
+
+### What has to be explained
+
+| | filtered | CL_R | reabsorbed | escaping |
+|---|---|---|---|---|
+| **human** | 51.4 | 0.06 | **99.88%** | **0.12%** |
+| rat male (Kemper) | 288 | 18.2 | 93.68% | 6.32% |
+| rat female (Kemper) | 288 | 666 | **net secretion** | — |
+| mouse male / female | 334 | 10 / 16 | 97.0 / 95.2% | 3.0 / 4.8% |
+
+mL/kg-day, f_u assumed 0.02 throughout (OEHHA Table A6.4). The male rat clears
+PFOA renally **303× faster** than the human, and that factors exactly in two:
+
+> **303× = 5.6× (filtered load, i.e. GFR at equal f_u) × 54× (the fraction
+> escaping the tubule)**
+
+So about a sixth of the species difference is glomerular and needs no
+transporter at all. The rest is tubular.
+
+### The validation case: the rat sex difference
+
+Same species, same GFR, same assumed f_u. Escape goes from 6.3% (male) to net
+secretion (female) — **37–48×, and the sign flips**. What differs:
+
+| | male/female |
+|---|---|
+| **Oatp1a1** (apical, **reabsorptive**) | **114×** |
+| Oatp1a3 (apical, reabsorptive) | 7× |
+| Oat1 (basolateral, secretory) | 2× |
+
+**Note the direction of the Oat1 difference.** Males have *more* secretory
+transporter and still clear PFOA 37–48× more slowly. The reabsorptive side is
+not merely contributing — it is overriding a secretory difference pointing the
+other way. A 114-fold change in one apical transporter turns 94% reabsorption
+into net secretion. That is the framework working where the mechanism is
+unambiguous, and it is the reason to take the species comparison seriously.
+
+### The measured species factors
+
+| factor | rat | human | rat/human | basis |
+|---|---|---|---|---|
+| GFR | 14400 | 2570 | **5.6×** | measured |
+| OAT1 abundance | 32.8 | 4.8 | 6.8× | one assay (Thakur 2024) |
+| OAT3 abundance | 6.3 | 4.3 | 1.5× | one assay |
+| OAT1 CL_int, PFOA | 8.26 | 9.99 | 0.83× | one system (Nakagawa 2008) |
+| OAT3 CL_int, PFOA | 4.56 | 8.13 | 0.56× | one system |
+
+Combining abundance with activity, **rat OAT1 secretory capacity is ~5.6×
+human**; OAT3 is 0.82× — more protein, lower activity, nearly cancelling.
+
+### The reabsorptive side cannot be put on a ratio at all
+
+human OAT4 0.5 pmol/mg, **not detected in rat**. Rat Oatp1a1 1.9 pmol/mg,
+**not detected in human**. Different genes: there is no ratio to form, and no
+REF for either. What *can* be compared is CL_int per mg in each species' own
+system, and for PFOA they are strikingly close — human OAT4 **95.7**, rat
+Oatp1a1 **73.6** µL/min/mg, a 1.3× difference favouring the human.
+
+### Settled, and not
+
+**Settled:**
+- 5.6× of the 303× is GFR, and needs no transporter.
+- **Affinity** is not the explanation (1.2–1.8×, matched system, §8).
+- **Substrate specificity** is not the explanation (same ~500 g/mol threshold, §8).
+- The reabsorptive machinery is **not the same genes** (§11, proteomics).
+- A reabsorptive transporter **can** dominate net handling (the sex difference).
+
+**Not settled:**
+- Whether human OAT4 reabsorbs more effectively *in situ* than rat Oatp1a1.
+  Within 1.3× per mg, but neither has a REF.
+- **The f_u assumption.** OEHHA assumes 0.02 for every species; Argoul measures
+  human PFOA f_u at 0.0017. If rat f_u is *lower* than human, the filtered-load
+  term is overstated for the rat and **more** of the difference must come from
+  the tubule, not less.
+
+### The project's own binding data cannot fix the f_u assumption
+
+The albumin sheet is human and bovine by the reviewer's decision, with Fan
+2025 and Han 2003 set aside as rat-only. Right for that sheet; it removes the
+one species comparison that would matter here, so the rat rows were
+re-examined. **They do not help, and the reason is worth recording.**
+
+Fan 2025 measured the *same* rat serum albumin by two methods:
+
+| | ultrafiltration | ITC | apart |
+|---|---|---|---|
+| PFBS | 2.78 | 176.3 | **63×** |
+| PFPeA | 13.9 | 303.1 | 22× |
+| PFDA | 10.3 | 161.2 | 16× |
+| PFOA | 26.8 | 94.5 | 3.5× |
+
+**Median disagreement 8-fold**, within one paper and one protein preparation.
+The rat-vs-human difference we would need to detect is about **2-fold**. The
+binding data is four times noisier than the signal. Starnes 2024 points the
+same way (rat ~2× tighter for PFOA) but by DSF, a method this project treats
+cautiously.
+
+**What would settle it is not another albumin K_d.** It is a measured unbound
+fraction in rat **plasma**, by the method Argoul used for human and mouse —
+one number that would turn the filtered-load term from an assumption into a
+measurement, for both species.
