@@ -1185,25 +1185,82 @@ The paper actually meant, found by search, is:
 Equilibrium dialysis (Dianorm), **16 PFAS, human and mouse plasma**. Mouse
 f_u 0.21% (PFOS) to 50% (PFPeA); human 0.02% (PFHpS) to 8.5% (PFPeA).
 
-**It does not contain rat**, so it does not close the gap §15 identifies. But
-three things in it matter here:
+Obtained 2026-11-19 and ingested to `db/plasma_unbound_fraction.csv` (44
+rows). Equilibrium dialysis on the Dianorm system, chosen after an
+equilibrium-time study; human plasma pooled from 77 donors, C57BL/6N mouse
+plasma, two independent experiments reported separately.
 
-1. It is the primary source for the human f_u values this section depends on,
-   so those are now traceable rather than second-hand.
-2. It lets OEHHA's **mouse** rows be redone with a measured f_u, which no
-   longer requires any assumption.
-3. Its central structural finding bears directly on the rat: *"Interspecies
-   differences were most pronounced for short-chain PFAS and PFECA, **but not
-   observed for longer chains**."* Mouse and human PFOS f_u are 0.21% and
-   0.16%, a 1.3-fold difference, where OEHHA assumes 2% for both. **If the
-   long-chain f_u converges across species, then a rat f_u near the human's
-   0.0017 is the more defensible default — and that is the value at which the
-   male rat sits essentially at break-even.** The assumed 0.02 looks less
-   tenable, not more.
+#### ~~Long-chain f_u converges across species~~ — it does not, for PFOA
 
-The paper also fits predictive models of f_u against molecular weight. Those
-are fitted on mouse and human only, so using one to estimate a rat value would
-be the same kind of cross-species assumption this section exists to reject.
+This section previously argued, from the abstract, that interspecies f_u
+differences vanish for long-chain PFAS, so a rat f_u near the human value was
+the defensible default. **Table 2 shows the convergence is compound-specific
+and PFOA is not one of the converged ones:**
+
+| | mouse | human | apart |
+|---|---|---|---|
+| PFOS | 0.21–0.25% | 0.16% | 1.4× — converged |
+| PFDA | 0.36–0.42% | 0.25–0.38% | 1.2× — converged |
+| PFNA | 0.35–0.36% | 0.13–0.17% | 2.4× |
+| **PFOA** | **0.87–1.2%** | **0.13–0.17%** | **6.7× — not converged** |
+| PFHxS | 1.1–1.3% | 0.06–0.08% | 17× |
+
+The paper says it plainly: mouse values *"were at least 2 times higher than in
+humans for all PFAS excepted PFOS and PFDA"*. **So a rat f_u for PFOA cannot
+be inferred from the human value, and the break-even argument built on that
+was too strong.**
+
+#### The mouse rows, redone — and the circularity demonstrated
+
+Both species are now measured, so for mouse-versus-human the assumption can be
+removed entirely rather than varied:
+
+| basis | f_u | filtered | mouse male | mouse female |
+|---|---|---|---|---|
+| OEHHA assumption | 0.0200 | 334 | 97.0% | 95.2% |
+| **measured, exp 1** | 0.0087 | 145 | **93.1%** | 89.0% |
+| **measured, exp 2** | 0.0120 | 200 | **95.0%** | 92.0% |
+
+The mouse remains a strong reabsorber — break-even is f_u = 0.0006, 15–20×
+below the measured values — but at 93–95%, not 97%.
+
+**The split is what changes.** The male mouse clears PFOA renally 167× faster
+than the human; that is observed and f_u-independent.
+
+| basis | filtered load | tubular escape |
+|---|---|---|
+| f_u assumed equal (OEHHA) | 6.5× | **25.6×** |
+| measured, experiment 1 | 33.3× | **5.0×** |
+| measured, experiment 2 | 60.0× | **2.8×** |
+
+**Removing the assumption moves the mouse–human difference from mostly
+tubular to mostly glomerular.** Under equal f_u, 26-fold of the 167 is
+attributed to the tubule; with measured values it is about 3–5 fold and the
+filtered load carries the rest. For the mouse, the conclusion that renal
+reabsorption explains the species difference **does not survive**.
+
+This is no longer hypothetical. It is OEHHA's own arithmetic with two measured
+numbers in place of one assumed one, and it reverses which compartment the
+difference lives in.
+
+#### What it implies for the rat
+
+| assumed rat f_u | filtered | reabsorbed |
+|---|---|---|
+| OEHHA's 0.02 | 288 | 93.7% |
+| = the mouse's measured PFOA f_u (0.010) | 144 | **87.4%** |
+| = the human's measured PFOA f_u (0.0015) | 21.6 | 15.7% |
+| break-even (0.00126) | 18.2 | 0% |
+
+If the rat resembles the **mouse** — the closer rodent — it reabsorbs ~87%:
+lower than OEHHA's 93.7% but still clearly a reabsorber. If it resembles the
+**human**, it sits near break-even. **Nothing in this paper decides between
+them**, because PFOA is precisely the compound whose f_u does *not* converge
+across the two species that were measured.
+
+The paper also fits predictive f_u-versus-MW models, but on mouse and human
+only; using one to estimate a rat value would be the same cross-species
+assumption this section exists to reject.
 - §14's other conclusions are untouched: they rest on expression, affinity
   and localisation, none of which involve f_u. **The rat sex difference is
   entirely unaffected** — same species, same f_u whatever it is, and a 114×
