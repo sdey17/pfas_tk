@@ -1163,6 +1163,47 @@ conclusion that the difference is tubular.**
   completely, and that is robust. The species *contrast* in reabsorption is
   not established**, because the rat side of it rests on an assumed binding
   value.
+
+### The f_u source, and a broken citation in Argoul 2026
+
+Argoul 2026 cites "Argoul et al. 2025" three times for the unbound fractions
+in its Table 1 — the numbers §15 relies on. **Its reference list does not
+contain that paper.** It lists the same LC-MS/MS method paper twice, once as
+2024 and once as 2025, with identical titles and the identical DOI
+10.1016/j.jpba.2024.116596, and that paper is about quantifying PFAS *in mouse
+plasma*, not about protein binding. The f_u citation therefore resolves to the
+wrong reference.
+
+The paper actually meant, found by search, is:
+
+> **Argoul CML, Toutain PL, Berard S, Picard-Hagen N, Gayrard V, Lacroix MZ**
+> (2025). "Structure-related differences in plasma protein binding of per- and
+> polyfluoroalkyl substances in mice and humans." *Environmental Toxicology
+> and Pharmacology* **120**:104879. PMID 41314320.
+> [10.1016/j.etap.2025.104879](https://doi.org/10.1016/j.etap.2025.104879)
+
+Equilibrium dialysis (Dianorm), **16 PFAS, human and mouse plasma**. Mouse
+f_u 0.21% (PFOS) to 50% (PFPeA); human 0.02% (PFHpS) to 8.5% (PFPeA).
+
+**It does not contain rat**, so it does not close the gap §15 identifies. But
+three things in it matter here:
+
+1. It is the primary source for the human f_u values this section depends on,
+   so those are now traceable rather than second-hand.
+2. It lets OEHHA's **mouse** rows be redone with a measured f_u, which no
+   longer requires any assumption.
+3. Its central structural finding bears directly on the rat: *"Interspecies
+   differences were most pronounced for short-chain PFAS and PFECA, **but not
+   observed for longer chains**."* Mouse and human PFOS f_u are 0.21% and
+   0.16%, a 1.3-fold difference, where OEHHA assumes 2% for both. **If the
+   long-chain f_u converges across species, then a rat f_u near the human's
+   0.0017 is the more defensible default — and that is the value at which the
+   male rat sits essentially at break-even.** The assumed 0.02 looks less
+   tenable, not more.
+
+The paper also fits predictive models of f_u against molecular weight. Those
+are fitted on mouse and human only, so using one to estimate a rat value would
+be the same kind of cross-species assumption this section exists to reject.
 - §14's other conclusions are untouched: they rest on expression, affinity
   and localisation, none of which involve f_u. **The rat sex difference is
   entirely unaffected** — same species, same f_u whatever it is, and a 114×
