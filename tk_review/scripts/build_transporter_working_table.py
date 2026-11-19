@@ -49,6 +49,9 @@ It does four things and reports each one.
 
        CL_int [uL/min/mg protein] = 1000 * Vmax [nmol/min/mg] / Km [uM]
 
+   after converting Vmax to nmol/min/mg; pmol/mg protein/min, which Nakagawa
+   2008 and Niu 2026 use, is the same basis a thousand times finer.
+
    because nmol/umol = 1e-3 and 1 L = 1e6 uL. Louisse 2024 prints its own
    efficiency column and this reproduces it (3.4/159 -> 21.4 against a printed
    21), which is the check that the conversion is right.
@@ -73,8 +76,13 @@ COMPOSITE = re.compile(r"composite", re.I)
 CARRIED_OVER = re.compile(r"NOT MEASURED HERE", re.I)
 NOT_VMAX = re.compile(r"BW\^0\.75|clearance, not Vmax", re.I)
 SECOND_HAND = re.compile(r"as quoted|as reported|cited (?:in|by)", re.I)
-VMAX_CANON = {"nmol/mg protein/min": "nmol/min/mg protein"}
-VMAX_SCALABLE = {"nmol/min/mg protein"}
+VMAX_CANON = {"nmol/mg protein/min": "nmol/min/mg protein",
+              "pmol/min/mg protein": "pmol/mg protein/min"}
+# unit -> factor converting it to nmol/min/mg protein. pmol is a thousandth
+# of a nmol; Nakagawa 2008 and Niu 2026 both report in pmol/mg protein/min,
+# which is the same basis as Louisse's nmol/min/mg, a thousand times finer.
+VMAX_TO_NMOL = {"nmol/min/mg protein": 1.0, "pmol/mg protein/min": 0.001}
+VMAX_SCALABLE = set(VMAX_TO_NMOL)
 
 # a compound token: PFOA, PFHxS, 6:2 FTS, HFPO-TA, F53B, N-EtFOSA, PFO3TDA ...
 TOKEN = re.compile(r"^(?:[A-Za-z0-9]+:[0-9]+\s+)?[A-Za-z0-9][A-Za-z0-9:\-]*$")
@@ -82,8 +90,18 @@ UNSPECIFIED = re.compile(r"^\d+\s+PF|several|various|^any$", re.I)
 
 
 def num(s):
-    """First number in a cell like '185 +/- 97', '47 (15)', '1.29-7.92'."""
-    m = re.search(r"-?\d+(?:\.\d+)?", (s or "").replace(",", ""))
+    """The number a cell STARTS with: '185 +/- 97', '47 (15)', '1.29-7.92'.
+
+    It must start with one, after an optional < > ~ or =. Cells that open
+    with prose are placeholders, not measurements, and a loose search finds
+    numbers inside them that were never constants: 'within 1.41-2.78
+    (individual value only in Fig 2b)' yielded a Km of 1.41, and 'not
+    extractable from text (reported only in Fig 1f)' yielded a Km of 1, from
+    the figure number. Ten such phantom Km values were in the working table
+    before this guard, four of them multiplied out by a multi-compound split.
+    """
+    t = (s or "").replace(",", "").strip().lstrip("<>~=").lstrip()
+    m = re.match(r"-?\d+(?:\.\d+)?", t)
     return float(m.group()) if m else None
 
 
@@ -163,7 +181,7 @@ def main():
             flags["Vmax discarded (not an in vitro rate), Km kept"] += 1
             vmax, vu = None, ""
         vu = VMAX_CANON.get(vu, vu)
-        if vu and vu != "nmol/min/mg protein" and vmax is not None:
+        if vu and vu not in VMAX_SCALABLE and vmax is not None:
             flags[f"Vmax on a basis that cannot be joined: {vu}"] += 1
 
         names, how = compounds(r["chemical"])
@@ -179,14 +197,15 @@ def main():
             d["shared_across"] = len(names)
             d["chemical_cell_read_as"] = how
             d["km_uM"] = km if km is not None else ""
-            d["vmax_nmol_min_mg"] = vmax if (
-                vmax is not None and vu in VMAX_SCALABLE) else ""
+            vmax_n = (vmax * VMAX_TO_NMOL[vu]
+                      if (vmax is not None and vu in VMAX_SCALABLE) else None)
+            d["vmax_nmol_min_mg"] = (round(vmax_n, 6)
+                                     if vmax_n is not None else "")
             d["vmax_units"] = vu
             d["substrate_call"] = kind or r["substrate_or_inhibitor"]
             d["clint_uL_min_mg"] = (
-                round(1000.0 * vmax / km, 1)
-                if (km and vmax is not None and vu in VMAX_SCALABLE and km > 0)
-                else "")
+                round(1000.0 * vmax_n / km, 1)
+                if (km and vmax_n is not None and km > 0) else "")
             if len(names) > 1:
                 d["chemical_cell_original"] = r["chemical"]
             out.append(d)

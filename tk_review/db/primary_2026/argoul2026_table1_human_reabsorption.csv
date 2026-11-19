@@ -1,0 +1,10 @@
+pfas,mw_g_mol,fu_percent,cl_mL_kg_day,clfg_mL_kg_day,clr_mL_kg_day,net_reabsorption_mL_kg_day,net_reabsorption_percent_clfg
+PFBS,300.1,1.7,1.9,44,1.2,43,97.3
+PFHxA,314.06,2,57,52,47,5.0,9.6
+HFPO-DA (GenX),330.05,4.2,43,109,25,84,77.1
+PFO2OA,346.05,0.47,,12,,,
+PFHxS,400.12,0.08,0.053,2.1,,2.0,97.5
+PFOA,414.07,0.17,0.042,4.4,,4.4,99.0
+PFNA,464.08,0.17,0.067,4.4,,4.4,98.5
+PFOS,500.13,0.16,0.088,4.2,,4.1,97.9
+PFDA,514.08,0.38,0.15,9.9,,9.7,98.5

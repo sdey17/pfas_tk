@@ -5,6 +5,12 @@ rather than from the earlier narrative. Figures in §1 were counted from the
 files; where the existing retrieval log disagrees, the files win and the
 disagreement is named.
 
+**Four priority full texts arrived on 2026-11-19** — Argoul 2026, Ebert 2020,
+Nakagawa 2008 and Niu 2026, requests 1, 2, 3 and 6 — and are ingested. They
+settle §4.3, overturn the framing of request 2, and give aim 1 its first
+convergent answer (§8). They also correct a count this document reported: see
+§3.6.
+
 **Stage 0 is complete** (§7), and doing it corrected three claims in the first
 draft of this document. Those corrections are kept in place rather than edited
 away, marked ~~struck~~, because two of them are the kind of error that would
@@ -17,8 +23,10 @@ got wrong in my own survey.
 
 | Artefact | Size | State |
 |---|---|---|
-| `db/transporter_kinetics.csv` | **230 rows, 27 sources**, 48 transporter entities, 61 chemical cells | the record — everything read from a primary, including rows that are not transporter kinetics |
-| `db/transporter_kinetics_working.csv` | **241 rows, 15 sources, 34 transporters, 19 compounds** | gated, normalised, split; built by `scripts/build_transporter_working_table.py`, never edited by hand |
+| `db/transporter_kinetics.csv` | **301 rows, 28 sources**, 29 DOIs | the record — everything read from a primary, including rows that are not transporter kinetics |
+| `db/transporter_kinetics_working.csv` | **363 rows, 16 sources, 36 transporters, 22 compounds** | gated, normalised, split; built by `scripts/build_transporter_working_table.py`, never edited by hand |
+| `db/membrane_partitioning.csv` | 9 rows | Ebert 2020; a different quantity, kept out of the transporter tables (§6 note) |
+| `db/primary_2026/argoul2026_table1_human_reabsorption.csv` | 9 rows | the in vivo counterpart: net tubular reabsorption as % of filtration clearance |
 | `db/transporter_mechanism.csv` | 83 rows | direction, sex and hormone regulation; Km on 24 |
 | `db/primary_2026/*.csv` | 24 extracts | per-paper tables read from primaries |
 | `papers/*.txt` | 29 transporter papers | **text only — no PDFs**, see §5 |
@@ -28,24 +36,31 @@ got wrong in my own survey.
 
 **Fill rates**, record and working table, after Stage 0:
 
-| Field | Record | Working table | Comment |
+| Field | Working table | Comment |
+|---|---|---|
+| `km_uM` | **58 / 363** | 10 studies, 8 compounds, 17 transporters |
+| `vmax` | 38 / 363 | one basis after normalisation (§3.2) |
+| **`clint_uL_min_mg`** | **51 / 363** | V_max/K_m, 7 studies; see below |
+
+So the table is still mostly qualitative — and after the four new papers it is
+*more* so, because Argoul 2026 contributes 120 substrate calls and no
+constants at all. The quantitative core is about 58 rows.
+
+The **CL_int column now holds 51 rows, 2 to 279 µL/min/mg protein**, and the
+first pattern in it is worth stating carefully:
+
+| Direction | n | median CL_int | range |
 |---|---|---|---|
-| `uptake_ratio` | 138 / 230 | — | substrate / not-substrate calls |
-| `km` | **58 / 230** | **59 / 241** | all in µM or µmol/L; essentially already harmonised |
-| `vmax` | 45 / 230 | **38 / 241** | five unit spellings in the record, one basis in the working table (§3.2) |
-| `ic50` | 28 / 230 | — | inhibition, a different quantity again |
-| **`clint_uL_min_mg`** | — | **38 / 241** | V_max/K_m, newly computed; see below |
+| secretion (basolateral uptake, apical efflux) | 23 | 24.2 | 4.6–279 |
+| reabsorption (apical uptake) | 14 | **74.3** | 2–176 |
+| hepatic uptake and other | 14 | 30.4 | 3.1–236 |
 
-So two thirds is still qualitative, and Stage 0 did **not** double the K_m
-count as this document predicted: it moved it 52 → 58, because the ten Louisse
-2024 values turned out to be six (§3.1). The quantitative core is about 60
-rows, which is the size of a single good paper's output, not a compilation.
-
-What Stage 0 did deliver is the **38-row CL_int column**, which was meant to be
-Stage 3. It spans 2 to 236 µL/min/mg protein, and the highest value in it is
-not a renal transporter at all but human NTCP with PFOS (236), with hepatic
-OATP2B1/PFOS next (99) — a first indication that on a per-mg-protein basis the
-hepatic uptake side is not the minor partner the renal framing assumes.
+Reabsorptive transporters carry a ~3× higher median intrinsic clearance than
+secretory ones. That is the direction that lengthens half-life, and it is the
+first quantitative support in this compilation for the reabsorption-dominated
+picture that Argoul's Table 1 shows in vivo (§8). **It is not yet an argument**:
+the rows come from different expression systems with no REF/RAF scaling
+(§2.3), so this is a hypothesis for Stage 3 to test, not a result.
 
 ---
 
@@ -154,6 +169,37 @@ three CES2 rows, flagged in the `transporter` field as "(enzyme, NOT a
 transporter)". They were included because they were on a requested list. They
 need a scope decision, not silent carriage.
 
+**3.6 I reported a K_m count that was 20% phantom. CORRECTED.** The Stage 0
+summary gave 59 K_m values in the working table. Ten of those were numbers
+parsed out of placeholder prose: `"within 1.41-2.78 (individual value only in
+Fig 2b)"` yielded a K_m of 1.41, and `"not extractable from text (reported
+only in Fig 1f)"` yielded a K_m of **1**, from the figure number — then
+multiplied by four when its multi-compound cell was split. The true Stage 0
+figure was **49**. The *gain* reported for Stage 0 (+6, from Louisse 2024) was
+right; the absolute count was not. `num()` in the builder now requires a cell
+to begin with a digit, so prose cannot masquerade as a measurement. All ten
+belonged to Niu 2026 and have since been replaced by the real constants.
+
+**3.7 Two defects inside the new papers.** Both were caught by the same method
+this project uses throughout — checking a paper against its own internal
+redundancy.
+
+- **Niu 2026 transposes P-gp and BCRP** in its V_max/K_m paragraph and in its
+  abstract. Dividing the figures' own fitted constants gives, for Fig 3c
+  (P-gp), HFPO-TA 227 / PFOA 212 / PFOS 139, and for Fig 3f (BCRP), PFOA 279 /
+  HFPO-TA 233 / PFOS 24 — each set matching what the text attributes to the
+  *other* transporter, on all six values. Three checks say the figures are
+  right: the abstract's own K_m ranges (BCRP 1.29–7.92, P-gp 1.41–2.78) track
+  the figures correctly; the identical arithmetic on OAT1 reproduces the text
+  exactly; and the text cites panels 3b,d for constants that are in 3c,f. **The
+  abstract's headline — highest V_max/K_m is PFOA by P-gp — should read BCRP.**
+- **Nakagawa 2008's Table 1 mislabels its third column.** It is headed
+  "K_m/V_max (µl/mg protein/min)" and the numbers are indeed K_m/V_max, but
+  those are the units of V_max/K_m, a clearance. A reader taking the printed
+  0.10 as a clearance is wrong by ~100×, and the ranking inverts: by the
+  printed column rOAT3 is highest at 0.22; by actual clearance it is the lowest
+  of the four.
+
 **3.5 Composite and non-specific entities. RESOLVED in the working table.**
 29 rows are "composite RPTEC proximal-tubule transport", which has no single
 transporter identity to join a direction to, and are gated out. Multi-compound
@@ -182,8 +228,37 @@ be carried into the transporter write-up, not re-derived.
 extracellular chloride — a non-physiological condition, already noted in the
 extract. Louisse 2023 found URAT1 transported nothing. Unresolved.
 
-**4.3 Argoul 2026 against everyone.** Reports PFDA, PFOS and PFDS as substrates
-of none of twelve transporters, against both Louisse and Weaver. Abstract only.
+**4.3 ~~Argoul 2026 against everyone.~~ RESOLVED — it agrees with most of
+them.** The full text shows the "against everyone" framing was wrong, built
+from an abstract. Argoul agrees with Ryu 2024 on the chain-length threshold,
+with Louisse 2023 that URAT1 transports no PFAS, and with Louisse 2023/2024 on
+PFOA, PFNA and PFHxS. The genuine disagreements are narrow and specific:
+
+| Pair | Argoul 2026 | The other study |
+|---|---|---|
+| OAT4 / PFBS | substrate | **not** a substrate (Louisse 2023) |
+| OAT4 / PFDA | not a substrate | substrate, K_m 39 µM (Louisse 2023) |
+| OAT1 / PFOA | **not** a substrate | substrate, K_m 185 µM (Louisse 2024) |
+| OAT3 / PFBS | substrate | not detected (Louisse 2024) |
+| rat Oatp1a1 / PFOS | no uptake | substantial transport (Zhao 2017) |
+| OSTα/β / PFBS, PFHxS, PFOS | no uptake | all three transported (Zhao 2015) |
+| rat Asbt / PFBS, PFHxS | substrates | no transport (Zhao 2015) |
+
+Argoul says of the OAT1/PFOA clash only that "the reasons for these
+discrepancies remain unclear". Note what the pattern is **not**: it is not a
+chain-length or head-group effect, and the two labs disagree in both
+directions. The most likely common factor is the mixture — Argoul dosed eleven
+PFAS together at 0.2 or 2 µM each, Louisse dosed singly — and Argoul's own
+observation that OAT3 and OAT4 ratios fall between 0.2 and 2 µM means the
+transporters were near saturation, where competition between eleven
+co-administered substrates would bite hardest. That is a testable explanation
+and it belongs in the write-up.
+
+**4.3b A real conflict survives, and it is about PFOS.** Argoul finds PFOS a
+substrate of none of twelve transporters; Louisse 2023 reports OAT4/PFOS with
+K_m 48 µM and V_max 2.2, and Zhao 2017 reports rat Oatp1a1/PFOS. This is the
+one disagreement that changes a conclusion, because PFOS is the compound whose
+reabsorption the PBPK models most depend on.
 
 **4.4 Cheng 2006 contradicts itself.** One sentence of its abstract calls renal
 Oatp1a1 "female-predominant", which conflicts with Cheng 2005 and with its own
@@ -215,12 +290,37 @@ Abstract-only unless noted. Items 1–4 change conclusions; 5–9 fill the table
 
 | # | Paper | Why it matters |
 |---|---|---|
-| 1 | **Argoul 2026**, *Arch Toxicol*, 10.1007/s00204-026-04508-7 | The only direct human-vs-rat comparison, 8 human + 4 rat transporters, 10 PFAS. Settles §4.3 and is the species-difference backbone |
-| 2 | **Ebert 2020**, *ES&T* 54:5051, 10.1021/acs.est.0c00175 | Argues measured membrane permeabilities explain cellular uptake "with no need to postulate active uptake". If right, it reframes the whole strand |
-| 3 | **Niu 2026** figures, 10.1021/envhealth.6c00088 | Per-congener K_m/V_max for BCRP, P-gp, OAT1 — the efflux side, currently ranges only |
-| 4 | **Yang 2010**, *Toxicol Sci* 117:294, 10.1093/toxsci/kfq219 | K_m is in hand; the V_max values are second-hand from Louisse 2023's introduction. Also the URAT1 chloride condition (§4.2) |
+| ~~1~~ | **Argoul 2026** — ✅ **OBTAINED 2026-11-19**, 66 rows ingested | Settled §4.3 and supplied half the answer in §8. Reports uptake ratios only, no constants |
+| ~~2~~ | **Ebert 2020** — ✅ **OBTAINED**, 9 rows to `db/membrane_partitioning.csv` | **The framing here was wrong.** See the note below |
+| ~~3~~ | **Niu 2026** — ✅ **OBTAINED**, 9 K_m/V_max read off Figures 2f and 3c,f | Also exposed a P-gp/BCRP transposition in the paper's own text (§3.7) |
+| 4 | **Yang 2010**, *Toxicol Sci* 117:294, 10.1093/toxsci/kfq219 | **Now the top request.** K_m is in hand; the V_max values are second-hand, so §3.1b costs us the two CL_int values the species question needs most |
 | 5 | **Yang 2009**, *Toxicol Lett* 190:163, 10.1016/j.toxlet.2009.07.011 | Oatp1a1 K_m and the C6–C10 K_i,app series, currently quoted via Weaver 2010's Discussion |
-| 6 | **Nakagawa 2008**, 10.1111/j.1742-7843.2007.00155.x | The four human/rat OAT1 and OAT3 K_m values everything else cites |
+| ~~6~~ | **Nakagawa 2008** — ✅ **OBTAINED**, Table 1 supplies the four missing V_max values | Also a units defect worth knowing about (§3.7) |
+
+**Correction to request 2.** This document said Ebert 2020 "argues measured
+membrane permeabilities explain cellular uptake with no need to postulate
+active uptake. If right, it reframes the whole strand." That is the abstract's
+claim, and the body does not support it. What Ebert actually compares its
+bilayer permeabilities against is the **control cells** of transporter
+studies — the empty-vector cells those papers use as their own passive
+baseline, which Ebert describes as reflecting "uptake rates by passive
+diffusion". So it explains the passive component the transporter papers had
+already subtracted, and says nothing about the saturable component they
+reported. The body is hedged where the abstract is not: the PFSA match is
+within a factor of 3, but for PFCAs "the comparison to the literature seems
+less distinctive", "a definite conclusion on the species dominance in the
+transmembrane transport is not possible", and the whole comparison needs the
+artificial-bilayer values shifted by 1.8 log units — a factor of 63 — to stand
+in for real membranes. **Ebert does not conflict with any K_m in this
+database, and the strand is not reframed.**
+
+Its real contribution is a clean partitioning series: +0.63 log K_mem/w per
+perfluorinated carbon, and PFSAs sorbing ~1.2 log units more strongly than
+PFCAs of equal chain length. Both are directly comparable to the per-carbon
+slope and head-group offset this project already computes for albumin and
+L-FABP, which makes membrane lipid a fourth binding phase for aim 3. Its
+per-compound tables are in SI S3.1.1 and S3.2.1, **not supplied** — a live
+request, and one that should not be met by digitising Figures 1 and 2.
 | 7 | **Han 2008**, *Toxicol Lett* 181:81, 10.1016/j.toxlet.2008.07.002 | Rat hepatocyte uptake, male vs female K_m and V_max — the hepatic side |
 | 8 | **Kimura 2017**, *Toxicol Lett* 277:18, 10.1016/j.toxlet.2017.05.012 | Caco-2 K_m 8.3 µM — an order of magnitude below every other K_m in the table, so either important or wrong |
 | 9 | **Kummu 2015**, 10.1016/j.placenta.2015.07.119 | OAT4 and placental transfer; n = 4 |
@@ -276,3 +376,64 @@ open, and item 1 of the request list is the best available evidence.
 
 **Stage 5 — write it up** as a further section of `report/ALBUMIN_BINDING.md`,
 or as its own document if it outgrows that.
+
+---
+
+## 8. Aim 1 has a convergent answer, from two independent routes
+
+The four new papers do something the roadmap did not anticipate: two of them
+reach the same conclusion about the species question by methods that share no
+assumptions.
+
+**Nakagawa 2008, from matched kinetics.** It measured human and rat OAT1 and
+OAT3 *in the same expression system*, which is the only way to compare species
+without also changing laboratory. Recomputing its clearances correctly (§3.7):
+
+| | human | rat | human/rat |
+|---|---|---|---|
+| OAT1 | 9.99 | 8.26 | 1.21× |
+| OAT3 | 8.13 | 4.56 | 1.78× |
+
+against a species difference in PFOA half-life of roughly 50×. Its own
+conclusion: species differences in renal elimination "are not attributable to
+affinity differences in these OATs".
+
+**Argoul 2026, from substrate specificity.** Ten PFAS against eight human and
+four rat transporters. The same molecular-weight threshold — about 500 g/mol —
+governs transporter interaction in both species: PFCAs up to nine carbons and
+PFSAs up to six are substrates of human OAT3/OAT4 and rat Oat1/Oatp1a1, and
+PFDA, PFOS and PFDS are substrates of none of the twelve, in either species.
+Its conclusion: "transporter selectivity may be largely conserved, and
+additional mechanisms may contribute to interspecies differences".
+
+**So the transporters' handling of PFAS is not where the species difference
+lives.** Affinity is within 2×; substrate specificity is shared. Both papers
+name the same missing quantity — **transporter expression level** — and Argoul
+says so explicitly: "data on the expression levels of these transporters in
+human and rodent kidneys are needed".
+
+**Niu 2026 supplies the human half of that number**, measured rather than
+assumed: in human kidney cortex, OAT1 is 5.3 ± 1.9 pmol/mg protein, P-gp
+2.1 ± 0.8, and BCRP below detection (n = 20). The rat counterpart is the
+single most valuable thing still missing from this strand, and it reframes
+Stage 4: the species question is now an **expression** question, not an
+affinity one.
+
+**What the in vivo side says.** Argoul's Table 1 assembles human unbound
+fractions with the clearances from Abraham 2024:
+
+| PFAS | net reabsorption, % of filtration clearance |
+|---|---|
+| PFOA | 99.0 |
+| PFNA, PFDA | 98.5 |
+| PFOS | 97.9 |
+| PFHxS | 97.5 |
+| PFBS | 97.3 |
+| GenX | 77.1 |
+| **PFHxA** | **9.6** |
+
+Reabsorption is essentially complete for everything except PFHxA — and PFHxA
+is the one compound Argoul finds to be an OAT1 substrate, OAT1 being
+secretory. That is a clean, independent corroboration of the direction calls,
+and it is the strongest single argument in this document that direction must
+be joined before kinetics (Stage 2) rather than after.
