@@ -27,6 +27,8 @@ got wrong in my own survey.
 | `db/transporter_kinetics_working.csv` | **58 rows** (tier A 52, B 2, C 4) | the constants. Built by `scripts/build_transporter_working_table.py`, never edited by hand |
 | `db/transporter_direction.csv` | **305 rows** (tier D) | substrate calls, uptake ratios, inhibition — a different kind of evidence, in a different file |
 | `scripts/screen_transporter_fits.py` | the inclusion screen | run before reading a paper; the counterpart of `screen_fits_database.py` |
+| `db/transporter_localisation.csv` | **36 rows** | Stage 2's authority: membrane, direction and net process per (transporter, species, tissue) |
+| `scripts/join_transporter_direction.py` | the join and its audit | read-only; reports coverage, conflicts and CL_int regrouped on direction |
 | `db/membrane_partitioning.csv` | 9 rows | Ebert 2020; a different quantity, kept out of the transporter tables (§6 note) |
 | `db/primary_2026/argoul2026_table1_human_reabsorption.csv` | 9 rows | the in vivo counterpart: net tubular reabsorption as % of filtration clearance |
 | `db/transporter_mechanism.csv` | 83 rows | direction, sex and hormone regulation; Km on 24 |
@@ -57,12 +59,12 @@ first pattern in it is worth stating carefully:
 | reabsorption (apical uptake) | 14 | **74.3** | 2–176 |
 | hepatic uptake and other | 14 | 30.4 | 3.1–236 |
 
-Reabsorptive transporters carry a ~3× higher median intrinsic clearance than
-secretory ones. That is the direction that lengthens half-life, and it is the
-first quantitative support in this compilation for the reabsorption-dominated
-picture that Argoul's Table 1 shows in vivo (§8). **It is not yet an argument**:
-the rows come from different expression systems with no REF/RAF scaling
-(§2.3), so this is a hypothesis for Stage 3 to test, not a result.
+Those three groupings were made from the free text each paper happened to
+write. **§10 redoes them against the authority table and the gap narrows to
+~1.9×** — 36.1 µL/min/mg for processes that lengthen half-life against 18.9
+for those that shorten it, on comparable whole-cell assays. **It is still not
+an argument**: the rows come from different expression systems with no
+REF/RAF scaling (§2.3), so this is a hypothesis for Stage 3 to test.
 
 ---
 
@@ -376,9 +378,7 @@ have surfaced.
 **Stage 1 — the inclusion rule. COMPLETE, 2026-11-19.** Decided as proposed,
 with one addition and one rejection. §9 states it and the evidence behind it.
 
-**Stage 2 — build the direction join.** Every transporter gets apical or
-basolateral, reabsorptive or secretory, per species, with the source for the
-localisation. Without this the kinetics table cannot be read.
+**Stage 2 — the direction join. COMPLETE, 2026-11-19.** §10 states it.
 
 **Stage 3 — compute CL_int = V_max/K_m** on a common basis, carrying the
 expression system, and keep the IVIVE scaling explicitly separate so a reader
@@ -530,3 +530,104 @@ the two papers still outstanding, which is a sharper argument for getting them
 than "they are cited a lot". Second, and less comfortably: **the kinetics
 table is nearly at its ceiling on the current literature.** Growth past 58
 rows needs new measurements, not better retrieval.
+
+---
+
+## 10. The direction join (Stage 2)
+
+`db/transporter_localisation.csv` is the authority: **36 rows, one per
+(transporter, species, tissue)**, because direction is not a property of the
+transporter alone.
+
+- **OATP2B1 is apical in human kidney**, where it reabsorbs, **and sinusoidal
+  in human liver**, where it pulls PFAS out of blood. Same gene, opposite jobs.
+- **Oatp1a1** is apical in rat kidney and sinusoidal in rat liver.
+- **OAT2 is basolateral in human kidney and apical in rat kidney** — the same
+  gene on opposite membranes, so identical transport would secrete in one
+  species and reabsorb in the other.
+
+Nor is it a property of the compound. Membrane and polarity are fixed; what
+varies per compound is only whether it is a substrate.
+
+The renal rows come from the state-of-the-science review **Niu 2023**
+(*Environ Health Perspect* 131:076002, [10.1289/EHP11885](https://doi.org/10.1289/EHP11885),
+PMID 37418334) — the review Argoul cites — which states the polarity outright:
+"OAT1 and OAT3 reside in the basolateral membrane … and therefore participate
+in PFAS renal secretion. In contrast, OAT4, URAT1, and OATP2B1 are involved in
+PFAS renal reabsorption because they are expressed in the apical membrane."
+Tissue roles beyond the kidney follow **OEHHA's PHG** (March 2024, §4.3 and
+Appendix 6), which names three: renal secretion/reabsorption; hepatic re-uptake
+of biliary PFAS via bile-acid transporters, giving enterohepatic circulation;
+and placental OAT4.
+
+### The result that matters most is an absence
+
+**OAT4 is human-specific.** Niu 2023: *"OAT4 is a human-specific transporter
+that was previously demonstrated to transport PFOA; thus, it may be one of the
+transporters responsible for species-specific differences in PFAS
+toxicokinetics."* EFSA states it the same way: *"OAT4 (not expressed in rats)
+and urate transporter 1 (URAT1), but not Oatp1a2 (the closest orthologous of
+rat Oatp1a1), were shown to mediate PFOA."*
+
+So the rat has **no orthologue of the apical reabsorptive transporter that
+carries six of the measured human clearances in this compilation** (Louisse
+2023, 39–92 µM). And OATP1A2, the obvious human counterpart to rat Oatp1a1,
+does not transport PFOA (Yang 2010; Argoul 2026 confirms across ten PFAS).
+
+**This is a different kind of answer from §8, and both hold.** §8 showed
+affinity (Nakagawa, within 2×) and substrate specificity (Argoul, same MW
+threshold) are conserved — *where a transporter exists in both species*. §10
+adds that the reabsorptive machinery itself is **not the same set of genes**.
+A presence/absence difference is not an affinity difference, and it is a far
+better candidate for a ~50× half-life gap than anything in §8.
+
+### Coverage and conflicts
+
+| | |
+|---|---|
+| rows joined to a membrane and net process | **343 / 363 (94.5%)** |
+| direction disagreements between a paper and the authority | **0** |
+| unresolved | 20, all composite |
+
+**Zero conflicts is itself a finding.** The papers that disagree sharply about
+*which compounds* a transporter carries (§4.3) do not disagree at all about
+*where it sits or which way it moves them*. Substrate identity is contested;
+localisation is not.
+
+The 20 unresolved rows all name several isoforms at once or an unidentified
+one — "OATPs (Caco-2)", "OATP1B1, OATP1B3, OATP2B1", "hepatic uptake
+transporter(s), OATP-like", "OAT4 and URAT1". There is no single membrane to
+assign, so they are reported rather than forced.
+
+**The join found two holes in the authority table**, which is what it is for:
+OSTα/β needed a liver row (Zhao's rows describe efflux "out of
+enterocyte/hepatocyte"), and rat Ostα/β needed a kidney row (Argoul tested it
+renally). Both added and marked as such.
+
+### CL_int regrouped on direction
+
+| Net process | n | median | range |
+|---|---|---|---|
+| renal reabsorption (step 1) | 14 | **74.3** | 2.0 – 175.6 |
+| hepatic uptake | 14 | 30.4 | 3.1 – 236.2 |
+| renal secretion (step 1) | 17 | 18.9 | 4.6 – 60.2 |
+| renal secretion (step 2, efflux) | 6 | 219.6 | 24.2 – 279.1 |
+
+**The efflux row must not be read as a rate comparison.** Those six are P-gp
+and BCRP from Niu 2026 in inside-out membrane vesicles, and that paper says
+outright that "the specific rates of PFAS uptake cannot be directly compared
+between these transporters" — different concentrations, and a vesicle
+background of 1000–2000 pmol/mg against 100–400 in cells. They are not
+evidence that apical efflux is an order of magnitude faster than basolateral
+uptake.
+
+On comparable whole-cell assays only:
+
+| Effect on half-life | n | median CL_int |
+|---|---|---|
+| **lengthens** (reabsorption + hepatic uptake) | 28 | **36.1** |
+| **shortens** (renal secretion) | 17 | **18.9** |
+
+**~1.9×, not the ~3× §1 reported** from the free-text grouping. The direction
+of the effect survives; its size roughly halves. Still a hypothesis for
+Stage 3, for the REF/RAF reason in §2.3.
