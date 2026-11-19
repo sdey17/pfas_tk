@@ -350,8 +350,37 @@ met by digitising Figures 1 and 2.
 | 13 | **Kudo 2002**, 10.1016/s0009-2797(02)00006-6 | Sex-hormone regulation; the 70× male/female half-life |
 
 Not obtainable: **Katakura 2007**, *J Health Sci* 53:77 — not indexed in
-PubMed or Europe PMC, no DOI found. Its results survive only second-hand in
-OEHHA PHG Table A6.3 and Weaver 2010's Discussion.
+PubMed or Europe PMC, no DOI found. Its results survive second-hand in OEHHA
+PHG Table A6.3 and Weaver 2010's Discussion — and since the reviewer has
+ruled the PHG directly reliable, **that is now a sufficient source** for its
+two negatives (no Mrp2-mediated PFOA transport, no rat Npt2). It is removed
+from the wanted list.
+
+---
+
+## 6b. Rat renal transporter expression — the papers exist
+
+Found 2026-11-19 in answer to the question "is there a paper for rat renal
+transporter expression levels?". According to PubMed:
+
+| Paper | What it gives | Access |
+|---|---|---|
+| **Thakur A, Yue G, Ahire D, … Prasad B** (2024). "Sex and the Kidney Drug-Metabolizing Enzymes and Transporters: Are Preclinical Drug Disposition Data Translatable to Humans?" *Clin Pharmacol Ther* 116(1):235–246. [10.1002/cpt.3277](https://doi.org/10.1002/cpt.3277), PMID 38711199 | **78 DMETs in human, rat AND mouse kidney membrane fractions, both sexes.** 30 of 33 membrane proteins quantified in all three species differ significantly. No significant sex differences in humans; 28 in rats, 46 in mice | **PMC11218045, open access** |
+| **Basit A, Radi Z, Vaidya VS, Karasu M, Prasad B** (2019). "Kidney Cortical Transporter Expression across Species Using Quantitative Proteomics." *Drug Metab Dispos* 47(8):802–808. [10.1124/dmd.119.086579](https://doi.org/10.1124/dmd.119.086579), PMID 31123036 | 19 transporters, kidney cortex, 5 species. All 19 higher in preclinical species than human except MDR1, OCT3, OCTN1. OAT1 cross-species variability 4.1× | paywalled |
+| **Uchida Y, Toyohara T, Ohtsuki S, Moriyama Y, Abe T, Terasaki T** (2016). "Quantitative Targeted Absolute Proteomics for 28 Transporters in Brush-Border and Basolateral Membrane Fractions of Rat Kidney." *J Pharm Sci* 105(2):1011–1016. [10.1002/jps.24645](https://doi.org/10.1002/jps.24645), PMID 26367854 | **Rat, split by membrane — which maps straight onto §10's authority table.** BBM: bcrp 40.3, urat1 22.2, mate1 8.90, mrp4 4.69, mdr1a 3.22 fmol/µg. BLM: oat1 10.6, oat3 10.2, oct1 4.59 | paywalled |
+
+**Thakur 2024 is the one to read first** — open access, all three species, both
+sexes, one assay. Its sex result is strikingly parallel to the PFAS pattern:
+no sex dependence in human kidney DMETs, 28 proteins sex-dependent in rat.
+
+**The gap that remains**: none quantifies **rat Oatp1a1**. Uchida's 28-protein
+panel does not list it, quantified or below-LOQ. Two incidental finds while
+looking: Kuo 2012 ([10.1371/journal.pone.0039641](https://doi.org/10.1371/journal.pone.0039641))
+independently confirms Oatp1a1 sits apically in the S3 segment, which
+corroborates the §10 authority row; and Cerrutti 2002
+([10.1023/a:1015563021602](https://doi.org/10.1023/a:1015563021602)) reports
+rat OAT1 protein in female basolateral membrane vesicles at **40% of male**,
+a sex difference on the secretory side.
 
 ---
 
@@ -430,12 +459,71 @@ human and rodent kidneys are needed".
 
 **Niu 2026 supplies the human half of that number**, measured rather than
 assumed: in human kidney cortex, OAT1 is 5.3 ± 1.9 pmol/mg protein, P-gp
-2.1 ± 0.8, and BCRP below detection (n = 20). The rat counterpart is the
-single most valuable thing still missing from this strand, and it reframes
-Stage 4: the species question is now an **expression** question, not an
-affinity one.
+2.1 ± 0.8, and BCRP below detection (n = 20).
 
-**What the in vivo side says.** Argoul's Table 1 assembles human unbound
+**And the rat half exists — but not for the transporter that matters.** A
+literature search (2026-11-19) found three quantitative-proteomics papers
+that measure rat renal transporter abundance, listed in §6b. Between them
+they cover OAT1, OAT3, URAT1, BCRP, P-gp, MRP2/3/4, OCT1/2/3 and more, in
+both sexes, with the human comparison in the same assay. **None of them
+quantifies Oatp1a1** — the apical reabsorptive transporter the entire rat
+PFAS story rests on. Uchida 2016 measured 28 rat renal transporters and
+Oatp1a1 appears neither among the quantified nor among the
+below-limit-of-quantification list; the only Oatp1a1 protein data found
+anywhere are relative Westerns.
+
+So the species question splits cleanly in two, and only one half is
+answerable now:
+
+| | status |
+|---|---|
+| secretory side (OAT1, OAT3) — is the rat's higher? | **answerable today.** Uchida 2016 gives rat OAT1 10.6 and OAT3 10.2 fmol/µg in the basolateral fraction, against Niu 2026's human OAT1 5.3 pmol/mg (the same unit); Basit 2019 and Thakur 2024 give the comparison within one assay |
+| reabsorptive side (rat Oatp1a1 vs human OAT4/URAT1) | **not answerable.** Rat Oatp1a1 has no absolute quantification, and OAT4 is human-only so no cross-species ratio exists even in principle |
+
+That second row is the real finding. The reabsorptive machinery cannot be
+compared across species by expression **because it is not the same
+machinery** (§10), and the rat side of it has never been quantified.
+
+**OEHHA's Table A6.4 is the species comparison in vivo**, and the reviewer
+has ruled that the PHG may be relied on directly — it carried dedicated
+external peer review, so unlike the compilations in Table A6.3 it is stored
+as OEHHA's own analysis
+(`db/primary_2026/oehha2024_a64_species_reabsorption.csv`). Net tubular
+reabsorption of PFOA, by species and sex:
+
+| | CL_R (mL/kg-day) | % reabsorbed | % excreted |
+|---|---|---|---|
+| **human** | **0.06** | **99.8** | **0.2** |
+| rat male | 18.2 | 93.7 | 6.3 |
+| rat female | 666–1009 | **net secretion** | — |
+| mouse male / female | 10 / 16 | 97.0 / 95.2 | 3.0 / 4.8 |
+| macaque male / female | 15 / 32 | 91.2 / 81.2 | 8.8 / 18.8 |
+| dog male / female | 43 / 50.8 | 59 / 52 | 41 / 48 |
+| rabbit | 640–670 | **net secretion** | — |
+
+**Two things to read off it, neither of which is the percentage.**
+
+First, **the percentages compress the difference and the escaping fraction
+does not.** Human 99.8% against male rat 93.7% looks like six points. The
+fraction that *escapes* is 0.2% against 6.3% — **31-fold** — and the renal
+clearances differ **303-fold**. The right denominator is what gets out.
+
+Second, **the rat sex difference is qualitative.** Male rats reabsorb ~93%;
+female rats are in net tubular *secretion*, in both Kemper 2003 and Ohmori
+2003. Whatever drives the ~70× male/female half-life gap changes the **sign**
+of net tubular handling, not its magnitude — and humans show no comparable
+sex difference. Any mechanism proposed for the rat sex difference has to
+account for a sign change, which rules out a simple scaling of one
+transporter's abundance.
+
+The one caveat worth attaching: OEHHA assumes f_u = 0.02 for *every* species.
+Argoul 2026 measures human PFOA f_u at 0.0017, twelve-fold lower. Both still
+land at ~99–100% reabsorption for human, because CL_R is tiny either way, so
+the conclusion is robust to that disagreement — but the absolute net
+reabsorption in mL/kg-day is not, and should not be quoted without the
+assumption attached.
+
+**Argoul's Table 1 is the independent check**, assembling human unbound
 fractions with the clearances from Abraham 2024:
 
 | PFAS | net reabsorption, % of filtration clearance |
