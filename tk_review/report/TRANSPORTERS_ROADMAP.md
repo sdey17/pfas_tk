@@ -416,9 +416,7 @@ with one addition and one rejection. §9 states it and the evidence behind it.
 
 **Stage 2 — the direction join. COMPLETE, 2026-11-19.** §10 states it.
 
-**Stage 3 — compute CL_int = V_max/K_m** on a common basis, carrying the
-expression system, and keep the IVIVE scaling explicitly separate so a reader
-can see what was measured and what was scaled.
+**Stage 3 — CL_int on a common basis. COMPLETE, 2026-11-19.** §13.
 
 **Stage 4 — the species question**, which is the project's aim 1. The rat
 Oatp1a1 reabsorption story has no clean human counterpart: Yang 2010 found
@@ -811,10 +809,25 @@ transfected cells into a clearance in a kidney, and **they disagree**:
 | **OAT3** | **0.37** | **4.1** (oseltamivir acid, benzylpenicillin) | **11×** |
 
 Kumar 2021 ([10.1124/dmd.121.000367](https://doi.org/10.1124/dmd.121.000367),
-PMC8232064) compared both over 26 OAT substrates and found **RAF the better
-predictor** — 65% and 81% of plasma secretory clearances within 2- and 3-fold,
-against 50% and 69% for REF. So the method with no proteomics in it wins, and
-the choice changes a scaled OAT3 clearance by an order of magnitude.
+PMC8232064) compared both over 26 OAT substrates. The raw hit rates favour
+RAF — 65% and 81% of plasma secretory clearances within 2- and 3-fold against
+50% and 69% — but ~~RAF is the better predictor~~ **the authors do not read
+that as a win.** Their Significance Statement says "there is no difference in
+predictive capability of the REF and RAF approach", and on that basis they
+recommend exploring **REF** further, because RAF needs a transporter-selective
+probe and REF does not.
+
+**That decides it for this project.** No selective probe exists for OAT4,
+URAT1 or Oatp1a1, so RAF can never reach the reabsorptive side. REF can, as
+soon as someone measures those transporters in the cell lines.
+
+**Both factors are in vitro ÷ in vivo**, so both are applied by dividing.
+Kumar states both definitions outright, which is worth quoting because the
+direction cannot be inferred from the name: REF is "transporter abundance in
+transporter-expressing cells / … in the human kidney"; RAF is "uptake CL of
+the probe drug in transporter-expressing cells / in vivo probe
+CL_int,sec,in vivo". For OAT3 the two then point in **opposite directions** —
+REF raises the clearance 2.7×, RAF lowers it 4.1×.
 
 **Two traps recorded in the table.** First, **REF's direction is not a safe
 convention**: Kumar defines it as cells ÷ kidney (so REF < 1, and you divide),
@@ -855,3 +868,96 @@ testable prediction: run one PFAS uptake assay with and without HSA.
 **It also joins the strands.** The albumin association constants this project
 has spent its effort on are exactly the input a facilitated-dissociation
 correction needs. The binding sheet stops being only a distribution story.
+
+---
+
+## 13. Clearance, scaled where it can be (Stage 3)
+
+`db/transporter_clearance_stage3.csv`, built by
+`scripts/build_stage3_clearance.py`. Five layers, kept separate so that what
+is measured and what is assumed stay visible.
+
+| | |
+|---|---|
+| tier-A rows | 52 |
+| **scaled to kidney** | **11** — human OAT1/OAT3 in HEK293 |
+| unscaled | 41, each with the reason recorded |
+| expression gate | 29 pass, **3 fail**, 20 not assessable |
+
+### The scaled rows, both methods side by side
+
+| transporter | compound | study | measured | ÷REF | ÷RAF |
+|---|---|---|---|---|---|
+| OAT1 | PFOS | Niu 2026 | 53.5 | **334** | 84 |
+| OAT1 | PFOA | Niu 2026 | 30.8 | 193 | 48 |
+| OAT1 | PFHpA | Louisse 2024 | 21.4 | 134 | 33 |
+| OAT1 | PFOA | Louisse 2024 | 18.9 | 118 | 30 |
+| OAT1 | HFPO-TA | Niu 2026 | 13.9 | 87 | 22 |
+| OAT1 | PFOA | Nakagawa 2008 | 10.0 | 63 | 16 |
+| OAT3 | PFNA | Louisse 2024 | 23.8 | 64 | **5.8** |
+| OAT3 | PFOA | Louisse 2024 | 16.7 | 45 | 4.1 |
+| OAT3 | PFHpA | Louisse 2024 | 8.7 | 24 | 2.1 |
+| OAT3 | PFOA | Nakagawa 2008 | 8.1 | 22 | 2.0 |
+| OAT3 | PFHxS | Louisse 2024 | 7.5 | 20 | 1.8 |
+
+µL/min/mg protein. **The two methods disagree by 11× on OAT3 and in opposite
+directions**, so they are reported separately and never averaged.
+
+### The expression gate removes the compilation's top three values
+
+| removed | CL_int | why |
+|---|---|---|
+| BCRP / PFOA | **279.1** | human renal BCRP not detected (Thakur 2024; Niu 2026) |
+| BCRP / HFPO-TA | 232.6 | same |
+| BCRP / PFOS | 24.2 | same |
+
+The highest intrinsic clearance in the whole compilation belonged to a
+transporter that two laboratories cannot detect in human kidney. That is the
+gate earning its place.
+
+### Reabsorption against secretion, per compound
+
+Human, Louisse 2023 (OAT4) and 2024 (OAT1/OAT3) — same group, same system,
+so this comparison is within-laboratory and needs no scaling to read.
+
+| | OAT4 (reabsorb) | OAT3 (secrete) | OAT1 (secrete) | OAT4/OAT3 |
+|---|---|---|---|---|
+| C6 PFHpA | 75.0 | 8.7 | 21.4 | 8.6 |
+| C6 PFHxS | 79.3 | 7.5 | — | 10.6 |
+| C7 PFOA | 95.7 | 16.7 | 30.8 | 5.7 |
+| C8 PFNA | 146.6 | 23.8 | — | 6.2 |
+| C8 PFOS | 45.8 | — | 53.5 | **0.9** |
+| C9 PFDA | 153.8 | — | — | |
+
+**Both sides rise with chain length** — OAT3 2.7× from C6 to C8, OAT4 2.1×
+from C6 to C9 — so chain length does not by itself tip the balance; the ratio
+stays between 5.7 and 10.6 across C6–C8.
+
+**What stands out is the level, and it splits by head group.** For every
+carboxylate, OAT4 carries **3.1–8.6×** the intrinsic clearance of a secretory
+transporter. That is the in vitro shape of the 97–99% reabsorption OEHHA
+Table A6.4 reports in vivo. PFHxS behaves the same way (10.6×). **PFOS is the
+exception**: OAT1 matches OAT4 (0.9×) and OAT3 does not transport it at all —
+the one compound whose secretion keeps pace with its reabsorption.
+
+**And OAT4 is the human-specific transporter.** The one that dominates human
+renal PFAS handling by intrinsic clearance is the one the rat does not have
+(§11).
+
+### The caveat that decides how far this goes
+
+OAT4 cannot be scaled; OAT1/OAT3 can. Applying REF lifts OAT1 to 118–334
+µL/min/mg, which **would overturn the ranking**. So the comparison above is
+suggestive, not decisive, and the single measurement that would settle it is
+an **OAT4 abundance in the expressing cells — a REF for OAT4**. That is now
+the most valuable missing number in this strand, ahead of Yang 2010's V_max.
+
+### What Stage 3 deliberately does not do
+
+Convert to a whole-organ clearance. That needs membrane protein per gram of
+kidney and kidney mass per kg body weight. The first is not in this database:
+Scotcher 2017 gives *microsomal* and cytosolic protein per gram of human
+kidney cortex, which is the wrong scalar for transporters quantified in a
+total membrane fraction. Inventing it would put a fabricated number under
+every row downstream, so the stage stops at µL/min/mg protein and names the
+gap.

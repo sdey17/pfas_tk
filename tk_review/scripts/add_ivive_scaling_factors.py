@@ -8,11 +8,27 @@ CL_int measured in transfected cells into a clearance in a kidney.
 
 TWO WAYS TO SCALE, AND THEY DISAGREE.
 
-  REF, relative EXPRESSION factor: the ratio of transporter protein abundance
-       between the in vitro system and the tissue, by quantitative proteomics.
-  RAF, relative ACTIVITY factor: the ratio of transport rates for a selective
-       PROBE substrate between the same two, which needs no proteomics but
-       assumes the probe behaves like the test compound.
+  REF, relative EXPRESSION factor: transporter abundance in the expressing
+       cells divided by abundance in the human kidney.
+  RAF, relative ACTIVITY factor: uptake clearance of a selective PROBE drug
+       in the expressing cells divided by that probe's in vivo CL_int,sec.
+
+BOTH ARE IN VITRO OVER IN VIVO, so both are applied the same way: an in vitro
+clearance is divided by the factor to reach the kidney. Kumar states both
+definitions explicitly, which is worth quoting because the direction cannot
+be inferred from the name:
+
+    "the REF approach scales the drug uptake CL into transporter-expressing
+     cells using the REF (transporter abundance in transporter-expressing
+     cells / transporter abundance in the human kidney). In contrast, the RAF
+     approach scales the drug uptake CL into transporter-expressing cells
+     using the RAF (uptake CL of the probe drug in transporter-expressing
+     cells / in vivo probe CLint,sec,in vivo)."
+
+A consequence worth seeing before the numbers: for OAT3 the two factors point
+in OPPOSITE directions. REF 0.37 scales an in vitro clearance UP by 2.7-fold;
+RAF 4.1 scales it DOWN by 4.1-fold. They differ by 11-fold and disagree about
+the sign of the correction.
 
     Kumar AR, Prasad B, Bhatt DK, Mathialagan S, Varma MVS, Unadkat JD.
     "In Vivo-to-In Vitro Extrapolation of Transporter-Mediated Renal
@@ -20,9 +36,20 @@ TWO WAYS TO SCALE, AND THEY DISAGREE.
     Approach." Drug Metab Dispos 2021;49(6):470-478.
     doi:10.1124/dmd.121.000367  PMID 33824168, PMC8232064.
 
-compared the two over 26 OAT substrates and found RAF the better predictor:
-62% and 73% of intrinsic secretory clearances within 2- and 3-fold against
-46% and 62% for REF; for plasma secretory clearance, 65%/81% against 50%/69%.
+compared the two over 26 OAT substrates. The raw hit rates favour RAF -- 62%
+and 73% of intrinsic secretory clearances within 2- and 3-fold against 46%
+and 62% for REF, and 65%/81% against 50%/69% for plasma secretory clearance
+-- but THE AUTHORS DO NOT READ THAT AS A WIN. Their Significance Statement
+says "there is no difference in predictive capability of the REF and RAF
+approach for organic anion transporter-mediated CLr", and on that basis they
+recommend exploring REF further, because RAF needs a transporter-SELECTIVE
+probe and REF does not.
+
+That recommendation decides it for this project. No selective probe exists
+for OAT4, URAT1 or Oatp1a1, so RAF can never be extended to the reabsorptive
+side; REF can, as soon as someone measures those transporters' abundance in
+the cell lines. Both are carried below, but REF is the method with a future
+here.
 
                  REF (HEK293 / kidney)    RAF (probe)
     OAT1               0.16                  0.64     (tenofovir)
