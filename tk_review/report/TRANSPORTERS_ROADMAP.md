@@ -373,14 +373,21 @@ transporter expression levels?". According to PubMed:
 sexes, one assay. Its sex result is strikingly parallel to the PFAS pattern:
 no sex dependence in human kidney DMETs, 28 proteins sex-dependent in rat.
 
-**The gap that remains**: none quantifies **rat Oatp1a1**. Uchida's 28-protein
-panel does not list it, quantified or below-LOQ. Two incidental finds while
-looking: Kuo 2012 ([10.1371/journal.pone.0039641](https://doi.org/10.1371/journal.pone.0039641))
-independently confirms Oatp1a1 sits apically in the S3 segment, which
-corroborates the §10 authority row; and Cerrutti 2002
+~~**The gap that remains**: none quantifies rat Oatp1a1.~~ **Wrong — Thakur
+2024 quantifies it** (rat 1.9 ± 2.1 pmol/mg, not detected in human), and it
+turned out to carry the sharpest result in this document. That claim was made
+from abstracts before the full texts arrived; §11 has what they actually say.
+Uchida's 28-protein panel genuinely does not include Oatp1a1, so that half of
+the statement stands.
+
+Two incidental finds while looking, both still useful: Kuo 2012
+([10.1371/journal.pone.0039641](https://doi.org/10.1371/journal.pone.0039641))
+independently confirms Oatp1a1 sits apically in the S3 segment, corroborating
+the §10 authority row; and Cerrutti 2002
 ([10.1023/a:1015563021602](https://doi.org/10.1023/a:1015563021602)) reports
-rat OAT1 protein in female basolateral membrane vesicles at **40% of male**,
-a sex difference on the secretory side.
+rat OAT1 protein in female basolateral membrane vesicles at 40% of male.
+**Basit 2019 could not be obtained** and is no longer needed: Thakur 2024
+covers the same ground with both sexes and three species.
 
 ---
 
@@ -461,28 +468,11 @@ human and rodent kidneys are needed".
 assumed: in human kidney cortex, OAT1 is 5.3 ± 1.9 pmol/mg protein, P-gp
 2.1 ± 0.8, and BCRP below detection (n = 20).
 
-**And the rat half exists — but not for the transporter that matters.** A
-literature search (2026-11-19) found three quantitative-proteomics papers
-that measure rat renal transporter abundance, listed in §6b. Between them
-they cover OAT1, OAT3, URAT1, BCRP, P-gp, MRP2/3/4, OCT1/2/3 and more, in
-both sexes, with the human comparison in the same assay. **None of them
-quantifies Oatp1a1** — the apical reabsorptive transporter the entire rat
-PFAS story rests on. Uchida 2016 measured 28 rat renal transporters and
-Oatp1a1 appears neither among the quantified nor among the
-below-limit-of-quantification list; the only Oatp1a1 protein data found
-anywhere are relative Westerns.
-
-So the species question splits cleanly in two, and only one half is
-answerable now:
-
-| | status |
-|---|---|
-| secretory side (OAT1, OAT3) — is the rat's higher? | **answerable today.** Uchida 2016 gives rat OAT1 10.6 and OAT3 10.2 fmol/µg in the basolateral fraction, against Niu 2026's human OAT1 5.3 pmol/mg (the same unit); Basit 2019 and Thakur 2024 give the comparison within one assay |
-| reabsorptive side (rat Oatp1a1 vs human OAT4/URAT1) | **not answerable.** Rat Oatp1a1 has no absolute quantification, and OAT4 is human-only so no cross-species ratio exists even in principle |
-
-That second row is the real finding. The reabsorptive machinery cannot be
-compared across species by expression **because it is not the same
-machinery** (§10), and the rat side of it has never been quantified.
+**And the rat half now exists.** The reviewer supplied Thakur 2024 and
+Uchida 2016 on 2026-11-19; both are ingested to
+`db/transporter_expression.csv`. ~~None of them quantifies Oatp1a1~~ —
+**Thakur 2024 does**, and that correction is the difference between a gap
+and an answer. §11 states the result.
 
 **OEHHA's Table A6.4 is the species comparison in vivo**, and the reviewer
 has ruled that the PHG may be relied on directly — it carried dedicated
@@ -719,3 +709,90 @@ On comparable whole-cell assays only:
 **~1.9×, not the ~3× §1 reported** from the free-text grouping. The direction
 of the effect survives; its size roughly halves. Still a hypothesis for
 Stage 3, for the REF/RAF reason in §2.3.
+
+---
+
+## 11. Measured expression, and the species answer
+
+`db/transporter_expression.csv`, 40 rows from Thakur 2024 (*Clin Pharmacol
+Ther* 116:235, [10.1002/cpt.3277](https://doi.org/10.1002/cpt.3277)), Uchida
+2016 ([10.1002/jps.24645](https://doi.org/10.1002/jps.24645)) and Niu 2026.
+Thakur measured 78 drug-metabolising enzymes and transporters in kidney
+membrane fractions of human (n = 15), rat (n = 10) and mouse (n = 14), **both
+sexes, one assay** — which is what makes the comparison legitimate.
+
+### The secretory side is conserved; the reabsorptive side is not the same machinery
+
+| Transporter | human | rat | mouse | |
+|---|---|---|---|---|
+| **Oat1** (basolateral, secretory) | 4.8 ± 1.2 | **32.8 ± 13.7** | 19.1 ± 7.1 | rat **6.8×** human |
+| **Oat3** (basolateral, secretory) | 4.3 ± 1.1 | 6.3 ± 1.1 | 6.5 ± 3.6 | rat 1.5× human |
+| **OAT4** (apical, reabsorptive) | **0.5 ± 0.2** | **not detected** | not detected | |
+| **Oatp1a1** (apical, reabsorptive) | **not detected** | **1.9 ± 2.1** | 3.1 ± 2.8 | |
+| URAT1 (apical) | 3.1 ± 1.2 | 2.2 ± 0.7 | 10.8 ± 1.1 | transports no PFAS in either |
+
+pmol/mg membrane protein. **Each species reabsorbs with a transporter the
+other does not have.** §10 reached that from Niu 2023 and EFSA; here it is
+measured, in one assay, by proteomics — including Thakur's own listing of
+Oat4 among proteins "absent in rats".
+
+### The rat sex difference: a sign change, with a mechanism
+
+> **"The abundances of Oatp1a1 and Oatp1a3 were 114- and 7-fold higher in
+> male rats than in female rats, respectively (P < 0.05)."**
+
+That single sentence explains the shape of the rat sex difference, not merely
+its size. OEHHA PHG Table A6.4 has male rats reabsorbing 93.7% of filtered
+PFOA while **female rats are in net tubular secretion**. A difference in
+abundance alone cannot flip net handling from reabsorption to secretion; a
+transporter that is effectively absent in one sex can. It also fits Cheng
+2006 — "in kidney, gender-divergent Oatp expression is exclusively caused by
+stimulation by androgens" — and Kudo 2002, where castration raised renal
+clearance 14-fold.
+
+And the human control: **no human renal DMET protein showed any sex
+difference** (male n = 11, female n = 4), against 28 in rat and 40 in mouse.
+Humans show no PFAS half-life sex difference either.
+
+### Two §4.3 conflicts dissolve
+
+**Asbt and OSTα/β were not detected in human *or* rat kidney** (mouse has
+both). Zhao 2015 found transport by them in transfected cells; Argoul 2026
+found none. **Both are right.** A transfected-cell result states what a
+protein *can* carry, not whether it is present in the kidney to do it. That
+retires two of the seven disagreements in §4.3, and it retires them as a
+category error rather than as a winner-takes-all.
+
+### A warning for Stage 3, from the same table
+
+**Human renal BCRP is not detected** — by Thakur and independently by Niu
+2026 ("below the detection limit"). Yet Niu 2026's BCRP/PFOA carries the
+**highest CL_int in this entire compilation, 279 µL/min/mg**. Scaled by renal
+expression it contributes essentially nothing in human kidney. This is the
+clearest possible demonstration that Stage 3 must not rank transporters by
+CL_int alone — and the vesicle caveat in §10 was already pointing at the same
+row.
+
+### The sources agree where they overlap
+
+| | Thakur 2024 | Niu 2026 |
+|---|---|---|
+| human OAT1 | 4.8 | 5.3 pmol/mg |
+| human P-gp | 1.2 | 2.1 pmol/mg |
+| human BCRP | not detected | below detection |
+
+Rat Oat1 is 32.8 pmol/mg in Thakur's total membrane fraction against Uchida's
+10.6 fmol/µg in a purified basolateral fraction — different preparations,
+same order.
+
+### A tooling trap worth recording
+
+`pdftotext` silently drops the micro sign from the Uchida PDF, turning every
+"fmol/µg protein" into "fmol/mg" — in the table header, the caption *and* the
+abstract alike, so the extracted text is internally consistent and gives no
+hint of the loss. Reading the page as an image settles it. An audit of all 68
+PDFs in this session found Uchida is **the only one affected**. The numbers
+published earlier in this document came from the PubMed abstract and were
+right; the PDF nearly overwrote them with values 1000× too small. **A quantity
+extracted by `pdftotext` alone is not safe until the micro signs are
+accounted for.**
