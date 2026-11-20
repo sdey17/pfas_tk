@@ -1585,7 +1585,10 @@ sources, not a consensus.
 Four source combinations, **45× to 160×**. The number is not well determined;
 the dominance is. Nothing in that range comes near 1 and the glomerular factor
 is 6.8×, so **the tubule carries the rat/human difference under every
-combination.** §16's 45× is the low end, not the estimate.
+combination.** §16's 45× is the low end, not the estimate. **§18 widens it
+further to 22–160×** once the US EPA, Fujii and Abraham human clearances are
+included alongside Argoul's — and the conclusion still holds, which is why the
+figure should be quoted as an order of magnitude and not a number.
 
 ### C. The bounded tier: four more compounds, and no renal-share assumption
 
@@ -1672,3 +1675,182 @@ largest, 70-fold in half-life — is still unmeasured by sex.
   answered favourably: binding is sex-invariant where clearance is not.
 - **Still open.** Rat renal clearance for eight of the fourteen, and rat f_u by
   sex for PFOA. Both remain lab measurements, not search problems.
+
+---
+
+## 18. One rule, every species (Stage 4e)
+
+`scripts/stage4e_all_species_tubular.py` → `db/tubular_factor_all_species.csv`
+
+§17 did the rat. This applies the identical two-tier rule to every species the
+project holds, with **the no-contamination constraint enforced in code rather
+than in prose**: `assert_same_species()` refuses to build a row whose f_u, GFR
+and clearance do not all come from one species, so the rule cannot be broken by
+oversight. Tested by deliberately violating it; it raises.
+
+**Strain is tracked separately from species.** §16 found mouse f_u for PFOS
+differs five-fold between CD-1 and C57BL/6, so every row records which strain
+supplied the f_u and which supplied the clearance. Wistar against Wistar-Han is
+reported as a *substrain* difference (6 rows); anything else as a *strain*
+mismatch (15 rows). Neither blocks a row — strain is not species — but both are
+in the table.
+
+### T by species and compound
+
+D = direct renal clearance, a range meaning several sources; B = total
+clearance as an upper bound, on the **highest** source so a reabsorption claim
+holds whichever is right. `?` = the bound permits either sign. `!` = sources
+disagree across the filtration boundary.
+
+| | human | rat | mouse |
+|---|---|---|---|
+| PFBA | B 0.037 ≥96.3% | B 0.160 ≥84.0% | D 0.061 ≥93.9% |
+| PFPeA | B 0.642 ≥35.8% | — | — |
+| PFHxA | D 0.481 ≥51.9% | B 5.40 `?` | **D 2.231 net secretion** |
+| PFHpA | B 0.051 ≥94.9% | B 24.5 `?` | — |
+| PFOA | B 0.019 ≥98.1% | **D 0.42–1.07 `!`** | D 0.015 ≥98.5% |
+| PFNA | B 0.032 ≥96.8% | B 0.228 ≥77.2% | D 0.008 ≥99.2% |
+| PFDA | B 0.093 ≥90.7% | B 14.4 `?` | D 0.006 ≥99.4% |
+| PFUnDA | B 0.266 ≥73.4% | — | — |
+| PFDoDA | **B 3.083 `?`** | — | — |
+| PFBS | D 0.013 ≥98.7% | B 3.66 `?` | — |
+| PFHxS | B 0.036 ≥96.4% | D 0.069 ≥93.1% | D 0.003 ≥99.7% |
+| PFOS | B 0.045 ≥95.5% | B 0.835 ≥16.5% | D 0.029 ≥97.1% |
+| PFOSA | — | — | — |
+| 6:2 FTS | B 0.393 ≥60.7% | — | — |
+
+### Coverage
+
+| species | with a clearance | conclusive | of which direct | disputed | uninformative |
+|---|---|---|---|---|---|
+| human | **13/14** | **12/14** | 2 | 0 | 1 |
+| rat | 9/14 | 4/14 | 1 | 1 | 4 |
+| mouse | 7/14 | **7/14** | 7 | 0 | 0 |
+
+The human moves from 7 of 14 to **13 of 14 on one source** — Abraham 2024,
+total clearance for fifteen PFAS in a single 67-year-old male volunteer from a
+two-compartment fit to 450 days of plasma decay. n = 1, and the whole human
+column except PFHxA and PFBS now rests on it, which is worth saying plainly.
+
+The rat reaches 9 with a clearance but only 4 conclusive, because its
+short-chain total clearances exceed the filtered load. The mouse stays at 7 and
+all 7 are direct.
+
+**Abraham independently confirms Argoul.** Abraham's human PFOA total clearance
+of 0.0417 mL/kg·day gives T = 0.00662 against Argoul's 0.00667 — two
+unconnected studies, one a single-volunteer decay curve and the other a
+population estimate, agreeing to three significant figures on a quantity that
+spans three orders of magnitude across this table.
+
+### The human T is itself a range, and it widens the rat ratio again
+
+| CL (mL/kg·day) | T | source |
+|---|---|---|
+| 0.0417 | 0.00662 | Abraham 2024 |
+| 0.042 | 0.00667 | Argoul 2026 (used in §§16–17) |
+| 0.096 | 0.01525 | Fujii 2015 |
+| 0.120 | 0.01906 | US EPA 2024 |
+
+**T_human(PFOA) spans 2.9-fold across human sources alone**, so with
+T_rat = 0.42–1.07 the ratio spans **22× to 161×**. §16 said 45×; §17 said
+45–160×; with every human source in the project it is wider still. Every
+combination still leaves the tubule dominant over the 6.8× glomerular factor by
+at least three-fold, so **the conclusion is unchanged and the number should be
+quoted as an order of magnitude, not a figure.**
+
+### The mouse cross-checks pass, including the one that could have failed
+
+A total clearance must not fall below the renal clearance of the same compound
+and species.
+
+| | renal (Argoul, C57BL/6) | total | |
+|---|---|---|---|
+| PFOS | 1.24 | 4.7 (CD-1, Chang 2012) | pass |
+| PFHxS | 0.589 | 4.8 (CD-1, Sundström 2012) | pass |
+| PFOA | 3.59 | 14.2 (FVB/NJcl, Fujii 2015) | pass |
+
+The strains differ across every pair, so this doubles as a weak check that
+mouse strain does not dominate the renal numbers. **PFOS is the compound where
+§16 found a five-fold strain difference in f_u**, so the check is worth having:
+CD-1 total 4.7 against C57BL/6 renal 1.24 is consistent, which it did not have
+to be.
+
+### One compound the renal accounting cannot hold
+
+Human **PFDoDA**: f_u 0.000105, filtered load **0.270 mL/kg·day**, total
+clearance **0.832** — **3.1× the filtered load.** So human PFDoDA elimination
+cannot be mostly glomerular. Either the tubule secretes it, or — far likelier
+for a C12 carboxylate — most of its elimination is not renal at all. Kudo 2001
+found faecal elimination dominant for PFDA and above in the rat, and §10's
+biliary row says the same for the human.
+
+**T is a renal accounting and it does not describe the longest chains.** That
+is a limit of the framework, not a gap in the data. PFUnDA at T ≤ 0.27 is
+already close to the edge, and anything above C11 should be handled by a
+mass-balance model with a faecal term rather than forced into this axis.
+
+### Species excluded, and why
+
+**Cynomolgus macaque** — excluded for two independent reasons:
+
+1. **No plasma unbound fraction has been measured in cynomolgus plasma for any
+   PFAS.** Ryu 2024 covers human, rat and two mouse strains; this project holds
+   no monkey value from any source.
+2. The only macaque GFR here is 8500 mL/kg·day for the **Japanese** macaque
+   (*Macaca fuscata*, OEHHA Table A6.4), and the clearance data are
+   **cynomolgus** (*Macaca fascicularis*). Borrowing one for the other is
+   species contamination and is refused.
+
+**Rhesus macaque** — no clearance and no unbound fraction.
+
+The project holds 22 cynomolgus rows with 14 clearances, so **the monkey is
+excluded by the unbound fraction, not by the clearance.** One
+equilibrium-dialysis experiment on cynomolgus plasma would open a third species
+for the entire framework, and the monkey is the species whose PFOA half-life is
+closest to the human. **That is the highest-value single experiment this strand
+has identified.**
+
+### What Ohmori 2003 would close
+
+> **Ohmori K, Kudo N, Katayama K, Kawashima Y** (2003). "Comparison of the
+> toxicokinetics between perfluorocarboxylic acids with different carbon chain
+> length." *Toxicology* **184**(2–3):135–140. PMID 12499116.
+> [10.1016/s0300-483x(02)00573-5](https://doi.org/10.1016/s0300-483x(02)00573-5)
+
+The abstract states that **renal clearance was determined for PFHpA, PFOA,
+PFNA and PFDA in male and female Wistar rats**, and reports **r² = 0.981**
+between total and renal clearance. Only the PFOA value has reached this project,
+through Han 2012's digitization. The paper's own numbers would:
+
+- close **rat PFHpA and PFDA**, both currently uninformative;
+- replace the **rat PFNA** bound with a direct value;
+- give the **first female-rat rows** in the table;
+- come from **Wistar** rats, matching Ryu's Wistar-Han f_u better than the
+  Sprague-Dawley sources do (a substrain difference rather than a strain one).
+
+**And it settles an error.** ATSDR 2021 Table 3-6 attributes a male rat PFOA
+total clearance of **135** mL/kg·day to Ohmori, but Ohmori's own Vss (196
+mL/kg) and half-life (5.63 d) give ln2 × Vd / t = **24.1**. Han's digitized
+CL_R of 21.2 is 88% of that, exactly as r² = 0.981 implies. **ATSDR's 135 is
+5.6-fold too high and is almost certainly a transcription or unit error.** The
+female value (2233 against 1741 derived) is fine. Nothing in this strand
+depends on the 135 — it entered only as a loosest bound, where it is
+uninformative either way.
+
+### What Stage 4e changes
+
+- **New.** One rule, three species, 50 rows, with species purity enforced by an
+  assertion rather than by care.
+- **New.** The human goes from 7 of 14 to 13 of 14, twelve conclusive — but on
+  a single n = 1 study for eleven of them.
+- **New.** Abraham 2024 and Argoul 2026 agree on human PFOA T to three
+  significant figures by wholly independent routes.
+- **New.** Mouse PFHxA is **net secretion**, the only direct secretory verdict
+  in the table.
+- **New.** Human PFDoDA shows where the framework stops: T is a renal
+  accounting and C12 elimination is not renal.
+- **Corrected again.** The rat/human tubular ratio is 22–160×, so it is an
+  order of magnitude and not a figure.
+- **Identified.** A cynomolgus plasma f_u measurement is the single highest-value
+  experiment available to this strand; Ohmori 2003's full text is the
+  highest-value *paper*.

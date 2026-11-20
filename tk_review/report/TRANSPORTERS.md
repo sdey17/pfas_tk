@@ -295,14 +295,16 @@ different reasons.** For PFOA:
 
 | | observed CL_R ratio | glomerular | tubular |
 |---|---|---|---|
-| human vs **rat** | 303× | 6.8× | **45–160×** |
+| human vs **rat** | 303× | 6.8× | **~10²** |
 | human vs **mouse** | 85× | **37.7×** | 2.3× |
 
-The rat tubular factor is a range because three rat studies report different
-PFOA renal clearances and two sources report different human ones; the four
-combinations span 45× to 160×. **The dominance holds under all four — nothing
-in that range approaches the 6.8× glomerular factor — but the number is not
-well determined.**
+The rat tubular factor is an order of magnitude rather than a figure. Three rat
+studies report different PFOA renal clearances and four human sources report
+clearances spanning 2.9-fold; across every combination the ratio runs **22× to
+161×**. **The dominance holds under all of them — the smallest value is still
+three-fold above the 6.8× glomerular factor — but the number is not
+determined**, and quoting a single figure for it would misrepresent the
+evidence.
 
 The mouse differs from the human in *both* glomerular factors — f_u 5.8× higher
 and GFR 6.5× higher, and 5.8 × 6.5 = 37.7 — so the glomerulus accounts for
@@ -338,8 +340,58 @@ none** — which still contrasts sharply with the human (T ≈ 0.007–0.010) an
 mouse (T = 0.015), and so leaves the species conclusion intact while removing
 the printed percentage.
 
-The remaining gaps are lab measurements, not search problems: rat renal
-clearance for eight compounds, and rat f_u by sex for PFOA.
+### The same rule applied to every species
+
+One two-tier rule — direct renal clearance where a study in that species
+reports it, total clearance as an upper bound otherwise — across all three
+species, with the no-contamination constraint enforced by an assertion in the
+build rather than by care. Every row's f_u, GFR and clearance come from one
+species. Strain is tracked separately and reported, not blocked: Wistar against
+Wistar-Han is flagged as a substrain difference, anything else as a strain
+mismatch.
+
+| species | with a clearance | conclusive | of which direct |
+|---|---|---|---|
+| human | **13 / 14** | **12 / 14** | 2 |
+| rat | 9 / 14 | 4 / 14 | 1 |
+| mouse | 7 / 14 | **7 / 14** | 7 |
+
+The human jump is almost entirely one source — **Abraham 2024**, total
+clearance for fifteen PFAS in a single 67-year-old male volunteer, from a
+two-compartment fit to 450 days of plasma decay. **n = 1**, and eleven of the
+twelve human conclusions rest on it. Worth stating plainly rather than
+presenting 13/14 as settled coverage.
+
+It does carry one independent confirmation, though: Abraham's human PFOA
+clearance gives T = 0.00662 against Argoul's 0.00667 — two unconnected studies,
+one a single-volunteer decay curve and one a population estimate, agreeing to
+three significant figures on a quantity spanning three orders of magnitude
+across the table.
+
+**Two results from the wider sweep.** Mouse **PFHxA is net secretion**
+(T = 2.23), the only direct secretory verdict anywhere in the table — the
+mouse's renal clearance of PFHxA exceeds its filtered load. And human
+**PFDoDA** has a total clearance 3.1× its filtered load, which means its
+elimination cannot be mostly glomerular: for a C12 carboxylate the likely answer
+is that most of it is not renal at all. **T is a renal accounting and it does
+not describe the longest chains** — a limit of the framework, not a gap in the
+data. Anything above C11 belongs in a mass-balance model with a faecal term.
+
+**The monkey is excluded, and the reason points at the next experiment.** The
+project holds 22 cynomolgus rows with 14 clearances, but **no plasma unbound
+fraction has ever been measured in cynomolgus plasma for any PFAS.** The only
+macaque GFR available is for the *Japanese* macaque, a different species, so
+borrowing it is refused. One equilibrium-dialysis experiment on cynomolgus
+plasma would open a third species for the entire framework — and the monkey is
+the species whose PFOA half-life is closest to the human. **That is the
+highest-value single experiment this strand has identified.**
+
+The remaining gaps are lab measurements, not search problems: cynomolgus plasma
+f_u, rat renal clearance for five more compounds, and rat f_u by sex for PFOA.
+One of them is a *paper* rather than an experiment — Ohmori 2003 states it
+determined renal clearance for PFHpA, PFOA, PFNA and PFDA in **both sexes** of
+Wistar rat, with r² = 0.981 between total and renal clearance, and only the
+PFOA value has ever reached this project.
 
 Ryu's plasma is equal-sex-pooled Wistar-Han; the rat clearance it is paired
 with is male Sprague-Dawley. One rat study does measure rat f_u by sex — Kim
