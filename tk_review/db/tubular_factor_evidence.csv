@@ -1,0 +1,75 @@
+species,strain,sex,chemical,n_carbons,family,tier,fu,fu_matrix,gfr_mL_kg_day,filtered_load_mL_kg_day,clearance_mL_kg_day,clearance_kind,T,clearance_source
+human,,male,6:2 FTS,6,fluorotelomer,UPPER,0.0197,human,2570.0,50.629,19.92,total,0.39345,Abraham 2024
+human,,male,PFBA,4,carboxylate,UPPER,0.229,human,2570.0,588.53,21.89,total,0.03719,Abraham 2024
+human,,both,PFBS,4,sulfonate,DIRECT,0.0365,human,2570.0,93.805,1.2,renal,0.01279,Argoul 2026 Table 1
+human,,male,PFBS,4,sulfonate,UPPER,0.0365,human,2570.0,93.805,1.877,total,0.02001,Abraham 2024
+human,,both,PFDA,10,carboxylate,UPPER,0.000618,human,2570.0,1.588,0.15,total,0.09444,Argoul 2026 Table 1
+human,,male,PFDA,10,carboxylate,UPPER,0.000618,human,2570.0,1.588,0.148,total,0.09318,Abraham 2024
+human,,male,PFDoDA,12,carboxylate,UPPER,0.000105,human,2570.0,0.27,0.832,total,3.08319,Abraham 2024
+human,,male,PFHpA,7,carboxylate,UPPER,0.00445,human,2570.0,11.437,0.584,total,0.05106,Abraham 2024
+human,,both,PFHxA,6,carboxylate,DIRECT,0.038,human,2570.0,97.66,47.0,renal,0.48126,Argoul 2026 Table 1
+human,,male,PFHxA,6,carboxylate,UPPER,0.038,human,2570.0,97.66,56.89,total,0.58253,Abraham 2024
+human,,both,PFHxS,6,sulfonate,UPPER,0.000695,human,2570.0,1.786,0.053,total,0.02967,Argoul 2026 Table 1
+human,,male,PFHxS,6,sulfonate,UPPER,0.000695,human,2570.0,1.786,0.053,total,0.02967,Abraham 2024
+human,,male,PFHxS,6,sulfonate,UPPER,0.000695,human,2570.0,1.786,0.064,total,0.03583,ATSDR 2021 (derived)
+human,,both,PFNA,9,carboxylate,UPPER,0.00187,human,2570.0,4.806,0.154,total,0.03204,ATSDR 2021 (derived)
+human,,both,PFNA,9,carboxylate,UPPER,0.00187,human,2570.0,4.806,0.067,total,0.01394,Argoul 2026 Table 1
+human,,male,PFNA,9,carboxylate,UPPER,0.00187,human,2570.0,4.806,0.0659,total,0.01371,Abraham 2024
+human,,both,PFOA,8,carboxylate,UPPER,0.00245,human,2570.0,6.296,0.12,total,0.01906,US EPA 2024
+human,,both,PFOA,8,carboxylate,UPPER,0.00245,human,2570.0,6.296,0.096,total,0.01525,Fujii 2015
+human,,both,PFOA,8,carboxylate,UPPER,0.00245,human,2570.0,6.296,0.042,total,0.00667,Argoul 2026 Table 1
+human,,male,PFOA,8,carboxylate,UPPER,0.00245,human,2570.0,6.296,0.0417,total,0.00662,Abraham 2024
+human,,both,PFOS,8,sulfonate,UPPER,0.000753,human,2570.0,1.935,0.069,total,0.03566,ATSDR 2021 (derived)
+human,,both,PFOS,8,sulfonate,UPPER,0.000753,human,2570.0,1.935,0.088,total,0.04547,Argoul 2026 Table 1
+human,,male,PFOS,8,sulfonate,UPPER,0.000753,human,2570.0,1.935,0.087,total,0.04496,Abraham 2024
+human,,male,PFPeA,5,carboxylate,UPPER,0.0888,human,2570.0,228.216,146.6,total,0.64237,Abraham 2024
+human,,male,PFUnDA,11,carboxylate,UPPER,0.000419,human,2570.0,1.077,0.286,total,0.26559,Abraham 2024
+mouse,C57BL/6,female,PFBA,4,carboxylate,DIRECT,0.767,mouse (C57BL/6),16700.0,12808.9,783.0,renal,0.06113,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFBA,4,carboxylate,UPPER,0.767,mouse (C57BL/6),16700.0,12808.9,783.0,total,0.06113,Argoul 2026 Table 2
+mouse,C57BL/6,female,PFDA,10,carboxylate,DIRECT,0.00127,mouse (C57BL/6),16700.0,21.209,0.13,renal,0.00613,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFDA,10,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,1.8,total,0.08487,Argoul 2026 Table 2
+mouse,C57BL/6,female,PFHxA,6,carboxylate,DIRECT,0.182,mouse (C57BL/6),16700.0,3039.4,6780.0,renal,2.2307,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFHxA,6,carboxylate,UPPER,0.182,mouse (C57BL/6),16700.0,3039.4,6830.0,total,2.24715,Argoul 2026 Table 2
+mouse,C57BL/6,female,PFHxS,6,sulfonate,DIRECT,0.013,mouse (C57BL/6),16700.0,217.1,0.589,renal,0.00271,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFHxS,6,sulfonate,UPPER,0.013,mouse (C57BL/6),16700.0,217.1,1.3,total,0.00599,Argoul 2026 Table 2
+mouse,CD-1,male,PFHxS,6,sulfonate,UPPER,0.0128,mouse (CD-1),16700.0,213.76,4.8,total,0.02246,Sundstrom 2012
+mouse,C57BL/6,female,PFNA,9,carboxylate,DIRECT,0.00438,mouse (C57BL/6),16700.0,73.146,0.6,renal,0.0082,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFNA,9,carboxylate,UPPER,0.00438,mouse (C57BL/6),16700.0,73.146,2.1,total,0.02871,Argoul 2026 Table 2
+mouse,C57BL/6,female,PFOA,8,carboxylate,DIRECT,0.0142,mouse (C57BL/6),16700.0,237.14,3.59,renal,0.01514,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFOA,8,carboxylate,UPPER,0.0142,mouse (C57BL/6),16700.0,237.14,4.5,total,0.01898,Argoul 2026 Table 2
+mouse,FVB/NJcl,male,PFOA,8,carboxylate,UPPER,0.0142,mouse (C57BL/6),16700.0,237.14,14.2,total,0.05988,Fujii 2015
+mouse,C57BL/6,female,PFOS,8,sulfonate,DIRECT,0.00256,mouse (C57BL/6),16700.0,42.752,1.24,renal,0.029,Argoul 2026 Table 4
+mouse,C57BL/6,female,PFOS,8,sulfonate,UPPER,0.00256,mouse (C57BL/6),16700.0,42.752,2.7,total,0.06315,Argoul 2026 Table 2
+mouse,CD-1,male,PFOS,8,sulfonate,UPPER,0.0128,mouse (CD-1),16700.0,213.76,4.7,total,0.02199,Chang 2012
+rat,Sprague-Dawley,male,PFBA,4,carboxylate,UPPER,0.37,rat,14400.0,5328.0,851.0,total,0.15972,Chang 2008
+rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,828.0,total,1.06089,Huang 2019 (NTP)
+rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,946.0,total,1.21207,Chengelis 2009
+rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,2856.0,total,3.65929,Olsen 2009
+rat,Wistar,female,PFDA,10,carboxylate,UPPER,0.001,rat,14400.0,14.4,5.3,total,0.36806,Ohmori 2003 Table 1
+rat,Wistar,male,PFDA,10,carboxylate,UPPER,0.001,rat,14400.0,14.4,5.2,total,0.36111,Ohmori 2003 Table 1
+rat,Wistar,female,PFHpA,7,carboxylate,UPPER,0.00454,rat,14400.0,65.376,3070.5,total,46.96678,Ohmori 2003 Table 1
+rat,Wistar,male,PFHpA,7,carboxylate,UPPER,0.00454,rat,14400.0,65.376,1603.9,total,24.53347,Ohmori 2003 Table 1
+rat,Sprague-Dawley,male,PFHxA,6,carboxylate,UPPER,0.0358,rat,14400.0,515.52,2784.0,total,5.40037,Chengelis 2009
+rat,Sprague-Dawley,female,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,53.35,total,4.87482,Sundstrom 2012
+rat,Sprague-Dawley,male,PFHxS,6,sulfonate,DIRECT,0.00076,rat,14400.0,10.944,0.76,renal,0.06944,Kim 2016
+rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,6.7,total,0.61221,Sundstrom 2012
+rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,9.01,total,0.82328,Kim 2016
+rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,4.73,total,0.4322,Huang 2019 (NTP)
+rat,Wistar,female,PFNA,9,carboxylate,UPPER,0.0021,rat,14400.0,30.24,105.7,total,3.49537,Ohmori 2003 Table 1
+rat,Wistar,male,PFNA,9,carboxylate,UPPER,0.0021,rat,14400.0,30.24,6.9,total,0.22817,Ohmori 2003 Table 1
+rat,Sprague-Dawley,female,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,666.0,renal,15.52013,Kemper 2003 (unpublished) via OEHHA PHG Table A6.4
+rat,Wistar,female,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,1009.0,renal,23.51324,"Ohmori 2003 Fig 2, digitized by Han 2012"
+rat,Wistar,female,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,1054.1,renal,24.56422,Kudo 2002 Table 3
+rat,Wistar,female,PFOA,8,carboxylate,UPPER,0.00298,rat,14400.0,42.912,2233.2,total,52.04139,Ohmori 2003 Table 1
+rat,Sprague-Dawley,male,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,18.2,renal,0.42412,Kemper 2003 (unpublished) via OEHHA PHG Table A6.4
+rat,Wistar,male,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,21.2,renal,0.49403,"Ohmori 2003 Fig 2, digitized by Han 2012"
+rat,Wistar,male,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,46.08,renal,1.07383,Kudo 2002 Table 3
+rat,Wistar,male,PFOA,8,carboxylate,UPPER,0.00298,rat,14400.0,42.912,50.5,total,1.17683,Ohmori 2003 Table 1
+rat,Wistar,male,PFOA,8,carboxylate,UPPER,0.00298,rat,14400.0,42.912,50.4,total,1.1745,Kudo 2002
+rat,Sprague-Dawley,male,PFOA,8,carboxylate,UPPER,0.00298,rat,14400.0,42.912,47.39,total,1.10435,Kim 2016
+rat,Sprague-Dawley,male,PFOS,8,sulfonate,UPPER,0.00109,rat,14400.0,15.696,9.24,total,0.58869,Kim 2016
+rat,Sprague-Dawley,male,PFOS,8,sulfonate,UPPER,0.00109,rat,14400.0,15.696,13.1,total,0.83461,Huang 2019 (NTP)
+rat,Sprague-Dawley,male,PFOS,8,sulfonate,UPPER,0.00109,rat,14400.0,15.696,11.3,total,0.71993,Chang 2012
+rat,,male,PFOA,8,carboxylate,SUPERSEDED,,,,,135.0,total,,"ATSDR 2021 Table 3-6 citing Ohmori 2003 -- SUPERSEDED by Ohmori 2003 Table 1 = 50.5, a 2.7x discrepancy"
+rat,,male,PFDA,10,carboxylate,SUPERSEDED,,,,,207.0,total,,"ATSDR 2021 Table 3-6 citing Ohmori 2003 -- SUPERSEDED by Ohmori 2003 Table 1 = 5.2, a 39.8x discrepancy"
+rat,,female,PFDA,10,carboxylate,SUPERSEDED,,,,,140.0,total,,"ATSDR 2021 Table 3-6 citing Ohmori 2003 -- SUPERSEDED by Ohmori 2003 Table 1 = 5.3, a 26.4x discrepancy"

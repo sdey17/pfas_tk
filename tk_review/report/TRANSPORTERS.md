@@ -369,13 +369,17 @@ three significant figures on a quantity spanning three orders of magnitude
 across the table.
 
 **Two results from the wider sweep.** Mouse **PFHxA is net secretion**
-(T = 2.23), the only direct secretory verdict anywhere in the table — the
-mouse's renal clearance of PFHxA exceeds its filtered load. And human
+(T = 2.23 on Ryu's f_u, 2.71 on Argoul's own) — the mouse's renal clearance of
+PFHxA exceeds its filtered load whichever binding source is used. And human
 **PFDoDA** has a total clearance 3.1× its filtered load, which means its
 elimination cannot be mostly glomerular: for a C12 carboxylate the likely answer
 is that most of it is not renal at all. **T is a renal accounting and it does
 not describe the longest chains** — a limit of the framework, not a gap in the
 data. Anything above C11 belongs in a mass-balance model with a faecal term.
+
+*(An earlier draft read the mouse PFHxA secretion against human PFHxA
+reabsorption as a clean species contrast. The section below retracts that: on
+the human subject's own binding measurement the human secretes PFHxA too.)*
 
 **The monkey is excluded, and the reason points at the next experiment.** The
 project holds 22 cynomolgus rows with 14 clearances, but **no plasma unbound
@@ -439,9 +443,69 @@ result: **the rat reabsorption figure has no settled value, only a settled
 direction relative to the human.** The human tubule reabsorbs over 99% on every
 combination of sources.
 
+### One table, and what it says about aim 2
+
+Four stage-by-stage tables had drifted into disagreement — the Ohmori
+correction above meant one of them still called rat PFDA *uninformative* where
+the true clearance makes it certain reabsorption. They are now one table, over
+three tiers of evidence, with species purity and primary-over-secondary
+enforced in the build rather than by care.
+
+**Abraham 2024 measured the faecal term, and it settles the long chains.** The
+same single-subject study reports urinary, total *and faecal* clearance plus
+the subject's own f_u and creatinine clearance, so T can be computed with no
+cross-study join at all. Subtracting the measured faecal clearance instead of
+charging it to the kidney:
+
+| | faecal share | bound before | bound after |
+|---|---|---|---|
+| PFNA | 58% | ≤0.014 | **≤0.0089** |
+| PFDA | 61% | ≤0.093 | **≤0.0106** |
+| PFUnDA | 60% | ≤0.266 | **≤0.0039** |
+
+PFUnDA moves from the loosest long-chain bound to the tightest. **There is no
+long-chain loss of reabsorption in the human** — C8 through C11 all exceed 98%,
+and the apparent rise toward C12 was the faecal term, as predicted.
+
+**But the short chains have no determined sign, and that is the new problem.**
+Three laboratories measured human plasma f_u and they disagree by up to
+11-fold, worst at the short chains. The filtered load scales with f_u, so the
+verdict follows the choice: **human PFHxA is T = 0.48 on Ryu's binding and
+T = 3.48 on the subject's own — reabsorption or secretion.** PFPeA is the same.
+
+**The clearances, by contrast, do not disagree.** Abraham's urinary clearance of
+PFHxA is 47.1 mL/kg·day; Argoul reports **47.0** from an unrelated population
+study — agreement to better than 1%. **The uncertainty in this strand is
+binding, not clearance**, which is the most useful thing it says about where
+effort should go.
+
+Applying the same monotonicity test used earlier, Ryu's f_u series has zero
+inversions and Abraham's has four (f_up falls to 0.0004 at C7 then rises 37-fold
+to C11). So the position taken is split and deliberate: Abraham's **faecal
+term** (a mass balance, not a binding assay), Ryu's **f_u**, and the short
+chains reported as undetermined.
+
+![Each bar spans the range of T across that species' own sources. A bar wholly below the dashed line establishes net reabsorption; one crossing it means the sign is not determined by the data.](fig_T_vs_chain_length.png)
+
+**And the answer to the aim-2 question.** Renal clearance factors exactly as
+CL_R = f_u × GFR × T, so within a species all variation across a compound series
+is binding or tubular handling:
+
+| | clearance spread | binding spread | T spread | binding r² |
+|---|---|---|---|---|
+| human | 3516× | 2180× | **466×** | **0.61** |
+| mouse | 52154× | 604× | **823×** | **0.83** |
+
+Binding is the larger term — 61% of the log-variance in the human series, 83%
+in the mouse — **but the tubular residual still spans 466- and 823-fold, far too
+wide to treat as a constant. So a QSAR for PFAS renal clearance cannot be a QSAR
+for albumin binding alone: aim 2 needs the transporter layer that aim 1 has just
+built, and the two aims do not separate.**
+
 The remaining gaps are lab measurements, not search problems: cynomolgus plasma
-f_u, rat f_u by sex for PFOA, and the eight renal clearances in Ohmori's Fig. 2,
-which are plotted as a bar chart with no numbers in the text.
+f_u, rat f_u by sex for PFOA, a human f_u series that settles the short-chain
+disagreement, and the eight renal clearances in Ohmori's Fig. 2, which are
+plotted as a bar chart with no numbers in the text.
 
 Ryu's plasma is equal-sex-pooled Wistar-Han; the rat clearance it is paired
 with is male Sprague-Dawley. One rat study does measure rat f_u by sex — Kim

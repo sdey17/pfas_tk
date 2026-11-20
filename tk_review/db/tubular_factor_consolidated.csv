@@ -1,0 +1,45 @@
+species,sex,chemical,n_carbons,family,fu,fu_matrix,gfr_mL_kg_day,filtered_load_mL_kg_day,tier,T_low,T_high,verdict,min_pct_reabsorbed,secretion_threshold_renal_fraction,measured_renal_fraction,n_clearance_sources,clearance_sources
+human,female,PFBS,4,sulfonate,0.0365,human,2570.0,93.805,DIRECT,0.01279,0.01279,net_reabsorption,98.7,,,1,Argoul 2026 Table 1
+human,female,PFDA,10,carboxylate,0.000618,human,2570.0,1.588,UPPER,,0.09444,net_reabsorption_holds,90.6,10.5884,,1,Argoul 2026 Table 1
+human,female,PFHxA,6,carboxylate,0.038,human,2570.0,97.66,DIRECT,0.48126,0.48126,net_reabsorption,51.9,,,1,Argoul 2026 Table 1
+human,female,PFHxS,6,sulfonate,0.000695,human,2570.0,1.786,UPPER,,0.02967,net_reabsorption_holds,97.0,33.7009,,1,Argoul 2026 Table 1
+human,female,PFNA,9,carboxylate,0.00187,human,2570.0,4.806,UPPER,,0.03204,net_reabsorption_holds,96.8,31.2071,,2,ATSDR 2021 (derived); Argoul 2026 Table 1
+human,female,PFOA,8,carboxylate,0.00245,human,2570.0,6.296,UPPER,,0.01906,net_reabsorption_holds,98.1,52.4708,,3,Argoul 2026 Table 1; Fujii 2015; US EPA 2024
+human,female,PFOS,8,sulfonate,0.000753,human,2570.0,1.935,UPPER,,0.04547,net_reabsorption_holds,95.5,21.991,,2,ATSDR 2021 (derived); Argoul 2026 Table 1
+human,male,6:2 FTS,6,fluorotelomer,0.0197,human,2570.0,50.629,UPPER,,0.39345,net_reabsorption_holds,60.7,2.5416,,1,Abraham 2024
+human,male,PFBA,4,carboxylate,0.229,human,2570.0,588.53,UPPER,,0.03719,net_reabsorption_holds,96.3,26.8858,,1,Abraham 2024
+human,male,PFBS,4,sulfonate,0.0365,human,2570.0,93.805,DIRECT,0.01279,0.01279,net_reabsorption,98.7,,,1,Argoul 2026 Table 1
+human,male,PFDA,10,carboxylate,0.000618,human,2570.0,1.588,UPPER,,0.09444,net_reabsorption_holds,90.6,10.5884,,2,Abraham 2024; Argoul 2026 Table 1
+human,male,PFDoDA,12,carboxylate,0.000105,human,2570.0,0.27,UPPER,,3.08319,undetermined,,0.3243,,1,Abraham 2024
+human,male,PFHpA,7,carboxylate,0.00445,human,2570.0,11.437,UPPER,,0.05106,net_reabsorption_holds,94.9,19.583,,1,Abraham 2024
+human,male,PFHxA,6,carboxylate,0.038,human,2570.0,97.66,DIRECT,0.48126,0.48126,net_reabsorption,51.9,,,1,Argoul 2026 Table 1
+human,male,PFHxS,6,sulfonate,0.000695,human,2570.0,1.786,UPPER,,0.03583,net_reabsorption_holds,96.4,27.9086,,3,ATSDR 2021 (derived); Abraham 2024; Argoul 2026 Table 1
+human,male,PFNA,9,carboxylate,0.00187,human,2570.0,4.806,UPPER,,0.03204,net_reabsorption_holds,96.8,31.2071,,3,ATSDR 2021 (derived); Abraham 2024; Argoul 2026 Table 1
+human,male,PFOA,8,carboxylate,0.00245,human,2570.0,6.296,UPPER,,0.01906,net_reabsorption_holds,98.1,52.4708,,4,Abraham 2024; Argoul 2026 Table 1; Fujii 2015; US EPA 2024
+human,male,PFOS,8,sulfonate,0.000753,human,2570.0,1.935,UPPER,,0.04547,net_reabsorption_holds,95.5,21.991,,3,ATSDR 2021 (derived); Abraham 2024; Argoul 2026 Table 1
+human,male,PFPeA,5,carboxylate,0.0888,human,2570.0,228.216,UPPER,,0.64237,net_reabsorption_holds,35.8,1.5567,,1,Abraham 2024
+human,male,PFUnDA,11,carboxylate,0.000419,human,2570.0,1.077,UPPER,,0.26559,net_reabsorption_holds,73.4,3.7651,,1,Abraham 2024
+mouse,female,PFBA,4,carboxylate,0.767,mouse (C57BL/6),16700.0,12808.9,DIRECT,0.06113,0.06113,net_reabsorption,93.9,,,1,Argoul 2026 Table 4
+mouse,female,PFDA,10,carboxylate,0.00127,mouse (C57BL/6),16700.0,21.209,DIRECT,0.00613,0.00613,net_reabsorption,99.4,,,1,Argoul 2026 Table 4
+mouse,female,PFHxA,6,carboxylate,0.182,mouse (C57BL/6),16700.0,3039.4,DIRECT,2.2307,2.2307,net_secretion,,,,1,Argoul 2026 Table 4
+mouse,female,PFHxS,6,sulfonate,0.013,mouse (C57BL/6),16700.0,217.1,DIRECT,0.00271,0.00271,net_reabsorption,99.7,,,1,Argoul 2026 Table 4
+mouse,female,PFNA,9,carboxylate,0.00438,mouse (C57BL/6),16700.0,73.146,DIRECT,0.0082,0.0082,net_reabsorption,99.2,,,1,Argoul 2026 Table 4
+mouse,female,PFOA,8,carboxylate,0.0142,mouse (C57BL/6),16700.0,237.14,DIRECT,0.01514,0.01514,net_reabsorption,98.5,,,1,Argoul 2026 Table 4
+mouse,female,PFOS,8,sulfonate,0.00256,mouse (C57BL/6),16700.0,42.752,DIRECT,0.029,0.029,net_reabsorption,97.1,,,1,Argoul 2026 Table 4
+mouse,male,PFHxS,6,sulfonate,0.013,mouse (C57BL/6),16700.0,217.1,UPPER,,0.02246,net_reabsorption_holds,97.8,45.2292,,1,Sundstrom 2012
+mouse,male,PFOA,8,carboxylate,0.0142,mouse (C57BL/6),16700.0,237.14,UPPER,,0.05988,net_reabsorption_holds,94.0,16.7,,1,Fujii 2015
+mouse,male,PFOS,8,sulfonate,0.00256,mouse (C57BL/6),16700.0,42.752,UPPER,,0.02199,net_reabsorption_holds,97.8,9.0962,,1,Chang 2012
+rat,female,PFDA,10,carboxylate,0.001,rat,14400.0,14.4,UPPER,,0.36806,net_reabsorption_holds,63.2,2.717,,1,Ohmori 2003 Table 1
+rat,female,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,UPPER,,46.96678,undetermined,,0.0213,,1,Ohmori 2003 Table 1
+rat,female,PFHxS,6,sulfonate,0.00076,rat,14400.0,10.944,UPPER,,4.87482,undetermined,,0.2051,,1,Sundstrom 2012
+rat,female,PFNA,9,carboxylate,0.0021,rat,14400.0,30.24,LOWER,1.78264,3.49537,net_secretion_established,,0.2861,0.51,1,Ohmori 2003 Table 1
+rat,female,PFOA,8,carboxylate,0.00298,rat,14400.0,42.912,DIRECT,15.52013,24.56422,net_secretion,,,,3,"Kemper 2003 (unpublished) via OEHHA PHG Table A6.4; Kudo 2002 Table 3; Ohmori 2003 Fig 2, digitized by Han 2012"
+rat,male,PFBA,4,carboxylate,0.37,rat,14400.0,5328.0,UPPER,,0.15972,net_reabsorption_holds,84.0,6.2609,,1,Chang 2008
+rat,male,PFBS,4,sulfonate,0.0542,rat,14400.0,780.48,UPPER,,3.65929,undetermined,,0.2733,,3,Chengelis 2009; Huang 2019 (NTP); Olsen 2009
+rat,male,PFDA,10,carboxylate,0.001,rat,14400.0,14.4,UPPER,,0.36111,net_reabsorption_holds,63.9,2.7692,,1,Ohmori 2003 Table 1
+rat,male,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,LOWER,22.57079,24.53347,net_secretion_established,,0.0408,0.92,1,Ohmori 2003 Table 1
+rat,male,PFHxA,6,carboxylate,0.0358,rat,14400.0,515.52,UPPER,,5.40037,undetermined,,0.1852,,1,Chengelis 2009
+rat,male,PFHxS,6,sulfonate,0.00076,rat,14400.0,10.944,DIRECT,0.06944,0.06944,net_reabsorption,93.1,,,1,Kim 2016
+rat,male,PFNA,9,carboxylate,0.0021,rat,14400.0,30.24,UPPER,,0.22817,net_reabsorption_holds,77.2,4.3826,,1,Ohmori 2003 Table 1
+rat,male,PFOA,8,carboxylate,0.00298,rat,14400.0,42.912,DIRECT,0.42412,1.07383,DISPUTED,,,,3,"Kemper 2003 (unpublished) via OEHHA PHG Table A6.4; Kudo 2002 Table 3; Ohmori 2003 Fig 2, digitized by Han 2012"
+rat,male,PFOS,8,sulfonate,0.00109,rat,14400.0,15.696,UPPER,,0.83461,net_reabsorption_holds,16.5,1.1982,,3,Chang 2012; Huang 2019 (NTP); Kim 2016

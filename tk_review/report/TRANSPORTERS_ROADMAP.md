@@ -2024,3 +2024,155 @@ f_u error would overturn it.
   numbers in the text, so only the PFOA male value (Han's digitization, 21.2)
   is available. The figure's eight values would replace four of the bounds
   above with direct measurements.
+
+---
+
+## 20. One table, and the bridge to aim 2 (Stage 6)
+
+`scripts/stage6_consolidate_tubular.py`, `scripts/stage6_abraham_partition.py`,
+`scripts/stage6_chain_length_bridge.py`, `scripts/stage6_figure_T_vs_chain.py`
+
+### Part 1: the database gets one table
+
+A stage-by-stage record is right for a roadmap and wrong for a database. §19
+found ATSDR's rat PFDA clearance wrong by forty-fold, and the Stage 4e table —
+built on that value — still said rat PFDA was *uninformative* where the true
+number makes it certain reabsorption. **Two of this project's own files
+disagreed.** `db/tubular_factor_consolidated.csv` replaces four stage tables
+with one verdict per species, sex and compound, over three tiers:
+
+| tier | evidence |
+|---|---|
+| **DIRECT** | a study in that species reports renal clearance |
+| **UPPER** | only total clearance: T ≤ CL_tot/(f_u·GFR), on the *highest* source |
+| **LOWER** | a measured renal fraction: secretion once f_ren > (f_u·GFR)/CL_tot |
+
+Two rules are enforced by the build rather than asserted: `assert_same_species`
+refuses any row mixing species, and **primary beats secondary** — where a value
+exists both in a paper and a compilation of it, the paper wins and the
+compilation's number is retained in the evidence file marked superseded, with
+the discrepancy. Three such rows (ATSDR's two PFDA values and its male PFOA).
+
+**A validation fell out of the consolidation.** Argoul 2026 reports mouse renal
+clearance, total clearance and urinary % of dose in separate tables, so
+CL_R/CL_tot must equal the urinary fraction. All seven agree within two
+percentage points across four orders of magnitude of clearance — the strongest
+internal check any source in this strand has passed.
+
+### Part 2: Abraham 2024 measured the faecal term, and it changes both ends
+
+Abraham's subject was followed 450 days with **plasma, urine and faeces all
+measured**, and the paper reports per compound: CL_uri, CL_tot, CL_fec, f_up,
+and CL_filt = f_up × *the subject's own* creatinine clearance of 113.7 mL/min.
+So **T = CL_uri/CL_filt needs no cross-study join and no assumed GFR.** Nothing
+else in this strand is like that.
+
+**It tightens the long chains, and §18's prediction held.** §18 said the
+apparent rise in human T toward C12 was the faecal term being charged to the
+kidney, and that no human renal-fraction measurement existed to remove it.
+Abraham's does:
+
+| | faecal share of CL_tot | §18 bound | Abraham bound |
+|---|---|---|---|
+| PFOA | 17% | ≤0.0066 | ≤0.0182 |
+| PFNA | **58%** | ≤0.0137 | **≤0.0089** |
+| PFDA | **61%** | ≤0.0932 | **≤0.0106** |
+| PFUnDA | **60%** | ≤0.2656 | **≤0.0039** |
+
+PFUnDA moves from the *loosest* long-chain bound to the **tightest**. There is
+no long-chain loss of reabsorption in the human: C8–C11 all exceed 98%.
+(PFOA's bound moves the other way, because only 17% of its clearance is faecal
+so there is little to subtract, while its f_up differs 2.4-fold between
+sources. Both values are far below 1.)
+
+**And it puts the short chains in doubt, which §18 did not see.**
+
+| | Abraham f_up | Ryu f_u | ratio | T (Abraham) | T (Ryu) | |
+|---|---|---|---|---|---|---|
+| PFBA | 0.0930 | 0.2290 | 2.5 | 0.095 | 0.030 | agree |
+| **PFPeA** | 0.0440 | 0.0888 | 2.0 | **1.78** | **0.68** | **disagree** |
+| **PFHxA** | 0.0068 | 0.0380 | 5.6 | **3.48** | **0.48** | **disagree** |
+| PFHpA | 0.0004 | 0.0044 | 11.1 | 0.511 | 0.035 | agree |
+| PFBS | 0.0046 | 0.0365 | 7.9 | 0.129 | 0.013 | agree |
+
+For PFHxA the human either reabsorbs half the filtered load or secretes at
+three times it, **decided entirely by a 5.6-fold disagreement in a binding
+measurement.**
+
+**And the clearances do not disagree at all.** Abraham's urinary clearance of
+PFHxA is 47.1 mL/kg·day; Argoul 2026 reports **47.0** from an unrelated
+population study. They agree to better than 1%. **So the uncertainty is
+entirely in the binding, not in the clearance** — which is the most useful
+thing this comparison says about where effort should go.
+
+**Which f_u series to believe: the §16 test, rerun impartially.**
+
+| series | pairs | inversions |
+|---|---|---|
+| Ryu f_u | 8 | **0** |
+| Abraham f_up | 7 | **4** |
+
+Abraham's f_up falls to 0.0004 at C7 then rises **37-fold** to 0.0148 at C11,
+which no binding mechanism supports. So the monotonicity test prefers **Ryu's
+binding**, while Abraham remains the only source whose clearance partition
+needs no join. The position adopted is therefore split, and deliberately:
+
+- use **Abraham's measured faecal term** to tighten the long chains — it is a
+  mass balance, not a binding assay, and nothing here questions it;
+- use **Ryu's f_u** for the filtered load, because its series passes the
+  monotonicity test and Abraham's does not;
+- report the **short chains as sign-undetermined**, because on that combination
+  PFHxA sits at T = 0.48 while Abraham's own numbers give 3.48, and no test
+  available here separates them.
+
+![Each bar spans the range of T across that species' own sources. A bar wholly below the dashed line establishes net reabsorption; one crossing it means the sign is not determined by the data. The long chains are settled and the short chains are not, and the spread is binding uncertainty, not clearance uncertainty.](fig_T_vs_chain_length.png)
+
+### Part 3: is the renal axis QSAR-able?
+
+Renal clearance factors exactly as **CL_R = f_u × GFR × T**. GFR is a species
+constant, so within a species all variation across a compound series sits in
+binding and tubular handling. If binding carried almost all of it, a PFAS QSAR
+for renal clearance would be a QSAR for albumin binding and aims 1 and 2 would
+separate.
+
+| | clearance spread | binding spread | **T spread** | binding r² |
+|---|---|---|---|---|
+| human (13 cpds) | 3516× | 2180× | **466×** | **0.61** |
+| mouse (7 cpds) | 52154× | 604× | **823×** | **0.83** |
+
+**Binding is the larger term in both species but not the only one.** It
+accounts for 61% of the log-variance in the human series and 83% in the mouse,
+and the tubular residual still spans 466-fold and 823-fold — far too wide to
+treat as a constant.
+
+**So a QSAR for PFAS renal clearance cannot be a QSAR for albumin binding
+alone. Aim 2 needs the transporter layer, which is what aim 1 has just built.
+The two aims are not separable, and this is the quantity that says so.**
+
+Two inequalities survive every f_u choice and are worth carrying forward:
+
+1. **The C6→C8 carboxylate drop is real.** T(PFHxA) is measured directly and
+   T(PFOA) is bounded below it on every source, so T falls by at least 26-fold
+   (Abraham's own numbers) to 73-fold (Ryu's) from C6 to C8.
+2. **The long chains are settled and the short chains are not.** C8 through C12
+   and all three sulfonates sit far below 1 on every f_u source; C5, C6 and C12
+   cross it.
+
+### What Stage 6 changes
+
+- **New.** One consolidated table replaces four stage tables; species purity and
+  primary-over-secondary are enforced in the build.
+- **New.** Argoul 2026's three mouse tables are mutually consistent to within
+  two percentage points — the strongest internal check in the strand.
+- **Confirmed.** §18's long-chain artefact prediction, now demonstrated with
+  Abraham's measured faecal clearances rather than asserted.
+- **New and unwelcome.** The human short-chain T values have no determined
+  sign, because three laboratories' f_u measurements disagree by up to 11-fold
+  and the filtered load scales with f_u.
+- **New.** The renal clearances agree across laboratories to within 1% where
+  they overlap. The uncertainty in this strand is binding, not clearance.
+- **New.** Binding explains 61–83% of the clearance series; the tubular
+  residual spans 466–823×. Aims 1 and 2 do not separate.
+- **Retracted.** §18's reading of human PFHxA as a clean human-reabsorbs /
+  mouse-secretes species contrast. On Abraham's own f_up the human secretes it
+  too. The contrast is not established.

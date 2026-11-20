@@ -1,0 +1,21 @@
+species,chemical,n_carbons,family,fu,filtered_load_mL_kg_day,clearance_mL_kg_day,clearance_kind,T,T_is_bound,source
+human,PFBA,4,carboxylate,0.229,588.53,21.89,total,0.03719,yes,Abraham 2024
+human,PFBS,4,sulfonate,0.0365,93.805,1.877,total,0.02001,yes,Abraham 2024
+human,PFPeA,5,carboxylate,0.0888,228.216,146.6,total,0.64237,yes,Abraham 2024
+human,6:2 FTS,6,fluorotelomer,0.0197,50.629,19.92,total,0.39345,yes,Abraham 2024
+human,PFHxA,6,carboxylate,0.038,97.66,56.89,total,0.58253,yes,Abraham 2024
+human,PFHxS,6,sulfonate,0.000695,1.786,0.053,total,0.02967,yes,Abraham 2024
+human,PFHpA,7,carboxylate,0.00445,11.437,0.584,total,0.05106,yes,Abraham 2024
+human,PFOA,8,carboxylate,0.00245,6.296,0.0417,total,0.00662,yes,Abraham 2024
+human,PFOS,8,sulfonate,0.000753,1.935,0.087,total,0.04496,yes,Abraham 2024
+human,PFNA,9,carboxylate,0.00187,4.806,0.0659,total,0.01371,yes,Abraham 2024
+human,PFDA,10,carboxylate,0.000618,1.588,0.148,total,0.09318,yes,Abraham 2024
+human,PFUnDA,11,carboxylate,0.000419,1.077,0.286,total,0.26559,yes,Abraham 2024
+human,PFDoDA,12,carboxylate,0.000105,0.27,0.832,total,3.08319,yes,Abraham 2024
+mouse,PFBA,4,carboxylate,0.767,12808.9,783.0,renal,0.06113,no,Argoul 2026 Table 4
+mouse,PFHxA,6,carboxylate,0.182,3039.4,6780.0,renal,2.2307,no,Argoul 2026 Table 4
+mouse,PFHxS,6,sulfonate,0.013,217.1,0.589,renal,0.00271,no,Argoul 2026 Table 4
+mouse,PFOA,8,carboxylate,0.0142,237.14,3.59,renal,0.01514,no,Argoul 2026 Table 4
+mouse,PFOS,8,sulfonate,0.00256,42.752,1.24,renal,0.029,no,Argoul 2026 Table 4
+mouse,PFNA,9,carboxylate,0.00438,73.146,0.6,renal,0.0082,no,Argoul 2026 Table 4
+mouse,PFDA,10,carboxylate,0.00127,21.209,0.13,renal,0.00613,no,Argoul 2026 Table 4
