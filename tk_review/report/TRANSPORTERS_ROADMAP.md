@@ -1828,14 +1828,16 @@ through Han 2012's digitization. The paper's own numbers would:
 - come from **Wistar** rats, matching Ryu's Wistar-Han f_u better than the
   Sprague-Dawley sources do (a substrain difference rather than a strain one).
 
-**And it settles an error.** ATSDR 2021 Table 3-6 attributes a male rat PFOA
-total clearance of **135** mL/kg·day to Ohmori, but Ohmori's own Vss (196
-mL/kg) and half-life (5.63 d) give ln2 × Vd / t = **24.1**. Han's digitized
-CL_R of 21.2 is 88% of that, exactly as r² = 0.981 implies. **ATSDR's 135 is
-5.6-fold too high and is almost certainly a transcription or unit error.** The
-female value (2233 against 1741 derived) is fine. Nothing in this strand
-depends on the 135 — it entered only as a loosest bound, where it is
-uninformative either way.
+**And it settles an error** — though not by the argument given here.
+~~ATSDR 2021 Table 3-6 attributes a male rat PFOA total clearance of 135
+mL/kg·day to Ohmori, but Ohmori's own Vss (196 mL/kg) and half-life (5.63 d)
+give ln2 × Vd / t = 24.1, so ATSDR's 135 is 5.6-fold too high.~~ **Both halves
+of that reasoning were wrong, and §19 corrects them from the paper: 196.2 is
+Ohmori's Vss for PFHpA, not PFOA, and the paper fits two compartments so the
+one-compartment identity did not apply. The true value is 50.5, and ATSDR's
+135 is 2.7-fold too high, not 5.6-fold.** Nothing in this strand depended on
+the 135 — it entered only as a loosest bound, where it is uninformative either
+way.
 
 ### What Stage 4e changes
 
@@ -1854,3 +1856,171 @@ uninformative either way.
 - **Identified.** A cynomolgus plasma f_u measurement is the single highest-value
   experiment available to this strand; Ohmori 2003's full text is the
   highest-value *paper*.
+
+---
+
+## 19. Ohmori 2003 from the paper, and a third evidence tier (Stage 4f)
+
+`scripts/stage4f_ohmori2003_primary.py` →
+`db/primary_2026/ohmori2003_table1_primary.csv`, `db/rat_tubular_factor_ohmori.csv`
+
+> **Ohmori K, Kudo N, Katayama K, Kawashima Y** (2003). "Comparison of the
+> toxicokinetics between perfluorocarboxylic acids with different carbon chain
+> length." *Toxicology* **184**(2–3):135–140. PMID 12499116.
+> [10.1016/s0300-483x(02)00573-5](https://doi.org/10.1016/s0300-483x(02)00573-5)
+
+Male and female **Wistar** rats (SLC, Hamamatsu), single IV injection of
+**48.64 µmol/kg** — the extracted text prints "mmol" because pdftotext drops
+the micro sign, the same defect that corrupted Uchida 2016 in §12. 48.64
+mmol/kg of PFOA would be 20 g/kg; 48.64 µmol/kg is 20 mg/kg, the dose OEHHA
+records. Two-compartment model, CL_tot = dose/AUC(0–∞) by MULTI. **CL_R =
+urinary amount (0→t) ÷ AUC(0→t)**, over 120 min for PFHpA, 240 (male) or 360
+(female) for PFOA, 360 for PFNA and PFDA, under saline infusion to maintain
+urine flow.
+
+### A. Two ATSDR values are wrong, one by forty-fold
+
+| | Ohmori | ATSDR 2021 Table 3-6 | ratio |
+|---|---|---|---|
+| PFHpA male | 1603.9 | 1604 | 1.0 |
+| PFHpA female | 3070.5 | 3071 | 1.0 |
+| **PFOA male** | **50.5** | **135** | **2.7 ✗** |
+| PFOA female | 2233.2 | 2233 | 1.0 |
+| PFNA male | 6.9 | 6.9 | 1.0 |
+| PFNA female | 105.7 | 106 | 1.0 |
+| **PFDA male** | **5.2** | **207** | **39.8 ✗** |
+| **PFDA female** | **5.3** | **140** | **26.4 ✗** |
+
+Five of eight agree. **The PFDA error is the consequential one:** 207 was the
+sole reason rat PFDA sat as *uninformative* in §18, and at the true 5.2 the
+compound closes.
+
+### B. And §18's own reasoning was wrong
+
+§18 argued ATSDR's 135 must be an error because Ohmori's "own Vss of 196 and
+half-life of 5.63 d" give ln2 × Vd / t = 24.1. **Both halves were wrong.**
+
+- **196.2 is Ohmori's Vss for PFHpA, not PFOA.** PFOA's is **338.8 ± 68.1**.
+  This project's `vd_clearance.csv` carried 196 on the PFOA row and had the
+  PFHpA row marked "not separately reported" — the paper reports it. Both rows
+  are now annotated rather than silently overwritten, since the wrong values
+  are what OEHHA and ATSDR print.
+- **The paper fits two compartments**, so ln2 × Vd / t does not apply. With
+  CL_tot = dose/AUC, Vss/CL_tot = MRT = 6.7 d against t½/ln2 = 8.1 d, which is
+  self-consistent for two compartments.
+
+The conclusion held — 135 is wrong — but by luck, and the true value is twice
+the estimate. **It matches Kudo 2002's 50.4 from the same laboratory**, which
+was the available cross-check and should have been used instead of a
+one-compartment identity.
+
+### C. The rat GFR is not agreed either
+
+| rat GFR | source |
+|---|---|
+| 14,400 mL/kg·day (10 mL/min/kg) | OEHHA PHG Table A6.4 / Han 2012 |
+| **7,920 mL/kg·day (5.5 mL/min/kg)** | **Ohmori 2003, citing Shim 1984** |
+
+A **1.82× fork** in a quantity this strand had been treating as known, and
+every rat T scales inversely with it:
+
+| rat PFOA male | filtered | T (Kemper) | T (Ohmori) | T (Kudo) |
+|---|---|---|---|---|
+| GFR 14,400 | 42.91 | 0.42 | 0.49 | 1.07 |
+| **GFR 7,920** | **23.60** | **0.77** | **0.90** | **1.95** |
+
+**On Ohmori's own GFR the male rat barely reabsorbs PFOA at all** — at most
+~23% on the lowest renal clearance, and clearly secreting on the highest. §17
+said "at most half, possibly none" on OEHHA's GFR; on Ohmori's it is **"at most
+a quarter, possibly net secretion."** §16's species conclusion is unaffected —
+the human tubule reabsorbs over 99% on any of these — but the rat figure is
+softer again. This is the third successive section to loosen it, and the
+pattern is itself the finding: **the rat reabsorption number has no settled
+value, only a settled direction relative to the human.**
+
+### D. Ohmori reached the T framework in 2003, and concluded secretion
+
+> "Some of the PFCAs are thought to be actively excreted into urine by renal
+> tubular secretion **because CL_R of free PFCA was higher than the glomerular
+> filtration rate** … if plasma protein binding in vivo is the same as that
+> observed in vitro. This is supported by the fact that CL_R of PFOA was
+> reduced by the treatment of rats with probenecid, an inhibitor of renal
+> tubular secretion (Kudo et al., 2002)."
+
+CL_R/f_u > GFR **is** T > 1. The paper got there twenty-two years earlier, with
+the same test and the probenecid control to back it.
+
+Its own binding cannot be used quantitatively — **">98% bound, data not
+shown"**, by ultrafiltration at **300 nmol/mL**, sixty-fold Ryu's 5 µM and
+close to rat albumin saturation, which would bias f_u upward. So the test is
+run below on Ryu's measured f_u instead. ">98%" only bounds f_u below 0.02,
+consistent with Ryu's 0.00298 but not constraining it.
+
+### E. A third tier: a lower bound on T from the renal fraction
+
+§18 had DIRECT and an upper bound from total clearance. **The mirror also
+works.** With f_ren the fraction of elimination that is renal,
+
+> CL_R = f_ren × CL_tot  so  **T = f_ren × CL_tot / (f_u × GFR)**
+>
+> and T > 1 as soon as **f_ren > (f_u × GFR) / CL_tot** — the *threshold*
+
+Where a study **in the same species** measures urinary recovery above that
+threshold, **net secretion is established.** Kudo 2001 measured it in Wistar
+rats from the same laboratory. Where the threshold exceeds 1, secretion is
+impossible and reabsorption is certain — which recovers §18's upper bound as a
+special case.
+
+On OEHHA's GFR:
+
+| | CL_tot | filtered | threshold | measured f_ren | verdict |
+|---|---|---|---|---|---|
+| PFHpA male | 1603.9 | 65.4 | 4.1% | **92%** | **net secretion**, T ≈ 23 |
+| PFHpA female | 3070.5 | 65.4 | 2.1% | — | undetermined, no recovery |
+| PFOA male | 50.5 | 42.9 | 85.0% | 55% | undetermined |
+| **PFOA female** | 2233.2 | 42.9 | 1.9% | **80%** | **net secretion**, T ≈ 42 |
+| PFNA male | 6.9 | 30.2 | impossible | 2% | reabsorption certain, ≥77% |
+| **PFNA female** | 105.7 | 30.2 | 28.6% | **51%** | **net secretion**, T ≈ 1.8 |
+| **PFDA male** | 5.2 | 14.4 | impossible | 0.2% | **reabsorption certain, ≥64%** |
+| **PFDA female** | 5.3 | 14.4 | impossible | — | **reabsorption certain, ≥63%** |
+
+**The paper closes four cells, in both directions** — PFDA both sexes as
+certain reabsorption (because the true CL_tot is 5.2 and 5.3, not ATSDR's 207
+and 140), PFHpA male and PFOA female as net secretion.
+
+### The sex difference is now in the same units as everything else
+
+**The female rat net-secretes PFOA and PFNA; the male rat does not.** Male PFOA
+needs an 85% renal fraction against a measured 55%, so it fails the test; male
+PFNA cannot secrete at all (threshold 438%).
+
+So **the 70-fold sex difference in rat PFOA half-life is the difference between
+a secreting kidney and a reabsorbing one** — not a difference of degree within
+either. §14 attributed it to Oatp1a1 expression (114×, with a sign flip); this
+is the same conclusion reached from in vivo clearance alone, with no transporter
+data in it.
+
+**Robust to the f_u pooling.** §16 flagged that Ryu's rat f_u is sex-pooled. The
+female PFOA verdict needs only a 1.9% renal fraction against 80% measured, so a
+**ten-fold** error in f_u would raise the threshold to 19% and leave the verdict
+standing. Female PFNA is the tight one — 28.6% against 51% — and a 1.8-fold
+f_u error would overturn it.
+
+### What Stage 4f changes
+
+- **Corrected.** ATSDR's rat PFDA total clearances are wrong by 26–40× and its
+  male PFOA by 2.7×. The project's own `vd_clearance.csv` had Ohmori's PFHpA
+  Vss on the PFOA row. All annotated in place.
+- **Corrected.** §18's argument against ATSDR's 135 was wrong in both premises,
+  though right in conclusion.
+- **New.** A 1.82× fork in the rat GFR, which softens the rat reabsorption
+  figure for the third time while leaving its direction intact.
+- **New.** A third evidence tier — net secretion established from a measured
+  renal fraction — which closes four rat cells and needs no renal clearance
+  measurement at all.
+- **New.** The rat sex difference expressed as secretion against reabsorption,
+  from in vivo clearance alone, independently of §14's transporter route.
+- **Still open.** Ohmori's CL_R values are in Fig. 2 as a bar chart with no
+  numbers in the text, so only the PFOA male value (Han's digitization, 21.2)
+  is available. The figure's eight values would replace four of the bounds
+  above with direct measurements.

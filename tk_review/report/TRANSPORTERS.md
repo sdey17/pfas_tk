@@ -386,12 +386,62 @@ plasma would open a third species for the entire framework — and the monkey is
 the species whose PFOA half-life is closest to the human. **That is the
 highest-value single experiment this strand has identified.**
 
+### Ohmori 2003, read from the paper
+
+That paper turned out to settle more than expected, and to correct three values
+this project had been carrying.
+
+**Two ATSDR values are wrong, one by forty-fold.** ATSDR Table 3-6 attributes a
+male rat PFOA total clearance of 135 mL/kg·day to Ohmori; the paper says
+**50.5**. It attributes PFDA clearances of 207 and 140; the paper says **5.2
+and 5.3**. Five of the eight values agree. The PFDA error was the sole reason
+rat PFDA sat as uninformative, and at the true value the compound closes as
+certain reabsorption.
+
+**A third evidence tier, and it needs no renal clearance measurement.** With
+f_ren the fraction of elimination that is renal, T = f_ren · CL_tot/(f_u · GFR),
+so **net secretion is established as soon as f_ren exceeds (f_u · GFR)/CL_tot**.
+Where a study in the same species measures urinary recovery above that
+threshold, the verdict follows. Kudo 2001 measured it in Wistar rats from
+Ohmori's own laboratory:
+
+| | threshold | measured | verdict |
+|---|---|---|---|
+| PFHpA male | 4.1% | **92%** | **net secretion**, T ≈ 23 |
+| PFOA male | 85.0% | 55% | undetermined |
+| **PFOA female** | 1.9% | **80%** | **net secretion**, T ≈ 42 |
+| **PFNA female** | 28.6% | **51%** | **net secretion**, T ≈ 1.8 |
+| PFNA male | impossible | 2% | reabsorption certain |
+| PFDA both | impossible | 0.2% | reabsorption certain |
+
+**So the rat sex difference is a change of sign, not of degree.** The female rat
+*net-secretes* PFOA and PFNA; the male rat does not — male PFOA needs an 85%
+renal fraction against a measured 55%, and male PFNA cannot secrete at all.
+**The 70-fold sex difference in rat PFOA half-life is the difference between a
+secreting kidney and a reabsorbing one.** §14 of the working record reached the
+same conclusion from Oatp1a1 expression (114×, with a sign flip); this reaches
+it from in vivo clearance alone, with no transporter data in it. It survives a
+ten-fold error in the pooled f_u for PFOA, though only a 1.8-fold error for
+PFNA.
+
+**Ohmori reached this framework in 2003.** The paper concludes tubular secretion
+for some PFCAs "because CL_R of free PFCA was higher than the glomerular
+filtration rate" — which is T > 1 — with probenecid inhibition as support. Its
+own binding data cannot be used (">98% bound, data not shown", ultrafiltration
+at 300 µM, sixty-fold Ryu's concentration and near albumin saturation), so the
+test above uses Ryu's measured f_u.
+
+**And the rat GFR is not agreed.** Ohmori uses **5.5 mL/min/kg** citing Shim
+1984; OEHHA uses **10**. A 1.82× fork, and on Ohmori's figure the male rat
+reabsorbs **at most a quarter** of filtered PFOA rather than at most half. That
+is the third successive correction to loosen this number, which is itself the
+result: **the rat reabsorption figure has no settled value, only a settled
+direction relative to the human.** The human tubule reabsorbs over 99% on every
+combination of sources.
+
 The remaining gaps are lab measurements, not search problems: cynomolgus plasma
-f_u, rat renal clearance for five more compounds, and rat f_u by sex for PFOA.
-One of them is a *paper* rather than an experiment — Ohmori 2003 states it
-determined renal clearance for PFHpA, PFOA, PFNA and PFDA in **both sexes** of
-Wistar rat, with r² = 0.981 between total and renal clearance, and only the
-PFOA value has ever reached this project.
+f_u, rat f_u by sex for PFOA, and the eight renal clearances in Ohmori's Fig. 2,
+which are plotted as a bar chart with no numbers in the text.
 
 Ryu's plasma is equal-sex-pooled Wistar-Han; the rat clearance it is paired
 with is male Sprague-Dawley. One rat study does measure rat f_u by sex — Kim
