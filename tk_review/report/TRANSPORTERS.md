@@ -596,7 +596,7 @@ propagated into this review had they not been caught.
 
 | Measurement | What it decides | Status |
 |---|---|---|
-| **A human f_u series that settles the short-chain disagreement** | the sign of T for C5–C7 in humans — currently 0.48 or 3.48 for PFHxA (§7) | *referred to OEHHA* |
+| **A human f_u series that settles the short-chain disagreement** | the sign of T for C5–C7 in humans — currently 0.48 or 3.48 for PFHxA (§7) | *referred to OEHHA; and see below — two further datasets exist* |
 | **One equilibrium-dialysis experiment on cynomolgus plasma** | opens a third species for the entire framework; the monkey's PFOA half-life is closest to the human, and 14 clearances already exist | **highest-value single experiment** |
 | **One PFAS uptake assay ± albumin** | whether every clearance in this compilation is a lower bound (§8) | not done for PFAS |
 | **OAT4 abundance in the expressing cells** | whether OAT4 really dominates human renal handling, or scaled OAT1 overtakes it (§4) | does not exist |
@@ -606,6 +606,75 @@ propagated into this review had they not been caught.
 
 **Four of the first five are each a single experiment**, and each decides
 something this report has to leave open.
+
+### A literature search against these four items
+
+`scripts/stage7_open_items_literature.py` → `db/open_items_literature.csv`
+
+**Item 11 is not exhausted — there are five human f_u series, not three.**
+
+| | human PFOA f_u | method |
+|---|---|---|
+| **Fischer 2024** (Harvard) | **0.00061** | C18 SPME, HSA and globulin separately |
+| Abraham 2024 | 0.00100 | in vivo, one subject |
+| Argoul 2025 | 0.00170 | equilibrium dialysis |
+| Ryu 2024 | 0.00245 | presaturation equilibrium dialysis |
+
+plus **Smeltz 2023** (US EPA), **67 PFAS by ultracentrifugation with Bayesian
+uncertainty bounds** — for a regulatory conversation, the obvious reference
+dataset, and this review did not have it.
+
+**And the question changes shape.** Fischer predicts f_unbound from an
+individual's *own* albumin and globulin concentrations (R² = 0.99 against
+measured serum distribution) and finds it varies **up to 2.5-fold across 1919
+NHANES participants** — most for compounds below 500 g/mol, which is exactly
+the short-chain range in dispute. Compounds under 500 g/mol are >98%
+albumin-bound; globulins matter only above 600.
+
+**So OEHHA's assumed f_u is wrong in kind as well as magnitude.** It is not
+that 0.02 is the wrong constant — it is that there is no constant to be right
+about, and the variability is largest precisely where §7 found the sign
+undetermined.
+
+Qin 2024 adds a quantified mechanism: PFAS binding to human plasma is
+**concentration-dependent**, specific binding dominating below a PFAS:protein
+molar ratio of 0.1 and nonspecific binding above 1. Fischer independently holds
+its own ratios below 0.004–0.009, citing a physiological ratio of 0.0005 and
+BSA non-linearity from 0.39 upward. **Checked against the disagreement: Ryu
+dosed at a ratio near 0.008 and Abraham's subject carried near 2 × 10⁻⁶, so
+both are inside the linear range and concentration does *not* explain the
+5.6-fold PFHxA gap.** The mechanism is real and now quantified; it is not this
+gap's cause.
+
+**Item 12 is half-closed, and I had it wrong.** I previously reported that no
+absolute quantification of OAT4 exists. The *kidney* side does, and is
+replicated: **Prasad 2016 gives 0.5 ± 0.2 pmol/mg in human cortex (n = 41) and
+Thakur 2024 gives 0.5 ± 0.2 (n = 15)** — two laboratories, nine years apart,
+identical to the reported precision. What is missing is only the **in vitro**
+side: OAT4 abundance in the cell line that supplied the kinetics. That is one
+proteomics run on an existing line, not a new study.
+
+**Item 13 is confirmed open.** Nothing PFAS-specific found; Tan 2024 remains
+the only albumin-mediated-uptake demonstration and it used drugs. Fischer 2024
+proposes the same experiment in its closing paragraph and names renal tubular
+reabsorption as the target.
+
+**Item 14 is confirmed absent — and the prize is larger than stated.** No
+plasma protein binding measurement exists for any macaque, for any PFAS. But
+**Butenhoff 2004** measured cynomolgus PFOA in **serum, urine and faeces** at
+steady state across three oral doses plus an IV arm — the same mass-balance
+design as Abraham 2024 in the human. So one equilibrium-dialysis run on macaque
+plasma would not merely add a species with a bounded T; it would add one with
+the full three-tier treatment **including the faecal term**. This search raises
+rather than lowers that experiment's value.
+
+**The concrete next step is a reading task, not a search:** ingesting Fischer
+2024 and Smeltz 2023 would take the human series from three to five and let
+§7's monotonicity test run on all five. It does not pre-empt the OEHHA
+question — it sharpens it, from *which of three series* to *which of five, and
+whether a single value should be used at all.*
+
+---
 
 ### What the strand does not attempt
 
