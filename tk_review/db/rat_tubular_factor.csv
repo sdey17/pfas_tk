@@ -1,0 +1,26 @@
+chemical,sex,tier,fu_rat,fu_source,gfr_mL_kg_day,filtered_load_mL_kg_day,clearance_mL_kg_day,clearance_kind,T,verdict,min_pct_reabsorbed,clearance_source,note
+PFOA,male,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,18.2,renal,0.4241,net_reabsorption,57.6,"Kemper 2003 (unpublished), as used by OEHHA PHG Table A6.4",
+PFOA,male,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,21.2,renal,0.494,net_reabsorption,50.6,Ohmori 2003,digitized from a graph by Han 2012
+PFOA,male,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,46.08,renal,1.0738,NET_TUBULAR_SECRETION,,Kudo 2002 Table 3,"0.032 mL/min/kg, 5 h after IV; same table's castrated male 0.447 and probenecid 0.010 mL/min/kg"
+PFOA,female,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,666.0,renal,15.5201,NET_TUBULAR_SECRETION,,"Kemper 2003 (unpublished), as used by OEHHA PHG Table A6.4",
+PFOA,female,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,1009.0,renal,23.5132,NET_TUBULAR_SECRETION,,Ohmori 2003,digitized from a graph
+PFOA,female,DIRECT,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,1054.08,renal,24.5638,NET_TUBULAR_SECRETION,,Kudo 2002 Table 3,"0.732 mL/min/kg, 5 h after IV"
+PFHxS,male,DIRECT,0.00076,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,10.94,0.76,renal,0.0694,net_reabsorption,93.1,Kim 2016,"reported alongside total CL 9.01, so renal is 8% of total"
+PFOA,male,BOUNDED,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,47.39,total_upper_bound,1.1044,UNINFORMATIVE_bound_exceeds_filtration,,Kim 2016,IV
+PFOA,male,BOUNDED,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,50.4,total_upper_bound,1.1745,UNINFORMATIVE_bound_exceeds_filtration,,Kudo 2002,IV
+PFOA,male,BOUNDED,0.00298,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,42.91,135.0,total_upper_bound,3.146,UNINFORMATIVE_bound_exceeds_filtration,,Ohmori 2003 via ATSDR 2021 Table 3-6,"inconsistent with its own Vd 196 and t1/2 5.63 d, which give 24"
+PFHpA,male,BOUNDED,0.00454,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,65.38,1604.0,total_upper_bound,24.535,UNINFORMATIVE_bound_exceeds_filtration,,Ohmori 2003 via ATSDR 2021 Table 3-6,
+PFNA,male,BOUNDED,0.0021,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,30.24,6.9,total_upper_bound,0.2282,net_reabsorption_PROVEN_by_upper_bound,77.2,Ohmori 2003 via ATSDR 2021 Table 3-6,
+PFDA,male,BOUNDED,0.001,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,14.4,207.0,total_upper_bound,14.375,UNINFORMATIVE_bound_exceeds_filtration,,Ohmori 2003 via ATSDR 2021 Table 3-6,"ATSDR prints SD 0.054 for this, implausible; treat with caution"
+PFOS,male,BOUNDED,0.00109,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,15.7,9.24,total_upper_bound,0.5887,net_reabsorption_PROVEN_by_upper_bound,41.1,Kim 2016,IV
+PFOS,male,BOUNDED,0.00109,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,15.7,13.1,total_upper_bound,0.8346,net_reabsorption_PROVEN_by_upper_bound,16.5,Huang 2019 (NTP),beta phase
+PFOS,male,BOUNDED,0.00109,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,15.7,1.63,total_upper_bound,0.1038,net_reabsorption_PROVEN_by_upper_bound,89.6,Huang 2019,
+PFOS,male,BOUNDED,0.00109,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,15.7,11.3,total_upper_bound,0.7199,net_reabsorption_PROVEN_by_upper_bound,28.0,Chang 2012,2 mg/kg; falls to 4.9 at 15
+PFHxS,male,BOUNDED,0.00076,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,10.94,6.7,total_upper_bound,0.6122,net_reabsorption_PROVEN_by_upper_bound,38.8,Sundstrom 2012,"IV, 10 mg/kg, 10 weeks"
+PFHxS,male,BOUNDED,0.00076,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,10.94,9.01,total_upper_bound,0.8233,net_reabsorption_PROVEN_by_upper_bound,17.7,Kim 2016,IV
+PFHxS,male,BOUNDED,0.00076,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,10.94,4.73,total_upper_bound,0.4322,net_reabsorption_PROVEN_by_upper_bound,56.8,Huang 2019 (NTP),beta phase
+PFBS,male,BOUNDED,0.0542,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,780.48,828.0,total_upper_bound,1.0609,UNINFORMATIVE_bound_exceeds_filtration,,Huang 2019 (NTP),beta phase
+PFBS,male,BOUNDED,0.0542,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,780.48,946.0,total_upper_bound,1.2121,UNINFORMATIVE_bound_exceeds_filtration,,Chengelis 2009,
+PFBS,male,BOUNDED,0.0542,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,780.48,2856.0,total_upper_bound,3.6593,UNINFORMATIVE_bound_exceeds_filtration,,Olsen 2009,
+PFBA,male,BOUNDED,0.37,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,5328.0,851.0,total_upper_bound,0.1597,net_reabsorption_PROVEN_by_upper_bound,84.0,Chang 2008,IV; 494 oral
+PFHxA,male,BOUNDED,0.0358,"Ryu 2024 Toxics 12:253, rat plasma",14400.0,515.52,2784.0,total_upper_bound,5.4004,UNINFORMATIVE_bound_exceeds_filtration,,Chengelis 2009,

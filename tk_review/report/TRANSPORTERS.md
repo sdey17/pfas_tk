@@ -295,8 +295,14 @@ different reasons.** For PFOA:
 
 | | observed CL_R ratio | glomerular | tubular |
 |---|---|---|---|
-| human vs **rat** | 303× | 6.8× | **45×** |
+| human vs **rat** | 303× | 6.8× | **45–160×** |
 | human vs **mouse** | 85× | **37.7×** | 2.3× |
+
+The rat tubular factor is a range because three rat studies report different
+PFOA renal clearances and two sources report different human ones; the four
+combinations span 45× to 160×. **The dominance holds under all four — nothing
+in that range approaches the 6.8× glomerular factor — but the number is not
+well determined.**
 
 The mouse differs from the human in *both* glomerular factors — f_u 5.8× higher
 and GFR 6.5× higher, and 5.8 × 6.5 = 37.7 — so the glomerulus accounts for
@@ -311,14 +317,37 @@ partly cancels the mouse's faster clearance rather than amplifying it.
 
 **Coverage, stated plainly.** The f_u layer is complete (14 × 4 matrices, one
 laboratory). The reabsorbed-fraction layer needs renal clearance, which exists
-for 7 of 14 in the human, 7 of 14 in the mouse and **1 of 14 in the rat**. The
-full three-species triangle closes for PFOA alone. The rat gap is now a hole in
-the *clearance* data, not the binding data — **compound-by-compound rat renal
-clearance is the single highest-value missing measurement in this strand.**
+for 7 of 14 in the human and 7 of 14 in the mouse. The rat began at 1 of 14 and
+is now at **6 of 14**, by a route that needs no new experiment: since
+CL_R ≤ CL_total always, a rat total clearance gives an upper bound on T, and
+**where that bound falls below 1 net reabsorption holds whatever the renal
+share.** It does for PFBA (≥84% reabsorbed), PFNA (≥77%), PFHxS (≥18%) and PFOS
+(≥17%) on the loosest bound available for each — and PFHxS has a direct renal
+clearance too (Kim 2016), giving 93%. Four compounds stay uninformative because
+their total clearance exceeds the filtered load, which permits either sign.
+
+**One correction this forces.** The male rat's PFOA reabsorption is not 58%.
+Three rat studies give renal clearances of 18.2, 21.2 and 46.1 mL/kg·day
+against a filtration clearance of 42.9 — **so the sign of the rat tubular term
+depends on which primary source is taken.** Kudo 2002's value, the highest and
+the only one internally cross-checked against its own total clearance, puts the
+male rat marginally into net *secretion*. OEHHA's choice (Kemper 2003,
+unpublished) is the most reabsorptive of the three. The defensible statement is
+that **the male rat tubule returns at most half the filtered load and possibly
+none** — which still contrasts sharply with the human (T ≈ 0.007–0.010) and the
+mouse (T = 0.015), and so leaves the species conclusion intact while removing
+the printed percentage.
+
+The remaining gaps are lab measurements, not search problems: rat renal
+clearance for eight compounds, and rat f_u by sex for PFOA.
 
 Ryu's plasma is equal-sex-pooled Wistar-Han; the rat clearance it is paired
-with is male Sprague-Dawley, and no study measures whether rat plasma f_u
-differs by sex. The mouse pairing is strain-matched (C57BL/6) but not
+with is male Sprague-Dawley. One rat study does measure rat f_u by sex — Kim
+2016, for PFHxS — and the answer is favourable: **0.076% male against 0.069%
+female, a 1.10-fold difference, against a 7-fold sex difference in that
+compound's clearance.** So for PFHxS the sex difference is not a binding
+difference and pooling is defensible. PFOA, where the rat sex difference is
+largest, is still unmeasured by sex. The mouse pairing is strain-matched (C57BL/6) but not
 sex-matched. Mouse f_u for PFOS differs **5-fold between CD-1 and C57BL/6**, so
 "mouse f_u" is not one number for that compound.
 
