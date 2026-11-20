@@ -437,10 +437,23 @@ do not separate.**
 
 **The long chains are settled, and one measurement settled them.** Abraham 2024
 followed a single subject for 450 days with plasma, urine **and faeces** all
-measured, reporting per compound the urinary, total and faecal clearances, the
+measured, reporting per compound the urinary, total and faecal clearances, an
 unbound fraction, and the filtration clearance computed from *that subject's
-own* creatinine clearance. T therefore needs no cross-study join and no assumed
-GFR — unique in this strand. Subtracting the measured faecal term instead of
+own* creatinine clearance of 113.7 mL/min. **The clearances and the filtration
+rate are certainly that subject's**, which is unique in this strand.
+
+⚠️ **The binding term may not be.** A literature fetch for Smeltz 2023's human
+f_up values returned eleven numbers identical, to the last digit, to the ones
+this project records for Abraham — across values spanning 0.0004 to 0.093,
+which cannot be coincidence. Either Abraham took its unbound fractions from
+Smeltz (in which case its T does involve a cross-study join, and the human
+series number four rather than five), or the fetch fabricated them (the agent
+reported them as model-extracted summary rather than verbatim text, with
+internal inconsistencies). **Attempts to read Abraham's Methods were blocked by
+the publisher, so this is unresolved** and recorded in
+`db/UNRESOLVED_abraham_smeltz_identity.md`. Nothing from the Smeltz fetch has
+been ingested. The long-chain conclusions below rest on the *faecal* term,
+which is a mass balance and is not affected either way. Subtracting the measured faecal term instead of
 charging it to the kidney:
 
 | | faecal share of total | bound before | bound after |
@@ -456,14 +469,22 @@ C12 was the faecal term, as predicted before the data were available.
 **The short chains have no determined sign.** Three laboratories measured human
 plasma f_u and disagree by up to 11-fold, worst at the short chains:
 
-| | Abraham f_up | Ryu f_u | ratio | T (Abraham) | T (Ryu) | |
-|---|---|---|---|---|---|---|
-| PFPeA | 0.0440 | 0.0888 | 2.0 | **1.78** | **0.68** | **sign differs** |
-| PFHxA | 0.0068 | 0.0380 | 5.6 | **3.48** | **0.48** | **sign differs** |
-| PFBS | 0.0046 | 0.0365 | 7.9 | 0.129 | 0.013 | agree |
+| human PFHxA | f_u | T | |
+|---|---|---|---|
+| Abraham 2024 | 0.0068 | **2.69** | secretion |
+| **Fischer 2024** (derived) | **0.0095** | **1.93** | **secretion** |
+| Argoul 2026 | 0.0200 | 0.91 | reabsorption |
+| Ryu 2024 | 0.0380 | 0.48 | reabsorption |
 
-Human PFHxA either reabsorbs half its filtered load or secretes at three times
-it, **decided entirely by a binding measurement.**
+Human PFHxA either reabsorbs half its filtered load or secretes at twice to
+three times it, **decided entirely by a binding measurement.** With four
+sources the split is two and two — but **the two lowest values agree with each
+other within 1.4-fold and both give secretion**, while Ryu sits 4-fold above
+Fischer here and 15-fold above it for PFPeA. So this is no longer a two-way
+tie, and **Ryu's reading should not be treated as the default.** It is still
+not settled: Fischer's value is derived rather than measured and carries a
+1.1–2.2× reproduction error against the paper's own stated figures, which
+spans the boundary on its own.
 
 ### The uncertainty is binding, not clearance
 
@@ -473,23 +494,30 @@ Abraham's urinary clearance of PFHxA is **47.1 mL/kg·day**; Argoul 2026 reports
 unbound fractions do not.** That is the single most useful thing this
 comparison says about where effort should go.
 
-Binding affinity rises with chain length, so within the carboxylate series f_u
-must fall monotonically — a constraint on the data independent of any
-laboratory's protocol:
+~~Binding affinity rises with chain length, so within the carboxylate series
+f_u must fall monotonically — a constraint on the data independent of any
+laboratory's protocol. Ryu's series has zero inversions in 8 pairs, Argoul's
+1–2 and Abraham's 4, so the test prefers Ryu.~~
 
-| series | pairs | inversions |
-|---|---|---|
-| **Ryu f_u** | 8 | **0** |
-| Argoul f_u | 3–6 | 1–2, at C9→C10 and C10→C11 |
-| Abraham f_up | 7 | **4** |
+**That test was invalid, and is withdrawn.** Fischer 2024 measured
+albumin–water distribution across ηpfc 4–13 and its own series **rises to
+PFUnDA and then falls** — log D_HSA/w of 5.18 at ηpfc 10, 5.05 at 11, 4.54 at
+12, 3.87 at 13 — with the mechanism stated: *"for ηpfc > 8 PFAS, reduced
+molecular flexibility limits their accessibility to the HSA binding pockets."*
+Smeltz 2023 reports the same independently — binding lower for PFCAs of chain
+length ≥ 11. **So "f_u must fall monotonically" is false above about eight
+perfluorinated carbons, which is exactly where this review applied it.**
 
-Abraham's f_up falls to 0.0004 at C7 then rises **37-fold** to 0.0148 at C11,
-which no binding mechanism supports. **The position adopted here is therefore
-split, and deliberately so:** Abraham's measured *faecal* term (a mass balance,
-not a binding assay) to tighten the long chains; Ryu's *f_u* for the filtered
-load, because its series alone passes the monotonicity test; and the short
-chains reported as sign-undetermined, because no test available here separates
-0.48 from 3.48.
+Argoul's PFUdA value remains an outlier — 40-fold above Ryu's and 130-fold
+above Fischer's — but on the evidence of two other laboratories, not on a
+premise that turns out to be wrong.
+
+**The position adopted here is therefore:** Abraham's *faecal* term to tighten
+the long chains (a mass balance, not a binding assay, and nothing here
+questions it); Ryu's f_u for the filtered load in the tables, as the series
+with the widest compound coverage, **with the explicit note that it sits at the
+high end of the short-chain range**; and the short chains reported as
+sign-undetermined.
 
 ### Two inequalities that survive every choice
 
