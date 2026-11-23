@@ -784,8 +784,11 @@ direction.
 | species | n | censored | nC effect | sulfonate vs carboxylate | σ |
 |---|---|---|---|---|---|
 | human | 19 | 15 | ×0.39 per carbon (z = −1.65) | ×0.05 (z = −1.67) | 0.80 |
-| rat | 10 | 9 | ×0.74 per carbon (z = −0.33) | ×0.03 (z = −0.88) | 1.75 |
+| rat | 11 | 7 | ×0.72 per carbon (z = −0.56) | ×0.03 (z = −1.25) | 1.17 |
 | mouse | 10 | 3 | ×0.60 per carbon (z = −1.60) | ×0.12 (z = −1.74) | 0.70 |
+
+*(The rat improved from 10 rows and σ = 1.75 when Ohmori's Fig. 2 was
+digitised — §10a — taking it from one direct renal clearance to four.)*
 
 **The sign is the same in all three species and the point estimates are large
 — but no linear coefficient reaches significance** (largest |z| = 1.74). With
@@ -806,23 +809,31 @@ That is mechanically what should happen. T divides CL_R by f_u, and f_u has a
 inverted U** — the mid-short chains, C5–C7, are the compounds the tubule
 returns least of.
 
-**But it does not survive a sensitivity check.** The vertex sits exactly on
-PFPeA and PFHxA — the two compounds whose tubular sign depends on which
-binding dataset is used. Refitting the human without them flips the verdict:
+**In the human it does not survive a sensitivity check.** The vertex sits
+exactly on PFPeA and PFHxA — the two compounds whose tubular sign depends on
+which binding dataset is used:
 
-| human fit | ΔAIC, quadratic vs linear |
+| fit | ΔAIC, quadratic vs linear |
 |---|---|
-| all 19 rows | **−7.08** — quadratic justified |
-| without PFPeA and PFHxA | **+7.78** — quadratic rejected |
+| human, all 19 rows | **−7.08** quadratic justified |
+| human, without PFPeA and PFHxA | **+7.78** quadratic rejected |
+| **rat, all 11 rows** | **−12.04** quadratic justified |
+| **rat, without the Fig. 2 additions** | **−6.10** **still justified** |
 
-*(Compare ΔAIC within each row only; the absolute AICs are not comparable
-across different datasets.)*
+*(Compare ΔAIC within each row only; absolute AICs are not comparable across
+different datasets.)*
 
-**So the choice of human f_u source does not merely move two numbers — it
-decides whether the human chain-length relationship is monotone or humped,
-which is the functional form of the model.** The binding question of §7b is
-upstream of the model structure, not a detail beside it. No predictive model
-should be built on the humped form until it is settled.
+**So the choice of human f_u source decides whether the human chain-length
+relationship is monotone or humped** — the functional form of the model. The
+binding question of §7b is upstream of the model structure, not a detail
+beside it.
+
+**But the rat says the shape is real.** Its curvature survives removing the
+newly digitised rows (they strengthen it from −6.10 to −12.04 rather than
+creating it), it rests on four *direct* renal clearances rather than contested
+binding, and the rat has no four-way f_u dispute. **Same shape, very different
+evidentiary standing — and the species without the binding problem is the one
+that supports it.**
 
 ---
 

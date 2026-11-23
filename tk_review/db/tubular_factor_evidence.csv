@@ -47,7 +47,9 @@ rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,946.0,t
 rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,2856.0,total,3.65929,Olsen 2009
 rat,Wistar,female,PFDA,10,carboxylate,UPPER,0.001,rat,14400.0,14.4,5.3,total,0.36806,Ohmori 2003 Table 1
 rat,Wistar,male,PFDA,10,carboxylate,UPPER,0.001,rat,14400.0,14.4,5.2,total,0.36111,Ohmori 2003 Table 1
+rat,Wistar,female,PFHpA,7,carboxylate,DIRECT,0.00454,rat,14400.0,65.376,1467.2,renal,22.44249,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,Wistar,female,PFHpA,7,carboxylate,UPPER,0.00454,rat,14400.0,65.376,3070.5,total,46.96678,Ohmori 2003 Table 1
+rat,Wistar,male,PFHpA,7,carboxylate,DIRECT,0.00454,rat,14400.0,65.376,983.1,renal,15.03763,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,Wistar,male,PFHpA,7,carboxylate,UPPER,0.00454,rat,14400.0,65.376,1603.9,total,24.53347,Ohmori 2003 Table 1
 rat,Sprague-Dawley,male,PFHxA,6,carboxylate,UPPER,0.0358,rat,14400.0,515.52,2784.0,total,5.40037,Chengelis 2009
 rat,Sprague-Dawley,female,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,53.35,total,4.87482,Sundstrom 2012
@@ -55,6 +57,7 @@ rat,Sprague-Dawley,male,PFHxS,6,sulfonate,DIRECT,0.00076,rat,14400.0,10.944,0.76
 rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,6.7,total,0.61221,Sundstrom 2012
 rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,9.01,total,0.82328,Kim 2016
 rat,Sprague-Dawley,male,PFHxS,6,sulfonate,UPPER,0.00076,rat,14400.0,10.944,4.73,total,0.4322,Huang 2019 (NTP)
+rat,Wistar,female,PFNA,9,carboxylate,DIRECT,0.0021,rat,14400.0,30.24,67.5,renal,2.23214,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,Wistar,female,PFNA,9,carboxylate,UPPER,0.0021,rat,14400.0,30.24,105.7,total,3.49537,Ohmori 2003 Table 1
 rat,Wistar,male,PFNA,9,carboxylate,UPPER,0.0021,rat,14400.0,30.24,6.9,total,0.22817,Ohmori 2003 Table 1
 rat,Sprague-Dawley,female,PFOA,8,carboxylate,DIRECT,0.00298,rat,14400.0,42.912,666.0,renal,15.52013,Kemper 2003 (unpublished) via OEHHA PHG Table A6.4

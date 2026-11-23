@@ -292,6 +292,33 @@ def main():
         print("    the functional form of the QSAR. The binding question is")
         print("    upstream of the model structure, not a detail beside it.")
 
+    print()
+    print("  AND THE RAT IS THE ASYMMETRY THAT MATTERS. Its curvature rests")
+    print("  on DIRECTLY MEASURED renal clearances -- Ohmori Fig. 2 digitised")
+    print("  (PFHpA both sexes, PFNA female, PFOA female) and Kim 2016 --")
+    print("  with a single fu source and no four-way binding dispute. The")
+    print("  human curvature rests on two rows whose fu is contested. Same")
+    print("  shape, very different evidentiary standing.")
+    dr = [r for r in rows if r["species"] == "rat"]
+    newly = {"PFHpA", "PFNA"}
+    kr = [r for r in dr if r["chem"] not in newly]
+    if len(kr) >= 6:
+        mr, mrq = fit(kr), fit(kr, quad=True)
+        print()
+        print(f"    rat, all {len(dr)} rows        dAIC quad vs linear = "
+              f"{results['rat'][1]['aic']-results['rat'][0]['aic']:+.2f}")
+        print(f"    rat without the Fig. 2 additions ({len(kr)} rows)  "
+              f"dAIC = {mrq['aic']-mr['aic']:+.2f}")
+        print("    -- the curvature SURVIVES removing them. The digitised")
+        print("    rows strengthen it from dAIC -6.1 to -12.0; they do not")
+        print("    create it. So in the rat the inverted U is supported both")
+        print("    by the pre-existing bounds and by four direct measurements")
+        print("    calibrated to 1.5% against an independent digitisation.")
+        print()
+        print("    THAT IS THE STRONGEST FORM THE SHAPE FINDING TAKES. In the")
+        print("    human it collapses when two contested rows are removed; in")
+        print("    the rat it survives, and the rat has no binding dispute.")
+
     # ---- write ------------------------------------------------------
     p1 = OUT / "qsar_censored_fit.csv"
     with p1.open("w", newline="") as fh:

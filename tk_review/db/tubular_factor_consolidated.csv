@@ -30,14 +30,14 @@ mouse,male,PFHxS,6,sulfonate,0.013,mouse (C57BL/6),16700.0,217.1,UPPER,,0.02246,
 mouse,male,PFOA,8,carboxylate,0.0142,mouse (C57BL/6),16700.0,237.14,UPPER,,0.05988,net_reabsorption_holds,94.0,16.7,,1,Fujii 2015
 mouse,male,PFOS,8,sulfonate,0.00256,mouse (C57BL/6),16700.0,42.752,UPPER,,0.02199,net_reabsorption_holds,97.8,9.0962,,1,Chang 2012
 rat,female,PFDA,10,carboxylate,0.001,rat,14400.0,14.4,UPPER,,0.36806,net_reabsorption_holds,63.2,2.717,,1,Ohmori 2003 Table 1
-rat,female,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,UPPER,,46.96678,undetermined,,0.0213,,1,Ohmori 2003 Table 1
+rat,female,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,DIRECT,22.44249,22.44249,net_secretion,,,,1,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,female,PFHxS,6,sulfonate,0.00076,rat,14400.0,10.944,UPPER,,4.87482,undetermined,,0.2051,,1,Sundstrom 2012
-rat,female,PFNA,9,carboxylate,0.0021,rat,14400.0,30.24,LOWER,1.78264,3.49537,net_secretion_established,,0.2861,0.51,1,Ohmori 2003 Table 1
+rat,female,PFNA,9,carboxylate,0.0021,rat,14400.0,30.24,DIRECT,2.23214,2.23214,net_secretion,,,,1,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,female,PFOA,8,carboxylate,0.00298,rat,14400.0,42.912,DIRECT,15.52013,24.56422,net_secretion,,,,3,"Kemper 2003 (unpublished) via OEHHA PHG Table A6.4; Kudo 2002 Table 3; Ohmori 2003 Fig 2, digitized by Han 2012"
 rat,male,PFBA,4,carboxylate,0.37,rat,14400.0,5328.0,UPPER,,0.15972,net_reabsorption_holds,84.0,6.2609,,1,Chang 2008
 rat,male,PFBS,4,sulfonate,0.0542,rat,14400.0,780.48,UPPER,,3.65929,undetermined,,0.2733,,3,Chengelis 2009; Huang 2019 (NTP); Olsen 2009
 rat,male,PFDA,10,carboxylate,0.001,rat,14400.0,14.4,UPPER,,0.36111,net_reabsorption_holds,63.9,2.7692,,1,Ohmori 2003 Table 1
-rat,male,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,LOWER,22.57079,24.53347,net_secretion_established,,0.0408,0.92,1,Ohmori 2003 Table 1
+rat,male,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,DIRECT,15.03763,15.03763,net_secretion,,,,1,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,male,PFHxA,6,carboxylate,0.0358,rat,14400.0,515.52,UPPER,,5.40037,undetermined,,0.1852,,1,Chengelis 2009
 rat,male,PFHxS,6,sulfonate,0.00076,rat,14400.0,10.944,DIRECT,0.06944,0.06944,net_reabsorption,93.1,,,1,Kim 2016
 rat,male,PFNA,9,carboxylate,0.0021,rat,14400.0,30.24,UPPER,,0.22817,net_reabsorption_holds,77.2,4.3826,,1,Ohmori 2003 Table 1

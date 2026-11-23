@@ -83,6 +83,16 @@ RENAL = [
      "Ohmori 2003 Fig 2, digitized by Han 2012"),
     ("rat", "Wistar", "female", "PFOA", 1054.1, "Kudo 2002 Table 3"),
     ("rat", "Sprague-Dawley", "male", "PFHxS", 0.76, "Kim 2016"),
+    # Ohmori 2003 Fig. 2, digitised at 300 dpi (Stage 10). The male PFOA bar
+    # is deliberately excluded: two digitisations of it differ 2.1-fold and
+    # straddle the filtration line. Calibration validated against OEHHA's
+    # 1009 for female PFOA, read from the same figure by Han 2012.
+    ("rat", "Wistar", "male", "PFHpA", 983.1,
+     "Ohmori 2003 Fig 2, digitised (Stage 10)"),
+    ("rat", "Wistar", "female", "PFHpA", 1467.2,
+     "Ohmori 2003 Fig 2, digitised (Stage 10)"),
+    ("rat", "Wistar", "female", "PFNA", 67.5,
+     "Ohmori 2003 Fig 2, digitised (Stage 10)"),
     ("mouse", "C57BL/6", "female", "PFBA", 783.0, "Argoul 2026 Table 4"),
     ("mouse", "C57BL/6", "female", "PFHxA", 6780.0, "Argoul 2026 Table 4"),
     ("mouse", "C57BL/6", "female", "PFOA", 3.59, "Argoul 2026 Table 4"),
