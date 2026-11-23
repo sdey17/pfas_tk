@@ -21,14 +21,22 @@ human,male,PFPeA,5,4,carboxylate,0,0,264.05,3.02,0.4,0.0888,human,2570.0,228.216
 human,male,PFUnDA,11,10,carboxylate,0,0,564.09,7.75,-0.17,0.000419,human,2570.0,1.077,,0.26559,0.26559,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.5758,yes,yes,Abraham 2024
 mouse,female,PFBA,4,3,carboxylate,0,0,214.04,2.23,0.08,0.767,mouse (C57BL/6),16700.0,12808.9,0.06113,0.06113,0.06113,none (point estimate),DIRECT,net_reabsorption,-1.2137,yes,yes,Argoul 2026 Table 4
 mouse,female,PFDA,10,9,carboxylate,0,0,514.08,6.96,-0.17,0.00127,mouse (C57BL/6),16700.0,21.209,0.00613,0.00613,0.00613,none (point estimate),DIRECT,net_reabsorption,-2.2125,yes,yes,Argoul 2026 Table 4
+mouse,female,PFDoDA,12,11,carboxylate,0,0,614.1,8.54,-0.17,0.000205,mouse (C57BL/6),16700.0,3.423,,1.40207,1.40207,right-censored: T <= value,UPPER,undetermined,0.1468,no (bound permits either sign),,Fujii 2015 (EFSA App C)
+mouse,female,PFHpA,7,6,carboxylate,0,0,364.06,4.59,-0.15,0.0323,mouse (C57BL/6),16700.0,539.41,,0.47645,0.47645,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.322,yes,yes,Fujii 2015 (EFSA App C)
 mouse,female,PFHxA,6,5,carboxylate,0,0,314.05,3.81,0.7,0.182,mouse (C57BL/6),16700.0,3039.4,2.2307,2.2307,2.2307,none (point estimate),DIRECT,net_secretion,0.3484,yes,NO - sign depends on which binding dataset is used,Argoul 2026 Table 4
 mouse,female,PFHxS,6,6,sulfonate,0,0,400.12,5.3,0.14,0.013,mouse (C57BL/6),16700.0,217.1,0.00271,0.00271,0.00271,none (point estimate),DIRECT,net_reabsorption,-2.567,yes,yes,Argoul 2026 Table 4
 mouse,female,PFNA,9,8,carboxylate,0,0,464.08,6.17,-0.17,0.00438,mouse (C57BL/6),16700.0,73.146,0.0082,0.0082,0.0082,none (point estimate),DIRECT,net_reabsorption,-2.0862,yes,yes,Argoul 2026 Table 4
 mouse,female,PFOA,8,7,carboxylate,0,0,414.07,5.38,2.5,0.0142,mouse (C57BL/6),16700.0,237.14,0.01514,0.01514,0.01514,none (point estimate),DIRECT,net_reabsorption,-1.8199,yes,yes,Argoul 2026 Table 4
 mouse,female,PFOS,8,8,sulfonate,0,0,500.13,6.88,0.14,0.00256,mouse (C57BL/6),16700.0,42.752,0.029,0.029,0.029,none (point estimate),DIRECT,net_reabsorption,-1.5376,yes,yes,Argoul 2026 Table 4
+mouse,female,PFUnDA,11,10,carboxylate,0,0,564.09,7.75,-0.17,0.00127,mouse (C57BL/6),16700.0,21.209,,0.16031,0.16031,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.795,yes,yes,Fujii 2015 (EFSA App C)
+mouse,male,PFDA,10,9,carboxylate,0,0,514.08,6.96,-0.17,0.00127,mouse (C57BL/6),16700.0,21.209,,0.10373,0.10373,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.9841,yes,yes,Fujii 2015 (EFSA App C)
+mouse,male,PFDoDA,12,11,carboxylate,0,0,614.1,8.54,-0.17,0.000205,mouse (C57BL/6),16700.0,3.423,,1.28523,1.28523,right-censored: T <= value,UPPER,undetermined,0.109,no (bound permits either sign),,Fujii 2015 (EFSA App C)
+mouse,male,PFHpA,7,6,carboxylate,0,0,364.06,4.59,-0.15,0.0323,mouse (C57BL/6),16700.0,539.41,,0.6433,0.6433,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.1916,yes,yes,Fujii 2015 (EFSA App C)
 mouse,male,PFHxS,6,6,sulfonate,0,0,400.12,5.3,0.14,0.013,mouse (C57BL/6),16700.0,217.1,,0.02246,0.02246,right-censored: T <= value,UPPER,net_reabsorption_holds,-1.6486,yes,yes,Sundstrom 2012
+mouse,male,PFNA,9,8,carboxylate,0,0,464.08,6.17,-0.17,0.00438,mouse (C57BL/6),16700.0,73.146,,0.05332,0.05332,right-censored: T <= value,UPPER,net_reabsorption_holds,-1.2731,yes,yes,Fujii 2015 (EFSA App C)
 mouse,male,PFOA,8,7,carboxylate,0,0,414.07,5.38,2.5,0.0142,mouse (C57BL/6),16700.0,237.14,,0.05988,0.05988,right-censored: T <= value,UPPER,net_reabsorption_holds,-1.2227,yes,yes,Fujii 2015
 mouse,male,PFOS,8,8,sulfonate,0,0,500.13,6.88,0.14,0.00256,mouse (C57BL/6),16700.0,42.752,,0.02199,0.02199,right-censored: T <= value,UPPER,net_reabsorption_holds,-1.6578,yes,yes,Chang 2012
+mouse,male,PFUnDA,11,10,carboxylate,0,0,564.09,7.75,-0.17,0.00127,mouse (C57BL/6),16700.0,21.209,,0.13202,0.13202,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.8794,yes,yes,Fujii 2015 (EFSA App C)
 rat,female,PFDA,10,9,carboxylate,0,0,514.08,6.96,-0.17,0.001,rat,14400.0,14.4,,0.36806,0.36806,right-censored: T <= value,UPPER,net_reabsorption_holds,-0.4341,yes,yes,Ohmori 2003 Table 1
 rat,female,PFHpA,7,6,carboxylate,0,0,364.06,4.59,-0.15,0.00454,rat,14400.0,65.376,22.44249,22.44249,22.44249,none (point estimate),DIRECT,net_secretion,1.3511,yes,yes,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,female,PFHxS,6,6,sulfonate,0,0,400.12,5.3,0.14,0.00076,rat,14400.0,10.944,,4.87482,4.87482,right-censored: T <= value,UPPER,undetermined,0.688,no (bound permits either sign),yes,Sundstrom 2012

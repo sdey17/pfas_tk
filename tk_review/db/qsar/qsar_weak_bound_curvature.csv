@@ -1,0 +1,7 @@
+species,fit,n,aic_linear,aic_quadratic,delta_aic,vertex_nC
+human,excluding weak bounds (qsar1),19,23.734,16.654,-7.08,5.32
+human,including weak bounds,20,23.734,16.654,-7.08,5.32
+mouse,excluding weak bounds (qsar1),16,26.103,26.966,0.863,5.47
+mouse,including weak bounds,18,26.103,26.966,0.863,5.47
+rat,excluding weak bounds (qsar1),11,38.871,26.826,-12.044,6.92
+rat,including weak bounds,14,39.677,27.909,-11.768,7.21

@@ -21,14 +21,22 @@ human,male,PFPeA,5,carboxylate,0.0888,human,2570.0,228.216,UPPER,,0.64237,net_re
 human,male,PFUnDA,11,carboxylate,0.000419,human,2570.0,1.077,UPPER,,0.26559,net_reabsorption_holds,73.4,3.7651,,1,Abraham 2024
 mouse,female,PFBA,4,carboxylate,0.767,mouse (C57BL/6),16700.0,12808.9,DIRECT,0.06113,0.06113,net_reabsorption,93.9,,,1,Argoul 2026 Table 4
 mouse,female,PFDA,10,carboxylate,0.00127,mouse (C57BL/6),16700.0,21.209,DIRECT,0.00613,0.00613,net_reabsorption,99.4,,,1,Argoul 2026 Table 4
+mouse,female,PFDoDA,12,carboxylate,0.000205,mouse (C57BL/6),16700.0,3.423,UPPER,,1.40207,undetermined,,0.7132,,1,Fujii 2015 (EFSA App C)
+mouse,female,PFHpA,7,carboxylate,0.0323,mouse (C57BL/6),16700.0,539.41,UPPER,,0.47645,net_reabsorption_holds,52.4,2.0989,,1,Fujii 2015 (EFSA App C)
 mouse,female,PFHxA,6,carboxylate,0.182,mouse (C57BL/6),16700.0,3039.4,DIRECT,2.2307,2.2307,net_secretion,,,,1,Argoul 2026 Table 4
 mouse,female,PFHxS,6,sulfonate,0.013,mouse (C57BL/6),16700.0,217.1,DIRECT,0.00271,0.00271,net_reabsorption,99.7,,,1,Argoul 2026 Table 4
 mouse,female,PFNA,9,carboxylate,0.00438,mouse (C57BL/6),16700.0,73.146,DIRECT,0.0082,0.0082,net_reabsorption,99.2,,,1,Argoul 2026 Table 4
 mouse,female,PFOA,8,carboxylate,0.0142,mouse (C57BL/6),16700.0,237.14,DIRECT,0.01514,0.01514,net_reabsorption,98.5,,,1,Argoul 2026 Table 4
 mouse,female,PFOS,8,sulfonate,0.00256,mouse (C57BL/6),16700.0,42.752,DIRECT,0.029,0.029,net_reabsorption,97.1,,,1,Argoul 2026 Table 4
+mouse,female,PFUnDA,11,carboxylate,0.00127,mouse (C57BL/6),16700.0,21.209,UPPER,,0.16031,net_reabsorption_holds,84.0,6.2379,,1,Fujii 2015 (EFSA App C)
+mouse,male,PFDA,10,carboxylate,0.00127,mouse (C57BL/6),16700.0,21.209,UPPER,,0.10373,net_reabsorption_holds,89.6,9.6405,,1,Fujii 2015 (EFSA App C)
+mouse,male,PFDoDA,12,carboxylate,0.000205,mouse (C57BL/6),16700.0,3.423,UPPER,,1.28523,undetermined,,0.7781,,1,Fujii 2015 (EFSA App C)
+mouse,male,PFHpA,7,carboxylate,0.0323,mouse (C57BL/6),16700.0,539.41,UPPER,,0.6433,net_reabsorption_holds,35.7,1.5545,,1,Fujii 2015 (EFSA App C)
 mouse,male,PFHxS,6,sulfonate,0.013,mouse (C57BL/6),16700.0,217.1,UPPER,,0.02246,net_reabsorption_holds,97.8,45.2292,,1,Sundstrom 2012
+mouse,male,PFNA,9,carboxylate,0.00438,mouse (C57BL/6),16700.0,73.146,UPPER,,0.05332,net_reabsorption_holds,94.7,18.7554,,1,Fujii 2015 (EFSA App C)
 mouse,male,PFOA,8,carboxylate,0.0142,mouse (C57BL/6),16700.0,237.14,UPPER,,0.05988,net_reabsorption_holds,94.0,16.7,,1,Fujii 2015
 mouse,male,PFOS,8,sulfonate,0.00256,mouse (C57BL/6),16700.0,42.752,UPPER,,0.02199,net_reabsorption_holds,97.8,9.0962,,1,Chang 2012
+mouse,male,PFUnDA,11,carboxylate,0.00127,mouse (C57BL/6),16700.0,21.209,UPPER,,0.13202,net_reabsorption_holds,86.8,7.5746,,1,Fujii 2015 (EFSA App C)
 rat,female,PFDA,10,carboxylate,0.001,rat,14400.0,14.4,UPPER,,0.36806,net_reabsorption_holds,63.2,2.717,,1,Ohmori 2003 Table 1
 rat,female,PFHpA,7,carboxylate,0.00454,rat,14400.0,65.376,DIRECT,22.44249,22.44249,net_secretion,,,,1,"Ohmori 2003 Fig 2, digitised (Stage 10)"
 rat,female,PFHxS,6,sulfonate,0.00076,rat,14400.0,10.944,UPPER,,4.87482,undetermined,,0.2051,,1,Sundstrom 2012

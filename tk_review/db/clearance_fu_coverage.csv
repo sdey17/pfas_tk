@@ -1,0 +1,47 @@
+species,chemical,has_fu,has_plasma_type_binding,clearance_sources
+human,6:2 FTS,yes,yes,stage6_evidence;vd_clearance
+human,DONA,no,no,vd_clearance
+human,HFPO-DA (GenX),yes,yes,vd_clearance
+human,PFBA,yes,yes,stage6_evidence;vd_clearance
+human,PFBS,yes,yes,stage6_evidence;vd_clearance
+human,PFDA,yes,yes,stage6_evidence;vd_clearance
+human,PFDoDA,yes,yes,stage6_evidence;vd_clearance
+human,PFHpA,yes,yes,stage6_evidence;vd_clearance
+human,PFHxA,yes,yes,stage6_evidence;vd_clearance
+human,PFHxS,yes,yes,stage6_evidence;vd_clearance
+human,PFNA,yes,yes,stage6_evidence;vd_clearance
+human,PFOA,yes,yes,stage6_evidence;vd_clearance
+human,PFOS,yes,yes,stage6_evidence;vd_clearance
+human,PFPeA,yes,yes,stage6_evidence;vd_clearance
+human,PFUdA,yes,no,vd_clearance
+human,PFUnDA,yes,yes,stage6_evidence
+rat,1m-PFOS,no,no,efsa_appendix_c
+rat,PFBA,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFBS,yes,yes,stage6_evidence;vd_clearance
+rat,PFDA,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFHpA,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFHxA,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFHxS,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFNA,yes,yes,efsa_appendix_c;stage6_evidence;vd_clearance
+rat,PFOA,yes,yes,stage6_evidence;vd_clearance
+rat,PFOS,yes,yes,stage6_evidence;vd_clearance
+rat,iso- PFOS,no,no,efsa_appendix_c
+rat,n- PFOS,no,no,efsa_appendix_c
+mouse,PFBA,yes,no,efsa_appendix_c;stage6_evidence
+mouse,PFDA,yes,no,efsa_appendix_c;stage6_evidence
+mouse,PFDoDA,yes,no,efsa_appendix_c;stage6_evidence
+mouse,PFHpA,yes,no,efsa_appendix_c;stage6_evidence
+mouse,PFHxA,yes,no,stage6_evidence
+mouse,PFHxS,yes,no,efsa_appendix_c;stage6_evidence;vd_clearance
+mouse,PFNA,yes,no,efsa_appendix_c;stage6_evidence
+mouse,PFOA,yes,no,stage6_evidence;vd_clearance
+mouse,PFOS,yes,no,stage6_evidence;vd_clearance
+mouse,PFTeDA,no,no,efsa_appendix_c
+mouse,PFTriDA,no,no,efsa_appendix_c
+mouse,PFUnDA,yes,no,efsa_appendix_c;stage6_evidence
+monkey,PFBA,no,no,efsa_appendix_c;vd_clearance
+monkey,PFBS,no,no,vd_clearance
+monkey,PFHxA,no,no,efsa_appendix_c;vd_clearance
+monkey,PFHxS,no,no,efsa_appendix_c;vd_clearance
+monkey,PFOA,no,no,vd_clearance
+monkey,PFOS,no,no,vd_clearance

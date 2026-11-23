@@ -28,6 +28,12 @@ mouse,C57BL/6,female,PFBA,4,carboxylate,DIRECT,0.767,mouse (C57BL/6),16700.0,128
 mouse,C57BL/6,female,PFBA,4,carboxylate,UPPER,0.767,mouse (C57BL/6),16700.0,12808.9,783.0,total,0.06113,Argoul 2026 Table 2
 mouse,C57BL/6,female,PFDA,10,carboxylate,DIRECT,0.00127,mouse (C57BL/6),16700.0,21.209,0.13,renal,0.00613,Argoul 2026 Table 4
 mouse,C57BL/6,female,PFDA,10,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,1.8,total,0.08487,Argoul 2026 Table 2
+mouse,FVB/NJcl,female,PFDA,10,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,2.8,total,0.13202,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,male,PFDA,10,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,2.2,total,0.10373,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,female,PFDoDA,12,carboxylate,UPPER,0.000205,mouse (C57BL/6),16700.0,3.423,4.8,total,1.40207,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,male,PFDoDA,12,carboxylate,UPPER,0.000205,mouse (C57BL/6),16700.0,3.423,4.4,total,1.28523,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,female,PFHpA,7,carboxylate,UPPER,0.0323,mouse (C57BL/6),16700.0,539.41,257.0,total,0.47645,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,male,PFHpA,7,carboxylate,UPPER,0.0323,mouse (C57BL/6),16700.0,539.41,347.0,total,0.6433,Fujii 2015 (EFSA App C)
 mouse,C57BL/6,female,PFHxA,6,carboxylate,DIRECT,0.182,mouse (C57BL/6),16700.0,3039.4,6780.0,renal,2.2307,Argoul 2026 Table 4
 mouse,C57BL/6,female,PFHxA,6,carboxylate,UPPER,0.182,mouse (C57BL/6),16700.0,3039.4,6830.0,total,2.24715,Argoul 2026 Table 2
 mouse,C57BL/6,female,PFHxS,6,sulfonate,DIRECT,0.013,mouse (C57BL/6),16700.0,217.1,0.589,renal,0.00271,Argoul 2026 Table 4
@@ -35,12 +41,16 @@ mouse,C57BL/6,female,PFHxS,6,sulfonate,UPPER,0.013,mouse (C57BL/6),16700.0,217.1
 mouse,CD-1,male,PFHxS,6,sulfonate,UPPER,0.0128,mouse (CD-1),16700.0,213.76,4.8,total,0.02246,Sundstrom 2012
 mouse,C57BL/6,female,PFNA,9,carboxylate,DIRECT,0.00438,mouse (C57BL/6),16700.0,73.146,0.6,renal,0.0082,Argoul 2026 Table 4
 mouse,C57BL/6,female,PFNA,9,carboxylate,UPPER,0.00438,mouse (C57BL/6),16700.0,73.146,2.1,total,0.02871,Argoul 2026 Table 2
+mouse,FVB/NJcl,female,PFNA,9,carboxylate,UPPER,0.00438,mouse (C57BL/6),16700.0,73.146,5.1,total,0.06972,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,male,PFNA,9,carboxylate,UPPER,0.00438,mouse (C57BL/6),16700.0,73.146,3.9,total,0.05332,Fujii 2015 (EFSA App C)
 mouse,C57BL/6,female,PFOA,8,carboxylate,DIRECT,0.0142,mouse (C57BL/6),16700.0,237.14,3.59,renal,0.01514,Argoul 2026 Table 4
 mouse,C57BL/6,female,PFOA,8,carboxylate,UPPER,0.0142,mouse (C57BL/6),16700.0,237.14,4.5,total,0.01898,Argoul 2026 Table 2
 mouse,FVB/NJcl,male,PFOA,8,carboxylate,UPPER,0.0142,mouse (C57BL/6),16700.0,237.14,14.2,total,0.05988,Fujii 2015
 mouse,C57BL/6,female,PFOS,8,sulfonate,DIRECT,0.00256,mouse (C57BL/6),16700.0,42.752,1.24,renal,0.029,Argoul 2026 Table 4
 mouse,C57BL/6,female,PFOS,8,sulfonate,UPPER,0.00256,mouse (C57BL/6),16700.0,42.752,2.7,total,0.06315,Argoul 2026 Table 2
 mouse,CD-1,male,PFOS,8,sulfonate,UPPER,0.0128,mouse (CD-1),16700.0,213.76,4.7,total,0.02199,Chang 2012
+mouse,FVB/NJcl,female,PFUnDA,11,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,3.4,total,0.16031,Fujii 2015 (EFSA App C)
+mouse,FVB/NJcl,male,PFUnDA,11,carboxylate,UPPER,0.00127,mouse (C57BL/6),16700.0,21.209,2.8,total,0.13202,Fujii 2015 (EFSA App C)
 rat,Sprague-Dawley,male,PFBA,4,carboxylate,UPPER,0.37,rat,14400.0,5328.0,851.0,total,0.15972,Chang 2008
 rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,828.0,total,1.06089,Huang 2019 (NTP)
 rat,Sprague-Dawley,male,PFBS,4,sulfonate,UPPER,0.0542,rat,14400.0,780.48,946.0,total,1.21207,Chengelis 2009

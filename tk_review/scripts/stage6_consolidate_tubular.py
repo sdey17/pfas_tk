@@ -161,6 +161,23 @@ TOTAL = [
     ("mouse", "C57BL/6", "female", "PFDA", 1.8, "Argoul 2026 Table 2"),
     ("mouse", "C57BL/6", "female", "PFHxS", 1.3, "Argoul 2026 Table 2"),
     ("mouse", "C57BL/6", "female", "PFOS", 2.7, "Argoul 2026 Table 2"),
+    # mouse, Fujii 2015 via EFSA Appendix C (db/primary_2026/
+    # fujii2015_mouse_total_clearance.csv). Low dose, 0.31 umol/kg, the
+    # nearer-environmental of the two Fujii doses. Strain FVB/NJcl against
+    # Ryu's C57BL/6 binding -- a within-species, cross-strain join, which
+    # pick_fu records in fu_matrix. PFHpA, PFUnDA and PFDoDA are NEW mouse
+    # compounds; PFNA and PFDA are independent corroboration of Argoul's
+    # direct renal values.
+    ("mouse", "FVB/NJcl", "female", "PFHpA", 257.0, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "male", "PFHpA", 347.0, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "female", "PFNA", 5.1, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "male", "PFNA", 3.9, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "female", "PFDA", 2.8, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "male", "PFDA", 2.2, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "female", "PFUnDA", 3.4, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "male", "PFUnDA", 2.8, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "female", "PFDoDA", 4.8, "Fujii 2015 (EFSA App C)"),
+    ("mouse", "FVB/NJcl", "male", "PFDoDA", 4.4, "Fujii 2015 (EFSA App C)"),
 ]
 
 # values a compilation attributes to a paper, superseded by the paper itself

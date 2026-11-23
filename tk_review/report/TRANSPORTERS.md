@@ -46,6 +46,13 @@ table of 44 verdicts over 74 evidence rows.
    alone.** Binding explains 61% of the log-variance in the human clearance
    series and 83% in the mouse, but the tubular residual still spans 466- and
    823-fold. Aims 1 and 2 do not separate.
+8b. **The binding collection cannot extend the tubular endpoint, and the
+   limit is structural.** 1,497 rows of albumin, FABP and γ-globulin binding
+   unlock **zero** additional species-compounds, because f_u is already
+   available for 15 of 16 human, 9 of 12 rat and 10 of 12 mouse compounds
+   that have a clearance — and the gaps that remain (mouse C13–C14, the whole
+   monkey) have no plasma-type binding measurement in the collection either. **The
+   bottleneck is renal clearance, not binding** (§11a).
 
 ### Bounded — direction settled, magnitude not
 
@@ -73,7 +80,10 @@ table of 44 verdicts over 74 evidence rows.
 13. **Whether any measured clearance survives contact with plasma protein.**
     Every assay in this compilation was run without it.
 14. **Anything about the monkey.** No plasma unbound fraction has ever been
-    measured in cynomolgus plasma for any PFAS, although 14 clearances exist.
+    measured in cynomolgus plasma for any PFAS, although 14 clearances exist
+    across 6 compounds. **Confirmed against this project's full 1,497-row
+    binding collection: it contains no macaque measurement of any kind**
+    (§11a), so the monkey cannot be opened from data already in hand.
 
 ### Errors found in the regulatory and secondary literature
 
@@ -773,11 +783,13 @@ mass-balance model with a faecal term**, which is the third aim, not this axis.
 
 ## 11. First QSAR fit on the tubular endpoint
 
-`scripts/qsar0_build_modelling_table.py`, `scripts/qsar1_censored_fit.py`
-→ `db/qsar/qsar_modelling_table.csv`, `db/qsar/qsar_censored_fit.csv`
+`scripts/qsar0_build_modelling_table.py`, `scripts/qsar1_censored_fit.py`,
+`scripts/qsar2_weak_bound_sensitivity.py`
+→ `db/qsar/qsar_modelling_table.csv`, `db/qsar/qsar_censored_fit.csv`,
+`db/qsar/qsar_weak_bound_sensitivity.csv`
 
 **log₁₀ T ~ chain length + head group**, per species, by maximum likelihood
-**with censoring** — 30 of the 39 usable rows are one-sided bounds, and fitting
+**with censoring** — 31 of the 46 usable rows are one-sided bounds, and fitting
 them as point values would bias every coefficient toward the censoring
 direction.
 
@@ -785,24 +797,34 @@ direction.
 |---|---|---|---|---|---|
 | human | 19 | 15 | ×0.39 per carbon (z = −1.65) | ×0.05 (z = −1.67) | 0.80 |
 | rat | 11 | 7 | ×0.72 per carbon (z = −0.56) | ×0.03 (z = −1.25) | 1.17 |
-| mouse | 10 | 3 | ×0.60 per carbon (z = −1.60) | ×0.12 (z = −1.74) | 0.70 |
+| mouse | **16** | 9 | **×0.57 per carbon (z = −1.93)** | ×0.15 (z = −1.70) | 0.67 |
 
 *(The rat improved from 10 rows and σ = 1.75 when Ohmori's Fig. 2 was
-digitised — §10a — taking it from one direct renal clearance to four.)*
+digitised — §10a — taking it from one direct renal clearance to four. The
+mouse went from 10 rows to 16 with the Fujii 2015 clearances — §11a.)*
 
 **The sign is the same in all three species and the point estimates are large
-— but no linear coefficient reaches significance** (largest |z| = 1.74). With
-10–19 rows, most of them bounds, that is what should be expected. The honest
-statement is that the fit is *consistent with* a strong chain-length effect
-and does not *establish* one; three species agreeing in sign happens by chance
-one time in four.
+— but no linear coefficient reaches significance** (largest |z| = 1.93, the
+mouse chain-length term). With 11–19 rows, most of them bounds, that is what
+should be expected. The honest statement is that the fit is *consistent with* a
+strong chain-length effect and does not *establish* one; three species agreeing
+in sign happens by chance one time in four.
+
+**Six more mouse rows moved the mouse z from −1.60 to −1.93 and left it short
+of significance.** That is the useful calibration on how much more data this
+endpoint needs: a 60% increase in n bought about 0.3 of a z. Closing the gap
+from here is a matter of several more *directly measured* renal clearances,
+not of a few more bounds.
 
 ### The shape is not linear, and the curvature is decided by the disputed rows
 
-Adding nC² improves the human fit by ΔAIC = −7.08 and the rat by −7.43, and
+Adding nC² improves the human fit by ΔAIC = −7.08 and the rat by −12.04, and
 in the quadratic model the coefficients do become significant (human nC
 z = 2.71, nC² z = −2.60, sulfonate z = −4.18). The fitted vertices are
-**maxima** at nC 5.3 (human), 6.9 (rat), 5.7 (mouse).
+**maxima** at nC 5.3 (human), 6.9 (rat), 5.5 (mouse). **The mouse is the one
+species where the quadratic does not pay for itself** (ΔAIC +0.86), and it
+stays that way with the six Fujii rows added — so the hump is not a feature
+of every species.
 
 That is mechanically what should happen. T divides CL_R by f_u, and f_u has a
 *minimum* near C7 (§7b), so 1/f_u has a maximum there and **T inherits an
@@ -834,6 +856,160 @@ creating it), it rests on four *direct* renal clearances rather than contested
 binding, and the rat has no four-way f_u dispute. **Same shape, very different
 evidentiary standing — and the species without the binding problem is the one
 that supports it.**
+
+---
+
+## 11a. More compounds, and why the binding database was not the answer
+
+`scripts/stage11_fujii_mouse_longchain.py`,
+`scripts/qsar2_weak_bound_sensitivity.py`
+→ `db/primary_2026/fujii2015_mouse_total_clearance.csv`,
+`db/qsar/qsar_weak_bound_sensitivity.csv`,
+`db/qsar/qsar_weak_bound_curvature.csv`
+
+### The binding collection cannot extend this endpoint — and that is worth knowing
+
+The project holds **1,497 protein-binding rows** (767 human, 190 bovine, 162
+mouse, 153 rat, 31 trout) across albumin, FABP, γ-globulin and tissue
+homogenates. The obvious hope is that it unlocks more compounds on the
+tubular endpoint. **It does not unlock a single one**, and the reason is
+structural rather than a matter of digging harder.
+
+Binding supplies f_u. **f_u is not the scarce term.** Of the compounds with a
+clearance anywhere in this project:
+
+| species | compounds with a clearance | already have f_u | gap |
+|---|---|---|---|
+| human | 16 | 15 | 1 (DONA) |
+| rat | 12 | 9 | 3 (PFOS isomers, clearances read NR) |
+| mouse | 12 | 10 | 2 (PFTriDA, PFTeDA) |
+| **monkey** | **6** | **0** | **6** |
+
+*(Counts are rebuilt by `scripts/stage11b_clearance_fu_coverage.py` →
+`db/clearance_fu_coverage.csv`, over the union of `db/vd_clearance.csv`,
+`db/efsa_appendix_c.csv` and `db/tubular_factor_evidence.csv`, with species
+labels normalised and chemical aliases folded. The union has to be stated,
+because the answer depends on what counts as "has a clearance".)*
+
+The only places binding could help are mouse PFTriDA/PFTeDA and the monkey,
+and the database has neither: **no mouse plasma, serum or albumin binding for
+C13–C14** — PFTriDA appears only as human and bovine albumin, and PFTeDA's
+mouse rows are *tissue homogenates*, which do not give a plasma unbound
+fraction — and **no macaque binding for any PFAS at all**. The rat gaps are
+PFOS isomer rows whose clearances are recorded "NR" — a clearance problem, not
+a binding one.
+
+Run over all 46 species-compounds that have a clearance, the number the
+binding collection could unlock is **zero**.
+
+**So the bottleneck is renal clearance, and no amount of binding work moves
+it.** That is a negative result, but a load-bearing one: it redirects effort
+away from the largest dataset in the project and toward the smallest.
+
+### What did extend the series: Fujii 2015, through EFSA Appendix C
+
+`db/efsa_appendix_c.csv` carries mouse clearances from Fujii 2015 that the
+project was not using. Ten rows enter, **as UPPER bounds — these are total
+clearances, not renal ones**, so they bound T rather than measure it. Three
+compounds are new to the mouse column (PFHpA, PFUnDA, PFDoDA) and two
+corroborate Argoul's direct values (PFNA, PFDA).
+
+| compound | nC | CL_tot ♀/♂ (mL/kg·d) | f_u | T ≤ ♀/♂ |
+|---|---|---|---|---|
+| PFHpA | 7 | 257 / 347 | 0.0323 | 0.48 / 0.64 |
+| PFNA | 9 | 5.1 / 3.9 | 0.00438 | 0.070 / 0.053 |
+| PFDA | 10 | 2.8 / 2.2 | 0.00127 | 0.132 / 0.104 |
+| PFUnDA | 11 | 3.4 / 2.8 | 0.00127 | 0.160 / 0.132 |
+| PFDoDA | 12 | 4.8 / 4.4 | 0.000205 | 1.40 / 1.29 — *uninformative* |
+
+The f_u is Ryu's C57BL/6 against Fujii's FVB/NJcl: a **within-species,
+cross-strain join**, which `pick_fu` records in the `fu_matrix` column of
+every row it produces. Same species, which is the standing constraint; not the
+same strain, which is recorded rather than hidden.
+
+**PFDoDA's bound lands above 1 and therefore establishes nothing** — not
+because the mouse secretes it, but because f_u = 2×10⁻⁴ makes the filtered
+load only 3.4 mL/kg·d, so almost any clearance clears the bar. A bound is only
+as strong as the filtered load it is divided by.
+
+### The dose dependence is itself evidence for saturable reabsorption
+
+Fujii dosed at 0.31 and 3.13 µmol/kg. **Clearance rises with dose, and the
+effect grows with chain length:**
+
+| compound | nC | CL at 0.31 | CL at 3.13 | ratio |
+|---|---|---|---|---|
+| PFHpA ♂ | 7 | 347 | 293 | **0.8×** |
+| PFUnDA ♂ | 11 | 2.8 | 5.7 | 2.0× |
+| PFDoDA ♂ | 12 | 4.4 | 9.4 | 2.1× |
+| PFTriDA ♂ | 13 | 6.8 | 34.2 | 5.0× |
+| PFTeDA ♀ | 14 | 10.4 | 48.7 | **4.7×** |
+
+A tenfold dose giving two- to fivefold more clearance is what saturable
+reabsorption predicts: at higher load the reabsorptive transporters saturate,
+less is returned, clearance rises. **The short chain shows none of it** — and
+the short chain is where reabsorption is weakest. The low dose is used above,
+being nearer environmental exposure.
+
+### A methodological check that had to be run: does excluding the weak bounds bias the fit?
+
+`qsar0` marks a row unusable when its upper bound sits above T = 1 ("bound
+permits either sign"). For the **verdict** question that is exactly right. For
+the **censored regression** it is not required — a right-censored observation
+at T ≤ 1.29 contributes a real term, Φ((log₁₀1.29 − µ)/σ), to the likelihood.
+
+Worse, the exclusion is **not random**: a bound is weak when the filtered load
+is small, and the filtered load is small when f_u is small, which happens at
+the long-chain end. Dropping those rows preferentially removes long-chain
+observations — selection on a variable correlated with the outcome, which is
+the standard way to manufacture a slope. So it was measured rather than
+assumed:
+
+| species | dropped rows | mean nC kept vs dropped | nC coef excl. → incl. | z |
+|---|---|---|---|---|
+| human | 1 | 7.2 vs 12.0 | −0.4099 → −0.4099 | −1.65 → −1.65 |
+| mouse | 2 | 8.0 vs 12.0 | −0.2406 → −0.2406 | −1.93 → −1.93 |
+| **rat** | **3** | **7.8 vs 5.3** | **−0.1411 → −0.0839** | **−0.56 → −0.37** |
+
+**Human and mouse are unchanged to four decimal places.** Their dropped bounds
+sit far above the fitted line, so Φ(·) ≈ 1 and the likelihood term is ≈ 0 —
+the censored likelihood already treats them as the near-no-ops they are. The
+exclusion is harmless there.
+
+**The rat is not unchanged.** Its dropped rows are at *short* chains (mean nC
+5.3 against 7.8 kept) and its scatter is wide (σ = 1.17), so those bounds do
+carry information — and they **weaken** the chain-length slope by about 40%
+(×0.72 → ×0.82 per carbon). The rat's linear chain-length effect is therefore
+*smaller* than §11's table reports. It was already far from significance, so
+no conclusion turns on it, but the number should be the honest one.
+
+**The curvature claim survives.** This mattered most, because §11 rests its
+strongest shape finding on the rat:
+
+| species | ΔAIC excluding weak bounds | ΔAIC including them | vertex |
+|---|---|---|---|
+| human | −7.08 | −7.08 | 5.3 |
+| mouse | +0.86 | +0.86 | 5.5 |
+| **rat** | **−12.04** | **−11.77** | 6.9 → 7.2 |
+
+So the rat's inverted U is not an artefact of the exclusion rule.
+
+### A figure that had been silently drifting
+
+`report/fig_T_vs_chain_length.png` carried its own hardcoded copy of the
+numbers. When the Fujii rows entered the pipeline the chart kept drawing the
+old ones — the mouse series simply stopped at C10 while the data ran to C12,
+and nothing complained. It now reads `db/tubular_factor_consolidated.csv`
+directly and cannot drift.
+
+Rebuilding it surfaced a second error. The old caption said the bars showed
+"the disagreement between laboratories on the unbound fraction". **They did
+not.** Every cell in the consolidated file carries exactly one f_u, so its
+range spans that species' *clearance* sources. The two spreads are now drawn
+separately — coloured bars for clearance sources, grey whiskers for the four
+human f_u datasets — because the f_u disagreement is the central open question
+of §7b and must not vanish from the figure merely because the pipeline fixes
+one f_u per cell.
 
 ---
 
@@ -1053,11 +1229,23 @@ script; none of the record is edited by hand.
 ```bash
 cd tk_review
 python3 -I scripts/build_transporter_working_table.py     # the 58-row kinetic record
+python3 -I scripts/stage11_fujii_mouse_longchain.py       # Fujii mouse clearances (run first:
+                                                          #   stage6 reads its compounds)
+python3 -I scripts/stage11b_clearance_fu_coverage.py      # is the gap clearance or binding?
 python3 -I scripts/stage6_consolidate_tubular.py          # the consolidated T table
 python3 -I scripts/stage6_abraham_partition.py            # the human mass balance
 python3 -I scripts/stage6_chain_length_bridge.py          # the binding/tubule decomposition
+python3 -I scripts/stage9b_build_recommended_fu.py        # the human f_u recommendation
+python3 -I scripts/qsar0_build_modelling_table.py         # the QSAR modelling table
+python3 -I scripts/qsar1_censored_fit.py                  # the censored fit
+python3 -I scripts/qsar2_weak_bound_sensitivity.py        # the exclusion-rule check
 python3 -I scripts/stage6_figure_T_vs_chain.py            # the figure
 ```
+
+Run them in that order: each reads the outputs of the ones above it. They are
+idempotent, so re-running any of them is safe — but do **not** loop over
+`scripts/*.py`, which would also re-run the one-shot ingestion scripts and
+duplicate rows in `db/protein_binding.csv`.
 
 Outputs land in `db/`; `db/tubular_factor_consolidated.csv` is the single
 authoritative verdict table and `db/tubular_factor_evidence.csv` carries every

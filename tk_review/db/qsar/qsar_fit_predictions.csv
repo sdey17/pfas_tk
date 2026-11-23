@@ -29,13 +29,19 @@ rat,male,PFHxS,6,sulfonate,point,-1.1584,-1.3662,0.2078,yes
 rat,male,PFNA,9,carboxylate,right,-0.6417,-0.3238,-0.318,only as an inequality: observed is a bound
 rat,male,PFOA,8,carboxylate,interval,-0.1255,-0.1827,0.0571,only as an inequality: observed is a bound
 rat,male,PFOS,8,sulfonate,right,-0.0785,-1.6484,1.5699,only as an inequality: observed is a bound
-mouse,female,PFBA,4,carboxylate,point,-1.2137,-0.7172,-0.4966,yes
-mouse,female,PFDA,10,carboxylate,point,-2.2125,-2.0386,-0.1739,yes
-mouse,female,PFHxA,6,carboxylate,point,0.3484,-1.1577,1.5061,yes
-mouse,female,PFHxS,6,sulfonate,point,-2.567,-2.0697,-0.4973,yes
-mouse,female,PFNA,9,carboxylate,point,-2.0862,-1.8184,-0.2678,yes
-mouse,female,PFOA,8,carboxylate,point,-1.8199,-1.5981,-0.2217,yes
-mouse,female,PFOS,8,sulfonate,point,-1.5376,-2.5102,0.9726,yes
-mouse,male,PFHxS,6,sulfonate,right,-1.6486,-2.0697,0.4211,only as an inequality: observed is a bound
-mouse,male,PFOA,8,carboxylate,right,-1.2227,-1.5981,0.3754,only as an inequality: observed is a bound
-mouse,male,PFOS,8,sulfonate,right,-1.6578,-2.5102,0.8524,only as an inequality: observed is a bound
+mouse,female,PFBA,4,carboxylate,point,-1.2137,-0.7192,-0.4945,yes
+mouse,female,PFDA,10,carboxylate,point,-2.2125,-2.1626,-0.0499,yes
+mouse,female,PFHpA,7,carboxylate,right,-0.322,-1.4409,1.1189,only as an inequality: observed is a bound
+mouse,female,PFHxA,6,carboxylate,point,0.3484,-1.2003,1.5488,yes
+mouse,female,PFHxS,6,sulfonate,point,-2.567,-2.0361,-0.5309,yes
+mouse,female,PFNA,9,carboxylate,point,-2.0862,-1.9221,-0.1641,yes
+mouse,female,PFOA,8,carboxylate,point,-1.8199,-1.6815,-0.1384,yes
+mouse,female,PFOS,8,sulfonate,point,-1.5376,-2.5172,0.9796,yes
+mouse,female,PFUnDA,11,carboxylate,right,-0.795,-2.4032,1.6082,only as an inequality: observed is a bound
+mouse,male,PFDA,10,carboxylate,right,-0.9841,-2.1626,1.1785,only as an inequality: observed is a bound
+mouse,male,PFHpA,7,carboxylate,right,-0.1916,-1.4409,1.2493,only as an inequality: observed is a bound
+mouse,male,PFHxS,6,sulfonate,right,-1.6486,-2.0361,0.3875,only as an inequality: observed is a bound
+mouse,male,PFNA,9,carboxylate,right,-1.2731,-1.9221,0.6489,only as an inequality: observed is a bound
+mouse,male,PFOA,8,carboxylate,right,-1.2227,-1.6815,0.4588,only as an inequality: observed is a bound
+mouse,male,PFOS,8,sulfonate,right,-1.6578,-2.5172,0.8595,only as an inequality: observed is a bound
+mouse,male,PFUnDA,11,carboxylate,right,-0.8794,-2.4032,1.5238,only as an inequality: observed is a bound

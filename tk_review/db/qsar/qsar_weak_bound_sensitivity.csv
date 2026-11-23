@@ -1,0 +1,7 @@
+species,fit,n,sigma,loglik,aic,nC_coef,nC_se,nC_z,fold_per_carbon,sulfonate_coef,sulfonate_se
+human,excluding weak bounds (qsar1),19,0.7953,-7.8668,23.734,-0.40992,0.24892,-1.647,0.38912,-1.27436,0.76467
+human,including weak bounds,20,0.7953,-7.8668,23.734,-0.40992,0.24892,-1.647,0.38912,-1.27436,0.76467
+mouse,excluding weak bounds (qsar1),16,0.6727,-9.0514,26.103,-0.24057,0.1247,-1.929,0.57468,-0.83575,0.49094
+mouse,including weak bounds,18,0.6727,-9.0515,26.103,-0.24058,0.12467,-1.93,0.57467,-0.83574,0.49092
+rat,excluding weak bounds (qsar1),11,1.1687,-15.4353,38.871,-0.1411,0.25048,-0.563,0.7226,-1.46571,1.17641
+rat,including weak bounds,14,1.1294,-15.8383,39.677,-0.08387,0.22846,-0.367,0.82439,-1.4644,1.06902
