@@ -1,0 +1,40 @@
+chemical,n_carbons,cl_renal_mL_min,cl_renal_basis,fu_source,fu,cl_filt_mL_min,T,verdict
+PFBA,4,1.0,measured urinary clearance,Smeltz 2023 (used by Abraham),0.093,10.5741,0.0946,net reabsorption
+PFBA,4,1.0,measured urinary clearance,Ryu 2024,0.229,26.0373,0.0384,net reabsorption
+PFPeA,5,8.89,measured urinary clearance,Smeltz 2023 (used by Abraham),0.044,5.0028,1.777,net secretion
+PFPeA,5,8.89,measured urinary clearance,Ryu 2024,0.0888,10.0966,0.8805,net reabsorption
+PFPeA,5,8.89,measured urinary clearance,Fischer 2024 (derived),0.005722,0.6506,13.6645,net secretion
+PFHxA,6,2.68,measured urinary clearance,Smeltz 2023 (used by Abraham),0.0068,0.7732,3.4663,net secretion
+PFHxA,6,2.68,measured urinary clearance,Ryu 2024,0.038,4.3206,0.6203,net reabsorption
+PFHxA,6,2.68,measured urinary clearance,Argoul 2025,0.02,2.274,1.1785,net secretion
+PFHxA,6,2.68,measured urinary clearance,Fischer 2024 (derived),0.009496,1.0797,2.4822,net secretion
+PFHpA,7,0.023,measured urinary clearance,Smeltz 2023 (used by Abraham),0.0004,0.0455,0.5057,net reabsorption
+PFHpA,7,0.023,measured urinary clearance,Ryu 2024,0.00445,0.506,0.0455,net reabsorption
+PFHpA,7,0.023,measured urinary clearance,Fischer 2024 (derived),0.003003,0.3414,0.0674,net reabsorption
+PFOA,8,0.002,total minus measured faecal (bound),Smeltz 2023 (used by Abraham),0.001,0.1137,0.0176,net reabsorption
+PFOA,8,0.002,total minus measured faecal (bound),Ryu 2024,0.00245,0.2786,0.0072,net reabsorption
+PFOA,8,0.002,total minus measured faecal (bound),Argoul 2025,0.0017,0.1933,0.0103,net reabsorption
+PFOA,8,0.002,total minus measured faecal (bound),Fischer 2024 (derived),0.001311,0.1491,0.0134,net reabsorption
+PFNA,9,0.0016,total minus measured faecal (bound),Smeltz 2023 (used by Abraham),0.0016,0.1819,0.0088,net reabsorption
+PFNA,9,0.0016,total minus measured faecal (bound),Ryu 2024,0.00187,0.2126,0.0075,net reabsorption
+PFNA,9,0.0016,total minus measured faecal (bound),Argoul 2025,0.0017,0.1933,0.0083,net reabsorption
+PFNA,9,0.0016,total minus measured faecal (bound),Fischer 2024 (derived),0.00095,0.108,0.0148,net reabsorption
+PFDA,10,0.0033,total minus measured faecal (bound),Smeltz 2023 (used by Abraham),0.0027,0.307,0.0107,net reabsorption
+PFDA,10,0.0033,total minus measured faecal (bound),Ryu 2024,0.000618,0.0703,0.047,net reabsorption
+PFDA,10,0.0033,total minus measured faecal (bound),Argoul 2025,0.0038,0.4321,0.0076,net reabsorption
+PFDA,10,0.0033,total minus measured faecal (bound),Fischer 2024 (derived),0.000369,0.042,0.0787,net reabsorption
+PFUnDA,11,0.0065,total minus measured faecal (bound),Smeltz 2023 (used by Abraham),0.0148,1.6828,0.0039,net reabsorption
+PFUnDA,11,0.0065,total minus measured faecal (bound),Ryu 2024,0.000419,0.0476,0.1364,net reabsorption
+PFUnDA,11,0.0065,total minus measured faecal (bound),Fischer 2024 (derived),0.000125,0.0142,0.4573,net reabsorption
+PFBS,4,0.067,measured urinary clearance,Smeltz 2023 (used by Abraham),0.0046,0.523,0.1281,net reabsorption
+PFBS,4,0.067,measured urinary clearance,Ryu 2024,0.0365,4.1501,0.0161,net reabsorption
+PFBS,4,0.067,measured urinary clearance,Argoul 2025,0.017,1.9329,0.0347,net reabsorption
+PFHxS,6,0.003,total clearance (bound),Smeltz 2023 (used by Abraham),0.0009,0.1023,0.0293,net reabsorption
+PFHxS,6,0.003,total clearance (bound),Ryu 2024,0.000695,0.079,0.038,net reabsorption
+PFHxS,6,0.003,total clearance (bound),Argoul 2025,0.0008,0.091,0.033,net reabsorption
+PFHxS,6,0.003,total clearance (bound),Fischer 2024 (derived),0.000465,0.0529,0.0567,net reabsorption
+PFOS,8,0.005,total clearance (bound),Smeltz 2023 (used by Abraham),0.0045,0.5116,0.0098,net reabsorption
+PFOS,8,0.005,total clearance (bound),Ryu 2024,0.000753,0.0856,0.0584,net reabsorption
+PFOS,8,0.005,total clearance (bound),Argoul 2025,0.0016,0.1819,0.0275,net reabsorption
+PFOS,8,0.005,total clearance (bound),Fischer 2024 (derived),0.000754,0.0857,0.0583,net reabsorption
+6:2FTS,8,0.97,measured urinary clearance,Smeltz 2023 (used by Abraham),0.0143,1.6259,0.5966,net reabsorption

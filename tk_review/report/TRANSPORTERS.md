@@ -77,7 +77,7 @@ table of 44 verdicts over 74 evidence rows.
 
 ### Errors found in the regulatory and secondary literature
 
-Six, listed with evidence in §9. The two with regulatory consequence:
+Eight, listed with evidence in §9. The two with regulatory consequence:
 
 - **ATSDR 2021 Table 3-6 misreports rat PFDA total clearance by forty-fold**
   (207 against the paper's 5.2 mL/kg·day) and male rat PFOA by 2.7-fold.
@@ -442,49 +442,44 @@ unbound fraction, and the filtration clearance computed from *that subject's
 own* creatinine clearance of 113.7 mL/min. **The clearances and the filtration
 rate are certainly that subject's**, which is unique in this strand.
 
-⚠️ **The binding term may not be.** A literature fetch for Smeltz 2023's human
-f_up values returned eleven numbers identical, to the last digit, to the ones
-this project records for Abraham — across values spanning 0.0004 to 0.093,
-which cannot be coincidence. Either Abraham took its unbound fractions from
-Smeltz (in which case its T does involve a cross-study join, and the human
-series number four rather than five), or the fetch fabricated them (the agent
-reported them as model-extracted summary rather than verbatim text, with
-internal inconsistencies). **Attempts to read Abraham's Methods were blocked by
-the publisher, so this is unresolved** and recorded in
-`db/UNRESOLVED_abraham_smeltz_identity.md`. Nothing from the Smeltz fetch has
-been ingested. The long-chain conclusions below rest on the *faecal* term,
-which is a mass balance and is not affected either way. Subtracting the measured faecal term instead of
-charging it to the kidney:
+**But the binding term is not.** ✅ *Resolved from the papers.* Abraham
+Table 4 carries the footnote *"as published by Smeltz et al. (2023)"*, and its
+Methods state filtration clearance *"was calculated as product of the fraction
+unbound in plasma (f_up, available from Smeltz et al. 2023) and the GFR
+measured in"* the volunteer. **Abraham is therefore not an independent binding
+series** — its clearances and GFR are the subject's own, its binding is EPA's.
+This review's earlier claim that Abraham's T "needs no cross-study join" was
+wrong: it is a join, within species, between Abraham's clearances and Smeltz's
+binding. There are **four** independent human binding datasets, not five:
 
-| | faecal share of total | bound before | bound after |
-|---|---|---|---|
-| PFNA | 58% | ≤0.014 | **≤0.0089** |
-| PFDA | 61% | ≤0.093 | **≤0.0106** |
-| PFUnDA | 60% | ≤0.266 | **≤0.0039** |
-
-PFUnDA moves from the loosest long-chain bound to the tightest. **There is no
-long-chain loss of reabsorption in the human:** the apparent rise in T toward
-C12 was the faecal term, as predicted before the data were available.
+| | method | compounds |
+|---|---|---|
+| **Smeltz 2023** (US EPA) | ultracentrifugation | **67** |
+| Fischer 2024 | C18 solid-phase microextraction | 29 |
+| Argoul 2025 | Dianorm equilibrium dialysis | 16 |
+| Ryu 2024 | presaturation equilibrium dialysis | 14 |
 
 **The short chains have no determined sign.** Three laboratories measured human
 plasma f_u and disagree by up to 11-fold, worst at the short chains:
 
+On Abraham's own urinary clearances and the subject's own GFR of 113.7
+mL/min, so that only the binding term changes between rows:
+
 | human PFHxA | f_u | T | |
 |---|---|---|---|
-| Abraham 2024 | 0.0068 | **2.69** | secretion |
-| **Fischer 2024** (derived) | **0.0095** | **1.93** | **secretion** |
-| Argoul 2026 | 0.0200 | 0.91 | reabsorption |
-| Ryu 2024 | 0.0380 | 0.48 | reabsorption |
+| **Smeltz 2023** (EPA; Abraham's source) | 0.0068 | **3.47** | secretion |
+| **Fischer 2024** (derived) | 0.0095 | **2.48** | secretion |
+| **Argoul 2025** | 0.0200 | **1.18** | secretion |
+| Ryu 2024 | 0.0380 | 0.62 | reabsorption |
 
-Human PFHxA either reabsorbs half its filtered load or secretes at twice to
-three times it, **decided entirely by a binding measurement.** With four
-sources the split is two and two — but **the two lowest values agree with each
-other within 1.4-fold and both give secretion**, while Ryu sits 4-fold above
-Fischer here and 15-fold above it for PFPeA. So this is no longer a two-way
-tie, and **Ryu's reading should not be treated as the default.** It is still
-not settled: Fischer's value is derived rather than measured and carries a
-1.1–2.2× reproduction error against the paper's own stated figures, which
-spans the boundary on its own.
+**Three of the four now give net secretion, and Ryu is the outlier.** An
+earlier draft of this report presented 0.48 (Ryu) first and 3.48 as the
+alternative; that ordering was wrong. PFPeA behaves the same way.
+
+**The disagreement is confined to exactly two compounds.** PFPeA and PFHxA.
+Every PFAS of seven carbons and above gives net reabsorption on all four
+datasets, so **no conclusion about PFOA, PFNA, PFDA, PFUnDA, PFHxS or PFOS
+depends on which binding source is chosen.**
 
 ### The uncertainty is binding, not clearance
 
@@ -535,6 +530,56 @@ subject's own binding the human secretes PFHxA too. More generally, **every
 sign verdict near T = 1 is a verdict about a binding measurement**, because
 the filtered load scales with f_u and nothing else in the expression is in
 doubt.*
+
+---
+
+## 7b. Which human unbound fraction to use
+
+`scripts/stage9_human_fu_resolution.py`, `scripts/stage9b_build_recommended_fu.py`
+→ **`db/human_fu_recommended.csv`**
+
+### The recommendation is by purpose, because the four datasets are not interchangeable
+
+| use | source | why |
+|---|---|---|
+| **human absolute values — the default** | **Smeltz 2023 (UC)** | 67 PFAS so the series has no gaps; US EPA's own; the method choice is *argued* — the paper runs UC and RED side by side on 22 compounds and shows RED failing to equilibrate for high-mass, high-logK_ow PFAS; Bayesian credible intervals exist per compound; and Abraham's in vivo mass balance already runs on it |
+| **individual variability** | **Fischer 2024** | measures albumin and globulin binding *separately* and returns f_u from a person's own serum protein concentrations, R² = 0.99 |
+| **species ratios** | **Ryu 2024, and only Ryu** | the only dataset measuring human, rat and two mouse strains in one laboratory; in a *ratio* a systematic method bias divides out |
+
+**Do not use Ryu for human absolute values.** It runs at the high end — 4× above
+Smeltz for PFHxA, 15× above Fischer for PFPeA — and those are precisely the two
+compounds in dispute.
+
+Two caveats travel with Smeltz: **PFBS is 0.0046 in its Table 2 and 0.0128 in
+its Table 3**, a 2.8× internal discrepancy in the same assay; and its PFOS
+value is an average over three salt forms.
+
+### On a variable f_u — the instinct is right, and there are three different things it can mean
+
+1. **Variable across compounds.** Settled, and the single largest correction to
+   the regulatory position: OEHHA's 0.02 against a measured range of 0.0004
+   (PFHpA) to 0.31 (PFPA) — **a factor of 780 across the series.** Already
+   implemented throughout this review.
+2. **Variable across individuals.** This is the one worth adding. Fischer's
+   equation returns f_u from measured albumin and globulin, and f_u varies up
+   to **2.5× across 1,919 NHANES participants**, widest below 500 g/mol —
+   which is the short-chain range. `human_fu_recommended.csv` carries the band
+   per compound (2.5× below 500 g/mol, 1.6× from 500–600, 1.3× above).
+   **Note the direction before using it:** a higher f_u means a higher filtered
+   load and faster elimination, so the individuals with the *lowest* f_u carry
+   the longest half-lives. For a health-protective value the low tail is the
+   sensitive one, not the high.
+3. **Variable with concentration.** Real — Qin 2024 shows binding becomes
+   non-linear above a PFAS:protein molar ratio near 0.1 — but at environmental
+   exposures the ratio is ~0.0005, so this bites for *comparing in vitro
+   datasets*, not for human dosimetry. Lowest priority of the three.
+
+### What the choice actually decides
+
+**Two compounds.** PFPeA and PFHxA. Ten of the twelve PFAS with enough data
+give the same tubular sign on every binding dataset, and all ten are
+reabsorption. The decision is far narrower than the 780-fold spread in f_u
+makes it look.
 
 ---
 
@@ -607,7 +652,19 @@ reference list carries the LC-MS/MS method paper twice, as 2024 and 2025, with
 identical titles and DOI. The actual f_u source is *Environ Toxicol Pharmacol*
 **120**:104879.
 
-**6. `pdftotext` silently drops the micro sign**, and the loss is internally
+**6. Abraham 2024 misquotes Smeltz in its own Discussion.** Its §4.5 says the
+PFCA unbound fractions "ranged from 0.3108 for PFBA". **0.3108 is Smeltz's
+value for PFPA** — perfluoropropanoate, C3. PFBA is 0.0930, which is what
+Abraham's own Table 4 correctly uses. A text error only; no arithmetic depends
+on it.
+
+**7. Smeltz 2023 reports PFBS twice, 2.8-fold apart.** Its Table 2 gives
+f_up = 0.0046 and its Table 3 gives 0.0128 for the same ultracentrifugation
+assay. Abraham used the Table 2 value. Both are recorded in
+`db/smeltz2023_fu.csv`; neither is preferred here, because nothing in the paper
+distinguishes them.
+
+**8. `pdftotext` silently drops the micro sign**, and the loss is internally
 consistent so it cannot be detected from the text alone. It converted Uchida
 2016's `fmol/µg` to `fmol/mg` — a 1000-fold error caught only because it would
 have placed rat OAT1 500-fold below human — and rendered Ohmori 2003's dose of
@@ -624,7 +681,7 @@ propagated into this review had they not been caught.
 
 | Measurement | What it decides | Status |
 |---|---|---|
-| **A human f_u series that settles the short-chain disagreement** | the sign of T for C5–C7 in humans — currently 0.48 or 3.48 for PFHxA (§7) | *referred to OEHHA; and see below — two further datasets exist* |
+| ~~A human f_u series that settles the short-chain disagreement~~ | **Decided (§7b): Smeltz 2023 as the default, Fischer for individual variability, Ryu for species ratios only.** The residual dispute is PFPeA and PFHxA alone | **closed** |
 | **One equilibrium-dialysis experiment on cynomolgus plasma** | opens a third species for the entire framework; the monkey's PFOA half-life is closest to the human, and 14 clearances already exist | **highest-value single experiment** |
 | **One PFAS uptake assay ± albumin** | whether every clearance in this compilation is a lower bound (§8) | not done for PFAS |
 | **OAT4 abundance in the expressing cells** | whether OAT4 really dominates human renal handling, or scaled OAT1 overtakes it (§4) | does not exist |
