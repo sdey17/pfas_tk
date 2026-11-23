@@ -7,34 +7,39 @@
 # SOURCE: report/ALBUMIN_BINDING.md, Table 5 (albumin, all species) and
 # Table 10 (L-FABP, human). These are the audited per-compound medians.
 #
-# CARBON CONVENTION: n_perfluorinated_carbons, matching the
-# n_perfluorinated_carbons column of db/protein_binding.csv (PFBA = 3).
-# NOTE: Table 5 of ALBUMIN_BINDING.md labels its column "n_CF" but the
-# values in it are TOTAL carbons (it lists PFBA as 4). Table 10 uses
-# perfluorinated carbons. Both are converted to perfluorinated here, which
-# is why both series peak at the same place -- PFNA -- as they should.
-protein,chemical,n_perfluorinated_carbons,median_logK,n_values
-albumin,PFBA,3,1.68,10
-albumin,PFPeA,4,2.23,6
-albumin,PFHxA,5,2.77,15
-albumin,PFHpA,6,3.54,12
-albumin,PFOA,7,3.75,25
-albumin,PFNA,8,4.29,18
-albumin,PFDA,9,3.77,14
-albumin,PFUnDA,10,3.56,11
-albumin,PFDoDA,11,2.98,7
-albumin,PFTriDA,12,2.68,5
-albumin,PFTeDA,13,3.46,4
-L-FABP,PFBA,3,1.90,1
-L-FABP,PFPeA,4,2.01,1
-L-FABP,PFHxA,5,2.20,3
-L-FABP,PFHpA,6,2.31,2
-L-FABP,PFOA,7,3.77,8
-L-FABP,PFNA,8,4.12,6
-L-FABP,PFDA,9,3.35,2
-L-FABP,PFUnDA,10,3.47,2
-L-FABP,PFDoDA,11,3.76,3
-L-FABP,PFTriDA,12,2.35,1
-L-FABP,PFTeDA,13,3.07,1
-L-FABP,PFHxDA,15,2.79,1
-L-FABP,PFOcDA,17,3.05,1
+# CARBON CONVENTION: TOTAL carbons (PFBA = 4, PFOA = 8, PFNA = 9).
+# The underlying tables count PERFLUORINATED carbons, and the conversion is
+# head-group dependent: a carboxylate CF3(CF2)nCOOH has one carbon that is
+# not perfluorinated, so total = perfluorinated + 1; a sulfonate
+# CF3(CF2)nSO3H has none, so total = perfluorinated. EVERY COMPOUND IN THIS
+# FILE IS A CARBOXYLATE, so +1 throughout -- do not copy that rule to a file
+# containing sulfonates.
+# NOTE: Table 5 of ALBUMIN_BINDING.md labels its column "n_CF" but already
+# holds TOTAL carbons (it lists PFBA as 4); Table 10 holds perfluorinated.
+# Both are on total carbons here, which is why both series peak at the same
+# place -- PFNA, 9 total carbons -- as they should.
+protein,chemical,n_total_carbons,median_logK,n_values
+albumin,PFBA,4,1.68,10
+albumin,PFPeA,5,2.23,6
+albumin,PFHxA,6,2.77,15
+albumin,PFHpA,7,3.54,12
+albumin,PFOA,8,3.75,25
+albumin,PFNA,9,4.29,18
+albumin,PFDA,10,3.77,14
+albumin,PFUnDA,11,3.56,11
+albumin,PFDoDA,12,2.98,7
+albumin,PFTriDA,13,2.68,5
+albumin,PFTeDA,14,3.46,4
+L-FABP,PFBA,4,1.90,1
+L-FABP,PFPeA,5,2.01,1
+L-FABP,PFHxA,6,2.20,3
+L-FABP,PFHpA,7,2.31,2
+L-FABP,PFOA,8,3.77,8
+L-FABP,PFNA,9,4.12,6
+L-FABP,PFDA,10,3.35,2
+L-FABP,PFUnDA,11,3.47,2
+L-FABP,PFDoDA,12,3.76,3
+L-FABP,PFTriDA,13,2.35,1
+L-FABP,PFTeDA,14,3.07,1
+L-FABP,PFHxDA,16,2.79,1
+L-FABP,PFOcDA,18,3.05,1

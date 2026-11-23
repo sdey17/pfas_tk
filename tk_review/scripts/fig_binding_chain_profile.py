@@ -14,6 +14,8 @@ profiles on one axis, on the same basis, and they lie on top of each other --
 so the premise fails, and the explanation has to come from somewhere else
 (compartment volume, protein concentration, transport into the hepatocyte).
 
+Carbon axis: TOTAL carbons, read from the n_total_carbons column of the CSV.
+
 Palette: categorical slots 1-2 of the reference instance, validated with
 scripts/validate_palette.js --pairs all --mode light: all checks PASS, worst
 all-pairs CVD dE 24.7 (protan), normal-vision dE 33.6. Light mode only,
@@ -44,7 +46,7 @@ def load():
             continue
         r = dict(zip(hdr, f))
         rows.append((r["protein"], r["chemical"],
-                     int(r["n_perfluorinated_carbons"]),
+                     int(r["n_total_carbons"]),
                      float(r["median_logK"]), int(r["n_values"])))
     return rows
 
@@ -75,20 +77,20 @@ def main():
                     mec=SURFACE, mew=1.6, zorder=4, alpha=0.95)
 
     # the shared maximum is the point of the figure, so it gets a label
-    ax.annotate("both peak at PFNA", xy=(8, 4.29), xytext=(8.5, 4.78),
+    ax.annotate("both peak at PFNA", xy=(9, 4.29), xytext=(9.5, 4.78),
                 color=SECOND, fontsize=9.5,
                 arrowprops=dict(arrowstyle="-", color=AXIS, lw=1.2))
 
     # each label sits over its OWN line with clear air around it; an earlier
     # placement put "L-FABP" on top of the albumin curve near C4
-    for prot, xy in (("albumin", (5.20, 3.82)), ("L-FABP", (14.15, 3.24))):
+    for prot, xy in (("albumin", (6.20, 3.82)), ("L-FABP", (15.15, 3.24))):
         ax.annotate(prot, xy=xy, color=COL[prot], fontsize=11,
                     fontweight="bold")
 
-    ax.set_xticks(range(3, 18))
-    ax.set_xlim(2.4, 17.8)
+    ax.set_xticks(range(4, 19))
+    ax.set_xlim(3.4, 18.8)
     ax.set_ylim(1.2, 5.2)
-    ax.set_xlabel("perfluorinated carbons", color=SECOND, fontsize=10,
+    ax.set_xlabel("total carbons", color=SECOND, fontsize=10,
                   labelpad=6)
     ax.set_ylabel("median log $K$   (L water / kg protein)", color=SECOND,
                   fontsize=10, labelpad=8)
