@@ -1,0 +1,40 @@
+# Chain-length profiles of PFAS binding to serum albumin and to liver
+# fatty acid-binding protein, on the common basis log K (L water / kg protein).
+#
+# EDIT THIS FILE to change the figure: scripts/fig_binding_chain_profile.py
+# reads it and nothing else. Lines beginning with # are ignored.
+#
+# SOURCE: report/ALBUMIN_BINDING.md, Table 5 (albumin, all species) and
+# Table 10 (L-FABP, human). These are the audited per-compound medians.
+#
+# CARBON CONVENTION: n_perfluorinated_carbons, matching the
+# n_perfluorinated_carbons column of db/protein_binding.csv (PFBA = 3).
+# NOTE: Table 5 of ALBUMIN_BINDING.md labels its column "n_CF" but the
+# values in it are TOTAL carbons (it lists PFBA as 4). Table 10 uses
+# perfluorinated carbons. Both are converted to perfluorinated here, which
+# is why both series peak at the same place -- PFNA -- as they should.
+protein,chemical,n_perfluorinated_carbons,median_logK,n_values
+albumin,PFBA,3,1.68,10
+albumin,PFPeA,4,2.23,6
+albumin,PFHxA,5,2.77,15
+albumin,PFHpA,6,3.54,12
+albumin,PFOA,7,3.75,25
+albumin,PFNA,8,4.29,18
+albumin,PFDA,9,3.77,14
+albumin,PFUnDA,10,3.56,11
+albumin,PFDoDA,11,2.98,7
+albumin,PFTriDA,12,2.68,5
+albumin,PFTeDA,13,3.46,4
+L-FABP,PFBA,3,1.90,1
+L-FABP,PFPeA,4,2.01,1
+L-FABP,PFHxA,5,2.20,3
+L-FABP,PFHpA,6,2.31,2
+L-FABP,PFOA,7,3.77,8
+L-FABP,PFNA,8,4.12,6
+L-FABP,PFDA,9,3.35,2
+L-FABP,PFUnDA,10,3.47,2
+L-FABP,PFDoDA,11,3.76,3
+L-FABP,PFTriDA,12,2.35,1
+L-FABP,PFTeDA,13,3.07,1
+L-FABP,PFHxDA,15,2.79,1
+L-FABP,PFOcDA,17,3.05,1
