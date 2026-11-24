@@ -1,0 +1,28 @@
+chemical,group,cl_renal_mL_kg_day,sd,n,statistic,source,source_table
+PFOA,all (n=20),0.03,0.013,20,mean +/- SD,Harada 2005,Section 3.3 text
+PFOS,all (n=20),0.015,0.01,20,mean +/- SD,Harada 2005,Section 3.3 text
+PFOA,male 61 kg,0.033,,10,group mean,Harada 2005,Table 5
+PFOA,female 48 kg,0.027,,10,group mean,Harada 2005,Table 5
+PFOS,male 61 kg,0.012,,10,group mean,Harada 2005,Table 5
+PFOS,female 48 kg,0.019,,10,group mean,Harada 2005,Table 5
+PFHxS,male + older female,0.027,,64,mean,Zhang 2013,Table 2
+PFHxS,male + older female,0.015,,64,median,Zhang 2013,Table 2
+PFOS,male + older female,0.037,,66,mean (sum PFOS),Zhang 2013,Table 2
+PFOS,male + older female,0.024,,66,median (sum PFOS),Zhang 2013,Table 2
+PFHpA,male + older female,0.61,,31,mean,Zhang 2013,Table 2
+PFHpA,male + older female,0.41,,31,median,Zhang 2013,Table 2
+PFNA,male + older female,0.15,,50,mean,Zhang 2013,Table 2
+PFNA,male + older female,0.094,,50,median,Zhang 2013,Table 2
+PFDA,male + older female,0.096,,60,mean,Zhang 2013,Table 2
+PFDA,male + older female,0.035,,60,median,Zhang 2013,Table 2
+PFUnDA,male + older female,0.065,,63,mean,Zhang 2013,Table 2
+PFUnDA,male + older female,0.042,,63,median,Zhang 2013,Table 2
+PFOA,male + older female,0.77,,66,mean (sum PFOA),Zhang 2013,Table 2
+PFOA,male + older female,0.19,,66,median (sum PFOA),Zhang 2013,Table 2
+PFHpA,"male n=5, female n=5",0.674,0.374,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFOA,"male n=5, female n=5",0.044,0.01,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFNA,"male n=5, female n=5",0.038,0.01,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFDA,"male n=5, female n=5",0.015,0.01,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFUnDA,"male n=5, female n=5",0.005,0.0,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFDoDA,"male n=5, female n=5",0.005,0.0,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"
+PFTriDA,"male n=5, female n=5",0.006,0.01,10,mean +/- SD,Fujii 2015,"Table 2, urinary clearance"

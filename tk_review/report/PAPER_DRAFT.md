@@ -36,8 +36,14 @@ species, whereas the reabsorptive transporters are not shared — human OAT4 is
 undetectable in rat and mouse, and rodent Oatp1a1 is undetectable in human.
 Separately, we show that liver fatty acid-binding protein has no affinity
 advantage over albumin (one-sided 95% upper limit 1.06-fold), removing the
-standard explanation for hepatic accumulation. The practical consequence is
-that no single interspecies scaling approach serves both rodents.
+standard explanation for hepatic accumulation. Reading the primary sources
+behind a widely used regulatory tabulation yields direct human renal
+clearances for nine compounds, giving net tubular reabsorption of 98–99.5%
+from C8 to C12, and reveals that the tabulation transcribed one study's total
+clearance column as renal clearance, publishing a renal clearance for one
+compound whose urinary clearance was below detection. The practical
+consequence of the main result is that no single interspecies scaling
+approach serves both rodents.
 
 **Key words:** perfluoroalkyl substances; toxicokinetics; interspecies
 extrapolation; renal tubular reabsorption; serum albumin; organic anion
@@ -361,6 +367,86 @@ all five lie far outside the range within which interspecies f_u ratios are
 observed to fall. The conclusion that binding cannot explain the monkey is
 reachable without the missing measurement.
 
+### Direct human renal clearances, and a transcription error in a regulatory tabulation
+
+The analysis above uses total clearances, because direct human renal
+clearances were thought unavailable. Reading the three primary sources behind
+EFSA's tabulation (EFSA CONTAM Panel, 2020) shows that they are available, and
+that the tabulation misrepresents one of them.
+
+**Table 7.** Human renal clearance from three primary studies (mL/kg/day).
+
+| compound | Harada 2005 | Zhang 2013 mean | Zhang 2013 median | Fujii 2015 |
+|---|---|---|---|---|
+| PFHpA | — | 0.61 (n=31) | 0.41 | 0.674 ± 0.374 (n=10) |
+| PFOA | **0.030 ± 0.013** (n=20) | 0.77 (n=66) | 0.19 | **0.044 ± 0.01** (n=10) |
+| PFNA | — | 0.15 (n=50) | 0.094 | 0.038 ± 0.01 |
+| PFDA | — | 0.096 (n=60) | 0.035 | 0.015 ± 0.01 |
+| PFUnDA | — | 0.065 (n=63) | 0.042 | 0.005 ± 0.00 |
+| PFDoDA | — | — | — | 0.005 ± 0.00 |
+| PFTriDA | — | — | — | 0.006 ± 0.01 |
+| PFTeDA | — | — | — | below detection |
+| PFHxS | — | 0.027 (n=64) | 0.015 | — |
+| PFOS | **0.015 ± 0.010** (n=20) | 0.037 (n=66) | 0.024 | — |
+
+For PFOA, Harada (0.030) and Fujii (0.044) agree within 1.5-fold while Zhang's
+mean is 18- to 26-fold higher. Zhang's own distribution is strongly
+right-skewed (mean 0.77, median 0.19) and that study computed clearance from
+whole blood converted to serum by a haematocrit factor, where the other two
+measured serum directly. We treat Zhang as the outlier for PFOA rather than
+averaging it in.
+
+**A ninth literature error.** EFSA's per-compound renal clearance table
+reproduces Zhang exactly — every value matches Zhang's Table 2, the apparent
+"range" being the young-female against male/older-female groups — but for
+Fujii it transcribes the **total** clearance column into a renal clearance
+table:
+
+| compound | EFSA "renal" | Fujii urinary | Fujii total |
+|---|---|---|---|
+| PFUnDA | 0.065 | 0.005 | 0.065 |
+| PFDoDA | 0.070 | 0.005 | 0.070 |
+| PFTriDA | 0.077 | 0.006 | 0.077 |
+| PFTeDA | 0.224 | **below detection** | 0.224 |
+
+For PFTeDA a renal clearance of 0.224 mL/kg/day is published for a urinary
+clearance the authors could not detect. The figure of 0.005 that appears
+elsewhere in the same EFSA document, and which made it appear
+self-contradictory, is Fujii's correct urinary value: the summary sentence was
+right and the table was wrong.
+
+**Direct tubular factors.** Substituting measured renal for total clearance
+converts the human upper bounds into point estimates (Table 8). Every direct
+value falls below its former bound, as it must.
+
+**Table 8.** Human tubular factors from measured renal clearance.
+
+| compound | source | CL_R | f_u | filtered load | **T** | net reabsorbed | former bound |
+|---|---|---|---|---|---|---|---|
+| PFHpA | Fujii 2015 | 0.674 | 0.00445 | 11.44 | 0.0589 | 94.1% | T ≤ 0.051 |
+| PFOA | Harada 2005 | 0.030 | 0.00245 | 6.30 | 0.0048 | 99.5% | T ≤ 0.019 |
+| PFOA | Fujii 2015 | 0.044 | 0.00245 | 6.30 | 0.0070 | 99.3% | T ≤ 0.019 |
+| PFNA | Fujii 2015 | 0.038 | 0.00187 | 4.81 | 0.0079 | 99.2% | T ≤ 0.032 |
+| PFDA | Fujii 2015 | 0.015 | 0.00062 | 1.59 | 0.0094 | 99.1% | T ≤ 0.094 |
+| PFUnDA | Fujii 2015 | 0.005 | 0.00042 | 1.08 | 0.0046 | 99.5% | T ≤ 0.266 |
+| PFDoDA | Fujii 2015 | 0.005 | 0.00011 | 0.27 | 0.0185 | 98.2% | T ≤ 3.08 |
+| PFOS | Harada 2005 | 0.015 | 0.00075 | 1.94 | 0.0078 | 99.2% | T ≤ 0.046 |
+| PFHxS | Zhang 2013 | 0.027 | 0.00069 | 1.79 | 0.0151 | 98.5% | T ≤ 0.036 |
+
+Human net tubular reabsorption is therefore 98–99.5% from C8 to C12 and 94%
+for C7, tighter than the bounds permitted and systematically closer to
+complete.
+
+**Renal elimination is a minority route in humans and a majority route in
+rodents.** Harada's Table 5 gives CL_R/CL_tot as 25.1% for human male PFOA
+against 91.4% for male Wistar rat and 40.4% for male Japanese macaque. Fujii
+gives human urinary 0.044 against a total of 0.096 (46%), with a biliary
+clearance of 2.62 mL/kg/day — sixty times the urinary — of which an estimated
+98% is reabsorbed. In the mouse, Fujii's urinary PFOA is 13.1 of a total 14.2
+(92%). This is the measured basis for treating the human tubular term in
+equation (4) as a residual, and it quantifies how large the non-renal
+component of that residual is.
+
 ### Renal transporter expression: the reabsorptive machinery is not shared
 
 Of 305 directional rows, 299 resolve to a reabsorption-or-secretion
@@ -406,8 +492,8 @@ reabsorptive transporter Oatp1a1.
 ### Errors identified in primary and secondary sources
 
 Applying the rule that a primary publication supersedes any compilation of it
-identified eight discrepancies, two of which propagate into published
-reabsorption estimates.
+identified nine discrepancies, three of which propagate into published
+estimates.
 
 ATSDR (2021), Table 3-6, misreports rat total clearances transcribed from
 Ohmori et al. (2003): PFDA as 207/140 against the paper's 5.2/5.3 mL/kg/day
@@ -419,6 +505,11 @@ roughly eightfold. Recomputed with measured values, the published figure of
 93.7% reabsorption of filtered PFOA in the male rat becomes 57.6%; across
 three rat studies the admissible range is T = 0.42–1.07, i.e. at most half the
 filtered load is returned and possibly none.
+
+A ninth, identified above, is EFSA's transcription of Fujii's total
+clearance column into a renal clearance table, which publishes a renal
+clearance of 0.224 mL/kg/day for a compound whose urinary clearance was below
+detection.
 
 The remaining six comprise a units defect in a published K_m/V_max column, a
 transposition of two transporters between a paper's text and abstract, an
@@ -495,8 +586,14 @@ that could separate them is closed because OAT4 has no scaling factor to the
 kidney, while the two available methods for OAT1 and OAT3 disagree 11-fold and
 in opposite directions.
 
-The fourth factor is a residual rather than a measured tubular term, as
-discussed above.
+The fourth factor is a residual rather than a measured tubular term. Its
+non-renal content is now quantified rather than assumed: renal elimination is
+25–46% of total human PFOA clearance (Harada 2005; Fujii 2015) against 91% in
+the male rat and 92% in the mouse, so the residual is substantially non-renal
+in the human and substantially tubular in the rodents. Direct human renal
+clearances are now available for nine compounds (Table 7) and a renal-only
+decomposition is the obvious next step, requiring matching renal clearances in
+the rodents.
 
 All in vitro transport measurements were made without plasma protein, against
 an in vivo unbound fraction near 0.0025 — a 400-fold discrepancy in the
@@ -586,10 +683,20 @@ cynomolgus monkeys and rats. *Reprod. Toxicol.* **27**, 400–406.
 EFSA CONTAM Panel (2020). Risk to human health related to the presence of
 perfluoroalkyl substances in food. *EFSA J.* **18**, 6223.
 
+Fujii, Y., Niisoe, T., Harada, K. H., Uemoto, S., Ogura, Y., Takenaka, K.,
+and Koizumi, A. (2015). Toxicokinetics of perfluoroalkyl carboxylic acids with
+different carbon chain lengths in mice and humans. *J. Occup. Health* **57**,
+1–12.
+
 Forsthuber, M., Kaiser, A. M., Granitzer, S., Hassl, I., Hengstschläger, M.,
 Stangl, H., and Gundacker, C. (2020). Albumin is the major carrier protein for
 PFOS, PFOA, PFHxS, PFNA and PFDA in human plasma. *Environ. Int.* **137**,
 105324.
+
+Harada, K., Inoue, K., Morikawa, A., Yoshinaga, T., Saito, N., and Koizumi,
+A. (2005). Renal clearance of perfluorooctane sulfonate and perfluorooctanoate
+in humans and their species-specific excretion. *Environ. Res.* **99**,
+253–261.
 
 Huang, M. C., Dzierlenga, A. L., Robinson, V. G., Waidyanatha, S., DeVito,
 M. J., Eifrid, M. A., Granville, C. A., Gibbs, S. T., and Blystone, C. R.
@@ -625,6 +732,10 @@ Technol.* **58**, 14641–14650.
 Smeltz, M., Wambaugh, J. F., and Wetmore, B. A. (2023). Plasma protein binding
 evaluations of per- and polyfluoroalkyl substances for category-based
 toxicokinetic assessment. *Chem. Res. Toxicol.* **36**, 1133–1144.
+
+Zhang, Y., Beesoon, S., Zhu, L., and Martin, J. W. (2013). Biomonitoring of
+perfluoroalkyl acids in human urine and estimates of biological half-life.
+*Environ. Sci. Technol.* **47**, 10619–10627.
 
 Sundström, M., Chang, S.-C., Noker, P. E., Gorman, G. S., Hart, J. A.,
 Ehresman, D. J., Bergman, Å., and Butenhoff, J. L. (2012). Comparative

@@ -1,0 +1,13 @@
+species,chemical,renal_fraction_pct,source
+human,PFOA,25.1,"Harada 2005 Table 5, male 61 kg"
+human,PFOS,17.5,"Harada 2005 Table 5, male 61 kg"
+human,PFOA,45.8,"Fujii 2015 Table 2, urinary 0.044 / total 0.096"
+human,PFNA,61.3,"Fujii 2015 Table 2, 0.038 / 0.062"
+human,PFDA,22.7,"Fujii 2015 Table 2, 0.015 / 0.066"
+human,PFUnDA,7.7,"Fujii 2015 Table 2, 0.005 / 0.065"
+human,PFHpA,100.0,"Fujii 2015 Table 2, 0.674 / 0.674"
+rat,PFOA,91.4,"Harada 2005 Table 5, male Wistar"
+rat,PFOA,47.2,"Harada 2005 Table 5, female Wistar"
+macaque,PFOA,40.4,"Harada 2005 Table 5, male Japanese macaque"
+macaque,PFOA,41.5,"Harada 2005 Table 5, female"
+mouse,PFOA,92.3,"Fujii 2015, urinary 13.1 / total 14.2, male"
