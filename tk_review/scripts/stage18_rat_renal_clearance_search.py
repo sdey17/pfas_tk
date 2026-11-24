@@ -19,13 +19,17 @@ retrievable in principle and one is not:
   PFDA  Ohmori 2003 Fig. 2 DID measure it, in both sexes, but both bars sit
         on the baseline. The figure yields only CL_R < 15 mL/kg/day, hence
         T < 1.04, which straddles unity and settles nothing.
-  PFOS  No rat urine study found. The NTP study (Huang 2019) collected
-        plasma, liver, kidney and brain only -- no urine, so no renal
-        clearance can come from it at any dose. Harada 2005's abstract
-        mentions "sex differences in renal clearance ... reported in rats",
-        but its Table 5 carries rat rows for PFOA ONLY; PFOS appears there
-        for cynomolgus monkey and human. That lead resolves to PFOA, which
-        the project already holds.
+  PFOS  *** THIS FINDING WAS WRONG. SUPERSEDED BY STAGE 20. *** This
+        stage concluded that no rat PFOS renal clearance existed, having
+        checked Huang 2019 (which collected plasma, liver, kidney and brain
+        only) and Harada 2005 (whose Table 5 carries rat rows for PFOA
+        only). But Kim 2016 Table 4 reports a MEASURED rat PFOS renal
+        clearance of 1.92 mL/kg/day in the male, and this stage judged Kim
+        2016 from its abstract rather than reading it -- the same paper it
+        flagged below for exactly that reason. The bound derived here for
+        PFOS is superseded by the measurement, which lies 4.8-fold below
+        the tightest bound this stage could offer. See
+        scripts/stage20_kim2016_primary.py.
   PFBA  Chang 2008 measured rat urine (its Methods list serum, liver, urine
         and feces) but reports no renal clearance in the abstract. PAYWALLED.
   PFBS  Olsen 2009 measured rat urine and states "urine appeared to be a
@@ -132,17 +136,22 @@ RAT_SEARCH = [
          admissible_to_eq5="yes, as a ONE-SIDED BOUND via the Kudo route",
          note="The only one of the four that can be advanced with data "
               "already held."),
-    dict(chemical="PFOS", verdict="no_urine_study",
-         rat_clr="none found",
-         measured_urine="NO -- Huang 2019 (NTP) collected plasma, liver, "
-                        "kidney and brain only; no urine at any dose",
-         blocking_pdf="none identified -- no rat PFOS urine study located",
+    dict(chemical="PFOS", verdict="superseded_by_stage20_measured",
+         rat_clr="SUPERSEDED BY STAGE 20: 1.92 mL/kg/day measured, male, "
+                 "Kim 2016 Table 4 (IV). This stage's 'none found' was "
+                 "wrong -- Kim 2016 was judged from its abstract.",
+         measured_urine="YES -- Kim 2016 collected urine and feces and "
+                        "defines CL_R = Xu(t)/AUC. (Huang 2019 did not, "
+                        "which is what misled this stage.)",
+         blocking_pdf="none -- Kim 2016 has since been read at source",
          human_clr="YES: Harada 2005 0.015 (n=20) / 0.012 (male), "
                    "Zhang 2013 mean 0.037 / median 0.024 mL/kg/day",
-         admissible_to_eq5="yes, as a LOOSE one-sided bound via CL_R <= CL_tot",
+         admissible_to_eq5="yes, and as a MEASURED value, not a bound "
+                           "(Stage 20)",
          note="Harada 2005's abstract claim of rat renal-clearance sex "
               "differences was traced to its Table 5, which has rat rows "
-              "for PFOA only. PFOS there is monkey and human."),
+              "for PFOA only. That part stands. The error was stopping "
+              "there instead of reading Kim 2016."),
 ]
 
 # ------------------------------------------------- cross-validation inputs
@@ -203,9 +212,15 @@ PROVENANCE_FLAGS = [
                         "suspected chemical misattribution. Two independent "
                         "provenance problems around the same author-year is "
                         "reason to check rather than assume.",
-         resolution="Needs the Kim 2016 PDF (doi:10.1016/j.fct.2016.09.017) "
-                    "to confirm or retract. NOT changed in this stage.",
-         status="open"),
+         resolution="RESOLVED IN FAVOUR OF THE VALUE. The PDF was read in "
+                    "Stage 20. Kim 2016 collected urine and feces, defines "
+                    "CL_R = Xu(t)/AUC in its Methods, and reports CL_R in "
+                    "Table 4 for all three compounds in both sexes after IV "
+                    "dosing. The 0.76 is PFHxS, male, IV. Four independent "
+                    "checks of CL_R/CL against urinary percentages stated "
+                    "separately in Kim's Results text agree to within 0.2 "
+                    "percentage points. Equation (5)'s PFHxS row stands.",
+         status="resolved"),
 ]
 
 

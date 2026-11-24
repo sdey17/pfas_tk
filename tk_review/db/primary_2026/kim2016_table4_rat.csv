@@ -1,0 +1,7 @@
+chemical,sex,route,cl_renal_mL_kg_day,cl_renal_sem,cl_total_mL_kg_day,cl_total_sem,renal_pct_of_total,narrative_pct,source
+PFHxS,female,IV,63.87,1.96,227.93,6.73,28.02,28.02,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
+PFHxS,male,IV,0.76,0.01,9.01,0.05,8.44,8.26,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
+PFOA,female,IV,323.6,7.94,612.84,12.54,52.8,,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
+PFOA,male,IV,4.26,0.03,47.39,3.4,8.99,9.0,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
+PFOS,female,IV,1.72,0.03,9.82,0.21,17.52,17.7,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
+PFOS,male,IV,1.92,0.01,9.24,0.37,20.78,,"Kim 2016 Table 4, Food Chem Toxicol 97:243-255, doi:10.1016/j.fct.2016.09.017"
