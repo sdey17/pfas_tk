@@ -1,0 +1,7 @@
+sex,chemical,kudo_urinary_fraction,cltot,halflife_d,auc_fraction,predicted_clr,ohmori_clr,ohmori_kind,ratio_predicted_over_observed
+male,PFDA,0.002,5.2,39.92,0.0832,0.125,<15.0,below detection,
+male,PFHpA,0.92,1603.9,0.1,1.0,1475.588,983.1,digitised value,1.501
+female,PFNA,0.51,105.7,2.44,0.7584,71.082,67.5,digitised value,1.053
+male,PFNA,0.02,6.9,29.57,0.1106,1.248,<15.0,below detection,
+female,PFOA,0.8,2233.2,0.08,1.0,1786.56,994.4,digitised value,1.797
+male,PFOA,0.55,50.5,5.63,0.4597,60.423,45.0,"digitised value, UNRELIABLE",1.343

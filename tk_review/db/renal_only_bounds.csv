@@ -1,0 +1,16 @@
+chemical,n_carbons,cl_renal_human,human_source,cl_renal_rat_bound,rat_source,cl_renal_ratio_bound,T_human,T_rat_bound,factor_binding,factor_glomerular,factor_tubule_bound,pct_binding,pct_glomerular,pct_tubule,shares_stable,bound_direction
+PFDA,10,0.015,"Fujii 2015 Table 2, urinary, n=10",0.1251,"Kudo 2001 urinary fraction / Ohmori 2003 CL_tot, AUC-corrected, UPPER BOUND",8.34,0.009444,0.008685,1.6181,5.6031,0.9196,22.7,81.3,-4.0,yes,upper
+PFDA,10,0.035,"Zhang 2013 Table 2, median, n=60",0.1251,"Kudo 2001 urinary fraction / Ohmori 2003 CL_tot, AUC-corrected, UPPER BOUND",3.57,0.022037,0.008685,1.6181,5.6031,0.3941,,,,no,upper
+PFDA,10,0.096,"Zhang 2013 Table 2, mean, n=60",0.1251,"Kudo 2001 urinary fraction / Ohmori 2003 CL_tot, AUC-corrected, UPPER BOUND",1.3,0.060444,0.008685,1.6181,5.6031,0.1437,,,,no,upper
+PFOS,8,0.012,"Harada 2005 Table 5, male 61 kg",9.24,"CL_R <= CL_tot, Kim 2016, UPPER BOUND",770.0,0.006201,0.588685,1.4475,5.6031,94.9358,5.6,25.9,68.5,yes,upper
+PFOS,8,0.012,"Harada 2005 Table 5, male 61 kg",11.3,"CL_R <= CL_tot, Chang 2012, UPPER BOUND",941.67,0.006201,0.719929,1.4475,5.6031,116.1011,5.4,25.2,69.4,yes,upper
+PFOS,8,0.012,"Harada 2005 Table 5, male 61 kg",13.1,"CL_R <= CL_tot, Huang 2019 (NTP), IV 2 mg/kg, UPPER BOUND",1091.67,0.006201,0.834608,1.4475,5.6031,134.5951,5.3,24.6,70.1,yes,upper
+PFOS,8,0.015,"Harada 2005 Section 3.3, n=20",9.24,"CL_R <= CL_tot, Kim 2016, UPPER BOUND",616.0,0.007751,0.588685,1.4475,5.6031,75.9486,5.8,26.8,67.4,yes,upper
+PFOS,8,0.015,"Harada 2005 Section 3.3, n=20",11.3,"CL_R <= CL_tot, Chang 2012, UPPER BOUND",753.33,0.007751,0.719929,1.4475,5.6031,92.8809,5.6,26.0,68.4,yes,upper
+PFOS,8,0.015,"Harada 2005 Section 3.3, n=20",13.1,"CL_R <= CL_tot, Huang 2019 (NTP), IV 2 mg/kg, UPPER BOUND",873.33,0.007751,0.834608,1.4475,5.6031,107.6761,5.5,25.4,69.1,yes,upper
+PFOS,8,0.024,"Zhang 2013 Table 2, median, n=66",9.24,"CL_R <= CL_tot, Kim 2016, UPPER BOUND",385.0,0.012402,0.588685,1.4475,5.6031,47.4679,6.2,28.9,64.8,yes,upper
+PFOS,8,0.024,"Zhang 2013 Table 2, median, n=66",11.3,"CL_R <= CL_tot, Chang 2012, UPPER BOUND",470.83,0.012402,0.719929,1.4475,5.6031,58.0505,6.0,28.0,66.0,yes,upper
+PFOS,8,0.024,"Zhang 2013 Table 2, median, n=66",13.1,"CL_R <= CL_tot, Huang 2019 (NTP), IV 2 mg/kg, UPPER BOUND",545.83,0.012402,0.834608,1.4475,5.6031,67.2975,5.9,27.3,66.8,yes,upper
+PFOS,8,0.037,"Zhang 2013 Table 2, mean, n=66",9.24,"CL_R <= CL_tot, Kim 2016, UPPER BOUND",249.73,0.019119,0.588685,1.4475,5.6031,30.79,6.7,31.2,62.1,yes,upper
+PFOS,8,0.037,"Zhang 2013 Table 2, mean, n=66",11.3,"CL_R <= CL_tot, Chang 2012, UPPER BOUND",305.41,0.019119,0.719929,1.4475,5.6031,37.6544,6.5,30.1,63.4,yes,upper
+PFOS,8,0.037,"Zhang 2013 Table 2, mean, n=66",13.1,"CL_R <= CL_tot, Huang 2019 (NTP), IV 2 mg/kg, UPPER BOUND",354.05,0.019119,0.834608,1.4475,5.6031,43.6525,6.3,29.4,64.3,yes,upper
