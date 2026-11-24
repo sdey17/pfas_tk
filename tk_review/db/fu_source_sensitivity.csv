@@ -1,0 +1,17 @@
+comparison,animal_fu_source,human_fu_source,n_compounds,fu_ratio_min,fu_ratio_max,fu_ratio_geomean,max_pct_if_halflife_ratio_100
+human/mouse,Argoul 2025 expt 1,Argoul 2025 expt 1,9,1.105,21.277,5.872,66.4
+human/mouse,Argoul 2025 expt 1,Argoul 2025 expt 2,7,1.562,21.667,5.791,66.8
+human/mouse,Argoul 2025 expt 1,Fischer 2024 (ES&T 58:1055),3,5.952,31.707,13.911,75.1
+human/mouse,Argoul 2025 expt 1,Ryu 2024 (Toxics 12:253),7,1.872,18.705,5.471,63.6
+human/mouse,Argoul 2025 expt 2,Argoul 2025 expt 1,7,0.947,14.706,4.4,58.4
+human/mouse,Argoul 2025 expt 2,Argoul 2025 expt 2,13,0.712,25.0,5.523,69.9
+human/mouse,Argoul 2025 expt 2,Fischer 2024 (ES&T 58:1055),4,5.0,26.829,13.178,71.4
+human/mouse,Argoul 2025 expt 2,Ryu 2024 (Toxics 12:253),9,1.925,15.827,5.362,60.0
+human/mouse,Ryu 2024 (Toxics 12:253),Argoul 2025 expt 1,7,0.334,16.471,4.319,60.8
+human/mouse,Ryu 2024 (Toxics 12:253),Argoul 2025 expt 2,9,0.508,21.667,5.793,66.8
+human/mouse,Ryu 2024 (Toxics 12:253),Fischer 2024 (ES&T 58:1055),3,6.095,31.707,16.508,75.1
+human/mouse,Ryu 2024 (Toxics 12:253),Ryu 2024 (Toxics 12:253),14,1.211,18.705,3.713,63.6
+human/rat,Ryu 2024 (Toxics 12:253),Argoul 2025 expt 1,7,0.263,3.188,1.112,25.2
+human/rat,Ryu 2024 (Toxics 12:253),Argoul 2025 expt 2,9,0.4,3.188,1.425,25.2
+human/rat,Ryu 2024 (Toxics 12:253),Fischer 2024 (ES&T 58:1055),3,1.854,4.885,2.864,34.4
+human/rat,Ryu 2024 (Toxics 12:253),Ryu 2024 (Toxics 12:253),14,0.758,2.027,1.2,15.3

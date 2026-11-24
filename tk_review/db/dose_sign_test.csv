@@ -1,0 +1,29 @@
+study,chemical,species,sex,dose_low,dose_high,dose_units,cl_low,cl_high,cl_ratio,direction,cmax_low_mM,cmax_high_mM,pfas_to_albumin_at_high_dose,confounder_reading
+Huang (NTP) 2019,PFBS,rat,female,4,100,mg/kg,152.0,259.0,1.704,RISES,0.028,0.422,0.703,rise CONFOUNDED (binding may saturate)
+Huang (NTP) 2019,PFBS,rat,male,4,100,mg/kg,26.0,75.5,2.904,RISES,0.053,0.75,1.25,rise CONFOUNDED (binding may saturate)
+Fujii 2015,PFDA,mouse,female,0.31,3.13,umol/kg,2.8,2.2,0.786,falls,,,,
+Fujii 2015,PFDA,mouse,male,0.31,3.13,umol/kg,2.2,3.9,1.773,RISES,,,,
+Fujii 2015,PFDoDA,mouse,female,0.31,3.13,umol/kg,4.8,5.2,1.083,flat,,,,
+Fujii 2015,PFDoDA,mouse,male,0.31,3.13,umol/kg,4.4,9.4,2.136,RISES,,,,
+Fujii 2015,PFHpA,mouse,female,0.31,3.13,umol/kg,257.0,190.0,0.739,falls,,,,
+Fujii 2015,PFHpA,mouse,male,0.31,3.13,umol/kg,347.0,293.0,0.844,falls,,,,
+Sundstrom 2012,PFHxS,mouse,female,1,20,mg/kg,2.7,3.8,1.407,RISES,,,,
+Sundstrom 2012,PFHxS,mouse,male,1,20,mg/kg,2.9,4.8,1.655,RISES,,,,
+Huang (NTP) 2019,PFHxS,rat,female,4,32,mg/kg,1.92,3.84,2.0,RISES,0.06,0.3,0.5,rise CONFOUNDED (binding may saturate)
+Huang (NTP) 2019,PFHxS,rat,male,4,32,mg/kg,0.201,0.376,1.871,RISES,0.08,0.41,0.683,rise CONFOUNDED (binding may saturate)
+Fujii 2015,PFNA,mouse,female,0.31,3.13,umol/kg,5.1,2.4,0.471,falls,,,,
+Fujii 2015,PFNA,mouse,male,0.31,3.13,umol/kg,3.9,4.0,1.026,flat,,,,
+Kemper 2003,PFOA,rat,female,0.1,25,mg/kg,778.0,842.0,1.082,flat,,,,
+Kemper 2003,PFOA,rat,male,0.1,25,mg/kg,23.1,27.1,1.173,RISES,,,,
+Chang 2012,PFOS,mouse,female,1,20,mg/kg,5.0,6.0,1.2,RISES,,,,
+Chang 2012,PFOS,mouse,male,1,20,mg/kg,4.7,4.7,1.0,flat,,,,
+Chang 2012,PFOS,rat,female,2,15,mg/kg,22.2,5.4,0.243,falls,,,,
+Huang (NTP) 2019,PFOS,rat,female,2,20,mg/kg,0.226,0.186,0.823,falls,0.02,0.27,0.45,FALL: binding cannot cause this
+Chang 2012,PFOS,rat,male,2,15,mg/kg,11.3,4.9,0.434,falls,,,,
+Huang (NTP) 2019,PFOS,rat,male,2,20,mg/kg,0.406,0.267,0.658,falls,0.01,0.21,0.35,FALL: binding cannot cause this
+Fujii 2015,PFTeDA,mouse,female,0.31,3.13,umol/kg,10.4,48.7,4.683,RISES,,,,
+Fujii 2015,PFTeDA,mouse,male,0.31,3.13,umol/kg,10.4,106.3,10.221,RISES,,,,
+Fujii 2015,PFTriDA,mouse,female,0.31,3.13,umol/kg,7.2,17.1,2.375,RISES,,,,
+Fujii 2015,PFTriDA,mouse,male,0.31,3.13,umol/kg,6.8,34.2,5.029,RISES,,,,
+Fujii 2015,PFUnDA,mouse,female,0.31,3.13,umol/kg,3.4,3.1,0.912,flat,,,,
+Fujii 2015,PFUnDA,mouse,male,0.31,3.13,umol/kg,2.8,5.7,2.036,RISES,,,,

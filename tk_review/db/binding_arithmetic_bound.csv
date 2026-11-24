@@ -1,0 +1,17 @@
+comparison,chemical,n_total_carbons,halflife_ratio,fu_ratio_binding_factor,max_pct_of_log_ratio_from_binding,unexplained_fold_if_binding_maximal
+human/mouse,PFBA,4,9.5,3.3274,53.4,2.9
+human/mouse,PFHxS,6,53.0,18.5606,73.6,2.9
+human/mouse,PFHpA,7,1086.5,7.3478,28.5,147.9
+human/mouse,PFOA,8,228.9,5.9965,33.0,38.2
+human/mouse,PFOS,8,29.8,7.602,59.8,3.9
+human/mouse,PFNA,9,33.4,2.3873,24.8,14.0
+human/mouse,PFDA,10,10.9,2.2334,33.6,4.9
+human/mouse,PFDoDA,12,3.3,2.0317,59.4,1.6
+human/rat,PFBA,4,12.8,1.6157,18.8,7.9
+human/rat,PFBS,4,321.5,1.4849,6.8,216.5
+human/rat,PFHxS,6,57.9,1.0935,2.2,52.9
+human/rat,PFHpA,7,1793.7,1.0202,0.3,1758.2
+human/rat,PFOA,8,1227.8,1.2163,2.8,1009.5
+human/rat,PFOS,8,42.1,1.4475,9.9,29.1
+human/rat,PFNA,9,45.2,1.123,3.0,40.2
+human/rat,PFDA,10,18.6,1.6181,16.5,11.5

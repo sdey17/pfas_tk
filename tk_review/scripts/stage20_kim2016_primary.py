@@ -83,7 +83,17 @@ HUMAN_CLR = {
     "PFOS":  [(0.012, "Harada 2005 Table 5"), (0.015, "Harada 2005 Sec 3.3"),
               (0.024, "Zhang 2013 median"), (0.037, "Zhang 2013 mean")],
 }
-# Male rat renal clearances, now including Kim read at source.
+# Male rat renal clearances. PRIMARY vs SENSITIVITY was set by the project
+# owner after seeing the 10.8-fold spread: Kim 2016 is weighted as primary
+# because it is the only rat renal clearance in this set read by us from a
+# primary table, with its CL_R definition stated in Methods and four
+# internal checks against urinary percentages given separately in its own
+# Results text. The others are retained as a sensitivity range, and each is
+# weaker in a specific way: Kemper 2003 is an unpublished study reached only
+# through OEHHA's tabulation, Ohmori's value is a bar digitised from a
+# figure (and two digitisations of that bar disagree 2.1-fold), and Kudo
+# 2002 enters through Harada's Table 5 rather than its own.
+PRIMARY_RAT_SOURCE = "Kim 2016 Table 4, IV, READ AT SOURCE"
 RAT_CLR = {
     "PFHpA": [(983.1, "Ohmori 2003 Fig 2, digitised")],
     "PFOA":  [(4.26, "Kim 2016 Table 4, IV, READ AT SOURCE"),
@@ -219,6 +229,17 @@ def main():
                   f"{r['cl_renal_ratio']:>9.0f}{r['T_rat']:>9.4f}"
                   f"{r['factor_tubule']:>10.1f}{r['pct_tubule']:>8.0f}"
                   f"  {r['rat_source'][:34]}")
+    print()
+    prim = [r for r in base if r["rat_source"] == PRIMARY_RAT_SOURCE
+            or r["chemical"] == "PFHpA"]
+    print("  PRIMARY ANALYSIS (Kim weighted; PFHpA has only Ohmori):")
+    print(f"  {'cmpd':8}{'tubule':>9}{'tub %':>8}   human source")
+    for r in sorted(prim, key=lambda x: (x["chemical"], x["cl_renal_human"])):
+        print(f"  {r['chemical']:8}{r['factor_tubule']:>9.1f}"
+              f"{r['pct_tubule']:>8.0f}   {r['human_source']}")
+    pt = [r["pct_tubule"] for r in prim]
+    print(f"  tubular share on the primary values: "
+          f"{min(pt):.0f}-{max(pt):.0f}%")
     print()
     pfoa = [r for r in base if r["chemical"] == "PFOA"]
     tfs = [r["factor_tubule"] for r in pfoa]

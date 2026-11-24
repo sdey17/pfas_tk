@@ -1,0 +1,14 @@
+chemical,total_carbons,species,n_dose_series,n_rise,n_fall,n_rise_confounded,T_male_rat,dominant_process,dose_sign,kim_T_male,kim_T_female,sex_evidence,joint_reading
+PFBS,4,rat,2,2,0,2,,unmeasured,rises,,,,no T for rat; sign alone: rises
+PFHxS,6,mouse,2,2,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
+PFHxS,6,rat,2,2,0,2,0.0694,reabsorption,rises,0.0694,5.8361,"T 0.069(M) vs 5.836(F), crosses 1","net reabsorption, and reabsorption saturates first"
+PFHpA,7,mouse,2,0,2,0,,unmeasured,falls,,,,no T for mouse; sign alone: falls
+PFOA,8,rat,2,1,0,0,0.0993,reabsorption,rises,0.0993,7.541,"T 0.099(M) vs 7.541(F), crosses 1","net reabsorption, and reabsorption saturates first"
+PFOS,8,mouse,2,1,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
+PFOS,8,rat,4,0,4,0,0.1223,reabsorption,falls,0.1223,0.1096,"T 0.122(M) vs 0.110(F), no sex difference","net reabsorption, but a SECRETORY or non-renal component saturates first"
+PFNA,9,mouse,2,0,1,0,,unmeasured,falls,,,,no T for mouse; sign alone: falls
+PFDA,10,mouse,2,1,1,0,,unmeasured,mixed/flat,,,,no T for mouse; sign alone: mixed/flat
+PFUnDA,11,mouse,2,1,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
+PFDoDA,12,mouse,2,1,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
+PFTriDA,13,mouse,2,2,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
+PFTeDA,14,mouse,2,2,0,0,,unmeasured,rises,,,,no T for mouse; sign alone: rises
