@@ -479,6 +479,8 @@ alone to explain its half-life difference from the human.
 | PFOA | 2011 | 10.1 | 199 | 0.729 | 297× |
 | PFOS | 1211 | 127 | 10 | 0.0095 | 13× |
 
+![The unbound fraction the cynomolgus monkey would require for binding alone to account for its half-life difference from the human, on a logarithmic scale. Values right of the line exceed unity and are physically impossible. Each bar is labelled with its multiple of the measured human unbound fraction.](../figures/paper_fig6.png)
+
 Three of five required values exceed unity and are therefore impossible, and
 all five lie far outside the range within which interspecies f_u ratios are
 observed to fall. The conclusion that binding cannot explain the monkey is
@@ -533,8 +535,16 @@ self-contradictory, is Fujii's correct urinary value: the summary sentence was
 right and the table was wrong.
 
 **Direct tubular factors.** Substituting measured renal for total clearance
-converts the human upper bounds into point estimates (Table 9). Every direct
-value falls below its former bound, as it must.
+converts the human upper bounds into point estimates (Table 9). Eight of the
+nine direct values fall below their former bound. The ninth is instructive
+rather than anomalous: for PFHpA the measured renal clearance (0.674, Fujii
+2015, n = 10) exceeds the total clearance from which the bound was computed
+(0.584, Abraham 2024, a single volunteer), so the direct T of 0.0589 sits 15%
+above the nominal bound of 0.051. Renal clearance cannot exceed total
+clearance within a study, and these are two studies; the excess is a measure
+of how far the two human datasets disagree, not a violated inequality.
+
+![Human tubular factors from direct renal clearance (filled) against the upper bounds the same compounds carried when only total clearance was available (open), on a logarithmic scale. Every value lies far below unity, the value filtration alone would give. The PFHpA exception is annotated: there the bound and the measurement come from different studies.](../figures/paper_fig5.png)
 
 **Table 9.** Human tubular factors from measured renal clearance.
 

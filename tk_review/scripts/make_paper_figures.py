@@ -223,6 +223,108 @@ def fig4():
     save(fig, "paper_fig4.png")
 
 
+
+
+# ------------------------------------------------------------------ fig 5
+def fig5():
+    """Human tubular factors: every direct value sits far below unity.
+
+    T is recomputed here from the primary renal clearances and unbound
+    fractions rather than copied from the paper, then asserted against the
+    published Table 9 so the figure cannot drift from the text.
+    """
+    GFR_H = 2570.0
+    fu = {}
+    for r in rows("db/plasma_unbound_fraction.csv"):
+        if r["experiment"] == "Ryu 2024" and r["fu"] \
+                and r["species"].split(" (")[0] == "human":
+            fu[r["chemical"]] = float(r["fu"])
+    # CL_R, source, total carbons, and the former upper bound (Table 9)
+    DATA = [("PFHxS", 0.027, "Zhang 2013", 6, 0.036),
+            ("PFHpA", 0.674, "Fujii 2015", 7, 0.051),
+            ("PFOA", 0.030, "Harada 2005", 8, 0.019),
+            ("PFOA", 0.044, "Fujii 2015", 8, 0.019),
+            ("PFOS", 0.015, "Harada 2005", 8, 0.046),
+            ("PFNA", 0.038, "Fujii 2015", 9, 0.032),
+            ("PFDA", 0.015, "Fujii 2015", 10, 0.094),
+            ("PFUnDA", 0.005, "Fujii 2015", 11, 0.266),
+            ("PFDoDA", 0.005, "Fujii 2015", 12, 3.08)]
+    PUBLISHED_T = {("PFHxS", 0.027): 0.0151, ("PFHpA", 0.674): 0.0589,
+                   ("PFOA", 0.030): 0.0048, ("PFOA", 0.044): 0.0070,
+                   ("PFOS", 0.015): 0.0078, ("PFNA", 0.038): 0.0079,
+                   ("PFDA", 0.015): 0.0094, ("PFUnDA", 0.005): 0.0046,
+                   ("PFDoDA", 0.005): 0.0185}
+    fig, ax = plt.subplots(figsize=(7.0, 4.3))
+    ax.axhline(1, color=MUTED, linewidth=1.1, zorder=2)
+    ax.text(12.45, 1.12, "filtration alone", fontsize=7.5, color=MUTED,
+            ha="right")
+    for chem, clr, src, nc, bound in DATA:
+        T = clr / (fu[chem] * GFR_H)
+        assert abs(T - PUBLISHED_T[(chem, clr)]) < 0.0003, (chem, T)
+        ax.plot([nc, nc], [T, bound], color=GRID, linewidth=1.4, zorder=2)
+        ax.scatter(nc, bound, s=40, facecolor="none", edgecolor=S2,
+                   linewidth=1.6, zorder=3)
+        ax.scatter(nc, T, s=58, color=S1, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.4)
+    ax.set_yscale("log")
+    ax.set_xlabel("total carbons", fontsize=8.5, color=INK2)
+    ax.set_ylabel("tubular factor T", fontsize=8.5, color=INK2)
+    ax.set_xlim(5.3, 12.7)
+    ax.set_xticks(range(6, 13))
+    # PFHpA is the one point where the measured value exceeds its nominal
+    # bound. The bound came from Abraham's TOTAL clearance (0.584) while the
+    # measurement is Fujii's RENAL clearance (0.674): two studies, not a
+    # violated inequality. Marked rather than hidden.
+    ax.annotate("PFHpA: measured renal clearance (Fujii)\n"
+                "exceeds the bound's total clearance\n(Abraham) by 15%",
+                xy=(7, 0.0589), xytext=(7.45, 0.30), fontsize=7.2,
+                color=INK2, ha="left",
+                arrowprops=dict(arrowstyle="-", color=MUTED, linewidth=0.8))
+    ax.legend(handles=[
+        Line2D([], [], marker="o", linestyle="", color=S1, markersize=7,
+               label="measured, from direct renal clearance"),
+        Line2D([], [], marker="o", linestyle="", markerfacecolor="none",
+               markeredgecolor=S2, markersize=7,
+               label="former upper bound, from total clearance")],
+        frameon=False, fontsize=8, loc="upper center",
+        bbox_to_anchor=(0.5, -0.17), ncol=2, labelcolor=INK)
+    style(ax)
+    ax.grid(axis="y", color=GRID, linewidth=0.7)
+    ax.set_title("Human reabsorption is 94-99.5% complete across the chain",
+                 fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig5.png")
+
+
+# ------------------------------------------------------------------ fig 6
+def fig6():
+    """The cynomolgus reductio: the required unbound fraction is impossible."""
+    # compound, required f_u, multiple of the human value (Table 7)
+    DATA = [("PFBA", 17.7, 77), ("PFHxA", 1.96, 51), ("PFHxS", 0.0170, 25),
+            ("PFOA", 0.729, 297), ("PFOS", 0.0095, 13)]
+    DATA = sorted(DATA, key=lambda r: r[1])
+    fig, ax = plt.subplots(figsize=(7.0, 3.6))
+    ax.axvspan(1, 60, color=S2, alpha=0.08, zorder=1)
+    ax.axvline(1, color=S2, linewidth=1.6, zorder=3)
+    y = range(len(DATA))
+    ax.barh(list(y), [d[1] for d in DATA], height=0.5, color=S1, zorder=4)
+    for i, (chem, req, mult) in enumerate(DATA):
+        ax.annotate(f"{req:g}   ({mult}x the human value)",
+                    (req, i), xytext=(7, 0), textcoords="offset points",
+                    va="center", fontsize=8, color=INK2)
+    ax.set_yticks(list(y))
+    ax.set_yticklabels([d[0] for d in DATA], fontsize=8.5, color=INK)
+    ax.set_xscale("log")
+    ax.set_xlim(0.006, 60)
+    ax.set_xlabel("unbound fraction the monkey would need for binding alone "
+                  "to explain its half-life", fontsize=8.5, color=INK2)
+    ax.text(1.3, 0.28, "IMPOSSIBLE:\nf_u cannot exceed 1",
+            fontsize=8.5, color=S2, va="center")
+    style(ax)
+    ax.set_title("Binding alone cannot explain the cynomolgus monkey",
+                 fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig6.png")
+
+
 if __name__ == "__main__":
     FIGS.mkdir(exist_ok=True)
-    fig1(); fig2(); fig3(); fig4()
+    fig1(); fig2(); fig3(); fig4(); fig5(); fig6()
