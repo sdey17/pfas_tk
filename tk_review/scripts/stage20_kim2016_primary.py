@@ -230,14 +230,18 @@ def main():
                   f"{r['factor_tubule']:>10.1f}{r['pct_tubule']:>8.0f}"
                   f"  {r['rat_source'][:34]}")
     print()
-    prim = [r for r in base if r["rat_source"] == PRIMARY_RAT_SOURCE
-            or r["chemical"] == "PFHpA"]
+    # NB: named primary_rows, NOT prim -- `prim` already holds the Kim
+    # Table 4 rows that are written out at the end of this function, and
+    # shadowing it silently truncated that file.
+    primary_rows = [r for r in base if r["rat_source"] == PRIMARY_RAT_SOURCE
+                    or r["chemical"] == "PFHpA"]
     print("  PRIMARY ANALYSIS (Kim weighted; PFHpA has only Ohmori):")
     print(f"  {'cmpd':8}{'tubule':>9}{'tub %':>8}   human source")
-    for r in sorted(prim, key=lambda x: (x["chemical"], x["cl_renal_human"])):
+    for r in sorted(primary_rows,
+                    key=lambda x: (x["chemical"], x["cl_renal_human"])):
         print(f"  {r['chemical']:8}{r['factor_tubule']:>9.1f}"
               f"{r['pct_tubule']:>8.0f}   {r['human_source']}")
-    pt = [r["pct_tubule"] for r in prim]
+    pt = [r["pct_tubule"] for r in primary_rows]
     print(f"  tubular share on the primary values: "
           f"{min(pt):.0f}-{max(pt):.0f}%")
     print()
