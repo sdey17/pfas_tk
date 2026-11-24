@@ -32,8 +32,9 @@ show that binding alone would require unbound fractions exceeding unity for
 three of five compounds, which is impossible. We then identify why the rat's
 tubular term is the one that differs: in kidney membrane fractions assayed
 together, the secretory transporters OAT1 and OAT3 are present in all three
-species, whereas the reabsorptive transporters are not shared — human OAT4 is
-undetectable in rat and mouse, and rodent Oatp1a1 is undetectable in human.
+species, whereas the reabsorptive transporters are not shared at the level of
+the genome rather than of detection: OAT4 is absent from the rat and mouse,
+and the rodent Oatp1a1 family has no close human ortholog.
 Separately, we show that liver fatty acid-binding protein has no affinity
 advantage over albumin. That comparison proves to be method-confounded — 63
 assays measured albumin only, 25 L-FABP only, and one measured both — so we
@@ -342,6 +343,8 @@ in µM, so a larger value is weaker binding; the difference is in log K
 | PFDoDA | 12 | 103 | 100 | 95 | 0.92 | +0.035 |
 | PFTrDA | 13 | 265 | 284 | 317 | 1.20 | −0.078 |
 
+![Within-method difference in log K between L-FABP and albumin against chain length, from the single fully paired design of Table 2. Negative values indicate weaker binding by L-FABP. The disadvantage is largest for short chains and closes near C12, the region in which the L-FABP hypothesis is invoked.](../figures/paper_fig2.png)
+
 **The claim survives, and strengthens.** The mean within-method difference is
 −0.214 log units (95% CI −0.319 to −0.110; paired t(13) = −4.42), sitting
 between the two pooled estimates (−0.390 across all 19 compounds, −0.126 for
@@ -410,6 +413,8 @@ measured V_d and CL in both species.
 | PFOS | 8 | 1211 | 28.7 | 42 | 0.40 | 1.45 | 5.60 | 13.1 |
 | PFNA | 9 | 1304 | 28.8 | 45 | 0.43 | 1.12 | 5.60 | 16.6 |
 | PFDA | 10 | 862 | 46.4 | 19 | 0.53 | 1.62 | 5.60 | 3.9 |
+
+![Share of the log half-life ratio carried by the binding and tubular terms, by compound, for the rat (left) and the mouse (right). Negative values indicate a factor acting against the observed difference. The tubular term dominates in the rat; binding dominates in the mouse. Values are those of Table 5.](../figures/paper_fig1.png)
 
 **Table 5.** Share of the log₁₀ half-life ratio carried by each factor (%),
 with bootstrap 95% confidence intervals of the mean.
@@ -820,6 +825,8 @@ against 0.60 mM serum albumin.
 | PFOS | mouse | 2 | 1 | 0 | not reported |
 | C7–C14 carboxylates | mouse | 14 | 8 | 3 | not reported |
 
+![Ratio of clearance at the high dose to clearance at the low dose, for every dose series, on a logarithmic scale. Points right of unity indicate clearance rising with dose, the signature of saturating reabsorption; points left of unity indicate a fall, which saturable plasma binding cannot produce. Every rat series lies right of unity except the four PFOS series.](../figures/paper_fig3.png)
+
 **All four rat PFOS series fall**, across two independent studies (ratios
 0.24, 0.43, 0.66, 0.82). No other rat series falls. The confounder is
 excluded exactly where it matters: PFOS's PFAS-to-albumin molar ratio at the
@@ -871,14 +878,43 @@ assay (Thakur et al., 2024). Values are pmol/mg membrane protein, mean ± SD.
 |---|---|---|---|---|---|
 | OAT1 | basolateral | secretory | 4.8 ± 1.2 | 32.8 ± 13.7 | 19.1 ± 7.1 |
 | OAT3 | basolateral | secretory | 4.3 ± 1.1 | 6.3 ± 1.1 | 6.5 ± 3.6 |
-| **OAT4** | apical | **reabsorptive** | **0.5 ± 0.2** | **not detected** | **not detected** |
-| **Oatp1a1** | apical | **reabsorptive** | **not detected** | **1.9 ± 2.1** | 3.1 ± 2.8 |
-| URAT1 | apical | — | 3.1 ± 1.2 | 2.2 ± 0.7 | 10.8 ± 1.1 |
+| OAT2 | basolateral | secretory | 0.3 ± 0.1 | 3.1 ± 3.0 | 2.3 ± 0.6 |
+| **OAT4** | apical | **reabsorptive** | **0.5 ± 0.2** | **absent** | **absent** |
+| **Oatp1a1** | apical | **reabsorptive** | **no ortholog** | **1.9 ± 2.1** | 3.1 ± 2.8 |
+| Oatp1a3 | apical | reabsorptive | no ortholog | 0.7 ± 0.6 | absent |
+| URAT1 | apical | urate exchange | 3.1 ± 1.2 | 2.2 ± 0.7 | 10.8 ± 1.1 |
+
+![Renal transporter abundance in kidney membrane fractions of human, rat and mouse (Thakur et al., 2024). The secretory transporters left of the divider are present in all three species and differ in degree. Of the reabsorptive transporters right of it, OAT4 is absent from the rodent genomes and the rodent Oatp1a family has no close human ortholog.](../figures/paper_fig4.png)
+
+**The reabsorptive entries are genomic, not analytical.** OAT4 is absent from
+the rat and mouse genomes, and the rodent Oatp1a1/Oatp1a3 family has no close
+human ortholog, being only ~40% similar to human OATP1B1 (Thakur et al.,
+2024, Figure 1). These are not proteins that fell below a detection
+threshold; the genes are not present. The claim is therefore one of orthology
+rather than of abundance, and is correspondingly firmer.
 
 The secretory side is conserved in kind and differs in degree; the
-reabsorptive side is not the same machinery. Because reabsorption determines
-the long half-lives, the half of the renal system governing persistence is the
-half that is not shared.
+reabsorptive side is not the same machinery at all. Because reabsorption
+determines the long half-lives, the half of the renal system governing
+persistence is the half that is not shared.
+
+**Two transporters independently predict the sex reversal reported above.**
+In the rat, the apical reabsorptive Oatp1a1 is 114-fold more abundant in
+males, while the basolateral Oat2, which feeds secretion, is 20-fold more
+abundant in females; Thakur et al. state explicitly that higher female Oat2
+drives the higher PFOA excretion of female rats. Both differences act in the
+same direction — males reabsorb more, females secrete more — and that is the
+molecular counterpart of the sign change in the tubular factor between sexes
+obtained from Kim's renal clearances (Table 17). Two laboratories, two
+methods, one conclusion.
+
+Two caveats attach to this table. Abundances come from label-free global
+proteomics (data-independent acquisition with the total protein approach)
+rather than targeted assays with stable-isotope standards, so the absolute
+values carry more uncertainty than the quoted standard deviations suggest,
+and Thakur et al. flag proteins below 0.5 pmol/mg as needing confirmation in
+enriched fractions — human OAT4 sits at exactly 0.5. The absence of rodent
+OAT4 does not depend on this, being a genomic fact rather than a measurement.
 
 Expression also gates relevance. Applying an expression filter removes the
 three highest intrinsic clearances in the compilation, all BCRP, including the

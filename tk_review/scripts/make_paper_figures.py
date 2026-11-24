@@ -1,0 +1,228 @@
+#!/usr/bin/env python3
+"""Build the paper's four figures (print, light surface).
+
+    python3 -I scripts/make_paper_figures.py
+
+Writes figures/paper_fig1..4.png. Idempotent: same inputs, same bytes.
+
+COLOUR. Slots 1-3 of the validated categorical palette, which are the three
+that clear the all-pairs CVD and normal-vision floors in light mode
+(validator: worst all-pairs CVD dE 9.2, normal-vision dE 24.0). Aqua sits
+below 3:1 contrast on the light surface, so the relief rule applies and every
+series carries a direct label or legend entry as well as its colour; each
+figure's data also appears in a table in the paper. Identity is never
+colour-alone.
+
+FORM. Figure 1 is the paper's central result, which until now had no figure.
+Its job is comparing two quantities across compounds in two species, so it is
+a grouped bar rather than a stack: the shares include negative values (the
+distribution term), which a stack cannot show honestly.
+"""
+import csv
+import math
+import pathlib
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+
+HERE = pathlib.Path(__file__).resolve().parent.parent
+FIGS = HERE / "figures"
+
+SURFACE = "#fcfcfb"
+INK = "#0b0b0b"
+INK2 = "#52514e"
+MUTED = "#8a8982"
+S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"   # validated slots 1-3
+GRID = "#e4e3de"
+
+
+def style(ax):
+    ax.set_facecolor(SURFACE)
+    for s in ("top", "right"):
+        ax.spines[s].set_visible(False)
+    for s in ("left", "bottom"):
+        ax.spines[s].set_color(GRID)
+        ax.spines[s].set_linewidth(0.8)
+    ax.tick_params(colors=INK2, labelsize=8, length=3, width=0.8)
+    ax.grid(axis="x", color=GRID, linewidth=0.7, zorder=0)
+    ax.set_axisbelow(True)
+
+
+def save(fig, name):
+    fig.patch.set_facecolor(SURFACE)
+    p = FIGS / name
+    fig.savefig(p, dpi=200, facecolor=SURFACE, bbox_inches="tight",
+                metadata={"Software": None, "Creation Time": None})
+    plt.close(fig)
+    print(f"wrote figures/{name}")
+
+
+def rows(path):
+    return list(csv.DictReader((HERE / path).open()))
+
+
+# ------------------------------------------------------------------ fig 1
+def fig1():
+    d = rows("db/species_decomposition.csv")
+    fig, axes = plt.subplots(1, 2, figsize=(9.2, 4.4), sharex=True)
+    for ax, comp, lbl in zip(axes, ("human/rat", "human/mouse"),
+                             ("Rat", "Mouse")):
+        sub = sorted([r for r in d if r["comparison"] == comp],
+                     key=lambda r: (int(r["n_total_carbons"]), r["chemical"]))
+        y = range(len(sub))
+        b = [float(r["pct_binding"]) for r in sub]
+        tu = [float(r["pct_tubule"]) for r in sub]
+        h = 0.36
+        ax.barh([i + h / 2 + 0.01 for i in y], b, height=h, color=S1,
+                zorder=3, label="binding")
+        ax.barh([i - h / 2 - 0.01 for i in y], tu, height=h, color=S2,
+                zorder=3, label="tubular")
+        ax.axvline(0, color=MUTED, linewidth=0.9, zorder=2)
+        ax.set_yticks(list(y))
+        ax.set_yticklabels([f"{r['chemical']} (C{r['n_total_carbons']})"
+                            for r in sub], fontsize=8, color=INK)
+        ax.set_title(f"{lbl} vs human", fontsize=10, color=INK, pad=8,
+                     loc="left")
+        ax.set_xlabel("share of the log half-life ratio (%)", fontsize=8.5,
+                      color=INK2)
+        style(ax)
+        ax.invert_yaxis()
+    h_, l_ = axes[0].get_legend_handles_labels()
+    fig.legend(h_, l_, frameon=False, fontsize=8.5, labelcolor=INK,
+               loc="upper right", bbox_to_anchor=(0.995, 1.012), ncol=2)
+    fig.suptitle("Binding carries the mouse difference and not the rat's",
+                 fontsize=11.5, color=INK, x=0.055, ha="left", y=1.012)
+    save(fig, "paper_fig1.png")
+
+
+# ------------------------------------------------------------------ fig 2
+def fig2():
+    d = rows("db/lfabp_within_method.csv")
+    xs = [int(r["total_carbons"]) for r in d]
+    ys = [float(r["diff_logK_lfabp_minus_albumin"]) for r in d]
+    mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+    sxx = sum((x - mx) ** 2 for x in xs)
+    slope = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sxx
+    icept = my - slope * mx
+    fig, ax = plt.subplots(figsize=(6.4, 4.0))
+    ax.axhline(0, color=MUTED, linewidth=0.9, zorder=2)
+    gx = [min(xs) - 0.4, max(xs) + 0.4]
+    ax.plot(gx, [icept + slope * v for v in gx], color=S1, linewidth=2,
+            zorder=3, alpha=0.55)
+    ax.scatter(xs, ys, s=58, color=S1, zorder=4, edgecolor=SURFACE,
+               linewidth=1.6)
+    for r, x, y in zip(d, xs, ys):
+        if r["chemical"] in ("PFBS", "PFHxS", "PFOS", "PFUnDA", "PFDoDA",
+                             "PFTrDA", "PFBA"):
+            ax.annotate(r["chemical"], (x, y), textcoords="offset points",
+                        xytext=(6, -3), fontsize=7.5, color=INK2)
+    ax.set_xlabel("total carbons", fontsize=8.5, color=INK2)
+    # the direction lives on the axis label, not in a floating note that
+    # collided with the PFBS and PFHxS point labels in the first render
+    ax.set_ylabel("Δ log K  (L-FABP − albumin)\n← L-FABP binds more weakly",
+                  fontsize=8.5, color=INK2)
+    ax.text(0.98, 0.06, f"slope +{slope:.3f} per carbon\n"
+                        f"crosses 0 at C{-icept/slope:.1f}",
+            transform=ax.transAxes, ha="right", fontsize=8, color=INK2)
+    ax.annotate("parity", xy=(max(xs) + 0.35, 0), fontsize=7.5, color=MUTED,
+                va="center", ha="left")
+    style(ax)
+    ax.grid(axis="y", color=GRID, linewidth=0.7)
+    ax.set_title("L-FABP's disadvantage closes as the chain lengthens",
+                 fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig2.png")
+
+
+# ------------------------------------------------------------------ fig 3
+def fig3():
+    d = rows("db/dose_sign_test.csv")
+    d = sorted(d, key=lambda r: (r["species"], float(r["cl_ratio"])))
+    fig, ax = plt.subplots(figsize=(7.0, 4.6))
+    ax.axvline(1, color=MUTED, linewidth=1.0, zorder=2)
+    lab, ys = [], []
+    for i, r in enumerate(d):
+        c = S1 if r["species"] == "rat" else S2
+        pfos_rat = r["chemical"] == "PFOS" and r["species"] == "rat"
+        ax.scatter(float(r["cl_ratio"]), i, s=72 if pfos_rat else 46,
+                   color=c, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.8 if pfos_rat else 1.2)
+        lab.append(f"{r['chemical']} {r['sex'][:1].upper()}")
+        ys.append(i)
+    ax.set_yticks(ys)
+    ax.set_yticklabels(lab, fontsize=6.6, color=INK)
+    ax.set_xscale("log")
+    ax.set_xticks([0.2, 0.5, 1, 2, 5, 10])
+    ax.set_xticklabels(["0.2", "0.5", "1", "2", "5", "10"])
+    ax.set_xlabel("clearance at high dose / clearance at low dose",
+                  fontsize=8.5, color=INK2)
+    style(ax)
+    # ratio < 1 is a FALL (left); ratio > 1 is a RISE (right). These were
+    # transposed in the first render, which inverted the paper's mechanism
+    # claim; the sides are asserted against the axis direction below.
+    assert ax.get_xlim()[0] < 1 < ax.get_xlim()[1]
+    ax.text(0.02, 0.985, "← falls\nsecretion saturates",
+            transform=ax.transAxes, ha="left", va="top", fontsize=8,
+            color=MUTED, style="italic")
+    ax.text(0.98, 0.985, "rises →\nreabsorption saturates",
+            transform=ax.transAxes, ha="right", va="top", fontsize=8,
+            color=MUTED, style="italic")
+    ax.legend(handles=[Line2D([], [], marker="o", linestyle="", color=S1,
+                              label="rat", markersize=7),
+                       Line2D([], [], marker="o", linestyle="", color=S2,
+                              label="mouse", markersize=7)],
+              frameon=False, fontsize=8.5, loc="lower right", labelcolor=INK)
+    ax.set_title("No rat series falls with dose except PFOS",
+                 fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig3.png")
+
+
+# ------------------------------------------------------------------ fig 4
+def fig4():
+    d = rows("db/primary_2026/thakur2024_table1_transporters.csv")
+    order = ["OAT1", "OAT3", "OAT2", "URAT1", "OAT4", "OATP1A1", "OATP1A3"]
+    d = sorted(d, key=lambda r: order.index(r["protein"]))
+
+    def val(s):
+        return float(s.split("+/-")[0]) if "+/-" in s else 0.0
+
+    fig, ax = plt.subplots(figsize=(7.4, 4.2))
+    w, x = 0.26, range(len(d))
+    for off, key, col, name in ((-w - 0.01, "human_pmol_mg", S1, "human"),
+                                (0.0, "rat_pmol_mg", S2, "rat"),
+                                (w + 0.01, "mouse_pmol_mg", S3, "mouse")):
+        vs = [val(r[key]) for r in d]
+        ax.bar([i + off for i in x], vs, width=w, color=col, zorder=3,
+               label=name)
+        for i, (r, v) in enumerate(zip(d, vs)):
+            if v == 0:
+                # the rodent Oatp1a family has no close human ortholog; the
+                # other blanks are genes absent from that genome
+                txt = ("no ortholog" if (name == "human"
+                                         and r["protein"].startswith("OATP"))
+                       else "absent")
+                ax.text(i + off, 0.6, txt, rotation=90, fontsize=6.4,
+                        ha="center", va="bottom", color=MUTED)
+    ax.axvline(3.5, color=MUTED, linewidth=0.9, linestyle=(0, (4, 3)),
+               zorder=2)
+    ax.text(1.75, 34, "secretory / exchange", fontsize=8.5, color=INK2,
+            ha="center")
+    ax.text(5.0, 34, "REABSORPTIVE", fontsize=8.5, color=INK, ha="center",
+            fontweight="bold")
+    ax.set_xticks(list(x))
+    ax.set_xticklabels([r["protein"] for r in d], fontsize=8, color=INK)
+    ax.set_ylabel("pmol / mg membrane protein", fontsize=8.5, color=INK2)
+    ax.set_ylim(0, 40)
+    style(ax)
+    ax.grid(axis="y", color=GRID, linewidth=0.7)
+    ax.grid(axis="x", visible=False)
+    ax.legend(frameon=False, fontsize=8.5, labelcolor=INK)
+    ax.set_title("The reabsorptive transporters are not shared",
+                 fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig4.png")
+
+
+if __name__ == "__main__":
+    FIGS.mkdir(exist_ok=True)
+    fig1(); fig2(); fig3(); fig4()
