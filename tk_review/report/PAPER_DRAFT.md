@@ -41,7 +41,10 @@ behind a widely used regulatory tabulation yields direct human renal
 clearances for nine compounds, giving net tubular reabsorption of 98–99.5%
 from C8 to C12, and reveals that the tabulation transcribed one study's total
 clearance column as renal clearance, publishing a renal clearance for one
-compound whose urinary clearance was below detection. The practical
+compound whose urinary clearance was below detection. For the three compounds
+with direct renal clearances in both species, the renal clearance ratio
+decomposes with no residual at all, and binding's share falls further, to 3%
+against 68% for a tubular term that is now measured rather than inferred. The practical
 consequence of the main result is that no single interspecies scaling
 approach serves both rodents.
 
@@ -447,6 +450,79 @@ clearance of 2.62 mL/kg/day — sixty times the urinary — of which an estimate
 equation (4) as a residual, and it quantifies how large the non-renal
 component of that residual is.
 
+### A renal-only decomposition, with no residual term
+
+The decomposition of Tables 2–4 uses total clearance, so its fourth factor is
+a residual absorbing both tubular handling and any species difference in
+non-renal elimination. With direct renal clearances now available in both
+species, the renal clearance ratio decomposes exactly into three measured
+terms and no residual:
+
+  CL_R,rat / CL_R,human =
+      (f_u,rat/f_u,human) × (GFR_rat/GFR_human) × (T_rat/T_human)   (5)
+
+Here T is genuinely the tubular factor. Three compounds have a direct renal
+clearance in male human and male rat (Table 9). PFNA has one in the human and
+only in the female rat, and pairing across sexes is inadmissible in a species
+where sex changes the sign of the tubular term.
+
+**Table 9.** Renal-only decomposition, male human against male rat. Multiple
+rows where sources disagree.
+
+| compound | CL_R human (source) | CL_R rat (source) | ratio | T human | T rat | binding | glomerular | **tubule** |
+|---|---|---|---|---|---|---|---|---|
+| PFHpA | 0.674 (Fujii) | 983.1 (Ohmori) | 1459 | 0.0589 | 15.04 | 1.02 | 5.60 | **255.2** |
+| PFOA | 0.030 (Harada) | 18.2 (Kemper) | 607 | 0.0048 | 0.424 | 1.22 | 5.60 | **89.0** |
+| PFOA | 0.030 (Harada) | 21.2 (Ohmori) | 707 | 0.0048 | 0.494 | 1.22 | 5.60 | **103.7** |
+| PFOA | 0.030 (Harada) | 46.08 (Kudo) | 1536 | 0.0048 | 1.074 | 1.22 | 5.60 | **225.4** |
+| PFOA | 0.044 (Fujii) | 18.2 (Kemper) | 414 | 0.0070 | 0.424 | 1.22 | 5.60 | **60.7** |
+| PFOA | 0.044 (Fujii) | 21.2 (Ohmori) | 482 | 0.0070 | 0.494 | 1.22 | 5.60 | **70.7** |
+| PFOA | 0.044 (Fujii) | 46.08 (Kudo) | 1047 | 0.0070 | 1.074 | 1.22 | 5.60 | **153.7** |
+| PFHxS | 0.027 (Zhang) | 0.76 (Kim) | 28 | 0.0151 | 0.069 | 1.09 | 5.60 | **4.6** |
+
+All eight combinations of the disagreeing human and rat sources are shown
+rather than a selected pair; the partition in Table 10 is the mean over all
+eight. For PFOA the rat sources span 2.5-fold and the human two 1.5-fold, so its
+tubular factor ranges from 61 to 225 across the six combinations — but its
+*share* of the log ratio is insensitive to that, staying between 68% and 74%.
+Across all three compounds the tubular share spans 46% (PFHxS) to 76%
+(PFHpA).
+
+**Table 10.** Share of the log renal clearance ratio, mean over all eight
+source combinations.
+
+| | binding | glomerular | **tubule** |
+|---|---|---|---|
+| renal-only (equation 5, no residual) | **3%** | 29% | **68%** |
+| total clearance (equation 4, residual) | 8% | 42% | 65% |
+
+**Removing the non-renal routes does not rescue binding.** Its share falls
+from 8% to 3%, and the tubular term is confirmed at 68% as a measured
+quantity rather than a residual. This is the strongest available form of the
+central result, and it retires the principal limitation of the
+total-clearance analysis for these three compounds.
+
+PFHxS is the informative exception: its tubular factor differs only 4.6-fold
+between the species and the glomerular term (52% of the log ratio) exceeds
+the tubular one (46%). Not every compound is a tubular story.
+
+**How much of the half-life this accounts for.** The renal route is 100% of
+human PFHpA elimination, 25–46% of human PFOA and about 51% of human PFHxS,
+against 61%, 42–91% and 8% respectively in the rat. Equation (5) therefore
+accounts for all of the PFHpA difference, roughly half of the PFOA
+difference, and only part of the PFHxS difference; the remainder is a
+difference in route partition rather than in renal handling.
+
+**PFDA could not be added, and the attempt is recorded.** Ohmori's Figure 2
+was re-examined at 300 dpi: the PFDA bars for both sexes sit flat on the
+baseline carrying only their significance letters. That paper's own Figure 3
+caption states that PFNA-male, PFDA-male and PFDA-female "are not
+distinguished on the graph", and its published regression
+(CL_R = 0.48·CL_tot + 15.63, r² = 0.981) cannot recover them: at PFDA's total
+clearance of 5.2 mL/kg/day it predicts a renal clearance of 18.1, exceeding
+the total by 3.5-fold. The intercept is fitted across totals reaching 3000
+and swamps small values.
+
 ### Renal transporter expression: the reabsorptive machinery is not shared
 
 Of 305 directional rows, 299 resolve to a reabsorption-or-secretion
@@ -586,14 +662,16 @@ that could separate them is closed because OAT4 has no scaling factor to the
 kidney, while the two available methods for OAT1 and OAT3 disagree 11-fold and
 in opposite directions.
 
-The fourth factor is a residual rather than a measured tubular term. Its
-non-renal content is now quantified rather than assumed: renal elimination is
+The fourth factor is a residual rather than a measured tubular term for the
+five compounds lacking paired renal clearances; for PFHpA, PFOA and PFHxS it
+has been replaced by the residual-free decomposition of equation (5), which
+gives the same answer. Its non-renal content is quantified rather than
+assumed: renal elimination is
 25–46% of total human PFOA clearance (Harada 2005; Fujii 2015) against 91% in
 the male rat and 92% in the mouse, so the residual is substantially non-renal
 in the human and substantially tubular in the rodents. Direct human renal
-clearances are now available for nine compounds (Table 7) and a renal-only
-decomposition is the obvious next step, requiring matching renal clearances in
-the rodents.
+clearances are available for nine compounds (Table 7) but matching male rat
+values for only three, which is what limits equation (5) to that set.
 
 All in vitro transport measurements were made without plasma protein, against
 an in vivo unbound fraction near 0.0025 — a 400-fold discrepancy in the

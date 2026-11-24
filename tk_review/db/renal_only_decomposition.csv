@@ -1,0 +1,9 @@
+chemical,n_carbons,cl_renal_human,human_source,cl_renal_rat,rat_source,cl_renal_ratio,T_human,T_rat,factor_binding,factor_glomerular,factor_tubule,pct_binding,pct_glomerular,pct_tubule
+PFHpA,7,0.674,"Fujii 2015 Table 2, urinary, n=10",983.1,"Ohmori 2003 Fig 2, digitised",1458.6,0.05893,15.0376,1.0202,5.6031,255.16,0.3,23.7,76.1
+PFOA,8,0.03,"Harada 2005 Section 3.3, n=20",18.2,Kemper 2003 via OEHHA PHG A6.4,606.7,0.00476,0.4241,1.2163,5.6031,89.017,3.1,26.9,70.1
+PFOA,8,0.03,"Harada 2005 Section 3.3, n=20",21.2,"Ohmori 2003 Fig 2, digitised by Han 2012",706.7,0.00476,0.494,1.2163,5.6031,103.69,3.0,26.3,70.7
+PFOA,8,0.03,"Harada 2005 Section 3.3, n=20",46.08,Kudo 2002 Table 3,1536.0,0.00476,1.0738,1.2163,5.6031,225.378,2.7,23.5,73.8
+PFOA,8,0.044,"Fujii 2015 Table 2, urinary, n=10",18.2,Kemper 2003 via OEHHA PHG A6.4,413.6,0.00699,0.4241,1.2163,5.6031,60.693,3.3,28.6,68.1
+PFOA,8,0.044,"Fujii 2015 Table 2, urinary, n=10",21.2,"Ohmori 2003 Fig 2, digitised by Han 2012",481.8,0.00699,0.494,1.2163,5.6031,70.697,3.2,27.9,68.9
+PFOA,8,0.044,"Fujii 2015 Table 2, urinary, n=10",46.08,Kudo 2002 Table 3,1047.3,0.00699,1.0738,1.2163,5.6031,153.667,2.8,24.8,72.4
+PFHxS,6,0.027,"Zhang 2013 Table 2, male+older female, n=64",0.76,Kim 2016,28.1,0.01512,0.0694,1.0935,5.6031,4.594,2.7,51.6,45.7
