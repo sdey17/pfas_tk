@@ -2,7 +2,7 @@
 
 **Souvik Dey**
 
-*[Affiliation to be supplied]*
+*Office of Environmental Health Hazard Assessment, California Environmental Protection Agency, Sacramento, CA, USA*
 
 *Draft 2 — internal. Formatted to Toxicological Sciences conventions.*
 
@@ -1271,6 +1271,11 @@ Monien, B. H. (2024). Kinetics of 15 per- and polyfluoroalkyl substances
 (PFAS) after single oral application as a mixture — a pilot investigation in
 a male volunteer. *Environ. Int.* **193**, 109047.
 
+Argoul, C. M., Toutain, P.-L., Berard, S., Picard-Hagen, N., Gayrard, V.,
+and Lacroix, M. Z. (2025). Structure-related differences in plasma protein
+binding of per- and polyfluoroalkyl substances in mice and humans. *Environ.
+Toxicol. Pharmacol.* **120**, 104879.
+
 ATSDR (2021). *Toxicological Profile for Perfluoroalkyls*. Agency for Toxic
 Substances and Disease Registry, Atlanta, GA.
 
@@ -1292,6 +1297,11 @@ cynomolgus monkeys and rats. *Reprod. Toxicol.* **27**, 400–406.
 
 EFSA CONTAM Panel (2020). Risk to human health related to the presence of
 perfluoroalkyl substances in food. *EFSA J.* **18**, 6223.
+
+Fischer, F. C., Ludtke, S., Thackray, C., Pickard, H. M., Haque, F.,
+Dassuncao, C., Endo, S., Schaider, L., and Sunderland, E. M. (2024). Binding
+of per- and polyfluoroalkyl substances (PFAS) to serum proteins: implications
+for toxicokinetics in humans. *Environ. Sci. Technol.* **58**, 1055–1063.
 
 Fujii, Y., Niisoe, T., Harada, K. H., Uemoto, S., Ogura, Y., Takenaka, K.,
 and Koizumi, A. (2015). Toxicokinetics of perfluoroalkyl carboxylic acids with
@@ -1333,6 +1343,11 @@ fatty acids with different carbon chain length in rats. *Chem. Biol. Interact.*
 Kudo, N., Katakura, M., Sato, Y., and Kawashima, Y. (2002). Sex
 hormone-regulated renal transport of perfluorooctanoic acid. *Chem. Biol.
 Interact.* **139**, 301–316.
+
+Kemper, R. A. (2003). Unpublished rat toxicokinetic study of
+perfluorooctanoate, tabulated in OEHHA (2024), Table A6.4. The primary report
+was not examined for the present work; the value is used as that tabulation
+reports it.
 
 OEHHA (2024). *Public Health Goals for Perfluorooctanoic Acid and
 Perfluorooctane Sulfonic Acid in Drinking Water*. Office of Environmental
@@ -1381,5 +1396,6 @@ Peixoto, L., Leeder, J. S., and Prasad, B. (2024). Sex and the kidney
 drug-metabolizing enzymes and transporters: are preclinical drug disposition
 data translatable to humans? *Clin. Pharmacol. Ther.* **116**, 235–246.
 
-*[Remaining references to be completed from `db/citations.csv`, which holds
-87 entries with DOI or PMID for all but one.]*
+*Every work cited in the text appears above. The project's full
+bibliography, 89 entries carrying a DOI or PMID for all but one, is in
+`db/citations.csv`.*
