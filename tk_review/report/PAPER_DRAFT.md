@@ -865,10 +865,18 @@ unity. Three unrelated kinds of evidence agree that PFOS is not handled like
 the rest — a result in its own right, and a warning against treating the
 chemical class uniformly.
 
-The alternative is not dismissed. PFOS undergoes substantial enterohepatic
-circulation, so a fall in *total* clearance may reflect saturable biliary
-transport rather than saturable tubular secretion. Separating those requires
-a dose series in renal clearance specifically, which does not exist for PFOS.
+The alternative is not dismissed, and its size can now be stated. Harada et
+al. (2007) measured biliary clearance directly in humans from paired serum
+and bile, obtaining 2.98 mL/kg/day gross for PFOS with 97% biliary
+reabsorption, hence about 0.089 net, against a human renal clearance of
+0.012–0.037; for PFOA the figures are 1.06 gross, 89% reabsorbed, 0.117 net
+against 0.030–0.044 renal. **The net biliary route is two- to sevenfold the
+renal one**, and that paper concludes biliary excretion is comparable in rats
+and humans. A fall in *total* clearance with dose may therefore reflect
+saturable biliary transport rather than saturable tubular secretion, and the
+alternative is large enough to matter rather than negligible. Separating the
+two requires a dose series in biliary or renal clearance specifically in the
+rat, which does not exist for PFOS.
 We also note that the rat tubular factor for PFHpA is 15.0, far above unity
 and the only net-secreting value in the set, while mouse PFHpA clearance
 falls with dose; those agree, but they are different species, and we do not
@@ -1116,7 +1124,23 @@ all.** Four plasma unbound-fraction sources are available: Ryu et al.
 They cover the human with four, the mouse with three, and **the rat with one**.
 The rat binding factor therefore cannot be varied on its numerator at all,
 only on the human denominator, so the sensitivity range below understates rat
-uncertainty by an unknown amount. The mouse, testable properly, retains high
+uncertainty by an unknown amount.
+
+**And the one independent cross-species rat measurement points the other
+way.** Starnes et al. (2024) determined binding affinities of rat and human
+serum albumin for the same eight compounds in one laboratory by differential
+scanning fluorimetry. Its geometric mean dissociation-constant ratio
+(rat/human) is 0.68 — rat albumin binds PFAS *more* tightly, which should
+leave *less* free — against Ryu's unbound-fraction ratio of 1.32 in the
+opposite direction, with the two agreeing on only one of the five compounds
+both cover. Neither overturns the other, because they measure different
+quantities and the fluorimetric assay does not reproduce plasma on an
+absolute scale: a one-site model at physiological albumin turns its
+dissociation constants into unbound fractions near 0.4, where the measured
+plasma values are near 0.003. We report this as an unresolved cross-method
+disagreement rather than as support for either value, and note that it is a
+second instance of the method dependence documented for the albumin
+compilation in Section *Liver fatty acid-binding protein*. The mouse, testable properly, retains high
 ratios under all twelve of its source pairings, so the rat–mouse asymmetry is
 not an artefact of a single laboratory.
 
@@ -1276,6 +1300,11 @@ A. (2005). Renal clearance of perfluorooctane sulfonate and perfluorooctanoate
 in humans and their species-specific excretion. *Environ. Res.* **99**,
 253–261.
 
+Harada, K. H., Hashida, S., Kaneko, T., Takenaka, K., Minata, M., Inoue, K.,
+Saito, N., and Koizumi, A. (2007). Biliary excretion and cerebrospinal fluid
+partition of perfluorooctanoate and perfluorooctane sulfonate in humans.
+*Environ. Toxicol. Pharmacol.* **24**, 134–139.
+
 Huang, M. C., Dzierlenga, A. L., Robinson, V. G., Waidyanatha, S., DeVito,
 M. J., Eifrid, M. A., Granville, C. A., Gibbs, S. T., and Blystone, C. R.
 (2019). Toxicokinetics of perfluorobutane sulfonate (PFBS),
@@ -1333,6 +1362,11 @@ Sundström, M., Chang, S.-C., Noker, P. E., Gorman, G. S., Hart, J. A.,
 Ehresman, D. J., Bergman, Å., and Butenhoff, J. L. (2012). Comparative
 pharmacokinetics of perfluorohexanesulfonate (PFHxS) in rats, mice, and
 monkeys. *Reprod. Toxicol.* **33**, 441–451.
+
+Starnes, H. M., Jackson, T. W., Rock, K. D., and Belcher, S. M. (2024).
+Quantitative cross-species comparison of serum albumin binding of per- and
+polyfluoroalkyl substances from five structural classes. *Toxicol. Sci.*
+**199**, 132–149.
 
 Thakur, A., Yue, G., Ahire, D., Mettu, V. S., Al Maghribi, A., Ford, K.,
 Peixoto, L., Leeder, J. S., and Prasad, B. (2024). Sex and the kidney
