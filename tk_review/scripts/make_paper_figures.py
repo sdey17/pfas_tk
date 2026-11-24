@@ -325,6 +325,145 @@ def fig6():
     save(fig, "paper_fig6.png")
 
 
+
+
+# ------------------------------------------------------------------ fig 7
+def fig7():
+    """Two measurements of rat-vs-human binding that point opposite ways.
+
+    Panel (a) is the directional disagreement; panel (b) is why neither
+    settles it, the fluorimetric assay missing the plasma scale 100-fold.
+    """
+    d = [r for r in rows("db/starnes_vs_ryu_rat.csv")
+         if r["fu_ratio_rat_over_human"]]
+    d = sorted(d, key=lambda r: float(r["kd_ratio_rat_over_human"]))
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(9.6, 3.9),
+                                 gridspec_kw={"width_ratios": [1.25, 1]})
+
+    # (a) the two ratios, on either side of parity
+    y = range(len(d))
+    a1.axvline(1, color=MUTED, linewidth=1.1, zorder=2)
+    for i, r in enumerate(d):
+        k, f = (float(r["kd_ratio_rat_over_human"]),
+                float(r["fu_ratio_rat_over_human"]))
+        a1.plot([k, f], [i, i], color=GRID, linewidth=1.6, zorder=2)
+        a1.scatter(k, i, s=58, color=S1, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.4)
+        a1.scatter(f, i, s=58, color=S2, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.4)
+    a1.set_yticks(list(y))
+    a1.set_yticklabels([r["chemical"] for r in d], fontsize=8.5, color=INK)
+    a1.set_xscale("log")
+    # matplotlib adds log MINOR ticks that collided with these labels
+    a1.set_xticks([0.5, 0.7, 1, 1.5, 2])
+    a1.set_xticks([], minor=True)
+    a1.set_xticklabels(["0.5", "0.7", "1", "1.5", "2"])
+    a1.set_xlim(0.4, 2.3)
+    a1.set_ylim(-1.75, len(d) - 0.25)
+    a1.set_xlabel("rat / human ratio", fontsize=8.5, color=INK2)
+    a1.text(0.62, -0.5, "rat binds tighter", fontsize=7.5, color=MUTED,
+            ha="center", style="italic")
+    a1.text(1.6, -0.5, "rat leaves more free", fontsize=7.5, color=MUTED,
+            ha="center", style="italic")
+    a1.legend(handles=[
+        Line2D([], [], marker="o", linestyle="", color=S1, markersize=7,
+               label="K$_d$, isolated albumin (Starnes, DSF)"),
+        Line2D([], [], marker="o", linestyle="", color=S2, markersize=7,
+               label="f$_u$, whole plasma (Ryu, dialysis)")],
+        frameon=False, fontsize=7.8, loc="lower left", labelcolor=INK)
+    style(a1)
+    a1.set_title("(a) they disagree in direction", fontsize=9.5, color=INK,
+                 loc="left", pad=6)
+
+    # (b) why neither settles it: the gap to the plasma value, per compound
+    gaps = []
+    lim = [5e-4, 3]
+    a2.plot(lim, lim, color=MUTED, linewidth=1.1, linestyle=(0, (4, 3)),
+            zorder=2)
+    # alternate the label offsets: adjacent points sit close enough on the
+    # log axis that same-side labels overlapped
+    for j, r in enumerate(sorted(d, key=lambda x: float(x["fu_rat"]))):
+        m = float(r["fu_rat"])
+        imp = float(r["fu_implied_by_kd_rat"])
+        gaps.append(imp / m)
+        a2.plot([m, m], [m, imp], color=S2, linewidth=1.5, zorder=3,
+                alpha=0.75)
+        a2.scatter(m, imp, s=58, color=S1, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.4)
+        dy = 9 if j % 2 else -14
+        a2.annotate(f"{imp/m:.0f}x", (m, imp), xytext=(-2, dy),
+                    textcoords="offset points", fontsize=7.4, color=INK2,
+                    ha="center")
+    a2.set_xscale("log"); a2.set_yscale("log")
+    a2.set_xlim(*lim); a2.set_ylim(*lim)
+    a2.set_xlabel("measured f$_u$, rat plasma", fontsize=8.5, color=INK2)
+    a2.set_ylabel("f$_u$ implied by the K$_d$", fontsize=8.5, color=INK2)
+    a2.text(0.06, 0.88, "identity", transform=a2.transAxes, fontsize=7.5,
+            color=MUTED, rotation=34)
+    a2.text(0.97, 0.06, f"gap {min(gaps):.0f}x to {max(gaps):.0f}x,\n"
+                        f"largest where binding\nis tightest",
+            transform=a2.transAxes, ha="right", fontsize=7.8, color=INK2)
+    style(a2)
+    a2.grid(axis="y", color=GRID, linewidth=0.7)
+    a2.set_title("(b) and the assay misses the plasma scale",
+                 fontsize=9.5, color=INK, loc="left", pad=6)
+
+    fig.suptitle("Neither rat binding measurement can adjudicate the other",
+                 fontsize=11.5, color=INK, x=0.04, ha="left", y=1.03)
+    save(fig, "paper_fig7.png")
+
+
+# ------------------------------------------------------------------ fig 8
+def fig8():
+    """How big the biliary alternative is, against the renal route."""
+    # Harada 2007, human, n = 4 paired serum/bile samples. Renal ranges are
+    # the project's human values (Harada 2005, Zhang 2013, Fujii 2015).
+    DATA = [("PFOA", 1.06, 0.89, 0.030, 0.044),
+            ("PFOS", 2.98, 0.97, 0.012, 0.037)]
+    # A DOT PLOT, NOT BARS. On a log axis a bar begins at the truncated
+    # axis edge rather than at zero, so its length encodes nothing; and the
+    # renal figure is a RANGE, which a bar from the origin misrepresents.
+    fig, ax = plt.subplots(figsize=(7.4, 3.2))
+    for i, (chem, gross, reab, rlo, rhi) in enumerate(DATA):
+        net = gross * (1 - reab)
+        assert abs(net - (0.117 if chem == "PFOA" else 0.089)) < 0.001
+        ax.plot([rlo, rhi], [i - 0.22, i - 0.22], color=S3, linewidth=5,
+                solid_capstyle="butt", zorder=3,
+                label="renal (range across sources)" if i == 0 else None)
+        ax.plot([net, gross], [i, i], color=GRID, linewidth=1.4, zorder=2)
+        ax.scatter(gross, i + 0.22, s=70, color=S1, zorder=4,
+                   edgecolor=SURFACE, linewidth=1.4,
+                   label="biliary, gross" if i == 0 else None)
+        ax.scatter(net, i, s=70, color=S2, zorder=4, edgecolor=SURFACE,
+                   linewidth=1.4,
+                   label="biliary, net of reabsorption" if i == 0 else None)
+        ax.annotate(f"{gross:.2f}", (gross, i + 0.22), xytext=(8, 0),
+                    textcoords="offset points", va="center", fontsize=7.8,
+                    color=INK2)
+        ax.annotate(f"{net:.3f}  ({reab*100:.0f}% reabsorbed)", (net, i),
+                    xytext=(8, 0), textcoords="offset points", va="center",
+                    fontsize=7.8, color=INK2)
+        ax.annotate(f"{rlo:.3f}-{rhi:.3f}", (rhi, i - 0.22), xytext=(8, 0),
+                    textcoords="offset points", va="center", fontsize=7.8,
+                    color=INK2)
+        ax.annotate("", xy=(net, i - 0.1), xytext=(rhi, i - 0.1),
+                    arrowprops=dict(arrowstyle="->", color=MUTED,
+                                    linewidth=0.9))
+        ax.text(math.sqrt(net * rhi), i - 0.09, f"{net/rhi:.1f}-{net/rlo:.1f}x",
+                fontsize=7.2, color=MUTED, ha="center", va="bottom")
+    ax.set_yticks(range(len(DATA)))
+    ax.set_yticklabels([d[0] for d in DATA], fontsize=9.5, color=INK)
+    ax.set_ylim(-0.65, len(DATA) - 0.35)
+    ax.set_xscale("log")
+    ax.set_xlim(0.008, 30)
+    ax.set_xlabel("clearance (mL/kg/day), human", fontsize=8.5, color=INK2)
+    ax.legend(frameon=False, fontsize=8, loc="lower right", labelcolor=INK)
+    style(ax)
+    ax.set_title("The non-renal route is the larger one, even after "
+                 "reabsorption", fontsize=11, color=INK, loc="left", pad=8)
+    save(fig, "paper_fig8.png")
+
+
 if __name__ == "__main__":
     FIGS.mkdir(exist_ok=True)
-    fig1(); fig2(); fig3(); fig4(); fig5(); fig6()
+    fig1(); fig2(); fig3(); fig4(); fig5(); fig6(); fig7(); fig8()

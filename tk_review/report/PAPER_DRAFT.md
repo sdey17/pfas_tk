@@ -865,6 +865,8 @@ unity. Three unrelated kinds of evidence agree that PFOS is not handled like
 the rest — a result in its own right, and a warning against treating the
 chemical class uniformly.
 
+![Human clearance by route for PFOA and PFOS, on a logarithmic scale. Biliary clearance is shown gross and net of biliary reabsorption; the renal figure is a range across the three primary sources. Even after reabsorption the biliary route exceeds the renal one, by the multiple marked on each arrow.](../figures/paper_fig8.png)
+
 The alternative is not dismissed, and its size can now be stated. Harada et
 al. (2007) measured biliary clearance directly in humans from paired serum
 and bile, obtaining 2.98 mL/kg/day gross for PFOS with 97% biliary
@@ -1126,6 +1128,8 @@ The rat binding factor therefore cannot be varied on its numerator at all,
 only on the human denominator, so the sensitivity range below understates rat
 uncertainty by an unknown amount.
 
+![Two measurements of rat-against-human binding that point in opposite directions. (a) The dissociation-constant ratio from isolated albumin sits below parity for every compound while the plasma unbound-fraction ratio sits above it for four of five. (b) Why neither settles the matter: the unbound fraction implied by each dissociation constant under a one-site model at physiological albumin, against the measured plasma value, with the fold gap labelled. The gap widens as binding tightens.](../figures/paper_fig7.png)
+
 **And the one independent cross-species rat measurement points the other
 way.** Starnes et al. (2024) determined binding affinities of rat and human
 serum albumin for the same eight compounds in one laboratory by differential
@@ -1136,8 +1140,12 @@ opposite direction, with the two agreeing on only one of the five compounds
 both cover. Neither overturns the other, because they measure different
 quantities and the fluorimetric assay does not reproduce plasma on an
 absolute scale: a one-site model at physiological albumin turns its
-dissociation constants into unbound fractions near 0.4, where the measured
-plasma values are near 0.003. We report this as an unresolved cross-method
+dissociation constants into unbound fractions of 0.40–0.76, against measured
+plasma values spanning 0.0011 to 0.37 (Figure 7b). **The size of that gap is
+not uniform, and its pattern is the point.** It is 2-fold for PFBA, the most
+weakly bound compound, and 134- and 378-fold for PFOA and PFOS, the most
+tightly bound — so the assay departs from plasma most severely in exactly the
+regime where this paper's binding claim lives. We report this as an unresolved cross-method
 disagreement rather than as support for either value, and note that it is a
 second instance of the method dependence documented for the albumin
 compilation in Section *Liver fatty acid-binding protein*. The mouse, testable properly, retains high
