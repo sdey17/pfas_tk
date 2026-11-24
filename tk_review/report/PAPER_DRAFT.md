@@ -975,9 +975,10 @@ Ehresman, D. J., Bergman, Å., and Butenhoff, J. L. (2012). Comparative
 pharmacokinetics of perfluorohexanesulfonate (PFHxS) in rats, mice, and
 monkeys. *Reprod. Toxicol.* **33**, 441–451.
 
-Thakur, A., et al. (2024). Quantitative proteomic analysis of renal
-transporters in human, rat and mouse kidney. *Clin. Pharmacol. Ther.* **116**,
-235. [AUTHOR LIST TO BE COMPLETED]
+Thakur, A., Yue, G., Ahire, D., Mettu, V. S., Al Maghribi, A., Ford, K.,
+Peixoto, L., Leeder, J. S., and Prasad, B. (2024). Sex and the kidney
+drug-metabolizing enzymes and transporters: are preclinical drug disposition
+data translatable to humans? *Clin. Pharmacol. Ther.* **116**, 235–246.
 
 *[Remaining references to be completed from `db/citations.csv`, which holds
-72 entries with DOI and PMID.]*
+87 entries with DOI or PMID for all but one.]*
