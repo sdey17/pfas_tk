@@ -461,6 +461,16 @@ def fig8():
     style(ax)
     ax.set_title("The non-renal route is the larger one, even after "
                  "reabsorption", fontsize=11, color=INK, loc="left", pad=8)
+    # The caveat belongs ON the figure, not only in its caption: these are
+    # HUMAN clearances, and using them to size the alternative behind the
+    # RAT dose response is a cross-species step rather than a measurement.
+    fig.text(0.0, -0.10,
+             "Human values throughout. Their bearing on the rat dose "
+             "response rests on Harada et al. (2007)\nreporting biliary "
+             "excretion as comparable in rats and humans "
+             "\u2014 a cross-species inference,\nnot a rat measurement. "
+             "No rat biliary or renal dose series exists for PFOS.",
+             fontsize=7.4, color=MUTED, ha="left", va="top", style="italic")
     save(fig, "paper_fig8.png")
 
 
