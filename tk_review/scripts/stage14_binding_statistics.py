@@ -57,7 +57,10 @@ def main():
     A, F = load(ALB), load(FAB)
     keys = {(p, fam, n) for (p, fam, n) in A} & {(p, fam, n) for (p, fam, n) in F}
     rows = []
-    for k in sorted(keys, key=lambda k: total_c(k[1], k[2])):
+    # Sort on the FULL key, not just chain length. Sorting a set by a
+    # non-unique key leaves ties in set-iteration order, which Python
+    # randomises per process, so the output file differed between runs.
+    for k in sorted(keys, key=lambda k: (total_c(k[1], k[2]), k[0], k[1])):
         p, fam, ncf = k
         a, f = desc(A[k]), desc(F[k])
         rows.append(dict(chem=p, fam=fam, tc=total_c(fam, ncf), a=a, f=f,
