@@ -44,9 +44,16 @@ clearance column as renal clearance, publishing a renal clearance for one
 compound whose urinary clearance was below detection. For the three compounds
 with direct renal clearances in both species, the renal clearance ratio
 decomposes with no residual at all, and binding's share falls further, to 3%
-against 68% for a tubular term that is now measured rather than inferred. The practical
+against 68% for a tubular term that is now measured rather than inferred.
+Extending that residual-free form to PFDA and PFOS as one-sided bounds shows
+the tubular explanation to be compound-specific rather than general: PFOS
+retains a tubular factor above 31 carrying 62–70% of its ratio, whereas
+PFDA's is bounded below unity against every available human value, so for
+PFDA the rat tubule is not the more secretory of the two and the difference
+is carried by glomerular filtration and binding alone. The practical
 consequence of the main result is that no single interspecies scaling
-approach serves both rodents.
+approach serves both rodents, and the practical consequence of the second is
+that none serves every compound.
 
 **Key words:** perfluoroalkyl substances; toxicokinetics; interspecies
 extrapolation; renal tubular reabsorption; serum albumin; organic anion
@@ -513,15 +520,119 @@ accounts for all of the PFHpA difference, roughly half of the PFOA
 difference, and only part of the PFHxS difference; the remainder is a
 difference in route partition rather than in renal handling.
 
-**PFDA could not be added, and the attempt is recorded.** Ohmori's Figure 2
+**PFDA's renal clearance is not recoverable from Ohmori's figure.** Figure 2
 was re-examined at 300 dpi: the PFDA bars for both sexes sit flat on the
-baseline carrying only their significance letters. That paper's own Figure 3
-caption states that PFNA-male, PFDA-male and PFDA-female "are not
-distinguished on the graph", and its published regression
-(CL_R = 0.48·CL_tot + 15.63, r² = 0.981) cannot recover them: at PFDA's total
-clearance of 5.2 mL/kg/day it predicts a renal clearance of 18.1, exceeding
-the total by 3.5-fold. The intercept is fitted across totals reaching 3000
-and swamps small values.
+baseline carrying only their significance letters, yielding only
+CL_R < 15 mL/kg/day and hence T < 1.04, a bound that straddles unity and
+settles nothing. That paper's own Figure 3 caption states that PFNA-male,
+PFDA-male and PFDA-female "are not distinguished on the graph", and its
+published regression (CL_R = 0.48·CL_tot + 15.63, r² = 0.981) cannot recover
+them: at PFDA's total clearance of 5.2 mL/kg/day it predicts a renal
+clearance of 18.1, exceeding the total by 3.5-fold. The intercept is fitted
+across totals reaching 3000 and swamps small values.
+
+### Four further compounds, and why only two can be bounded
+
+A targeted search was made for directly measured rat renal clearances of
+PFBA, PFBS, PFDA and PFOS, the four compounds with the best remaining
+prospect of entering equation (5). **None exists.** The reasons differ, and
+the pattern of reasons is itself informative. PFBA (Chang 2008) and PFBS
+(Olsen 2009; Chengelis 2009) were each studied with urine collected — the
+methods of all three papers list urine among the matrices analysed, and
+Olsen reports that "urine appeared to be a major route of elimination" — yet
+none publishes a renal clearance. For PFOS no rat urine study was located at
+all: the National Toxicology Program study that supplies the most recent rat
+PFOS kinetics (Huang 2019) collected plasma, liver, kidney and brain only,
+so no renal clearance can be derived from it at any dose. Harada (2005)
+reports in its abstract that renal clearance sex differences "have been
+reported in rats and Japanese macaques", but its Table 5 carries rat rows for
+PFOA only; PFOS there is given for cynomolgus monkey and human. That lead
+resolves to PFOA.
+
+**The human side is the tighter constraint.** No human renal clearance exists
+for PFBA or PFBS, so neither compound could enter equation (5) however
+complete the rat data became. PFDA and PFOS do have human values (Table 7),
+so the two compounds whose rodent measurements are closest to retrievable are
+precisely the two that cannot be used, and the two that can be used are
+limited by the rat. The practical consequence is that equation (5) is
+extended not by new measurements but by one-sided bounds, since a bound on
+CL_R propagates to a bound on every term.
+
+Two bounds are available, of very different quality. For PFDA, Kudo (2001)
+reports 0.2% of an intraperitoneal dose recovered in urine over 120 h in male
+Wistar rats. Since A_urine = CL_R·AUC(0,τ) and Dose = CL_tot·AUC(0,∞),
+
+  CL_R = (A_urine/Dose) · CL_tot / [AUC(0,τ)/AUC(0,∞)]   (6)
+
+and the bracket evaluated on a one-compartment curve is 1 − exp(−ln2·τ/t½) =
+0.083, so the 120 h window captured only 8.3% of the total exposure and the
+raw 0.2% badly understates the renal share. For any multi-exponential curve
+with the same *terminal* half-life the bracket is larger — it is a weighted
+average of (1 − exp(−k·τ)) over rate constants all exceeding the terminal one
+— so dividing by the one-compartment value overstates CL_R and equation (6)
+returns an upper bound. For PFOS the bound is the identity CL_R ≤ CL_tot,
+which is loose because the rat excretes PFOS substantially in bile.
+
+**The PFDA route is cross-validated rather than assumed.** Four compounds
+carry both a Kudo urinary fraction and an Ohmori renal clearance, so
+equation (6) can be run where the answer is already known (Table 11). It
+reads high in all four cases, by 1.05- to 1.80-fold. A one-directional
+overstatement is what an upper bound tolerates, and it simultaneously denies
+the route any claim to be a point estimate. For PFHpA-male and PFOA-female
+the half-lives are 0.10 and 0.08 d, so τ = 5 d captures the entire exposure
+and the correction is exactly unity; the 1.50- and 1.80-fold gaps there are
+straight inter-study disagreements between Kudo's urinary recovery and
+Ohmori's digitised bars — different doses and routes (Kudo intraperitoneal,
+Ohmori intravenous) in the same strain and laboratory. That sets the floor on
+how far any derived renal clearance can be trusted in this literature.
+
+**Table 11.** Cross-validation of equation (6) against Ohmori's measured
+renal clearances. The two rows with AUC fraction 1.000 isolate inter-study
+disagreement from model error.
+
+| sex | compound | urinary fraction | CL_tot | t½ (d) | AUC fraction | predicted CL_R | Ohmori CL_R | ratio |
+|---|---|---|---|---|---|---|---|---|
+| female | PFNA | 0.510 | 105.7 | 2.44 | 0.758 | 71.1 | 67.5 | 1.05 |
+| male | PFOA | 0.550 | 50.5 | 5.63 | 0.460 | 60.4 | 45.0 | 1.34 |
+| male | PFHpA | 0.920 | 1603.9 | 0.10 | 1.000 | 1475.6 | 983.1 | 1.50 |
+| female | PFOA | 0.800 | 2233.2 | 0.08 | 1.000 | 1786.6 | 994.4 | 1.80 |
+| male | PFNA | 0.020 | 6.9 | 29.57 | 0.111 | 1.25 | <15 | — |
+| male | PFDA | 0.002 | 5.2 | 39.92 | 0.083 | 0.125 | <15 | — |
+
+For male rat PFDA, equation (6) gives CL_R ≤ 0.125 mL/kg/day and T ≤ 0.0087,
+a bound 120-fold tighter than the figure's T < 1.04 and, unlike it,
+decisively below unity.
+
+**Table 12.** Equation (5) extended as one-sided bounds. All rat inputs are
+upper bounds, so the ratio and the tubular factor are upper bounds; the
+binding and glomerular terms are exact. PFOS rows are summarised as ranges
+over four human and three rat sources (12 combinations). Tubular shares of the log ratio are
+−4% for the first PFDA row, 62–70% across the PFOS combinations, and
+suppressed for the remaining two PFDA rows for the reason given below.
+
+| compound | CL_R human | CL_R rat | ratio | T human | T rat | binding | glom. | **tubule** |
+|---|---|---|---|---|---|---|---|---|
+| PFDA | 0.015 (Fujii) | ≤ 0.125 | ≤ 8.3 | 0.0094 | ≤ 0.0087 | 1.62 | 5.60 | **≤ 0.92** |
+| PFDA | 0.035 (Zhang med.) | ≤ 0.125 | ≤ 3.6 | 0.0220 | ≤ 0.0087 | 1.62 | 5.60 | **≤ 0.39** |
+| PFDA | 0.096 (Zhang mean) | ≤ 0.125 | ≤ 1.3 | 0.0604 | ≤ 0.0087 | 1.62 | 5.60 | **≤ 0.14** |
+| PFOS | 0.012–0.037 | ≤ 9.2–13.1 | ≤ 250–1092 | 0.0062–0.0191 | ≤ 0.59–0.83 | 1.45 | 5.60 | **≤ 31–135** |
+
+Shares are suppressed where any single share exceeds 100% of the whole, the
+symptom of the three logarithmic terms nearly cancelling: the percentages
+diverge while the underlying factors remain exactly determined. This is the
+same pathology as the difference form discussed in Methods, and in those rows
+the factors, not the shares, are the interpretable quantities.
+
+**PFDA breaks the pattern of the three compounds in equation (5).** Its
+tubular factor is bounded below unity against all three human sources, so the
+rat tubule is *not* more secretory than the human's for PFDA, and the renal
+clearance difference is carried by glomerular filtration (5.60-fold, a species
+constant) and binding (1.62-fold) alone. PFOS by contrast keeps the familiar
+pattern, its tubular factor bounded above by 135 and exceeding 31 on every
+one of the twelve source combinations while carrying 62–70% of the log ratio.
+The tubular explanation is therefore compound-specific even within the
+carboxylates: it is strong for PFHpA and PFOA, weak for PFHxS, and for PFDA
+the available bound excludes it.
 
 ### Renal transporter expression: the reabsorptive machinery is not shared
 
@@ -671,7 +782,15 @@ assumed: renal elimination is
 the male rat and 92% in the mouse, so the residual is substantially non-renal
 in the human and substantially tubular in the rodents. Direct human renal
 clearances are available for nine compounds (Table 7) but matching male rat
-values for only three, which is what limits equation (5) to that set.
+values for only three, which is what limits equation (5) to that set. A
+targeted search established that no directly measured rat renal clearance
+exists for PFBA, PFBS, PFDA or PFOS, and that for PFBA and PFBS the human
+value is missing as well, so those two cannot be added by any rodent
+measurement. PFDA and PFOS enter only as the one-sided bounds of Table 12.
+The PFDA bound inherits the 1.05- to 1.80-fold spread of Table 11, and the
+PFOS bound is loose by construction because it rests on CL_R <= CL_tot in a
+species with substantial biliary excretion of PFOS; neither should be read as
+an estimate.
 
 All in vitro transport measurements were made without plasma protein, against
 an in vivo unbound fraction near 0.0025 — a 400-fold discrepancy in the
@@ -708,13 +827,26 @@ renal system whose molecular machinery is not conserved between the species:
 the apical reabsorptive transporters, which are different proteins in human
 and rat. Rodent reabsorption data therefore carry magnitude but not mechanism.
 
-Four measurements would sharpen these conclusions, and we state them in
+The tubular explanation is nonetheless compound-specific rather than general.
+Within the compounds for which the renal clearance ratio can be decomposed
+without a residual, the tubular term carries about two thirds of the
+difference for PFHpA and PFOA, is exceeded by the glomerular term for PFHxS,
+and for PFDA is bounded below unity, meaning the rat tubule is not the more
+secretory of the two. Any extrapolation that treats rodent tubular handling
+as a uniform property of the chemical class will therefore misstate at least
+some compounds, in a direction that depends on chain length and head group
+rather than on a single scaling factor.
+
+Five measurements would sharpen these conclusions, and we state them in
 advance: an unbound fraction in cynomolgus plasma, which would convert the
 reductio of Table 5 into a decomposition; direct renal clearances in place of
 total clearances, which would convert the residual into a tubular term; a
-transporter assay at physiological albumin; and an independent human unbound
+transporter assay at physiological albumin; an independent human unbound
 fraction for PFPeA and PFHxA, the only compounds whose tubular sign is
-presently in dispute. A negative result on the first — an unbound fraction
+presently in dispute; and -- newly identified here as the binding constraint
+rather than the rodent data -- human renal clearances for PFBA and PFBS,
+without which neither compound can enter the residual-free decomposition
+however completely the rat is characterised. A negative result on the first — an unbound fraction
 showing the macaque to be a poor human analogue — would be as informative as a
 positive one.
 
@@ -734,6 +866,9 @@ verified byte-identical across consecutive runs.
 | Tubular factors, 52 pairs | `db/tubular_factor_consolidated.csv` |
 | Binding compilation, all proteins and species | `db/protein_binding.csv` |
 | Transporter abundance and kinetics | `db/transporter_expression.csv`, `db/transporter_clearance_stage3.csv` |
+| Renal-only decomposition (Tables 9–10) | `db/renal_only_decomposition.csv`, `scripts/stage17_renal_only_decomposition.py` |
+| Rat renal clearance search, bounds and cross-validation (Tables 11–12) | `db/rat_renal_clearance_search.csv`, `db/kudo_ohmori_crossvalidation.csv`, `db/renal_only_bounds.csv`, `scripts/stage18_rat_renal_clearance_search.py` |
+| Open provenance flags | `db/renal_clearance_provenance_flags.csv` |
 | Figures | `notebook/pfas_tk_plots.ipynb` |
 
 ---
@@ -747,6 +882,12 @@ a male volunteer. *Environ. Int.* **193**, 109047.
 
 ATSDR (2021). *Toxicological Profile for Perfluoroalkyls*. Agency for Toxic
 Substances and Disease Registry, Atlanta, GA.
+
+Chang, S.-C., Das, K., Ehresman, D. J., Ellefson, M. E., Gorman, G. S.,
+Hart, J. A., Noker, P. E., Tan, Y.-M., Lieder, P. H., Lau, C., Olsen, G. W.,
+and Butenhoff, J. L. (2008). Comparative pharmacokinetics of perfluorobutyrate
+in rats, mice, monkeys, and humans and relevance to human exposure via
+drinking water. *Toxicol. Sci.* **104**, 40–53.
 
 Chang, S., Noker, P. E., Gorman, G. S., Gibson, S. J., Hart, J. A., Ehresman,
 D. J., and Butenhoff, J. L. (2012). Comparative pharmacokinetics of
@@ -788,6 +929,15 @@ Kim, S.-J., Heo, S.-H., Lee, D.-S., Hwang, I. G., Lee, Y.-B., and Cho, H.-Y.
 perfluoroalkyl and polyfluoroalkyl substances in rats. *Food Chem. Toxicol.*
 **97**, 243–255.
 
+Kudo, N., Suzuki, E., Katakura, M., Ohmori, K., Noshiro, R., and
+Kawashima, Y. (2001). Comparison of the elimination between perfluorinated
+fatty acids with different carbon chain length in rats. *Chem. Biol. Interact.*
+**134**, 203–216.
+
+Kudo, N., Katakura, M., Sato, Y., and Kawashima, Y. (2002). Sex
+hormone-regulated renal transport of perfluorooctanoic acid. *Chem. Biol.
+Interact.* **139**, 301–316.
+
 OEHHA (2024). *Public Health Goals for Perfluorooctanoic Acid and
 Perfluorooctane Sulfonic Acid in Drinking Water*. Office of Environmental
 Health Hazard Assessment, California EPA, Sacramento, CA.
@@ -795,6 +945,11 @@ Health Hazard Assessment, California EPA, Sacramento, CA.
 Ohmori, K., Kudo, N., Katayama, K., and Kawashima, Y. (2003). Comparison of
 the toxicokinetics between perfluorocarboxylic acids with different carbon
 chain length. *Toxicology* **184**, 135–140.
+
+Olsen, G. W., Chang, S.-C., Noker, P. E., Gorman, G. S., Ehresman, D. J.,
+Lieder, P. H., and Butenhoff, J. L. (2009). A comparison of the
+pharmacokinetics of perfluorobutanesulfonate (PFBS) in rats, monkeys, and
+humans. *Toxicology* **256**, 65–74.
 
 Ryu, S., Burchett, W., Zhang, S., Modaresi, S. M. S., Agudelo Areiza, J.,
 Kaye, E., Fischer, F. C., and Slitt, A. L. (2024a). Species-specific unbound
