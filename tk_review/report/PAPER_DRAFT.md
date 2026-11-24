@@ -35,8 +35,13 @@ together, the secretory transporters OAT1 and OAT3 are present in all three
 species, whereas the reabsorptive transporters are not shared — human OAT4 is
 undetectable in rat and mouse, and rodent Oatp1a1 is undetectable in human.
 Separately, we show that liver fatty acid-binding protein has no affinity
-advantage over albumin (one-sided 95% upper limit 1.06-fold), removing the
-standard explanation for hepatic accumulation. Reading the primary sources
+advantage over albumin. That comparison proves to be method-confounded — 63
+assays measured albumin only, 25 L-FABP only, and one measured both — so we
+repeat it within the single fully paired design, where L-FABP binds 1.34-fold
+more weakly (one-sided 95% limit, paired t(13) = -4.42), strengthening the
+refutation. The within-method data also reveal a chain-length dependence the
+pooled analysis concealed, +0.055 log units per carbon, so the disadvantage
+vanishes above C11 — exactly where the hypothesis is invoked. Reading the primary sources
 behind a widely used regulatory tabulation yields direct human renal
 clearances for nine compounds, giving net tubular reabsorption of 98–99.5%
 from C8 to C12, and reveals that the tabulation transcribed one study's total
@@ -45,15 +50,20 @@ compound whose urinary clearance was below detection. For the three compounds
 with direct renal clearances in both species, the renal clearance ratio
 decomposes with no residual at all, and binding's share falls further, to 3%
 against 68% for a tubular term that is now measured rather than inferred.
-Extending that residual-free form to PFDA and PFOS as one-sided bounds shows
-the tubular explanation to be compound-specific rather than general: PFOS
-retains a tubular factor above 31 carrying 62–70% of its ratio, whereas
-PFDA's is bounded below unity against every available human value, so for
-PFDA the rat tubule is not the more secretory of the two and the difference
-is carried by glomerular filtration and binding alone. The practical
-consequence of the main result is that no single interspecies scaling
-approach serves both rodents, and the practical consequence of the second is
-that none serves every compound.
+Reading one primary source at first hand adds a measured rat renal clearance
+for PFOS and a fourth for PFOA, the latter widening the rat disagreement to
+10.8-fold and the tubular factor with it to 15.9-fold, while its share of the
+log ratio moves only from 58% to 74%. Two further results make the tubular
+term partly mechanistic rather than merely residual. Within one study, one
+strain and one assay, and with no sex difference in volume of distribution,
+the tubular factor changes sign between the sexes for PFOA and PFHxS but not
+for PFOS. And because reabsorption and secretion saturate in opposite
+directions, the sign of the dose response discriminates between them: every
+rat series rises with dose except PFOS, whose four series across two studies
+all fall — in the one case where saturable plasma binding, which can only
+raise clearance, is furthest from saturating. The practical consequence of
+the main result is that no single interspecies scaling approach serves both
+rodents; of the second, that none serves every compound.
 
 **Key words:** perfluoroalkyl substances; toxicokinetics; interspecies
 extrapolation; renal tubular reabsorption; serum albumin; organic anion
@@ -293,9 +303,101 @@ The pooled within-compound SD is 1.02 log units for albumin and 0.65 for
 L-FABP — in both cases larger than the difference between the proteins. The
 dispersion, not the central difference, is the operative result.
 
+**That comparison is method-confounded, and the confound had to be tested
+rather than assumed.** The analysis above pairs the two proteins *by
+compound*: for each compound it averages every albumin measurement and every
+L-FABP measurement and differences the means. But those means are drawn from
+almost disjoint sets of assays. Of the methods in the compilation, 63
+measured albumin only, 25 measured L-FABP only, and exactly one measured
+both. Each per-compound difference is therefore a difference between two
+different method mixtures, and pairing on compound cannot remove a method
+offset, because the pairing is on the wrong factor. Since method is the
+principal axis of disagreement in this compilation (Figure 3), that is
+precisely the condition under which such a mixture difference biases the
+estimate.
+
+Gao et al. provide the test. They measured 14 compounds against human serum
+albumin, pooled human serum and human L-FABP in one laboratory by one method,
+equilibrium dialysis — a fully paired within-method design in which the
+method mixture is identical on both arms by construction.
+
+**Table 2.** Within-method comparison, Gao et al., equilibrium dialysis. K_d
+in µM, so a larger value is weaker binding; the difference is in log K
+(association), negative where L-FABP binds more weakly. tC, total carbons.
+
+| compound | tC | K_d albumin | K_d serum | K_d L-FABP | K_d ratio | Δlog K |
+|---|---|---|---|---|---|---|
+| PFBA | 4 | 419 | 482 | 879 | 2.10 | −0.322 |
+| PFBS | 4 | 169 | 239 | 436 | 2.58 | −0.412 |
+| PFPeA | 5 | 286 | 387 | 685 | 2.40 | −0.379 |
+| PFHxA | 6 | 195 | 243 | 443 | 2.27 | −0.356 |
+| PFHxS | 6 | 79 | 158 | 210 | 2.66 | −0.425 |
+| PFHpA | 7 | 172 | 209 | 358 | 2.08 | −0.318 |
+| 6:2 Cl-PFESA | 8 | 67 | 82 | 102 | 1.52 | −0.183 |
+| PFOA | 8 | 115 | 166 | 197 | 1.71 | −0.234 |
+| PFOS | 8 | 38 | 49 | 81 | 2.13 | −0.329 |
+| PFNA | 9 | 73 | 84 | 90 | 1.23 | −0.091 |
+| PFDA | 10 | 65 | 70 | 77 | 1.18 | −0.074 |
+| PFUnDA | 11 | 79 | 75 | 54 | 0.68 | +0.165 |
+| PFDoDA | 12 | 103 | 100 | 95 | 0.92 | +0.035 |
+| PFTrDA | 13 | 265 | 284 | 317 | 1.20 | −0.078 |
+
+**The claim survives, and strengthens.** The mean within-method difference is
+−0.214 log units (95% CI −0.319 to −0.110; paired t(13) = −4.42), sitting
+between the two pooled estimates (−0.390 across all 19 compounds, −0.126 for
+the n ≥ 3 subset) with the same sign and a far more decisive t. The one-sided
+95% upper limit is **−0.128 log units**, which lies *below* zero. The
+within-method data therefore do not merely exclude an affinity advantage for
+L-FABP; they establish a disadvantage of at least **1.34-fold**. The pooled
+headline limit of +0.023 is superseded by a positive finding.
+
+**But the pooled analysis concealed a chain-length dependence, and it
+qualifies the refutation.** The within-method difference scales strongly with
+chain length: +0.0548 ± 0.0095 log units per total carbon, t(12) = 5.79,
+r² = 0.736, surviving adjustment for head group at +0.0510 ± 0.0099. L-FABP
+binds 2.13-fold more weakly at ≤ C8 but is indistinguishable from parity at
+≥ C11. This bears directly on the hypothesis under test, because the L-FABP
+explanation is invoked for *long-chain* hepatic accumulation: the refutation
+is strongest exactly where the hypothesis is not applied and weakest where it
+is. A claim that L-FABP has no affinity *advantage* is safe across the whole
+range; a claim that it binds measurably more *weakly* is not safe above C11.
+
+Two things are not claimed. The apparent sulfonate offset (−0.070 log units,
+SE 0.060, t = −1.17) is not significant and adding head group raises r² only
+from 0.736 to 0.765. And the top of the range is not monotonic — the
+difference peaks at C11 (+0.165), falls at C12 (+0.035) and C13 (−0.078) —
+with one compound per carbon there, so the linear fit must not be read as
+continuing past C11.
+
+### What binding could explain at most: an arithmetic bound
+
+Before any decomposition, one claim can be made that depends on no residual,
+no GFR value and no volume of distribution. Binding's contribution to a
+half-life ratio is at most the unbound-fraction ratio itself. Measured ratios
+and half-life ratios are therefore directly comparable.
+
+**Table 3.** Binding's maximum possible share of the log half-life
+ratio, per compound.
+
+| comparison | n | f_u ratio | half-life ratio | binding ceiling, share of log ratio |
+|---|---|---|---|---|
+| human/rat | 8 | 1.02–1.62 | 12.8–1794 | **0.3–18.8%** (median 6.8%) |
+| human/mouse | 8 | 2.03–18.56 | 3.3–1087 | **24.8–73.6%** (median 53.4%) |
+
+At the largest rat half-life ratio, binding leaves at least 1109-fold
+unexplained even if the largest observed binding ratio applied to it. This is
+a ceiling rather than an estimate: it assumes the whole unbound-fraction
+difference acts on the half-life and that nothing opposes it. **The rat
+ceiling is already small, and the rat and mouse ceilings do not overlap.**
+
+We lead with this because it is the most secure form of the central result.
+The decomposition that follows adds the question of *which other term* takes
+up the difference, and that question, as the Discussion sets out, is not
+answered independently of the binding term itself.
+
 ### Decomposition of the human/rat half-life ratio
 
-**Table 2.** Human/rat half-life ratio and its four factors, eight PFAAs with
+**Table 4.** Human/rat half-life ratio and its four factors, eight PFAAs with
 measured V_d and CL in both species.
 
 | compound | tC | t½ human (d) | t½ rat (d) | ratio | distribution | binding | glomerular | tubule |
@@ -309,7 +411,7 @@ measured V_d and CL in both species.
 | PFNA | 9 | 1304 | 28.8 | 45 | 0.43 | 1.12 | 5.60 | 16.6 |
 | PFDA | 10 | 862 | 46.4 | 19 | 0.53 | 1.62 | 5.60 | 3.9 |
 
-**Table 3.** Share of the log₁₀ half-life ratio carried by each factor (%),
+**Table 5.** Share of the log₁₀ half-life ratio carried by each factor (%),
 with bootstrap 95% confidence intervals of the mean.
 
 | | distribution | binding | glomerular | **tubule** |
@@ -327,13 +429,13 @@ these compounds faster than the rat.
 ### The mouse inverts the pattern
 
 For the mouse, binding carries 46% of the log ratio and the tubular term is
-indistinguishable from zero (Table 3). The cause is direct: mouse/human
+indistinguishable from zero (Table 5). The cause is direct: mouse/human
 unbound-fraction ratios range from 2.0 (PFDoDA) to 18.6 (PFHxS), whereas
 rat/human ratios across the same 14-compound panel span only 0.76–2.03
-(Table 4). Both mouse strains agree closely except for PFOS, where CD-1 and
+(Table 6). Both mouse strains agree closely except for PFOS, where CD-1 and
 C57BL/6 differ fivefold.
 
-**Table 4.** Plasma unbound fractions, single laboratory (Ryu et al., 2024a).
+**Table 6.** Plasma unbound fractions, single laboratory (Ryu et al., 2024a).
 
 | compound | human | rat | mouse CD-1 | mouse C57BL/6 | mouse/human | rat/human |
 |---|---|---|---|---|---|---|
@@ -359,9 +461,9 @@ No plasma unbound fraction has ever been measured in cynomolgus plasma for any
 PFAA, and our compilation of 1497 binding measurements contains no macaque
 value of any kind. Rather than omit the species, we ask what unbound fraction
 would be required for binding alone to account for the observed human/monkey
-half-life difference (Table 5).
+half-life difference (Table 7).
 
-**Table 5.** Unbound fraction the cynomolgus monkey would require for binding
+**Table 7.** Unbound fraction the cynomolgus monkey would require for binding
 alone to explain its half-life difference from the human.
 
 | compound | t½ human (d) | t½ monkey (d) | ratio | required f_u | multiple of human f_u |
@@ -384,7 +486,7 @@ clearances were thought unavailable. Reading the three primary sources behind
 EFSA's tabulation (EFSA CONTAM Panel, 2020) shows that they are available, and
 that the tabulation misrepresents one of them.
 
-**Table 7.** Human renal clearance from three primary studies (mL/kg/day).
+**Table 8.** Human renal clearance from three primary studies (mL/kg/day).
 
 | compound | Harada 2005 | Zhang 2013 mean | Zhang 2013 median | Fujii 2015 |
 |---|---|---|---|---|
@@ -426,10 +528,10 @@ self-contradictory, is Fujii's correct urinary value: the summary sentence was
 right and the table was wrong.
 
 **Direct tubular factors.** Substituting measured renal for total clearance
-converts the human upper bounds into point estimates (Table 8). Every direct
+converts the human upper bounds into point estimates (Table 9). Every direct
 value falls below its former bound, as it must.
 
-**Table 8.** Human tubular factors from measured renal clearance.
+**Table 9.** Human tubular factors from measured renal clearance.
 
 | compound | source | CL_R | f_u | filtered load | **T** | net reabsorbed | former bound |
 |---|---|---|---|---|---|---|---|
@@ -469,43 +571,62 @@ terms and no residual:
       (f_u,rat/f_u,human) × (GFR_rat/GFR_human) × (T_rat/T_human)   (5)
 
 Here T is genuinely the tubular factor. Three compounds have a direct renal
-clearance in male human and male rat (Table 9). PFNA has one in the human and
+clearance in male human and male rat (Table 10). PFNA has one in the human and
 only in the female rat, and pairing across sexes is inadmissible in a species
 where sex changes the sign of the tubular term.
 
-**Table 9.** Renal-only decomposition, male human against male rat. Multiple
+**Table 10.** Renal-only decomposition, male human against male rat. Multiple
 rows where sources disagree.
 
 | compound | CL_R human (source) | CL_R rat (source) | ratio | T human | T rat | binding | glomerular | **tubule** |
 |---|---|---|---|---|---|---|---|---|
 | PFHpA | 0.674 (Fujii) | 983.1 (Ohmori) | 1459 | 0.0589 | 15.04 | 1.02 | 5.60 | **255.2** |
-| PFOA | 0.030 (Harada) | 18.2 (Kemper) | 607 | 0.0048 | 0.424 | 1.22 | 5.60 | **89.0** |
+| **PFOA** | 0.030 (Harada) | **4.26 (Kim)** | 142 | 0.0048 | 0.0993 | 1.22 | 5.60 | **20.8** |
+| **PFOA** | 0.044 (Fujii) | **4.26 (Kim)** | 97 | 0.0070 | 0.0993 | 1.22 | 5.60 | **14.2** |
+| PFOA | 0.030 (Harada) | 18.2 (Kemper) | 607 | 0.0048 | 0.424 | 1.22 | 5.60 | 89.0 |
 | PFOA | 0.030 (Harada) | 21.2 (Ohmori) | 707 | 0.0048 | 0.494 | 1.22 | 5.60 | **103.7** |
 | PFOA | 0.030 (Harada) | 46.08 (Kudo) | 1536 | 0.0048 | 1.074 | 1.22 | 5.60 | **225.4** |
 | PFOA | 0.044 (Fujii) | 18.2 (Kemper) | 414 | 0.0070 | 0.424 | 1.22 | 5.60 | **60.7** |
 | PFOA | 0.044 (Fujii) | 21.2 (Ohmori) | 482 | 0.0070 | 0.494 | 1.22 | 5.60 | **70.7** |
 | PFOA | 0.044 (Fujii) | 46.08 (Kudo) | 1047 | 0.0070 | 1.074 | 1.22 | 5.60 | **153.7** |
-| PFHxS | 0.027 (Zhang) | 0.76 (Kim) | 28 | 0.0151 | 0.069 | 1.09 | 5.60 | **4.6** |
+| **PFHxS** | 0.027 (Zhang) | **0.76 (Kim)** | 28 | 0.0151 | 0.0694 | 1.09 | 5.60 | **4.6** |
+| **PFOS** | 0.012 (Harada) | **1.92 (Kim)** | 160 | 0.0062 | 0.1223 | 1.45 | 5.60 | **19.7** |
+| **PFOS** | 0.037 (Zhang mean) | **1.92 (Kim)** | 52 | 0.0191 | 0.1223 | 1.45 | 5.60 | **6.4** |
 
-All eight combinations of the disagreeing human and rat sources are shown
-rather than a selected pair; the partition in Table 10 is the mean over all
-eight. For PFOA the rat sources span 2.5-fold and the human two 1.5-fold, so its
-tubular factor ranges from 61 to 225 across the six combinations — but its
-*share* of the log ratio is insensitive to that, staying between 68% and 74%.
-Across all three compounds the tubular share spans 46% (PFHxS) to 76%
-(PFHpA).
+Rows in bold are the primary analysis; the remainder are retained as a
+sensitivity range. **PFOS enters as a measured value rather than a bound**,
+and **a fourth rat PFOA renal clearance has been added**, both from Kim et
+al. (2016) read at source.
 
-**Table 10.** Share of the log renal clearance ratio, mean over all eight
-source combinations.
+Kim's values are weighted as primary because they are the only rat renal
+clearances in this set taken from a primary table by the present authors,
+with the clearance definition stated in that paper's Methods and four
+internal consistency checks passing. Each alternative is weaker in a specific
+way: Kemper (2003) is an unpublished study reached only through a regulatory
+tabulation; the Ohmori value is a bar digitised from a figure whose two
+independent digitisations disagree 2.1-fold; and the Kudo value reaches us
+through Harada's Table 5 rather than its own.
 
-| | binding | glomerular | **tubule** |
-|---|---|---|---|
-| renal-only (equation 5, no residual) | **3%** | 29% | **68%** |
-| total clearance (equation 4, residual) | 8% | 42% | 65% |
+For PFOA the four rat sources now span 10.8-fold, and the tubular factor with
+them, from 14.2 to 225.4 — a 15.9-fold range. **Its share of the log ratio
+moves only from 58% to 74%.** The magnitude of the tubular factor is badly
+determined; the conclusion that it dominates is not. On the primary values
+alone the tubular share runs 46% (PFHxS) to 76% (PFHpA).
+
+**Table 11.** Share of the log renal clearance ratio, mean over the
+stated source combinations.
+
+| | n | binding | glomerular | **tubule** |
+|---|---|---|---|---|
+| renal-only, primary values (Kim-weighted) | 8 | **5.5%** | 37.5% | **57.0%** |
+| renal-only, all sources | 14 | **4.4%** | 32.7% | **62.9%** |
+| total clearance (equation 4, residual) | 8 | 8% | 42% | 65% |
 
 **Removing the non-renal routes does not rescue binding.** Its share falls
-from 8% to 3%, and the tubular term is confirmed at 68% as a measured
-quantity rather than a residual. This is the strongest available form of the
+from 8% to 4–6%, and the tubular term is confirmed at 57–63% as a measured
+quantity rather than a residual. The glomerular and tubular entries should be
+read with the GFR ambiguity below in mind; the binding entry is unaffected by
+it. This is the strongest available form of the
 central result, and it retires the principal limitation of the
 total-clearance analysis for these three compounds.
 
@@ -551,7 +672,7 @@ resolves to PFOA.
 
 **The human side is the tighter constraint.** No human renal clearance exists
 for PFBA or PFBS, so neither compound could enter equation (5) however
-complete the rat data became. PFDA and PFOS do have human values (Table 7),
+complete the rat data became. PFDA and PFOS do have human values (Table 8),
 so the two compounds whose rodent measurements are closest to retrievable are
 precisely the two that cannot be used, and the two that can be used are
 limited by the rat. The practical consequence is that equation (5) is
@@ -575,7 +696,7 @@ which is loose because the rat excretes PFOS substantially in bile.
 
 **The PFDA route is cross-validated rather than assumed.** Four compounds
 carry both a Kudo urinary fraction and an Ohmori renal clearance, so
-equation (6) can be run where the answer is already known (Table 11). It
+equation (6) can be run where the answer is already known (Table 12). It
 reads high in all four cases, by 1.05- to 1.80-fold. A one-directional
 overstatement is what an upper bound tolerates, and it simultaneously denies
 the route any claim to be a point estimate. For PFHpA-male and PFOA-female
@@ -586,7 +707,7 @@ Ohmori's digitised bars — different doses and routes (Kudo intraperitoneal,
 Ohmori intravenous) in the same strain and laboratory. That sets the floor on
 how far any derived renal clearance can be trusted in this literature.
 
-**Table 11.** Cross-validation of equation (6) against Ohmori's measured
+**Table 12.** Cross-validation of equation (6) against Ohmori's measured
 renal clearances. The two rows with AUC fraction 1.000 isolate inter-study
 disagreement from model error.
 
@@ -603,7 +724,7 @@ For male rat PFDA, equation (6) gives CL_R ≤ 0.125 mL/kg/day and T ≤ 0.0087,
 a bound 120-fold tighter than the figure's T < 1.04 and, unlike it,
 decisively below unity.
 
-**Table 12.** Equation (5) extended as one-sided bounds. All rat inputs are
+**Table 13.** Equation (5) extended as one-sided bounds. All rat inputs are
 upper bounds, so the ratio and the tubular factor are upper bounds; the
 binding and glomerular terms are exact. PFOS rows are summarised as ranges
 over four human and three rat sources (12 combinations). Tubular shares of the log ratio are
@@ -634,6 +755,108 @@ The tubular explanation is therefore compound-specific even within the
 carboxylates: it is strong for PFHpA and PFOA, weak for PFHxS, and for PFDA
 the available bound excludes it.
 
+### What the glomerular term depends on, and what it does not
+
+The glomerular factor is a ratio of species constants, so it is identical for
+every compound and cannot explain between-compound variation. It can,
+however, be wrong, and the project holds **two rat GFR values differing
+1.82-fold** — 14400 and 7920 mL/kg/day — with a third near 12200 implied by
+Harada et al. (2005). The tables above, like earlier work in this area, use
+the larger value.
+
+GFR enters equation (5) twice and in opposite directions: it multiplies the
+glomerular term and divides the tubular one. The choice therefore moves
+log10(1.82) = 0.26 log units from one to the other and changes nothing else.
+
+**Table 14.** Mean share of the log renal clearance ratio under each
+available rat GFR, over all compound and source combinations.
+
+| rat GFR (mL/kg/day) | source | binding | glomerular | **tubule** |
+|---|---|---|---|---|
+| 7920 | Ohmori/Shim | **4.4%** | 21.4% | 74.2% |
+| 12200 | implied by Harada 2005 | **4.4%** | 29.6% | 66.0% |
+| 14400 | OEHHA/Han | **4.4%** | 32.7% | 62.9% |
+
+**The binding share is invariant.** The central claim is therefore insensitive
+to a GFR ambiguity that moves the glomerular share by half and the tubular
+share by a sixth. The corollary is that the glomerular and tubular shares
+must be reported as ranges rather than point values: glomerular 21–33%,
+tubular 63–74%.
+
+### Reabsorption or secretion? The sign of the dose response
+
+Equation (3) has two unknowns and one equation, so a measured T cannot by
+itself say whether net reabsorption or net secretion dominates. This has been
+the principal limitation of the approach. It can be partly removed without
+separating the two terms numerically, because both processes are
+carrier-mediated and therefore saturable, and they saturate in opposite
+directions:
+
+- saturable **reabsorption** → at high dose less is reclaimed → T rises → clearance rises
+- saturable **secretion** → at high dose less is pumped out → T falls → clearance falls
+
+The *sign* of the dose response therefore discriminates. Dose series exist for
+28 species–sex–compound combinations across five studies.
+
+**One confounder matters, and it is one-directional.** Saturable plasma
+protein binding raises f_u at high dose, and CL_R = f_u·GFR·T rises even with
+T unchanged. But binding saturation can only push clearance *up*; it cannot
+produce a fall. A rise is therefore consistent with either saturable
+reabsorption or saturable binding, while a fall excludes reabsorption
+dominance outright. The fall is the diagnostic observation; a rise is
+diagnostic only where binding saturation can be excluded independently.
+
+**Table 15.** Dose response of clearance. Direction assigned at ratio
+thresholds of 1.15 and 0.87. The molar ratio is PFAS C_max at the high dose
+against 0.60 mM serum albumin.
+
+| compound | species | n series | rises | falls | PFAS:albumin at high dose |
+|---|---|---|---|---|---|
+| PFBS | rat | 2 | 2 | 0 | 0.70–1.25 |
+| PFHxS | rat | 2 | 2 | 0 | 0.50–0.68 |
+| PFOA | rat | 2 | 1 | 0 | not reported |
+| **PFOS** | **rat** | **4** | **0** | **4** | **0.35–0.45** |
+| PFHxS | mouse | 2 | 2 | 0 | not reported |
+| PFOS | mouse | 2 | 1 | 0 | not reported |
+| C7–C14 carboxylates | mouse | 14 | 8 | 3 | not reported |
+
+**All four rat PFOS series fall**, across two independent studies (ratios
+0.24, 0.43, 0.66, 0.82). No other rat series falls. The confounder is
+excluded exactly where it matters: PFOS's PFAS-to-albumin molar ratio at the
+high dose is 0.35–0.45, the **lowest** of the six series for which serum
+concentrations are reported, while the two compounds whose rises are
+confounded sit at 0.50–1.25. Binding was furthest from saturation precisely
+where the fall was observed.
+
+**In the mouse the dose effect scales with chain length**: log10 of the
+clearance ratio rises by 0.133 ± 0.027 per total carbon, t(12) = 4.89,
+r² = 0.666, crossing unity at C9.2. Saturable reabsorption predicts this if
+the reabsorptive carrier binds longer chains more tightly — the longer the
+chain, the more reabsorption there is to saturate.
+
+**T and the dose sign answer different questions, and the pair is more
+informative than either.** T says which process *dominates* at the measured
+dose; the sign says which *saturates first* as dose rises. PFOS is
+net-reabsorbing (T = 0.122) yet its clearance falls, placing a smaller
+secretory or non-renal component as the first to saturate. That is a coherent
+picture, not a contradiction.
+
+**PFOS separates from every other compound on three independent axes**: the
+falling dose response, the absence of a sex difference in renal clearance,
+and a tubular factor below unity in both sexes where PFOA's and PFHxS's cross
+unity. Three unrelated kinds of evidence agree that PFOS is not handled like
+the rest — a result in its own right, and a warning against treating the
+chemical class uniformly.
+
+The alternative is not dismissed. PFOS undergoes substantial enterohepatic
+circulation, so a fall in *total* clearance may reflect saturable biliary
+transport rather than saturable tubular secretion. Separating those requires
+a dose series in renal clearance specifically, which does not exist for PFOS.
+We also note that the rat tubular factor for PFHpA is 15.0, far above unity
+and the only net-secreting value in the set, while mouse PFHpA clearance
+falls with dose; those agree, but they are different species, and we do not
+treat a cross-species agreement as corroboration.
+
 ### Renal transporter expression: the reabsorptive machinery is not shared
 
 Of 305 directional rows, 299 resolve to a reabsorption-or-secretion
@@ -641,7 +864,7 @@ assignment across 21 transporters with zero genuine conflicts: papers that
 disagree about which compounds a transporter carries do not disagree about
 where it sits.
 
-**Table 6.** Renal transporter abundance, kidney membrane fractions, single
+**Table 16.** Renal transporter abundance, kidney membrane fractions, single
 assay (Thakur et al., 2024). Values are pmol/mg membrane protein, mean ± SD.
 
 | transporter | membrane | net process | human (n=15) | rat (n=10) | mouse (n=14) |
@@ -675,6 +898,27 @@ corner case: mouse PFHxA secretes at T = 2.23, and the female rat secretes
 PFOA at T = 24.6 against a male value of 0.42–1.07 — a change of sign within
 one species, concurrent with a 114-fold sex difference in abundance of the
 reabsorptive transporter Oatp1a1.
+
+**One study settles this without any cross-study assembly.** Kim et al.
+(2016) measured renal clearance in both sexes of one rat strain by one assay
+and report no significant sex difference in volume of distribution for any of
+the three compounds studied. The sex difference therefore cannot be a
+distribution effect; it sits in the tubular term, and that term changes sign
+(Table 17).
+
+**Table 17.** Tubular factors by sex from a single study (Kim et al., 2016),
+male rat GFR 14400 mL/kg/day.
+
+| compound | CL_R male | CL_R female | T male | T female | female/male |
+|---|---|---|---|---|---|
+| PFOA | 4.26 | 323.60 | 0.0993 | **7.541** | 76 |
+| PFHxS | 0.76 | 63.87 | 0.0694 | **5.836** | 84 |
+| PFOS | 1.92 | 1.72 | 0.1223 | 0.1096 | 0.9 |
+
+For PFOA and PFHxS the same compound is net-reabsorbed in the male and
+net-secreted in the female within one experiment. PFOS, which shows no sex
+difference in renal clearance, is the internal control establishing that the
+contrast is not an artefact of the assay.
 
 ### Errors identified in primary and secondary sources
 
@@ -729,6 +973,29 @@ For the mouse it is largely correct. For the rat — the species with the larger
 difference, and the species more often used in chronic toxicology — it is
 quantitatively excluded.
 
+### The binding and tubular shares are one finding, not two
+
+In equation (4) the tubular term is a **residual**: it is what the half-life
+ratio leaves after the distribution, binding and glomerular terms are
+removed. An error in the unbound-fraction ratio therefore enters the binding
+term with one sign and the tubular term with exactly the opposite sign, and
+the two log shares move with correlation −1 by construction.
+
+This is demonstrable. Multiplying every unbound-fraction ratio by a factor k
+and recomputing gives, for the human/rat set, mean binding shares of −9.4%,
+7.5% and 24.5% at k = 0.5, 1.0 and 2.0, with mean tubular shares of 81.8%,
+64.8% and 47.8% — and a **sum that is invariant at 72.3% throughout**. Every
+log unit added to binding is subtracted from the residual, exactly.
+
+It follows that "binding is small" and "the tubular term is large" are the
+same statement, and reporting them as two findings overstates the evidence.
+The result is not weakened by this; it is relocated. The secure claim is the
+measured unbound-fraction ratio and the arithmetic ceiling it implies
+(*What binding could explain at most*). Equation (5), where T is measured rather than inferred, is the
+only place in this work where the two terms are genuinely independent — which
+is the reason extending it matters, and the reason the renal-only compounds
+carry more weight than their number suggests.
+
 ### What the decomposition establishes, and what it does not
 
 It establishes that binding cannot explain the human/rat difference, because
@@ -767,11 +1034,16 @@ measured table requires no new data.
 
 ## Limitations
 
-The tubular factor is not separable into reabsorption and secretion;
-equation (3) has two unknowns and one equation, and the one in vitro route
-that could separate them is closed because OAT4 has no scaling factor to the
-kidney, while the two available methods for OAT1 and OAT3 disagree 11-fold and
-in opposite directions.
+The tubular factor is not separable into reabsorption and secretion at a
+given dose; equation (3) has two unknowns and one equation, and the one in
+vitro route that could separate them is closed because OAT4 has no scaling
+factor to the kidney, while the two available methods for OAT1 and OAT3
+disagree 11-fold and in opposite directions. The dose-response sign test
+(*Reabsorption or secretion?*, below) partly circumvents this by asking which process saturates
+first rather than which dominates, but it rests on *total* clearance for most
+compounds, so a falling response cannot be attributed to tubular secretion
+rather than to saturable biliary elimination without a renal-clearance dose
+series. None exists for PFOS, the compound where the question is sharpest.
 
 The fourth factor is a residual rather than a measured tubular term for the
 five compounds lacking paired renal clearances; for PFHpA, PFOA and PFHxS it
@@ -791,6 +1063,26 @@ The PFDA bound inherits the 1.05- to 1.80-fold spread of Table 11, and the
 PFOS bound is loose by construction because it rests on CL_R <= CL_tot in a
 species with substantial biliary excretion of PFOS; neither should be read as
 an estimate.
+
+**The unbound fractions rest unequally across species, and the rat worst of
+all.** Four plasma unbound-fraction sources are available: Ryu et al.
+(2024a), two Argoul et al. (2025) experiments, and Fischer et al. (2024).
+They cover the human with four, the mouse with three, and **the rat with one**.
+The rat binding factor therefore cannot be varied on its numerator at all,
+only on the human denominator, so the sensitivity range below understates rat
+uncertainty by an unknown amount. The mouse, testable properly, retains high
+ratios under all twelve of its source pairings, so the rat–mouse asymmetry is
+not an artefact of a single laboratory.
+
+**The binding range quoted in the abstract and in *What binding could explain at most* is
+source-specific.** The rat/human range of 0.76–2.03 is the Ryu/Ryu pairing.
+Across all four available human sources the rat binding factor reaches 4.89
+(PFOA against Fischer et al., 2024), which lifts the worst-case binding
+ceiling from 18.8% to 25.5% of the log half-life ratio. The conclusion
+survives — binding remains a minority of the difference at every pairing, and
+the Fischer comparison rests on only three shared compounds — but a claim
+that binding is bounded at twofold is not defensible. Bounded at roughly
+fivefold across every available source is.
 
 All in vitro transport measurements were made without plasma protein, against
 an in vivo unbound fraction near 0.0025 — a 400-fold discrepancy in the
@@ -827,6 +1119,18 @@ renal system whose molecular machinery is not conserved between the species:
 the apical reabsorptive transporters, which are different proteins in human
 and rat. Rodent reabsorption data therefore carry magnitude but not mechanism.
 
+For two compounds the tubular term is no longer only a magnitude. Within a
+single study, in one rat strain and one assay and with no sex difference in
+volume of distribution, the tubular factor for PFOA and PFHxS changes sign
+between the sexes — net reabsorption in the male, net secretion in the female
+— while PFOS, which has no sex difference in renal clearance, does not. And
+the sign of the dose response separates saturating reabsorption from
+saturating secretion without requiring the two to be resolved numerically:
+every rat series rises with dose except PFOS, whose four series across two
+studies all fall, in the one case where saturable plasma binding can be
+excluded as the cause. The tubular term is therefore partly mechanistic here,
+not merely residual.
+
 The tubular explanation is nonetheless compound-specific rather than general.
 Within the compounds for which the renal clearance ratio can be decomposed
 without a residual, the tubular term carries about two thirds of the
@@ -843,10 +1147,15 @@ reductio of Table 5 into a decomposition; direct renal clearances in place of
 total clearances, which would convert the residual into a tubular term; a
 transporter assay at physiological albumin; an independent human unbound
 fraction for PFPeA and PFHxA, the only compounds whose tubular sign is
-presently in dispute; and -- newly identified here as the binding constraint
+presently in dispute; -- newly identified here as the binding constraint
 rather than the rodent data -- human renal clearances for PFBA and PFBS,
 without which neither compound can enter the residual-free decomposition
-however completely the rat is characterised. A negative result on the first — an unbound fraction
+however completely the rat is characterised; and a second laboratory's
+unbound fractions in **rat** plasma, the only species for which this work
+rests on a single source with no possibility of substitution on the animal
+side. A renal-clearance dose series for PFOS would additionally separate
+saturable tubular secretion from saturable biliary elimination, the one
+alternative the mechanism test cannot exclude. A negative result on the first — an unbound fraction
 showing the macaque to be a poor human analogue — would be as informative as a
 positive one.
 
@@ -869,6 +1178,10 @@ verified byte-identical across consecutive runs.
 | Renal-only decomposition (Tables 9–10) | `db/renal_only_decomposition.csv`, `scripts/stage17_renal_only_decomposition.py` |
 | Rat renal clearance search, bounds and cross-validation (Tables 11–12) | `db/rat_renal_clearance_search.csv`, `db/kudo_ohmori_crossvalidation.csv`, `db/renal_only_bounds.csv`, `scripts/stage18_rat_renal_clearance_search.py` |
 | Open provenance flags | `db/renal_clearance_provenance_flags.csv` |
+| Within-method L-FABP comparison | `db/lfabp_within_method.csv`, `scripts/stage19_lfabp_within_method.py` |
+| Kim 2016 read at source; GFR sensitivity | `db/primary_2026/kim2016_table4_rat.csv`, `db/renal_only_v2.csv`, `db/gfr_sensitivity.csv`, `scripts/stage20_kim2016_primary.py` |
+| Dose-response mechanism test | `db/dose_sign_test.csv`, `db/tubular_mechanism_verdict.csv`, `scripts/stage21_dose_sign_test.py` |
+| Arithmetic bound and f_u source sensitivity | `db/binding_arithmetic_bound.csv`, `db/fu_source_sensitivity.csv`, `scripts/stage22_fu_sensitivity_and_bound.py` |
 | Figures | `notebook/pfas_tk_plots.ipynb` |
 
 ---
