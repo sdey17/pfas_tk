@@ -1,0 +1,13 @@
+fu_option,scope,n,m1a_median_fold,m1a_worst_fold,m1b_median_fold,m1b_worst_fold
+Argoul 2025,common set (n=5),5,65.99,104.8,1.256,2.886
+Argoul 2025,own coverage,6,65.99,104.8,1.663,3.892
+CONSENSUS (geomean),common set (n=5),5,42.0,94.21,1.741,3.188
+CONSENSUS (geomean),own coverage,9,21.48,94.21,1.889,112.2
+Fischer 2024,common set (n=5),5,22.55,80.8,1.89,7.1
+Fischer 2024,own coverage,6,22.55,80.8,2.804,5.545
+Ryu 2024,common set (n=5),5,33.7,151.0,3.296,6.49
+Ryu 2024,own coverage,9,26.89,151.0,1.856,138.8
+Smeltz 2023 (UC),common set (n=5),5,61.63,132.9,1.633,2.631
+Smeltz 2023 (UC),own coverage,8,46.89,132.9,3.331,26.81
+"compilation (Ryu, as used)",common set (n=5),5,33.7,151.0,3.296,6.49
+"compilation (Ryu, as used)",own coverage,9,26.89,151.0,1.856,138.8

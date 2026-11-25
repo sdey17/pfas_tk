@@ -1,0 +1,174 @@
+  [f_u loader] filled from Ryu's wider table, absent from human_fu_comparison.csv: 6:2 FTS, PFDoDA, PFOSA
+==============================================================================
+PART 1  PFDoDA AT SOURCE: THE HALF-LIFE IS REAL, MY T WAS NOT
+==============================================================================
+  Abraham 2024 Table 3:  t½ = 295 d  (95% CI 274-321)
+                         V_d = 354 mL/kg (342-368)
+  n = 1 volunteer, single oral dose, 450 days of sampling.
+
+  HOW MUCH HUMAN PFDoDA HALF-LIFE DATA EXISTS: THIS, AND NOTHING
+  ELSE. A PubMed search for perfluorododecanoic acid
+  toxicokinetics returns 10 records, none of them a human
+  half-life study; the hits are rat brain distribution, RIVM rat
+  modelling, minipig PK and fish bioconcentration. So the value
+  is a single measurement in a single person and cannot be
+  cross-checked against an independent study.
+
+  IS IT AN OUTLIER? NO -- IT IS THE END OF A TREND.
+    PFOA 2011d  ->  PFNA 1305d  ->  PFDA 862d  ->  PFUnDA 584d  ->  PFDoDA 295d
+  Five consecutive chain lengths, monotonically decreasing after
+  PFOA. A single bad number cannot produce a monotone run of four
+  decreases, so the pattern is a property of the data.
+
+  WHAT IS WRONG IS THE ROUTE ATTRIBUTION. Abraham Table 4:
+  cmpd        CL_uri   CL_tot   CL_fec  fecal %   non-renal evidence
+  PFBA           1.0     1.24     n.d.        -   urinary route measured
+  PFBS         0.067    0.107     n.d.        -   urinary route measured
+  PFHxS         n.d.    0.003     n.d.        -   no route detected either way
+  PFHpA        0.023    0.033     n.d.        -   urinary route measured
+  PFOA          n.d.   0.0024   0.0004      17%   faecal route measured
+  PFOS          n.d.    0.005     n.d.        -   no route detected either way
+  PFNA          n.d.   0.0038   0.0022      58%   faecal route measured
+  PFDA          n.d.   0.0084   0.0051      61%   faecal route measured
+  PFDoDA        n.d.   0.0474   0.0286      60%   faecal route measured
+  PFUnDA        n.d.   0.0163   0.0098      60%   faecal route measured
+
+  Urinary clearance is NOT DETECTED for all five long-chain PFCAs
+  and for both long-chain PFSAs. The authors say so plainly: they
+  could not detect long-chain PFAS in urine at these doses.
+
+==============================================================================
+THE FECAL-ROUTE CORRECTION TO T, FOR EVERY COMPOUND IT TOUCHES
+==============================================================================
+  T from total clearance credits the kidney with the faecal route
+  as well. Using the faecal FRACTION (dimensionless, so no body-
+  weight conversion is needed) gives a renal-only upper bound:
+      CL_renal <= CL_total * (1 - CL_fec/CL_tot)
+
+  cmpd       T (total)  fecal %  T (renal)   change   reading
+  PFBA          0.0372        -     0.0372        -   strong reabsorption
+  PFBS          0.0200        -     0.0200        -   strong reabsorption
+  PFDA          0.0932      61%     0.0366      39%   strong reabsorption
+  PFDoDA        3.0832      60%     1.2229      40%   net secretion
+  PFHpA         0.0511        -     0.0511        -   strong reabsorption
+  PFHxS         0.0297        -     0.0297        -   strong reabsorption
+  PFNA          0.0137      58%     0.0058      42%   strong reabsorption
+  PFOA          0.0066      17%     0.0055      83%   strong reabsorption
+  PFOS          0.0450        -     0.0450        -   strong reabsorption
+
+  PFDoDA: T falls from 3.083 to 1.223.
+  It is STILL above 1 (PFDoDA), so the correction
+  does not by itself overturn net secretion -- but the value is
+  now an UPPER BOUND built on an undetectable urinary
+  clearance, which is no basis for a secretion claim. The
+  honest statement is that PFDoDA's renal T is UNDETERMINED.
+
+==============================================================================
+PART 2  THE f_u CONSENSUS ACROSS ALL FOUR STUDIES
+==============================================================================
+  cmpd          Smeltz        Ryu     Argoul    Fischer  n   spread  consensus
+  PFBA         0.09300    0.22900          -          -  2     2.5x    0.14593
+  PFBS         0.00460    0.03650    0.01700          -  3     7.9x    0.01419
+  PFDA         0.00270    0.00062    0.00380    0.00037  4    10.3x    0.00124
+  PFDoDA             -    0.00011          -          -  1     1.0x    0.00011
+  PFHpA        0.00040    0.00445          -    0.00300  3    11.1x    0.00175
+  PFHxS        0.00090    0.00069    0.00080    0.00047  4     1.9x    0.00069
+  PFNA         0.00160    0.00187    0.00170    0.00095  4     2.0x    0.00148
+  PFOA         0.00100    0.00245    0.00170    0.00131  4     2.4x    0.00153
+  PFOS         0.00450    0.00075    0.00160    0.00075  4     6.0x    0.00142
+
+  COVERAGE: 9 of 9 compounds have at least one source.
+  ONLY ONE SOURCE: PFDoDA -- the 'consensus' there is
+  that single study, so it carries none of the agreement the
+  word implies and is flagged by n_sources=1 in the CSV.
+  GENUINE MULTI-STUDY CONSENSUS: 8 of 9 compounds.
+
+  WIDEST DISAGREEMENT: PFHpA spans 11.12-fold (Smeltz 2023 (UC)=0.0004; Ryu 2024=0.00445; Fischer 2024=0.003003).
+  A consensus geometric mean hides that; the range column is
+  carried in db/human_fu_consensus.csv for exactly that reason.
+
+  ABRAHAM USES SMELTZ. The f_up column of Abraham's own Table 4
+  reproduces the Smeltz values exactly (PFBA 0.093, PFOA 0.001,
+  PFNA 0.0016, PFDA 0.0027, PFHxS 0.0009, PFOS 0.0045). Since
+  every half-life and V_d here is Abraham's, pairing them with
+  Smeltz is the only combination that matches a published
+  analysis rather than one we assembled. Note Abraham's PFDoDA
+  f_up cell is BLANK -- Smeltz has no PFDoDA, which is why.
+
+==============================================================================
+WHAT THE f_u CHOICE COSTS: ALL FIVE OPTIONS, BOTH MODELS
+==============================================================================
+  M1a is parameter-free (T=1). M1b fits one constant T, scored
+  leave-one-out. Both use the CORRECTED renal T where available.
+
+  COMMON SET, scored on the 5 compounds every option
+  covers: PFDA, PFHxS, PFNA, PFOA, PFOS
+  Scoring each option on its own coverage would compare different
+  compound sets -- which is how PFDoDA alone produced a 139x
+  'worst case' for one row and not the others.
+
+  f_u option                     M1a med  M1a worst   M1b med  M1b worst
+  Smeltz 2023 (UC)                 61.6x     132.9x      1.6x       2.6x
+  Ryu 2024                         33.7x     151.0x      3.3x       6.5x
+  Argoul 2025                      66.0x     104.8x      1.3x       2.9x
+  Fischer 2024                     22.5x      80.8x      1.9x       7.1x
+  CONSENSUS (geomean)              42.0x      94.2x      1.7x       3.2x
+  compilation (Ryu, as used)       33.7x     151.0x      3.3x       6.5x
+
+  f_u option                    n   M1a med  M1a worst   M1b med  M1b worst   (own coverage)
+  Smeltz 2023 (UC)              8     46.9x     132.9x      3.3x      26.8x
+  Ryu 2024                      9     26.9x     151.0x      1.9x     138.8x
+  Argoul 2025                   6     66.0x     104.8x      1.7x       3.9x
+  Fischer 2024                  6     22.5x      80.8x      2.8x       5.5x
+  CONSENSUS (geomean)           9     21.5x      94.2x      1.9x     112.2x
+  compilation (Ryu, as used)    9     26.9x     151.0x      1.9x     138.8x
+
+  ON THE COMMON SET: best M1b median is Argoul 2025 at 1.3x,
+  best worst case is Smeltz 2023 (UC) at 2.6x.
+  M1a spans 22.6x to 66.0x across the options,
+  M1b spans 1.3x to 3.3x.
+  THE CHOICE MOVES THE NUMBERS BUT NOT THE CONCLUSION: every
+  option leaves M1a with a large one-directional shortfall and
+  every option lets one fitted constant remove most of it.
+
+
+  A PREDICTION OF MINE THAT THE NUMBERS DID NOT BEAR OUT. Because
+  T is now derived with the same f_u the model divides by, the
+  absolute LEVEL of f_u cancels in M1b, so I expected M1b to be
+  far less sensitive to the choice than M1a. It is not:
+      M1a medians span 2.9-fold across the options
+      M1b medians span 2.6-fold
+  Comparable. The reason is that the four studies disagree about
+  the SHAPE of f_u across compounds, not only its level -- Smeltz
+  and Ryu differ 6.0-fold on PFOS but only 1.3-fold on PFHxS. The
+  level cancels; the shape is what M1b depends on, and the
+  disagreement lives there too. So the f_u choice is not made
+  harmless by fitting T.
+
+  RECOMMENDATION -- AND THE TWO LINES OF EVIDENCE DO NOT AGREE,
+  SO BOTH ARE STATED.
+    Best median on the common set is Argoul 2025 (1.3x), but it
+    reports only 6 of the 9 compounds and has the WORST M1a of all
+    (66.0x), so its edge rests on the fewest compounds.
+
+    PRIMARY: Smeltz 2023. Not because it wins the median -- it is
+    second at 1.6x -- but because it has the best worst case
+    (2.6x), covers 8 of 9 compounds, is the largest series (67 PFAS),
+    and is the f_u Abraham 2024 used in its own Table 4. That last
+    point is the one that is not a fit statistic: it makes the
+    half-life, V_d and f_u a single published pairing.
+
+    SENSITIVITY: the consensus geometric mean (1.7x median, 3.2x worst),
+    which covers all 9 and sits mid-range, carried with the per-
+    compound spread (up to 11.1-fold on PFHpA) from
+    db/human_fu_consensus.csv.
+
+    CAVEAT TO STATE IN THE PAPER: Smeltz has no PFDoDA, so that
+    compound takes Ryu's value under any choice. The f_u column is
+    therefore not from a single source and should not be presented
+    as one.
+
+wrote db/abraham2024_route_split.csv  (10 rows)
+wrote db/human_tubular_factor_renal.csv  (9 rows)
+wrote db/human_fu_consensus.csv  (9 rows)
+wrote db/human_fu_consensus_models.csv  (12 rows)

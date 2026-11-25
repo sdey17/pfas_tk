@@ -1,0 +1,10 @@
+chemical,n_total_carbons,T_from_total_clearance,fecal_pct_of_total,T_renal_upper_bound,kind,reading
+PFBA,4,0.03719,,0.03719,total clearance; no faecal route detected,strong reabsorption
+PFBS,4,0.02001,,0.02001,total clearance; no faecal route detected,strong reabsorption
+PFDA,10,0.09318,60.71,0.03661,renal-only upper bound,strong reabsorption
+PFDoDA,12,3.083,60.34,1.223,renal-only upper bound,net secretion
+PFHpA,7,0.05106,,0.05106,total clearance; no faecal route detected,strong reabsorption
+PFHxS,6,0.02967,,0.02967,total clearance; no faecal route detected,strong reabsorption
+PFNA,9,0.01371,57.89,0.005774,renal-only upper bound,strong reabsorption
+PFOA,8,0.006623,16.67,0.005519,renal-only upper bound,strong reabsorption
+PFOS,8,0.04496,,0.04496,total clearance; no faecal route detected,strong reabsorption

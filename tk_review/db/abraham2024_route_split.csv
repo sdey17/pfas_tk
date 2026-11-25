@@ -1,0 +1,11 @@
+chemical,cl_urinary_mL_min,cl_total_mL_min,cl_fecal_mL_min,fecal_pct_of_total,evidence
+PFBA,1.0,1.24,n.d.,,urinary route measured
+PFBS,0.067,0.107,n.d.,,urinary route measured
+PFDA,n.d.,0.0084,0.0051,60.71,faecal route measured
+PFDoDA,n.d.,0.0474,0.0286,60.34,faecal route measured
+PFHpA,0.023,0.033,n.d.,,urinary route measured
+PFHxS,n.d.,0.003,n.d.,,no route detected either way
+PFNA,n.d.,0.0038,0.0022,57.89,faecal route measured
+PFOA,n.d.,0.0024,0.0004,16.67,faecal route measured
+PFOS,n.d.,0.005,n.d.,,no route detected either way
+PFUnDA,n.d.,0.0163,0.0098,60.12,faecal route measured
