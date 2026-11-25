@@ -1,0 +1,4 @@
+species,chemical,n_sources,lowest_pct,highest_pct,spread_fold,sources
+human,PFOA,2,25.1,45.8,1.825,"25.1% Harada 2005 Table 5, male 61 kg | 45.8% Fujii 2015 Table 2, urinary 0.044 / total 0.096"
+macaque,PFOA,2,40.4,41.5,1.027,"40.4% Harada 2005 Table 5, male Japanese macaque | 41.5% Harada 2005 Table 5, female"
+rat,PFOA,3,8.989,91.4,10.17,"9.0% Kim 2016 Table 4 (male), CL_R/CL_tot | 47.2% Harada 2005 Table 5, female Wistar | 91.4% Harada 2005 Table 5, male Wistar"

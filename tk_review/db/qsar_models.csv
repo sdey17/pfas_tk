@@ -1,0 +1,101 @@
+species,form,chemical,n_total_carbons,head_group,t_half_measured_d,t_half_loo_predicted_d,loo_fold_error
+human,log t½ ~ nC,PFBA,4,carboxylate,4.18,264.937,63.38
+human,log t½ ~ nC,PFBS,4,sulfonate,50.59,75.0332,1.483
+human,log t½ ~ nC,PFDA,10,carboxylate,861.75,1020.77,1.185
+human,log t½ ~ nC,PFDoDA,12,carboxylate,294.92,14853.0,50.36
+human,log t½ ~ nC,PFHpA,7,carboxylate,151.92,272.188,1.792
+human,log t½ ~ nC,PFHxS,6,sulfonate,1634.78,106.293,15.38
+human,log t½ ~ nC,PFNA,9,carboxylate,1304.25,551.679,2.364
+human,log t½ ~ nC,PFOA,8,carboxylate,2011.29,323.808,6.211
+human,log t½ ~ nC,PFOS,8,sulfonate,1211.02,345.789,3.502
+human,log t½ ~ nC + head,PFBA,4,carboxylate,4.18,158.553,37.93
+human,log t½ ~ nC + head,PFBS,4,sulfonate,50.59,280.004,5.535
+human,log t½ ~ nC + head,PFDA,10,carboxylate,861.75,734.806,1.173
+human,log t½ ~ nC + head,PFDoDA,12,carboxylate,294.92,17009.7,57.68
+human,log t½ ~ nC + head,PFHpA,7,carboxylate,151.92,113.959,1.333
+human,log t½ ~ nC + head,PFHxS,6,sulfonate,1634.78,247.519,6.605
+human,log t½ ~ nC + head,PFNA,9,carboxylate,1304.25,322.349,4.046
+human,log t½ ~ nC + head,PFOA,8,carboxylate,2011.29,142.781,14.09
+human,log t½ ~ nC + head,PFOS,8,sulfonate,1211.02,1927.37,1.592
+human,log t½ ~ nC + nC^2,PFBA,4,carboxylate,4.18,63.1352,15.1
+human,log t½ ~ nC + nC^2,PFBS,4,sulfonate,50.59,7.37774,6.857
+human,log t½ ~ nC + nC^2,PFDA,10,carboxylate,861.75,1224.87,1.421
+human,log t½ ~ nC + nC^2,PFDoDA,12,carboxylate,294.92,86.3919,3.414
+human,log t½ ~ nC + nC^2,PFHpA,7,carboxylate,151.92,1086.84,7.154
+human,log t½ ~ nC + nC^2,PFHxS,6,sulfonate,1634.78,209.339,7.809
+human,log t½ ~ nC + nC^2,PFNA,9,carboxylate,1304.25,1436.49,1.101
+human,log t½ ~ nC + nC^2,PFOA,8,carboxylate,2011.29,1067.26,1.885
+human,log t½ ~ nC + nC^2,PFOS,8,sulfonate,1211.02,1219.77,1.007
+human,log t½ ~ nC + nC^2 + head,PFBA,4,carboxylate,4.18,17.8395,4.268
+human,log t½ ~ nC + nC^2 + head,PFBS,4,sulfonate,50.59,23.4405,2.158
+human,log t½ ~ nC + nC^2 + head,PFDA,10,carboxylate,861.75,914.228,1.061
+human,log t½ ~ nC + nC^2 + head,PFDoDA,12,carboxylate,294.92,331.158,1.123
+human,log t½ ~ nC + nC^2 + head,PFHpA,7,carboxylate,151.92,533.904,3.514
+human,log t½ ~ nC + nC^2 + head,PFHxS,6,sulfonate,1634.78,474.639,3.444
+human,log t½ ~ nC + nC^2 + head,PFNA,9,carboxylate,1304.25,846.474,1.541
+human,log t½ ~ nC + nC^2 + head,PFOA,8,carboxylate,2011.29,457.375,4.397
+human,log t½ ~ nC + nC^2 + head,PFOS,8,sulfonate,1211.02,10943.3,9.036
+mouse,log t½ ~ nC,PFBA,4,carboxylate,0.439,1.11916,2.549
+mouse,log t½ ~ nC,PFDA,10,carboxylate,78.767,35.823,2.199
+mouse,log t½ ~ nC,PFDoDA,12,carboxylate,89.794,318.558,3.548
+mouse,log t½ ~ nC,PFHpA,7,carboxylate,0.14,10.3374,73.84
+mouse,log t½ ~ nC,PFHxS,6,sulfonate,30.833,1.38682,22.23
+mouse,log t½ ~ nC,PFNA,9,carboxylate,39.101,19.3327,2.023
+mouse,log t½ ~ nC,PFOA,8,carboxylate,8.786,11.143,1.268
+mouse,log t½ ~ nC,PFOS,8,sulfonate,40.704,8.95123,4.547
+mouse,log t½ ~ nC + head,PFBA,4,carboxylate,0.439,0.0594687,7.382
+mouse,log t½ ~ nC + head,PFDA,10,carboxylate,78.767,20.4958,3.843
+mouse,log t½ ~ nC + head,PFDoDA,12,carboxylate,89.794,232.193,2.586
+mouse,log t½ ~ nC + head,PFHpA,7,carboxylate,0.14,5.33113,38.08
+mouse,log t½ ~ nC + head,PFHxS,6,sulfonate,30.833,7.45841,4.134
+mouse,log t½ ~ nC + head,PFNA,9,carboxylate,39.101,9.78355,3.997
+mouse,log t½ ~ nC + head,PFOA,8,carboxylate,8.786,5.05978,1.736
+mouse,log t½ ~ nC + head,PFOS,8,sulfonate,40.704,168.27,4.134
+mouse,log t½ ~ nC + nC^2,PFBA,4,carboxylate,0.439,1.68494,3.838
+mouse,log t½ ~ nC + nC^2,PFDA,10,carboxylate,78.767,37.1524,2.12
+mouse,log t½ ~ nC + nC^2,PFDoDA,12,carboxylate,89.794,1115.31,12.42
+mouse,log t½ ~ nC + nC^2,PFHpA,7,carboxylate,0.14,16.0001,114.3
+mouse,log t½ ~ nC + nC^2,PFHxS,6,sulfonate,30.833,1.41782,21.75
+mouse,log t½ ~ nC + nC^2,PFNA,9,carboxylate,39.101,21.1047,1.853
+mouse,log t½ ~ nC + nC^2,PFOA,8,carboxylate,8.786,13.5507,1.542
+mouse,log t½ ~ nC + nC^2,PFOS,8,sulfonate,40.704,9.02215,4.512
+mouse,log t½ ~ nC + nC^2 + head,PFBA,4,carboxylate,0.439,0.00482954,90.9
+mouse,log t½ ~ nC + nC^2 + head,PFDA,10,carboxylate,78.767,18.4849,4.261
+mouse,log t½ ~ nC + nC^2 + head,PFDoDA,12,carboxylate,89.794,62076.7,691.3
+mouse,log t½ ~ nC + nC^2 + head,PFHpA,7,carboxylate,0.14,7.35323,52.52
+mouse,log t½ ~ nC + nC^2 + head,PFHxS,6,sulfonate,30.833,8.11102,3.801
+mouse,log t½ ~ nC + nC^2 + head,PFNA,9,carboxylate,39.101,6.63491,5.893
+mouse,log t½ ~ nC + nC^2 + head,PFOA,8,carboxylate,8.786,3.41681,2.571
+mouse,log t½ ~ nC + nC^2 + head,PFOS,8,sulfonate,40.704,154.731,3.801
+rat,log t½ ~ nC,PFBA,4,carboxylate,0.326,0.234618,1.389
+rat,log t½ ~ nC,PFBS,4,sulfonate,0.157,0.374099,2.383
+rat,log t½ ~ nC,PFDA,10,carboxylate,46.388,29.457,1.575
+rat,log t½ ~ nC,PFHpA,7,carboxylate,0.085,5.10992,60.12
+rat,log t½ ~ nC,PFHxS,6,sulfonate,28.239,0.779829,36.21
+rat,log t½ ~ nC,PFNA,9,carboxylate,28.831,12.7973,2.253
+rat,log t½ ~ nC,PFOA,8,carboxylate,1.638,8.98496,5.485
+rat,log t½ ~ nC,PFOS,8,sulfonate,28.731,5.3253,5.395
+rat,log t½ ~ nC + head,PFBA,4,carboxylate,0.326,0.00231464,140.8
+rat,log t½ ~ nC + head,PFBS,4,sulfonate,0.157,2.24611,14.31
+rat,log t½ ~ nC + head,PFDA,10,carboxylate,46.388,18.7388,2.476
+rat,log t½ ~ nC + head,PFHpA,7,carboxylate,0.085,2.51754,29.62
+rat,log t½ ~ nC + head,PFHxS,6,sulfonate,28.239,2.12386,13.3
+rat,log t½ ~ nC + head,PFNA,9,carboxylate,28.831,6.42956,4.484
+rat,log t½ ~ nC + head,PFOA,8,carboxylate,1.638,4.15363,2.536
+rat,log t½ ~ nC + head,PFOS,8,sulfonate,28.731,52.1388,1.815
+rat,log t½ ~ nC + nC^2,PFBA,4,carboxylate,0.326,0.293747,1.11
+rat,log t½ ~ nC + nC^2,PFBS,4,sulfonate,0.157,0.58021,3.696
+rat,log t½ ~ nC + nC^2,PFDA,10,carboxylate,46.388,49.8553,1.075
+rat,log t½ ~ nC + nC^2,PFHpA,7,carboxylate,0.085,10.1821,119.8
+rat,log t½ ~ nC + nC^2,PFHxS,6,sulfonate,28.239,0.313348,90.12
+rat,log t½ ~ nC + nC^2,PFNA,9,carboxylate,28.831,13.3655,2.157
+rat,log t½ ~ nC + nC^2,PFOA,8,carboxylate,1.638,8.87409,5.418
+rat,log t½ ~ nC + nC^2,PFOS,8,sulfonate,28.731,3.90084,7.365
+rat,log t½ ~ nC + nC^2 + head,PFBA,4,carboxylate,0.326,0.00291195,112.0
+rat,log t½ ~ nC + nC^2 + head,PFBS,4,sulfonate,0.157,24.9559,159.0
+rat,log t½ ~ nC + nC^2 + head,PFDA,10,carboxylate,46.388,135.084,2.912
+rat,log t½ ~ nC + nC^2 + head,PFHpA,7,carboxylate,0.085,3.60291,42.39
+rat,log t½ ~ nC + nC^2 + head,PFHxS,6,sulfonate,28.239,0.874058,32.31
+rat,log t½ ~ nC + nC^2 + head,PFNA,9,carboxylate,28.831,6.87887,4.191
+rat,log t½ ~ nC + nC^2 + head,PFOA,8,carboxylate,1.638,2.56488,1.566
+rat,log t½ ~ nC + nC^2 + head,PFOS,8,sulfonate,28.731,38.7496,1.349

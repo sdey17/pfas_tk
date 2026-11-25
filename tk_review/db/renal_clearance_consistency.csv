@@ -1,0 +1,27 @@
+species,chemical,cl_renal_mL_kg_day,cl_total_implied_mL_kg_day,ratio_renal_to_total,verdict,source
+human,PFDA,0.015,0.148,0.1014,usable,Fujii 2015
+human,PFDA,0.035,0.148,0.2365,usable,Zhang 2013
+human,PFDA,0.096,0.148,0.6486,usable,Zhang 2013
+human,PFDoDA,0.005,0.832,0.00601,usable,Fujii 2015
+human,PFHpA,0.41,0.584,0.7021,usable,Zhang 2013
+human,PFHpA,0.61,0.584,1.045,VOID: CL_R exceeds CL_tot,Zhang 2013
+human,PFHpA,0.674,0.584,1.154,VOID: CL_R exceeds CL_tot,Fujii 2015
+human,PFHxS,0.015,0.053,0.283,usable,Zhang 2013
+human,PFHxS,0.027,0.053,0.5094,usable,Zhang 2013
+human,PFNA,0.038,0.0659,0.5766,usable,Fujii 2015
+human,PFNA,0.094,0.0659,1.426,VOID: CL_R exceeds CL_tot,Zhang 2013
+human,PFNA,0.15,0.0659,2.276,VOID: CL_R exceeds CL_tot,Zhang 2013
+human,PFOA,0.027,0.0417,0.6475,usable,Harada 2005
+human,PFOA,0.03,0.0417,0.7194,usable,Harada 2005
+human,PFOA,0.033,0.0417,0.7914,usable,Harada 2005
+human,PFOA,0.044,0.0417,1.055,VOID: CL_R exceeds CL_tot,Fujii 2015
+human,PFOA,0.19,0.0417,4.556,VOID: CL_R exceeds CL_tot,Zhang 2013
+human,PFOA,0.77,0.0417,18.47,VOID: CL_R exceeds CL_tot,Zhang 2013
+human,PFOS,0.012,0.087,0.1379,usable,Harada 2005
+human,PFOS,0.015,0.087,0.1724,usable,Harada 2005
+human,PFOS,0.019,0.087,0.2184,usable,Harada 2005
+human,PFOS,0.024,0.087,0.2759,usable,Zhang 2013
+human,PFOS,0.037,0.087,0.4253,usable,Zhang 2013
+rat,PFHxS,0.76,6.75,0.1126,usable,Kim 2016 (male)
+rat,PFOA,4.26,47.39,0.08989,usable,Kim 2016 (male)
+rat,PFOS,1.92,9.24,0.2078,usable,Kim 2016 (male)

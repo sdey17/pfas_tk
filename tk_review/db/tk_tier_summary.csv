@@ -1,0 +1,4 @@
+tier,n,median_fold,worst_fold
+"tier 1: f_u + V_d + GFR, T=1",25,17.28,151.0
+tier 2: + measured CL_R,10,4.396,166.4
+tier 3: + measured renal fraction,10,1.335,10.17

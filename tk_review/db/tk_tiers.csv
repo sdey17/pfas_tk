@@ -1,0 +1,71 @@
+species,chemical,tier,kind,renal_fraction_pct,t_half_measured_d,t_half_predicted_d,fold_error,direction,provenance
+human,PFBA,"tier 1: f_u + V_d + GFR, T=1",prediction,,4.18,0.155464,26.89,under,GFR Chiu 2022 / OEHHA
+human,PFBA,tier 4: + compilation CL_tot,IDENTITY,,4.18,4.17978,1.0,under,circular
+human,PFBS,"tier 1: f_u + V_d + GFR, T=1",prediction,,50.59,1.01233,49.97,under,GFR Chiu 2022 / OEHHA
+human,PFBS,tier 4: + compilation CL_tot,IDENTITY,,50.59,50.592,1.0,over,circular
+human,PFDA,"tier 1: f_u + V_d + GFR, T=1",prediction,,861.75,80.3011,10.73,under,GFR Chiu 2022 / OEHHA
+human,PFDA,tier 2: + measured CL_R,prediction,,861.75,3452.76,4.007,over,CL_R Fujii 2015; Zhang 2013 (n=3)
+human,PFDA,tier 3: + measured renal fraction,prediction,22.7,861.75,783.777,1.099,under,"Fujii 2015 Table 2, 0.015 / 0.066"
+human,PFDA,tier 4: + compilation CL_tot,IDENTITY,,861.75,861.751,1.0,over,circular
+human,PFDoDA,"tier 1: f_u + V_d + GFR, T=1",prediction,,294.92,909.298,3.083,over,GFR Chiu 2022 / OEHHA
+human,PFDoDA,tier 2: + measured CL_R,prediction,,294.92,49074.8,166.4,over,CL_R Fujii 2015 (n=1)
+human,PFDoDA,tier 4: + compilation CL_tot,IDENTITY,,294.92,294.921,1.0,over,circular
+human,PFHpA,"tier 1: f_u + V_d + GFR, T=1",prediction,,151.92,7.75787,19.58,under,GFR Chiu 2022 / OEHHA
+human,PFHpA,tier 2: + measured CL_R,prediction,,151.92,216.397,1.424,over,CL_R Zhang 2013 (n=1)
+human,PFHpA,tier 3: + measured renal fraction,prediction,100.0,151.92,216.397,1.424,over,"Fujii 2015 Table 2, 0.674 / 0.674"
+human,PFHpA,tier 4: + compilation CL_tot,IDENTITY,,151.92,151.923,1.0,over,circular
+human,PFHxS,"tier 1: f_u + V_d + GFR, T=1",prediction,,1634.78,48.5085,33.7,under,GFR Chiu 2022 / OEHHA
+human,PFHxS,tier 2: + measured CL_R,prediction,,1634.78,4305.35,2.634,over,CL_R Zhang 2013 (n=2)
+human,PFHxS,tier 4: + compilation CL_tot,IDENTITY,,1634.78,1634.78,1.0,over,circular
+human,PFNA,"tier 1: f_u + V_d + GFR, T=1",prediction,,1304.25,17.8843,72.93,under,GFR Chiu 2022 / OEHHA
+human,PFNA,tier 2: + measured CL_R,prediction,,1304.25,2261.85,1.734,over,CL_R Fujii 2015 (n=1)
+human,PFNA,tier 3: + measured renal fraction,prediction,61.3,1304.25,1386.51,1.063,over,"Fujii 2015 Table 2, 0.038 / 0.062"
+human,PFNA,tier 4: + compilation CL_tot,IDENTITY,,1304.25,1304.25,1.0,over,circular
+human,PFOA,"tier 1: f_u + V_d + GFR, T=1",prediction,,2011.29,13.3202,151.0,under,GFR Chiu 2022 / OEHHA
+human,PFOA,tier 2: + measured CL_R,prediction,,2011.29,2805.08,1.395,over,CL_R Harada 2005 (n=3)
+human,PFOA,tier 3: + measured renal fraction,prediction,25.1,2011.29,704.074,2.857,under,"Harada 2005 Table 5, male 61 kg"
+human,PFOA,tier 3: + measured renal fraction,prediction,45.8,2011.29,1284.72,1.566,under,"Fujii 2015 Table 2, urinary 0.044 / total 0.096"
+human,PFOA,tier 4: + compilation CL_tot,IDENTITY,,2011.29,2011.29,1.0,over,circular
+human,PFOS,"tier 1: f_u + V_d + GFR, T=1",prediction,,1211.02,54.4429,22.24,under,GFR Chiu 2022 / OEHHA
+human,PFOS,tier 2: + measured CL_R,prediction,,1211.02,5323.3,4.396,over,CL_R Harada 2005; Zhang 2013 (n=5)
+human,PFOS,tier 3: + measured renal fraction,prediction,17.5,1211.02,931.578,1.3,under,"Harada 2005 Table 5, male 61 kg"
+human,PFOS,tier 4: + compilation CL_tot,IDENTITY,,1211.02,1211.02,1.0,under,circular
+mouse,PFBA,"tier 1: f_u + V_d + GFR, T=1",prediction,,0.439,0.00827955,53.02,under,GFR Chiu 2022 / OEHHA
+mouse,PFBA,tier 4: + compilation CL_tot,IDENTITY,,0.439,0.438993,1.0,under,circular
+mouse,PFDA,"tier 1: f_u + V_d + GFR, T=1",prediction,,78.767,7.51917,10.48,under,GFR Chiu 2022 / OEHHA
+mouse,PFDA,tier 4: + compilation CL_tot,IDENTITY,,78.767,78.7667,1.0,under,circular
+mouse,PFDoDA,"tier 1: f_u + V_d + GFR, T=1",prediction,,89.794,111.072,1.237,over,GFR Chiu 2022 / OEHHA
+mouse,PFDoDA,tier 4: + compilation CL_tot,IDENTITY,,89.794,89.7941,1.0,over,circular
+mouse,PFHpA,"tier 1: f_u + V_d + GFR, T=1",prediction,,0.14,0.0888558,1.576,under,GFR Chiu 2022 / OEHHA
+mouse,PFHpA,tier 4: + compilation CL_tot,IDENTITY,,0.14,0.139828,1.001,under,circular
+mouse,PFHxS,"tier 1: f_u + V_d + GFR, T=1",prediction,,30.833,0.415058,74.29,under,GFR Chiu 2022 / OEHHA
+mouse,PFHxS,tier 4: + compilation CL_tot,IDENTITY,,30.833,30.8331,1.0,over,circular
+mouse,PFNA,"tier 1: f_u + V_d + GFR, T=1",prediction,,39.101,2.04554,19.12,under,GFR Chiu 2022 / OEHHA
+mouse,PFNA,tier 4: + compilation CL_tot,IDENTITY,,39.101,39.1006,1.0,under,circular
+mouse,PFOA,"tier 1: f_u + V_d + GFR, T=1",prediction,,8.786,0.508546,17.28,under,GFR Chiu 2022 / OEHHA
+mouse,PFOA,tier 4: + compilation CL_tot,IDENTITY,,8.786,8.78637,1.0,over,circular
+mouse,PFOS,"tier 1: f_u + V_d + GFR, T=1",prediction,,40.704,2.00133,20.34,under,GFR Chiu 2022 / OEHHA
+mouse,PFOS,tier 4: + compilation CL_tot,IDENTITY,,40.704,40.704,1.0,under,circular
+rat,PFBA,"tier 1: f_u + V_d + GFR, T=1",prediction,,0.326,0.0271899,11.99,under,GFR Han 2012 (OEHHA primary)
+rat,PFBA,tier 4: + compilation CL_tot,IDENTITY,,0.326,0.326279,1.001,over,circular
+rat,PFBS,"tier 1: f_u + V_d + GFR, T=1",prediction,,0.157,0.166963,1.063,over,GFR Han 2012 (OEHHA primary)
+rat,PFBS,tier 4: + compilation CL_tot,IDENTITY,,0.157,0.157381,1.002,over,circular
+rat,PFDA,"tier 1: f_u + V_d + GFR, T=1",prediction,,46.388,16.7511,2.769,under,GFR Han 2012 (OEHHA primary)
+rat,PFDA,tier 4: + compilation CL_tot,IDENTITY,,46.388,46.3875,1.0,under,circular
+rat,PFHpA,"tier 1: f_u + V_d + GFR, T=1",prediction,,0.085,2.07808,24.45,over,GFR Han 2012 (OEHHA primary)
+rat,PFHpA,tier 4: + compilation CL_tot,IDENTITY,,0.085,0.0846988,1.004,under,circular
+rat,PFHxS,"tier 1: f_u + V_d + GFR, T=1",prediction,,28.239,17.4173,1.621,under,GFR Han 2012 (OEHHA primary)
+rat,PFHxS,tier 2: + measured CL_R,prediction,,28.239,250.81,8.882,over,CL_R Kim 2016 (male) (n=1)
+rat,PFHxS,tier 3: + measured renal fraction,prediction,8.435,28.239,21.156,1.335,under,"Kim 2016 Table 4 (male), CL_R/CL_tot"
+rat,PFHxS,tier 4: + compilation CL_tot,IDENTITY,,28.239,28.2393,1.0,over,circular
+rat,PFNA,"tier 1: f_u + V_d + GFR, T=1",prediction,,28.831,6.57848,4.383,under,GFR Han 2012 (OEHHA primary)
+rat,PFNA,tier 4: + compilation CL_tot,IDENTITY,,28.831,28.8309,1.0,under,circular
+rat,PFOA,"tier 1: f_u + V_d + GFR, T=1",prediction,,1.638,1.80911,1.104,over,GFR Han 2012 (OEHHA primary)
+rat,PFOA,tier 2: + measured CL_R,prediction,,1.638,18.2236,11.13,over,CL_R Kim 2016 (male) (n=1)
+rat,PFOA,tier 3: + measured renal fraction,prediction,8.989,1.638,1.63816,1.0,over,"Kim 2016 Table 4 (male), CL_R/CL_tot"
+rat,PFOA,tier 3: + measured renal fraction,prediction,91.4,1.638,16.6564,10.17,over,"Harada 2005 Table 5, male Wistar"
+rat,PFOA,tier 4: + compilation CL_tot,IDENTITY,,1.638,1.63816,1.0,over,circular
+rat,PFOS,"tier 1: f_u + V_d + GFR, T=1",prediction,,28.731,16.9136,1.699,under,GFR Han 2012 (OEHHA primary)
+rat,PFOS,tier 2: + measured CL_R,prediction,,28.731,138.268,4.813,over,CL_R Kim 2016 (male) (n=1)
+rat,PFOS,tier 3: + measured renal fraction,prediction,20.78,28.731,28.7311,1.0,over,"Kim 2016 Table 4 (male), CL_R/CL_tot"
+rat,PFOS,tier 4: + compilation CL_tot,IDENTITY,,28.731,28.7311,1.0,over,circular
