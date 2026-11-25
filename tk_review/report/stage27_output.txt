@@ -1,0 +1,193 @@
+==============================================================================
+BEFORE ANY MODEL: SCREENING THE MEASURED RENAL CLEARANCES
+==============================================================================
+  CL_R is one component of CL_tot, so CL_R > CL_tot is impossible,
+  not merely discrepant. Each measured value is therefore checked
+  against the total clearance it would be paired with.
+
+  7 of 26 values FAIL:
+    human PFHpA    CL_R   0.61 vs CL_tot 0.584    = 1.04x   Zhang 2013
+    human PFHpA    CL_R  0.674 vs CL_tot 0.584    = 1.15x   Fujii 2015
+    human PFNA     CL_R  0.094 vs CL_tot 0.0659   = 1.43x   Zhang 2013
+    human PFNA     CL_R   0.15 vs CL_tot 0.0659   = 2.28x   Zhang 2013
+    human PFOA     CL_R  0.044 vs CL_tot 0.0417   = 1.05x   Fujii 2015
+    human PFOA     CL_R   0.19 vs CL_tot 0.0417   = 4.56x   Zhang 2013
+    human PFOA     CL_R   0.77 vs CL_tot 0.0417   = 18.47x   Zhang 2013
+
+  These are not dropped for being inconvenient. A renal clearance
+  above total clearance means the two numbers come from
+  populations with different half-lives -- Zhang 2013 pairs its
+  high PFOA clearance with a ~1.2-year half-life in young women,
+  against the ~2-4 years in the compilation -- so the product of
+  one study's CL_R and another's V_d has no referent. WHICH SIDE
+  IS WRONG IS NOT SETTLED HERE; only the pairing is void.
+
+  ONE EXCEPTION, DELIBERATE. Tier 3 still uses Fujii's PFOA renal
+  FRACTION (0.044/0.096 = 45.8%) even though its absolute CL_R was
+  just voided. A fraction is dimensionless and internally
+  consistent within one study, so it survives a disagreement about
+  the absolute scale that the raw clearance does not.
+
+==============================================================================
+MODEL 1  THE TK LADDER -- every measured input, no fitted parameter
+==============================================================================
+  Each rung adds ONE measurement. The fall in error from one rung
+  to the next is what that measurement is worth.
+
+  FIRST, TIER 4 IS DISQUALIFIED, AND HERE IS THE PROOF.
+    25 compound-species rows, worst fold error 1.0040x.
+    A model that reproduces every half-life to the fourth decimal
+    has not predicted them; CL in the compilation WAS ln2 V_d/t½,
+    so tier 4 inverts the arithmetic that produced its own target.
+    It is excluded from every score below.
+
+  tier                                       n    median     worst  direction
+  tier 1: f_u + V_d + GFR, T=1              25     17.3x    151.0x  over/under
+  tier 2: + measured CL_R                   10      4.4x    166.4x  over
+  tier 3: + measured renal fraction         10      1.3x     10.2x  over/under
+
+  EXCLUDED from tier 3, with the reason recorded:
+    rat PFOA 47.2%  -- female fraction; t½ and CL_R are male
+
+==============================================================================
+WHAT EACH MEASUREMENT BUYS (same compounds throughout)
+==============================================================================
+  HUMAN  on the 7 compounds with a measured CL_R: PFDA, PFDoDA, PFHpA, PFHxS, PFNA, PFOA, PFOS
+    tier 1   median    22.2x   worst   151.0x   (1/7 over-predict)
+    tier 2   median     2.6x   worst   166.4x   (7/7 over-predict)
+    tier 3   median     1.4x   worst     2.9x   (2/6 over-predict)
+
+  RAT  on the 3 compounds with a measured CL_R: PFHxS, PFOA, PFOS
+    tier 1   median     1.6x   worst     1.7x   (1/3 over-predict)
+    tier 2   median     8.9x   worst    11.1x   (3/3 over-predict)
+    tier 3   median     1.3x   worst    10.2x   (3/4 over-predict)
+
+==============================================================================
+AUDIT: IS TIER 2's ERROR REALLY 1/f_renal?
+==============================================================================
+  The claim is arithmetic, so it is testable. If tier 2 omits every
+  non-renal route then its fold error must equal CL_tot/CL_R. Both
+  sides are computed independently below.
+
+                   tier 2 fold  CL_tot/CL_R   agree
+  human PFDA             4.01x        4.01x     yes
+  human PFDoDA         166.40x      166.40x     yes
+  human PFHpA            1.42x        1.42x     yes
+  human PFHxS            2.63x        2.63x     yes
+  human PFNA             1.73x        1.73x     yes
+  human PFOA             1.40x        1.39x     yes
+  human PFOS             4.40x        4.40x     yes
+  rat   PFHxS            8.88x        8.88x     yes
+  rat   PFOA            11.13x       11.12x     yes
+  rat   PFOS             4.81x        4.81x     yes
+
+  Every row agrees. Tier 2's error is not a modelling failure;
+  it IS the reciprocal of the renal share, measured two ways.
+
+  The worst row, human PFDoDA at 166x, is therefore not an outlier in the model.
+  It says that compound's renal clearance is 1/166 of its total.
+
+  READING TIER 2. It uses a renal clearance and nothing about the
+  other routes, so it must OVER-predict the half-life by exactly
+  1/f_renal. The over-prediction is not an error in the model; it
+  is a measurement of how much elimination is non-renal.
+
+==============================================================================
+A CONFLICT TIER 3 FORCES INTO THE OPEN: THE RAT RENAL FRACTION
+==============================================================================
+  human PFOA: 25.1% to 45.8%  (1.8-fold apart)
+        25.1%   Harada 2005 Table 5, male 61 kg
+        45.8%   Fujii 2015 Table 2, urinary 0.044 / total 0.096
+  macaque PFOA: 40.4% to 41.5%  (1.0-fold apart)
+        40.4%   Harada 2005 Table 5, male Japanese macaque
+        41.5%   Harada 2005 Table 5, female
+  rat PFOA: 9.0% to 91.4%  (10.2-fold apart)
+         9.0%   Kim 2016 Table 4 (male), CL_R/CL_tot
+        47.2%   Harada 2005 Table 5, female Wistar
+        91.4%   Harada 2005 Table 5, male Wistar
+
+  The rat PFOA figure is the one that matters. Harada 2005 Table 5
+  has renal clearance accounting for essentially all of it, which
+  is the basis for the familiar claim that the rat clears PFOA
+  renally while the human does not. Kim 2016 reports CL_R and
+  CL_tot IN THE SAME TABLE, on the same animals, and gets 9%.
+  Both cannot be right, and tier 3 for the rat swings by that
+  same factor depending on which is used. This is a disagreement
+  between two primary sources, not a modelling choice, and it is
+  recorded rather than resolved.
+
+==============================================================================
+MODEL 2  THE QSAR -- structure only, kept entirely separate
+==============================================================================
+  Inputs: chain length and head group. NOTHING ELSE -- no f_u, no
+  V_d, no GFR, no clearance. It is fitted, so every number below
+  is leave-one-out: each compound predicted from a fit without it.
+
+  species form                            n  k     r2   LOO med  LOO worst
+  human   log t½ ~ nC                     9  2  0.341      3.5x      63.4x
+  human   log t½ ~ nC + nC^2              9  3  0.736      3.4x      15.1x
+  human   log t½ ~ nC + head              9  3  0.525      5.5x      57.7x
+  human   log t½ ~ nC + nC^2 + head       9  4  0.873      3.4x       9.0x
+  rat     log t½ ~ nC                     8  2  0.455      5.4x      60.1x
+  rat     log t½ ~ nC + nC^2              8  3  0.460      5.4x     119.8x
+  rat     log t½ ~ nC + head              8  3  0.649     13.3x     140.8x
+  rat     log t½ ~ nC + nC^2 + head       8  4  0.684     32.3x     159.0x
+  mouse   log t½ ~ nC                     8  2  0.468      3.5x      73.8x
+  mouse   log t½ ~ nC + nC^2              8  3  0.473      4.5x     114.3x
+  mouse   log t½ ~ nC + head              8  3  0.705      4.1x      38.1x
+  mouse   log t½ ~ nC + nC^2 + head       8  4  0.712      5.9x     691.3x
+
+  THE OVERFITTING IS VISIBLE IN THE TABLE. Read r2 against LOO
+  across the forms within a species: adding terms always raises
+  r2, because it must, while LOO error can rise at the same time.
+  With 8 or 9 compounds and up to 4 parameters that is the
+  expected failure, and it is the reason for scoring LOO at all.
+
+    human  r2 climbs 0.341 -> 0.873 as k goes 2 -> 4, LOO median 3.5x -> 3.4x
+           best LOO is "log t½ ~ nC + nC^2" at 3.4x
+    rat    r2 climbs 0.455 -> 0.684 as k goes 2 -> 4, LOO median 5.4x -> 32.3x
+           best LOO is "log t½ ~ nC" at 5.4x
+    mouse  r2 climbs 0.468 -> 0.712 as k goes 2 -> 4, LOO median 3.5x -> 5.9x
+           best LOO is "log t½ ~ nC" at 3.5x
+
+==============================================================================
+THE TWO MODELS SIDE BY SIDE
+==============================================================================
+  Scored on the SAME compounds -- the ones with a measured CL_R,
+  so that tier 2 can appear at all.
+
+  HUMAN  (7 compounds)
+    model                                            median    worst  params
+    TK tier 1 (parameter-free)                        22.2x   151.0x       0
+    TK tier 2 (parameter-free)                         2.6x   166.4x       0
+    TK tier 3 (parameter-free)                         1.4x     2.9x       0
+    QSAR log t½ ~ nC (fitted, LOO)                     3.5x    50.4x       2
+    QSAR log t½ ~ nC + nC^2 (fitted, LOO)              1.9x     7.8x       3
+    QSAR log t½ ~ nC + head (fitted, LOO)              4.0x    57.7x       3
+    QSAR log t½ ~ nC + nC^2 + head (fitted, LOO)       3.4x     9.0x       4
+
+  RAT  (3 compounds)
+    model                                            median    worst  params
+    TK tier 1 (parameter-free)                         1.6x     1.7x       0
+    TK tier 2 (parameter-free)                         8.9x    11.1x       0
+    TK tier 3 (parameter-free)                         1.3x    10.2x       0
+    QSAR log t½ ~ nC (fitted, LOO)                     5.5x    36.2x       2
+    QSAR log t½ ~ nC + nC^2 (fitted, LOO)              7.4x    90.1x       3
+    QSAR log t½ ~ nC + head (fitted, LOO)              2.5x    13.3x       3
+    QSAR log t½ ~ nC + nC^2 + head (fitted, LOO)       1.6x    32.3x       4
+
+  THE COMPARISON IS NOT LIKE FOR LIKE AND SHOULD NOT BE READ AS
+  ONE. The TK tiers spend no degrees of freedom and need three to
+  five measured inputs per compound; the QSAR spends two to four
+  and needs a structural formula. A QSAR that wins on fold error
+  has still been calibrated on the very half-lives it predicts,
+  so it cannot be carried to a species whose half-lives are the
+  unknown -- which is the usual reason for wanting the model.
+
+wrote db/tk_tiers.csv  (70 rows)
+wrote db/tk_tier3_excluded.csv  (1 rows)
+wrote db/tk_tier_summary.csv  (3 rows)
+wrote db/qsar_models.csv  (100 rows)
+wrote db/qsar_summary.csv  (12 rows)
+wrote db/renal_clearance_consistency.csv  (26 rows)
+wrote db/renal_fraction_conflict.csv  (3 rows)
