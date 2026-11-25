@@ -67,6 +67,13 @@ N_SITES = (1, 2, 3)       # the model's one free parameter
 SOURCES = ("Li et al.", "Chen et al.", "Gao et al.")
 
 
+def sig(x, n=6):
+    """Round to n significant figures; fixed decimals lose small values."""
+    if x == 0:
+        return 0.0
+    return round(x, -int(math.floor(math.log10(abs(x)))) + (n - 1))
+
+
 def ka_from_row(r):
     """Return K_a in M^-1, or None. Units differ by study, so convert here."""
     u_ka = (r["ka_units"] or "").lower()
@@ -267,6 +274,120 @@ def main():
     print("  only linearly in n once n*[alb]*K_a >> 1, which buys a factor of")
     print("  3 against a shortfall of three to four orders of magnitude.")
     print()
+
+    print(bar)
+    print("ALL THREE SPECIES, MEASURED f_u, FILTRATION ONLY")
+    print(bar)
+    print("  The same model with link A removed: the measured unbound")
+    print("  fraction is substituted for the binding step, so only")
+    print("  T = 1 remains as an assumption.")
+    print()
+    print("      t\u00bd = ln2 * V_d / (f_u * GFR)")
+    print()
+    print("  THIS ARM CANNOT VALIDATE ANYTHING, AND THE REASON IS WORTH")
+    print("  STATING. In the source table CL = ln2 * V_d / t\u00bd holds exactly")
+    print("  for all 32 species-compound rows, so clearance is algebraically")
+    print("  derived from the half-life rather than measured beside it. The")
+    print("  model's fold error is therefore")
+    print()
+    print("      t\u00bd(pred) / t\u00bd(meas) = CL / (f_u * GFR) = T")
+    print()
+    print("  identically. The error IS the tubular factor, by construction.")
+    print("  What follows is that quantity expressed in the units a modeller")
+    print("  works in -- fold error in a predicted half-life -- not an")
+    print("  independent check of it.")
+    print()
+    srows = []
+    for sp, gfr in (("human", GFR_HUMAN), ("rat", 14400.0), ("mouse", 16700.0)):
+        sub = []
+        for r in csv.DictReader(
+                (HERE / "db" / "species_decomposition.csv").open()):
+            if sp == "human":
+                if r["comparison"] != "human/rat":
+                    continue          # human values repeat; take one copy
+                vd, fu = float(r["vd_human"]), float(r["fu_human"])
+                th = float(r["t_half_human_d"])
+            else:
+                if r["comparison"] != f"human/{sp}":
+                    continue
+                vd, fu = float(r["vd_animal"]), float(r["fu_animal"])
+                th = float(r["t_half_animal_d"])
+            tp = math.log(2) * vd / (fu * gfr)
+            sub.append(dict(species=sp, chemical=r["chemical"],
+                            n_total_carbons=int(r["n_total_carbons"]),
+                            vd=vd, fu=fu, gfr=gfr,
+                            t_half_predicted_d=sig(tp),
+                            t_half_measured_d=th,
+                            fold_too_short=sig(th / tp)))
+        srows += sub
+        gm = 10 ** (sum(math.log10(x["fold_too_short"]) for x in sub)
+                    / len(sub))
+        print(f"  {sp.upper()}  (GFR {gfr:.0f} mL/kg/day, {len(sub)} compounds)")
+        h1, h2 = "t\u00bd pred", "t\u00bd meas"
+        print(f"    {'cpd':9}{'f_u':>9}{h1:>10}{h2:>11}"
+              f"{'fold error':>13}  direction")
+        for r in sorted(sub, key=lambda x: x["n_total_carbons"]):
+            f_ = r["fold_too_short"]
+            d = "too SHORT" if f_ > 1 else "too LONG"
+            print(f"    {r['chemical']:9}{r['fu']:>9.5f}"
+                  f"{r['t_half_predicted_d']:>10.3f}"
+                  f"{r['t_half_measured_d']:>11.2f}"
+                  f"{(f_ if f_ > 1 else 1/f_):>12.1f}x  {d}")
+        vals = [x["fold_too_short"] for x in sub]
+        scat = 10 ** (sum(abs(math.log10(v)) for v in vals) / len(vals))
+        over = sum(1 for v in vals if v < 1)
+        print(f"    geometric mean {gm:.1f}x, but that CANCELS the two "
+              f"directions.")
+        print(f"    typical error ignoring sign: {scat:.1f}x    "
+              f"range {min(vals):.2f}x to {max(vals):.1f}x")
+        print(f"    over-predicts for {over} of {len(vals)} compounds "
+              f"(mean T = {1/gm:.4f})")
+        print()
+
+    print("  ACROSS SPECIES")
+    print(f"    {'species':8}{'geom. mean':>12}{'typical |error|':>17}"
+          f"{'range':>20}")
+    for sp in ("human", "rat", "mouse"):
+        sub = [x["fold_too_short"] for x in srows if x["species"] == sp]
+        gm = 10 ** (sum(math.log10(v) for v in sub) / len(sub))
+        scat = 10 ** (sum(abs(math.log10(v)) for v in sub) / len(sub))
+        rng = f"{min(sub):.2f}x to {max(sub):.1f}x"
+        print(f"    {sp:8}{gm:>11.1f}x{scat:>16.1f}x{rng:>20}")
+    print()
+    print("  READ THE MIDDLE COLUMN, NOT THE FIRST. The rat's geometric mean")
+    print("  of 1.4x looks like a model that works; it is not. It is a mean")
+    print("  over errors running from 23-fold too LONG to 12-fold too SHORT,")
+    print("  which cancel. Ignoring sign the rat error is 3.2x, and every")
+    print("  individual compound is wrong.")
+    print()
+    print("  The model is worst in the human (35x, and too short for every")
+    print("  compound), intermediate in the mouse (12x), and least bad in")
+    print("  the rat (3.2x). That is the ordering of 1/T, not of the")
+    print("  paper's tubular SHARE: the share is a ratio between species,")
+    print("  and the rat/human tubular ratio is large precisely because the")
+    print("  human T is tiny while the rat's is near unity.")
+    print()
+    print("  WHERE THE MODEL OVER-PREDICTS IT IS FOR A REASON. Rat PFHpA is")
+    print("  23-fold too long because that compound is net SECRETED in the")
+    print("  rat (T = 15), so filtration alone understates its clearance.")
+    print("  A model with T = 1 cannot be right in both directions at once.")
+    print()
+    print("  TO MAKE THIS A TEST rather than a restatement, the predicted")
+    print("  half-life would have to be compared against a clearance")
+    print("  measured independently of V_d and t\u00bd -- a directly measured")
+    print("  renal clearance, or a held-out compound. That is a change in")
+    print("  the data, not in the model.")
+    print()
+
+    p = HERE / "db" / "tk_model_three_species.csv"
+    with p.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(srows[0].keys()))
+        w.writeheader()
+        for r in sorted(srows, key=lambda x: (x["species"],
+                                              x["n_total_carbons"],
+                                              x["chemical"])):
+            w.writerow(r)
+    print(f"wrote {p.relative_to(HERE)}  ({len(srows)} rows)")
 
     print(bar)
     print("THE QSAR ALTERNATIVE: CHAIN LENGTH INSTEAD OF BINDING")
