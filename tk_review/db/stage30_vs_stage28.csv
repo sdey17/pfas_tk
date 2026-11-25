@@ -1,0 +1,7 @@
+model,stage28_median,stage30_median,median_change,stage28_worst,stage30_worst,worst_change
+M1a: T=1 (filtration alone),26.89,43.64,1.62,151.0,132.9,0.88
+M1b: T = fitted constant,2.115,3.82,1.81,108.4,96.47,0.89
+M1c: log T = a + b*nC,2.212,4.096,1.85,89.4,1187.0,13.3
+QSAR log t½ ~ nC,3.502,3.502,1.0,63.38,63.38,1.0
+QSAR log t½ ~ nC + nC^2,3.414,3.414,1.0,15.1,15.1,1.0
+QSAR log t½ ~ nC + nC^2 + head,3.444,3.444,1.0,9.036,9.036,1.0

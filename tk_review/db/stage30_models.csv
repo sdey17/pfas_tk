@@ -1,0 +1,190 @@
+model,stratum,chemical,n_total_carbons,t_half_measured_d,t_half_predicted_d,fold_error,direction
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFBA,4,4.18,0.38281,10.92,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFBS,4,50.59,8.03258,6.298,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFDA,10,861.75,18.38,46.89,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFHpA,7,151.92,86.3063,1.76,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFHxS,6,1634.78,37.4593,43.64,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFNA,9,1304.25,20.9023,62.4,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFOA,8,2011.29,32.6346,61.63,under
+M1a: T=1 (filtration alone),"Smeltz coverage, 8",PFOS,8,1211.02,9.11011,132.9,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFBA,4,4.18,0.38281,10.92,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFBS,4,50.59,8.03258,6.298,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFDA,10,861.75,18.38,46.89,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFDoDA,12,294.92,909.298,3.083,over
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFHpA,7,151.92,86.3063,1.76,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFHxS,6,1634.78,37.4593,43.64,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFNA,9,1304.25,20.9023,62.4,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFOA,8,2011.29,32.6346,61.63,under
+M1a: T=1 (filtration alone),all 9 (f_u mixed),PFOS,8,1211.02,9.11011,132.9,under
+M1a: T=1 (filtration alone),long chain excl PFDoDA,PFDA,10,861.75,18.38,46.89,under
+M1a: T=1 (filtration alone),long chain excl PFDoDA,PFNA,9,1304.25,20.9023,62.4,under
+M1a: T=1 (filtration alone),long chain excl PFDoDA,PFOA,8,2011.29,32.6346,61.63,under
+M1a: T=1 (filtration alone),long chain excl PFDoDA,PFOS,8,1211.02,9.11011,132.9,under
+M1a: T=1 (filtration alone),"long chain, nC>=8",PFDA,10,861.75,18.38,46.89,under
+M1a: T=1 (filtration alone),"long chain, nC>=8",PFDoDA,12,294.92,909.298,3.083,over
+M1a: T=1 (filtration alone),"long chain, nC>=8",PFNA,9,1304.25,20.9023,62.4,under
+M1a: T=1 (filtration alone),"long chain, nC>=8",PFOA,8,2011.29,32.6346,61.63,under
+M1a: T=1 (filtration alone),"long chain, nC>=8",PFOS,8,1211.02,9.11011,132.9,under
+M1a: T=1 (filtration alone),"short/mid, nC<=7",PFBA,4,4.18,0.38281,10.92,under
+M1a: T=1 (filtration alone),"short/mid, nC<=7",PFBS,4,50.59,8.03258,6.298,under
+M1a: T=1 (filtration alone),"short/mid, nC<=7",PFHpA,7,151.92,86.3063,1.76,under
+M1a: T=1 (filtration alone),"short/mid, nC<=7",PFHxS,6,1634.78,37.4593,43.64,under
+M1b: T = fitted constant,"Smeltz coverage, 8",PFBA,4,4.18,13.9216,3.331,over
+M1b: T = fitted constant,"Smeltz coverage, 8",PFBS,4,50.59,316.007,6.246,over
+M1b: T = fitted constant,"Smeltz coverage, 8",PFDA,10,861.75,474.982,1.814,under
+M1b: T = fitted constant,"Smeltz coverage, 8",PFHpA,7,151.92,4073.57,26.81,over
+M1b: T = fitted constant,"Smeltz coverage, 8",PFHxS,6,1634.78,1117.65,1.463,under
+M1b: T = fitted constant,"Smeltz coverage, 8",PFNA,9,1304.25,523.711,2.49,under
+M1b: T = fitted constant,"Smeltz coverage, 8",PFOA,8,2011.29,903.019,2.227,under
+M1b: T = fitted constant,"Smeltz coverage, 8",PFOS,8,1211.02,231.827,5.224,under
+M1b: T = fitted constant,all 9 (f_u mixed),PFBA,4,4.18,8.66321,2.073,over
+M1b: T = fitted constant,all 9 (f_u mixed),PFBS,4,50.59,194.724,3.849,over
+M1b: T = fitted constant,all 9 (f_u mixed),PFDA,10,861.75,308.47,2.794,under
+M1b: T = fitted constant,all 9 (f_u mixed),PFDoDA,12,294.92,28450.9,96.47,over
+M1b: T = fitted constant,all 9 (f_u mixed),PFHpA,7,151.92,2453.64,16.15,over
+M1b: T = fitted constant,all 9 (f_u mixed),PFHxS,6,1634.78,712.917,2.293,under
+M1b: T = fitted constant,all 9 (f_u mixed),PFNA,9,1304.25,341.434,3.82,under
+M1b: T = fitted constant,all 9 (f_u mixed),PFOA,8,2011.29,581.463,3.459,under
+M1b: T = fitted constant,all 9 (f_u mixed),PFOS,8,1211.02,150.847,8.028,under
+M1b: T = fitted constant,long chain excl PFDoDA,PFDA,10,861.75,2083.65,2.418,over
+M1b: T = fitted constant,long chain excl PFDoDA,PFNA,9,1304.25,2204.6,1.69,over
+M1b: T = fitted constant,long chain excl PFDoDA,PFOA,8,2011.29,4339.41,2.158,over
+M1b: T = fitted constant,long chain excl PFDoDA,PFOS,8,1211.02,996.308,1.216,under
+M1b: T = fitted constant,"long chain, nC>=8",PFDA,10,861.75,607.24,1.419,under
+M1b: T = fitted constant,"long chain, nC>=8",PFDoDA,12,294.92,104416.0,354.0,over
+M1b: T = fitted constant,"long chain, nC>=8",PFNA,9,1304.25,654.184,1.994,under
+M1b: T = fitted constant,"long chain, nC>=8",PFOA,8,2011.29,1215.2,1.655,under
+M1b: T = fitted constant,"long chain, nC>=8",PFOS,8,1211.02,292.975,4.134,under
+M1b: T = fitted constant,"short/mid, nC<=7",PFBA,4,4.18,3.00528,1.391,under
+M1b: T = fitted constant,"short/mid, nC<=7",PFBS,4,50.59,75.7539,1.497,over
+M1b: T = fitted constant,"short/mid, nC<=7",PFHpA,7,151.92,1244.92,8.195,over
+M1b: T = fitted constant,"short/mid, nC<=7",PFHxS,6,1634.78,185.304,8.822,under
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFBA,4,4.18,1.98899,2.102,under
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFBS,4,50.59,59.304,1.172,over
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFDA,10,861.75,2885.17,3.348,over
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFHpA,7,151.92,4073.57,26.81,over
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFHxS,6,1634.78,609.16,2.684,under
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFNA,9,1304.25,1495.94,1.147,over
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFOA,8,2011.29,1580.07,1.273,under
+M1c: log T = a + b*nC,"Smeltz coverage, 8",PFOS,8,1211.02,396.296,3.056,under
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFBA,4,4.18,10.206,2.442,over
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFBS,4,50.59,282.894,5.592,over
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFDA,10,861.75,248.039,3.474,under
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFDoDA,12,294.92,350091.0,1187.0,over
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFHpA,7,151.92,2472.24,16.27,over
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFHxS,6,1634.78,664.253,2.461,under
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFNA,9,1304.25,318.408,4.096,under
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFOA,8,2011.29,582.699,3.452,under
+M1c: log T = a + b*nC,all 9 (f_u mixed),PFOS,8,1211.02,150.773,8.032,under
+M1c: log T = a + b*nC,long chain excl PFDoDA,PFDA,10,861.75,4071.05,4.724,over
+M1c: log T = a + b*nC,long chain excl PFDoDA,PFNA,9,1304.25,2273.76,1.743,over
+M1c: log T = a + b*nC,long chain excl PFDoDA,PFOA,8,2011.29,4579.77,2.277,over
+M1c: log T = a + b*nC,long chain excl PFDoDA,PFOS,8,1211.02,784.3,1.544,under
+M1c: log T = a + b*nC,"long chain, nC>=8",PFDA,10,861.75,240.182,3.588,under
+M1c: log T = a + b*nC,"long chain, nC>=8",PFDoDA,12,294.92,154614.0,524.3,over
+M1c: log T = a + b*nC,"long chain, nC>=8",PFNA,9,1304.25,1123.71,1.161,under
+M1c: log T = a + b*nC,"long chain, nC>=8",PFOA,8,2011.29,12275.0,6.103,over
+M1c: log T = a + b*nC,"long chain, nC>=8",PFOS,8,1211.02,2410.34,1.99,over
+M1c: log T = a + b*nC,"short/mid, nC<=7",PFBA,4,4.18,4.37972,1.048,over
+M1c: log T = a + b*nC,"short/mid, nC<=7",PFBS,4,50.59,153.177,3.028,over
+M1c: log T = a + b*nC,"short/mid, nC<=7",PFHpA,7,151.92,8640.58,56.88,over
+M1c: log T = a + b*nC,"short/mid, nC<=7",PFHxS,6,1634.78,110.538,14.79,under
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFBA,4,4.18,115.67,27.67,over
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFBS,4,50.59,437.983,8.657,over
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFDA,10,861.75,781.706,1.102,under
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFHpA,7,151.92,607.574,3.999,over
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFHxS,6,1634.78,348.435,4.692,under
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFNA,9,1304.25,581.218,2.244,under
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFOA,8,2011.29,347.73,5.784,under
+"M1d: f_u from albumin K_a (n=2), T fitted","Smeltz coverage, 8",PFOS,8,1211.02,615.561,1.967,under
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFBA,4,4.18,96.6045,23.11,over
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFBS,4,50.59,372.493,7.363,over
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFDA,10,861.75,698.799,1.233,under
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFDoDA,12,294.92,2074.27,7.033,over
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFHpA,7,151.92,522.999,3.443,over
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFHxS,6,1634.78,313.993,5.206,under
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFNA,9,1304.25,524.809,2.485,under
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFOA,8,2011.29,315.28,6.379,under
+"M1d: f_u from albumin K_a (n=2), T fitted",all 9 (f_u mixed),PFOS,8,1211.02,547.231,2.213,under
+"M1d: f_u from albumin K_a (n=2), T fitted",long chain excl PFDoDA,PFDA,10,861.75,3105.51,3.604,over
+"M1d: f_u from albumin K_a (n=2), T fitted",long chain excl PFDoDA,PFNA,9,1304.25,2074.91,1.591,over
+"M1d: f_u from albumin K_a (n=2), T fitted",long chain excl PFDoDA,PFOA,8,2011.29,1187.9,1.693,under
+"M1d: f_u from albumin K_a (n=2), T fitted",long chain excl PFDoDA,PFOS,8,1211.02,2594.57,2.142,over
+"M1d: f_u from albumin K_a (n=2), T fitted","long chain, nC>=8",PFDA,10,861.75,1757.84,2.04,over
+"M1d: f_u from albumin K_a (n=2), T fitted","long chain, nC>=8",PFDoDA,12,294.92,6640.42,22.52,over
+"M1d: f_u from albumin K_a (n=2), T fitted","long chain, nC>=8",PFNA,9,1304.25,1230.72,1.06,under
+"M1d: f_u from albumin K_a (n=2), T fitted","long chain, nC>=8",PFOA,8,2011.29,718.299,2.8,under
+"M1d: f_u from albumin K_a (n=2), T fitted","long chain, nC>=8",PFOS,8,1211.02,1431.09,1.182,over
+"M1d: f_u from albumin K_a (n=2), T fitted","short/mid, nC<=7",PFBA,4,4.18,42.6376,10.2,over
+"M1d: f_u from albumin K_a (n=2), T fitted","short/mid, nC<=7",PFBS,4,50.59,133.018,2.629,over
+"M1d: f_u from albumin K_a (n=2), T fitted","short/mid, nC<=7",PFHpA,7,151.92,162.239,1.068,over
+"M1d: f_u from albumin K_a (n=2), T fitted","short/mid, nC<=7",PFHxS,6,1634.78,57.0766,28.64,under
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFBA,4,4.18,128.171,30.66,over
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFBS,4,50.59,26.08,1.94,under
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFDA,10,861.75,7559.96,8.773,over
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFHpA,7,151.92,369.837,2.434,over
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFHxS,6,1634.78,100.523,16.26,under
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFNA,9,1304.25,1590.15,1.219,over
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFOA,8,2011.29,585.257,3.437,under
+QSAR log t½ ~ nC,"Smeltz coverage, 8",PFOS,8,1211.02,642.066,1.886,under
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFBA,4,4.18,264.937,63.38,over
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFBS,4,50.59,75.0332,1.483,over
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFDA,10,861.75,1020.77,1.185,over
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFDoDA,12,294.92,14853.0,50.36,over
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFHpA,7,151.92,272.188,1.792,over
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFHxS,6,1634.78,106.293,15.38,under
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFNA,9,1304.25,551.679,2.364,under
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFOA,8,2011.29,323.808,6.211,under
+QSAR log t½ ~ nC,all 9 (f_u mixed),PFOS,8,1211.02,345.789,3.502,under
+QSAR log t½ ~ nC,long chain excl PFDoDA,PFDA,10,861.75,1089.96,1.265,over
+QSAR log t½ ~ nC,long chain excl PFDoDA,PFNA,9,1304.25,1159.7,1.125,under
+QSAR log t½ ~ nC,long chain excl PFDoDA,PFOA,8,2011.29,1313.76,1.531,under
+QSAR log t½ ~ nC,long chain excl PFDoDA,PFOS,8,1211.02,2005.02,1.656,over
+QSAR log t½ ~ nC,"long chain, nC>=8",PFDA,10,861.75,716.887,1.202,under
+QSAR log t½ ~ nC,"long chain, nC>=8",PFDoDA,12,294.92,507.312,1.72,over
+QSAR log t½ ~ nC,"long chain, nC>=8",PFNA,9,1304.25,1086.47,1.2,under
+QSAR log t½ ~ nC,"long chain, nC>=8",PFOA,8,2011.29,1545.86,1.301,under
+QSAR log t½ ~ nC,"long chain, nC>=8",PFOS,8,1211.02,2095.87,1.731,over
+QSAR log t½ ~ nC,"short/mid, nC<=7",PFBA,4,4.18,91.051,21.78,over
+QSAR log t½ ~ nC,"short/mid, nC<=7",PFBS,4,50.59,8.98971,5.628,under
+QSAR log t½ ~ nC,"short/mid, nC<=7",PFHpA,7,151.92,17333.2,114.1,over
+QSAR log t½ ~ nC,"short/mid, nC<=7",PFHxS,6,1634.78,69.4945,23.52,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFBA,4,4.18,61.6844,14.76,over
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFBS,4,50.59,6.04449,8.37,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFDA,10,861.75,645.083,1.336,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFHpA,7,151.92,1710.37,11.26,over
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFHxS,6,1634.78,192.241,8.504,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFNA,9,1304.25,1256.83,1.038,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFOA,8,2011.29,1133.85,1.774,under
+QSAR log t½ ~ nC + nC^2,"Smeltz coverage, 8",PFOS,8,1211.02,1311.52,1.083,over
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFBA,4,4.18,63.1352,15.1,over
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFBS,4,50.59,7.37774,6.857,under
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFDA,10,861.75,1224.87,1.421,over
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFDoDA,12,294.92,86.3919,3.414,under
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFHpA,7,151.92,1086.84,7.154,over
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFHxS,6,1634.78,209.339,7.809,under
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFNA,9,1304.25,1436.49,1.101,over
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFOA,8,2011.29,1067.26,1.885,under
+QSAR log t½ ~ nC + nC^2,all 9 (f_u mixed),PFOS,8,1211.02,1219.77,1.007,over
+QSAR log t½ ~ nC + nC^2,"long chain, nC>=8",PFDA,10,861.75,930.626,1.08,over
+QSAR log t½ ~ nC + nC^2,"long chain, nC>=8",PFDoDA,12,294.92,185.926,1.586,under
+QSAR log t½ ~ nC + nC^2,"long chain, nC>=8",PFNA,9,1304.25,1231.16,1.059,under
+QSAR log t½ ~ nC + nC^2,"long chain, nC>=8",PFOA,8,2011.29,1252.07,1.606,under
+QSAR log t½ ~ nC + nC^2,"long chain, nC>=8",PFOS,8,1211.02,1994.92,1.647,over
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFBA,4,4.18,17.9933,4.305,over
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFBS,4,50.59,21.6982,2.332,under
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFDA,10,861.75,1197.68,1.39,over
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFHpA,7,151.92,740.734,4.876,over
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFHxS,6,1634.78,418.715,3.904,under
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFNA,9,1304.25,838.437,1.556,under
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFOA,8,2011.29,418.509,4.806,under
+QSAR log t½ ~ nC + nC^2 + head,"Smeltz coverage, 8",PFOS,8,1211.02,10948.3,9.041,over
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFBA,4,4.18,17.8395,4.268,over
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFBS,4,50.59,23.4405,2.158,under
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFDA,10,861.75,914.228,1.061,over
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFDoDA,12,294.92,331.158,1.123,over
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFHpA,7,151.92,533.904,3.514,over
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFHxS,6,1634.78,474.639,3.444,under
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFNA,9,1304.25,846.474,1.541,under
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFOA,8,2011.29,457.375,4.397,under
+QSAR log t½ ~ nC + nC^2 + head,all 9 (f_u mixed),PFOS,8,1211.02,10943.3,9.036,over

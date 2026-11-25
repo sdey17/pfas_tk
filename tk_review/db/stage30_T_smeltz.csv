@@ -1,0 +1,10 @@
+chemical,n_total_carbons,fu_used,fu_source,fecal_pct_of_total,T_renal_upper_bound
+PFBA,4,0.093,Smeltz 2023 (UC),,0.09159
+PFBS,4,0.0046,Smeltz 2023 (UC),,0.1588
+PFDA,10,0.0027,Smeltz 2023 (UC),60.71,0.008379
+PFDoDA,12,0.000105,Ryu 2024 (Smeltz has none),60.34,1.223
+PFHpA,7,0.0004,Smeltz 2023 (UC),,0.5681
+PFHxS,6,0.0009,Smeltz 2023 (UC),,0.02291
+PFNA,9,0.0016,Smeltz 2023 (UC),57.89,0.006748
+PFOA,8,0.001,Smeltz 2023 (UC),16.67,0.01352
+PFOS,8,0.0045,Smeltz 2023 (UC),,0.007523

@@ -1,0 +1,169 @@
+==============================================================================
+INPUTS AS CORRECTED
+==============================================================================
+  cmpd      nC       f_u   fecal   T renal   f_u source
+  PFBA       4   0.09300       -   0.09159   Smeltz 2023 (UC)
+  PFBS       4   0.00460       -   0.15877   Smeltz 2023 (UC)
+  PFDA      10   0.00270     61%   0.00838   Smeltz 2023 (UC)
+  PFDoDA    12   0.00011     60%   1.22287   Ryu 2024 (Smeltz has none)
+  PFHpA      7   0.00040       -   0.56809   Smeltz 2023 (UC)
+  PFHxS      6   0.00090       -   0.02291   Smeltz 2023 (UC)
+  PFNA       9   0.00160     58%   0.00675   Smeltz 2023 (UC)
+  PFOA       8   0.00100     17%   0.01352   Smeltz 2023 (UC)
+  PFOS       8   0.00450       -   0.00752   Smeltz 2023 (UC)
+
+  f_u IS NOT FROM A SINGLE SOURCE: PFDoDA takes Ryu's
+  value because Smeltz does not report it. Stated here and in
+  db/stage30_T_smeltz.csv rather than presented as uniform.
+
+  ALSO ON THE RECORD, from db/human_fu_recommended.csv: Smeltz
+  gives PFBS as 0.0046 in its Table 2 and 0.0128 in its Table 3
+  for the SAME assay, a 2.8-fold internal discrepancy. The lower
+  value is used, as the comparison table carries it.
+
+==============================================================================
+WHY STRATIFY: THE TUBULAR FACTOR IS NOT ONE POPULATION
+==============================================================================
+  all 9 (f_u mixed)        n=9  T 0.00675 to 1.22287  = 181.2-fold
+  Smeltz coverage, 8       n=8  T 0.00675 to 0.56809  =  84.2-fold
+  long chain, nC>=8        n=5  T 0.00675 to 1.22287  = 181.2-fold
+  long chain excl PFDoDA   n=4  T 0.00675 to 0.01352  =   2.0-fold
+  short/mid, nC<=7         n=4  T 0.02291 to 0.56809  =  24.8-fold
+
+  A model that fits ONE constant T can only work where T is
+  actually near-constant. The TIGHTEST stratum is "long chain excl PFDoDA"
+  at 2.0-fold; the widest is all 9 (f_u mixed) at 181-fold.
+
+  ONE COMPOUND DRIVES MOST OF THE SPREAD. PFDoDA's T is 1.223,
+  2.2x above the next highest (PFHpA) and 181x above the lowest. Stage 29
+  established that it is an UPPER BOUND on an undetectable urinary
+  clearance -- not a measurement. Dropping it takes the nC>=8
+  stratum from 181-fold to 2.0-fold. That is why it has its own
+  stratum, and the reason is Stage 29's verdict, not the fit.
+
+==============================================================================
+ALL 9 (F_U MIXED)   (n=9: PFBA, PFBS, PFDA, PFDoDA, PFHpA, PFHxS, PFNA, PFOA, PFOS)
+==============================================================================
+  model                                         k    median     worst
+  QSAR log t½ ~ nC + nC^2                       3      3.4x     15.1x
+  QSAR log t½ ~ nC + nC^2 + head                4      3.4x      9.0x
+  QSAR log t½ ~ nC                              2      3.5x     63.4x
+  M1b: T = fitted constant                      1      3.8x     96.5x
+  M1c: log T = a + b*nC                         2      4.1x   1187.0x
+  M1d: f_u from albumin K_a (n=2), T fitted     1      5.2x     23.1x
+  M1a: T=1 (filtration alone)                   0     43.6x    132.9x
+
+==============================================================================
+SMELTZ COVERAGE, 8   (n=8: PFBA, PFBS, PFDA, PFHpA, PFHxS, PFNA, PFOA, PFOS)
+==============================================================================
+  model                                         k    median     worst
+  M1c: log T = a + b*nC                         2      2.7x     26.8x
+  M1b: T = fitted constant                      1      3.3x     26.8x
+  QSAR log t½ ~ nC                              2      3.4x     30.7x
+  QSAR log t½ ~ nC + nC^2 + head                4      4.3x      9.0x
+  M1d: f_u from albumin K_a (n=2), T fitted     1      4.7x     27.7x
+  QSAR log t½ ~ nC + nC^2                       3      8.4x     14.8x
+  M1a: T=1 (filtration alone)                   0     46.9x    132.9x
+
+==============================================================================
+LONG CHAIN, NC>=8   (n=5: PFDA, PFDoDA, PFNA, PFOA, PFOS)
+==============================================================================
+  model                                         k    median     worst
+  QSAR log t½ ~ nC                              2      1.3x      1.7x
+  QSAR log t½ ~ nC + nC^2                       3      1.6x      1.6x
+  M1b: T = fitted constant                      1      2.0x    354.0x
+  M1d: f_u from albumin K_a (n=2), T fitted     1      2.0x     22.5x
+  M1c: log T = a + b*nC                         2      3.6x    524.3x
+  M1a: T=1 (filtration alone)                   0     61.6x    132.9x
+
+==============================================================================
+LONG CHAIN EXCL PFDODA   (n=4: PFDA, PFNA, PFOA, PFOS)
+==============================================================================
+  model                                         k    median     worst
+  QSAR log t½ ~ nC                              2      1.5x      1.7x
+  M1d: f_u from albumin K_a (n=2), T fitted     1      2.1x      3.6x
+  M1b: T = fitted constant                      1      2.2x      2.4x
+  M1c: log T = a + b*nC                         2      2.3x      4.7x
+  M1a: T=1 (filtration alone)                   0     62.4x    132.9x
+
+==============================================================================
+SHORT/MID, NC<=7   (n=4: PFBA, PFBS, PFHpA, PFHxS)
+==============================================================================
+  model                                         k    median     worst
+  M1b: T = fitted constant                      1      8.2x      8.8x
+  M1d: f_u from albumin K_a (n=2), T fitted     1     10.2x     28.6x
+  M1a: T=1 (filtration alone)                   0     10.9x     43.6x
+  M1c: log T = a + b*nC                         2     14.8x     56.9x
+  QSAR log t½ ~ nC                              2     23.5x    114.1x
+
+==============================================================================
+WHAT THE TWO CORRECTIONS BOUGHT, AGAINST STAGE 28
+==============================================================================
+  Stage 28: Ryu f_u, T from total clearance, all 9 compounds.
+  Stage 30: Smeltz f_u, renal-only T, all 9 compounds.
+
+  model                                     S28 med  S30 med  S28 wst  S30 wst
+  M1a: T=1 (filtration alone)                 26.9x    43.6x   151.0x   132.9x
+  M1b: T = fitted constant                     2.1x     3.8x   108.4x    96.5x
+  M1c: log T = a + b*nC                        2.2x     4.1x    89.4x  1187.0x
+  QSAR log t½ ~ nC                             3.5x     3.5x    63.4x    63.4x
+  QSAR log t½ ~ nC + nC^2                      3.4x     3.4x    15.1x    15.1x
+  QSAR log t½ ~ nC + nC^2 + head               3.4x     3.4x     9.0x     9.0x
+
+  THE QSAR ROWS ARE IDENTICAL, AS THEY MUST BE. It uses neither
+  f_u nor T, so a change to either cannot move it. That the
+  numbers match exactly is a check on the rerun, not a result.
+
+==============================================================================
+WHAT TO TAKE FROM THIS
+==============================================================================
+  1. THE RANKING REVERSES BETWEEN THE TWO REGIMES, AND THAT IS
+     THE RESULT WORTH REPORTING.
+     stratum                   best model                           median    worst
+     long chain excl PFDoDA    QSAR log t½ ~ nC                       1.5x     1.7x
+     short/mid, nC<=7          M1b: T = fitted constant               8.2x     8.8x
+
+     Each winner carried into the OTHER stratum:
+     QSAR log t½ ~ nC                   on short/mid, nC<=7            23.5x   114.1x
+     M1b: T = fitted constant           on long chain excl PFDoDA       2.2x     2.4x
+
+     So these are not competing models with one winner. The QSAR
+     works where half-life is a smooth function of chain length
+     (2011 -> 1305 -> 862 -> 295 d across PFOA to PFDoDA); the
+     mechanistic model works where it is not, but T is near-
+     constant. PFBA 4.2 d, PFBS 50.6 d, PFHxS 1635 d, PFHpA 152 d
+     is no function of chain length at all, and the QSAR fails
+     there (23.5x median) while a fitted T does not.
+
+  2. THE CORRECTIONS MADE THE POOLED NUMBERS WORSE, NOT BETTER.
+     M1b on all 9 goes 2.1x (Stage 28) -> 3.8x here; M1a 26.9x -> 43.6x.
+     This is not a reason to revert. Stage 28's lower numbers came
+     from a T that credited the kidney with faecal elimination and
+     from Ryu f_u, whose T happens to be more uniform across
+     compounds. A model is not improved by an input that is wrong
+     in a convenient direction. The corrected inputs are right and
+     the error they expose is real.
+
+  3. SMELTZ'S ADVANTAGE IS CONFINED TO THE LONG CHAINS. Its PFHpA
+     f_u of 0.0004 -- the lowest any study reports, 11-fold below
+     Ryu's -- implies T = 0.57, i.e. almost no net
+     reabsorption of a compound with a 152-day half-life. Either
+     that f_u is too low or PFHpA is cleared by a route this model
+     does not contain. It is the single largest contributor to the
+     short-chain failure and should be flagged in the paper.
+
+  4. EVERY NUMBER IN THE TWO STRATA RESTS ON FOUR COMPOUNDS.
+     4 of the stratified fits have n - k <= 2, i.e. at most two
+     residual degrees of freedom under leave-one-out. The reversal
+     in point 1 is a real feature of these data, but its SIZE is
+     not estimable from four points, and the paper should say so
+     rather than quote 1.5x as an accuracy.
+
+  5. AND THE WHOLE HUMAN ARM IS n=1. Every half-life and every V_d
+     is Abraham's single volunteer. No fold error here is an
+     estimate of population accuracy.
+
+wrote db/stage30_models.csv  (189 rows)
+wrote db/stage30_summary.csv  (30 rows)
+wrote db/stage30_vs_stage28.csv  (6 rows)
+wrote db/stage30_T_smeltz.csv  (9 rows)
