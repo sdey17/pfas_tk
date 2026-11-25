@@ -1,0 +1,5 @@
+form,n,n_params,r2_in_sample,loo_median_fold,loo_worst_fold
+log t½ ~ nC,9,2,0.341,3.502,63.38
+log t½ ~ nC + head,9,3,0.525,5.535,57.68
+log t½ ~ nC + nC^2,9,3,0.736,3.414,15.1
+log t½ ~ nC + nC^2 + head,9,4,0.873,3.444,9.036

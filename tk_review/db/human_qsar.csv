@@ -1,0 +1,37 @@
+form,chemical,n_total_carbons,head_group,t_half_measured_d,t_half_loo_predicted_d,loo_fold_error
+log t½ ~ nC,PFBA,4,carboxylate,4.18,264.937,63.38
+log t½ ~ nC,PFBS,4,sulfonate,50.59,75.0332,1.483
+log t½ ~ nC,PFDA,10,carboxylate,861.75,1020.77,1.185
+log t½ ~ nC,PFDoDA,12,carboxylate,294.92,14853.0,50.36
+log t½ ~ nC,PFHpA,7,carboxylate,151.92,272.188,1.792
+log t½ ~ nC,PFHxS,6,sulfonate,1634.78,106.293,15.38
+log t½ ~ nC,PFNA,9,carboxylate,1304.25,551.679,2.364
+log t½ ~ nC,PFOA,8,carboxylate,2011.29,323.808,6.211
+log t½ ~ nC,PFOS,8,sulfonate,1211.02,345.789,3.502
+log t½ ~ nC + head,PFBA,4,carboxylate,4.18,158.553,37.93
+log t½ ~ nC + head,PFBS,4,sulfonate,50.59,280.004,5.535
+log t½ ~ nC + head,PFDA,10,carboxylate,861.75,734.806,1.173
+log t½ ~ nC + head,PFDoDA,12,carboxylate,294.92,17009.7,57.68
+log t½ ~ nC + head,PFHpA,7,carboxylate,151.92,113.959,1.333
+log t½ ~ nC + head,PFHxS,6,sulfonate,1634.78,247.519,6.605
+log t½ ~ nC + head,PFNA,9,carboxylate,1304.25,322.349,4.046
+log t½ ~ nC + head,PFOA,8,carboxylate,2011.29,142.781,14.09
+log t½ ~ nC + head,PFOS,8,sulfonate,1211.02,1927.37,1.592
+log t½ ~ nC + nC^2,PFBA,4,carboxylate,4.18,63.1352,15.1
+log t½ ~ nC + nC^2,PFBS,4,sulfonate,50.59,7.37774,6.857
+log t½ ~ nC + nC^2,PFDA,10,carboxylate,861.75,1224.87,1.421
+log t½ ~ nC + nC^2,PFDoDA,12,carboxylate,294.92,86.3919,3.414
+log t½ ~ nC + nC^2,PFHpA,7,carboxylate,151.92,1086.84,7.154
+log t½ ~ nC + nC^2,PFHxS,6,sulfonate,1634.78,209.339,7.809
+log t½ ~ nC + nC^2,PFNA,9,carboxylate,1304.25,1436.49,1.101
+log t½ ~ nC + nC^2,PFOA,8,carboxylate,2011.29,1067.26,1.885
+log t½ ~ nC + nC^2,PFOS,8,sulfonate,1211.02,1219.77,1.007
+log t½ ~ nC + nC^2 + head,PFBA,4,carboxylate,4.18,17.8395,4.268
+log t½ ~ nC + nC^2 + head,PFBS,4,sulfonate,50.59,23.4405,2.158
+log t½ ~ nC + nC^2 + head,PFDA,10,carboxylate,861.75,914.228,1.061
+log t½ ~ nC + nC^2 + head,PFDoDA,12,carboxylate,294.92,331.158,1.123
+log t½ ~ nC + nC^2 + head,PFHpA,7,carboxylate,151.92,533.904,3.514
+log t½ ~ nC + nC^2 + head,PFHxS,6,sulfonate,1634.78,474.639,3.444
+log t½ ~ nC + nC^2 + head,PFNA,9,carboxylate,1304.25,846.474,1.541
+log t½ ~ nC + nC^2 + head,PFOA,8,carboxylate,2011.29,457.375,4.397
+log t½ ~ nC + nC^2 + head,PFOS,8,sulfonate,1211.02,10943.3,9.036

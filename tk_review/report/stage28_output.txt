@@ -1,0 +1,197 @@
+==============================================================================
+SCOPE
+==============================================================================
+  Human only, 9 compounds: PFBA, PFBS, PFDA, PFDoDA, PFHpA, PFHxS, PFNA, PFOA, PFOS
+  Rat and mouse dropped: 8 compounds each will not support a
+  model, and the rat renal fraction is in 10-fold dispute.
+  Renal clearance dropped: it over-predicted by up to 166x, and
+  an over-prediction that large is a model failure.
+
+==============================================================================
+THE UNKNOWN: THE HUMAN TUBULAR FACTOR T = CL / (f_u * GFR)
+==============================================================================
+  T < 1 is net reabsorption, T = 1 filtration alone, T > 1 net
+  secretion. Every model below differs ONLY in where T comes from.
+
+  cmpd      nC         T      1/T   reading
+  PFBA       4    0.0372     26.9   strong reabsorption
+  PFBS       4    0.0200     50.0   strong reabsorption
+  PFDA      10    0.0932     10.7   strong reabsorption
+  PFDoDA    12    3.0832      0.3   net secretion
+  PFHpA      7    0.0511     19.6   strong reabsorption
+  PFHxS      6    0.0297     33.7   strong reabsorption
+  PFNA       9    0.0137     72.9   strong reabsorption
+  PFOA       8    0.0066    151.0   strong reabsorption
+  PFOS       8    0.0450     22.2   strong reabsorption
+
+  Geometric mean T = 0.0479  (1/T = 20.9)
+  Full range spans 466-fold.
+  1 compound(s) show net secretion: PFDoDA
+  Excluding it, T spans 14.1-fold (0.0066 to 0.0932),
+  which is the irreducible error of any single-constant T model.
+
+  WATCH PFDoDA. Its T of 3.08 is the only value above 1,
+  it is the longest chain in the set, and its half-life
+  (295 d) is SHORTER than PFDA's (862 d),
+  breaking the chain-length trend. It drives several results
+  below and is flagged wherever it does.
+
+==============================================================================
+MODEL 1  MECHANISTIC TK -- f_u, V_d, GFR measured; T the unknown
+==============================================================================
+  model                                     n  k    median     worst
+  M1a: T=1 (filtration alone)               9  0     26.9x    151.0x
+  M1b: T = fitted constant                  9  1      2.1x    108.4x
+  M1c: log T = a + b*nC                     9  2      2.2x     89.4x
+  M1d: f_u from albumin K_a, n=1, T fitted  9  1      5.1x     19.3x
+  M1d: f_u from albumin K_a, n=2, T fitted  9  1      5.1x     16.1x
+  M1d: f_u from albumin K_a, n=3, T fitted  9  1      5.1x     15.0x
+
+  M1a FAILS AS EXPECTED: median 26.9x, worst 151x, and it UNDER-predicts in
+  8 of 9 compounds. Assuming T=1 credits the kidney with
+  clearing everything it filters, so the predicted half-life is
+  too short by exactly the factor the tubule reabsorbs.
+
+  M1b, ONE PARAMETER, CUTS THE MEDIAN TO 2.1x. That single
+  constant is doing the work of the entire tubular mechanism, and
+  what it leaves behind is the compound-to-compound spread in T.
+
+  M1c LETS T TRACK CHAIN LENGTH AND IS WORSE (2.2x vs 2.1x).
+  With one secreting outlier at the long-chain end, a linear
+  trend in log T is fitted largely to that one point.
+
+  M1d REPLACES MEASURED f_u WITH ALBUMIN BINDING on the 9 compounds
+  with a human K_a. Best is n=2 at 5.1x median, 16x worst,
+  against M1b's 2.1x on the full set -- so binding is a
+  usable stand-in for a measured f_u, not an improvement on it.
+
+  THE THREE MEDIANS AGREE TO WITHIN 0.1% (5.120x to 5.126x)
+  AND THAT IS NOT A COINCIDENCE.
+  With tight binding, n[Alb]K_a >> 1 so f_u ~ 1/(n[Alb]K_a),
+  i.e. f_u is proportional to 1/n. The fitted T is
+  proportional to 1/f_u and therefore to n, so n cancels
+  exactly in the product f_u*T. It survives only through the
+  weakly bound short chains, where n[Alb]K_a is not >> 1.
+  THE DATA CONFIRM EXACTLY THAT PATTERN. Going n=1 -> n=3,
+  PFBA -- the weakest binder in the set -- moves 19.3x to 15.0x
+  (1.29-fold), while NO OTHER COMPOUND MOVES MORE THAN 4.9%
+  (PFDoDA), and the worst case overall shifts only 19.3x to 15.0x.
+  The number of binding sites is therefore NOT IDENTIFIABLE
+  from these data once T is fitted.
+
+==============================================================================
+SENSITIVITY: WHICH f_u STUDY, ON THE PARAMETER-FREE MODEL
+==============================================================================
+  The compilation uses Ryu 2024, while db/human_fu_recommended.csv
+  names Smeltz 2023 as the default human series. Both are run,
+  with Argoul and Fischer alongside.
+
+  f_u source                n    median     worst  direction
+  Smeltz 2023 (UC)          8     46.9x    132.9x  under
+  Ryu 2024                  8     33.7x    151.0x  under
+  Argoul 2025               6     66.0x    104.8x  under
+  Fischer 2024              6     22.5x     80.8x  under
+
+    Smeltz 2023 (UC): no value for PFDoDA
+    Ryu 2024: no value for PFDoDA
+    Argoul 2025: no value for PFBA, PFDoDA, PFHpA
+    Fischer 2024: no value for PFBA, PFBS, PFDoDA
+    (PFDoDA is absent from human_fu_comparison.csv entirely, so
+     every row above is scored without it.)
+
+  THE CONCLUSION DOES NOT DEPEND ON THE CHOICE. Every source
+  leaves a large shortfall in the same direction, because f_u
+  varies 2- to 10-fold between studies while the shortfall is
+  roughly 30-fold. The f_u choice is not what is missing.
+
+==============================================================================
+MODEL 2  QSAR -- chain length and head group only, no TK input
+==============================================================================
+  form                            n  k      r2   LOO med  LOO worst
+  log t½ ~ nC                     9  2   0.341      3.5x      63.4x
+  log t½ ~ nC + nC^2              9  3   0.736      3.4x      15.1x
+  log t½ ~ nC + head              9  3   0.525      5.5x      57.7x
+  log t½ ~ nC + nC^2 + head       9  4   0.873      3.4x       9.0x
+
+  r2 climbs 0.341 -> 0.873 as k goes 2 -> 4, while LOO median
+  goes 3.5x -> 3.4x. Best LOO is "log t½ ~ nC + nC^2" at 3.4x.
+  With 9 compounds, r2 is not evidence; the holdout column is.
+
+==============================================================================
+THE TWO MODELS SIDE BY SIDE, SAME 9 HUMAN COMPOUNDS
+==============================================================================
+  model                                     k    median     worst
+  M1b: T = fitted constant                  1      2.1x    108.4x
+  M1c: log T = a + b*nC                     2      2.2x     89.4x
+  QSAR log t½ ~ nC + nC^2                   3      3.4x     15.1x
+  QSAR log t½ ~ nC + nC^2 + head            4      3.4x      9.0x
+  QSAR log t½ ~ nC                          2      3.5x     63.4x
+  M1d: f_u from albumin K_a, n=2, T fitted  1      5.1x     16.1x
+  M1d: f_u from albumin K_a, n=3, T fitted  1      5.1x     15.0x
+  M1d: f_u from albumin K_a, n=1, T fitted  1      5.1x     19.3x
+  QSAR log t½ ~ nC + head                   3      5.5x     57.7x
+  M1a: T=1 (filtration alone)               0     26.9x    151.0x
+
+  BEST ON MEDIAN: M1b: T = fitted constant at 2.1x (1 parameters).
+  BUT THE MEDIAN ALONE PICKS THE WRONG MODEL HERE. Every worst
+  case is named below, and they are not the same compound.
+
+  model                                       worst  driven by
+  M1b: T = fitted constant                   108.4x  PFDoDA
+  M1c: log T = a + b*nC                       89.4x  PFDoDA
+  QSAR log t½ ~ nC + nC^2                     15.1x  PFBA
+  QSAR log t½ ~ nC + nC^2 + head               9.0x  PFOS
+  QSAR log t½ ~ nC                            63.4x  PFBA
+  M1d: f_u from albumin K_a, n=2, T fitted    16.1x  PFBA
+  M1d: f_u from albumin K_a, n=3, T fitted    15.0x  PFBA
+  M1d: f_u from albumin K_a, n=1, T fitted    19.3x  PFBA
+  QSAR log t½ ~ nC + head                     57.7x  PFDoDA
+  M1a: T=1 (filtration alone)                151.0x  PFOA
+
+  PFDoDA IS THE WORST CASE FOR 3 OF 10 MODELS, including
+  both mechanistic winners. It is the one secreting compound, so a
+  model that fits a single reabsorptive T necessarily misses it by
+  the full width of the T range. The QSAR does not care: it never
+  sees T, and its own worst cases are short-chain instead.
+
+==============================================================================
+THE SAME COMPARISON WITH PFDoDA DROPPED
+==============================================================================
+  Not to improve the numbers, but to find out which conclusions
+  rest on that one compound. The 8 remaining compounds are all
+  reabsorptive, which is the regime the mechanistic models assume.
+
+  model                                       median     worst
+  M1b: T = fitted constant                      2.1x      9.3x
+  M1c: log T = a + b*nC                         2.2x     11.4x
+  QSAR log t½ ~ nC + nC^2                       6.9x     15.1x
+  QSAR log t½ ~ nC + nC^2 + head                3.5x      9.0x
+  QSAR log t½ ~ nC                              3.5x     63.4x
+  M1d: f_u from albumin K_a, n=2, T fitted      5.1x     16.1x
+  M1d: f_u from albumin K_a, n=3, T fitted      5.1x     15.0x
+  M1d: f_u from albumin K_a, n=1, T fitted      5.1x     19.3x
+  QSAR log t½ ~ nC + head                       5.5x     37.9x
+  M1a: T=1 (filtration alone)                  33.7x    151.0x
+
+  Best median now M1b: T = fitted constant at 2.1x;
+  best worst case QSAR log t½ ~ nC + nC^2 + head at 9.0x.
+  On the full set the median winner was M1b: T = fitted constant.
+  WHETHER THE RANKING SURVIVES DROPPING ONE COMPOUND OUT OF NINE
+  IS THE REAL TEST, and with 9 compounds it is a weak one either
+  way. No model here is established; they are ranked, provisionally.
+
+  WHAT THIS DOES AND DOES NOT SETTLE. Both models are now fitted
+  to human half-lives, so neither can be carried to a species
+  whose half-life is unknown -- the usual reason for wanting one.
+  The mechanistic models earn something the QSAR cannot: their
+  one parameter IS the tubular factor, so a fitted T is a
+  physiological quantity that can be compared against transporter
+  data. The QSAR's coefficients are not interpretable that way.
+
+wrote db/human_tk_models.csv  (54 rows)
+wrote db/human_tk_summary.csv  (6 rows)
+wrote db/human_qsar.csv  (36 rows)
+wrote db/human_qsar_summary.csv  (4 rows)
+wrote db/human_fu_sensitivity.csv  (4 rows)
+wrote db/human_model_pfdoda_excluded.csv  (10 rows)
+wrote db/human_tubular_factor.csv  (9 rows)

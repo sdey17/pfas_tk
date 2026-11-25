@@ -1,0 +1,11 @@
+model,n,median_fold,worst_fold
+M1a: T=1 (filtration alone),8,33.7,151.0
+M1b: T = fitted constant,8,2.115,9.258
+M1c: log T = a + b*nC,8,2.212,11.38
+"M1d: f_u from albumin K_a, n=1, T fitted",8,5.126,19.26
+"M1d: f_u from albumin K_a, n=2, T fitted",8,5.12,16.07
+"M1d: f_u from albumin K_a, n=3, T fitted",8,5.123,14.96
+QSAR log t½ ~ nC,8,3.502,63.38
+QSAR log t½ ~ nC + head,8,5.535,37.93
+QSAR log t½ ~ nC + nC^2,8,6.857,15.1
+QSAR log t½ ~ nC + nC^2 + head,8,3.514,9.036

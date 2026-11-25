@@ -1,0 +1,10 @@
+chemical,n_total_carbons,tubular_factor_T,one_over_T,reading
+PFBA,4,0.03719,26.89,strong reabsorption
+PFBS,4,0.02001,49.98,strong reabsorption
+PFDA,10,0.09318,10.73,strong reabsorption
+PFDoDA,12,3.083,0.3243,net secretion
+PFHpA,7,0.05106,19.58,strong reabsorption
+PFHxS,6,0.02967,33.7,strong reabsorption
+PFNA,9,0.01371,72.93,strong reabsorption
+PFOA,8,0.006623,151.0,strong reabsorption
+PFOS,8,0.04496,22.24,strong reabsorption

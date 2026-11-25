@@ -1,0 +1,7 @@
+model,n,n_params,scored,median_fold,worst_fold,note
+M1a: T=1 (filtration alone),9,0,direct (no parameters),26.89,151.0,no parameters; error is exactly 1/T
+M1b: T = fitted constant,9,1,leave-one-out,2.115,108.4,one parameter absorbs the systematic shortfall
+M1c: log T = a + b*nC,9,2,leave-one-out,2.212,89.4,tests whether T tracks chain length
+"M1d: f_u from albumin K_a, n=1, T fitted",9,1,leave-one-out,5.126,19.26,binding replaces measured f_u; 9 compounds
+"M1d: f_u from albumin K_a, n=2, T fitted",9,1,leave-one-out,5.12,16.07,binding replaces measured f_u; 9 compounds
+"M1d: f_u from albumin K_a, n=3, T fitted",9,1,leave-one-out,5.123,14.96,binding replaces measured f_u; 9 compounds
