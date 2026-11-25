@@ -62,9 +62,20 @@ for PFOS. And because reabsorption and secretion saturate in opposite
 directions, the sign of the dose response discriminates between them: every
 rat series rises with dose except PFOS, whose four series across two studies
 all fall — in the one case where saturable plasma binding, which can only
-raise clearance, is furthest from saturating. The practical consequence of
+raise clearance, is furthest from saturating. Turning the
+decomposition into a forward prediction, we find the ranking of mechanistic
+against structural models reverses along the series: over four long-chain
+compounds a one-parameter mechanistic model predicts human half-life to
+2.2-fold and a structure-only regression to 1.5-fold, while over the short and
+mid chains the same two give 8.2-fold and 23.5-fold. Reading the route data in
+the primary human source shows urinary clearance below detection for every
+long-chain compound and faecal clearance at 17–61% of total, so tubular
+factors computed from total clearance overstate renal handling by up to
+2.5-fold; correcting this removes the only value in the human set that
+permitted net secretion. The practical consequence of
 the main result is that no single interspecies scaling approach serves both
-rodents; of the second, that none serves every compound.
+rodents; of the second, that none serves every compound; and of the third,
+that a predictive model must be chosen by regime rather than globally.
 
 **Key words:** perfluoroalkyl substances; toxicokinetics; interspecies
 extrapolation; renal tubular reabsorption; serum albumin; organic anion
@@ -175,15 +186,41 @@ reproduce the half-lives that study reports directly: 50.6 against 51 days
 295 (PFDoDA). No alternative human source reports measured V_d and CL for
 more than three compounds.
 
+That study's Table 4 additionally reports the *route* of elimination per
+compound, which we use in §"The faecal route" below: urinary clearance is
+below detection for all five long-chain perfluorocarboxylates and for both
+long-chain sulfonates, while faecal clearance is quantified for the five
+carboxylates. This is the only human dataset that separates the two routes in
+the same subject in whom the half-life and V_d were measured.
+
 **Animal kinetics.** Rows were restricted to male animals (matching the human
 subject), measured rather than assumed values, and the lowest reported dose,
 since several compounds show dose-dependent clearance. One study was used per
 species–compound and is named with each value (Supplementary Table S1).
 
-**Unbound fractions.** Plasma f_u is from Ryu et al. (2024a) throughout, the
-only study measuring human, rat and two mouse strains in a single laboratory;
-in a ratio, a systematic method bias divides out. Mouse values are the
-geometric mean of CD-1 and C57BL/6.
+**Unbound fractions.** Plasma f_u is from Ryu et al. (2024a) throughout for
+every *interspecies ratio*, that being the only study measuring human, rat and
+two mouse strains in a single laboratory; in a ratio, a systematic method bias
+divides out. Mouse values are the geometric mean of CD-1 and C57BL/6.
+
+For the *absolute human* quantities — the forward predictions of
+§"Forward prediction of human half-lives" — the same argument does not apply,
+because no ratio is taken and the method bias does not divide out. Four
+independent studies report human f_u: Smeltz et al. (2023, ultracentrifugation,
+67 PFAAs), Ryu et al. (2024a), Argoul et al. (2025) and values derived from
+Fischer et al. (2024). They disagree by up to 11.1-fold on a single compound
+(PFHpA: 0.0004, 0.00445 and 0.0030), and only seven of our nine compounds are
+measured by more than one. We therefore carry Smeltz as primary for the
+absolute human work, on three grounds that are not fit statistics: it has the
+widest coverage (eight of nine compounds), it is the largest series, and it is
+the f_u that Abraham et al. (2024) themselves use in their Table 4 — so
+half-life, V_d and f_u come from one published pairing rather than a
+combination assembled here. The per-compound geometric mean across all four
+sources is carried as a sensitivity. Two caveats are stated rather than
+smoothed: Smeltz reports no PFDoDA, which therefore takes Ryu's value under
+any choice, so this column is not from a single source; and Smeltz gives PFBS
+as 0.0046 in its Table 2 and 0.0128 in its Table 3 for the same assay, a
+2.8-fold internal discrepancy, of which we use the lower.
 
 **Glomerular filtration rates** were taken as 2570, 14 400 and 16 700
 mL/kg/day for human, rat and mouse respectively.
@@ -556,9 +593,19 @@ of how far the two human datasets disagree, not a violated inequality.
 | PFNA | Fujii 2015 | 0.038 | 0.00187 | 4.81 | 0.0079 | 99.2% | T ≤ 0.032 |
 | PFDA | Fujii 2015 | 0.015 | 0.00062 | 1.59 | 0.0094 | 99.1% | T ≤ 0.094 |
 | PFUnDA | Fujii 2015 | 0.005 | 0.00042 | 1.08 | 0.0046 | 99.5% | T ≤ 0.266 |
-| PFDoDA | Fujii 2015 | 0.005 | 0.00011 | 0.27 | 0.0185 | 98.2% | T ≤ 3.08 |
+| PFDoDA | Fujii 2015 | 0.005 | 0.00011 | 0.27 | 0.0185 | 98.2% | T ≤ 1.22 † |
 | PFOS | Harada 2005 | 0.015 | 0.00075 | 1.94 | 0.0078 | 99.2% | T ≤ 0.046 |
 | PFHxS | Zhang 2013 | 0.027 | 0.00069 | 1.79 | 0.0151 | 98.5% | T ≤ 0.036 |
+
+† PFDoDA's bound was 3.08 when computed from total clearance, the only value
+above unity in the set and therefore the only one permitting net secretion. It
+is corrected to 1.22 here by the faecal route (next subsection): 60% of that
+compound's measured elimination is faecal, so attributing all of it to the
+kidney inflated the bound 2.5-fold. The corrected figure remains above unity
+and remains an upper bound resting on an undetectable urinary clearance, so
+PFDoDA's renal tubular factor is best described as undetermined rather than
+secretory. The direct value of 0.0185 in the same row, computed from Fujii's
+measured renal clearance, is unaffected.
 
 Human net tubular reabsorption is therefore 98–99.5% from C8 to C12 and 94%
 for C7, tighter than the bounds permitted and systematically closer to
@@ -573,6 +620,52 @@ clearance of 2.62 mL/kg/day — sixty times the urinary — of which an estimate
 (92%). This is the measured basis for treating the human tubular term in
 equation (4) as a residual, and it quantifies how large the non-renal
 component of that residual is.
+
+#### The faecal route
+
+Abraham's Table 4 resolves the non-renal component per compound in the same
+subject that supplied every human V_d and half-life used here, and it does so
+by measurement rather than by difference. Urinary clearance is below detection
+for all five long-chain carboxylates and for both long-chain sulfonates; the
+authors state they could not quantify long-chain PFAAs in urine at the doses
+applied. Faecal clearance is quantified for the five carboxylates.
+
+**Table 9b.** Route of human elimination, Abraham 2024 Table 4 (mL/min).
+
+| compound | CL urinary | CL total | CL faecal | faecal share |
+|---|---|---|---|---|
+| PFBA | 1.00 | 1.24 | n.d. | — |
+| PFBS | 0.067 | 0.107 | n.d. | — |
+| PFHpA | 0.023 | 0.033 | n.d. | — |
+| PFOA | n.d. | 0.0024 | 0.0004 | 17% |
+| PFNA | n.d. | 0.0038 | 0.0022 | 58% |
+| PFDA | n.d. | 0.0084 | 0.0051 | 61% |
+| PFUnDA | n.d. | 0.0163 | 0.0098 | 60% |
+| PFDoDA | n.d. | 0.0474 | 0.0286 | 60% |
+| PFHxS | n.d. | 0.0030 | n.d. | — |
+| PFOS | n.d. | 0.0050 | n.d. | — |
+
+The consequence is general rather than confined to PFDoDA. Any tubular factor
+computed as CL_total/(f_u·GFR) credits the kidney with the faecal route as
+well, and so overstates renal tubular handling by 1/(1 − faecal share) — a
+factor of 1.2 for PFOA and about 2.5 for PFNA, PFDA, PFUnDA and PFDoDA. Where
+a faecal clearance is available we therefore replace the bound by
+
+$$\mathrm{CL_{renal}} \le \mathrm{CL_{total}}\,\bigl(1 - \mathrm{CL_{faecal}}/\mathrm{CL_{total}}\bigr)\tag{7}$$
+
+which is still an upper bound, since the residue of total clearance after
+faecal loss need not all be renal. This is what tightens PFDoDA's bound from
+3.08 to 1.22 in Table 9 and, for the four long-chain compounds in the
+forward-prediction set below, compresses the spread in the tubular factor from
+2.84-fold to 2.00-fold.
+
+A caution about the rodent counterpart. The rat renal fraction for PFOA is
+91.4% in Harada's Table 5 but 9.0% in Kim et al. (2016), whose Table 4 reports
+renal and total clearance for the same animals and therefore gives an
+internally consistent ratio. These differ 10-fold, and the figure underpins
+the familiar statement that the rat clears PFOA renally while the human does
+not. We record the disagreement rather than resolve it, and we do not carry a
+rat renal fraction into any quantitative step.
 
 ### A renal-only decomposition, with no residual term
 
@@ -976,6 +1069,86 @@ net-secreted in the female within one experiment. PFOS, which shows no sex
 difference in renal clearance, is the internal control establishing that the
 contrast is not an artefact of the assay.
 
+### Forward prediction of human half-lives
+
+Everything above decomposes a half-life that is already known. A decomposition
+cannot fail, because the residual absorbs whatever the named terms do not
+explain. We therefore asked the harder question: given the measured
+quantities, can a human half-life be *predicted*, and does the mechanistic
+form earn anything over a structural one?
+
+Four mechanistic models share the form t½ = ln2·V_d/(f_u·GFR·T) and differ
+only in where the tubular factor comes from. M1a sets T = 1 and spends no
+parameters. M1b fits a single constant T. M1c lets log T vary linearly with
+chain length. M1d replaces the measured f_u with one derived from albumin
+binding, f_u = 1/(1 + n[Alb]K_a), and fits T. Against these we set a
+structure-only regression of log t½ on chain length and head group, which uses
+no f_u, no V_d, no GFR and no clearance. Every fitted model is scored
+leave-one-out; M1a needs no holdout. All values of T are the renal-only bounds
+of equation (7), derived with the same f_u the model then divides by.
+
+**A single constant T cannot be fitted across the series, and the data say so
+before any model is run.** Under the Smeltz unbound fractions, T spans
+181-fold across the nine compounds: 0.0067 (PFNA) to 1.22 (PFDoDA). Removing
+PFDoDA, whose T is an upper bound on an undetectable urinary clearance, leaves
+84-fold. But the spread is not uniform along the series. Across the four
+long-chain compounds with a determined T — PFOA 0.0135, PFOS 0.0075, PFNA
+0.0067, PFDA 0.0084 — it is 2.0-fold. Across the short and mid chains — PFBA
+0.0916, PFBS 0.159, PFHxS 0.0229, PFHpA 0.568 — it is 24.8-fold. We therefore
+report the two regimes separately, and the separation is forced by the
+tubular factors rather than chosen to improve a fit.
+
+**Table 16.** Forward prediction of human half-lives, fold error.
+
+| model | k | long chain, n = 4 | | short/mid, n = 4 | |
+|---|---|---|---|---|---|
+| | | median | worst | median | worst |
+| structural, log t½ ~ nC | 2 | **1.5** | **1.7** | 23.5 | 114 |
+| M1b, T = fitted constant | 1 | 2.2 | 2.4 | **8.2** | **8.8** |
+| M1d, f_u from albumin K_a | 1 | 2.1 | 3.6 | 10.2 | 28.6 |
+| M1c, log T = a + b·nC | 2 | 2.3 | 4.7 | 14.8 | 56.9 |
+| M1a, T = 1 | 0 | 62.4 | 133 | 10.9 | 43.6 |
+
+**The ranking reverses between the two regimes, and that is the result.** On
+the long chains the structural regression reaches 1.5-fold median against
+2.2-fold for the one-parameter mechanistic model; on the short and mid chains
+the same regression gives 23.5-fold and the mechanistic model 8.2-fold. The
+two are therefore not competing descriptions of one phenomenon with a single
+winner. The structural model works where the half-life is a smooth function of
+chain length — 2011, 1305, 862, 584 and 295 days from PFOA to PFDoDA — and
+fails where it is not: PFBA 4.2, PFBS 50.6, PFHxS 1635 and PFHpA 152 days is
+no function of chain length at all. The mechanistic model is indifferent to
+that, depending instead on whether T is near-constant, which is the condition
+that holds on the long chains and fails on the short ones.
+
+**M1a fails in a way that measures the tubule.** With T = 1 it under-predicts
+in eight of nine compounds, by a median 43.6-fold, because assuming T = 1
+credits the kidney with clearing everything it filters. Its fold error is
+identically CL_total/(f_u·GFR), so the failure is not an inaccuracy to be
+reduced but the same tubular factor the decomposition reports, arrived at
+from the opposite direction.
+
+**Albumin binding is a usable substitute for a measured unbound fraction, and
+the number of binding sites is not identifiable.** M1d, which never sees a
+measured f_u, reaches 2.1-fold on the long chains against M1b's 2.2-fold —
+indistinguishable at this sample size. Varying the assumed stoichiometry over
+n = 1, 2, 3 moves the median by 2.3%, because under tight binding
+f_u ≈ 1/(n[Alb]K_a) is proportional to 1/n while the fitted T is proportional
+to n, so n cancels in the product. It survives only through the weakest
+binder, PFBA, which moves 1.29-fold; no other compound moves more than 4.9%.
+A binding-based unbound fraction can therefore stand in for a measured one,
+but these data cannot be used to infer how many sites are occupied.
+
+Two constraints bound what any of this establishes. Each stratum holds four
+compounds, so every fitted model has at most two residual degrees of freedom
+under leave-one-out: the reversal is a property of these data, but its
+magnitude is not estimable from four points and should not be quoted as an
+accuracy. And one input is anomalous in a way that drives the short-chain
+failure: Smeltz's PFHpA unbound fraction of 0.0004, the lowest of the four
+sources and 11-fold below Ryu's, implies T = 0.57 — almost no net reabsorption
+of a compound with a 152-day half-life. Either that value is too low or PFHpA
+has an elimination route this model does not contain.
+
 ### Errors identified in primary and secondary sources
 
 Applying the rule that a primary publication supersedes any compilation of it
@@ -1176,6 +1349,21 @@ several studies per species, and strains are mixed within the mouse column.
 Decomposition shares are reported with bootstrap intervals over compounds but
 do not propagate the experimental uncertainty in individual V_d and CL values.
 
+The forward-prediction results of Table 16 rest on four compounds per stratum
+and so on at most two residual degrees of freedom per fitted model. The
+reversal of ranking between regimes is visible in the data, but its size is
+not estimable at that sample size, and no fold error in that table should be
+read as an accuracy. The same table inherits the single-volunteer limitation
+above in full, since every half-life and every V_d entering it is Abraham's.
+
+The faecal correction of equation (7) removes a route that was measured, but
+what remains is not thereby renal: urinary clearance was below detection for
+every compound to which the correction applies, so the corrected tubular
+factors remain upper bounds and not measurements. Biliary secretion with
+near-complete enterohepatic reabsorption, which Fujii quantifies at sixty
+times the urinary clearance for PFOA, is consistent with both the faecal
+clearance observed and with a renal term well below the bound.
+
 The cynomolgus calculation assumes a GFR twice the human value per kilogram;
 the conclusion would require that factor to be wrong by orders of magnitude to
 change.
@@ -1208,6 +1396,20 @@ every rat series rises with dose except PFOS, whose four series across two
 studies all fall, in the one case where saturable plasma binding can be
 excluded as the cause. The tubular term is therefore partly mechanistic here,
 not merely residual.
+
+Turning the decomposition around into a forward prediction separates two
+descriptions that are usually treated as rivals. Over the four long-chain
+compounds whose tubular factor is determined, a structure-only regression on
+chain length predicts the human half-life to 1.5-fold and a one-parameter
+mechanistic model to 2.2-fold; over the short and mid chains the regression
+gives 23.5-fold and the mechanistic model 8.2-fold. Neither is generally
+better. The structural form works where the half-life is a smooth function of
+chain length and fails where it is not, while the mechanistic form works where
+the tubular factor is near-constant — 2.0-fold across the long chains against
+24.8-fold across the short ones. A model built on albumin binding alone, with
+no measured unbound fraction, matches the mechanistic model on the long chains,
+though the number of binding sites cancels out of the fit and cannot be
+recovered from these data.
 
 The tubular explanation is nonetheless compound-specific rather than general.
 Within the compounds for which the renal clearance ratio can be decomposed
